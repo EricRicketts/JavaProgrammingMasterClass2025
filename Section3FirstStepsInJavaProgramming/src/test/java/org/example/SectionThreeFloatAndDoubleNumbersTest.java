@@ -58,4 +58,16 @@ public class SectionThreeFloatAndDoubleNumbersTest {
         BigDecimal bigDecimalNumberTruncated = bigDecimalNumber.setScale(6, RoundingMode.DOWN);
         Assertions.assertEquals(truncatedAnswer,  bigDecimalNumberTruncated);
     }
+
+    @Test
+    void testSimpleChallengePoundsToKilograms() {
+        BigDecimal expected = BigDecimal.valueOf(2.26796185);
+        expected = expected.setScale(6, RoundingMode.DOWN);
+        double PoundsToKilograms = 0.45359237;
+        double pounds = 5.0;
+        BigDecimal kilograms = BigDecimal.valueOf(pounds * PoundsToKilograms);
+        BigDecimal kilogramsTruncated = kilograms.setScale(6, RoundingMode.DOWN);
+
+        Assertions.assertEquals(expected, kilogramsTruncated);
+    }
 }
