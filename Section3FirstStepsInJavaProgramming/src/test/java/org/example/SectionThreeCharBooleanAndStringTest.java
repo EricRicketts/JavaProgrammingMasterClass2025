@@ -23,8 +23,13 @@ public class SectionThreeCharBooleanAndStringTest {
 
     @Test
     public void unicodeCharTest() {
+        // this is the unicode representation
         myChar = '\u0044';
+        Character expectedChar = 68; // HTML representation is &#68, this is what we would use in HTML
+        // we can get more information on the character in the character chart the author uses
+        // https://symbl.cc/en
         Assertions.assertEquals('D', myChar);
+        Assertions.assertEquals('D', expectedChar);
     }
 
     @Test
@@ -37,5 +42,46 @@ public class SectionThreeCharBooleanAndStringTest {
     public void stringTest() {
         myString = "String";
         Assertions.assertEquals("String", myString.getClass().getSimpleName());
+    }
+
+    @Test
+    public void characterChallengeTest() {
+        // store the three different character values for the question mark: character, unicode,
+        // and integer value
+        Character mySimpleChar = '?';
+        Character myUnicodeChar = '\u003F'; // 48 + 15 = 63
+        Character myDecimalChar = 63;
+
+        Assertions.assertTrue(
+                (myDecimalChar == myUnicodeChar) && (myUnicodeChar == mySimpleChar)
+        );
+    }
+
+    @Test
+    public void secondStringTest() {
+        myString = "String";
+        String myNewString = "This is a simple " + myString + ".";
+        Assertions.assertEquals("This is a simple String.", myNewString);
+    }
+
+    @Test
+    public void usingUnicodeInStringsTest() {
+        Character dollarSign = '\u0024';
+        String statement = "I wish I had a " + dollarSign + "1,000,000.";
+        String expected = "I wish I had a $1,000,000.";
+        Assertions.assertEquals(expected, statement);
+    }
+
+    @Test
+    public void usingStringsAndNumbersTest() {
+        // Strings are immutable in Java the String concatenation operator "+"
+        // creates a new String.  More to come on strings later in the course.
+
+        myString = "50.5" + 50.5;
+        String expected = "50.550.5";
+        Double mySum = Double.valueOf("50.5"); // argument must be string could not do something
+        // like Double.valueOf("50.5" + 50.5)
+        Assertions.assertEquals(expected, myString);
+        Assertions.assertEquals(101, mySum + 50.5);
     }
 }
