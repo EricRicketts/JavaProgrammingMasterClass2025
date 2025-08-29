@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class SectionThreeCharBooleanAndStringTest {
 
     char myChar;
-    boolean myBoolean;
+    Boolean myBoolean;
     String myString;
 
     @Test
@@ -25,5 +25,17 @@ public class SectionThreeCharBooleanAndStringTest {
     public void unicodeCharTest() {
         myChar = '\u0044';
         Assertions.assertEquals('D', myChar);
+    }
+
+    @Test
+    public void booleanTest() {
+        myBoolean = true;
+        Assertions.assertEquals("Boolean", myBoolean.getClass().getSimpleName());
+    }
+
+    @Test
+    public void stringTest() {
+        myString = "String";
+        Assertions.assertEquals("String", myString.getClass().getSimpleName());
     }
 }
