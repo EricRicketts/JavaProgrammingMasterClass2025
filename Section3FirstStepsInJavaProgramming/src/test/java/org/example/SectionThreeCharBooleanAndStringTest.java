@@ -84,4 +84,17 @@ public class SectionThreeCharBooleanAndStringTest {
         Assertions.assertEquals(expected, myString);
         Assertions.assertEquals(101, mySum + 50.5);
     }
+
+    @Test
+    public void modulusOperatorTest() {
+        Assertions.assertEquals(2, 5 % 3);
+    }
+
+    @Test
+    public void concatCharactersTest() {
+        char myFirstChar = 'a'; // \u0061 or 97
+        char mySecondChar = 'b'; // \u0062 or 98
+        int myThirdChar = (myFirstChar + mySecondChar); // sum is \u00C3
+        Assertions.assertEquals(195, myFirstChar + mySecondChar);
+    }
 }
