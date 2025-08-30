@@ -97,4 +97,28 @@ public class SectionThreeCharBooleanAndStringTest {
         int myThirdChar = (myFirstChar + mySecondChar); // sum is \u00C3
         Assertions.assertEquals(195, myFirstChar + mySecondChar);
     }
+
+    @Test
+    public void compoundAssignmentTest() {
+        int result = 10;
+        int secondResult = 10;
+        result += 5;
+        secondResult -= 5;
+        Assertions.assertEquals(15, result);
+        Assertions.assertEquals(5, secondResult);
+    }
+
+    @Test
+    public void postIncrementOperatorTest() {
+        int result = 10;
+        result++;
+        Assertions.assertEquals(11, result);
+    }
+
+    @Test
+    public void postDecrementOperatorTest() {
+        int result = 10;
+        result--;
+        Assertions.assertEquals(9, result);
+    }
 }
