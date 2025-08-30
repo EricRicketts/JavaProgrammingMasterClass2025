@@ -131,4 +131,18 @@ public class SectionThreeCharBooleanAndStringTest {
         // since the cast is an int then (result - 5.5) = 4.5 which is truncated to 4
         Assertions.assertEquals(4, result);
     }
+
+    @Test
+    public void postMultiplicativeCompoundOperatorTest() {
+        int result = 10;
+        result *= 2;
+        Assertions.assertEquals(20, result);
+    }
+
+    @Test
+    public void postDivideCompoundOperatorTest() {
+        int result = 10;
+        result /= 2;
+        Assertions.assertEquals(5, result);
+    }
 }
