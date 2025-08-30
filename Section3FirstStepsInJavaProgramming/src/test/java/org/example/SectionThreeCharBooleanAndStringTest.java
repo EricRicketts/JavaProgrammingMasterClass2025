@@ -121,4 +121,14 @@ public class SectionThreeCharBooleanAndStringTest {
         result--;
         Assertions.assertEquals(9, result);
     }
+
+    @Test
+    public void compoundAssignmentQuirkTest() {
+        int result = 10;
+        result -= 5.5;
+        // result = result - 5.5, an implicit cast occurs to guard against errors but
+        // unexpected results may occur it is really => result = (data type of result) (result - 5.5)
+        // since the cast is an int then (result - 5.5) = 4.5 which is truncated to 4
+        Assertions.assertEquals(4, result);
+    }
 }
