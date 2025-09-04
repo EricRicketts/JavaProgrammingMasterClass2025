@@ -76,4 +76,16 @@ public class SectionFiveIfThenElseStatementsTest {
         };
         Assertions.assertArrayEquals(expected,results);
     }
+
+    @Test
+    public void methodTestWithVariableArguments() {
+        int expected = 12_600;
+        boolean gameOver = true;
+        int score = 10_000;
+        int levelCompleted = 8;
+        int bonus = 200;
+
+        int result = new App().calculateScore(gameOver, score, levelCompleted, bonus);
+        Assertions.assertEquals(expected, result);
+    }
 }
