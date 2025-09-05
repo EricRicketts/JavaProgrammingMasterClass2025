@@ -1,10 +1,11 @@
 package org.example;
 
+import static java.lang.StringTemplate.*;
+
 public class FirstChallenge {
 
     public String displayHighScorePosition(String name, int position) {
-        String s = STR."\{name} managed to get into position \{position} on the high score list.";
-        return s;
+        return StringTemplate.STR."\{name} managed to get into position \{position} on the high score list.";
     }
 
     public int calculateHighScorePosition(int score) {
