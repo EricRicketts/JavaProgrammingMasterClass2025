@@ -1,7 +1,5 @@
 package org.example;
 
-import static java.lang.StringTemplate.*;
-
 public class FirstChallenge {
 
     public String displayHighScorePosition(String name, int position) {
