@@ -2,14 +2,12 @@ package org.example;
 
 public class CodingExerciseOnePositiveNegativeZero {
     public String checkNumber (int number) {
-        String  result;
+        String  result = "zero";
 
-        if (number > 0) {
+        if  (number > 0) {
             result = "positive";
         } else if (number < 0) {
-           result = "negative";
-        } else {
-            result = "zero";
+            result = "negative";
         }
 
         return result;
