@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 public class SectionFiveCodingExerciseSixTest {
 
     double[] firstNumbers = new double[]{
-            -3.1756, 3.175, 3.0, -3.123
+            -3.1756, 3.175, 3.0, -3.123, 50.1357, 123.5312
     };
     double[] secondNumbers = new double[]{
-            -3.175, 3.176, 3.0, 3.123
+            -3.175, 3.176, 3.0, 3.123, 50.1356, 123.5306
     };
     boolean[] expected = new boolean[]{
-            true, false, true, false
+            true, false, true, false, true, false
     };
 
     @Test
