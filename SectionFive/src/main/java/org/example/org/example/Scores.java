@@ -9,6 +9,10 @@ public class Scores {
 
     public static String calculateScore(int score) {
 
-        return STR."Unnamed Player scored \{score} points.";
+        // Java does not have an option for default parameters
+        // but in this case you can call another method with more parameters
+        // and pass in the values which would be default parameters in other
+        // languages
+        return calculateScore("Anonymous", score);
     }
 }

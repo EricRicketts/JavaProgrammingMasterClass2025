@@ -16,9 +16,9 @@ public class SectionFiveScoresTest {
 
     @Test
     public void calculateScoreSecondOverloadMethodTest() {
-        expected = "Unnamed Player scored 200 points.";
+        expected = "Player Anonymous scored 200 points.";
         result = Scores.calculateScore(200);
-        
+
         Assertions.assertEquals(expected, result);
     }
 }
