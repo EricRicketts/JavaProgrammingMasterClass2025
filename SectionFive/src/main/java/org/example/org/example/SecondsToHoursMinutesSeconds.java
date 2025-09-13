@@ -15,7 +15,7 @@ public class SecondsToHoursMinutesSeconds {
     }
 
     public static String getDurationString(int minutes, int seconds) {
-        if (seconds < 0 || (minutes < 0 || minutes > 59)) {return "Invalid input";}
+        if (minutes < 0 || (seconds < 0 || seconds > 59)) {return "Invalid input";}
         int totalSeconds = minutes * minutesToSeconds + seconds;
         return getDurationString(totalSeconds);
     }

@@ -47,6 +47,14 @@ public class SectionFiveTimeConversionTest {
     }
 
     @Test
+    public void testFourMinuteAndSecondBoundary() {
+        expected = "3h 59m 59s";
+        results = SecondsToHoursMinutesSeconds.getDurationString(14_399);
+
+        Assertions.assertEquals(expected, results);
+    }
+
+    @Test
     public void testInvalidInputForMinutesAndSeconds() {
         int[] minutesInput =  {-1, 60, 23};
         int[] secondsInput = {50, 60, -1};
