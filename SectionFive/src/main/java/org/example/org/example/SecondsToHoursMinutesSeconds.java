@@ -7,8 +7,14 @@ public class SecondsToHoursMinutesSeconds {
     public static String getDurationString(int totalSeconds) {
         if  (totalSeconds < 0) {return "Invalid input"; }
         int hours = (int) (totalSeconds / (hoursToMinutes * minutesToSeconds));
+
+        // remainingSeconds will always be less than 3600 which is 1 hour
         int remainingSeconds = (int) (totalSeconds % (hoursToMinutes * minutesToSeconds));
+
+        // remaining minutes will always be less than 60 which is 1 hour
         int minutes = (int) (remainingSeconds / minutesToSeconds);
+
+        // remaining seconds will always be less than 60 which is 1 minute
         int seconds = (int) (remainingSeconds % minutesToSeconds);
 
         return STR."\{hours}h \{minutes}m \{seconds}s";
