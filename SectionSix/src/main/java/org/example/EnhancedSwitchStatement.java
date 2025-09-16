@@ -17,4 +17,20 @@ public class EnhancedSwitchStatement {
         if (secondResult.isBlank()) { return result; }
         return result + "  " + secondResult;
     }
+
+    public static String getQuarter(String month) {
+        return switch (month) {
+            case "JANUARY", "FEBRUARY", "MARCH" -> "1st";
+            case "APRIL", "MAY", "JUNE" -> "2nd";
+            case "JULY", "AUGUST", "SEPTEMBER" -> "3rd";
+            case "OCTOBER", "NOVEMBER", "DECEMBER" -> "4th";
+            default -> {
+                String response = "Invalid month";
+                yield response + " try again.";
+                // in the case were we put "return" in front of the switch keyword
+                // we cannot have any return keywords in the body of the switch statement
+                // instead we use the yield keyword for blocks of code.
+            }
+        };
+    }
 }

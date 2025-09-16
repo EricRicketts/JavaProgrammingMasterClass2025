@@ -22,4 +22,18 @@ public class EnhancedSwitchStatementTest {
             Assertions.assertEquals(expected,result);
         }
     }
+
+    @Test
+    public void testEnhancedSwitchStatementTwo() {
+        String[] values = new  String[]{"JANUARY", "MAY", "SEPTEMBER", "OCTOBER", "FOO"};
+        String[] expectedResults = new String[]{"1st", "2nd", "3rd", "4th", "Invalid month try again."};
+
+        for (int i = 0; i < values.length; i++) {
+            String value = values[i];
+            String  expected =  expectedResults[i];
+            String result = EnhancedSwitchStatement.getQuarter(value);
+
+            Assertions.assertEquals(expected,result);
+        }
+    }
 }
