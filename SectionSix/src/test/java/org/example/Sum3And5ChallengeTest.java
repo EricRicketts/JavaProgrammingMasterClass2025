@@ -11,16 +11,19 @@ public class Sum3And5ChallengeTest {
     int sum = 0;
     List<Integer> divisorList = new ArrayList<>();
     int[] expected = new int[]{15, 30, 45, 60, 75};
+    int expectedSum = 225;
     @Test
     public void testSum3And5Challenge() {
         for (int i = 1; i <= 1000; i++) {
             if (i % 3 == 0 && i % 5 == 0) {
                 divisorList.add(i);
+                sum = sum + i;
                 if (divisorList.size() == 5) break;
             }
         }
         int[] divisors = divisorList.stream().mapToInt(Integer::intValue).toArray();
         Arrays.sort(divisors);
         Assertions.assertArrayEquals(expected, divisors);
+        Assertions.assertEquals(expectedSum, sum);
     }
 }
