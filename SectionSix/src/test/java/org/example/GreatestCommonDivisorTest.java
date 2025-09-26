@@ -32,9 +32,25 @@ public class GreatestCommonDivisorTest {
     }
 
     @Test
-    public void testGreatestCommonDivisorEigtyOneAndOneHundredAndFiftyThree() {
+    public void testGreatestCommonDivisorEightyOneAndOneHundredAndFiftyThree() {
         expected = 9;
         result = GreatestCommonDivisor.getGreatestCommonDivisor(81, 153);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGreatestCommonDivisorFortyTwoAndFiftySix() {
+        expected = 14;
+        result = GreatestCommonDivisor.getGreatestCommonDivisor(42, 56);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGreatestCommonDivisorFortyEigthAndOneHundredAndEighty() {
+        expected = 12;
+        result = GreatestCommonDivisor.getGreatestCommonDivisor(48, 180);
 
         Assertions.assertEquals(expected, result);
     }
