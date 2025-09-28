@@ -5,35 +5,43 @@ import org.junit.jupiter.api.Test;
 
 public class GetDigitCountTest {
 
-    String expected, result;
+    int expected, result;
     @Test
     public void testGetDigitCountNegativeNumber() {
-        int expected = -1;
-        int result =  NumberToWords.getDigitCount(-5);
+        expected = -1;
+        result =  NumberToWords.getDigitCount(-5);
 
         Assertions.assertEquals(expected, result);
     }
 
     @Test
     public void testGetDigitCountOneNumber() {
-        int expected = 1;
-        int result =  NumberToWords.getDigitCount(0);
+        expected = 1;
+        result =  NumberToWords.getDigitCount(0);
 
         Assertions.assertEquals(expected, result);
     }
 
     @Test
     public void testGetDigitCountOneHundredAndTwentyThree() {
-        int expected = 3;
-        int result =  NumberToWords.getDigitCount(123);
+        expected = 3;
+        result =  NumberToWords.getDigitCount(123);
 
         Assertions.assertEquals(expected, result);
     }
 
     @Test
     public void testGetDigitCountOneThousandFourHundredAndSeventyEight() {
-        int expected = 4;
-        int result =  NumberToWords.getDigitCount(1478);
+        expected = 4;
+        result =  NumberToWords.getDigitCount(1478);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGetDigitCountOneHundred() {
+        expected = 3;
+        result =  NumberToWords.getDigitCount(100);
 
         Assertions.assertEquals(expected, result);
     }
