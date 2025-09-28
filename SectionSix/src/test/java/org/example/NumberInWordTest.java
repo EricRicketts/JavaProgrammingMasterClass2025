@@ -7,7 +7,7 @@ public class NumberInWordTest {
     String expected, result;
 
     @Test
-    public void testNumberInWordSingleDigit() {
+    public void testNumberToWordsSingleDigit() {
         int[] numbers = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         String[] expectedWords = new String[]{
                 "Zero",
@@ -32,9 +32,33 @@ public class NumberInWordTest {
     }
 
     @Test
-    public void testNumberInWordOneHundredAndTwentyThree() {
+    public void testNumberToWordsOneHundredAndTwentyThree() {
         expected = "One Two Three";
         result =  NumberToWords.numberToWords(123);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testNumberToWordsOneThousandAndTen() {
+        expected = "One Zero One Zero";
+        result =  NumberToWords.numberToWords(1010);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testNumberToWordsOneThousand() {
+        expected = "One Zero Zero Zero";
+        result =  NumberToWords.numberToWords(1000);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testNumberToWordsInvalidValue() {
+        expected = "Invalid Value";
+        result =  NumberToWords.numberToWords(-12);
 
         Assertions.assertEquals(expected, result);
     }

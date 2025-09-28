@@ -46,5 +46,13 @@ public class GetDigitCountTest {
         Assertions.assertEquals(expected, result);
     }
 
+    @Test
+    public void testGetDigitCountOneThousandAndTen() {
+        expected = 4;
+        result =  NumberToWords.getDigitCount(1010);
+
+        Assertions.assertEquals(expected, result);
+    }
+
 
 }

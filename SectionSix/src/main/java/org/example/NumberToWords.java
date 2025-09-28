@@ -8,43 +8,20 @@ import static java.util.Map.entry;
 public class NumberToWords {
 
     public static String digitsToWords(int number) {
-        return switch(number) {
-            case 0:
-                yield "Zero";
-            case 1:
-                yield "One";
-            case 2:
-                yield "Two";
-            case 3:
-                yield "Three";
-            case 4:
-                yield "Four";
-            case 5:
-                yield "Five";
-            case 6:
-                yield "Six";
-            case 7:
-                yield "Seven";
-            case 8:
-                yield "Eight";
-            case 9:
-                yield "Nine";
-            default:
-                yield "Invalid number";
+        return switch (number) {
+            case 0 -> "Zero";
+            case 1 -> "One";
+            case 2 -> "Two";
+            case 3 -> "Three";
+            case 4 -> "Four";
+            case 5 -> "Five";
+            case 6 -> "Six";
+            case 7 -> "Seven";
+            case 8 -> "Eight";
+            case 9 -> "Nine";
+            default -> "Invalid Value";
         };
     }
-    Map<Integer, String> digitsToWords = Map.ofEntries(
-            entry(0, "Zero"),
-            entry(1, "One"),
-            entry(2, "Two"),
-            entry(3, "Three"),
-            entry(4, "Four"),
-            entry(5, "Five"),
-            entry(6, "Six"),
-            entry(7, "Seven"),
-            entry(8, "Eight"),
-            entry(9, "Nine")
-    );
     public static int getDigitCount(int number) {
         int digitCount = 0;
         if (number < 0) return -1;
@@ -77,19 +54,18 @@ public class NumberToWords {
     }
 
     public static String numberToWords(int number) {
-        String words = "";
-        int numberOfDigits = getDigitCount(reverse(number)) >= 0 ?  getDigitCount(reverse(number)) : -1;
-        if  (numberOfDigits == -1) return "Invalid Value";
-        if (number < 10) return digitsToWords(number);
+        StringBuilder words = new StringBuilder();
+        int numberOfDigits = getDigitCount(number);
+        if (numberOfDigits < 0) return "Invalid Value";
 
         number = reverse(number);
-        while (number > 0) {
-            int trailingDigit =  number % 10;
-            words = words.concat(digitsToWords(trailingDigit) + " ");
-            number /= 10;
+        for (int i = 0; i < numberOfDigits; i++) {
+            int trailingDigit = number % 10;
+            words.append(digitsToWords(trailingDigit)).append(" ");
+            number = number / 10;
         }
 
-        words = words.substring(0, words.length() - 1);
-        return words;
+        words = new StringBuilder(words.substring(0, words.length() - 1));
+        return words.toString();
     }
 }
