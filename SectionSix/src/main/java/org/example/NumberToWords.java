@@ -7,6 +7,32 @@ import static java.util.Map.entry;
 
 public class NumberToWords {
 
+    public static String digitsToWords(int number) {
+        return switch(number) {
+            case 0:
+                yield "Zero";
+            case 1:
+                yield "One";
+            case 2:
+                yield "Two";
+            case 3:
+                yield "Three";
+            case 4:
+                yield "Four";
+            case 5:
+                yield "Five";
+            case 6:
+                yield "Six";
+            case 7:
+                yield "Seven";
+            case 8:
+                yield "Eight";
+            case 9:
+                yield "Nine";
+            default:
+                yield "Invalid number";
+        };
+    }
     Map<Integer, String> digitsToWords = Map.ofEntries(
             entry(0, "Zero"),
             entry(1, "One"),
@@ -51,7 +77,19 @@ public class NumberToWords {
     }
 
     public static String numberToWords(int number) {
-        if (number < 0) return "Invalid Value";
-        return "foo";
+        String words = "";
+        int numberOfDigits = getDigitCount(reverse(number)) >= 0 ?  getDigitCount(reverse(number)) : -1;
+        if  (numberOfDigits == -1) return "Invalid Value";
+        if (number < 10) return digitsToWords(number);
+
+        number = reverse(number);
+        while (number > 0) {
+            int trailingDigit =  number % 10;
+            words = words.concat(digitsToWords(trailingDigit) + " ");
+            number /= 10;
+        }
+
+        words = words.substring(0, words.length() - 1);
+        return words;
     }
 }
