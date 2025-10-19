@@ -3,6 +3,10 @@ package org.example;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/*
+https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
+how to read and test System.out.println();
+ */
 public class ReadUserInput {
 
     public void readFiveValidNumbers() {
