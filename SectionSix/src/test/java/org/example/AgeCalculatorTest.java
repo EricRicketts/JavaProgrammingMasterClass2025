@@ -10,6 +10,10 @@ import java.io.PrintStream;
 
 public class AgeCalculatorTest {
 
+    String expected, result;
+    Integer resultInt;
+    Double resultDouble;
+
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -44,10 +48,32 @@ public class AgeCalculatorTest {
     }
 
     @Test
-    public void testCalculateAgeString() {
-        String expected = "hello";
+    public void testStackOverflowCode() {
+        // below is a test taken from Stack Overflow article
+        // Test below extends this concept to the class and methods I created
+         expected = "hello";
         System.out.print(expected);
-        String result = outContent.toString();
+        result = outContent.toString();
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testAgeCalculatorInteger() {
+        expected = "30";
+        System.out.print(expected);
+        resultInt = AgeCalculator.getAgeInteger("2000", "1970");
+        result = String.valueOf(resultInt);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testAgeCalculatorDouble() {
+        expected = "10.5";
+        System.out.print(expected);
+        resultDouble = AgeCalculator.getAgeDouble("2000", "1989.5");
+        result = String.valueOf(resultDouble);
+
         Assertions.assertEquals(expected, result);
     }
 }
