@@ -61,4 +61,18 @@ public class PersonTest {
         person.setLastName("");
         Assertions.assertEquals("", person.getFullName());
     }
+
+    @Test
+    public void testFullNameIfFirstNameIsEmpty() {
+        person.setFirstName("");
+        person.setLastName("Bill");
+        Assertions.assertEquals("Bill", person.getFullName());
+    }
+
+    @Test
+    public void testFullNameIfLastNameIsEmpty() {
+        person.setLastName("");
+        person.setFirstName("Betty");
+        Assertions.assertEquals("Betty", person.getFullName());
+    }
 }
