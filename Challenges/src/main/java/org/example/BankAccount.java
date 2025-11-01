@@ -1,12 +1,28 @@
 package org.example;
 
 public class BankAccount {
+
     private int accountNumber;
     private double balance;
     private String customerName;
     private String customerEmail;
     private String customerPhone;
-    private String withdrawError = "Balance is not below zero";
+    private String withdrawError = "No Error account not overdrawn";
+
+    public BankAccount() {
+        this(0,0.00,"Default name",
+                "Default email","Default phone");
+    }
+
+    public BankAccount(int accountNumber, double balance,
+                       String customerName, String customerEmail,
+                       String customerPhone) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+    }
 
     public int getAccountNumber() {
         return accountNumber;
@@ -58,7 +74,7 @@ public class BankAccount {
 
     public void withdrawFunds (double withdraw) {
         if (this.balance - withdraw < 0) {
-            withdrawError = "Withdraw denied balance less than zero";
+            this.withdrawError = "Withdraw denied balance less than zero";
         } else {
             this.balance -= withdraw;
         }

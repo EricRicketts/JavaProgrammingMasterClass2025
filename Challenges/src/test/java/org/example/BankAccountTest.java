@@ -67,4 +67,25 @@ public class BankAccountTest {
                 "Withdraw denied balance less than zero", bankAccount.getWithdrawError());
         Assertions.assertEquals(500, bankAccount.getBalance());
     }
+
+    @Test
+    public void noArgsConstructorTest() {
+        bankAccount = new BankAccount();
+        Assertions.assertEquals(0, bankAccount.getAccountNumber());
+        Assertions.assertEquals(0.00, bankAccount.getBalance());
+        Assertions.assertEquals("Default name", bankAccount.getCustomerName());
+        Assertions.assertEquals("Default email", bankAccount.getCustomerEmail());
+        Assertions.assertEquals("Default phone", bankAccount.getCustomerPhone());
+    }
+
+    @Test
+    public void argsConstructorTest() {
+        bankAccount = new BankAccount(12345, 134.55, "Billy Bob",
+                "billy.bob@example.com", "(980) 123-4567");
+        Assertions.assertEquals(12345, bankAccount.getAccountNumber());
+        Assertions.assertEquals(134.55, bankAccount.getBalance());
+        Assertions.assertEquals("Billy Bob", bankAccount.getCustomerName());
+        Assertions.assertEquals("billy.bob@example.com", bankAccount.getCustomerEmail());
+        Assertions.assertEquals("(980) 123-4567", bankAccount.getCustomerPhone());
+    }
 }
