@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class SimpleCalculatorTest {
 
+    double result;
     SimpleCalculator simpleCalculator;
 
     @BeforeEach
@@ -37,7 +38,7 @@ public class SimpleCalculatorTest {
     public void getSubtractionResultTest() {
         simpleCalculator.setFirstNumber(98.23);
         simpleCalculator.setSecondNumber(78.38);
-        double result = Math.floor(simpleCalculator.getSubtractionResult() * 100) / 100;
+        result = Math.floor(simpleCalculator.getSubtractionResult() * 100) / 100;
         Assertions.assertEquals(19.85, result);
     }
 
@@ -45,7 +46,7 @@ public class SimpleCalculatorTest {
     public void getMultiplicationResultTest() {
         simpleCalculator.setFirstNumber(13.89);
         simpleCalculator.setSecondNumber(22.53);
-        double result = Math.floor(simpleCalculator.getMultiplicationResult() * 100) / 100;
+        result = Math.floor(simpleCalculator.getMultiplicationResult() * 100) / 100;
         Assertions.assertEquals(312.94, result);
     }
 
@@ -60,7 +61,7 @@ public class SimpleCalculatorTest {
     public void getDivisionResult() {
         simpleCalculator.setFirstNumber(113.67);
         simpleCalculator.setSecondNumber(18.13);
-        double result = (double) Math.round(simpleCalculator.getDivisionResult() * 100) / 100;
+        result = (double) Math.round(simpleCalculator.getDivisionResult() * 100) / 100;
         Assertions.assertEquals(6.27, result);
     }
 }
