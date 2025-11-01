@@ -32,4 +32,35 @@ public class SimpleCalculatorTest {
         simpleCalculator.setSecondNumber(100.33);
         Assertions.assertEquals(146.00, simpleCalculator.getAdditionResult());
     }
+
+    @Test
+    public void getSubtractionResultTest() {
+        simpleCalculator.setFirstNumber(98.23);
+        simpleCalculator.setSecondNumber(78.38);
+        double result = Math.floor(simpleCalculator.getSubtractionResult() * 100) / 100;
+        Assertions.assertEquals(19.85, result);
+    }
+
+    @Test
+    public void getMultiplicationResultTest() {
+        simpleCalculator.setFirstNumber(13.89);
+        simpleCalculator.setSecondNumber(22.53);
+        double result = Math.floor(simpleCalculator.getMultiplicationResult() * 100) / 100;
+        Assertions.assertEquals(312.94, result);
+    }
+
+    @Test
+    public void getDivisionResultDivideByZeroTest() {
+        simpleCalculator.setFirstNumber(57.55);
+        simpleCalculator.setSecondNumber(0);
+        Assertions.assertEquals(0, simpleCalculator.getDivisionResult());
+    }
+
+    @Test
+    public void getDivisionResult() {
+        simpleCalculator.setFirstNumber(113.67);
+        simpleCalculator.setSecondNumber(18.13);
+        double result = (double) Math.round(simpleCalculator.getDivisionResult() * 100) / 100;
+        Assertions.assertEquals(6.27, result);
+    }
 }
