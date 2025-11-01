@@ -1,6 +1,6 @@
 package org.example;
 
-public class BankAccount {
+public class Account {
 
     private int accountNumber;
     private double balance;
@@ -9,14 +9,14 @@ public class BankAccount {
     private String customerPhone;
     private String withdrawError = "No Error account not overdrawn";
 
-    public BankAccount() {
+    public Account() {
         this(0,0.00,"Default name",
                 "Default email","Default phone");
     }
 
-    public BankAccount(int accountNumber, double balance,
-                       String customerName, String customerEmail,
-                       String customerPhone) {
+    public Account(int accountNumber, double balance,
+                   String customerName, String customerEmail,
+                   String customerPhone) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.customerName = customerName;
