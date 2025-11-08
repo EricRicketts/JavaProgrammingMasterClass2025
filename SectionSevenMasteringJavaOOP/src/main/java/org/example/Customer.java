@@ -27,4 +27,16 @@ public class Customer {
     public double getCreditLimit() {
         return creditLimit;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCreditLimit(double creditLimit) {
+        this.creditLimit = creditLimit;
+    }
 }

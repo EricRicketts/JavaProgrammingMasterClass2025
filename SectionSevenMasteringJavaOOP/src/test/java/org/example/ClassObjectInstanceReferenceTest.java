@@ -7,10 +7,19 @@ import java.util.List;
 public class ClassObjectInstanceReferenceTest {
 
     Customer firstCustomer, secondCustomer;
+    String firstCustomerHexCode, secondCustomerHexCode, thirdCustomerHexCode;
     List<String> expected, result;
 
     @BeforeEach
     public void setUp() {
+        // This is very important to understand, we have created two Customer objects, but the only way
+        // we can get access to them is through a reference, that is the variable assignments shown below.
+        // if we were to create a new Customer object => new Customer(); that object would reside at a
+        // memory location but without a reference to it, we cannot access it.  Now, there are times we
+        // can instantiate an object without a reference and then call a method on an object to get a
+        // value which we can use later, if this is all we need the object for then we can do that
+        // of course then one might question which not define a static method so an object need not
+        // be instantiated to get the desired result.
         firstCustomer = new Customer();
         secondCustomer = new Customer("Sam Park", "sam.park@example.com", 25_000.00);
     }
@@ -45,8 +54,31 @@ public class ClassObjectInstanceReferenceTest {
         // that these instances of Customer are different as they reside in different memory locations
         // if they were pointing to the same object they would pont to the same memory location
         // not the next time I debug I could get different object references
-        String firstCustomerHexCode = Integer.toHexString(System.identityHashCode(firstCustomer));
-        String secondCustomerHexCode = Integer.toHexString(System.identityHashCode(secondCustomer));
+        firstCustomerHexCode = Integer.toHexString(System.identityHashCode(firstCustomer));
+        secondCustomerHexCode = Integer.toHexString(System.identityHashCode(secondCustomer));
         Assertions.assertNotEquals(firstCustomerHexCode, secondCustomerHexCode);
+    }
+
+    @Test
+    public void testChangingReferences() {
+        // we established firstCustomer and secondCustomer refer to different objects
+        Customer thirdCustomer = firstCustomer;
+        firstCustomerHexCode = Integer.toHexString(System.identityHashCode(firstCustomer));
+        thirdCustomerHexCode = Integer.toHexString(System.identityHashCode(thirdCustomer));
+        Assertions.assertEquals(firstCustomerHexCode, thirdCustomerHexCode);
+        // As one can see the HashCode is the same for each variable, this is because firstCustomer
+        // and thirdCustomer point to the same object in memory, so the references have to be the same
+        // think of it like this, "what is the memory address of the object I want to use?"
+        // Let's change the one of the attributes of firstCustomer and see what happens to thirdCustomer
+        firstCustomer.setCreditLimit(35_515.00);
+        Assertions.assertEquals(35_515.00, firstCustomer.getCreditLimit());
+        Assertions.assertEquals(35_515.00, thirdCustomer.getCreditLimit());
+        // we can see without explicitly changing the credit limit thirCustomer it was updated to match
+        // the new credit limit for firstCustomer.  This is because firstCustomer and thirdCustomer
+        // point to the same object in memory.  Now if I change a thirdCustomer attribute, the firstCustomer
+        // will update as well
+        thirdCustomer.setName("Sally Jennings");
+        Assertions.assertEquals("Sally Jennings", thirdCustomer.getName());
+        Assertions.assertEquals("Sally Jennings", firstCustomer.getName());
     }
 }
