@@ -71,7 +71,6 @@ class Car {
     }
 
     public String describeCar() {
-        String s = doors + "-Door " + color + " " + make + " " + model + " " + (convertible ? "Convertible" : "Not Convertible");
-        return s;
+        return doors + "-Door " + color + " " + make + " " + model + " " + (convertible ? "Convertible" : "Not Convertible");
     }
 }
