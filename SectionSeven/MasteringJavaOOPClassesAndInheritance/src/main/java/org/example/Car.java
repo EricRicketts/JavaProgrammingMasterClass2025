@@ -1,34 +1,11 @@
 package org.example;
 
-class Car {
+public class Car {
     private String make;
     private String model;
     private String color;
     private int doors;
     private boolean convertible;
-    public Car(String make, String model, String color, int doors, boolean convertible) {
-        this.make = make;
-        this.model = model;
-        this.color = color;
-        this.doors = doors;
-        this.convertible = convertible;
-    }
-
-    public Car(String make, String model, String color) {
-        this.make = make;
-        this.model = model;
-        this.color = color;
-        this.doors = 2;
-        this.convertible = false;
-    }
-
-    public Car(String make, String model) {
-        this.make = make;
-        this.model = model;
-        this.color = "grey";
-        this.doors = 2;
-        this.convertible = false;
-    }
 
     public String getMake() {
         return make;
@@ -66,11 +43,12 @@ class Car {
         return convertible;
     }
 
-    public void setConvertible(boolean convertible) {
+    public void setConvertable(boolean convertible) {
         this.convertible = convertible;
     }
 
     public String describeCar() {
-        return doors + "-Door " + color + " " + make + " " + model + " " + (convertible ? "Convertible" : "Not Convertible");
+        return doors + "-Door " + color + " " + make + " " +  model + " " +
+                (convertible ? "Convertible" : "Not Convertible");
     }
 }
