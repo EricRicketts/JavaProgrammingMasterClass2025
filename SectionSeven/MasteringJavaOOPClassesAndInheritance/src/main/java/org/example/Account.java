@@ -51,6 +51,8 @@ public class Account {
     }
 
     public void depositFunds(String amount) {
-
+        BigDecimal amountAdded = BigDecimal.valueOf(Double.parseDouble(amount));
+        BigDecimal newBalance = this.getAccountBalance().add(amountAdded);
+        this.setAccountBalance(newBalance.toString());
     }
 }

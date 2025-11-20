@@ -22,8 +22,6 @@ public class AccountChallengeTest {
     public void testSettersAndGetters() {
         List<String> expected =
                 Arrays.asList("John Doe", "john.doe@example.com", "7034519876");
-        account.setAccountNumber(123456);
-        account.setAccountBalance("111.45");
         account.setCustomerName("John Doe");
         account.setCustomerEmail("john.doe@example.com");
         account.setCustomerPhone("7034519876");
@@ -48,5 +46,14 @@ public class AccountChallengeTest {
     public void testAccountNumber() {
         account.setAccountNumber(123456);
         Assertions.assertEquals(123456,account.getAccountNumber());
+    }
+
+    @Test
+    public void testDepositFunds() {
+        account.setAccountBalance("111.45");
+        account.depositFunds("55.54");
+        BigDecimal expected = new BigDecimal("166.99");
+        BigDecimal result = account.getAccountBalance();
+        Assertions.assertEquals(expected,result);
     }
 }
