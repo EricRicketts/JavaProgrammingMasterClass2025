@@ -11,6 +11,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+      <project.maven.target>22</project.maven.target>
+      <project.maven.source>22</project.maven.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
