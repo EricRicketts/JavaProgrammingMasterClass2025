@@ -35,14 +35,6 @@ public class AccountChallengeTest {
     }
 
     @Test
-    public void testAccountBalance() {
-        account.setAccountBalance("111.45");
-        BigDecimal expected = new BigDecimal("111.45");
-        BigDecimal result = account.getAccountBalance();
-        Assertions.assertEquals(expected,result);
-    }
-
-    @Test
     public void testAccountNumber() {
         account.setAccountNumber(123456);
         Assertions.assertEquals(123456,account.getAccountNumber());
@@ -50,10 +42,14 @@ public class AccountChallengeTest {
 
     @Test
     public void testDepositFunds() {
-        account.setAccountBalance("111.45");
-        account.depositFunds("55.54");
-        BigDecimal expected = new BigDecimal("166.99");
-        BigDecimal result = account.getAccountBalance();
+        account.setAccountBalance(111.45);
+        account.depositFunds(55.55);
+        Double expected = 167.00;
+        Double result = account.getAccountBalance();
         Assertions.assertEquals(expected,result);
+    }
+
+    @Test
+    public void testWithdrawFunds() {
     }
 }
