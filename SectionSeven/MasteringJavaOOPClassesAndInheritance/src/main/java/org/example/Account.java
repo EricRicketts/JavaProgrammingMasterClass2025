@@ -59,4 +59,14 @@ public class Account {
         this.setAccountBalance(newBalance);
     }
 
+    public String withdrawFunds(Double amount) {
+        double newBalance;
+        newBalance = this.getAccountBalance() - amount;
+        if (newBalance < 0) {
+            return "Insufficient Funds";
+        } else {
+            this.setAccountBalance(newBalance);
+            return "Successfully Withdrawn";
+        }
+    }
 }

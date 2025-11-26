@@ -16,6 +16,7 @@ public class AccountChallengeTest {
     @BeforeEach
     public void setUp() {
         account = new Account();
+        account.setAccountBalance(111.45);
     }
 
     @Test
@@ -42,7 +43,6 @@ public class AccountChallengeTest {
 
     @Test
     public void testDepositFunds() {
-        account.setAccountBalance(111.45);
         account.depositFunds(55.55);
         Double expected = 167.00;
         Double result = account.getAccountBalance();
@@ -50,6 +50,17 @@ public class AccountChallengeTest {
     }
 
     @Test
-    public void testWithdrawFunds() {
+    public void testWithdrawFundsSufficientFunds() {
+        String result = account.withdrawFunds(11.45);
+        String expected = "Successfully Withdrawn";
+        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(100.00, account.getAccountBalance());
+    }
+
+    @Test
+    public void testWithdrawFundsInsufficientFunds() {
+        String result = account.withdrawFunds(143.44);
+        String expected = "Insufficient Funds";
+        Assertions.assertEquals(111.45, account.getAccountBalance());
     }
 }
