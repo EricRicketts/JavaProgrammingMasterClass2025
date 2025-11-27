@@ -38,4 +38,8 @@ public class Person {
     public boolean isTeen() {
         return age > 12 && age < 20;
     }
+
+    public String  getFullName() {
+        return (this.getFirstName() + " " + this.getLastName()).trim();
+    }
 }

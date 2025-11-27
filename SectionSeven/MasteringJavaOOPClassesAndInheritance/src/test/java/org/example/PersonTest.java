@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 public class PersonTest {
 
     Person person;
+    String expected, result;
 
     @BeforeEach
     public void setUp() {
@@ -66,5 +67,37 @@ public class PersonTest {
             boolean result = person.isTeen();
             Assertions.assertEquals(expected, result);
         }
+    }
+
+    @Test
+    public void testGetFullNameWithFirstAndLastName() {
+        expected = "John Doe";
+        result =  person.getFullName();
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGetFullNameWithNoFirstAndLastName() {
+        expected = "";
+        person.setFirstName("");
+        person.setLastName("");
+        result =  person.getFullName();
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGetFullNameWithNoFirstName() {
+        expected = "Doe";
+        person.setFirstName("");
+        result =  person.getFullName();
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGetFullNameWithNoLastName() {
+        expected = "John";
+        person.setLastName("");
+        result =  person.getFullName();
+        Assertions.assertEquals(expected, result);
     }
 }
