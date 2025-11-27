@@ -38,9 +38,21 @@ public class PersonTest {
     }
 
     @Test
+    public void testGetAgeOfZero() {
+        person.setAge(0);
+        Assertions.assertEquals(0, person.getAge());
+    }
+
+    @Test
     public void testGetAgeGreaterThanOneHundred() {
         person.setAge(101);
         Assertions.assertEquals(0, person.getAge());
+    }
+
+    @Test
+    public void testGetAgeOfOneHundred() {
+        person.setAge(100);
+        Assertions.assertEquals(100, person.getAge());
     }
 
     @Test
