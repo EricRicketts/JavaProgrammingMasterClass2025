@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,8 +35,8 @@ public class AccountChallengeTest {
 
     @Test
     public void testAccountNumber() {
-        account.setAccountNumber(123456);
-        Assertions.assertEquals(123456,account.getAccountNumber());
+        account.setAccountNumber("123456");
+        Assertions.assertEquals("123456",account.getAccountNumber());
     }
 
     @Test
@@ -62,5 +60,19 @@ public class AccountChallengeTest {
         String result = account.withdrawFunds(143.44);
         String expected = "Insufficient Funds";
         Assertions.assertEquals(111.45, account.getAccountBalance());
+    }
+
+    @Test
+    public void testConstructorWithAllArguments() {
+        Account account = new  Account(
+                "12233445", 1515.15, "Elmer Fudd",
+                "elmer.fudd@example.com", "(989) 123-7654"
+        );
+        List<String> expected = List.of("12233445", "Elmer Fudd",
+                "elmer.fudd@example.com", "(989) 123-7654");
+        List<String> result = List.of(account.getAccountNumber(), account.getCustomerName(),
+                account.getCustomerEmail(), account.getCustomerPhone());
+        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(1515.15, account.getAccountBalance());
     }
 }

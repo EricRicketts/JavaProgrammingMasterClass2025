@@ -4,21 +4,39 @@ import java.math.BigDecimal;
 
 public class Account {
 
-    private Integer accountNumber;
+    private String accountNumber;
     private Double accountBalance;
     private String customerName;
     private String customerEmail;
     private String customerPhone;
 
+    public Account(String accountNumber, Double accountBalance,
+                   String customerName, String customerEmail,
+                   String customerPhone) {
+        this.accountNumber = accountNumber;
+        this.accountBalance = accountBalance;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+    }
+
+    public Account() {
+        this.accountNumber = "";
+        this.accountBalance = 0.00;
+        this.customerName = "";
+        this.customerEmail = "";
+        this.customerPhone = "";
+    }
+
     public double roundToTwoDecimalPlaces (double value) {
         return Math.round(value * 100.0) / 100.0;
     }
 
-    public Integer getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(Integer accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
