@@ -75,4 +75,14 @@ public class AccountChallengeTest {
         Assertions.assertEquals(expected,result);
         Assertions.assertEquals(1515.15, account.getAccountBalance());
     }
+
+    @Test
+    public void testNoArgumentsConstructor() {
+        account = new Account();
+        List<Object> expected = List.of("56789", 2.50, "Default Name",
+                "Default Email", "Default Phone");
+        List<Object> result = List.of(account.getAccountNumber(), account.getAccountBalance(),
+                account.getCustomerName(), account.getCustomerEmail(), account.getCustomerPhone());
+        Assertions.assertEquals(expected,result);
+    }
 }

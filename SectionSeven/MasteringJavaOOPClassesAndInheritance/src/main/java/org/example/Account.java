@@ -10,6 +10,15 @@ public class Account {
     private String customerEmail;
     private String customerPhone;
 
+    public Account() {
+        this("56789", 2.50, "Default Name",
+                "Default Email", "Default Phone");
+    }
+
+    public Account(String CustomerName, String CustomerEmail, String CustomerPhone) {
+        this("99999", 100.55, CustomerName, CustomerEmail, CustomerPhone);
+    }
+
     public Account(String accountNumber, Double accountBalance,
                    String customerName, String customerEmail,
                    String customerPhone) {
@@ -18,14 +27,6 @@ public class Account {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
-    }
-
-    public Account() {
-        this.accountNumber = "";
-        this.accountBalance = 0.00;
-        this.customerName = "";
-        this.customerEmail = "";
-        this.customerPhone = "";
     }
 
     public double roundToTwoDecimalPlaces (double value) {
