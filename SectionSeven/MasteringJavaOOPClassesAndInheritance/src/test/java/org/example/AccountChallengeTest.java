@@ -85,4 +85,16 @@ public class AccountChallengeTest {
                 account.getCustomerName(), account.getCustomerEmail(), account.getCustomerPhone());
         Assertions.assertEquals(expected,result);
     }
+
+    @Test
+    public void testThreeArgumentConstructor() {
+        account = new Account("Sylvester Cat",
+                "sylvester.cat@example.com",
+                "(540) 234-8765");
+        List<Object> expected = List.of("99999", 100.55, "Sylvester Cat",
+                "sylvester.cat@example.com", "(540) 234-8765");
+        List<Object> result = List.of(account.getAccountNumber(), account.getAccountBalance(),
+                account.getCustomerName(), account.getCustomerEmail(), account.getCustomerPhone());
+        Assertions.assertEquals(expected,result);
+    }
 }
