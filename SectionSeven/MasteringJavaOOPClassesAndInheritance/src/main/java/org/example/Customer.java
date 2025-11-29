@@ -19,9 +19,8 @@ public class Customer {
     }
 
     public Customer() {
-        this.customerName = "Elmer Fudd";
-        this.creditLimit = 100.55;
-        this.customerEmail = "elmer.fudd@example.com";
+        this("Elmer Fudd", "elmer.fudd@example.com");
+        // call two argument constructor
     }
 
     public Customer(String customerName, String customerEmail) {

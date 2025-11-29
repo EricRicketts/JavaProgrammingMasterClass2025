@@ -32,7 +32,7 @@ public class CustomerChallengeTest {
 
     @Test
     public void testNoArgumentCustomerConstructor() {
-        expected = List.of("Elmer Fudd", 100.55, "elmer.fudd@example.com");
+        expected = List.of("Elmer Fudd", 222.22, "elmer.fudd@example.com");
         result = List.of(secondCustomer.getCustomerName(), secondCustomer.getCreditLimit(),
                 secondCustomer.getCustomerEmail());
         Assertions.assertEquals(expected, result);
