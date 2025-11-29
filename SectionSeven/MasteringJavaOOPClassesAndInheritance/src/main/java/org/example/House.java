@@ -1,0 +1,22 @@
+package org.example;
+
+public class House {
+
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public House() {
+        this("white");
+    }
+
+    public House(String color) {
+        this.color = color;
+    }
+}
