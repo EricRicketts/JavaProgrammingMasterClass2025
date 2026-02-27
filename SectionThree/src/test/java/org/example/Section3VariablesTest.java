@@ -37,4 +37,10 @@ class Section3VariablesTest {
 
         assertEquals(expected, myLastOne);
     }
+
+    @Test
+    void gitTest() {
+        int myGitTest = 10;
+        assertEquals(10, myGitTest);
+    }
 }
