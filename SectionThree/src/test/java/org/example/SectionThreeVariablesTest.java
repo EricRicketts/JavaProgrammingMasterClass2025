@@ -15,10 +15,17 @@ class SectionThreeVariablesTest {
     void simpleVariableTest() {
         int x = 3;
         int y = 4;
-        result = x + y;
-        expected = 7;
+        int z = 5; // variable declaration, variable type and variable name, we do an assignment here
+        // but this is not required.  When we have a variable declaration with the variable being assigned a value,
+        // this is called an expression.
+        int resultSumXAndY = x + y;
+        int resultSumXYAndZ = x + y + z;
+        int expectedSumXAndY = 7;
+        int expectedSumXYAndZ = 12;
 
-        assertEquals(expected, result);
+        assertEquals(expectedSumXAndY, resultSumXAndY);
+        assertEquals(expectedSumXYAndZ, resultSumXYAndZ);
+        assertEquals(z, resultSumXYAndZ - resultSumXAndY);
     }
 
     @Test
