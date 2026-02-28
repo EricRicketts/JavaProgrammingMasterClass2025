@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Section3VariablesTest {
+class SectionThreeVariablesTest {
 
     int myFirstNumber = (10 + 5) + (2 * 10);
     int mySecondNumber = 12;
