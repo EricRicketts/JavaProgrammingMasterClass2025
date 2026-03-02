@@ -6,6 +6,7 @@ Precision of a real number refers to the format and the amount of space occupied
 Junie the the AI coding assistant generator, disable or enable this if you do not want or want coding assistance.
 
 For Code Completion Editor -> General -> Code Completion
+Another option: Settings -> Tools -> AI Assistance and then Disable AI Assistance
 
 Float requires 32 bits of memory the double 64 bits of memory.  Since double is the default real number format, the
 "d" or "D" suffixes are option in a variable declaration.  If need be use the "d" and "D" suffixes for clarity.  In
@@ -17,3 +18,18 @@ literal is not suffixed with an "f" or "F" as a double would be assigned to a fl
 
 Actually modern day computers have functionality built in at the chip level to deal with a double number faster
 than a float number, my guess is because double numbers are so much more in demand (greater precision).
+
+Instructor stated when using real numbers for precise calculations BigDecimal should be used as both float and
+double have precision limitations based on how they are stored.
+
+Note between a char and String, strings literals are stored in double quotes while a char is only in single quotes,
+additionally a char can only hold one character.
+
+Each char is 16 bits in width or 2 Bytes.  So there are three ways to assign a char: literal character, unicode,
+and an integer value.
+
+Strings are immutable so when we have something like lastString = lastString + newString a new String is created
+during this process and the old String is discarded from memory.  The StringBuilder class is mutable but it cannot
+be assigned literals.
+
+Note Section Three has an example of capturing console output in the "SectionThreeConsoleOutputTest".
