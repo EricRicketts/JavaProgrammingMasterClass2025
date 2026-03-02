@@ -1,0 +1,8 @@
+Double is the default real number format used in java, we use one of these two real number formats when we need
+more precision.  The other primitive type used for real number calculations is the float.
+
+Precision of a real number refers to the format and the amount of space occupied by the real number format.
+
+Junie the the AI coding assistant generator, disable or enable this if you do not want or want coding assistance.
+
+For Code Completion Editor -> General -> Code Completion

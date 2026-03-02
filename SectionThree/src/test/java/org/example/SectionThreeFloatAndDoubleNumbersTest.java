@@ -11,9 +11,14 @@ public class SectionThreeFloatAndDoubleNumbersTest {
     Float expectedFloat;
     Double expectedDouble;
 
+    Float minFloat = 1E-45F;
+    Float maxFloat = 3.4028235E38F;
+    Double minDouble = 4.9E-324D;
+    Double maxDouble = 1.7976931348623157E308D;
+
     @Test
     void testFloatVariable() {
-        // had to declare Float because default decimal format is Double
+        // had to declare Float because the default decimal format is Double
         expectedFloat = 5.25F;
         float  myFloatVariable = 5.25F;
         Assertions.assertEquals(myFloatVariable, expectedFloat);
@@ -21,7 +26,7 @@ public class SectionThreeFloatAndDoubleNumbersTest {
 
     @Test
     void testDoubleVariable() {
-        // since Double is default for decimal numbers no need to use "d" or "D" suffix
+        // since Double is default for decimal numbers there no need to use "d" or "D" suffix
         expectedDouble = 5.25D;
         double  myDoubleVariable = 5.25D;
         Assertions.assertEquals(myDoubleVariable, expectedDouble);
@@ -35,6 +40,22 @@ public class SectionThreeFloatAndDoubleNumbersTest {
         expectedFloat = (float) 5.25;
         float  myFloatVariable = (float) 5.25;
         Assertions.assertEquals(myFloatVariable, expectedFloat);
+    }
+
+    @Test
+    void testMinAndMaxFloat() {
+        float expectedMinFloat = minFloat;
+        float expectedMaxFloat = maxFloat;
+        Assertions.assertEquals(Float.MIN_VALUE, expectedMinFloat);
+        Assertions.assertEquals(Float.MAX_VALUE, expectedMaxFloat);
+    }
+
+    @Test
+    void testMinAndMaxDouble() {
+        double expectedMinDouble = minDouble;
+        double expectedMaxDouble = maxDouble;
+        Assertions.assertEquals(Double.MIN_VALUE, expectedMinDouble);
+        Assertions.assertEquals(Double.MAX_VALUE, expectedMaxDouble);
     }
 
     @Test
