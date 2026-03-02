@@ -6,3 +6,14 @@ Precision of a real number refers to the format and the amount of space occupied
 Junie the the AI coding assistant generator, disable or enable this if you do not want or want coding assistance.
 
 For Code Completion Editor -> General -> Code Completion
+
+Float requires 32 bits of memory the double 64 bits of memory.  Since double is the default real number format, the
+"d" or "D" suffixes are option in a variable declaration.  If need be use the "d" and "D" suffixes for clarity.  In
+the case of a float use "f" or "F" because you are restricting the real number format compared to a double.
+
+One can assign an integer literal to a float or double variable, Java will do the casting for you.  Since double is the
+default real number data type, assigning a real number literal to a float variable will produce an error if the
+literal is not suffixed with an "f" or "F" as a double would be assigned to a float yielding a "lossy conversion".
+
+Actually modern day computers have functionality built in at the chip level to deal with a double number faster
+than a float number, my guess is because double numbers are so much more in demand (greater precision).

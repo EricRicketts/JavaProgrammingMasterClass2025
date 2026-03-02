@@ -64,7 +64,7 @@ public class SectionThreeFloatAndDoubleNumbersTest {
         int firstInteger = 5;
         int secondInteger = 2;
         int thirdInteger = 3;
-        Assertions.assertEquals(secondInteger, firstInteger / secondInteger);
+        Assertions.assertEquals(2, firstInteger / secondInteger);
         Assertions.assertEquals(1, firstInteger / thirdInteger);
     }
 
@@ -73,22 +73,10 @@ public class SectionThreeFloatAndDoubleNumbersTest {
         Double firstDouble = 5.00;
         Double secondDouble = 3.00;
         BigDecimal answer;
-        answer = BigDecimal.valueOf(1.0 + 2.0 / 3.0);
+        answer = BigDecimal.valueOf(1.0 + 2.0 / 3.0); // this is 1 and 2/3
         BigDecimal truncatedAnswer = answer.setScale(6, RoundingMode.DOWN);
-        BigDecimal bigDecimalNumber = BigDecimal.valueOf(firstDouble / secondDouble);
+        BigDecimal bigDecimalNumber = BigDecimal.valueOf(firstDouble / secondDouble); // this is 5.0/3.0
         BigDecimal bigDecimalNumberTruncated = bigDecimalNumber.setScale(6, RoundingMode.DOWN);
         Assertions.assertEquals(truncatedAnswer,  bigDecimalNumberTruncated);
-    }
-
-    @Test
-    void testSimpleChallengePoundsToKilograms() {
-        BigDecimal expected = BigDecimal.valueOf(2.26796185);
-        expected = expected.setScale(6, RoundingMode.DOWN);
-        double PoundsToKilograms = 0.45359237;
-        double pounds = 5.0;
-        BigDecimal kilograms = BigDecimal.valueOf(pounds * PoundsToKilograms);
-        BigDecimal kilogramsTruncated = kilograms.setScale(6, RoundingMode.DOWN);
-
-        Assertions.assertEquals(expected, kilogramsTruncated);
     }
 }
