@@ -4,11 +4,63 @@ package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class IfThenTest {
+public class IfTestWithOperators {
+
+    String myString = "default";
+    int myNumber = 10;
+
+    @Test
+    public void testIf() {
+        boolean isAlien = false;
+        if (!isAlien) myString = "There is no alien.";
+        Assertions.assertEquals("There is no alien.", myString);
+    }
+
+    @Test
+    public void testReferenceComparison() {
+        if (myString == "default") {
+            Assertions.assertEquals("default", myString);
+        }
+    }
+
+    @Test
+    public void testEqualsNumber() {
+        if (myNumber == 10) {
+            Assertions.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testGreaterThan() {
+        if (myNumber > 5) {
+            Assertions.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testGreaterThanOrEqual() {
+        if (myNumber >= 10) {
+            Assertions.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testLessThan() {
+        if (myNumber < 15) {
+            Assertions.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testLessThanOrEqual() {
+        if (myNumber <= 10) {
+            Assertions.assertTrue(true);
+        }
+    }
 
     @Test
     public void testIfThen() {
-        String myString = "String";
+        myString = "String";
         boolean booleanVar = "String".equals(myString);
         if (booleanVar) {
             Assertions.assertTrue(booleanVar);
@@ -21,7 +73,6 @@ public class IfThenTest {
     @Test
     public void testIfThenElse() {
         int weather = 2;
-        String myString;
         if (weather == 1) {
             myString = "Bring an umbrella";
         } else if (weather == 2) {
@@ -35,7 +86,7 @@ public class IfThenTest {
     @Test
     public void testAndOperator() {
         int weather = 2;
-        String myString = "Good weather";
+        myString = "Good weather";
         String result;
         if (weather == 2 && myString.equals("Good weather")) {
             result = "Go outside";
@@ -48,7 +99,7 @@ public class IfThenTest {
     @Test
     public void testOrOperator() {
         int weather = 2;
-        String myString = "Bad weather";
+        myString = "Bad weather";
         String result;
         if (weather == 1 ||  myString.equals("Bad weather")) {
             result = "Stay inside";

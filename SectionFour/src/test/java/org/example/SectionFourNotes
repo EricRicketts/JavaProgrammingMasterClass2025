@@ -14,3 +14,10 @@ modifiers.  A method is a collection of statements, one or more, that perform an
 access modifier used on the class, it has the same purpose and effect.  "static" means this method is defined at
 the class level, so it can only be called with by prefixing the class name before the call -> HelloWorld.main();.
 "void" is the return type in this case and "void" means there is no return type.
+
+For if-then-else statements a code block tells Java to execute the following code contained in the code block.  If we
+do not have a code block after the if statement then Java will execute the first line of code after the code block if
+the statement is true and any subsequent statements.  If the if the statement is false the first line of code will not
+be executed but subsequent lines of code will be executed.  Best practice is to use a code block if more than one
+statement is to be executed.  If your intent is to only execute one line of code upon conditional success then do not
+use the code block.  Put the executable statement on the same line as the conditional this makes the code more readable.

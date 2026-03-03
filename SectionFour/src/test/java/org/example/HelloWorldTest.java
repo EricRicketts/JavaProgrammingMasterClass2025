@@ -11,10 +11,4 @@ public class HelloWorldTest {
         myString = "Hello World";
         Assertions.assertEquals("Hello World", myString);
     }
-
-    @Test
-    public void testModifyHelloWorld() {
-       myString = "Eric Ricketts";
-       Assertions.assertEquals("Eric Ricketts", myString);
-    }
 }
