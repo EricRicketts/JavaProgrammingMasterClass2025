@@ -64,4 +64,16 @@ public class AndOrOperatorsTest {
         }
     }
 
+    @Test
+    public void equalityOperatorInIfStatement() {
+       // this is a typical coding mistake by failing to use the "==" what the developer probably wanted was
+       // result == true to get a false result.  The assignment within the context of an if statement produces
+       // a true result.  If we do somthing like myNumber = 5 in place of myNumber == 5 then this is integer
+        // assignment and Java will produce a compile error, as the if statement expects a boolean result.
+        result = false;
+        if (result = true) {
+            Assertions.assertTrue(true);
+        }
+    }
+
 }
