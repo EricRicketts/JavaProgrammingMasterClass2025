@@ -1,0 +1,16 @@
+public class HelloWorld(){
+    public static void main(String[] args) {}
+}
+
+"public" is an access modifier which allows us to define which part of our code
+can be accessed by others and who is in that "others" group.
+
+"class" is used to define a class, the text immediately after the word "class" is the class name.  A class in Java
+is a custom or user defined data type.  The curly braces, {} bound the "class body" where the executable code for
+the class is placed.
+
+The "public static void main" defines a method and the method name is "main".  Like a class the method has access
+modifiers.  A method is a collection of statements, one or more, that perform an operation.  "public" is the same
+access modifier used on the class, it has the same purpose and effect.  "static" means this method is defined at
+the class level, so it can only be called with by prefixing the class name before the call -> HelloWorld.main();.
+"void" is the return type in this case and "void" means there is no return type.
