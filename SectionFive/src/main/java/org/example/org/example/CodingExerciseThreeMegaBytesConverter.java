@@ -11,7 +11,7 @@ public class CodingExerciseThreeMegaBytesConverter {
         if (kiloBytes >= 0) {
             megaBytes = kiloBytes / kiloBytesPerMegaByte;
             remainingKiloBytes = kiloBytes % kiloBytesPerMegaByte;
-            result = STR."\{kiloBytes} KB = \{megaBytes} MB and \{remainingKiloBytes} KB";
+            result = kiloBytes + "KB = " + megaBytes + "MB and " + remainingKiloBytes + "KB";
         }
 
         return result;

@@ -12,6 +12,6 @@ public class MinutesToYearsDaysCalculator {
         long remainingMinutes =  minutes % (daysInYear * hoursInDay * minutesInHour);
         long days = remainingMinutes / (minutesInHour * hoursInDay);
 
-        return STR."\{minutes} min = \{years} y and \{days} d";
+        return minutes + " min = " + years + " y and " + days + " d";
     }
 }

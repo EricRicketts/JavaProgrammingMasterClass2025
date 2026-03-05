@@ -19,7 +19,7 @@ public class CodingExerciseTwoSpeedConverter {
 
         if (kilometersPerHour >= 0) {
             milesPerHour = toMilesPerHour(kilometersPerHour);
-            result = STR."\{kilometersPerHour} km/h = \{milesPerHour} mi/h";
+            result = kilometersPerHour + " km/h = " + milesPerHour + " mi/h";
         }
 
         return result;

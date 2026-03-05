@@ -17,7 +17,7 @@ public class SecondsToHoursMinutesSeconds {
         // remaining seconds will always be less than 60 which is 1 minute
         int seconds = (int) (remainingSeconds % minutesToSeconds);
 
-        return STR."\{hours}h \{minutes}m \{seconds}s";
+        return hours + " h " + minutes + " m " + seconds + " s";
     }
 
     public static String getDurationString(int minutes, int seconds) {
