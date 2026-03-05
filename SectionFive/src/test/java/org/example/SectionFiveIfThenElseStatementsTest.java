@@ -41,8 +41,46 @@ public class SectionFiveIfThenElseStatementsTest {
         } else {
             myString = "Number is greater than three";
         }
-
         Assertions.assertEquals("Number is less than or equal to three", myString);
+    }
+
+    @Test
+    public void newIfThenElseStatementsIfBranchTest() {
+        myInt = 40;
+        if (myInt <= 50) {
+            myString = "Number is less than or equal to 50";
+        } else if (myInt > 50 && myInt < 100) {
+            myString = "Number is greater than 50 but less than 100";
+        } else {
+            myString = "Number is greater than or equal to 100";
+        }
+        Assertions.assertEquals("Number is less than or equal to 50", myString);
+    }
+
+    @Test
+    public void newIfThenElseStatementsElseIfBranchTest() {
+        myInt = 75;
+        if (myInt <= 50) {
+            myString = "Number is less than or equal to 50";
+        } else if (myInt > 50 && myInt < 100) {
+            myString = "Number is greater than 50 but less than 100";
+        } else {
+            myString = "Number is greater than or equal to 100";
+        }
+        Assertions.assertEquals("Number is greater than 50 but less than 100", myString);
+    }
+
+    @Test
+    public void newIfThenElseStatementsElseBranchTest() {
+        myInt = 110;
+        if (myInt <= 50) {
+            myString = "Number is less than or equal to 50";
+        } else if (myInt > 50 && myInt < 100) {
+            myString = "Number is greater than 50 but less than 100";
+        } else {
+            myString = "Number is greater than or equal to 100";
+        }
+        Assertions.assertEquals("Number is greater than or equal to 100", myString);
     }
 
     @Test
