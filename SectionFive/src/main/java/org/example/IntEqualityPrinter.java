@@ -1,8 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class IntEqualityPrinter {
 
     public static String printEqual(int first, int second, int third) {

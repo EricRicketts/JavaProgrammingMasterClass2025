@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.AreaCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

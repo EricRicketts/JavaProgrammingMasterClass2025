@@ -1,4 +1,5 @@
-import org.example.App;
+package org.example;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,21 +43,6 @@ public class SectionFiveIfThenElseStatementsTest {
         }
 
         Assertions.assertEquals("Number is less than or equal to three", myString);
-    }
-
-    @Test
-    public void ifThenElseStatementsChallengeTest() {
-        int score = 10_000;
-        int levelCompleted = 8;
-        int bonus = 200;
-        boolean gameOver = true;
-        int finalScore = score;
-
-        if (gameOver) {
-            finalScore += (levelCompleted * bonus);
-        }
-
-        Assertions.assertEquals(11_600, finalScore);
     }
 
     @Test
