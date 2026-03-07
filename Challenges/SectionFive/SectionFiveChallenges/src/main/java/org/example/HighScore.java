@@ -8,14 +8,21 @@ public class HighScore {
     }
 
     public static int calculateHighScorePosition(int playerScore) {
+//      If statement tested in the order seen.  So if the first condition is false, we know the number is < 1000.
+//      Likewise, if the second condition fails, we know the number is < 500 and so on.
+//      I could have had multiple return statements, but the other stated better coding practice is only to have one
+//      return statement.
+        int position;
         if (playerScore >= 1000) {
-            return 1;
-        } else if (playerScore >= 500 && playerScore < 1000) {
-            return 2;
-        } else if (playerScore >= 100 && playerScore < 500) {
-            return 3;
+            position = 1;;
+        } else if (playerScore >= 500) { // do not need && playerScore < 1000
+            position = 2;
+        } else if (playerScore >= 100) { // do not need && playerScore < 500
+            position = 3;
         } else {
-            return 4;
+            position = 4;
         }
+
+        return position;
     }
 }
