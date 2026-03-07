@@ -36,7 +36,7 @@ public class SectionFiveTestGameCalculateScore {
     public void testCalculateScoreGameNotOver() {
         game.calculateScore(false, 2_000, 5, 200);
         int finalScore = game.getFinalScore();
-        // score initialized to zero so this is why it is zero, calculate score only calls
+        // score initialized to zero this is why it is zero, calculate score only calls
         // setFinalScore when the game is over
         Assertions.assertEquals(0, finalScore);
         Assertions.assertFalse(game.isGameOver());
