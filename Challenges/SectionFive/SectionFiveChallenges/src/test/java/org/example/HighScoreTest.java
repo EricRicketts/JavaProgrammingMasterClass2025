@@ -31,12 +31,13 @@ public class HighScoreTest {
 
     @Test
     public void testHighScoreWithOtherBoundaryConditions() {
-        scores = new int[] {999, 499, 99};
-        names = new String[] {"Charles", "Chuck", "Cody"};
+        scores = new int[] {999, 499, 99, -1000};
+        names = new String[] {"Charles", "Chuck", "Cody", "Cinco"};
         expected = new String[] {
             "Charles managed to get into position 2 on the high score list.",
             "Chuck managed to get into position 3 on the high score list.",
-            "Cody managed to get into position 4 on the high score list."
+            "Cody managed to get into position 4 on the high score list.",
+            "Cinco managed to get into position 4 on the high score list."
         };
         for (int index = 0; index < scores.length; index += 1) {
             position = HighScore.calculateHighScorePosition(scores[index]);
