@@ -37,12 +37,13 @@ public class ConversionTest {
 
     @Test
     public void testHoursMinutesAndSecondsSecondsOnly() {
-        int[] seconds = {-1, 8125, 50, 3600};
+        int[] seconds = {-1, 8125, 50, 3600, 3945};
         String[] expectedMessages = {
                 "Invalid entry seconds must be positive.",
                 "2h 15m 25s",
                 "0h 0m 50s",
-                "1h 0m 0s"
+                "1h 0m 0s",
+                "1h 5m 45s"
         };
         for (int index = 0; index < expectedMessages.length; index += 1) {
             int currentSeconds = seconds[index];
