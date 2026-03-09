@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestLeapYearFourthExercise {
+public class TestLeapYearFifthExercise {
 
     int[] notLeapYearArray = {
         1700, 1800, 1900, 2100, 2200, 2300, 2500, 2600
