@@ -33,6 +33,7 @@ public class NatoPhoneticAlphabet {
             }
             default: {
                 natoLetter = "Invalid Value";
+                break;
             }
         }
         return natoLetter;
