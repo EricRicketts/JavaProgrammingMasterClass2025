@@ -19,4 +19,13 @@ public class NatoPhoneticAlphabetTraditionalSwitchTest {
         }
     }
 
+    @Test
+    public void testInvalidInputHandling() {
+        char invalidLetter = '!';
+        String expectedResult = "Invalid Value";
+        String result =
+                NatoPhoneticAlphabet.chooseNatoPhoneticLetterViaTraditionalSwitch(invalidLetter);
+        assertEquals(expectedResult, result);
+    }
+
 }
