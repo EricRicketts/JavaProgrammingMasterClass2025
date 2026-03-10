@@ -18,22 +18,23 @@ public class NatoPhoneticAlphabet {
             "Peter", "Queen", "Roger", "Sugar", "Tare",
             "Uncle", "Victor", "William", "X-ray", "Yoke", "Zebra"
     };
-public static String chooseNatoPhoneticLetterViaTraditionalSwitch(char letter) {
+    public static String chooseNatoPhoneticLetterViaTraditionalSwitch(char letter) {
 
-    String natoLetter = "";
-    switch (letter) {
-        case 'A': case 'B': case 'C': case 'D': case 'E':
-        case 'F': case 'G': case 'H': case 'I': case 'J':
-        case 'K': case 'L': case 'M': case 'N': case 'O':
-        case 'P': case 'Q': case 'R': case 'S': case 'T':
-        case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z':
-        {
-            int index = Arrays.asList(LETTERS).indexOf(letter);
-            natoLetter = NATO_LETTERS[index];
-            break;
+        String natoLetter = "";
+        switch (letter) {
+            case 'A': case 'B': case 'C': case 'D': case 'E':
+            case 'F': case 'G': case 'H': case 'I': case 'J':
+            case 'K': case 'L': case 'M': case 'N': case 'O':
+            case 'P': case 'Q': case 'R': case 'S': case 'T':
+            case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z': {
+                int index = Arrays.asList(LETTERS).indexOf(letter);
+                natoLetter = NATO_LETTERS[index];
+                break;
+            }
+            default: {
+                natoLetter = "Invalid Value";
+            }
         }
+        return natoLetter;
     }
-    return natoLetter;
-}
-
 }
