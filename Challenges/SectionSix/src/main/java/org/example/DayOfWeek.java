@@ -7,7 +7,7 @@ public class DayOfWeek {
                     "Thursday", "Friday", "Saturday", "Sunday"
             };
     public static String getDayOfWeek(int day) {
-        return switch (day) {
+        String dayOfWeek = switch (day) {
             case 0 -> {
                 yield daysOfWeek[0];
             }
@@ -33,5 +33,6 @@ public class DayOfWeek {
                 yield "Invalid Day";
             }
         };
+        return dayOfWeek;
     }
 }
