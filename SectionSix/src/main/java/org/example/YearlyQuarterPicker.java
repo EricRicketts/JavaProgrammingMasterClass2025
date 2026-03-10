@@ -33,23 +33,27 @@ public class YearlyQuarterPicker {
     public static String getQuarterEnhancedSwitch(String month) {
         month = month.toUpperCase();
         String quarter;
-        switch (month) {
+        return switch (month) {
             case "JANUARY", "FEBRUARY", "MARCH" -> {
                 quarter = "Q1";
+                yield quarter;
             }
             case "APRIL", "MAY", "JUNE" -> {
                 quarter = "Q2";
+                yield quarter;
             }
             case "JULY", "AUGUST", "SEPTEMBER" -> {
                 quarter = "Q3";
+                yield quarter;
             }
             case "OCTOBER", "NOVEMBER", "DECEMBER" -> {
                 quarter = "Q4";
+                yield quarter;
             }
             default -> {
                 quarter = "Invalid Value";
+                yield quarter;
             }
-        }
-        return quarter;
+        };
     }
 }
