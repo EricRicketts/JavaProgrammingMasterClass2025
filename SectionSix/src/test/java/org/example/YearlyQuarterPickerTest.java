@@ -23,4 +23,14 @@ public class YearlyQuarterPickerTest {
             assertEquals(expectedQuarter, resultantQuarter);
         }
     }
+
+    @Test
+    public void testQuarterSelectionEnhancedSwitch() {
+        for (int index = 0; index < months.length; index++) {
+            String month = months[index];
+            String expectedQuarter = quarters[index / 3];
+            String resultantQuarter = YearlyQuarterPicker.getQuarterEnhancedSwitch(month);
+            assertEquals(expectedQuarter, resultantQuarter);
+        }
+    }
 }
