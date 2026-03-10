@@ -4,6 +4,8 @@ public class AnotherEnhancedSwitchStatementExample {
 
     public static String enhancedSwitchStatementExample(int value) {
         // the return on the outside of the switch expression is used to exit the method
+        // the yield keyword is used to return a value from a switch expression but not
+        // to exit a method
         String message = "";
         return switch (value) {
             case 1 -> {
