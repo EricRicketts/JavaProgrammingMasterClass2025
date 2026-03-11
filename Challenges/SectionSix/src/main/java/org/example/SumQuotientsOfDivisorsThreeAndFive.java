@@ -8,7 +8,7 @@ public class SumQuotientsOfDivisorsThreeAndFive {
     public static ArrayList<Integer> sumQuotients() {
         Integer sum = 0;
         ArrayList<Integer> numbers = new ArrayList<>();
-        for (Integer number = 10; number <= 1000; number++) {
+        for (Integer number = 1; number <= 1000; number++) {
             if (number % 3 == 0 && number % 5 == 0) {
                 numbers.add(number);
                 sum += number;
