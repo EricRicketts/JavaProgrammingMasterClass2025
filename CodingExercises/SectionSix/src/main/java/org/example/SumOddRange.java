@@ -8,6 +8,12 @@ public class SumOddRange {
     }
 
     public static int sumOdd(int start, int end) {
-        return 1;
+        boolean checkInputs = ((end >= start) && (start > 0 && end > 0));
+        if (!checkInputs) return -1;
+        int sumOfOddNumbers = 0;
+        for (int i = start; i <= end; i++) {
+            if (SumOddRange.isOdd(i)) sumOfOddNumbers += i;
+        }
+        return sumOfOddNumbers;
     }
 }
