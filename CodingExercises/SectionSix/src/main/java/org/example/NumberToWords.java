@@ -39,6 +39,13 @@ public class NumberToWords {
         int reversedNumber = reverse(number);
         int digitCountReversedNumber = getDigitCount(reversedNumber);
         int numberOfTrailingZeros = digitCountNumber - digitCountReversedNumber;
+        numberToWords = convertReversedNumberToWords(numberToWords, reversedNumber);
+        numberToWords = appendTrailingZeros(numberToWords, numberOfTrailingZeros);
+        return numberToWords.toString().trim();
+    }
+
+    private static StringBuilder convertReversedNumberToWords
+            (StringBuilder numberToWords, int reversedNumber) {
         while (reversedNumber > 0) {
             int currentDigit = reversedNumber % 10;
             switch (currentDigit) {
@@ -55,9 +62,13 @@ public class NumberToWords {
             }
             reversedNumber = reversedNumber / 10;
         }
-        for (int j = 0; j < numberOfTrailingZeros; j++) {
-            numberToWords.append("Zero" + " ");
+        return numberToWords;
+    }
+    private static StringBuilder appendTrailingZeros(
+            StringBuilder stringBuilder, int numberOfTrailingZeros) {
+        for (int i = 0; i < numberOfTrailingZeros; i++) {
+            stringBuilder.append("Zero" + " ");
         }
-       return numberToWords.toString().trim();
+        return stringBuilder;
     }
 }
