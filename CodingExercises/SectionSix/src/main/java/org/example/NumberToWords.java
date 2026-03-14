@@ -37,13 +37,17 @@ public class NumberToWords {
         int digitCountNumber = getDigitCount(number);
         if (digitCountNumber < 0) return "Invalid Value";
         int reversedNumber = reverse(number);
-        int digitCountReversedNumber = getDigitCount(reversedNumber);
-        int numberOfTrailingZeros = digitCountNumber - digitCountReversedNumber;
+        int numberOfTrailingZeros = getNumberOfTrailingZeros(digitCountNumber, reversedNumber);
+
         numberToWords = convertReversedNumberToWords(numberToWords, reversedNumber);
         numberToWords = appendTrailingZeros(numberToWords, numberOfTrailingZeros);
         return numberToWords.toString().trim();
     }
 
+    private static int getNumberOfTrailingZeros(int digitCountNumber, int reversedNumber) {
+        int digitCountReversedNumber = getDigitCount(reversedNumber);
+        return digitCountNumber - digitCountReversedNumber;
+    }
     private static StringBuilder convertReversedNumberToWords
             (StringBuilder numberToWords, int reversedNumber) {
         while (reversedNumber > 0) {
