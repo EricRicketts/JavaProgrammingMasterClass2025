@@ -21,7 +21,7 @@ public class ReadInputFromScanner {
                     exitLoop = true;
                 }
             } catch (NumberFormatException error) {
-                System.out.println("Only Integer numbers are allowed, try again.");
+                System.out.println("Invalid Number, only Integer numbers are allowed, try again.");
             }
         } while (!exitLoop);
 
