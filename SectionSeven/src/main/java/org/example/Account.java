@@ -5,7 +5,19 @@ public class Account {
     private double balance;
     private String accountNumber, accountHolder, email, phoneNumber;
 
-    public Account() {}
+    public Account() {
+        // The default constructor makes a call to the five-parameter constructor.
+        // In this case we defined our own default constructor instead of taking
+        // Java's default constructor, which the language implicitly provides.
+        // The call to another constructor must be the first line in a constructor
+        // body, and it must use the keyword "this".  Note parameters must be used
+        // in the constructor call in the body of the constructor if the called
+        // constructor requires them.
+        this("56789", 2.5,
+                "Default Name", "Default Email",
+                "Default Phone"
+        );
+    }
 
     public Account(String number, double balance, String customerName,
                    String email, String phone
@@ -15,6 +27,12 @@ public class Account {
         this.accountHolder = customerName;
         this.email = email;
         this.phoneNumber = phone;
+    }
+
+    public Account(String accountHolder, String email, String phoneNumber) {
+        // The three-argument constructor calls the five-argument constructor
+        // with two default values.
+        this("99999", 100.55, accountHolder, email, phoneNumber);
     }
 
     public void deposit(double amount) {

@@ -66,4 +66,38 @@ public class AccountTest {
         assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void testNoArgumentsConstructor() {
+        Account defaultAccount = new Account();
+        String[] expected = {
+                "Default Name", "Default Email", "56789",
+                "Default Phone", "2.5"
+        };
+        String[] result = {
+                defaultAccount.getAccountHolder(), defaultAccount.getEmail(),
+                defaultAccount.getAccountNumber(), defaultAccount.getPhoneNumber(),
+                String.format("%.1f", defaultAccount.getBalance())
+        };
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testThreeArgumentsConstructor() {
+        Account defaultAccount = new Account(
+                "Tim Ozimek",
+                "tim.ozimek@yahoo.com",
+                "(919) 435-1234"
+        );
+        String[] expected = {
+                "Tim Ozimek", "tim.ozimek@yahoo.com", "99999",
+                "(919) 435-1234", "100.55"
+        };
+        String[] result = {
+                defaultAccount.getAccountHolder(), defaultAccount.getEmail(),
+                defaultAccount.getAccountNumber(), defaultAccount.getPhoneNumber(),
+                String.format("%.2f", defaultAccount.getBalance())
+        };
+        assertArrayEquals(expected, result);
+    }
+
 }
