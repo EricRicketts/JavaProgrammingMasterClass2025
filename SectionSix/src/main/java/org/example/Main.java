@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(ReadInputFromScanner.readInput(new Scanner(System.in)));
+        System.out.println(
+            MinimumAndMaximumNumberEntered.computeEnteredNumber(new Scanner(System.in))
+        );
     }
 }
