@@ -2,11 +2,21 @@ package org.example;
 
 public class Account {
 
-    private int accountNumber;
     private double balance;
-    private String accountHolder, email, phoneNumber;
+    private String accountNumber, accountHolder, email, phoneNumber;
 
     public Account() {}
+
+    public Account(String number, double balance, String customerName,
+                   String email, String phone
+    ) {
+        this.accountNumber = number;
+        this.balance = balance;
+        this.accountHolder = customerName;
+        this.email = email;
+        this.phoneNumber = phone;
+    }
+
     public void deposit(double amount) {
         balance += amount;
     }
@@ -19,11 +29,11 @@ public class Account {
         }
         return "Withdrawal successful";
     }
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
