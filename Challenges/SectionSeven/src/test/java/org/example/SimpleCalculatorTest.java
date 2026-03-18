@@ -3,6 +3,9 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,4 +38,30 @@ public class SimpleCalculatorTest {
         result = calculator.getAdditionResult();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testSubtractingSecondNumberFromFirstNumber() {
+        expected = -23.76;
+        BigDecimal bd = new BigDecimal(calculator.getSubtractionResult());
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        double result = bd.doubleValue();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testMultiplyingFirstAndSecondNumbers() {
+        expected = 1923.6592;
+        result = calculator.getMultiplicationResult();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testDivideTheFirstNumberByTheSecondNumber() {
+        expected = 0.5855;
+        BigDecimal bd = new BigDecimal(calculator.getDivisionResult());
+        bd = bd.setScale(4, RoundingMode.HALF_UP);
+        double result = bd.doubleValue();
+        assertEquals(expected, result);
+    }
+
 }
