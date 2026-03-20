@@ -42,4 +42,14 @@ public class Student {
     public void setClassList(String classList) {
         this.classList = classList;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + this.id + '\'' +
+                ", name='" + this.name + '\'' +
+                ", dateOfBirth='" + this.dateOfBirth + '\'' +
+                ", classList='" + this.classList + '\'' +
+                '}';
+    }
 }

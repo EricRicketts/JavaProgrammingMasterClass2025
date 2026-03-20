@@ -41,4 +41,13 @@ public class StudentTest {
     public void testStudentPOJOs() {
         assertEquals(5, students.size());
     }
+
+    @Test
+    public void testToStringOnThirdStudent() {
+        String expected =
+                "Student{id='S923002', name='Tim', dateOfBirth='3/1/1985'," +
+                        " classList='Java Masterclass'}";
+        String result = students.get(2).toString();
+        assertEquals(expected, result);
+    }
 }
