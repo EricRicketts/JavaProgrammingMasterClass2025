@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WallTest {
@@ -25,6 +26,15 @@ public class WallTest {
     public void testSetFirstWallWidth() {
         firstWall.setWidth(4.2345);
         assertEquals(4.23, firstWall.getWidth());
+    }
+
+    @Test
+    public void testSetterInvalidData() {
+        firstWall.setWidth(-0.45);
+        firstWall.setHeight(-5.23);
+        assertArrayEquals(new double[]{0, 0},
+                new double[]{firstWall.getWidth(), firstWall.getHeight()}
+        );
     }
 
     @Test
