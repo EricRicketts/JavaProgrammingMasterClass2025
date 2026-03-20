@@ -1,7 +1,12 @@
 package org.example;
 
 public class Student {
-
+    /*
+        Having to add the Getter and Setter methods adds a lot of code to the POJO.
+        In the next lesson Records are introduced to reduce the amount of code
+        for POJOs.  This code is called "boilerplate code" as it is repetitive code
+        that follows certain rules.
+    */
     private String id, name, dateOfBirth, classList;
 
     public Student(String id, String name, String dateOfBirth, String classList) {

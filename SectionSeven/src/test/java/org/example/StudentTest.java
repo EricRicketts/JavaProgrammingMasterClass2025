@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StudentTest {
 
     ArrayList<Student> students = new ArrayList<Student>();
+    String expected, result;
 
     @BeforeEach
     public void setUp() {
@@ -44,10 +45,21 @@ public class StudentTest {
 
     @Test
     public void testToStringOnThirdStudent() {
-        String expected =
+        expected =
                 "Student{id='S923002', name='Tim', dateOfBirth='3/1/1985'," +
                         " classList='Java Masterclass'}";
-        String result = students.get(2).toString();
+        result = students.get(2).toString();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testOneGetterAndSetterOnFirstStudent() {
+        expected = "1/1/1985";
+        result = students.getFirst().getDateOfBirth();
+        assertEquals(expected, result);
+        students.getFirst().setDateOfBirth("6/1/1985");
+        expected = "6/1/1985";
+        result = students.getFirst().getDateOfBirth();
         assertEquals(expected, result);
     }
 }
