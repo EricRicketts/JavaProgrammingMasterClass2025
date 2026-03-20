@@ -1,0 +1,33 @@
+package org.example;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class WallTest {
+
+    Wall firstWall, secondWall;
+
+    @BeforeEach
+    public void setUp() {
+        firstWall = new Wall(-1.56, 3.24);
+        secondWall = new Wall(8.29, 9.87);
+    }
+
+    @Test
+    public void testFirstWallWidthSetToZero() {
+        assertEquals(0, firstWall.getWidth());
+    }
+
+    @Test
+    public void testSetFirstWallWidth() {
+        firstWall.setWidth(4.2345);
+        assertEquals(4.23, firstWall.getWidth());
+    }
+
+    @Test
+    public void testSecondWallArea() {
+        assertEquals(81.82, secondWall.getArea());
+    }
+}
