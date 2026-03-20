@@ -11,13 +11,14 @@ public class WallTest {
 
     @BeforeEach
     public void setUp() {
-        firstWall = new Wall(-1.56, 3.24);
+        firstWall = new Wall(-1.56, -0.004);
         secondWall = new Wall(8.29, 9.87);
     }
 
     @Test
-    public void testFirstWallWidthSetToZero() {
+    public void testFirstWallWidthAndHeightSetToZero() {
         assertEquals(0, firstWall.getWidth());
+        assertEquals(0, firstWall.getHeight());
     }
 
     @Test
