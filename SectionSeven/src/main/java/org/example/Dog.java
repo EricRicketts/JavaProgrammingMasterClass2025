@@ -66,7 +66,7 @@ public class Dog extends Animal {
     public String makeNoise() {
         String noiseString;
         if (Objects.equals(type, "Wolf")) {
-            noiseString = "Wolf is Howling.";
+            noiseString = "Wolf is Howling!";
         } else {
             noiseString = bark();
         }

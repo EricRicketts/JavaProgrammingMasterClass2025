@@ -37,6 +37,14 @@ public class DogTest {
     }
 
     @Test
+    public void testDogMakesANoiseIfWolf() {
+        Dog wolf = new Dog("Wolf", 60);
+        expected = "Wolf is Howling!";
+        result = wolf.makeNoise();
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void testZeroArgumentDogConstructor() {
         expected = "Dog{earShape='null', tailShape='null'}" +
                 " Animal{type='Mutt', size='Big', weight=50.0}";
