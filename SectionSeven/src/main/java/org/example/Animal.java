@@ -3,7 +3,7 @@ package org.example;
 public class Animal {
 
     private String type, size;
-    double weight;
+    private double weight;
 
     public Animal() {}
 

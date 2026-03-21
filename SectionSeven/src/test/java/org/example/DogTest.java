@@ -30,7 +30,7 @@ public class DogTest {
     }
 
     @Test
-    public void testAnimalToString() {
+    public void testZeroArgumentDogConstructor() {
         expected = "Dog{earShape='null', tailShape='null'}" +
                 " Animal{type='Mutt', size='Big', weight=50.0}";
         result = dog.toString();
