@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Dog extends Animal {
     /*
         The "extends" keyword is used to indicate one class is inheriting from another.
@@ -50,14 +52,44 @@ public class Dog extends Animal {
     */
     @Override
     public String move(String speed) {
+        String moveString;
         super.move(speed);
-        return "Dogs walk, run and wag their tail.";
+        if (Objects.equals(speed, "slow")) {
+            moveString = walk() + "  " + wagTail();
+        } else {
+            moveString = run() + "  " + bark();
+        }
+        return moveString;
     }
 
     @Override
     public String makeNoise() {
-        super.makeNoise();
-        return "The noise most common for a Dog is to bark.";
+        String noiseString;
+        if (Objects.equals(type, "Wolf")) {
+            noiseString = "Wolf is Howling.";
+        } else {
+            noiseString = bark();
+        }
+        return noiseString;
+    }
+
+    /*
+        Four methods below are unique to dog behavior.
+    */
+    private String bark() {
+        return "Woof!";
+    }
+
+    private String run() {
+        return "Dog Running!";
+    }
+
+    private String walk() {
+        return "Dog Walking!";
+    }
+
+    private String wagTail() {
+        return "Dog Wagging Tail!";
     }
 
     @Override

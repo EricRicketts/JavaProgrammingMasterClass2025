@@ -16,15 +16,22 @@ public class DogTest {
     }
 
     @Test
-    public void testAnimalMoves() {
-        expected = "Dogs walk, run and wag their tail.";
-        result = dog.move("30");
+    public void testDogMovesSlow() {
+        expected = "Dog Walking!  Dog Wagging Tail!";
+        result = dog.move("slow");
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testDogMovesFast() {
+        expected = "Dog Running!  Woof!";
+        result = dog.move("fast");
         assertEquals(expected, result);
     }
 
     @Test
     public void testDogMakesANoise() {
-        expected = "The noise most common for a Dog is to bark.";
+        expected = "Woof!";
         result = dog.makeNoise();
         assertEquals(expected, result);
     }

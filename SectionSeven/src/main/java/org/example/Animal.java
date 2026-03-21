@@ -2,7 +2,10 @@ package org.example;
 
 public class Animal {
 
-    private String type, size;
+    protected String type; // I had to make the access modifier protected so
+    // the subclass (Dog) could refer to this attribute in its own methods.  The private
+    // access modifier will not allow subclasses to access the attribute.
+    private String size;
     private double weight;
 
     public Animal() {}
