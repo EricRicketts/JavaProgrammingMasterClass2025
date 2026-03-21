@@ -17,21 +17,31 @@ public class DogTest {
 
     @Test
     public void testAnimalMoves() {
-        expected = "Mutt moves at 30km/hr.";
+        expected = "Dogs walk, run and wag their tail.";
         result = dog.move("30");
         assertEquals(expected, result);
     }
 
     @Test
     public void testDogMakesANoise() {
-        expected = "Mutt makes some kind of noise.";
+        expected = "The noise most common for a Dog is to bark.";
         result = dog.makeNoise();
         assertEquals(expected, result);
     }
 
     @Test
     public void testAnimalToString() {
-        expected = "Animal{type='Mutt', size='Big', weight=50.0}";
+        expected = "Dog{earShape='null', tailShape='null'}" +
+                " Animal{type='Mutt', size='Big', weight=50.0}";
+        result = dog.toString();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testTwoArgumentDogConstructor() {
+        expected = "Dog{earShape='Perky', tailShape='Curled'}" +
+                " Animal{type='Poodle', size='medium', weight=20.0}";
+        dog = new Dog("Poodle", 20);
         result = dog.toString();
         assertEquals(expected, result);
     }
