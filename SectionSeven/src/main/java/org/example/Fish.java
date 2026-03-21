@@ -29,14 +29,14 @@ public class Fish extends Animal {
         if (Objects.equals(speed, "fast")) {
             movement = moveBackFin();
         }
-        return muscleAction + " " + movement;
+        return muscleAction + "  " + movement;
     }
 
     @Override
     public String toString() {
         return "Fish{" +
-                "fins=" + fins +
-                ", gills=" + gills +
+                "fins=" + '\'' + fins + '\'' +
+                ", gills=" + '\'' + gills + '\'' +
                 "} " + super.toString();
     }
 }
