@@ -45,4 +45,13 @@ public class DogTest {
         result = dog.toString();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testFourArgumentDogConstructor() {
+        expected = "Dog{earShape='Flat', tailShape='Straight'}" +
+                " Animal{type='Labrador', size='large', weight=45.0}";
+        dog = new Dog("Labrador", 45, "Flat", "Straight");
+        result = dog.toString();
+        assertEquals(expected, result);
+    }
 }
