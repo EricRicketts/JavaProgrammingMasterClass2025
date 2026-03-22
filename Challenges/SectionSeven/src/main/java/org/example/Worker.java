@@ -5,7 +5,8 @@ import java.time.Period;
 
 public class Worker {
 
-    protected String name, birthDate, endDate;
+    private final String name, birthDate;
+    private String endDate;
 
     public Worker() {
         this.name = "Anonymous";
