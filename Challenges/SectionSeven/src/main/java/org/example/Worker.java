@@ -51,4 +51,13 @@ public class Worker {
     public String getBirthDate() {
         return this.birthDate;
     }
+
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                '}';
+    }
 }

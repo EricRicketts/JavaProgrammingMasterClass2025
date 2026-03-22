@@ -23,4 +23,12 @@ public class Employee extends Worker {
     public String getHireDate() {
         return hireDate;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId='" + employeeId + '\'' +
+                ", hireDate='" + hireDate + '\'' +
+                "} " + super.toString();
+    }
 }

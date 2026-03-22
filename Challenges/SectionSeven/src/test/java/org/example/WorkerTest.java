@@ -49,4 +49,11 @@ public class WorkerTest {
         };
         assertArrayEquals(expected, result);
     }
+
+    @Test
+    public void testWorkerToString() {
+        String expected = "Worker{name='Elmer Fudd', birthDate='3/11/1930', endDate='4/12/2035'}";
+        String result = worker.toString();
+        assertEquals(expected, result);
+    }
 }

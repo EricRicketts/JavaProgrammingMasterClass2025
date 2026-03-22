@@ -47,4 +47,12 @@ public class EmployeeTest {
         firstEmployee.terminate("4/4/2005");
         assertEquals("4/4/2005", firstEmployee.getEndDate());
     }
+
+    @Test
+    public void testEmployeeToString() {
+        String expected = "Employee{employeeId='11034', hireDate='2/1/1955'} " +
+                "Worker{name='Daffy Duck', birthDate='2/1/1935', endDate='2/1/2005'}";
+        String result = firstEmployee.toString();
+        assertEquals(expected, result);
+    }
 }
