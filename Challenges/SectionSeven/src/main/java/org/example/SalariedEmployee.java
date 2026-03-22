@@ -1,5 +1,8 @@
 package org.example;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class SalariedEmployee extends Employee {
 
     private double annualSalary;
@@ -38,5 +41,12 @@ public class SalariedEmployee extends Employee {
 
     public boolean isRetired() {
         return this.isRetired;
+    }
+
+    @Override
+    public double collectPay() {
+        BigDecimal monthlyPay = new BigDecimal(this.getAnnualSalary() / 12);
+        monthlyPay = monthlyPay.setScale(2, RoundingMode.HALF_UP);
+        return monthlyPay.doubleValue();
     }
 }
