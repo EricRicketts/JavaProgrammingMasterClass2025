@@ -28,7 +28,7 @@ public class WorkerTest {
 
     @Test
     public void testCollectPay() {
-        assertEquals(8_000.56, worker.collectPay());
+        assertEquals(0, worker.collectPay());
     }
 
     @Test

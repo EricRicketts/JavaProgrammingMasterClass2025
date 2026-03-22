@@ -33,7 +33,7 @@ public class Worker {
 
     public double collectPay() {
         // monthly pay
-        return 8_000.56;
+        return 0;
     }
 
     public void terminate(String endDate) {
