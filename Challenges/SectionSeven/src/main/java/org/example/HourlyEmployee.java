@@ -25,4 +25,10 @@ public class HourlyEmployee extends Employee {
     public void setHourlyPayRate(double hourlyPayRate) {
         this.hourlyPayRate = hourlyPayRate;
     }
+
+    @Override
+    public double collectPay() {
+        int hours = 40;
+        return hours * this.getHourlyPayRate();
+    }
 }
