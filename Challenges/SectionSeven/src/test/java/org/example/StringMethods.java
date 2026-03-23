@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StringMethods {
 
     String sampleString, emptyString = "", blankString;
+    StringBuilder sb;
 
     @BeforeEach
     public void setUp() {
@@ -73,7 +74,7 @@ public class StringMethods {
 
     @Test
     public void testStringBuilderModifiesCurrentStringBuilder() {
-        StringBuilder sb = new StringBuilder("A new String.");
+        sb = new StringBuilder("A new String.");
         assertEquals("A new String.", sb.toString());
         sb.append("  Another string.");
         assertEquals("A new String.  Another string.", sb.toString());
@@ -87,5 +88,29 @@ public class StringMethods {
                 new StringBuilder().capacity(), new StringBuilder(32).capacity()
         };
         assertArrayEquals(expectedCapacities, capacities);
+    }
+
+    @Test
+    public void testDeleteAndInsertIntoAStringBuilderObject() {
+        /*
+            The deleteCharAt deletes the char at the exact index given.  The insert method
+            inserts the string before the given offset.  When we delete a character, the size
+            of the StringBuilder object drops by 1, so the deleted index advances more space
+            towards the end of the string.  The insert operation starts one character before
+            the offset.
+        */
+        sb = new StringBuilder("A new String.  Another String.");
+        sb.deleteCharAt(6).insert(6, "s")
+                .deleteCharAt(23).insert(23, "s");
+        assertEquals("A new string.  Another string.", sb.toString());
+    }
+
+    @Test
+    public void testStringBuilderReplaceMethod() {
+        // As with the insert method, the ending index is not included in the replacement,
+        // the last character inserted ends at index 15, not index 16.
+        sb = new StringBuilder("A new and bigger string.");
+        sb.replace(10, 16, "smaller");
+        assertEquals("A new and smaller string.", sb.toString());
     }
 }
