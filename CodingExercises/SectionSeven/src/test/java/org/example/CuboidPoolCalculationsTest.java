@@ -8,7 +8,7 @@ import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CuboidPoolCalculations {
+public class CuboidPoolCalculationsTest {
 
     private double setScale(double value, int scaleFactor) {
         BigDecimal bd = new BigDecimal(value);
