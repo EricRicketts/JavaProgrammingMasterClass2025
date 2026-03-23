@@ -3,8 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringMethods {
 
@@ -78,5 +77,15 @@ public class StringMethods {
         assertEquals("A new String.", sb.toString());
         sb.append("  Another string.");
         assertEquals("A new String.  Another string.", sb.toString());
+    }
+
+    @Test
+    public void testStringBuilderDefaultCapacity() {
+        // StringBuilder is the number of characters to start with before requesting new memory.
+        int[] expectedCapacities = new int[]{16, 32};
+        int[] capacities = new int[]{
+                new StringBuilder().capacity(), new StringBuilder(32).capacity()
+        };
+        assertArrayEquals(expectedCapacities, capacities);
     }
 }
