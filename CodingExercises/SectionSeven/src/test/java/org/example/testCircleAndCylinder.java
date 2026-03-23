@@ -34,4 +34,14 @@ public class testCircleAndCylinder {
     public void testCircleGetDiameter() {
         assertEquals(23.5619, setScale(circle.getDiameter(), 4));
     }
+
+    @Test
+    public void testCylinderSurfaceArea() {
+        assertEquals(446.3575, setScale(cylinder.getSurfaceArea(), 4));
+    }
+
+    @Test
+    public void testCylinderVolume() {
+        assertEquals(701.5746, setScale(cylinder.getVolume(), 4));
+    }
 }
