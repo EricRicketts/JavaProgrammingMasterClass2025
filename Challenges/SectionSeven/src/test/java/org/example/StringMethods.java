@@ -46,7 +46,8 @@ public class StringMethods {
     @Test
     public void testStringManipulationMethods() {
         // I find the index of the first index of 'e' then the substring method will
-        // get the substring starting at 'e' and working to the end of the text.
+        // Get the substring starting at 'e' and working to the end of the text.
+        // All of these String methods return a new String because Strings are immutable.
         String birthDay = "11/20/1960";
         sampleString = "This is sample text.";
         int startingIndex = sampleString.indexOf('e');
@@ -61,5 +62,21 @@ public class StringMethods {
         assertEquals("12/20/1960", "11/20/1960".replaceFirst("11", "12"));
         assertEquals("11/20000/1960000", "11/20/1960".replaceAll("0", "0000"));
         assertEquals("  abc", "abc".indent(2).stripTrailing());
+    }
+
+    @Test
+    public void testStringMethodsCreateANewString() {
+        sampleString = "A new String.";
+        String newString = sampleString.concat("  Another string.");
+        assertEquals("A new String.  Another string.", newString);
+        assertEquals("A new String.", sampleString);
+    }
+
+    @Test
+    public void testStringBuilderModifiesCurrentStringBuilder() {
+        StringBuilder sb = new StringBuilder("A new String.");
+        assertEquals("A new String.", sb.toString());
+        sb.append("  Another string.");
+        assertEquals("A new String.  Another string.", sb.toString());
     }
 }
