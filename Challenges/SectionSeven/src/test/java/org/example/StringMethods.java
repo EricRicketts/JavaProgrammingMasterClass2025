@@ -42,4 +42,24 @@ public class StringMethods {
         assertTrue(sampleString.endsWith("xt."));
         assertTrue(sampleString.contains("a s"));
     }
+
+    @Test
+    public void testStringManipulationMethods() {
+        // I find the index of the first index of 'e' then the substring method will
+        // get the substring starting at 'e' and working to the end of the text.
+        String birthDay = "11/20/1960";
+        sampleString = "This is sample text.";
+        int startingIndex = sampleString.indexOf('e');
+        assertEquals("e text.", sampleString.substring(startingIndex));
+        int endingIndex = sampleString.lastIndexOf('x');
+        // When you bracket a substring search the ending index is not inclusive.
+        assertEquals("e te", sampleString.substring(startingIndex, endingIndex));
+        assertEquals("11/20/1960", String.join("/", "11", "20", "1960" ));
+        assertEquals("This is a concatenated String.",
+                "This is a ".concat("concatenated String."));
+        assertEquals("11-20-1960", "11/20/1960".replace('/', '-'));
+        assertEquals("12/20/1960", "11/20/1960".replaceFirst("11", "12"));
+        assertEquals("11/20000/1960000", "11/20/1960".replaceAll("0", "0000"));
+        assertEquals("  abc", "abc".indent(2).stripTrailing());
+    }
 }
