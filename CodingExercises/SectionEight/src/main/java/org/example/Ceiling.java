@@ -10,10 +10,10 @@ public class Ceiling {
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     public int getPaintedColor() {
-        return paintedColor;
+        return this.paintedColor;
     }
 }
