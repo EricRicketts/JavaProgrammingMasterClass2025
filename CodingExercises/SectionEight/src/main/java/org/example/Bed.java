@@ -14,7 +14,7 @@ public class Bed {
     }
 
     public String make() {
-        return "The bed is currently being made.";
+        return "Bed -> Making | ";
     }
 
     public String getStyle() {

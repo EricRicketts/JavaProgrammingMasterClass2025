@@ -13,7 +13,7 @@ public class Lamp {
     }
 
     public String turnOn() {
-        return "The lamp is turned on.";
+        return "Lamp -> Turning on";
     }
 
     public String getStyle() {

@@ -28,6 +28,6 @@ public class LampTest {
 
     @Test
     public void testTurnOnTheLamp() {
-        assertEquals("The lamp is turned on.", lamp.turnOn());
+        assertEquals("Lamp -> Turning on", lamp.turnOn());
     }
 }

@@ -27,6 +27,6 @@ public class BedTest {
 
     @Test
     public void testMakeTheBed() {
-        assertEquals("The bed is currently being made.", bed.make());
+        assertEquals("Bed -> Making | ", bed.make());
     }
 }
