@@ -50,4 +50,25 @@ public class PersonalComputerTest {
         result = pc.getComputerCase().pressPowerButton();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testMonitorModel() {
+        expected = "27in Beast";
+        result = pc.getMonitor().getModel();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testMotherboardManufacturer() {
+        expected = "Asus";
+        result = pc.getMotherboard().getManufacturer();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testComputerCaseModel() {
+        expected = "2208";
+        result = pc.getComputerCase().getModel();
+        assertEquals(expected, result);
+    }
 }

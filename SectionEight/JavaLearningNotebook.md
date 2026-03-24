@@ -1,10 +1,12 @@
 # Java Learning Notebook
 
 ## 1) Lesson Info
-- **Date:**
-- **Course section / lesson title:**
+- **Date:** March 24, 2026
+- **Course section / lesson title:** Section 8: Advanced OOP Techniques: Composition, Encapsulation
+- and Polymorphism in Action; Lesson 105: Assembling a Personal Computer: Real World Composition
+- and Object Management
 - **Topics covered:**
-- **Difficulty level:** Easy / Medium / Hard
+- **Difficulty level:**  Medium
 
 ## 2) Main Idea in My Own Words
 Write a short summary of what the lesson was about.
