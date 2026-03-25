@@ -4,7 +4,23 @@
 - **Date:** March 24, 2026
 - **Course section / lesson title:** Section 8: Advanced OOP Techniques: Composition, Encapsulation
 - and Polymorphism in Action; Lesson 105: Assembling a Personal Computer: Real World Composition
-- and Object Management
+- and Object Management.
+- Polymorphism is the ability to execute different behavior, for different types, which are
+- determined at runtime. Encapsulation bundles data and the methods that operate on that data
+- into a single unit, which in OOP is typically a class.  Polymorphism enables a developer to
+- write generic code in the parent class which is executable by any child class, meaning the
+- code does not have to change to accommodate new child classes.  Some more examples of
+- Polymorphism => Adventure jaws = Movie.getMovie("Adventure," "Jaws") returns a compiler error
+- because the code for the getMovie method cannot always guarantee an Adventure will be
+- returned.  The keyword "var" is a contextual keyword in Java that lets our code take advantage
+- of Local Variable Type Inference.  By using var as the type we are telling Java to figure
+- out the compile-time type for us.  A compile-time type can be thought of as a declared type.
+- This type is declared as a variable reference, a method return type or a method parameter.
+- Local Variable Type Inference (LVTI), we do not explicitly declare a type for the compiled
+- reference type, instead it gets inferred by the compiler.  You can a different runtime
+- instance to a different compile time instance only if certain rules are followed, Inheritance
+- is one of those rules.  Examine this polymorphic behavior with Movie, Adventure, Comedy and
+- Science Fiction.
 - **Topics covered:**
 - **Difficulty level:**  Medium
 
