@@ -1,6 +1,6 @@
 package org.example;
 
-public class PlayerOne {
+public class Player {
     // Non-encapsulated example of a class.
     public String name;
     public int health;

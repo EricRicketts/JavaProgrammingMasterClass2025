@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PlayerOneTest {
+public class PlayerTest {
 
-    PlayerOne player;
+    Player player;
     String expected, result;
 
     @BeforeEach
     public void setUp() {
-        player = new PlayerOne();
+        player = new Player();
         player.name = "Tim";
         player.health = 20;
         player.weapon = "Sword";
