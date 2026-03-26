@@ -25,7 +25,7 @@ public class AdventureTest {
     @Test
     public void testWatchMovie() {
         expected = "The movie title is 'North By Northwest' and the movie type is Adventure\n" +
-                ".. Bad Aliens Do Bad Stuff\n" + ".. Scary Music\n" + ".. Something Bad Happens\n";
+                ".. Pleasant Scene\n" + ".. Scary Music\n" + ".. Something Bad Happens\n";
         result = movie.watchMovie();
         assertEquals(expected, result);
     }
