@@ -9,15 +9,15 @@ public class Car {
     }
 
     public String startEngine() {
-        return "Starting the engine on a/an " + this.getClass().getSimpleName() + ".";
+        return "Starting the engine on a/an " + this.getClass().getSimpleName() + ",";
     }
 
     public String drive() {
-        return "Driving a/an " + this.getClass().getSimpleName() + ".";
+        return "Driving a/an " + this.getClass().getSimpleName() + ",";
     }
 
     protected String runEngine() {
-        return "The engine of a/an " + this.getClass().getSimpleName() + " is running.";
+        return "The engine of a/an " + this.getClass().getSimpleName() + " is running,";
     }
 
     public String getDescription() {
