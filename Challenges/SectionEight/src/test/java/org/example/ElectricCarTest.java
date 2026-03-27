@@ -1,7 +1,6 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,5 +38,22 @@ public class ElectricCarTest {
                 "which has no engine but electric motors.";
         result = electricCar.runEngine();
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCheckAvgKmPerCharge() {
+        double defaultAvgKmPerCharge = 300.00;
+        electricCar.setAvgKmPerCharge(-10.00);
+        double avgKmPerCharge = electricCar.getAvgKmPerCharge();
+        double defaultAvgKMPerCharge = Scale.setScale(avgKmPerCharge, 2);
+        assertEquals(defaultAvgKmPerCharge, avgKmPerCharge);
+    }
+
+    @Test
+    public void testCheckBatterySize() {
+        int defaultBatterySize = 50;
+        electricCar.setBatterySize(-5);
+        int batterySize = electricCar.getBatterySize();
+        assertEquals(defaultBatterySize, batterySize);
     }
 }
