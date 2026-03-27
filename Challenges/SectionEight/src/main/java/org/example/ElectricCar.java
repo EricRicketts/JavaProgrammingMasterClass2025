@@ -7,8 +7,8 @@ public class ElectricCar extends Car {
 
     public ElectricCar(String description, double avgKmPerCharge, int batterySize) {
         super(description);
-        this.avgKmPerCharge = this.checkAvgKmPerCharge(avgKmPerCharge);
-        this.batterySize = this.checkBatterySize(batterySize);
+        this.avgKmPerCharge = AutoChecks.checkAvgKmPerCharge(avgKmPerCharge);
+        this.batterySize = AutoChecks.checkBatterySize(batterySize);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ElectricCar extends Car {
     }
 
     public void setAvgKmPerCharge(double avgKmPerCharge) {
-        this.avgKmPerCharge = this.checkAvgKmPerCharge(avgKmPerCharge);
+        this.avgKmPerCharge = AutoChecks.checkAvgKmPerCharge(avgKmPerCharge);
     }
 
     public int getBatterySize() {
@@ -39,15 +39,6 @@ public class ElectricCar extends Car {
     }
 
     public void setBatterySize(int batterySize) {
-        this.batterySize = this.checkBatterySize(batterySize);
+        this.batterySize = AutoChecks.checkBatterySize(batterySize);
     }
-
-    private double checkAvgKmPerCharge(double avgKmPerCharge) {
-        return (avgKmPerCharge < 0) ? 300 : avgKmPerCharge;
-    }
-
-    private int checkBatterySize(int batterySize) {
-        return (batterySize < 0) ? 50 : batterySize;
-    }
-
 }

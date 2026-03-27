@@ -45,7 +45,7 @@ public class ElectricCarTest {
         double defaultAvgKmPerCharge = 300.00;
         electricCar.setAvgKmPerCharge(-10.00);
         double avgKmPerCharge = electricCar.getAvgKmPerCharge();
-        double defaultAvgKMPerCharge = Scale.setScale(avgKmPerCharge, 2);
+        avgKmPerCharge = Scale.setScale(avgKmPerCharge, 2);
         assertEquals(defaultAvgKmPerCharge, avgKmPerCharge);
     }
 

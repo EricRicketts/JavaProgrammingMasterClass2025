@@ -6,8 +6,24 @@ public class GasPoweredCar extends Car {
 
     public GasPoweredCar(String description, double avgKmPerLitre, int cylinders) {
         super(description);
-        this.avgKmPerLitre = avgKmPerLitre;
-        this.cylinders = cylinders;
+        this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitre(avgKmPerLitre);
+        this.cylinders = AutoChecks.checkCylinders(cylinders);
+    }
+
+
+    @Override
+    public String startEngine() {
+        return super.startEngine() + " which needs time to warm-up in cold weather.";
+    }
+
+    @Override
+    public String drive() {
+        return super.drive() + " on a pleasant Spring day.";
+    }
+
+    @Override
+    protected String runEngine() {
+        return super.runEngine() + " and is loud given the large amount of horsepower.";
     }
 
     public double getAvgKmPerLitre() {
@@ -15,7 +31,7 @@ public class GasPoweredCar extends Car {
     }
 
     public void setAvgKmPerLitre(double avgKmPerLitre) {
-        this.avgKmPerLitre = avgKmPerLitre;
+        this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitre(avgKmPerLitre);
     }
 
     public int getCylinders() {
@@ -23,6 +39,6 @@ public class GasPoweredCar extends Car {
     }
 
     public void setCylinders(int cylinders) {
-        this.cylinders = cylinders;
+        this.cylinders = AutoChecks.checkCylinders(cylinders);
     }
 }
