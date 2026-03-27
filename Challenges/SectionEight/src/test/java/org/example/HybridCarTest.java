@@ -11,7 +11,7 @@ public class HybridCarTest {
 
     @BeforeEach
     public void setUp() {
-        hybridCar = new HybridCar(25.00, 60, 6);
+        hybridCar = new HybridCar("Toyota Camry Hybrid 2026", 20.40, 40, 4);
     }
 
     @Test

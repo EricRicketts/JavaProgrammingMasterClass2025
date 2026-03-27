@@ -1,11 +1,12 @@
 package org.example;
 
-public class HybridCar {
+public class HybridCar extends Car {
 
     private double avgKmPerLitre;
     private int batterySize, cylinders;
 
-    public HybridCar(double avgKmPerLitre, int batterySize, int cylinders) {
+    public HybridCar(String description, double avgKmPerLitre, int batterySize, int cylinders) {
+        super(description);
         this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitreForHybrid(avgKmPerLitre);
         this.batterySize = AutoChecks.checkBatterySize(batterySize);
         this.cylinders = AutoChecks.checkCylinders(cylinders);
