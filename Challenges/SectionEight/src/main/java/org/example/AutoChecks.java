@@ -10,6 +10,10 @@ public class AutoChecks {
         return (avgKmPerLitre < 0) ? 15.00 : avgKmPerLitre;
     }
 
+    public static double checkAvgKmPerLitreForHybrid(double avgKmPerLitre) {
+        return (avgKmPerLitre < 0) ? 20.00 : avgKmPerLitre;
+    }
+
     public static int checkBatterySize(int batterySize) {
         return (batterySize < 0) ? 50 : batterySize;
     }

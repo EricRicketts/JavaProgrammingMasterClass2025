@@ -6,9 +6,9 @@ public class HybridCar {
     private int batterySize, cylinders;
 
     public HybridCar(double avgKmPerLitre, int batterySize, int cylinders) {
-        this.avgKmPerLitre = avgKmPerLitre;
-        this.batterySize = batterySize;
-        this.cylinders = cylinders;
+        this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitreForHybrid(avgKmPerLitre);
+        this.batterySize = AutoChecks.checkBatterySize(batterySize);
+        this.cylinders = AutoChecks.checkCylinders(cylinders);
     }
 
     public double getAvgKmPerLitre() {
@@ -16,7 +16,7 @@ public class HybridCar {
     }
 
     public void setAvgKmPerLitre(double avgKmPerLitre) {
-        this.avgKmPerLitre = avgKmPerLitre;
+        this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitreForHybrid(avgKmPerLitre);
     }
 
     public int getBatterySize() {
@@ -24,7 +24,7 @@ public class HybridCar {
     }
 
     public void setBatterySize(int batterySize) {
-        this.batterySize = batterySize;
+        this.batterySize = AutoChecks.checkBatterySize(batterySize);
     }
 
     public int getCylinders() {
@@ -32,6 +32,6 @@ public class HybridCar {
     }
 
     public void setCylinders(int cylinders) {
-        this.cylinders = cylinders;
+        this.cylinders = AutoChecks.checkCylinders(cylinders);
     }
 }
