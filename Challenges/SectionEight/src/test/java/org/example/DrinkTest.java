@@ -20,7 +20,7 @@ public class DrinkTest {
 
     @Test
     public void testSmallDrink() {
-        expected = new Object[]{"Coke", "small", 1.20};
+        expected = new Object[]{"coke", "small", 1.20};
         result = new Object[]{
                 smallDrink.getType(), smallDrink.getSize(), smallDrink.getPrice()
         };
@@ -29,7 +29,7 @@ public class DrinkTest {
 
     @Test
     public void testMediumDrink() {
-        expected = new Object[]{"Pepsi", "medium", 2.60};
+        expected = new Object[]{"pepsi", "medium", 2.60};
         result = new Object[]{
                 mediumDrink.getType(), mediumDrink.getSize(), mediumDrink.getPrice()
         };
@@ -38,7 +38,7 @@ public class DrinkTest {
 
     @Test
     public void testLargeDrink() {
-        expected = new Object[]{"Mountain Dew", "large", 3.20};
+        expected = new Object[]{"mountain dew", "large", 3.20};
         result = new Object[]{
                 largeDrink.getType(), largeDrink.getSize(), largeDrink.getPrice()
         };
@@ -47,7 +47,7 @@ public class DrinkTest {
 
     @Test
     public void testOtherDrink() {
-        expected = new Object[]{"Dr Pepper", "regular", 2.20};
+        expected = new Object[]{"dr pepper", "regular", 2.20};
         result = new Object[]{
                 otherDrink.getType(), otherDrink.getSize(), otherDrink.getPrice()
         };

@@ -5,7 +5,7 @@ public class Drink {
     private final String type, size;
     private final double price;
     public Drink(String type, String size) {
-        this.type = type;
+        this.type = type.toLowerCase();
         this.size = size.toLowerCase();
         switch (this.size) {
             case "small" -> this.price = 1.20;

@@ -7,7 +7,7 @@ public class Topping {
 
     public Topping(String type) {
         this.type = type.toLowerCase();
-        switch(type) {
+        switch(this.type) {
             case "lettuce" -> this.price = 1.00;
             case "tomatoes" -> this.price = 1.50;
             case "cheese" -> this.price = 2.00;

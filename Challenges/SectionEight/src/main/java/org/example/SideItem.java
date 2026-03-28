@@ -7,7 +7,7 @@ public class SideItem {
 
     public SideItem(String type) {
         this.type = type.toLowerCase();
-        switch (type) {
+        switch (this.type) {
             case "fries" -> this.price = 2.50;
             case "onion rings" -> this.price = 3.00;
             case "salad" -> this.price = 10.00;
