@@ -22,6 +22,7 @@ public class ToppingTest {
             double result = topping.getPrice();
             double expectedPrice = expectedPrices[i];
             assertEquals(expectedPrice, result);
+            assertEquals(toppings[i], topping.getType());
         }
     }
 }
