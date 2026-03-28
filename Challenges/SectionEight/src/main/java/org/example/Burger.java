@@ -17,7 +17,7 @@ public class Burger {
         }
     }
 
-    public void setTopping(String type) {
+    public void addTopping(String type) {
         for (int i = 0; i < this.getToppings().length; i++) {
             if (this.getToppings()[i] == null) {
                 Topping topping = new Topping(type);

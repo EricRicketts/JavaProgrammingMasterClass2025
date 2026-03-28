@@ -2,8 +2,9 @@ package org.example;
 
 public class Drink {
 
-    private final String type, size;
+    private final String type;
     private final double price;
+    private String size;
     public Drink(String type, String size) {
         this.type = type.toLowerCase();
         this.size = size.toLowerCase();
@@ -13,6 +14,10 @@ public class Drink {
             case "large" -> this.price = 3.20;
             default -> this.price = 2.20;
         }
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getType() {

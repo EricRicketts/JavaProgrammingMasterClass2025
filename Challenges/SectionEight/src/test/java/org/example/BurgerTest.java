@@ -38,7 +38,7 @@ public class BurgerTest {
         String[] toppingTypes = new String[]{"lettuce", "tomatoes", "cheese"};
         double[] expectedPrices = new double[]{1.00, 1.50, 2.00};
         for (int i = 0; i < 3; i++) {
-            largeBurger.setTopping(toppingTypes[i]);
+            largeBurger.addTopping(toppingTypes[i]);
         }
         for (int i = 0; i < 3; i++) {
             Topping topping = largeBurger.getToppings()[i];
