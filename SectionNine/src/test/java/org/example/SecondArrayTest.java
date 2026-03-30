@@ -106,4 +106,26 @@ public class SecondArrayTest {
             }
         }
     }
+
+    @Test
+    public void testBinarySearchOnStringArray() {
+        int expectedIndex = 5;
+        String[] names = {
+                "Able", "Jane", "Mark", "Ralph", "David",
+                "Julie", "Moses", "Charles", "Sigfried", "Zachary"
+        };
+        Arrays.sort(names);
+        int index = Arrays.binarySearch(names, "Mark");
+        assertEquals(expectedIndex, index);
+        expectedIndex = -10;
+        index = Arrays.binarySearch(names, "Timothy");
+        assertEquals(expectedIndex, index);
+    }
+
+    @Test
+    public void testForEqualArrays() {
+        int[] a1 = {1, 2, 3, 4, 5};
+        int[] a2 = {1, 2, 3, 4, 5};
+        assertTrue(Arrays.equals(a1, a2));
+    }
 }
