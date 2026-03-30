@@ -93,4 +93,17 @@ public class SecondArrayTest {
             assertEquals(array[i], smallerArray[i]);
         }
     }
+
+    @Test
+    public void testCopyToLargerArray() {
+        int[] largerArray = Arrays.copyOf(array, 15);
+        assertEquals(15, largerArray.length);
+        for (int i = 0; i < largerArray.length; i++) {
+            if (i < array.length) {
+                assertEquals(array[i], largerArray[i]);
+            } else {
+                assertEquals(0, largerArray[i]);
+            }
+        }
+    }
 }
