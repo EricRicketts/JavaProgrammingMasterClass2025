@@ -4,10 +4,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SecondArrayTest {
+
+    private static int[] getRandomArray(int length) {
+        Random random = new Random();
+        int[] randomArray = new int[length];
+        for (int i = 0; i < randomArray.length; i++) {
+            randomArray[i] = random.nextInt(100);
+        }
+        return randomArray;
+    }
 
     private int[] array;
     int expected, result;
@@ -40,5 +51,14 @@ public class SecondArrayTest {
         String expected = "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]";
         String result = Arrays.toString(array);
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void testSortRandomArray() {
+        array = getRandomArray(10);
+        Arrays.sort(array);
+        for (int i = 0; i < array.length - 2; i++) {
+            assertTrue(array[i] <= array[i + 1]);
+        }
     }
 }
