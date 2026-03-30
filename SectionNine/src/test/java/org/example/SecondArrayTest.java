@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SecondArrayTest {
 
@@ -56,9 +55,23 @@ public class SecondArrayTest {
     @Test
     public void testSortRandomArray() {
         array = getRandomArray(10);
-        Arrays.sort(array);
+        Arrays.sort(array); //  runs in place sort, a new array is not returned
         for (int i = 0; i < array.length - 2; i++) {
             assertTrue(array[i] <= array[i + 1]);
         }
     }
+
+    @Test
+    public void testCopyingArrays() {
+        int[] firstArray = new int[10];
+        firstArray = getRandomArray(10);
+        int[] secondArray = Arrays.copyOf(firstArray, firstArray.length);
+        // Array copies are equal
+        assertArrayEquals(firstArray, secondArray);
+        Arrays.sort(firstArray);
+        // Sorting the first array does not affect the second array as the object references are different.
+        assertFalse(Arrays.equals(firstArray, secondArray));
+    }
+
+    
 }
