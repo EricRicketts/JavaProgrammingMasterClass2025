@@ -73,5 +73,15 @@ public class SecondArrayTest {
         assertFalse(Arrays.equals(firstArray, secondArray));
     }
 
-    
+    @Test
+    public void testFillArray() {
+        int[] firstArray = new int[5];
+        String expected = "[0, 0, 0, 0, 0]";
+        String result = Arrays.toString(firstArray);
+        assertEquals(expected, result);
+        Arrays.fill(firstArray, 5);
+        expected = "[5, 5, 5, 5, 5]";
+        result = Arrays.toString(firstArray);
+        assertEquals(expected, result);
+    }
 }
