@@ -84,4 +84,13 @@ public class SecondArrayTest {
         result = Arrays.toString(firstArray);
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testCopyToSmallerArray() {
+        int[] smallerArray = Arrays.copyOf(array, 5);
+        assertEquals(5, smallerArray.length);
+        for(int i = 0; i < smallerArray.length; i++) {
+            assertEquals(array[i], smallerArray[i]);
+        }
+    }
 }
