@@ -10,4 +10,8 @@ public class App
     {
         System.out.println( "Hello World!" );
     }
+
+    public static int[][] createTwoDimensionalArray(int rows, int columns) {
+        return new int[rows][columns];
+    }
 }
