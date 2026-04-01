@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class DescendTest {
 
-    Descend descend;
     int[] numbers, sort, sorted;
 
     @BeforeEach
@@ -18,7 +17,7 @@ public class DescendTest {
 
     @Test
     public void testSorting() {
-        sort = Descend.sort(numbers);
+        sort = ArrayWork.sort(numbers);
         assertArrayEquals(sorted, sort);
     }
 }
