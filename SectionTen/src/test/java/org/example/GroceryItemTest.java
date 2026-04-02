@@ -212,4 +212,32 @@ public class GroceryItemTest {
         String type = thirdGroceryList.toArray(GroceryItem[]::new).getClass().getSimpleName();
         assertEquals("GroceryItem[]", type);
     }
+
+    @Test
+    public void testConvertAnArrayToAnMutableList() {
+        /*
+            In this case we have a list backed by an array; a change to either one
+            is reflected in the other.  We can change elements on either the list
+            or the array such changes will be reflected in both objects.
+
+            Basically, we turn an array into a list so we can top into list functionality.
+            Arrays.asList() -> List returned is NOT resizable but is muteable.
+            List.of() -> List returned is immutable.
+        */
+        String[] originalArray = {"First", "Second", "Third"};
+        var originalList = Arrays.asList(originalArray);
+        assertEquals(originalArray[0], originalList.getFirst());
+        originalArray[0] = "one";
+        assertEquals(originalArray[0], originalList.getFirst());
+    }
+
+    @Test
+    public void testConvertAnArrayToAImmutableList() {
+        String[] originalArray = {"First", "Second", "Third"};
+        List<String> originalList = List.of(originalArray);
+        String type = originalList.getClass().toString();
+        String[] listType = type.split("\\$")[0].split("\\.");
+        String listTypeClass = listType[listType.length - 1];
+        assertEquals("ImmutableCollections", listTypeClass);
+    }
 }
