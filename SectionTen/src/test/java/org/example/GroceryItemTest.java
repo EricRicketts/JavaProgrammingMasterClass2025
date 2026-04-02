@@ -57,4 +57,13 @@ public class GroceryItemTest {
         GroceryItem result = secondGroceryList.getFirst();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testEffectOfAddingItemToFrontOfList() {
+        // Once an item is added to the front of a list, everything shifts right by one slot.
+        secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
+        GroceryItem expected = new GroceryItem("butter", "DAIRY", 1);
+        GroceryItem result = secondGroceryList.get(1);
+        assertEquals(expected, result);
+    }
 }
