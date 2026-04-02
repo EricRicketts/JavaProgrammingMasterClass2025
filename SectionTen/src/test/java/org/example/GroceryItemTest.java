@@ -184,4 +184,22 @@ public class GroceryItemTest {
         assertEquals(originalListSize - 3, thirdGroceryList.size());
     }
 
+    @Test
+    public void retainItemsInAList() {
+        ArrayList<GroceryItem> itemsToRetain = new ArrayList<>(
+                List.of(
+                        new GroceryItem("oranges", "PRODUCE", 5),
+                        new GroceryItem("kale", "PRODUCE", 8))
+        );
+        thirdGroceryList.retainAll(itemsToRetain);
+        assertEquals(2, thirdGroceryList.size());
+    }
+
+    @Test
+    public void clearAList() {
+        thirdGroceryList.clear();
+        thirdGroceryList.add(new GroceryItem("oranges", "PRODUCE", 5));
+        assertEquals(1, thirdGroceryList.size());
+    }
+
 }
