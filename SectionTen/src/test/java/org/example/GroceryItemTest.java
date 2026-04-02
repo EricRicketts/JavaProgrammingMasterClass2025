@@ -29,16 +29,17 @@ public class GroceryItemTest {
         secondGroceryList.add(new GroceryItem("butter"));
         secondGroceryList.add(new GroceryItem("pears", "PRODUCE", 3));
         thirdGroceryList = new ArrayList<>(
-                List.of(new GroceryItem("milk"),
-                new GroceryItem("apples", "PRODUCE", 6),
-                new GroceryItem("oranges", "PRODUCE", 5),
-                new GroceryItem("butter", "DAIRY", 3),
-                new GroceryItem("spinach", "PRODUCE", 2),
-                new GroceryItem("milk", "DAIRY", 3),
-                new GroceryItem("cucumber", "PRODUCE", 4),
-                new GroceryItem("pears", "PRODUCE", 5),
-                new GroceryItem("milk", "DAIRY", 2),
-                new GroceryItem("kale", "PRODUCE", 8))
+                List.of(
+                    new GroceryItem("milk"),
+                    new GroceryItem("apples", "PRODUCE", 6),
+                    new GroceryItem("oranges", "PRODUCE", 5),
+                    new GroceryItem("butter", "DAIRY", 3),
+                    new GroceryItem("spinach", "PRODUCE", 2),
+                    new GroceryItem("milk", "DAIRY", 3),
+                    new GroceryItem("cucumber", "PRODUCE", 4),
+                    new GroceryItem("pears", "PRODUCE", 5),
+                    new GroceryItem("milk", "DAIRY", 2),
+                    new GroceryItem("kale", "PRODUCE", 8))
         );
     }
 
@@ -110,5 +111,19 @@ public class GroceryItemTest {
         GroceryItem expectedLastItem = new GroceryItem("oranges", "PRODUCE", 5);
         GroceryItem resultantLastItem = secondGroceryList.getLast();
         assertEquals(expectedLastItem, resultantLastItem);
+    }
+
+    @Test
+    public void searchForAnItemInAList() {
+        GroceryItem item = new GroceryItem("spinach", "PRODUCE", 2);
+        boolean found = thirdGroceryList.contains(item);
+        assertTrue(found);
+    }
+
+    @Test
+    public void searchForAnItemInAListMustHaveExactMatch() {
+        GroceryItem item = new GroceryItem("spinach", "PRODUCE", 5);
+        boolean found = thirdGroceryList.contains(item);
+        assertFalse(found);
     }
 }
