@@ -15,11 +15,12 @@ public class GroceryItemTest {
     /*
         Below, we instantiate an Array List of type GroceryItem.  This means all
         elements in the list must be a GroceryItem.  We preserve Java's type
-        checking when we do this.  Note to complete the instantiation, we do
+        checking when we do this.  To complete the instantiation, we do
         not need to specify the type in the second <>.
      */
     ArrayList<GroceryItem> secondGroceryList = new ArrayList<>();
     ArrayList<GroceryItem> thirdGroceryList;
+    GroceryItem resultantItem, expectedItem;
 
     @BeforeEach
     public void setUp() {
@@ -68,9 +69,9 @@ public class GroceryItemTest {
     @Test
     public void testAddAnItemToTheFrontOfAList() {
         secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
-        GroceryItem expected = new GroceryItem("apples", "PRODUCE", 6);
-        GroceryItem result = secondGroceryList.getFirst();
-        assertEquals(expected, result);
+        expectedItem = new GroceryItem("apples", "PRODUCE", 6);
+        resultantItem = secondGroceryList.getFirst();
+        assertEquals(expectedItem, resultantItem);
     }
 
     @Test
@@ -93,9 +94,9 @@ public class GroceryItemTest {
     public void testEffectOfAddingItemToFrontOfList() {
         // Once an item is added to the front of a list, everything shifts right by one slot.
         secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
-        GroceryItem expected = new GroceryItem("butter", "DAIRY", 1);
-        GroceryItem result = secondGroceryList.get(1);
-        assertEquals(expected, result);
+        expectedItem = new GroceryItem("butter", "DAIRY", 1);
+        resultantItem = secondGroceryList.get(1);
+        assertEquals(expectedItem, resultantItem);
     }
 
     @Test
@@ -108,9 +109,9 @@ public class GroceryItemTest {
         int[] result = {originalListSize, newListSize};
         assertArrayEquals(expected, result);
         // The new list is added to the end of the list
-        GroceryItem expectedLastItem = new GroceryItem("oranges", "PRODUCE", 5);
-        GroceryItem resultantLastItem = secondGroceryList.getLast();
-        assertEquals(expectedLastItem, resultantLastItem);
+        expectedItem = new GroceryItem("oranges", "PRODUCE", 5);
+        resultantItem = secondGroceryList.getLast();
+        assertEquals(expectedItem, resultantItem);
     }
 
     @Test
@@ -125,5 +126,18 @@ public class GroceryItemTest {
         GroceryItem item = new GroceryItem("spinach", "PRODUCE", 5);
         boolean found = thirdGroceryList.contains(item);
         assertFalse(found);
+    }
+
+    @Test
+    public void retrieveTheFirstAppearanceOfAnObject() {
+        GroceryItem item = new GroceryItem("milk", "DAIRY", 3);
+        int firstIndex = thirdGroceryList.indexOf(item);
+        int expectedFirstIndex = 5; // Milk in position 0 has a count of 1
+        assertEquals(expectedFirstIndex, firstIndex);
+    }
+
+    @Test
+    public void retrieveTheLastAppearanceOfAnObject() {
+
     }
 }
