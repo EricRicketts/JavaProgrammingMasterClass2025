@@ -138,6 +138,9 @@ public class GroceryItemTest {
 
     @Test
     public void retrieveTheLastAppearanceOfAnObject() {
-
+        GroceryItem item = new GroceryItem("milk", "DAIRY", 2);
+        int lastIndex = thirdGroceryList.lastIndexOf(item);
+        int expectedLastIndex = 8; // Milk in position 8 has a count of 2
+        assertEquals(expectedLastIndex, lastIndex);
     }
 }
