@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GroceryItemTest {
 
@@ -47,5 +48,13 @@ public class GroceryItemTest {
                 groceryList[2].count()
         };
         assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testAddAnItemToTheFrontOfAList() {
+        secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
+        GroceryItem expected = new GroceryItem("apples", "PRODUCE", 6);
+        GroceryItem result = secondGroceryList.getFirst();
+        assertEquals(expected, result);
     }
 }
