@@ -143,4 +143,16 @@ public class GroceryItemTest {
         int expectedLastIndex = 8; // Milk in position 8 has a count of 2
         assertEquals(expectedLastIndex, lastIndex);
     }
+
+    @Test
+    public void removeAnObjectFromAListByIndex() {
+        int expectedOriginalListSize = 10;
+        int originalListSize = thirdGroceryList.size();
+        assertEquals(expectedOriginalListSize, originalListSize);
+        GroceryItem expectedItem = new GroceryItem("pears", "PRODUCE", 5);
+        resultantItem = thirdGroceryList.remove(7);
+        assertEquals(expectedItem, resultantItem);
+        assertEquals(expectedOriginalListSize - 1, thirdGroceryList.size());
+    }
+
 }
