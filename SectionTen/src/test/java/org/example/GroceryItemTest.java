@@ -206,4 +206,10 @@ public class GroceryItemTest {
         thirdGroceryList.set(2, item);
         assertEquals(item, thirdGroceryList.get(2));
     }
+
+    @Test
+    public void testConvertAListToAnArray() {
+        String type = thirdGroceryList.toArray(GroceryItem[]::new).getClass().getSimpleName();
+        assertEquals("GroceryItem[]", type);
+    }
 }
