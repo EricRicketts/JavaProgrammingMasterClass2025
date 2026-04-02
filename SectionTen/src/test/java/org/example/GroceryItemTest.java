@@ -21,6 +21,7 @@ public class GroceryItemTest {
     ArrayList<GroceryItem> secondGroceryList = new ArrayList<>();
     ArrayList<GroceryItem> thirdGroceryList;
     GroceryItem resultantItem, expectedItem, item;
+    int originalListSize;
 
     @BeforeEach
     public void setUp() {
@@ -102,7 +103,7 @@ public class GroceryItemTest {
     @Test
     public void testAListToAList() {
         int[] expected = {2, 5};
-        int originalListSize = secondGroceryList.size();
+        originalListSize = secondGroceryList.size();
         List<GroceryItem> additionalItems = Arrays.asList(groceryList);
         secondGroceryList.addAll(additionalItems);
         int newListSize = secondGroceryList.size();
@@ -147,7 +148,7 @@ public class GroceryItemTest {
     @Test
     public void removeAnObjectFromAListByIndex() {
         int expectedOriginalListSize = 10;
-        int originalListSize = thirdGroceryList.size();
+        originalListSize = thirdGroceryList.size();
         assertEquals(expectedOriginalListSize, originalListSize);
         expectedItem = new GroceryItem("pears", "PRODUCE", 5);
         resultantItem = thirdGroceryList.remove(7);
@@ -165,6 +166,22 @@ public class GroceryItemTest {
         boolean removed = thirdGroceryList.remove(item);
         assertTrue(removed);
         assertEquals(originalListSize - 1, thirdGroceryList.size());
+    }
+
+    @Test
+    public void removeAListFromAList() {
+        // To remove a List from a List used the removeAll method
+        originalListSize = thirdGroceryList.size();
+        assertEquals(10, originalListSize);
+        ArrayList<GroceryItem> itemsToRemove = new ArrayList<>(
+                List.of(new GroceryItem("butter", "DAIRY", 3),
+                new GroceryItem("cucumber", "PRODUCE", 4),
+                new GroceryItem("milk", "DAIRY", 2))
+        );
+        // As show above, the removed items need not be in sequential order.
+        boolean removed = thirdGroceryList.removeAll(itemsToRemove);
+        assertTrue(removed);
+        assertEquals(originalListSize - 3, thirdGroceryList.size());
     }
 
 }
