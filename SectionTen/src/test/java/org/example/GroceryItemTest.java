@@ -3,9 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -202,4 +200,10 @@ public class GroceryItemTest {
         assertEquals(1, thirdGroceryList.size());
     }
 
+    @Test
+    public void testSettingAnItemInAList() {
+        item = new GroceryItem("kale", "PRODUCE", 8);
+        thirdGroceryList.set(2, item);
+        assertEquals(item, thirdGroceryList.get(2));
+    }
 }
