@@ -21,24 +21,17 @@ public class GroceryListTest {
         }
     }
 
-    @Disabled
-    @Test
-    public void testGroceryListWasInitialized() {
-    }
-
-    @Disabled
     @Test
     public void testAddOneItem() {
-        expected = "apples\noranges\nlettuce\ntomatoes\ncucumbers\nkale";
+        expected = "apples\ncucumbers\nkale\nlettuce\noranges\ntomatoes";
         groceryList.addItems("kale");
         result = groceryList.printList();
         assertEquals(expected, result);
     }
 
-    @Disabled
     @Test
     public void testAddMoreThanOneItem() {
-        expected = "apples\noranges\nlettuce\ntomatoes\ncucumbers\nkale\nspinach\ncabbage\nrice";
+        expected = "apples\ncabbage\ncucumbers\nkale\nlettuce\noranges\nrice\nspinach\ntomatoes";
         String itemsToAdd = "kale,  spinach, cabbage,rice";
         groceryList.addItems(itemsToAdd);
         result = groceryList.printList();
@@ -46,8 +39,17 @@ public class GroceryListTest {
     }
 
     @Test
+    public void testDuplicatesNotAdded() {
+        expected = "apples\ncucumbers\nkale\nlettuce\noranges\nrice\ntomatoes";
+        String itemsToAdd = "kale, rice, kale";
+        groceryList.addItems(itemsToAdd);
+        result = groceryList.printList();
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void testRemoveOneItem() {
-        expected = "apples\noranges\ntomatoes\ncucumbers";
+        expected = "apples\ncucumbers\noranges\ntomatoes";
         groceryList.removeItems("lettuce");
         result = groceryList.printList();
         assertEquals(expected, result);
@@ -55,7 +57,7 @@ public class GroceryListTest {
 
     @Test
     public void testRemoveMoreThanOneItem() {
-        expected = "lettuce\ncucumbers";
+        expected = "cucumbers\nlettuce";
         String itemsToAdd = "oranges,  tomatoes,apples";
         groceryList.removeItems(itemsToAdd);
         result = groceryList.printList();

@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class GroceryList {
 
@@ -27,11 +28,8 @@ public class GroceryList {
         }
     }
 
-    private boolean checkForDuplicateItem(String item) {
-        return true;
-    }
-
     public String printList() {
+        this.list.sort(Comparator.naturalOrder());
         String listOutput = "";
         for (String item : this.list) {
             listOutput = listOutput.concat(item + "\n");
