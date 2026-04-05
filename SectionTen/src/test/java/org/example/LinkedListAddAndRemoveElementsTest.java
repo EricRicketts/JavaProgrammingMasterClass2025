@@ -10,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LinkedListAddAndRemoveElementsTest {
 
-    LinkedList<String> firstPlacesToVisit;
+    LinkedList<String> placesToVisit;
+    String expected, result;
 
     @BeforeEach
     public void setUp() {
-        firstPlacesToVisit = new LinkedList<String>();
+        placesToVisit = new LinkedList<String>();
     }
 
     @Test
@@ -26,5 +27,13 @@ public class LinkedListAddAndRemoveElementsTest {
         String secondListClass = secondList.getClass().getSimpleName();
         String[] result = {firstListClass, secondListClass};
         assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testAddItemsUsingArrayListMethods() {
+        placesToVisit.add("Paris");
+        placesToVisit.add("London");
+        placesToVisit.add("Berlin");
+
     }
 }
