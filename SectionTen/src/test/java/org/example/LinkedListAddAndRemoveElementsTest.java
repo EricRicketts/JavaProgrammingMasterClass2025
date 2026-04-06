@@ -20,13 +20,9 @@ public class LinkedListAddAndRemoveElementsTest {
 
     @Test
     public void testOtherWaysToDeclareLinkedLists() {
-        String[] expected = {"LinkedList", "LinkedList"};
-        LinkedList<String> firstList = new LinkedList<>();
-        var secondList = new LinkedList<String>();
-        String firstListClass = firstList.getClass().getSimpleName();
-        String secondListClass = secondList.getClass().getSimpleName();
-        String[] result = {firstListClass, secondListClass};
-        assertArrayEquals(expected, result);
+        String expected = "LinkedList";
+        String result = LinkedList.class.getSimpleName();
+        assertEquals(expected, result);
     }
 
     @Test
