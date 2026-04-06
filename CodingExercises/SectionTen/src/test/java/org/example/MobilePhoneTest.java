@@ -133,6 +133,16 @@ public class MobilePhoneTest {
         assertNull(contact);
     }
 
-
+    @Test
+    public void testPrintContacts() {
+        String expected = """
+                Elmer Fudd -> 1122334455
+                Daffy Duck -> 0011223344
+                Bugs Bunny -> 6677889900
+                Foghorn Leghorn -> 0123456789
+                Porky Pig -> 9876543210""";
+        String result = mobilePhone.printContacts();
+        assertEquals(expected, result);
+    }
 
 }

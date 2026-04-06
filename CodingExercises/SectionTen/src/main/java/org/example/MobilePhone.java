@@ -49,4 +49,16 @@ public class MobilePhone {
         int locationOfExistingContact = this.findContact(contactName);
         return (locationOfExistingContact > -1) ? this.myContacts.get(locationOfExistingContact) : null;
     }
+
+    public String printContacts() {
+        String contacts = "";
+        for (Contact contact : this.myContacts) {
+            contacts = contacts
+                    .concat(contact.getName())
+                    .concat(" -> ")
+                    .concat(contact.getPhoneNumber())
+                    .concat("\n");
+        }
+        return contacts.stripTrailing();
+    }
 }
