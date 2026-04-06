@@ -54,4 +54,15 @@ public class LinkedListAddAndRemoveElementsTest {
         result = placesToVisit.toString();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testRemoveElementWithNoArgument() {
+        placesToVisit.add("Paris");
+        placesToVisit.addFirst("London");
+        placesToVisit.add("Berlin");
+        placesToVisit.add("Vienna");
+        var droppedCity = placesToVisit.remove();
+
+        assertEquals("London", droppedCity);
+    }
 }
