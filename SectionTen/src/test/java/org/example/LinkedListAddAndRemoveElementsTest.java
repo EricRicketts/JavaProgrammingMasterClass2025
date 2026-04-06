@@ -20,12 +20,23 @@ public class LinkedListAddAndRemoveElementsTest {
         // Stack methods
         list.push("Alice Springs"); // Stack language for adding to the beginning of the list.
     }
-    LinkedList<String> placesToVisit;
+    LinkedList<String> placesToVisit, morePlacesToVisit;
     String expected, result;
 
     @BeforeEach
     public void setUp() {
         placesToVisit = new LinkedList<>();
+        morePlacesToVisit = new LinkedList<>();
+        morePlacesToVisit.add("Montgomery");
+        morePlacesToVisit.add("Juneau");
+        morePlacesToVisit.add("Phoenix");
+        morePlacesToVisit.add("Little Rock");
+        morePlacesToVisit.add("Sacramento");
+        morePlacesToVisit.add("Denver");
+        morePlacesToVisit.add("Hartford");
+        morePlacesToVisit.add("Dover");
+        morePlacesToVisit.add("Tallahassee");
+        morePlacesToVisit.add("Atlanta");
     }
 
     @Test
@@ -92,5 +103,20 @@ public class LinkedListAddAndRemoveElementsTest {
 
         var poppedCity = placesToVisit.pop();
         assertEquals("Virginia Beach", poppedCity);
+    }
+
+    @Test
+    public void testLinkedListRetrievalMethods() {
+        Object[] expected = new Object[]{
+                "Sacramento", "Montgomery", "Atlanta", 5, 1
+        };
+        Object[] results = new Object[]{
+                morePlacesToVisit.get(4),
+                morePlacesToVisit.getFirst(),
+                morePlacesToVisit.getLast(),
+                morePlacesToVisit.indexOf("Denver"),
+                morePlacesToVisit.lastIndexOf("Juneau")
+        };
+        assertArrayEquals(expected, results);
     }
 }
