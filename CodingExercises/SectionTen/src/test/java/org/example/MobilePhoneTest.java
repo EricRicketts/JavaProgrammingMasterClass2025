@@ -60,4 +60,20 @@ public class MobilePhoneTest {
         int result = mobilePhone.findContact(contact);
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testFindContactStringFound() {
+        String contactName = "Porky Pig";
+        int expected = 4;
+        int result = mobilePhone.findContact(contactName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testFindContactStringNotFound() {
+        String contactName = "Tweety Bird";
+        int expected = -1;
+        int result = mobilePhone.findContact(contactName);
+        assertEquals(expected, result);
+    }
 }
