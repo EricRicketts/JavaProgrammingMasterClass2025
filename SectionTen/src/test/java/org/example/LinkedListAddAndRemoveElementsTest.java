@@ -46,5 +46,12 @@ public class LinkedListAddAndRemoveElementsTest {
         addMoreElements(placesToVisit);
         String result = placesToVisit.toString();
         assertEquals(expected, result);
+
+        // Removing elements from a LinkedList.
+        placesToVisit.remove(4);
+        placesToVisit.remove("Brisbane");
+        expected = "[Alice Springs, Darwin, London, Berlin, Hobart, Melbourne, Toowoomba]";
+        result = placesToVisit.toString();
+        assertEquals(expected, result);
     }
 }
