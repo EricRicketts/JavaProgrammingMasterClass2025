@@ -108,14 +108,17 @@ public class LinkedListAddAndRemoveElementsTest {
     @Test
     public void testLinkedListRetrievalMethods() {
         Object[] expected = new Object[]{
-                "Sacramento", "Montgomery", "Atlanta", 5, 1
+                "Sacramento", "Montgomery", "Atlanta", 5, 1, "Montgomery", "Montgomery", "Atlanta"
         };
         Object[] results = new Object[]{
                 morePlacesToVisit.get(4),
                 morePlacesToVisit.getFirst(),
                 morePlacesToVisit.getLast(),
                 morePlacesToVisit.indexOf("Denver"),
-                morePlacesToVisit.lastIndexOf("Juneau")
+                morePlacesToVisit.lastIndexOf("Juneau"),
+                morePlacesToVisit.peek(),
+                morePlacesToVisit.peekFirst(),
+                morePlacesToVisit.peekLast(),
         };
         assertArrayEquals(expected, results);
     }
