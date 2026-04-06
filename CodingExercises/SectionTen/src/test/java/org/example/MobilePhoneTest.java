@@ -105,8 +105,8 @@ public class MobilePhoneTest {
     public void testRemoveExistingContact() {
         Object[] expected = new Object[]{true, 5, 4};
         int priorSizeBeforeRemoval = mobilePhone.myContacts.size();
-        Contact existingContact = new Contact("Foghorn Leghorn", "0123456789");
-        boolean result = mobilePhone.removeContact(existingContact);
+        contact = new Contact("Foghorn Leghorn", "0123456789");
+        boolean result = mobilePhone.removeContact(contact);
         Object[] results = new Object[]{
                 result, priorSizeBeforeRemoval, mobilePhone.myContacts.size()
         };
@@ -115,7 +115,7 @@ public class MobilePhoneTest {
 
     @Test
     public void testRemoveNonExistingContact() {
-        Contact contact = new Contact("Road Runner", "1029384756");
+        contact = new Contact("Road Runner", "1029384756");
         boolean result = mobilePhone.removeContact(contact);
         assertFalse(result);
     }
@@ -123,14 +123,16 @@ public class MobilePhoneTest {
     @Test
     public void testQueryForExistingContact() {
         Contact expectedContact = new Contact("Daffy Duck", "0011223344");
-        Contact contact = mobilePhone.queryContact("Daffy Duck");
+        contact = mobilePhone.queryContact("Daffy Duck");
         assertEquals(expectedContact, contact);
     }
 
     @Test
     public void testQueryForNonExistentContact() {
-        Contact contact = mobilePhone.queryContact("Road Runner");
+        contact = mobilePhone.queryContact("Road Runner");
         assertNull(contact);
     }
+
+
 
 }
