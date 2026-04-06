@@ -120,4 +120,17 @@ public class MobilePhoneTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testQueryForExistingContact() {
+        Contact expectedContact = new Contact("Daffy Duck", "0011223344");
+        Contact contact = mobilePhone.queryContact("Daffy Duck");
+        assertEquals(expectedContact, contact);
+    }
+
+    @Test
+    public void testQueryForNonExistentContact() {
+        Contact contact = mobilePhone.queryContact("Road Runner");
+        assertNull(contact);
+    }
+
 }

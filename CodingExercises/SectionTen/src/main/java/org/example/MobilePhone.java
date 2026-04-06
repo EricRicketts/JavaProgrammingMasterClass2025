@@ -45,4 +45,8 @@ public class MobilePhone {
         return false;
     }
 
+    public Contact queryContact(String contactName) {
+        int locationOfExistingContact = this.findContact(contactName);
+        return (locationOfExistingContact > -1) ? this.myContacts.get(locationOfExistingContact) : null;
+    }
 }
