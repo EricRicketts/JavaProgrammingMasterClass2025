@@ -14,4 +14,10 @@ public class MobilePhone {
     public boolean addNewContact(Contact contact) {
         return !this.myContacts.contains(contact);
     }
+
+    public int findContact(Contact contact) {
+        return this.addNewContact(contact) ? -1 : this.myContacts.indexOf(contact);
+    }
+
+
 }

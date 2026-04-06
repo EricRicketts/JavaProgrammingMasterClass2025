@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MobilePhoneTest {
 
@@ -44,5 +43,21 @@ public class MobilePhoneTest {
         // The contact does not exist, so return true
         contact = new Contact("John Doe", "2309458761");
         assertTrue(mobilePhone.addNewContact(contact));
+    }
+
+    @Test
+    public void testFindContactObjectFound() {
+        contact = new Contact("Foghorn Leghorn", "0123456789");
+        int expected = 3;
+        int result = mobilePhone.findContact(contact);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testFindContactObjectNotFound() {
+        contact = new Contact("Tasmanian Devil", "9990008881");
+        int expected = -1;
+        int result = mobilePhone.findContact(contact);
+        assertEquals(expected, result);
     }
 }
