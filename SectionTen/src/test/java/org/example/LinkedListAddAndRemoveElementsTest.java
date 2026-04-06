@@ -83,4 +83,14 @@ public class LinkedListAddAndRemoveElementsTest {
         droppedCity = placesToVisit.pollLast(); // Using polling to remove the last element.
         assertEquals("Sydney", droppedCity);
     }
+
+    @Test
+    public void testStackMethods() {
+        placesToVisit.push("Richmond");
+        placesToVisit.push("Fredericksburg");
+        placesToVisit.push("Virginia Beach");
+
+        var poppedCity = placesToVisit.pop();
+        assertEquals("Virginia Beach", poppedCity);
+    }
 }
