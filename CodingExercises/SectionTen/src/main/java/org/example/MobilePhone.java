@@ -36,4 +36,13 @@ public class MobilePhone {
         return false;
     }
 
+    public boolean removeContact(Contact existingContact) {
+        int locationOfExistingContact = this.findContact(existingContact);
+        if (locationOfExistingContact > -1) {
+            this.myContacts.remove(locationOfExistingContact);
+            return true;
+        }
+        return false;
+    }
+
 }
