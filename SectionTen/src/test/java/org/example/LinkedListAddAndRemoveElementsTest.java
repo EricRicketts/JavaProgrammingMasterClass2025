@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -121,5 +122,27 @@ public class LinkedListAddAndRemoveElementsTest {
                 morePlacesToVisit.peekLast(),
         };
         assertArrayEquals(expected, results);
+    }
+
+    @Test
+    public void testTraversingALinkedListUsingAnIterator() {
+        String expected = """
+                Montgomery
+                Juneau
+                Phoenix
+                Little Rock
+                Sacramento
+                Denver
+                Hartford
+                Dover
+                Tallahassee
+                Atlanta""";
+        String output = "";
+        ListIterator<String> iterator = morePlacesToVisit.listIterator();
+        while (iterator.hasNext()) {
+            var town = iterator.next();
+            output = output.concat(town).concat("\n");
+        }
+        assertEquals(expected, output.stripTrailing());
     }
 }
