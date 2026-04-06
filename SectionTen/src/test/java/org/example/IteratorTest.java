@@ -39,4 +39,24 @@ public class IteratorTest {
         result = list.toString();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testListIteratorAdd() {
+        String output = "";
+        var listIterator = list.listIterator();
+        while (listIterator.hasNext()) {
+            if (listIterator.next().equals("Springfield")) listIterator.add("Boston");
+        }
+        expected = "[Honolulu, Boise, Springfield, Boston, Indianapolis, Des Moines, Topeka]";
+        result = list.toString();
+        assertEquals(expected, result);
+        // Now, traverse in the reverse.
+        while (listIterator.hasPrevious()) {
+            output = output.concat(listIterator.previous()) + ", ";
+        }
+        expected = "Topeka, Des Moines, Indianapolis, Boston, Springfield, Boise, Honolulu";
+        output = output.replaceAll(", $", "");
+        assertEquals(expected, output);
+    }
+
 }
