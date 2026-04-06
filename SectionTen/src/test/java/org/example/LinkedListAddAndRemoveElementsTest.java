@@ -72,5 +72,11 @@ public class LinkedListAddAndRemoveElementsTest {
 
         droppedCity = placesToVisit.removeLast();
         assertEquals("Rome", droppedCity);
+
+        droppedCity = placesToVisit.poll(); // Removes first element.
+        assertEquals("Berlin", droppedCity);
+
+        droppedCity = placesToVisit.pollFirst(); // A more explicit way to remove the first element.
+        assertEquals("Vienna", droppedCity);
     }
 }
