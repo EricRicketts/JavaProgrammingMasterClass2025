@@ -61,8 +61,13 @@ public class LinkedListAddAndRemoveElementsTest {
         placesToVisit.addFirst("London");
         placesToVisit.add("Berlin");
         placesToVisit.add("Vienna");
+        placesToVisit.add("Barcelona");
+        placesToVisit.add("Rome");
         var droppedCity = placesToVisit.remove();
 
         assertEquals("London", droppedCity);
+
+        droppedCity = placesToVisit.removeFirst();
+        assertEquals("Paris", droppedCity);
     }
 }
