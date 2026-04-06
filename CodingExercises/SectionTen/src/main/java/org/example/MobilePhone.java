@@ -27,4 +27,13 @@ public class MobilePhone {
         return -1;
     }
 
+    public boolean updateContact(Contact existingContact, Contact newContact) {
+        int locationOfNewContact = this.findContact(existingContact);
+        if (locationOfNewContact > -1) {
+            this.myContacts.set(locationOfNewContact, newContact);
+            return true;
+        }
+        return false;
+    }
+
 }

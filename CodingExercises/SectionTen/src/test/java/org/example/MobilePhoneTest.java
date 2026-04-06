@@ -76,4 +76,31 @@ public class MobilePhoneTest {
         int result = mobilePhone.findContact(contactName);
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testUpdateExistingContactFound() {
+        int existingLocation = 2;
+        Object[] expected = new Object[]{true, "Road Runner", "1029384756"};
+        Contact existingContact = new Contact("Bugs Bunny", "6677889900");
+        Contact newContact = new Contact("Road Runner", "1029384756");
+        boolean result = mobilePhone.updateContact(existingContact, newContact);
+        Contact insertedContact = mobilePhone.myContacts.get(existingLocation);
+        Object[] results = new Object[]{
+                result,
+                insertedContact.getName(),
+                insertedContact.getPhoneNumber()
+        };
+        assertArrayEquals(expected, results);
+    }
+
+    @Test
+    public void testUpdateExistingContactNotFound() {
+        Contact existingContact = new Contact("Wile E Coyote", "0192837465");
+        Contact newContact = new Contact("Road Runner", "1029384756");
+        boolean result = mobilePhone.updateContact(existingContact, newContact);
+        assertFalse(result);
+    }
+
+
+
 }
