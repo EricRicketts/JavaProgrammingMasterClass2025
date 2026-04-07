@@ -1,0 +1,7 @@
+1.  Create a list of places ordered by distance from the starting point.
+2.  Use a ListIterator to move forwards and backwards through this ordered itinerary of places.
+3.  Create a type that has town name and distance from your start point.  I will use a record.
+4.  Then create an itinerary of places to visit the linked list will be of the record you created in step 3.
+5.  First element in the list is the closest to your starting point.
+6.  Duplicates are not allowed in the list.
+7.  Create a menu => (F)orward (B)ackward (L)ist places (M)enu (Q)uit
