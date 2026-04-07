@@ -65,4 +65,38 @@ public class ItineraryTest {
             }
         }
     }
+
+    @Test
+    public void moveThreePlacesForwardAndOnePlaceBackwardsInTheList() {
+        /*
+        Remember, upon initialization the iterator pointer is before the first element of the list.
+        Upon advancing, it goes to a location between the first and second element of the list.
+        In the code below the iterator pointer will end up between the third and fourth element of the
+        list, and if asked for an element will return the third element.  At i = 0, resultantRecord is Richmond;
+        at i = 1, resultantRecord is Charlottesville, at i = 2 resultantRecord is Roanoke.  The next() method
+        returns the element in front of the iterator pointer (the 3rd element if the pointer is between
+        the second and third element). Then it advances the pointer to the next location, which would be
+        be between the third and fourth element.
+        */
+        var itineraryIterator = itinerary.listIterator();
+        for (int i = 0; i < 3; i++) {
+            resultantRecord = itineraryIterator.next();
+        }
+        expectedRecord = new Place("Roanoke", 208);
+        assertEquals(expectedRecord, resultantRecord);
+
+        /*
+        Move backwards one location on the list.  We have to call the previous() method twice because
+        at the end of the previous advancements, the iterator pointer is between the 3rd and 4th elements
+        on the list.  So the first call to previous returns Roanoke.  For i = 0 the iterator pointer moves
+        between the second and third element of the list, so a call to get an element from the list would
+        return the third element.  For i = 1, the iterator pointer moves between the first and second element
+        of the list, so the second element would be returned.
+        */
+        for (int i = 0; i < 2; i++) {
+            resultantRecord = itineraryIterator.previous();
+        }
+        expectedRecord = new Place("Charlottesville", 81);
+        assertEquals(expectedRecord, resultantRecord);
+    }
 }
