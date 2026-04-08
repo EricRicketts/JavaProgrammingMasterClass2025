@@ -6,8 +6,14 @@ public class Itinerary {
 
     private final LinkedList<Place> listOfPlaces = new LinkedList<>();
     private ListIterator<Place> iterator = listOfPlaces.listIterator();
+    private final Runnable exitAction;
 
     public Itinerary(LinkedList<Place> route) {
+        this(route, () -> System.exit(0));
+    }
+
+    public Itinerary(LinkedList<Place> route, Runnable exitAction) {
+        this.exitAction = exitAction;
         for (Place place : route) {
             if (Objects.nonNull(place) && !listOfPlaces.contains(place)) {
                 listOfPlaces.add(place);
@@ -46,7 +52,7 @@ public class Itinerary {
     }
 
     public void quit() {
-       System.exit(0);
+        exitAction.run();
     }
 
     public String showMenu() {
@@ -60,9 +66,5 @@ public class Itinerary {
 
     public void resetItineraryCursor() {
         iterator = listOfPlaces.listIterator();
-    }
-
-    public LinkedList<Place> getListOfPlaces() {
-        return listOfPlaces;
     }
 }

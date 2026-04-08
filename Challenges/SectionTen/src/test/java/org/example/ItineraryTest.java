@@ -2,23 +2,29 @@ package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.ginsberg.junit.exit.assertions.SystemExitAssertion.assertThatCallsSystemExit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestMethodOrder(OrderAnnotation.class)
 public class ItineraryTest {
 
     private Itinerary itinerary;
     String expected, result;
     Record expectedRecord, resultantRecord;
+    LinkedList<Place> places;
     int[] distances;
 
     @BeforeEach
     public void setUp() {
-        LinkedList<Place> places = new LinkedList<>();
+        places = new LinkedList<>();
         distances = new int[]{102, 81, 208, 204, 98, 99, 38, 48, 148, 343};
         String[] towns = new String[]{
                 "Richmond", "Charlottesville", "Roanoke", "Virginia Beach",
@@ -32,6 +38,7 @@ public class ItineraryTest {
         itinerary = new Itinerary(places);
     }
 
+    @Order(1)
     @Test
     public void testListPlaces() {
         expected =
@@ -49,6 +56,7 @@ public class ItineraryTest {
         assertEquals(expected, result);
     }
 
+    @Order(2)
     @Test
     public void testMoveForward() {
         expectedRecord = new Place("Staunton", 99);
@@ -59,6 +67,7 @@ public class ItineraryTest {
         assertEquals(expectedRecord, resultantRecord);
     }
 
+    @Order(3)
     @Test
     public void testMoveBackward() {
         expectedRecord = new Place("Culpepper", 38);
@@ -72,6 +81,8 @@ public class ItineraryTest {
         assertEquals(expectedRecord, resultantRecord);
     }
 
+
+    @Order(4)
     @Test
     public void testShowMenu() {
         expected ="""
@@ -82,5 +93,15 @@ public class ItineraryTest {
                (Q)uit""";
         result = itinerary.showMenu();
         assertEquals(expected, result);
+    }
+
+
+    @Order(5)
+    @Test
+    public void testQuit() {
+        AtomicBoolean exited = new AtomicBoolean(false);
+        Itinerary newItinerary = new Itinerary(places, () -> exited.set(true));
+        newItinerary.quit();
+        assertTrue(exited.get());
     }
 }
