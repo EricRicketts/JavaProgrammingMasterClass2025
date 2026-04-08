@@ -9,9 +9,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.ginsberg.junit.exit.assertions.SystemExitAssertion.assertThatCallsSystemExit;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class ItineraryTest {
@@ -37,25 +35,27 @@ public class ItineraryTest {
             Place place = new Place(towns[i], distances[i]);
             places.add(place);
         }
-        itinerary = new Itinerary(places, () -> exited.set(true));
+        itinerary = new Itinerary(places);
     }
 
     @Order(1)
     @Test
     public void testListPlaces() {
-        expected =
-                    "name = Richmond, distance = 102\n" +
-                    "name = Charlottesville, distance = 81\n" +
-                    "name = Roanoke, distance = 208\n" +
-                    "name = Virginia Beach, distance = 204\n" +
-                    "name = Harrisonburg, distance = 98\n" +
-                    "name = Staunton, distance = 99\n" +
-                    "name = Culpepper, distance = 38\n" +
-                    "name = Fredericksburg, distance = 48\n" +
-                    "name = Williamsburg, distance = 148\n" +
-                    "name = Bristol, distance = 343";
-        result = itinerary.listPlaces();
-        assertEquals(expected, result);
+            expected = """
+            name = Richmond, distance = 102
+            name = Charlottesville, distance = 81
+            name = Roanoke, distance = 208
+            name = Virginia Beach, distance = 204
+            name = Harrisonburg, distance = 98
+            name = Staunton, distance = 99
+            name = Culpepper, distance = 38
+            name = Fredericksburg, distance = 48
+            name = Williamsburg, distance = 148
+            name = Bristol, distance = 343"""
+                    .stripIndent().stripTrailing();
+
+            result = itinerary.listPlaces();
+            assertEquals(expected, result);
     }
 
     @Order(2)
@@ -101,7 +101,7 @@ public class ItineraryTest {
     @Order(5)
     @Test
     public void testQuit() {
-        itinerary.quit();
-        assertTrue(exited.get());
+        QuitException exception = assertThrows(QuitException.class, () -> itinerary.quit());
+        assertEquals("Quit requested", exception.getMessage());
     }
 }

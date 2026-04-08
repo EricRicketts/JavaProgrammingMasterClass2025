@@ -6,14 +6,8 @@ public class Itinerary {
 
     private final LinkedList<Place> listOfPlaces = new LinkedList<>();
     private ListIterator<Place> iterator = listOfPlaces.listIterator();
-    private final Runnable exitAction;
 
     public Itinerary(LinkedList<Place> route) {
-        this(route, () -> System.exit(0));
-    }
-
-    public Itinerary(LinkedList<Place> route, Runnable exitAction) {
-        this.exitAction = exitAction;
         for (Place place : route) {
             if (Objects.nonNull(place) && !listOfPlaces.contains(place)) {
                 listOfPlaces.add(place);
@@ -52,10 +46,11 @@ public class Itinerary {
     }
 
     public void quit() {
-        exitAction.run();
+        throw new QuitException();
     }
 
     public String showMenu() {
+        // Apply the same techniques as used in testListPlaces().
         return """
                (F)orward
                (B)ackward
