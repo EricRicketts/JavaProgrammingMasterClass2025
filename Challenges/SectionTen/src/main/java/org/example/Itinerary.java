@@ -31,7 +31,7 @@ public class Itinerary {
         return output.toString().stripTrailing();
     }
 
-    public Place moveBackwards() {
+    public Place moveBackward() {
         if (!iterator.hasPrevious()) {
             this.resetItineraryCursor();
         }
@@ -60,5 +60,9 @@ public class Itinerary {
 
     public void resetItineraryCursor() {
         iterator = listOfPlaces.listIterator();
+    }
+
+    public LinkedList<Place> getListOfPlaces() {
+        return listOfPlaces;
     }
 }

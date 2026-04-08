@@ -14,11 +14,12 @@ public class ItineraryTest {
     private Itinerary itinerary;
     String expected, result;
     Record expectedRecord, resultantRecord;
+    int[] distances;
 
     @BeforeEach
     public void setUp() {
         LinkedList<Place> places = new LinkedList<>();
-        int[] distances = new int[]{102, 81, 208, 204, 98, 99, 38, 48, 148, 343};
+        distances = new int[]{102, 81, 208, 204, 98, 99, 38, 48, 148, 343};
         String[] towns = new String[]{
                 "Richmond", "Charlottesville", "Roanoke", "Virginia Beach",
                 "Harrisonburg", "Staunton", "Culpepper", "Fredericksburg",
@@ -54,6 +55,19 @@ public class ItineraryTest {
         itinerary.resetItineraryCursor();
         for (int i = 0; i < 6; i++) {
             resultantRecord = itinerary.moveForward();
+        }
+        assertEquals(expectedRecord, resultantRecord);
+    }
+
+    @Test
+    public void testMoveBackward() {
+        expectedRecord = new Place("Culpepper", 38);
+        for (int i = 0; i < distances.length; i++) {
+            resultantRecord = itinerary.moveForward();
+        }
+
+        for (int i = 0; i < 4; i++) {
+            resultantRecord = itinerary.moveBackward();
         }
         assertEquals(expectedRecord, resultantRecord);
     }
