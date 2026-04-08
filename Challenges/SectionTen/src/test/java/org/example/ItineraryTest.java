@@ -47,4 +47,14 @@ public class ItineraryTest {
         result = itinerary.listPlaces();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testMoveForward() {
+        expectedRecord = new Place("Staunton", 99);
+        itinerary.resetItineraryCursor();
+        for (int i = 0; i < 6; i++) {
+            resultantRecord = itinerary.moveForward();
+        }
+        assertEquals(expectedRecord, resultantRecord);
+    }
 }

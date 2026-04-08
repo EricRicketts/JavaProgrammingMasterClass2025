@@ -58,7 +58,7 @@ public class Itinerary {
                (Q)uit""";
     }
 
-    private void resetItineraryCursor() {
+    public void resetItineraryCursor() {
         iterator = listOfPlaces.listIterator();
     }
 }
