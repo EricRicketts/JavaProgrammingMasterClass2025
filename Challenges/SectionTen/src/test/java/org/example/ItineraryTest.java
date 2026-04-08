@@ -20,10 +20,12 @@ public class ItineraryTest {
     String expected, result;
     Record expectedRecord, resultantRecord;
     LinkedList<Place> places;
+    AtomicBoolean exited;
     int[] distances;
 
     @BeforeEach
     public void setUp() {
+        exited = new AtomicBoolean(false);
         places = new LinkedList<>();
         distances = new int[]{102, 81, 208, 204, 98, 99, 38, 48, 148, 343};
         String[] towns = new String[]{
@@ -35,7 +37,7 @@ public class ItineraryTest {
             Place place = new Place(towns[i], distances[i]);
             places.add(place);
         }
-        itinerary = new Itinerary(places);
+        itinerary = new Itinerary(places, () -> exited.set(true));
     }
 
     @Order(1)
@@ -99,9 +101,7 @@ public class ItineraryTest {
     @Order(5)
     @Test
     public void testQuit() {
-        AtomicBoolean exited = new AtomicBoolean(false);
-        Itinerary newItinerary = new Itinerary(places, () -> exited.set(true));
-        newItinerary.quit();
+        itinerary.quit();
         assertTrue(exited.get());
     }
 }
