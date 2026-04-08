@@ -33,7 +33,7 @@ public class ItineraryTest {
     }
 
     @Test
-    public void testListInitialized() {
+    public void testListPlaces() {
         expected =
                     "name = Richmond, distance = 102\n" +
                     "name = Charlottesville, distance = 81\n" +
@@ -70,5 +70,17 @@ public class ItineraryTest {
             resultantRecord = itinerary.moveBackward();
         }
         assertEquals(expectedRecord, resultantRecord);
+    }
+
+    @Test
+    public void testShowMenu() {
+        expected ="""
+               (F)orward
+               (B)ackward
+               (L)ist places
+               (M)enu
+               (Q)uit""";
+        result = itinerary.showMenu();
+        assertEquals(expected, result);
     }
 }
