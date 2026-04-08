@@ -25,10 +25,10 @@ public class Itinerary {
                   .append(place.name())
                   .append(", ")
                   .append("distance = ")
-                  .append(String.valueOf(place.distance()))
+                  .append(place.distance())
                   .append("\n");
         }
-        return output.toString().stripTrailing();
+        return output.toString().stripIndent().stripTrailing();
     }
 
     public Place moveBackward() {
@@ -56,7 +56,7 @@ public class Itinerary {
                (B)ackward
                (L)ist places
                (M)enu
-               (Q)uit""";
+               (Q)uit""".stripIndent().stripTrailing();
     }
 
     public void resetItineraryCursor() {

@@ -16,7 +16,6 @@ public class ItineraryTest {
 
     private Itinerary itinerary;
     String expected, result;
-    Record expectedRecord, resultantRecord;
     LinkedList<Place> places;
     AtomicBoolean exited;
     int[] distances;
@@ -58,41 +57,62 @@ public class ItineraryTest {
             assertEquals(expected, result);
     }
 
-    @Order(2)
     @Test
     public void testMoveForward() {
-        expectedRecord = new Place("Staunton", 99);
-        itinerary.resetItineraryCursor();
-        for (int i = 0; i < 6; i++) {
-            resultantRecord = itinerary.moveForward();
+        Place[] expectedPlaces = {
+            new Place("Richmond", 102),
+            new Place("Charlottesville", 81),
+            new Place("Roanoke", 208),
+            new Place("Virginia Beach", 204),
+            new Place("Harrisonburg", 98),
+            new Place("Staunton", 99),
+            new Place("Culpepper", 38),
+            new Place("Fredericksburg", 48),
+            new Place("Williamsburg", 148),
+            new Place("Bristol", 343)
+        };
+        // An edit to see if the file updates with unsaved changes.
+        for (Place expected : expectedPlaces) {
+            assertEquals(expected, itinerary.moveForward());
         }
-        assertEquals(expectedRecord, resultantRecord);
     }
 
     @Order(3)
     @Test
     public void testMoveBackward() {
-        expectedRecord = new Place("Culpepper", 38);
+        Place[] expectedPlaces = {
+            new Place("Bristol", 343),
+            new Place("Williamsburg", 148),
+            new Place("Fredericksburg", 48),
+            new Place("Culpepper", 38),
+            new Place("Staunton", 99),
+            new Place("Harrisonburg", 98),
+            new Place("Virginia Beach", 204),
+            new Place("Roanoke", 208),
+            new Place("Charlottesville", 81),
+            new Place("Richmond", 102)
+        };
+
         for (int i = 0; i < distances.length; i++) {
-            resultantRecord = itinerary.moveForward();
+            itinerary.moveForward();
         }
 
-        for (int i = 0; i < 4; i++) {
-            resultantRecord = itinerary.moveBackward();
+        for (Place expected : expectedPlaces) {
+            assertEquals(expected, itinerary.moveBackward());
         }
-        assertEquals(expectedRecord, resultantRecord);
     }
 
 
     @Order(4)
     @Test
     public void testShowMenu() {
-        expected ="""
-               (F)orward
-               (B)ackward
-               (L)ist places
-               (M)enu
-               (Q)uit""";
+        expected = """
+           (F)orward
+           (B)ackward
+           (L)ist places
+           (M)enu
+           (Q)uit"""
+                .stripIndent().stripTrailing();
         result = itinerary.showMenu();
         assertEquals(expected, result);
     }
