@@ -60,7 +60,7 @@ public class Itinerary {
                 """.stripIndent().stripTrailing();
     }
 
-    public void resetItineraryCursor() {
+    private void resetItineraryCursor() {
         iterator = listOfPlaces.listIterator();
     }
 }
