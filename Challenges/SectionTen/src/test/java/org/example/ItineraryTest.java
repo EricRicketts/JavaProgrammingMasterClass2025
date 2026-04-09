@@ -139,6 +139,23 @@ public class ItineraryTest {
         assertEquals(expected, itinerary.listPlaces());
     }
 
+    @Test
+    public void testDuplicatePlacesAreIgnored() {
+        LinkedList<Place> route = new LinkedList<>();
+        route.add(new Place("Richmond", 102));
+        route.add(new Place("Charlottesville", 81));
+        route.add(new Place("Richmond", 102));
+        route.add(new Place("Bristol", 343));
+
+        Itinerary itinerary = new Itinerary(route);
+
+        String expected = """
+            name = Richmond, distance = 102
+            name = Charlottesville, distance = 81
+            name = Bristol, distance = 343""".stripIndent().stripTrailing();
+
+        assertEquals(expected, itinerary.listPlaces());
+    }
 
     @Test
     public void testShowMenu() {
