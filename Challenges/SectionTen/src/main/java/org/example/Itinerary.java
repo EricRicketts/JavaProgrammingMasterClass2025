@@ -4,8 +4,15 @@ import java.util.*;
 
 public class Itinerary {
 
+    private static final String MENU = """
+            (F)orward
+            (B)ackward
+            (L)ist places
+            (M)enu
+            (Q)uit""";
+
     private final LinkedList<Place> listOfPlaces = new LinkedList<>();
-    private ListIterator<Place> iterator = listOfPlaces.listIterator();
+    private ListIterator<Place> iterator;
 
     public Itinerary(LinkedList<Place> route) {
         for (Place place : route) {
@@ -19,6 +26,7 @@ public class Itinerary {
     public String listPlaces() {
         resetItineraryCursor();
         StringBuilder output = new StringBuilder();
+
         while (iterator.hasNext()) {
             Place place = iterator.next();
             output.append("name = ")
@@ -40,7 +48,7 @@ public class Itinerary {
 
     public Place moveForward() {
         if (!iterator.hasNext()) {
-            this.resetItineraryCursor();
+            resetItineraryCursor();
         }
         return iterator.next();
     }
@@ -50,17 +58,10 @@ public class Itinerary {
     }
 
     public String showMenu() {
-        return
-                """
-                (F)orward
-                (B)ackward
-                (L)ist places
-                (M)enu
-                (Q)uit
-                """.stripIndent().stripTrailing();
+        return MENU;
     }
 
     private void resetItineraryCursor() {
-        iterator = listOfPlaces.listIterator();
+        iterator =  listOfPlaces.listIterator();
     }
 }
