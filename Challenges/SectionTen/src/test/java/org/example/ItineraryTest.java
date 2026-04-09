@@ -57,7 +57,7 @@ public class ItineraryTest {
     }
 
     @Test
-    public void testMoveForward() {
+    public void testMoveForwardTraversesAndWraps() {
         Place[] expectedPlaces = {
             new Place("Richmond", 102),
             new Place("Charlottesville", 81),
@@ -80,7 +80,7 @@ public class ItineraryTest {
     }
 
     @Test
-    public void testMoveBackward() {
+    public void testMoveBackwardTraversesAndWraps() {
         Place[] expectedPlaces = {
             new Place("Bristol", 343),
             new Place("Williamsburg", 148),
@@ -91,7 +91,7 @@ public class ItineraryTest {
             new Place("Virginia Beach", 204),
             new Place("Roanoke", 208),
             new Place("Charlottesville", 81),
-            new Place("Richmond", 102),
+            new Place("Richmond", 102)
         };
 
         for (int i = 0; i < distances.length; i++) {
