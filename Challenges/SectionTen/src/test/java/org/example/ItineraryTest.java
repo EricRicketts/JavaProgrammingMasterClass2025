@@ -68,13 +68,15 @@ public class ItineraryTest {
             new Place("Culpepper", 38),
             new Place("Fredericksburg", 48),
             new Place("Williamsburg", 148),
-            new Place("Bristol", 343),
-            new Place("Richmond", 102),
-            new Place("Charlottesville", 81)
+            new Place("Bristol", 343)
         };
         for (Place expected : expectedPlaces) {
             assertEquals(expected, itinerary.moveForward());
         }
+
+        // Demonstrate wrap-around behavior once the end of the list is reached.
+        assertEquals(new Place("Richmond", 102), itinerary.moveForward());
+        assertEquals(new Place("Charlottesville", 81), itinerary.moveForward());
     }
 
     @Test
