@@ -69,7 +69,9 @@ public class ItineraryTest {
             new Place("Culpepper", 38),
             new Place("Fredericksburg", 48),
             new Place("Williamsburg", 148),
-            new Place("Bristol", 343)
+            new Place("Bristol", 343),
+            new Place("Richmond", 102),
+            new Place("Charlottesville", 81)
         };
         // An edit to see if the file updates with unsaved changes.
         for (Place expected : expectedPlaces) {
@@ -90,7 +92,9 @@ public class ItineraryTest {
             new Place("Virginia Beach", 204),
             new Place("Roanoke", 208),
             new Place("Charlottesville", 81),
-            new Place("Richmond", 102)
+            new Place("Richmond", 102),
+            new Place("Bristol", 343),
+            new Place("Williamsburg", 148)
         };
 
         for (int i = 0; i < distances.length; i++) {

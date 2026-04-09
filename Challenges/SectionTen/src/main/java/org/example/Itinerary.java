@@ -33,7 +33,7 @@ public class Itinerary {
 
     public Place moveBackward() {
         if (!iterator.hasPrevious()) {
-            this.resetItineraryCursor();
+            iterator = listOfPlaces.listIterator(listOfPlaces.size());
         }
         return iterator.previous();
     }
@@ -50,13 +50,14 @@ public class Itinerary {
     }
 
     public String showMenu() {
-        // Apply the same techniques as used in testListPlaces().
-        return """
-               (F)orward
-               (B)ackward
-               (L)ist places
-               (M)enu
-               (Q)uit""".stripIndent().stripTrailing();
+        return
+                """
+                (F)orward
+                (B)ackward
+                (L)list
+                (M)enu
+                (Q)uit
+                """.stripIndent().stripTrailing();
     }
 
     public void resetItineraryCursor() {
