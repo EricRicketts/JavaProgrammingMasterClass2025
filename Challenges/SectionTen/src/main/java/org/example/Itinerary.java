@@ -54,7 +54,7 @@ public class Itinerary {
                 """
                 (F)orward
                 (B)ackward
-                (L)list
+                (L)ist places
                 (M)enu
                 (Q)uit
                 """.stripIndent().stripTrailing();
