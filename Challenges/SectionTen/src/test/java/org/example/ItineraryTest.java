@@ -73,7 +73,6 @@ public class ItineraryTest {
             new Place("Richmond", 102),
             new Place("Charlottesville", 81)
         };
-        // An edit to see if the file updates with unsaved changes.
         for (Place expected : expectedPlaces) {
             assertEquals(expected, itinerary.moveForward());
         }
