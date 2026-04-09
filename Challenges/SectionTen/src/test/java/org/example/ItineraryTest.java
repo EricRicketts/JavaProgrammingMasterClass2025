@@ -123,6 +123,22 @@ public class ItineraryTest {
         assertEquals(expected, itinerary.listPlaces());
     }
 
+    @Test
+    public void testNullPlaceNamesAreIgnored() {
+        LinkedList<Place> route = new LinkedList<>();
+        route.add(new Place("Richmond", 102));
+        route.add(new Place(null, 155));
+        route.add(new Place("Charlottesville", 81));
+
+        Itinerary itinerary = new Itinerary(route);
+
+        String expected = """
+            name = Richmond, distance = 102
+            name = Charlottesville, distance = 81""".stripIndent().stripTrailing();
+
+        assertEquals(expected, itinerary.listPlaces());
+    }
+
 
     @Test
     public void testShowMenu() {
