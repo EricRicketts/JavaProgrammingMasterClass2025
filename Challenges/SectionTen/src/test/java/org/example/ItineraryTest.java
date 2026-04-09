@@ -92,8 +92,6 @@ public class ItineraryTest {
             new Place("Roanoke", 208),
             new Place("Charlottesville", 81),
             new Place("Richmond", 102),
-            new Place("Bristol", 343),
-            new Place("Williamsburg", 148)
         };
 
         for (int i = 0; i < distances.length; i++) {
@@ -103,6 +101,10 @@ public class ItineraryTest {
         for (Place expected : expectedPlaces) {
             assertEquals(expected, itinerary.moveBackward());
         }
+
+        // Demonstrate wrap-around behavior once the beginning of the list is reached.
+        assertEquals(new Place("Bristol", 343), itinerary.moveBackward());
+        assertEquals(new Place("Williamsburg", 148), itinerary.moveBackward());
     }
 
 
