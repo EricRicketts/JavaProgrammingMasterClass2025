@@ -37,7 +37,6 @@ public class ItineraryTest {
         itinerary = new Itinerary(places);
     }
 
-    @Order(1)
     @Test
     public void testListPlaces() {
             expected = """
@@ -78,7 +77,6 @@ public class ItineraryTest {
         }
     }
 
-    @Order(3)
     @Test
     public void testMoveBackward() {
         Place[] expectedPlaces = {
@@ -106,7 +104,6 @@ public class ItineraryTest {
     }
 
 
-    @Order(4)
     @Test
     public void testShowMenu() {
         expected = """
@@ -121,7 +118,6 @@ public class ItineraryTest {
     }
 
 
-    @Order(5)
     @Test
     public void testQuit() {
         QuitException exception = assertThrows(QuitException.class, () -> itinerary.quit());
