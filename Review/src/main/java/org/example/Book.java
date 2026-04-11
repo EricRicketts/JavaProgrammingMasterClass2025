@@ -44,11 +44,6 @@ public class Book {
     private String validateTitle(String title) {
         return Objects.requireNonNull(title, "Null value assigned to title");
     }
-    private void validateNotNull(String value, String fieldName) {
-        if (value == null) {
-            throw new NullPointerException("Null value assigned to " + fieldName);
-        }
-    }
 
     private int validatePages(int pages) {
         if (pages < 0) {
