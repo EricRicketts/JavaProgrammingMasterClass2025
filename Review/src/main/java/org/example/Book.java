@@ -10,7 +10,7 @@ public class Book {
     public Book(String title, String author, int pages) {
         this.setTitle(title);
         this.setAuthor(author);
-        this.pages = pages;
+        this.setPages(pages);
     }
 
     // Getters and setters.

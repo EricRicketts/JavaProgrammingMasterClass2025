@@ -56,6 +56,15 @@ public class BookTest {
     }
 
     @Test
+    public void testBookNegativeEntryForPagesInConstructor() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Book("Heart of Darkness", "Joseph Conrad", -1)
+        );
+        assertEquals("Assigned pages to book less than zero", thrown.getMessage());
+    }
+
+    @Test
     public void testBookGetAndSetTitle() {
         assertEquals("Pride and Prejudice", book.getTitle());
         book.setTitle("Treasure Island");
