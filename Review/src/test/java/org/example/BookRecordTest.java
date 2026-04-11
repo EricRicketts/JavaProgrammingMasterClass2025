@@ -10,8 +10,6 @@ public class BookRecordTest {
 
     private BookRecord bookRecord;
 
-    private NullPointerException thrown;
-
     @BeforeEach
     public void setUp() {
         bookRecord = new BookRecord("Oliver Twist", "Charles Dickens", 608);
@@ -19,7 +17,7 @@ public class BookRecordTest {
 
     @Test
     public void testBookRecordNullValueForAuthorInConstructor() {
-        thrown = assertThrows(
+        NullPointerException thrown = assertThrows(
                 NullPointerException.class,
                 () -> new BookRecord("Oliver Twist", null, 608)
         );
@@ -37,7 +35,7 @@ public class BookRecordTest {
 
     @Test
     public void testBookRecordNullValueForTitleInConstructor() {
-        thrown = assertThrows(
+        NullPointerException thrown = assertThrows(
                 NullPointerException.class,
                 () -> new BookRecord(null, "Charles Dickens", 608)
         );
