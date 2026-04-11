@@ -41,10 +41,6 @@ public class Book {
         return Objects.requireNonNull(author, "Null value assigned to author");
     }
 
-    private String validateTitle(String title) {
-        return Objects.requireNonNull(title, "Null value assigned to title");
-    }
-
     private int validatePages(int pages) {
         if (pages < 0) {
             throw new IllegalArgumentException("Number of pages assigned to book is less than zero");
@@ -52,4 +48,7 @@ public class Book {
         return pages;
     }
 
+    private String validateTitle(String title) {
+        return Objects.requireNonNull(title, "Null value assigned to title");
+    }
 }
