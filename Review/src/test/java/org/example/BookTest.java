@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BookTest {
 
     private Book book;
-    private String[] expected, results;
 
     @BeforeEach
     public void setUp() {
@@ -18,13 +17,9 @@ public class BookTest {
 
     @Test
     public void testBookGetAndSetTitle() {
-        expected = new String[]{"Pride and Prejudice", "Treasure Island"};
-        var firstTitle = book.getTitle();
+        assertEquals("Pride and Prejudice", book.getTitle());
         book.setTitle("Treasure Island");
-        var secondTitle = book.getTitle();
-        results = new String[]{firstTitle, secondTitle};
-
-        assertArrayEquals(expected, results);
+        assertEquals("Treasure Island", book.getTitle());
     }
 
     @Test

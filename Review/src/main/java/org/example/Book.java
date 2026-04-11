@@ -39,6 +39,7 @@ public class Book {
 
     // Other methods.
 
+    @Override
     public String toString() {
 
         return "Title = " + this.getTitle() + ", " +
