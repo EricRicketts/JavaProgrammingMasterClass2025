@@ -52,8 +52,11 @@ public class BookTest {
 
     @Test
     public void testNullValueForSetTitle() {
-        book.setTitle(null);
-        assertEquals("Pride and Prejudice", book.getTitle());
+        NullPointerException thrown = assertThrows(
+                NullPointerException.class,
+                () -> book.setTitle(null)
+        );
+        assertEquals("Null value assigned to title", thrown.getMessage());
     }
 
     @Test

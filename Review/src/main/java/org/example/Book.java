@@ -41,9 +41,10 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        if (Objects.nonNull(title)) {
-            this.title = title;
+        if (Objects.isNull(title)) {
+            throw new NullPointerException("Null value assigned to title");
         }
+        this.title = title;
     }
 
     // Other methods.
