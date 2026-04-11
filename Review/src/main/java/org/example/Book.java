@@ -10,8 +10,7 @@ public class Book {
     public Book(String title, String author, int pages) {
         this.title = this.validateTitle(title);
         this.author = this.validateAuthor(author);
-        this.validatePages(pages);
-        this.pages = pages;
+        this.pages = this.validatePages(pages);
     }
 
     // Getters
@@ -51,10 +50,11 @@ public class Book {
         }
     }
 
-    private void validatePages(int pages) {
+    private int validatePages(int pages) {
         if (pages < 0) {
             throw new IllegalArgumentException("Number of pages assigned to book is less than zero");
         }
+        return pages;
     }
 
 }
