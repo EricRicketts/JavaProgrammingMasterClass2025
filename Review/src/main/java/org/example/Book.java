@@ -6,10 +6,9 @@ public class Book {
     private final int pages;
 
     public Book(String title, String author, int pages) {
-        this.validateNotNull(title);
-        this.title = title;
-        this.validateNotNull(author);
+        this.validateNotNull(author, title);
         this.author = author;
+        this.title = title;
         this.validatePages(pages);
         this.pages = pages;
     }
@@ -38,9 +37,12 @@ public class Book {
                 "Number of pages = " + this.getPages();
     }
 
-    private void validateNotNull(String authorOrTitle) {
-        if (authorOrTitle == null) {
-            throw new NullPointerException("Null value assigned to author or title");
+    private void validateNotNull(String author, String title) {
+        if (author == null) {
+            throw new NullPointerException("Null value assigned to author");
+        }
+        if (title == null) {
+            throw new NullPointerException("Null value assigned to title");
         }
     }
 

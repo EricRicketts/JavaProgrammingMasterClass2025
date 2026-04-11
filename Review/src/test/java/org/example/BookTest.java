@@ -18,9 +18,9 @@ public class BookTest {
     public void testBookNullValueForAuthorInConstructor() {
         NullPointerException thrown = assertThrows(
                 NullPointerException.class,
-                () -> new Book("Joseph Conrad", null, 300)
+                () -> new Book("Heart of Darkness", null, 300)
         );
-        assertEquals("Null value assigned to author or title", thrown.getMessage());
+        assertEquals("Null value assigned to author", thrown.getMessage());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class BookTest {
                 NullPointerException.class,
                 () -> new Book(null, "Heart of Darkness", 150)
         );
-        assertEquals("Null value assigned to author or title", thrown.getMessage());
+        assertEquals("Null value assigned to title", thrown.getMessage());
     }
 
     @Test
