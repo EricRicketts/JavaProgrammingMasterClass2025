@@ -31,13 +31,9 @@ public class BookTest {
 
     @Test
     public void testBookGetAndSetPages() {
-        int[] expectedPages = new int[]{480, 500};
-        var firstNumberOfPages = book.getPages();
+        assertEquals(480, book.getPages());
         book.setPages(500);
-        var secondNumberOfPages = book.getPages();
-        int[] actualPages = new int[]{firstNumberOfPages, secondNumberOfPages};
-
-        assertArrayEquals(expectedPages, actualPages);
+        assertEquals(500, book.getPages());
     }
 
     @Test
