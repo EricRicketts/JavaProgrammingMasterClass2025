@@ -22,10 +22,19 @@ public class BookTest {
     }
 
     @Test
-    public void testExpectedExceptionNullValueForSetAuthor() {
+    public void testBookNullValueForSetAuthor() {
         NullPointerException thrown = assertThrows(
                 NullPointerException.class,
                 () -> book.setAuthor(null)
+        );
+        assertEquals("Null value assigned to author", thrown.getMessage());
+    }
+
+    @Test
+    public void testBookNullValueForAuthorInConstructor() {
+        NullPointerException thrown = assertThrows(
+                NullPointerException.class,
+                () -> new Book("Joseph Conrad", null, 300)
         );
         assertEquals("Null value assigned to author", thrown.getMessage());
     }
@@ -38,7 +47,7 @@ public class BookTest {
     }
 
     @Test
-    public void testBookNegativeEntryForPages() {
+    public void testBookNegativeEntryForSetPages() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> book.setPages(-10)
@@ -54,7 +63,7 @@ public class BookTest {
     }
 
     @Test
-    public void testNullValueForSetTitle() {
+    public void testBookNullValueForSetTitle() {
         NullPointerException thrown = assertThrows(
                 NullPointerException.class,
                 () -> book.setTitle(null)

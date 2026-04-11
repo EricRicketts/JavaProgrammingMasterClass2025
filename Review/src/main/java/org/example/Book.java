@@ -9,7 +9,7 @@ public class Book {
 
     public Book(String title, String author, int pages) {
         this.title = title;
-        this.author = author;
+        this.setAuthor(author);
         this.pages = pages;
     }
 
@@ -20,7 +20,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        if (Objects.isNull(author)) {
+        if (author == null) {
             throw new NullPointerException("Null value assigned to author");
         }
         this.author = author;
@@ -42,7 +42,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        if (Objects.isNull(title)) {
+        if (title == null) {
             throw new NullPointerException("Null value assigned to title");
         }
         this.title = title;
