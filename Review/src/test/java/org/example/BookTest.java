@@ -36,6 +36,12 @@ public class BookTest {
     }
 
     @Test
+    public void testBookNegativeEntryForPages() {
+        book.setPages(-10);
+        assertEquals(480, book.getPages());
+    }
+
+    @Test
     public void testBookGetAndSetTitle() {
         assertEquals("Pride and Prejudice", book.getTitle());
         book.setTitle("Treasure Island");

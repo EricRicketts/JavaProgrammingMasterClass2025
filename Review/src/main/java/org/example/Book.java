@@ -30,7 +30,9 @@ public class Book {
     }
 
     public void setPages(int pages) {
-        this.pages = pages;
+        if (pages >= 0) {
+            this.pages = pages;
+        }
     }
 
     public String getTitle() {
