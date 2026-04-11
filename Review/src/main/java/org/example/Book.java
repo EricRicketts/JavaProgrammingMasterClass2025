@@ -6,14 +6,15 @@ public class Book {
     private final int pages;
 
     public Book(String title, String author, int pages) {
-        this.validateNotNull(author, title);
-        this.author = author;
+        this.validateNotNull(title, "title");
         this.title = title;
+        this.validateNotNull(author, "author");
+        this.author = author;
         this.validatePages(pages);
         this.pages = pages;
     }
 
-    // Getters and setters.
+    // Getters
 
     public String getAuthor() {
         return this.author;
@@ -27,7 +28,7 @@ public class Book {
         return this.title;
     }
 
-    // Other methods.
+    // Other methods
 
     @Override
     public String toString() {
@@ -37,11 +38,13 @@ public class Book {
                 "Number of pages = " + this.getPages();
     }
 
-    private void validateNotNull(String author, String title) {
-        if (author == null) {
-            throw new NullPointerException("Null value assigned to author");
-        } else if (title == null) {
-            throw new NullPointerException("Null value assigned to title");
+    private void validateNotNull(String copyrightInput, String copyrightField) {
+        if (copyrightInput == null) {
+            if (copyrightField.equals("author")) {
+                throw new NullPointerException("Null value assigned to author");
+            } else if (copyrightField.equals("title")) {
+                throw new NullPointerException("Null value assigned to title");
+            }
         }
     }
 
