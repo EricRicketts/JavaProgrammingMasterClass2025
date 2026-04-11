@@ -10,7 +10,7 @@ public class Book {
     public Book(String title, String author, int pages) {
         this.title = this.validateTitle(title);
         this.author = this.validateAuthor(author);
-        this.pages = this.validatePages(pages);
+        this.pages = this.validatePagesAndReturn(pages);
     }
 
     public String getAuthor() {
@@ -37,7 +37,7 @@ public class Book {
         return Objects.requireNonNull(author, "Null value assigned to author");
     }
 
-    private int validatePages(int pages) {
+    private int validatePagesAndReturn(int pages) {
         if (pages < 0) {
             throw new IllegalArgumentException("Number of pages assigned to book is less than zero");
         }
