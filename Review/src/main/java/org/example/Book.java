@@ -8,8 +8,8 @@ public class Book {
     private final int pages;
 
     public Book(String title, String author, int pages) {
-        this.title = this.validateTitle(title);
-        this.author = this.validateAuthor(author);
+        this.title = this.validateTitleAndReturn(title);
+        this.author = this.validateAuthorAndReturn(author);
         this.pages = this.validatePagesAndReturn(pages);
     }
 
@@ -33,7 +33,7 @@ public class Book {
                 "Number of pages = " + this.getPages();
     }
 
-    private String validateAuthor(String author) {
+    private String validateAuthorAndReturn(String author) {
         return Objects.requireNonNull(author, "Null value assigned to author");
     }
 
@@ -44,7 +44,7 @@ public class Book {
         return pages;
     }
 
-    private String validateTitle(String title) {
+    private String validateTitleAndReturn(String title) {
         return Objects.requireNonNull(title, "Null value assigned to title");
     }
 }
