@@ -16,19 +16,6 @@ public class BookTest {
     }
 
     @Test
-    public void testBookGetAndSetTitle() {
-        assertEquals("Pride and Prejudice", book.getTitle());
-        book.setTitle("Treasure Island");
-        assertEquals("Treasure Island", book.getTitle());
-    }
-
-    @Test
-    public void testNullValueForSetTitle() {
-        book.setTitle(null);
-        assertEquals("Pride and Prejudice", book.getTitle());
-    }
-
-    @Test
     public void testBookGetAndSetAuthor() {
         assertEquals("Jane Austin", book.getAuthor());
         book.setAuthor("Robert Lewis Stevenson");
@@ -46,6 +33,19 @@ public class BookTest {
         assertEquals(480, book.getPages());
         book.setPages(500);
         assertEquals(500, book.getPages());
+    }
+
+    @Test
+    public void testBookGetAndSetTitle() {
+        assertEquals("Pride and Prejudice", book.getTitle());
+        book.setTitle("Treasure Island");
+        assertEquals("Treasure Island", book.getTitle());
+    }
+
+    @Test
+    public void testNullValueForSetTitle() {
+        book.setTitle(null);
+        assertEquals("Pride and Prejudice", book.getTitle());
     }
 
     @Test
