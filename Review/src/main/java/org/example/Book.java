@@ -1,16 +1,17 @@
 package org.example;
 
-import java.util.Objects;
-
 public class Book {
 
-    private String title, author;
-    private int pages;
+    private final String title, author;
+    private final int pages;
 
     public Book(String title, String author, int pages) {
-        this.setTitle(title);
-        this.setAuthor(author);
-        this.setPages(pages);
+        this.nullValueCheck(title);
+        this.title = title;
+        this.nullValueCheck(author);
+        this.author = author;
+        this.lessThanZeroPagesCheck(pages);
+        this.pages = pages;
     }
 
     // Getters and setters.
@@ -19,33 +20,12 @@ public class Book {
         return this.author;
     }
 
-    public void setAuthor(String author) {
-        if (author == null) {
-            throw new NullPointerException("Null value assigned to author");
-        }
-        this.author = author;
-    }
-
     public int getPages() {
         return this.pages;
     }
 
-    public void setPages(int pages) {
-        if (pages < 0) {
-            throw new IllegalArgumentException("Assigned pages to book less than zero");
-        }
-        this.pages = pages;
-    }
-
     public String getTitle() {
         return this.title;
-    }
-
-    public void setTitle(String title) {
-        if (title == null) {
-            throw new NullPointerException("Null value assigned to title");
-        }
-        this.title = title;
     }
 
     // Other methods.
@@ -56,6 +36,18 @@ public class Book {
         return "Title = " + this.getTitle() + ", " +
                 "Author = " + this.getAuthor() + ", " +
                 "Number of pages = " + this.getPages();
+    }
+
+    private void nullValueCheck(String authorOrTitle) {
+        if (authorOrTitle == null) {
+            throw new NullPointerException("Null value assigned to author or title");
+        }
+    }
+
+    private void lessThanZeroPagesCheck(int pages) {
+        if (pages < 0) {
+            throw new IllegalArgumentException("Number of pages assigned to book is less than zero");
+        }
     }
 
 }

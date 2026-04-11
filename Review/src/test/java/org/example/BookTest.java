@@ -15,26 +15,12 @@ public class BookTest {
     }
 
     @Test
-    public void testBookGetAndSetAuthor() {
-        assertEquals("Jane Austin", book.getAuthor());
-        book.setAuthor("Robert Lewis Stevenson");
-        assertEquals("Robert Lewis Stevenson", book.getAuthor());
-    }
-
-    @Test
     public void testBookNullValueForAuthorInConstructor() {
         NullPointerException thrown = assertThrows(
                 NullPointerException.class,
                 () -> new Book("Joseph Conrad", null, 300)
         );
-        assertEquals("Null value assigned to author", thrown.getMessage());
-    }
-
-    @Test
-    public void testBookGetAndSetPages() {
-        assertEquals(480, book.getPages());
-        book.setPages(500);
-        assertEquals(500, book.getPages());
+        assertEquals("Null value assigned to author or title", thrown.getMessage());
     }
 
     @Test
@@ -43,14 +29,7 @@ public class BookTest {
                 IllegalArgumentException.class,
                 () -> new Book("Heart of Darkness", "Joseph Conrad", -1)
         );
-        assertEquals("Assigned pages to book less than zero", thrown.getMessage());
-    }
-
-    @Test
-    public void testBookGetAndSetTitle() {
-        assertEquals("Pride and Prejudice", book.getTitle());
-        book.setTitle("Treasure Island");
-        assertEquals("Treasure Island", book.getTitle());
+        assertEquals("Number of pages assigned to book is less than zero", thrown.getMessage());
     }
 
     @Test
@@ -59,7 +38,7 @@ public class BookTest {
                 NullPointerException.class,
                 () -> new Book(null, "Heart of Darkness", 150)
         );
-        assertEquals("Null value assigned to title", thrown.getMessage());
+        assertEquals("Null value assigned to author or title", thrown.getMessage());
     }
 
     @Test
