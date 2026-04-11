@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BookTest {
 
@@ -46,5 +47,13 @@ public class BookTest {
         int[] actualPages = new int[]{firstNumberOfPages, secondNumberOfPages};
 
         assertArrayEquals(expectedPages, actualPages);
+    }
+
+    @Test
+    public void testBookToString() {
+        var expectedToString = "Title = Pride and Prejudice, Author = Jane Austin, Number of pages = 480";
+        var actualToString = book.toString();
+
+        assertEquals(expectedToString, actualToString);
     }
 }
