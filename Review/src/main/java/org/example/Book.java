@@ -38,13 +38,9 @@ public class Book {
                 "Number of pages = " + this.getPages();
     }
 
-    private void validateNotNull(String copyrightInput, String copyrightField) {
-        if (copyrightInput == null) {
-            if (copyrightField.equals("author")) {
-                throw new NullPointerException("Null value assigned to author");
-            } else if (copyrightField.equals("title")) {
-                throw new NullPointerException("Null value assigned to title");
-            }
+    private void validateNotNull(String value, String fieldName) {
+        if (value == null) {
+            throw new NullPointerException("Null value assigned to " + fieldName);
         }
     }
 
