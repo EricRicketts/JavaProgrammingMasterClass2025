@@ -39,8 +39,11 @@ public class BookTest {
 
     @Test
     public void testBookNegativeEntryForPages() {
-        book.setPages(-10);
-        assertEquals(480, book.getPages());
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> book.setPages(-10)
+        );
+        assertEquals("Assigned pages to book less than zero", thrown.getMessage());
     }
 
     @Test

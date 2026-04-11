@@ -31,9 +31,10 @@ public class Book {
     }
 
     public void setPages(int pages) {
-        if (pages >= 0) {
-            this.pages = pages;
+        if (pages < 0) {
+            throw new IllegalArgumentException("Assigned pages to book less than zero");
         }
+        this.pages = pages;
     }
 
     public String getTitle() {
