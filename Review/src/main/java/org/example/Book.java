@@ -13,8 +13,6 @@ public class Book {
         this.pages = this.validatePages(pages);
     }
 
-    // Getters
-
     public String getAuthor() {
         return this.author;
     }
@@ -26,8 +24,6 @@ public class Book {
     public String getTitle() {
         return this.title;
     }
-
-    // Other methods
 
     @Override
     public String toString() {
