@@ -9,8 +9,7 @@ public class Book {
 
     public Book(String title, String author, int pages) {
         this.title = this.validateTitle(title);
-        this.validateNotNull(author, "author");
-        this.author = author;
+        this.author = this.validateAuthor(author);
         this.validatePages(pages);
         this.pages = pages;
     }
@@ -39,8 +38,12 @@ public class Book {
                 "Number of pages = " + this.getPages();
     }
 
-    private String validateTitle(String value) {
-        return Objects.requireNonNull(value, "Null value assigned to title");
+    private String validateAuthor(String author) {
+        return Objects.requireNonNull(author, "Null value assigned to author");
+    }
+
+    private String validateTitle(String title) {
+        return Objects.requireNonNull(title, "Null value assigned to title");
     }
     private void validateNotNull(String value, String fieldName) {
         if (value == null) {
