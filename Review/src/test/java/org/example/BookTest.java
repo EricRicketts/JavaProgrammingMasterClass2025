@@ -72,6 +72,15 @@ public class BookTest {
     }
 
     @Test
+    public void testBookNullValueForTitleInConstructor() {
+        NullPointerException thrown = assertThrows(
+                NullPointerException.class,
+                () -> new Book(null, "Heart of Darkness", 150)
+        );
+        assertEquals("Null value assigned to title", thrown.getMessage());
+    }
+
+    @Test
     public void testBookToString() {
         var expectedToString = "Title = Pride and Prejudice, Author = Jane Austin, Number of pages = 480";
         var actualToString = book.toString();
