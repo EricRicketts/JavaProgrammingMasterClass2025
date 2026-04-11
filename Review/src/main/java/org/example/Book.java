@@ -40,8 +40,7 @@ public class Book {
     private void validateNotNull(String author, String title) {
         if (author == null) {
             throw new NullPointerException("Null value assigned to author");
-        }
-        if (title == null) {
+        } else if (title == null) {
             throw new NullPointerException("Null value assigned to title");
         }
     }
