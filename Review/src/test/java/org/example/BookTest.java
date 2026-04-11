@@ -3,8 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BookTest {
 
@@ -23,9 +22,12 @@ public class BookTest {
     }
 
     @Test
-    public void testNullValueForSetAuthor() {
-        book.setAuthor(null);
-        assertEquals("Jane Austin", book.getAuthor());
+    public void testExpectedExceptionNullValueForSetAuthor() {
+        NullPointerException thrown = assertThrows(
+                NullPointerException.class,
+                () -> book.setAuthor(null)
+        );
+        assertEquals("Null value assigned to author", thrown.getMessage());
     }
 
     @Test

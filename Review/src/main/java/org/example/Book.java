@@ -20,9 +20,10 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        if (Objects.nonNull(author)) {
-            this.author = author;
+        if (Objects.isNull(author)) {
+            throw new NullPointerException("Null value assigned to author");
         }
+        this.author = author;
     }
 
     public int getPages() {
