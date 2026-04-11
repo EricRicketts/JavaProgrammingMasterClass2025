@@ -36,6 +36,12 @@ public class BookTest {
     }
 
     @Test
+    public void testNullValueForSetAuthor() {
+        book.setAuthor(null);
+        assertEquals("Jane Austin", book.getAuthor());
+    }
+
+    @Test
     public void testBookGetAndSetPages() {
         assertEquals(480, book.getPages());
         book.setPages(500);

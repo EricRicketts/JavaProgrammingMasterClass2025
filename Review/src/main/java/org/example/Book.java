@@ -20,7 +20,9 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        if (Objects.nonNull(author)) {
+            this.author = author;
+        }
     }
 
     public int getPages() {
