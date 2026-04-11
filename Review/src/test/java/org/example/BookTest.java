@@ -23,6 +23,12 @@ public class BookTest {
     }
 
     @Test
+    public void testNullValueForSetTitle() {
+        book.setTitle(null);
+        assertEquals("Pride and Prejudice", book.getTitle());
+    }
+
+    @Test
     public void testBookGetAndSetAuthor() {
         assertEquals("Jane Austin", book.getAuthor());
         book.setAuthor("Robert Lewis Stevenson");

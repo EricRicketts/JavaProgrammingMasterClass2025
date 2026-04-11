@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Book {
 
     private String title, author;
@@ -34,7 +36,9 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if (Objects.nonNull(title)) {
+            this.title = title;
+        }
     }
 
     // Other methods.
