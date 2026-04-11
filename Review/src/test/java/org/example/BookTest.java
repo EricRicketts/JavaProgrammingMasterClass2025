@@ -16,7 +16,7 @@ public class BookTest {
     }
 
     @Test
-    public void testGetAndSetTitle() {
+    public void testBookGetAndSetTitle() {
         expected = new String[]{"Pride and Prejudice", "Treasure Island"};
         var firstTitle = book.getTitle();
         book.setTitle("Treasure Island");
@@ -27,7 +27,7 @@ public class BookTest {
     }
 
     @Test
-    public void testGetAndSetAuthor() {
+    public void testBookGetAndSetAuthor() {
         expected = new String[]{"Jane Austin", "Robert Lewis Stevenson"};
         var firstAuthor = book.getAuthor();
         book.setAuthor("Robert Lewis Stevenson");
@@ -37,4 +37,14 @@ public class BookTest {
         assertArrayEquals(expected, results);
     }
 
+    @Test
+    public void testBookGetAndSetPages() {
+        int[] expectedPages = new int[]{480, 500};
+        var firstNumberOfPages = book.getPages();
+        book.setPages(500);
+        var secondNumberOfPages = book.getPages();
+        int[] actualPages = new int[]{firstNumberOfPages, secondNumberOfPages};
+
+        assertArrayEquals(expectedPages, actualPages);
+    }
 }
