@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public record BookRecord(String title, String author, int pages) {
 
@@ -22,5 +23,14 @@ public record BookRecord(String title, String author, int pages) {
     }
     private String validateTitleAndReturn(String title) {
         return Objects.requireNonNull(title, "Null value assigned to title");
+    }
+   
+    @Override
+    @NotNull
+    public String toString() {
+        return
+                "Title = " + this.title() + ", " +
+                "Author = " + this.author() + ", " +
+                "Number of pages = " + this.pages();
     }
 }

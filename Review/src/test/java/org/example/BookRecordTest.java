@@ -43,4 +43,11 @@ public class BookRecordTest {
         );
         assertEquals("Null value assigned to title", thrown.getMessage());
     }
+
+    @Test
+    public void testBookRecordToString() {
+        String expected = "Title = Oliver Twist, Author = Charles Dickens, Number of pages = 608";
+        String result = bookRecord.toString();
+        assertEquals(expected, result);
+    }
 }
