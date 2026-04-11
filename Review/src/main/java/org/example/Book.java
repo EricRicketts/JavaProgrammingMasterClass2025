@@ -1,13 +1,14 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Book {
 
     private final String title, author;
     private final int pages;
 
     public Book(String title, String author, int pages) {
-        this.validateNotNull(title, "title");
-        this.title = title;
+        this.title = this.validateTitle(title);
         this.validateNotNull(author, "author");
         this.author = author;
         this.validatePages(pages);
@@ -38,6 +39,9 @@ public class Book {
                 "Number of pages = " + this.getPages();
     }
 
+    private String validateTitle(String value) {
+        return Objects.requireNonNull(value, "Null value assigned to title");
+    }
     private void validateNotNull(String value, String fieldName) {
         if (value == null) {
             throw new NullPointerException("Null value assigned to " + fieldName);
