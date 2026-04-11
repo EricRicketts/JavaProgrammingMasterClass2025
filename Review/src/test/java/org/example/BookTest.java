@@ -24,13 +24,9 @@ public class BookTest {
 
     @Test
     public void testBookGetAndSetAuthor() {
-        expected = new String[]{"Jane Austin", "Robert Lewis Stevenson"};
-        var firstAuthor = book.getAuthor();
+        assertEquals("Jane Austin", book.getAuthor());
         book.setAuthor("Robert Lewis Stevenson");
-        var secondAuthor = book.getAuthor();
-        results = new String[]{firstAuthor, secondAuthor};
-
-        assertArrayEquals(expected, results);
+        assertEquals("Robert Lewis Stevenson", book.getAuthor());
     }
 
     @Test
