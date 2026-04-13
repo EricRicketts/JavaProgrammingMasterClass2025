@@ -1,5 +1,6 @@
 package org.example;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ValueValidator {
@@ -13,6 +14,13 @@ public class ValueValidator {
 
     public static double checkForNegativeValue(double number, String message) {
         if (number < 0) {
+            throw new IllegalArgumentException(message);
+        }
+        return number;
+    }
+
+    public static BigDecimal checkForNegativeValue(BigDecimal number, String message) {
+        if (number.signum() < 0) {
             throw new IllegalArgumentException(message);
         }
         return number;

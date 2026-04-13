@@ -2,6 +2,8 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -23,6 +25,16 @@ public class ValueValidatorTest {
                 () -> ValueValidator.checkForNegativeValue(-20.35, "Float is less than zero")
         );
         assertEquals("Float is less than zero", thrown.getMessage());
+    }
+
+    @Test
+    public void testForNegativeBigDecimal() {
+        BigDecimal value = BigDecimal.valueOf(-30.45);
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> ValueValidator.checkForNegativeValue(value, "Big Decimal is less than zero")
+        );
+        assertEquals("Big Decimal is less than zero", thrown.getMessage());
     }
 
     @Test
