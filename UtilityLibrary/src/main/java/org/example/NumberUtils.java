@@ -5,9 +5,7 @@ import java.math.RoundingMode;
 
 public class NumberUtils {
 
-    public static double setScale(double value, int scaleFactor) {
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(scaleFactor, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+    public static BigDecimal setScale(BigDecimal value, int scaleFactor) {
+        return value.setScale(scaleFactor, RoundingMode.HALF_UP);
     }
 }
