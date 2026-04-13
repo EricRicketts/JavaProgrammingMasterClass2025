@@ -8,6 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookTest {
 
     private Book book;
+    /*
+        The variable below was introduced to prevent the Markdown editor from
+        truncating the text.
+    */
+    String message;
 
     @BeforeEach
     public void setUp() {
@@ -25,11 +30,12 @@ public class BookTest {
 
     @Test
     public void testBookNegativeEntryForPagesInConstructor() {
+        message = "Number of pages assigned to book is less than zero";
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> new Book("Heart of Darkness", "Joseph Conrad", -1)
         );
-        assertEquals("Number of pages assigned to book is less than zero", thrown.getMessage());
+        assertEquals(message, thrown.getMessage());
     }
 
     @Test
@@ -43,7 +49,9 @@ public class BookTest {
 
     @Test
     public void testBookToString() {
-        var expectedToString = "Title = Pride and Prejudice, Author = Jane Austin, Number of pages = 480";
+        message =
+            "Title = Pride and Prejudice, Author = Jane Austin, Number of pages = 480";
+        var expectedToString = message;
         var actualToString = book.toString();
 
         assertEquals(expectedToString, actualToString);

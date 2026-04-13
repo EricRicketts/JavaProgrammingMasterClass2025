@@ -9,6 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BookRecordTest {
 
     private BookRecord bookRecord;
+    /*
+        The variable below was introduced so that the markdown application would not
+        truncate any text.
+    */
+    String message;
 
     @BeforeEach
     public void setUp() {
@@ -26,11 +31,12 @@ public class BookRecordTest {
 
     @Test
     public void testBookRecordNegativeEntryForPagesInConstructor() {
+        message = "Number of pages assigned to book is less than zero";
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> new BookRecord("Oliver Twist", "Charles Dickens", -1)
         );
-        assertEquals("Number of pages assigned to book is less than zero", thrown.getMessage());
+        assertEquals(message, thrown.getMessage());
     }
 
     @Test
@@ -44,7 +50,8 @@ public class BookRecordTest {
 
     @Test
     public void testBookRecordToString() {
-        String expected = "Title = Oliver Twist, Author = Charles Dickens, Number of pages = 608";
+        String expected =
+            "Title = Oliver Twist, Author = Charles Dickens, Number of pages = 608";
         String result = bookRecord.toString();
         assertEquals(expected, result);
     }
