@@ -3,38 +3,55 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BankAccountTest {
 
     private BankAccount bankAccount;
+    private IllegalArgumentException thrownIllegalArgument;
+    private NullPointerException thrownNullPointer;
 
     @BeforeEach
     public void setUp() {
-        bankAccount = new BankAccount("Capital One", 12345678, 512.3578);
+        bankAccount = new BankAccount("Capital One",
+                12345678, BigDecimal.valueOf(512.3578));
     }
 
     @Test
     public void testGetBalance() {
-        assertEquals(512.36, bankAccount.getBalance());
+        assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
     }
 
     @Test
     public void testNegativeAccountNumber() {
-        IllegalArgumentException thrown = assertThrows(
+        thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
-                () -> new BankAccount("Capital One", -12345, 512.3578)
+                () -> new BankAccount("Capital One", -12345,
+                        BigDecimal.valueOf(512.3578))
         );
-        assertEquals("Account number is less than zero", thrown.getMessage());
+        assertEquals("Account number is less than zero", thrownIllegalArgument.getMessage());
     }
 
     @Test
     public void testNegativeBalance() {
-        IllegalArgumentException thrown = assertThrows(
+        thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
-                () -> new BankAccount("Capital One", 12345, -512.3578)
+                () -> new BankAccount("Capital One", 12345,
+                        BigDecimal.valueOf(-512.3578))
         );
-        assertEquals("Balance is less than zero", thrown.getMessage());
+        assertEquals("Balance is less than zero", thrownIllegalArgument.getMessage());
+    }
+
+    @Test
+    public void testNullBankName() {
+        thrownNullPointer = assertThrows(
+                NullPointerException.class,
+                () -> new BankAccount(null, 12345,
+                        BigDecimal.valueOf(512.3578))
+        );
+        assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
     }
 }
