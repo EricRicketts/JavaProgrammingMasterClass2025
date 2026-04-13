@@ -11,10 +11,18 @@ public class ValueValidator {
         return bd.doubleValue();
     }
 
-    public static int checkForNegativeInteger(int number, String message) {
+    public static int checkForNegativeValue(int number, String message) {
         if (number < 0) {
             throw new IllegalArgumentException(message);
         }
         return number;
     }
+
+    public static double checkForNegativeValue(double number, String message) {
+        if (number < 0) {
+            throw new IllegalArgumentException(message);
+        }
+        return number;
+    }
+
 }

@@ -21,11 +21,20 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testLessThanZeroAccountNumber() {
+    public void testNegativeAccountNumber() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", -12345, 512.3578)
         );
         assertEquals("Account number is less than zero", thrown.getMessage());
+    }
+
+    @Test
+    public void testNegativeBalance() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> new BankAccount("Capital One", 12345, -512.3578)
+        );
+        assertEquals("Balance is less than zero", thrown.getMessage());
     }
 }
