@@ -14,4 +14,13 @@ public class NumberUtilsTest {
                 0.01
         );
     }
+
+    @Test
+    public void testSetScaleHigher() {
+        assertEquals(
+                35.13,
+                NumberUtils.setScale(35.1254, 2),
+                0.01
+        );
+    }
 }
