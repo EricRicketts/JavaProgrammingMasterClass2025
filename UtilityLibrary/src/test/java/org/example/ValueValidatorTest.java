@@ -24,4 +24,13 @@ public class ValueValidatorTest {
         );
         assertEquals("Float is less than zero", thrown.getMessage());
     }
+
+    @Test
+    public void testForNull() {
+        NullPointerException thrown = assertThrows(
+                NullPointerException.class,
+                () -> ValueValidator.checkForNull(null, "Null value not allowed")
+        );
+        assertEquals("Null value not allowed", thrown.getMessage());
+    }
 }
