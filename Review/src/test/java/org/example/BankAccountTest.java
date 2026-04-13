@@ -54,4 +54,16 @@ public class BankAccountTest {
         );
         assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
     }
+
+    @Test
+    public void testDepositRoundDown() {
+        bankAccount.deposit(BigDecimal.valueOf(434.7649));
+        assertEquals(BigDecimal.valueOf(947.12), bankAccount.getBalance());
+    }
+
+    @Test
+    public void testDepositRoundUp() {
+        bankAccount.deposit(BigDecimal.valueOf(434.765));
+        assertEquals(BigDecimal.valueOf(947.13), bankAccount.getBalance());
+    }
 }

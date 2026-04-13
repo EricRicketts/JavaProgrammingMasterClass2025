@@ -6,7 +6,7 @@ public class BankAccount {
 
     private static String bankName;
     private final int accountNumber;
-    private final BigDecimal balance;
+    private BigDecimal balance;
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
         BankAccount.bankName =
@@ -23,5 +23,9 @@ public class BankAccount {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public void deposit(BigDecimal depositAmount) {
+        this.balance = NumberUtils.setScale(this.balance.add(depositAmount), 2);
     }
 }
