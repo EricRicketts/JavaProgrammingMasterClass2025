@@ -28,4 +28,9 @@ public class BankAccount {
     public void deposit(BigDecimal depositAmount) {
         this.balance = NumberUtils.setScale(this.balance.add(depositAmount), 2);
     }
+
+    public void withdraw(BigDecimal withdrawAmount) {
+        BigDecimal newBalance = NumberUtils.setScale(this.balance.subtract(withdrawAmount), 2);
+        this.balance = ValueValidator.checkForNegativeValue(newBalance, "Insufficient Funds");
+    }
 }

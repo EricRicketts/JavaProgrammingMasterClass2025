@@ -66,4 +66,13 @@ public class BankAccountTest {
         bankAccount.deposit(BigDecimal.valueOf(434.765));
         assertEquals(BigDecimal.valueOf(947.13), bankAccount.getBalance());
     }
+
+    @Test
+    public void testWithdrawTooBig() {
+        thrownIllegalArgument = assertThrows(
+                IllegalArgumentException.class,
+                () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
+        );
+        assertEquals("Insufficient Funds", thrownIllegalArgument.getMessage());
+    }
 }
