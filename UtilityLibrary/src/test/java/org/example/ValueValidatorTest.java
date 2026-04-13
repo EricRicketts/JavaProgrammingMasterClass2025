@@ -15,4 +15,13 @@ public class ValueValidatorTest {
         );
         assertEquals("Integer is less than zero", thrown.getMessage());
     }
+
+    @Test
+    public void testForNegativeFloat() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> ValueValidator.checkForNegativeValue(-20.35, "Float is less than zero")
+        );
+        assertEquals("Float is less than zero", thrown.getMessage());
+    }
 }
