@@ -101,10 +101,11 @@ public class BankAccountTest {
 
     @Test
     public void testWithdrawRejectsExceedingBalance() {
-        assertThrows(
+        var thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
         );
+        assertEquals("Insufficient Funds", thrown.getMessage());
     }
 
     @Test
