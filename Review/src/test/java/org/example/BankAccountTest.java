@@ -82,6 +82,16 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testNegativeSignOnWithdrawAmount() {
+        thrownIllegalArgument = assertThrows(
+                IllegalArgumentException.class,
+                () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45)
+                )
+        );
+        assertEquals("Withdraw amount cannot be less than zero", thrownIllegalArgument.getMessage());
+    }
+
+    @Test
     public void testWithdrawRoundDown() {
         bankAccount.withdraw(BigDecimal.valueOf(121.789));
         assertEquals(BigDecimal.valueOf(390.57), bankAccount.getBalance());
