@@ -34,6 +34,7 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
+        ValueValidator.checkForNull(depositAmount, "Null value not allowed for deposit amount");
         ValueValidator.checkForNegativeValue(
                 depositAmount,
                 "Deposit amount cannot be less than zero"

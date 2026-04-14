@@ -73,6 +73,15 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testNullValueForDeposit() {
+        thrownNullPointer = assertThrows(
+                NullPointerException.class,
+                () ->  bankAccount.deposit(null)
+        );
+        assertEquals("Null value not allowed for deposit amount", thrownNullPointer.getMessage());
+    }
+
+    @Test
     public void testNegativeEntryForDepositAmount() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
