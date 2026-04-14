@@ -21,13 +21,6 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testGetAndSetBankName() {
-        assertEquals("Capital One", bankAccount.getBankName());
-        bankAccount.setBankName("Wells Fargo");
-        assertEquals("Wells Fargo", bankAccount.getBankName());
-    }
-
-    @Test
     public void testNullValueForBankName() {
         thrownNullPointer = assertThrows(
                 NullPointerException.class,
@@ -36,6 +29,14 @@ public class BankAccountTest {
         );
         assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
     }
+
+    @Test
+    public void testGetAndSetBankName() {
+        assertEquals("Capital One", bankAccount.getBankName());
+        bankAccount.setBankName("Wells Fargo");
+        assertEquals("Wells Fargo", bankAccount.getBankName());
+    }
+
 
     @Test
     public void testGetBalance() {
@@ -60,16 +61,6 @@ public class BankAccountTest {
                         BigDecimal.valueOf(-512.3578))
         );
         assertEquals("Balance is less than zero", thrownIllegalArgument.getMessage());
-    }
-
-    @Test
-    public void testNullBankName() {
-        thrownNullPointer = assertThrows(
-                NullPointerException.class,
-                () -> new BankAccount(null, 12345,
-                        BigDecimal.valueOf(512.3578))
-        );
-        assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
     }
 
     @Test
