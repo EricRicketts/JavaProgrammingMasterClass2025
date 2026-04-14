@@ -21,7 +21,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testNullValueForBankName() {
+    public void testBankNameRejectsNull() {
         thrownNullPointer = assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
@@ -44,7 +44,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testNegativeAccountNumber() {
+    public void testAccountNumberRejectsNegativeNumberInConstructor() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", -12345,
@@ -54,7 +54,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testNegativeBalance() {
+    public void testBankAccountRejectsNegativeBalanceInConstructor() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", 12345,
@@ -64,7 +64,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testNullValueForDeposit() {
+    public void testDepositRejectsNullValue() {
         thrownNullPointer = assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.deposit(null)
@@ -73,7 +73,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testNegativeEntryForDepositAmount() {
+    public void testDepositRejectsNegativeNumber() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
@@ -82,19 +82,19 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositRoundDown() {
+    public void testDepositRoundsDownBalance() {
         bankAccount.deposit(BigDecimal.valueOf(434.7649));
         assertEquals(BigDecimal.valueOf(947.12), bankAccount.getBalance());
     }
 
     @Test
-    public void testDepositRoundUp() {
+    public void testDepositRoundsUpBalance() {
         bankAccount.deposit(BigDecimal.valueOf(434.765));
         assertEquals(BigDecimal.valueOf(947.13), bankAccount.getBalance());
     }
 
     @Test
-    public void testNullValueForWithdraw() {
+    public void testWithdrawRejectsNullValue() {
         thrownNullPointer = assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.withdraw(null)
@@ -103,7 +103,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testWithdrawTooBig() {
+    public void testWithdrawRejectsExceedingBalance() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
@@ -112,7 +112,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testNegativeSignOnWithdrawAmount() {
+    public void testWithdrawRejectsNegativeNumberForWithdrawAmount() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45)
@@ -122,13 +122,13 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testWithdrawRoundDown() {
+    public void testWithdrawRoundsDownBalance() {
         bankAccount.withdraw(BigDecimal.valueOf(121.789));
         assertEquals(BigDecimal.valueOf(390.57), bankAccount.getBalance());
     }
 
     @Test
-    public void testWithdrawRoundUp() {
+    public void testWithdrawRoundsUpBalance() {
         bankAccount.withdraw(BigDecimal.valueOf(99.991));
         assertEquals(BigDecimal.valueOf(412.37), bankAccount.getBalance());
     }
