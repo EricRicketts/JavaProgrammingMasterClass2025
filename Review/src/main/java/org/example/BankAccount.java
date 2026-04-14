@@ -48,10 +48,10 @@ public class BankAccount {
                 withdrawAmount,
                 "Withdraw amount cannot be less than zero"
         );
-        this.balance = ValueValidator.checkForNegativeValue(
+        BigDecimal newBalance = ValueValidator.checkForNegativeValue(
                 this.balance.subtract(withdrawAmount),
                 "Insufficient Funds"
         );
-        this.balance = NumberUtils.setScale(this.balance, 2);
+        this.balance = NumberUtils.setScale(newBalance, 2);
     }
 }
