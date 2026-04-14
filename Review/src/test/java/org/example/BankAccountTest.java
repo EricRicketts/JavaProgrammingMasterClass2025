@@ -87,4 +87,10 @@ public class BankAccountTest {
         bankAccount.withdraw(BigDecimal.valueOf(99.991));
         assertEquals(BigDecimal.valueOf(412.37), bankAccount.getBalance());
     }
+
+    @Test
+    public void testStandardTwoDecimalWithdraw() {
+        bankAccount.withdraw(BigDecimal.valueOf(224.57));
+        assertEquals(BigDecimal.valueOf(287.79), bankAccount.getBalance());
+    }
 }
