@@ -35,8 +35,6 @@ public class BankAccountTest {
     @Test
     public void testGetAndSetBankName() {
         assertEquals("Capital One", bankAccount.getBankName());
-        bankAccount.setBankName("Wells Fargo");
-        assertEquals("Wells Fargo", bankAccount.getBankName());
     }
 
 

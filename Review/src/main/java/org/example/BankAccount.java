@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class BankAccount {
 
-    private String bankName;
+    private final String bankName;
     private final int accountNumber;
     private BigDecimal balance;
 
@@ -29,10 +29,6 @@ public class BankAccount {
         return bankName;
     }
 
-    public void setBankName(String bankName) {
-        this.bankName = ValueValidator.checkForNull(bankName, "Null value not allowed for bank name");
-    }
-
     public BigDecimal getBalance() {
         return balance;
     }
@@ -40,7 +36,7 @@ public class BankAccount {
     public void deposit(BigDecimal depositAmount) {
         BigDecimal validDepositAmount = ensureValidAmount(
                 depositAmount,
-                "Null Value not allowed for deposit amount",
+                "Null value not allowed for deposit amount",
                 "Deposit amount cannot be less than zero"
         );
         this.balance = NumberUtils.setScale(this.balance.add(validDepositAmount), 2);
@@ -53,7 +49,7 @@ public class BankAccount {
                 "Withdraw amount cannot be less than zero"
         );
 
-        BigDecimal newBalance = ensureSufficientFunds(
+        BigDecimal newBalance = ensureNonNegativeBalanceAfterWithdraw(
                 this.balance.subtract(validWithdrawAmount)
         );
         this.balance = NumberUtils.setScale(newBalance, 2);
@@ -68,7 +64,7 @@ public class BankAccount {
         ValueValidator.checkForNegativeValue(amount, negativeMessage);
         return amount;
     }
-    private BigDecimal ensureSufficientFunds(BigDecimal newBalance) {
+    private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance) {
         return ValueValidator.checkForNegativeValue(newBalance, "Insufficient Funds");
     }
 }
