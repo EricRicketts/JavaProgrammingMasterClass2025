@@ -12,7 +12,6 @@ public class BankAccountTest {
 
     private BankAccount bankAccount;
     private IllegalArgumentException thrownIllegalArgument;
-    private NullPointerException thrownNullPointer;
 
     @BeforeEach
     public void setUp() {
@@ -53,7 +52,7 @@ public class BankAccountTest {
 
     @Test
     public void testNullBankName() {
-        thrownNullPointer = assertThrows(
+        NullPointerException thrownNullPointer = assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
                         BigDecimal.valueOf(512.3578))
