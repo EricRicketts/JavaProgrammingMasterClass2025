@@ -21,6 +21,10 @@ public class BankAccount {
         this.balance = NumberUtils.setScale(nonNegativeBalance, 2);
     }
 
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
     public String getBankName() {
         return bankName;
     }
@@ -34,24 +38,37 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
-        ValueValidator.checkForNull(depositAmount, "Null value not allowed for deposit amount");
-        ValueValidator.checkForNegativeValue(
+        BigDecimal validDepositAmount = ensureValidAmount(
                 depositAmount,
+                "Null Value not allowed for deposit amount",
                 "Deposit amount cannot be less than zero"
         );
-        this.balance = NumberUtils.setScale(this.balance.add(depositAmount), 2);
+        this.balance = NumberUtils.setScale(this.balance.add(validDepositAmount), 2);
     }
 
     public void withdraw(BigDecimal withdrawAmount) {
-        ValueValidator.checkForNull(withdrawAmount, "Null value not allowed for withdraw amount");
-        ValueValidator.checkForNegativeValue(
+        BigDecimal validWithdrawAmount = ensureValidAmount(
                 withdrawAmount,
+                "Null value not allowed for withdraw amount",
                 "Withdraw amount cannot be less than zero"
         );
-        BigDecimal newBalance = ValueValidator.checkForNegativeValue(
-                this.balance.subtract(withdrawAmount),
-                "Insufficient Funds"
+
+        BigDecimal newBalance = ensureSufficientFunds(
+                this.balance.subtract(validWithdrawAmount)
         );
         this.balance = NumberUtils.setScale(newBalance, 2);
+    }
+
+    private BigDecimal ensureValidAmount(
+            BigDecimal amount,
+            String nullMessage,
+            String negativeMessage
+    ) {
+        ValueValidator.checkForNull(amount, nullMessage);
+        ValueValidator.checkForNegativeValue(amount, negativeMessage);
+        return amount;
+    }
+    private BigDecimal ensureSufficientFunds(BigDecimal newBalance) {
+        return ValueValidator.checkForNegativeValue(newBalance, "Insufficient Funds");
     }
 }

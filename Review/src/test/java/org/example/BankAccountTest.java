@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BankAccountTest {
 
     private BankAccount bankAccount;
-    private IllegalArgumentException thrownIllegalArgument;
-    private NullPointerException thrownNullPointer;
 
     @BeforeEach
     public void setUp() {
@@ -21,8 +19,13 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testGetAccountNumber() {
+        assertEquals(12345678, bankAccount.getAccountNumber());
+    }
+
+    @Test
     public void testBankNameRejectsNull() {
-        thrownNullPointer = assertThrows(
+        assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
                         BigDecimal.valueOf(512.3578))
@@ -44,7 +47,7 @@ public class BankAccountTest {
 
     @Test
     public void testAccountNumberRejectsNegativeNumberInConstructor() {
-        thrownIllegalArgument = assertThrows(
+        assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", -12345,
                         BigDecimal.valueOf(512.3578))
@@ -53,7 +56,7 @@ public class BankAccountTest {
 
     @Test
     public void testBankAccountRejectsNegativeBalanceInConstructor() {
-        thrownIllegalArgument = assertThrows(
+        assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", 12345,
                         BigDecimal.valueOf(-512.3578))
@@ -62,7 +65,7 @@ public class BankAccountTest {
 
     @Test
     public void testDepositRejectsNullValue() {
-        thrownNullPointer = assertThrows(
+        assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.deposit(null)
         );
@@ -70,7 +73,7 @@ public class BankAccountTest {
 
     @Test
     public void testDepositRejectsNegativeNumber() {
-        thrownIllegalArgument = assertThrows(
+        assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
         );
@@ -90,7 +93,7 @@ public class BankAccountTest {
 
     @Test
     public void testWithdrawRejectsNullValue() {
-        thrownNullPointer = assertThrows(
+        assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.withdraw(null)
         );
@@ -98,7 +101,7 @@ public class BankAccountTest {
 
     @Test
     public void testWithdrawRejectsExceedingBalance() {
-        thrownIllegalArgument = assertThrows(
+        assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
         );
@@ -106,7 +109,7 @@ public class BankAccountTest {
 
     @Test
     public void testWithdrawRejectsNegativeNumberForWithdrawAmount() {
-        thrownIllegalArgument = assertThrows(
+        assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
         );
