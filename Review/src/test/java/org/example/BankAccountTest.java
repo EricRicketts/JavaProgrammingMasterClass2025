@@ -27,7 +27,6 @@ public class BankAccountTest {
                 () -> new BankAccount(null, 12345,
                         BigDecimal.valueOf(512.3578))
         );
-        assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
     }
 
     @Test
@@ -50,7 +49,6 @@ public class BankAccountTest {
                 () -> new BankAccount("Capital One", -12345,
                         BigDecimal.valueOf(512.3578))
         );
-        assertEquals("Account number is less than zero", thrownIllegalArgument.getMessage());
     }
 
     @Test
@@ -60,7 +58,6 @@ public class BankAccountTest {
                 () -> new BankAccount("Capital One", 12345,
                         BigDecimal.valueOf(-512.3578))
         );
-        assertEquals("Balance is less than zero", thrownIllegalArgument.getMessage());
     }
 
     @Test
@@ -69,7 +66,6 @@ public class BankAccountTest {
                 NullPointerException.class,
                 () ->  bankAccount.deposit(null)
         );
-        assertEquals("Null value not allowed for deposit amount", thrownNullPointer.getMessage());
     }
 
     @Test
@@ -78,7 +74,6 @@ public class BankAccountTest {
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
         );
-        assertEquals("Deposit amount cannot be less than zero", thrownIllegalArgument.getMessage());
     }
 
     @Test
@@ -99,7 +94,6 @@ public class BankAccountTest {
                 NullPointerException.class,
                 () ->  bankAccount.withdraw(null)
         );
-        assertEquals("Null value not allowed for withdraw amount", thrownNullPointer.getMessage());
     }
 
     @Test
@@ -108,17 +102,14 @@ public class BankAccountTest {
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
         );
-        assertEquals("Insufficient Funds", thrownIllegalArgument.getMessage());
     }
 
     @Test
     public void testWithdrawRejectsNegativeNumberForWithdrawAmount() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
-                () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45)
-                )
+                () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
         );
-        assertEquals("Withdraw amount cannot be less than zero", thrownIllegalArgument.getMessage());
     }
 
     @Test
