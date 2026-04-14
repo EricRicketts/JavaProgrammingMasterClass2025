@@ -34,6 +34,10 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
+        ValueValidator.checkForNegativeValue(
+                depositAmount,
+                "Deposit amount cannot be less than zero"
+        );
         this.balance = NumberUtils.setScale(this.balance.add(depositAmount), 2);
     }
 

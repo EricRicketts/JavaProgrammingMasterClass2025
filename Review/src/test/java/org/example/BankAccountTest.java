@@ -61,6 +61,15 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testNegativeEntryForDepositAmount() {
+        thrownIllegalArgument = assertThrows(
+                IllegalArgumentException.class,
+                () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
+        );
+        assertEquals("Deposit amount cannot be less than zero", thrownIllegalArgument.getMessage());
+    }
+
+    @Test
     public void testDepositRoundDown() {
         bankAccount.deposit(BigDecimal.valueOf(434.7649));
         assertEquals(BigDecimal.valueOf(947.12), bankAccount.getBalance());
