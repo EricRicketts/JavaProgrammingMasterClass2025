@@ -43,6 +43,7 @@ public class BankAccount {
     }
 
     public void withdraw(BigDecimal withdrawAmount) {
+        ValueValidator.checkForNull(withdrawAmount, "Null value not allowed for withdraw amount");
         ValueValidator.checkForNegativeValue(
                 withdrawAmount,
                 "Withdraw amount cannot be less than zero"

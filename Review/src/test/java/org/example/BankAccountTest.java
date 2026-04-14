@@ -103,6 +103,15 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testNullValueForWithdraw() {
+        thrownNullPointer = assertThrows(
+                NullPointerException.class,
+                () ->  bankAccount.withdraw(null)
+        );
+        assertEquals("Null value not allowed for withdraw amount", thrownNullPointer.getMessage());
+    }
+
+    @Test
     public void testWithdrawTooBig() {
         thrownIllegalArgument = assertThrows(
                 IllegalArgumentException.class,
