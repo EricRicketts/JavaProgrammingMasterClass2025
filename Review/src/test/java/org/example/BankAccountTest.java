@@ -45,7 +45,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testAccountNumberRejectsNegativeNumberInConstructor() {
+    public void testConstructorRejectsNegativeAccountNumber() {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", -12345,
@@ -54,7 +54,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testBankAccountRejectsNegativeBalanceInConstructor() {
+    public void testConstructorRejectsNegativeBalance() {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", 12345,
@@ -71,7 +71,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositRejectsNegativeNumber() {
+    public void testDepositRejectsNegativeAmount() {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
@@ -107,7 +107,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testWithdrawRejectsNegativeNumberForWithdrawAmount() {
+    public void testWithdrawRejectsNegativeAmount() {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
