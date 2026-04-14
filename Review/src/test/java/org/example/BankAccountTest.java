@@ -21,6 +21,12 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testGetAndSetBankName() {
+        assertEquals("Capital One", bankAccount.getBankName());
+        bankAccount.setBankName("Wells Fargo");
+        assertEquals("Wells Fargo", bankAccount.getBankName());
+    }
+    @Test
     public void testGetBalance() {
         assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
     }

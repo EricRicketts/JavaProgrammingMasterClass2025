@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 
 public class BankAccount {
 
-    private static String bankName;
+    private String bankName;
     private final int accountNumber;
     private BigDecimal balance;
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
-        BankAccount.bankName =
+        this.bankName =
                 ValueValidator.checkForNull(bankName,
                 "Null value not allowed for bank name");
         this.accountNumber =
@@ -19,6 +19,14 @@ public class BankAccount {
                 ValueValidator.checkForNegativeValue(balance,
                         "Balance is less than zero");
         this.balance = NumberUtils.setScale(nonNegativeBalance, 2);
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
     public BigDecimal getBalance() {
