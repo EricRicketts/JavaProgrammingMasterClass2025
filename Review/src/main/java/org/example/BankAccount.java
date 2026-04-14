@@ -49,10 +49,10 @@ public class BankAccount {
                 "Withdraw amount cannot be less than zero"
         );
 
-        BigDecimal newBalance = ensureNonNegativeBalanceAfterWithdraw(
+        BigDecimal remainingBalance = ensureNonNegativeBalanceAfterWithdraw(
                 this.balance.subtract(validWithdrawAmount)
         );
-        this.balance = NumberUtils.setScale(newBalance, 2);
+        this.balance = NumberUtils.setScale(remainingBalance, 2);
     }
 
     private BigDecimal ensureValidAmount(
