@@ -26,7 +26,7 @@ public class BankAccount {
     }
 
     public void setBankName(String bankName) {
-        this.bankName = bankName;
+        this.bankName = ValueValidator.checkForNull(bankName, "Null value not allowed for bank name");
     }
 
     public BigDecimal getBalance() {

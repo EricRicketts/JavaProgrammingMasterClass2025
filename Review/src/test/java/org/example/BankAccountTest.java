@@ -12,6 +12,7 @@ public class BankAccountTest {
 
     private BankAccount bankAccount;
     private IllegalArgumentException thrownIllegalArgument;
+    private NullPointerException thrownNullPointer;
 
     @BeforeEach
     public void setUp() {
@@ -25,6 +26,17 @@ public class BankAccountTest {
         bankAccount.setBankName("Wells Fargo");
         assertEquals("Wells Fargo", bankAccount.getBankName());
     }
+
+    @Test
+    public void testNullValueForBankName() {
+        thrownNullPointer = assertThrows(
+                NullPointerException.class,
+                () -> new BankAccount(null, 12345,
+                        BigDecimal.valueOf(512.3578))
+        );
+        assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
+    }
+
     @Test
     public void testGetBalance() {
         assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
@@ -52,7 +64,7 @@ public class BankAccountTest {
 
     @Test
     public void testNullBankName() {
-        NullPointerException thrownNullPointer = assertThrows(
+        thrownNullPointer = assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
                         BigDecimal.valueOf(512.3578))
