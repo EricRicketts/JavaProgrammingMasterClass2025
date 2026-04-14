@@ -34,7 +34,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testGetAndSetBankName() {
+    public void testGetBankName() {
         assertEquals("Capital One", bankAccount.getBankName());
     }
 
@@ -64,10 +64,11 @@ public class BankAccountTest {
 
     @Test
     public void testDepositRejectsNullValue() {
-        assertThrows(
+        var thrown = assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.deposit(null)
         );
+        assertEquals("Null value not allowed for deposit amount", thrown.getMessage());
     }
 
     @Test
@@ -87,10 +88,11 @@ public class BankAccountTest {
 
     @Test
     public void testWithdrawRejectsNullValue() {
-        assertThrows(
+        var thrown = assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.withdraw(null)
         );
+        assertEquals("Null value not allowed for withdraw amount", thrown.getMessage());
     }
 
     @Test
@@ -99,7 +101,7 @@ public class BankAccountTest {
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
         );
-        assertEquals("Insufficient Funds", thrown.getMessage());
+        assertEquals("Insufficient funds", thrown.getMessage());
     }
 
     @Test

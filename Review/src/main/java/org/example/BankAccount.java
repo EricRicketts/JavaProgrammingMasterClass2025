@@ -64,7 +64,8 @@ public class BankAccount {
         ValueValidator.checkForNegativeValue(amount, negativeMessage);
         return amount;
     }
+
     private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance) {
-        return ValueValidator.checkForNegativeValue(newBalance, "Insufficient Funds");
+        return ValueValidator.checkForNegativeValue(newBalance, "Insufficient funds");
     }
 }
