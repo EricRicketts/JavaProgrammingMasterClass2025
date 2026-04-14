@@ -25,7 +25,7 @@ public class BankAccountTest {
 
     @Test
     public void testBankNameRejectsNull() {
-        NullPointerException thrown = assertThrows(
+        var thrown = assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
                         BigDecimal.valueOf(512.3578))
@@ -72,10 +72,11 @@ public class BankAccountTest {
 
     @Test
     public void testDepositRejectsNegativeAmount() {
-        assertThrows(
+        var thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
         );
+        assertEquals("Deposit amount cannot be less than zero", thrown.getMessage());
     }
 
     @Test
