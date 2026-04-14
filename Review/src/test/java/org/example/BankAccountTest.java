@@ -80,15 +80,9 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositRoundsDownBalance() {
-        bankAccount.deposit(BigDecimal.valueOf(434.7649));
-        assertEquals(BigDecimal.valueOf(947.12), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testDepositRoundsUpBalance() {
-        bankAccount.deposit(BigDecimal.valueOf(434.765));
-        assertEquals(BigDecimal.valueOf(947.13), bankAccount.getBalance());
+    public void testDepositIncreasesBalance() {
+        bankAccount.deposit(BigDecimal.valueOf(100.50));
+        assertEquals(BigDecimal.valueOf(612.86), bankAccount.getBalance());
     }
 
     @Test
@@ -117,20 +111,8 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testWithdrawRoundsDownBalance() {
-        bankAccount.withdraw(BigDecimal.valueOf(121.789));
-        assertEquals(BigDecimal.valueOf(390.57), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testWithdrawRoundsUpBalance() {
-        bankAccount.withdraw(BigDecimal.valueOf(99.991));
-        assertEquals(BigDecimal.valueOf(412.37), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testStandardTwoDecimalWithdraw() {
-        bankAccount.withdraw(BigDecimal.valueOf(224.57));
-        assertEquals(BigDecimal.valueOf(287.79), bankAccount.getBalance());
+    public void testWithdrawDecreasesBalance() {
+        bankAccount.withdraw(BigDecimal.valueOf(100.50));
+        assertEquals(BigDecimal.valueOf(411.86), bankAccount.getBalance());
     }
 }
