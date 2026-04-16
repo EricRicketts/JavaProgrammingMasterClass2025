@@ -30,7 +30,7 @@ public class BankAccountTest {
                 assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
-                        BigDecimal.valueOf(512.3578))
+                BigDecimal.valueOf(512.3578))
             ).getMessage()
         );
     }
@@ -51,9 +51,9 @@ public class BankAccountTest {
         assertEquals(
             "Account number is less than zero",
             assertThrows(
-                    IllegalArgumentException.class,
-                    () -> new BankAccount("Capital One", -12345,
-                    BigDecimal.valueOf(512.3578))
+            IllegalArgumentException.class,
+            () -> new BankAccount("Capital One", -12345,
+            BigDecimal.valueOf(512.3578))
             ).getMessage()
         );
     }
@@ -64,39 +64,43 @@ public class BankAccountTest {
                 "Null value not allowed for balance",
                 assertThrows(
                         NullPointerException.class,
-                        () -> new BankAccount(
-                                "Capital One",
-                                12345678,
-                                null)
-                ).getMessage()
+                        () -> new BankAccount( "Capital One", 12345678, null)
+            ).getMessage()
         );
     }
 
     @Test
     public void testConstructorRejectsNegativeBalance() {
-        assertThrows(
+        assertEquals(
+                "Balance is less than zero",
+                assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", 12345,
-                        BigDecimal.valueOf(-512.3578))
+                BigDecimal.valueOf(-512.3578))
+            ).getMessage()
         );
     }
 
     @Test
     public void testDepositRejectsNullValue() {
-        var thrown = assertThrows(
+        assertEquals(
+                "Null value not allowed for deposit amount",
+                assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.deposit(null)
+            ).getMessage()
         );
-        assertEquals("Null value not allowed for deposit amount", thrown.getMessage());
     }
 
     @Test
     public void testDepositRejectsNegativeAmount() {
-        var thrown = assertThrows(
+        assertEquals(
+                "Deposit amount cannot be less than zero",
+                assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
+            ).getMessage()
         );
-        assertEquals("Deposit amount cannot be less than zero", thrown.getMessage());
     }
 
     @Test
@@ -107,27 +111,34 @@ public class BankAccountTest {
 
     @Test
     public void testWithdrawRejectsNullValue() {
-        var thrown = assertThrows(
+        assertEquals(
+                "Null value not allowed for withdraw amount",
+                assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.withdraw(null)
+            ).getMessage()
         );
-        assertEquals("Null value not allowed for withdraw amount", thrown.getMessage());
     }
 
     @Test
     public void testWithdrawRejectsExceedingBalance() {
-        var thrown = assertThrows(
+        assertEquals(
+                "Insufficient funds",
+                assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
+            ).getMessage()
         );
-        assertEquals("Insufficient funds", thrown.getMessage());
     }
 
     @Test
     public void testWithdrawRejectsNegativeAmount() {
-        assertThrows(
+        assertEquals(
+                "Withdraw amount cannot be less than zero",
+                assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
+            ).getMessage()
         );
     }
 
