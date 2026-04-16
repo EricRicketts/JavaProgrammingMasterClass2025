@@ -110,6 +110,12 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testZeroDepositLeavesBalanceUnchanged() {
+        bankAccount.deposit(BigDecimal.valueOf(0.00));
+        assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
+    }
+
+    @Test
     public void testWithdrawRejectsNullValue() {
         assertEquals(
                 "Null value not allowed for withdraw amount",
