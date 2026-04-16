@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -158,5 +159,13 @@ public class BankAccountTest {
     public void testWithdrawDecreasesBalanceAndRoundsForThreeDecimalPlaces() {
         bankAccount.withdraw(BigDecimal.valueOf(89.974));
         assertEquals(BigDecimal.valueOf(422.39), bankAccount.getBalance());
+    }
+
+    @Test
+    public void testWithdrawEqualToBalanceLeavesZeroBalance() {
+        bankAccount.withdraw(BigDecimal.valueOf(512.36));
+        BigDecimal zero = new BigDecimal("0");
+        BigDecimal formattedZero = zero.setScale(2, RoundingMode.HALF_UP);
+        assertEquals(formattedZero, bankAccount.getBalance());
     }
 }
