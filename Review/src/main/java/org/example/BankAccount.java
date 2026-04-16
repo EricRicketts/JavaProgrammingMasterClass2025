@@ -15,10 +15,11 @@ public class BankAccount {
         this.accountNumber =
                 ValueValidator.checkForNegativeValue(accountNumber,
                         "Account number is less than zero");
-        BigDecimal nonNegativeBalance =
-                ValueValidator.checkForNegativeValue(balance,
+        BigDecimal nonNullOrNonNegativeBalance =
+                this.ensureValidAmount(balance,
+                        "Null value not allowed for balance",
                         "Balance is less than zero");
-        this.balance = NumberUtils.setScale(nonNegativeBalance, 2);
+        this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
     }
 
     public int getAccountNumber() {
@@ -50,7 +51,8 @@ public class BankAccount {
         );
 
         BigDecimal remainingBalance = ensureNonNegativeBalanceAfterWithdraw(
-                this.balance.subtract(validWithdrawAmount)
+                this.balance.subtract(validWithdrawAmount),
+                "Insufficient funds"
         );
         this.balance = NumberUtils.setScale(remainingBalance, 2);
     }
@@ -65,7 +67,7 @@ public class BankAccount {
         return amount;
     }
 
-    private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance) {
-        return ValueValidator.checkForNegativeValue(newBalance, "Insufficient funds");
+    private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
+        return ValueValidator.checkForNegativeValue(newBalance, message);
     }
 }

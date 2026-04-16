@@ -54,6 +54,20 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testConstructorRejectsNullBalance() {
+        assertEquals(
+                "Null value not allowed for balance",
+                assertThrows(
+                        NullPointerException.class,
+                        () -> new BankAccount(
+                                "Capital One",
+                                12345678,
+                                null)
+                ).getMessage()
+        );
+    }
+
+    @Test
     public void testConstructorRejectsNegativeBalance() {
         assertThrows(
                 IllegalArgumentException.class,
