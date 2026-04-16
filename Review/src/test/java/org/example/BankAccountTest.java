@@ -104,9 +104,9 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositIncreasesBalance() {
-        bankAccount.deposit(BigDecimal.valueOf(100.50));
-        assertEquals(BigDecimal.valueOf(612.86), bankAccount.getBalance());
+    public void testDepositIncreasesBalanceAndRoundsForThreeDecimalPlaces() {
+        bankAccount.deposit(BigDecimal.valueOf(100.505));
+        assertEquals(BigDecimal.valueOf(612.87), bankAccount.getBalance());
     }
 
     @Test
@@ -155,8 +155,8 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testWithdrawDecreasesBalance() {
-        bankAccount.withdraw(BigDecimal.valueOf(100.50));
-        assertEquals(BigDecimal.valueOf(411.86), bankAccount.getBalance());
+    public void testWithdrawDecreasesBalanceAndRoundsForThreeDecimalPlaces() {
+        bankAccount.withdraw(BigDecimal.valueOf(89.974));
+        assertEquals(BigDecimal.valueOf(422.39), bankAccount.getBalance());
     }
 }
