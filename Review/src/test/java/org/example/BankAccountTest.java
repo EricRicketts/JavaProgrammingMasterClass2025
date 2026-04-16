@@ -149,6 +149,12 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testZeroWithdrawLeaveBalanceUnchanged() {
+        bankAccount.withdraw(BigDecimal.valueOf(0.00));
+        assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
+    }
+
+    @Test
     public void testWithdrawDecreasesBalance() {
         bankAccount.withdraw(BigDecimal.valueOf(100.50));
         assertEquals(BigDecimal.valueOf(411.86), bankAccount.getBalance());
