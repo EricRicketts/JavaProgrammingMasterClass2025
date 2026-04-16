@@ -46,10 +46,13 @@ public class BankAccountTest {
 
     @Test
     public void testConstructorRejectsNegativeAccountNumber() {
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> new BankAccount("Capital One", -12345,
-                        BigDecimal.valueOf(512.3578))
+        assertEquals(
+            "Account number is less than zero",
+            assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new BankAccount("Capital One", -12345,
+                    BigDecimal.valueOf(512.3578))
+            ).getMessage()
         );
     }
 
