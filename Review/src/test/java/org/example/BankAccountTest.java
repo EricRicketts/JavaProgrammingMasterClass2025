@@ -25,12 +25,14 @@ public class BankAccountTest {
 
     @Test
     public void testBankNameRejectsNull() {
-        var thrown = assertThrows(
+        assertEquals(
+                "Null value not allowed for bank name",
+                assertThrows(
                 NullPointerException.class,
                 () -> new BankAccount(null, 12345,
                         BigDecimal.valueOf(512.3578))
+            ).getMessage()
         );
-        assertEquals("Null value not allowed for bank name", thrown.getMessage());
     }
 
     @Test
