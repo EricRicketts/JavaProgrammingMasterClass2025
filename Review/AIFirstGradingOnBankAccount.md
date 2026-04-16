@@ -1,159 +1,5 @@
 Chat 'ChatTitle(text=Testing Java Listener Functionality in Depth, isCustom=true)' (2aee4b7a-5c74-4b49-8fe6-d0e8c92a974a)
 
-```java
-package org.example;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-public class BankAccountTest {
-
-    private BankAccount bankAccount;
-    private IllegalArgumentException thrownIllegalArgument;
-    private NullPointerException thrownNullPointer;
-
-    @BeforeEach
-    public void setUp() {
-        bankAccount = new BankAccount("Capital One",
-                12345678, BigDecimal.valueOf(512.3578));
-    }
-
-    @Test
-    public void testGetAndSetBankName() {
-        assertEquals("Capital One", bankAccount.getBankName());
-        bankAccount.setBankName("Wells Fargo");
-        assertEquals("Wells Fargo", bankAccount.getBankName());
-    }
-
-    @Test
-    public void testNullValueForBankName() {
-        thrownNullPointer = assertThrows(
-                NullPointerException.class,
-                () -> new BankAccount(null, 12345,
-                        BigDecimal.valueOf(512.3578))
-        );
-        assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
-    }
-
-    @Test
-    public void testGetBalance() {
-        assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
-    }
-
-    @Test
-    public void testNegativeAccountNumber() {
-        thrownIllegalArgument = assertThrows(
-                IllegalArgumentException.class,
-                () -> new BankAccount("Capital One", -12345,
-                        BigDecimal.valueOf(512.3578))
-        );
-        assertEquals("Account number is less than zero", thrownIllegalArgument.getMessage());
-    }
-
-    @Test
-    public void testNegativeBalance() {
-        thrownIllegalArgument = assertThrows(
-                IllegalArgumentException.class,
-                () -> new BankAccount("Capital One", 12345,
-                        BigDecimal.valueOf(-512.3578))
-        );
-        assertEquals("Balance is less than zero", thrownIllegalArgument.getMessage());
-    }
-
-    @Test
-    public void testNullBankName() {
-        thrownNullPointer = assertThrows(
-                NullPointerException.class,
-                () -> new BankAccount(null, 12345,
-                        BigDecimal.valueOf(512.3578))
-        );
-        assertEquals("Null value not allowed for bank name", thrownNullPointer.getMessage());
-    }
-
-    @Test
-    public void testNullValueForDeposit() {
-        thrownNullPointer = assertThrows(
-                NullPointerException.class,
-                () ->  bankAccount.deposit(null)
-        );
-        assertEquals("Null value not allowed for deposit amount", thrownNullPointer.getMessage());
-    }
-
-    @Test
-    public void testNegativeEntryForDepositAmount() {
-        thrownIllegalArgument = assertThrows(
-                IllegalArgumentException.class,
-                () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
-        );
-        assertEquals("Deposit amount cannot be less than zero", thrownIllegalArgument.getMessage());
-    }
-
-    @Test
-    public void testDepositRoundDown() {
-        bankAccount.deposit(BigDecimal.valueOf(434.7649));
-        assertEquals(BigDecimal.valueOf(947.12), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testDepositRoundUp() {
-        bankAccount.deposit(BigDecimal.valueOf(434.765));
-        assertEquals(BigDecimal.valueOf(947.13), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testNullValueForWithdraw() {
-        thrownNullPointer = assertThrows(
-                NullPointerException.class,
-                () ->  bankAccount.withdraw(null)
-        );
-        assertEquals("Null value not allowed for withdraw amount", thrownNullPointer.getMessage());
-    }
-
-    @Test
-    public void testWithdrawTooBig() {
-        thrownIllegalArgument = assertThrows(
-                IllegalArgumentException.class,
-                () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
-        );
-        assertEquals("Insufficient Funds", thrownIllegalArgument.getMessage());
-    }
-
-    @Test
-    public void testNegativeSignOnWithdrawAmount() {
-        thrownIllegalArgument = assertThrows(
-                IllegalArgumentException.class,
-                () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45)
-                )
-        );
-        assertEquals("Withdraw amount cannot be less than zero", thrownIllegalArgument.getMessage());
-    }
-
-    @Test
-    public void testWithdrawRoundDown() {
-        bankAccount.withdraw(BigDecimal.valueOf(121.789));
-        assertEquals(BigDecimal.valueOf(390.57), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testWithdrawRoundUp() {
-        bankAccount.withdraw(BigDecimal.valueOf(99.991));
-        assertEquals(BigDecimal.valueOf(412.37), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testStandardTwoDecimalWithdraw() {
-        bankAccount.withdraw(BigDecimal.valueOf(224.57));
-        assertEquals(BigDecimal.valueOf(287.79), bankAccount.getBalance());
-    }
-}
-
-```
-
 
 kotlin.Unit
 
@@ -222,16 +68,6 @@ I can’t see the listener class from the visible files, so I don’t want to gu
 If you paste the listener code or tell me its name, I can show you the **exact test method** to add in `src/test/java/org/example/...`.
 
 If you want, I can also help you write the test in the same style as your existing `BankAccountTest`.
-Before answering it did these function calls:
-functionName: MCP tool /find_files_by_name_keyword
-parameters: {"nameKeyword":"Listener", "fileCountLimit":20, "timeout":2000, "projectPath":"."}
-content: {"files":[]}
--------------------------------------------------------------------------------------------------------------------------
-functionName: com.intellij.ml.llm.smartChat.endpoints.FindPatternEndpoint@1a7fcf33
-parameters: {"pattern":"listener"}
-content: No results found
--------------------------------------------------------------------------------------------------------------------------
-
 
 kotlin.Unit
 
@@ -317,8 +153,8 @@ public class BankAccount {
         );
         this.balance = NumberUtils.setScale(newBalance, 2);
     }
-}```
-```java
+}
+
 public class BankAccountTest {
 
     private BankAccount bankAccount;
@@ -458,132 +294,7 @@ public class BankAccountTest {
         bankAccount.withdraw(BigDecimal.valueOf(224.57));
         assertEquals(BigDecimal.valueOf(287.79), bankAccount.getBalance());
     }
-}```
-
-
-
-==== UserMessageImpl #7 ====
-User: 
-Amazing, I have one other question, I am currently doing two courses, this Java course and a course on HTML/CSS.  Having done this for a week, I am a bit concerned I am doing too much which my sacrifice my retention for both courses, I was considering going full time on the Java course and then moving onto a Spring course or going back to the HTML/CSS course, thoughts?
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #8 ====
-Assistant: 
-## Short answer: your concern is very reasonable
-
-Doing **two courses at once** can absolutely reduce retention if:
-
-- both are new
-- both need deep practice
-- you feel mentally “loaded” after sessions
-- you’re not reviewing often enough
-
-For subjects like **Java OOP**, depth matters a lot. If your intuition is saying “I’m moving too fast,” I’d take that seriously.
-
----
-
-## My practical recommendation
-
-### If your main goal is to become strong in programming:
-**Go full time on Java for now.**
-
-Why:
-- Java builds core programming thinking
-- OOP concepts carry into Spring
-- Spring will be much easier if Java fundamentals are solid
-- switching between two very different courses can create context-switching fatigue
-
-### Keep HTML/CSS, but don’t necessarily abandon it
-You could do one of these:
-- **pause HTML/CSS temporarily**
-- or do **very light maintenance** on it, like 1 short session per week
-- or use it only as a fun side project, not a parallel course
-
----
-
-## Why this usually works better
-
-### 1. One “deep” subject at a time
-Java OOP has a lot of mental structure:
-- classes
-- constructors
-- inheritance
-- polymorphism
-- encapsulation
-
-That kind of material benefits from repeated practice and review.
-
-### 2. HTML/CSS is different but still mentally demanding
-Even though HTML/CSS can feel lighter, it still uses different thinking:
-- layout
-- responsiveness
-- browser behavior
-- visual debugging
-
-That can compete with Java for attention.
-
-### 3. You’re already noticing retention issues
-That’s a strong signal to reduce load rather than increase it.
-
----
-
-## A sensible decision rule
-
-Ask yourself:
-
-- **Which course is more important to my long-term goal right now?**
-- **Which one needs the most concentration?**
-- **Do I feel I’m understanding, or just getting through lessons?**
-
-If the answer is “I’m getting through it, but not retaining it,” then focusing on one course is usually the better move.
-
----
-
-## My honest take
-
-If it were me, I’d suggest:
-
-### Option A — best for retention
-**Pause HTML/CSS**
-- focus on Java
-- finish the Java fundamentals
-- then move to Spring
-- return to HTML/CSS afterward
-
-### Option B — if you want to keep both alive
-**Primary + secondary model**
-- Java: 80–90% of your study time
-- HTML/CSS: 10–20%, just enough to not lose touch
-
-That means Java gets the serious study time, and HTML/CSS stays warm.
-
----
-
-## A good compromise plan
-
-### For the next 2–4 weeks:
-- **Java only** for main study
-- use me to review concepts and make exercises
-- do small recap sessions instead of pushing ahead quickly
-
-Then reassess:
-- if Java feels solid, move to Spring
-- if you miss web design, return to HTML/CSS after that
-
----
-
-## My recommendation in one sentence
-**Yes, I think pausing one course while you build real retention in the other is probably the smarter move.**
-
-If you want, I can help you make a **decision framework** for whether to:
-- pause HTML/CSS now,
-- continue both with a split schedule,
-- or finish Java first and then switch.
-
-kotlin.Unit
-
-
+}
 ```
 
 
@@ -737,5 +448,4 @@ If you want, I can next give you:
 - a **line-by-line instructor critique**
 - or a **rewritten “A-level” version** of the tests only.
 
-kotlin.Unit
 
