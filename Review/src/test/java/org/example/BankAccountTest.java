@@ -117,6 +117,14 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testDepositIncreasesAndWithdrawDecreasesWithLargePracticalAmount() {
+        bankAccount.deposit(BigDecimal.valueOf(1_500_000.00));
+        assertEquals(BigDecimal.valueOf(1_500_512.36), bankAccount.getBalance());
+        bankAccount.withdraw(BigDecimal.valueOf(1_000_000.00));
+        assertEquals(BigDecimal.valueOf(500_512.36), bankAccount.getBalance());
+    }
+
+    @Test
     public void testZeroDepositLeavesBalanceUnchanged() {
         bankAccount.deposit(BigDecimal.valueOf(0.00));
         assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
