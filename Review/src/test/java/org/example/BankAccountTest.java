@@ -111,9 +111,11 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositIncreasesWithSmallestPracticalAmount() {
+    public void testDepositIncreasesAndWithdrawDecreasesWithSmallestPracticalAmount() {
         bankAccount.deposit(BigDecimal.valueOf(0.01));
         assertEquals(BigDecimal.valueOf(512.37), bankAccount.getBalance());
+        bankAccount.withdraw(BigDecimal.valueOf(0.01));
+        assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
     }
 
     @Test
@@ -173,12 +175,6 @@ public class BankAccountTest {
     public void testWithdrawDecreasesBalanceAndRoundsForThreeDecimalPlaces() {
         bankAccount.withdraw(BigDecimal.valueOf(89.974));
         assertEquals(BigDecimal.valueOf(422.39), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testWithdrawDecreasesWithSmallestPracticalAmount() {
-        bankAccount.withdraw(BigDecimal.valueOf(0.01));
-        assertEquals(BigDecimal.valueOf(512.35), bankAccount.getBalance());
     }
 
     @Test
