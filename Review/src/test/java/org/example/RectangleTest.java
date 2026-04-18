@@ -8,13 +8,14 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TwoArgumentRectangleTest {
+public class RectangleTest {
 
-    private Rectangle rectangle, zeroArgumentRectangle;
+    private Rectangle rectangle, oneArgumentRectangle, zeroArgumentRectangle;
 
     @BeforeEach
     public void setUp() {
         rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
+        oneArgumentRectangle = new Rectangle(BigDecimal.valueOf(13.67));
         zeroArgumentRectangle = new Rectangle();
     }
 
@@ -75,6 +76,16 @@ public class TwoArgumentRectangleTest {
     @Test
     public void testGetRectangleArea() {
         assertEquals(BigDecimal.valueOf(497.39), rectangle.getArea());
+    }
+
+    @Test
+    public void testGetLengthSingleArgumentRectangle() {
+        assertEquals(BigDecimal.valueOf(13.67), oneArgumentRectangle.getLength());
+    }
+
+    @Test
+    public void testGetWidthSingleArgumentRectangle() {
+        assertEquals(BigDecimal.valueOf(13.67), oneArgumentRectangle.getWidth());
     }
 
     @Test
