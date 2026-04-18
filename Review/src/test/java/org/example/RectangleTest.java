@@ -19,6 +19,17 @@ public class RectangleTest {
     }
 
     @Test
+    public void testRectangleConstructorRejectsNullValueForLength() {
+        assertEquals(
+                "Null value not allowed for length",
+                assertThrows(
+                        NullPointerException.class,
+                        () -> new Rectangle(null, BigDecimal.valueOf(10.45))
+                ).getMessage()
+        );
+    }
+
+    @Test
     public void testGetRectangleLength() {
         assertEquals(BigDecimal.valueOf(31.52), rectangle.getLength());
     }
