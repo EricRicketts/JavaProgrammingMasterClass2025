@@ -32,4 +32,15 @@ public class SquareTest {
                 ).getMessage()
         );
     }
+
+    @Test
+    public void testSquareSetSideWithNegativeValue() {
+        assertEquals(
+                "Side is less than zero",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> square.setSide(BigDecimal.valueOf(-5))
+                ).getMessage()
+        );
+    }
 }
