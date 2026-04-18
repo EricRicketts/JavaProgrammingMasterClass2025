@@ -10,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TwoArgumentRectangleTest {
 
-    private Rectangle rectangle;
+    private Rectangle rectangle, zeroArgumentRectangle;
 
     @BeforeEach
     public void setUp() {
         rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
+        zeroArgumentRectangle = new Rectangle();
     }
 
     @Test
@@ -74,5 +75,15 @@ public class TwoArgumentRectangleTest {
     @Test
     public void testGetRectangleArea() {
         assertEquals(BigDecimal.valueOf(497.39), rectangle.getArea());
+    }
+
+    @Test
+    public void testGetLengthZeroArgumentRectangle() {
+        assertEquals(BigDecimal.valueOf(20.00), zeroArgumentRectangle.getLength());
+    }
+
+    @Test
+    public void testGetWidthZeroArgumentRectangle() {
+        assertEquals(BigDecimal.valueOf(10.00), zeroArgumentRectangle.getWidth());
     }
 }
