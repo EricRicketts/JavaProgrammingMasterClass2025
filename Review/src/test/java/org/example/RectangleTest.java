@@ -39,6 +39,27 @@ public class RectangleTest {
                 ).getMessage()
         );
     }
+    @Test
+    public void testRectangleConstructorRejectsNullValueForWidth() {
+        assertEquals(
+                "Null value not allowed for width",
+                assertThrows(
+                        NullPointerException.class,
+                        () -> new Rectangle(BigDecimal.valueOf(10.45), null)
+                ).getMessage()
+        );
+    }
+
+    @Test
+    public void testRectangleConstructorRejectsNegativeValueForWidth() {
+        assertEquals(
+                "Width is less than zero",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
+                ).getMessage()
+        );
+    }
 
     @Test
     public void testGetRectangleLength() {
