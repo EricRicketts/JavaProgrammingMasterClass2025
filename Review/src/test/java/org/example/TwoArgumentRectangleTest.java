@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RectangleTest {
+public class TwoArgumentRectangleTest {
 
     private Rectangle rectangle;
 

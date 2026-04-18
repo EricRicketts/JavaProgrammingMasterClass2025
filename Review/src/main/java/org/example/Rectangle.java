@@ -25,6 +25,10 @@ public class Rectangle {
         );
     }
 
+    public Rectangle() {
+        this(BigDecimal.valueOf(20.00), BigDecimal.valueOf(10.00));
+    }
+
     public void setLength(BigDecimal length) {
         this.length = this.validateAmountAndReturn(
                 length,
