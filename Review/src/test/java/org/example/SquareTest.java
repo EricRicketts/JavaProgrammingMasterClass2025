@@ -43,4 +43,9 @@ public class SquareTest {
                 ).getMessage()
         );
     }
+
+    @Test
+    public void testSquareGetArea() {
+        assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
+    }
 }
