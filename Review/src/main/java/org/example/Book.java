@@ -47,6 +47,6 @@ public class Book {
     }
 
     private String validateTitleAndReturn(String title) {
-        return Objects.requireNonNull(title, "Null value assigned to title");
+        return ValueValidator.checkForNull(title, "Null value assigned to title");
     }
 }
