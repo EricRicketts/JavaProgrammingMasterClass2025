@@ -38,12 +38,8 @@ public class Book {
     }
 
     private int validatePagesAndReturn(int pages) {
-        // This message was introduced so the markdown viewer does not truncate text
         String message = "Number of pages assigned to book is less than zero";
-        if (pages < 0) {
-            throw new IllegalArgumentException(message);
-        }
-        return pages;
+        return ValueValidator.checkForNegativeValue(pages, message);
     }
 
     private String validateTitleAndReturn(String title) {
