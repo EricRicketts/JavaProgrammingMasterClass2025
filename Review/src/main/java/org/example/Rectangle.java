@@ -54,8 +54,8 @@ public class Rectangle {
     }
 
     public BigDecimal getArea() {
-        BigDecimal area = getLength().multiply(getWidth());
-        return NumberUtils.setScale(area, 2);
+        return NumberUtils.setScale(
+                getLength().multiply(getWidth()), 2);
     }
 
     private BigDecimal validateAmountAndReturn(

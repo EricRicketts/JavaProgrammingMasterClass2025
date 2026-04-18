@@ -27,8 +27,8 @@ public class Square extends Rectangle {
     }
 
     public BigDecimal getArea() {
-        BigDecimal area = getSide().multiply(getSide());
-        return NumberUtils.setScale(area, 2);
+        return NumberUtils.setScale(
+                getSide().multiply(getSide()), 2);
     }
 
     private BigDecimal validateAmountAndReturn(
