@@ -29,5 +29,4 @@ public class ValueValidator {
     public static <T> T checkForNull(T value, String message) {
         return Objects.requireNonNull(value, message);
     }
-
 }
