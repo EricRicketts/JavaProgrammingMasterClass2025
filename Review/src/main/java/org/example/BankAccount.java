@@ -16,7 +16,7 @@ public class BankAccount {
                 ValueValidator.checkForNegativeValue(accountNumber,
                         "Account number is less than zero");
         BigDecimal nonNullOrNonNegativeBalance =
-                this.ensureValidAmount(balance,
+                this.validateAmountAndReturn(balance,
                         "Null value not allowed for balance",
                         "Balance is less than zero");
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
@@ -35,7 +35,7 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
-        BigDecimal validDepositAmount = ensureValidAmount(
+        BigDecimal validDepositAmount = validateAmountAndReturn(
                 depositAmount,
                 "Null value not allowed for deposit amount",
                 "Deposit amount cannot be less than zero"
@@ -44,7 +44,7 @@ public class BankAccount {
     }
 
     public void withdraw(BigDecimal withdrawAmount) {
-        BigDecimal validWithdrawAmount = ensureValidAmount(
+        BigDecimal validWithdrawAmount = validateAmountAndReturn(
                 withdrawAmount,
                 "Null value not allowed for withdraw amount",
                 "Withdraw amount cannot be less than zero"
@@ -57,7 +57,7 @@ public class BankAccount {
         this.balance = NumberUtils.setScale(remainingBalance, 2);
     }
 
-    private BigDecimal ensureValidAmount(
+    private BigDecimal validateAmountAndReturn(
             BigDecimal amount,
             String nullMessage,
             String negativeMessage

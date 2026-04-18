@@ -25,7 +25,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testBankNameRejectsNull() {
+    public void testConstructorRejectsNullBankName() {
         assertEquals(
                 "Null value not allowed for bank name",
                 assertThrows(
@@ -111,7 +111,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositIncreasesAndWithdrawDecreasesWithSmallestPracticalAmount() {
+    public void testDepositAndWithdrawSmallestPracticalAmount() {
         bankAccount.deposit(BigDecimal.valueOf(0.01));
         assertEquals(BigDecimal.valueOf(512.37), bankAccount.getBalance());
         bankAccount.withdraw(BigDecimal.valueOf(0.01));
@@ -119,7 +119,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testDepositIncreasesAndWithdrawDecreasesWithLargePracticalAmount() {
+    public void testDepositAndWithdrawLargePracticalAmount() {
         bankAccount.deposit(BigDecimal.valueOf(1_500_000.00));
         assertEquals(BigDecimal.valueOf(1_500_512.36), bankAccount.getBalance());
         bankAccount.withdraw(BigDecimal.valueOf(1_000_000.00));

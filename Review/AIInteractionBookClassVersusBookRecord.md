@@ -437,9 +437,7 @@ public void setAuthor(String author) {
         );
         assertEquals("Null value assigned to author", thrown.getMessage());
     }
-```
 
-```java
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -610,9 +608,7 @@ I have updated the code to throw an exception if a null value for author and tit
         );
         assertEquals("Null value assigned to author", thrown.getMessage());
     }
-    ```
-
-```java
+    
 package org.example;
 
 import java.util.Objects;
@@ -903,8 +899,7 @@ I put the setters in the constructor and eliminated the setter tests which check
         );
         assertEquals("Assigned pages to book less than zero", thrown.getMessage());
     }
-```
-```java
+    
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -977,7 +972,6 @@ public class BookTest {
         assertEquals(expectedToString, actualToString);
     }
 }
-
 ```
 
 kotlin.Unit

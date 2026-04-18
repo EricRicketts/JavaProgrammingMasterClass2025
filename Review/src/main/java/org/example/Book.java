@@ -34,7 +34,7 @@ public class Book {
     }
 
     private String validateAuthorAndReturn(String author) {
-        return Objects.requireNonNull(author, "Null value assigned to author");
+        return ValueValidator.checkForNull(author, "Null value assigned to author");
     }
 
     private int validatePagesAndReturn(int pages) {
