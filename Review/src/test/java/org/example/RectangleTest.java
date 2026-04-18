@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
@@ -24,5 +25,16 @@ public class RectangleTest {
     @Test
     public void testGetRectangleWidth() {
         assertEquals(BigDecimal.valueOf(15.78), rectangle.getWidth());
+    }
+
+    @Test
+    public void testSetRectangleLengthNullValue() {
+        assertEquals(
+                "Null value not allowed for length",
+                assertThrows(
+                NullPointerException.class,
+                () -> rectangle.setLength(null)
+            ).getMessage()
+        );
     }
 }
