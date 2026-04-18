@@ -30,6 +30,17 @@ public class RectangleTest {
     }
 
     @Test
+    public void testRectangleConstructorRejectsNegativeValueForLength() {
+        assertEquals(
+                "Length is less than zero",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45))
+                ).getMessage()
+        );
+    }
+
+    @Test
     public void testGetRectangleLength() {
         assertEquals(BigDecimal.valueOf(31.52), rectangle.getLength());
     }
