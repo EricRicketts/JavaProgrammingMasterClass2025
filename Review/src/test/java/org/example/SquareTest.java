@@ -29,6 +29,17 @@ public class SquareTest {
     }
 
     @Test
+    public void testConstructorRejectsNegativeValueForSide() {
+        assertEquals(
+                "Side is less than zero",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Square(BigDecimal.valueOf(-4))
+                ).getMessage()
+        );
+    }
+
+    @Test
     public void testSquareGetSide() {
         assertEquals(BigDecimal.valueOf(56.98), square.getSide());
     }
