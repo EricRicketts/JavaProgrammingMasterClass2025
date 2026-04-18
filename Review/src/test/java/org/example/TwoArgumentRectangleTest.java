@@ -70,4 +70,9 @@ public class TwoArgumentRectangleTest {
                 ).getMessage()
         );
     }
+
+    @Test
+    public void testGetRectangleArea() {
+        assertEquals(BigDecimal.valueOf(497.39), rectangle.getArea());
+    }
 }

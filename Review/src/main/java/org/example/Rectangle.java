@@ -7,10 +7,6 @@ public class Rectangle {
     private BigDecimal length;
     private BigDecimal width;
 
-    public BigDecimal getLength() {
-        return length;
-    }
-
     public Rectangle(BigDecimal length, BigDecimal width) {
         this.length = this.validateAmountAndReturn(
                 length,
@@ -33,6 +29,10 @@ public class Rectangle {
         this(BigDecimal.valueOf(20.00), BigDecimal.valueOf(10.00));
     }
 
+    public BigDecimal getLength() {
+        return length;
+    }
+
     public void setLength(BigDecimal length) {
         this.length = this.validateAmountAndReturn(
                 length,
@@ -51,6 +51,11 @@ public class Rectangle {
                 "Null value not allowed for width",
                 "Width is less than zero"
         );
+    }
+
+    public BigDecimal getArea() {
+        BigDecimal area = getLength().multiply(getWidth());
+        return NumberUtils.setScale(area, 2);
     }
 
     private BigDecimal validateAmountAndReturn(
