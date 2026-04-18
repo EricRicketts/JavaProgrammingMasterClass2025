@@ -37,4 +37,15 @@ public class RectangleTest {
             ).getMessage()
         );
     }
+
+    @Test
+    public void testSetRectangleLengthNegativeValue() {
+        assertEquals(
+                "Length is less than zero",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> rectangle.setLength(BigDecimal.valueOf(-10))
+                ).getMessage()
+        );
+    }
 }
