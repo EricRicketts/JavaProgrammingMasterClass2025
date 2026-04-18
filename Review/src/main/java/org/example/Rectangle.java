@@ -25,6 +25,10 @@ public class Rectangle {
         );
     }
 
+    public Rectangle(BigDecimal side) {
+        this(side, side);
+    }
+
     public Rectangle() {
         this(BigDecimal.valueOf(20.00), BigDecimal.valueOf(10.00));
     }
