@@ -18,6 +18,17 @@ public class SquareTest {
     }
 
     @Test
+    public void testConstructorRejectsNullValueForSide() {
+        assertEquals(
+                "Null value not allowed for a side",
+                assertThrows(
+                        NullPointerException.class,
+                        () -> new Square(null)
+                ).getMessage()
+        );
+    }
+
+    @Test
     public void testSquareGetSide() {
         assertEquals(BigDecimal.valueOf(56.98), square.getSide());
     }
