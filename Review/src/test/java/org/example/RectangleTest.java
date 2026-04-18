@@ -48,4 +48,26 @@ public class RectangleTest {
                 ).getMessage()
         );
     }
+
+    @Test
+    public void testSetRectangleWidthNullValue() {
+        assertEquals(
+                "Null value not allowed for width",
+                assertThrows(
+                        NullPointerException.class,
+                        () -> rectangle.setWidth(null)
+                ).getMessage()
+        );
+    }
+
+    @Test
+    public void testSetRectangleWidthNegativeValue() {
+        assertEquals(
+                "Width is less than zero",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> rectangle.setWidth(BigDecimal.valueOf(-10))
+                ).getMessage()
+        );
+    }
 }
