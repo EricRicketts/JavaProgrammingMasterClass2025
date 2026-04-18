@@ -18,7 +18,7 @@ public class SquareTest {
     }
 
     @Test
-    public void testConstructorRejectsNullValueForSide() {
+    public void testConstructorRejectsNullValue() {
         assertEquals(
                 "Null value not allowed for a side",
                 assertThrows(
@@ -29,7 +29,7 @@ public class SquareTest {
     }
 
     @Test
-    public void testConstructorRejectsNegativeValueForSide() {
+    public void testConstructorRejectsNegativeValue() {
         assertEquals(
                 "Side is less than zero",
                 assertThrows(
@@ -45,7 +45,7 @@ public class SquareTest {
     }
 
     @Test
-    public void testSquareSetSideWithNullValue() {
+    public void testSquareSetSideNullValue() {
         assertEquals(
                 "Null value not allowed for a side",
                 assertThrows(
@@ -56,7 +56,7 @@ public class SquareTest {
     }
 
     @Test
-    public void testSquareSetSideWithNegativeValue() {
+    public void testSquareSetSideNegativeValue() {
         assertEquals(
                 "Side is less than zero",
                 assertThrows(
