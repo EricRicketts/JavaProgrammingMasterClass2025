@@ -29,4 +29,14 @@ public class ValueValidator {
     public static <T> T checkForNull(T value, String message) {
         return Objects.requireNonNull(value, message);
     }
+
+    public static BigDecimal validateAmountAndReturn(
+            BigDecimal amount,
+            String nullMessage,
+            String negativeMessage
+    ) {
+        ValueValidator.checkForNull(amount, nullMessage);
+        ValueValidator.checkForNegativeValue(amount, negativeMessage);
+        return amount;
+    }
 }
