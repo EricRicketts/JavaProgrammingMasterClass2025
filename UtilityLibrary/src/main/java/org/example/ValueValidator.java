@@ -30,7 +30,7 @@ public class ValueValidator {
         return Objects.requireNonNull(value, message);
     }
 
-    public static BigDecimal validateAmountAndReturn(
+    public static BigDecimal validateNumberAndReturn(
             BigDecimal amount,
             String nullMessage,
             String negativeMessage

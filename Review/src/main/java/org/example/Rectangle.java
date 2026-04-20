@@ -8,13 +8,13 @@ public class Rectangle {
     private BigDecimal width;
 
     public Rectangle(BigDecimal length, BigDecimal width) {
-        this.length = ValueValidator.validateAmountAndReturn(
+        this.length = ValueValidator.validateNumberAndReturn(
                 length,
                 "Null value not allowed for length",
                 "Length is less than zero"
         );
 
-        this.width = ValueValidator.validateAmountAndReturn(
+        this.width = ValueValidator.validateNumberAndReturn(
                 width,
                 "Null value not allowed for width",
                 "Width is less than zero"
@@ -34,7 +34,7 @@ public class Rectangle {
     }
 
     public void setLength(BigDecimal length) {
-        this.length = ValueValidator.validateAmountAndReturn(
+        this.length = ValueValidator.validateNumberAndReturn(
                 length,
                 "Null value not allowed for length",
                 "Length is less than zero"
@@ -46,7 +46,7 @@ public class Rectangle {
     }
 
     public void setWidth(BigDecimal width) {
-        this.width = ValueValidator.validateAmountAndReturn(
+        this.width = ValueValidator.validateNumberAndReturn(
                 width,
                 "Null value not allowed for width",
                 "Width is less than zero"
