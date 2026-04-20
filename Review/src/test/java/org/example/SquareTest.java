@@ -40,8 +40,9 @@ public class SquareTest {
     }
 
     @Test
-    public void testSquareGetSide() {
-        assertEquals(BigDecimal.valueOf(56.98), square.getSide());
+    public void testSquareSetAndGetSide() {
+        square.setSide(BigDecimal.valueOf(89.12));
+        assertEquals(BigDecimal.valueOf(89.12), square.getSide());
     }
 
     @Test
