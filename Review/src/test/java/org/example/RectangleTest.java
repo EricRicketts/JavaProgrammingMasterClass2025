@@ -71,13 +71,13 @@ public class RectangleTest {
     }
 
     @Nested
-    @DisplayName("Single argument constructor tests")
+    @DisplayName("Rectangle single argument constructor tests")
     class SingleArgumentConstructorTests {
 
         @Test
         public void testSingleSidedRectangleRejectsNullValueForSide() {
             assertEquals(
-                    "Null value not allowed for a side",
+                    "Null value is not allowed for a side",
                     assertThrows(
                             NullPointerException.class,
                             () -> new Rectangle(null)
@@ -88,7 +88,7 @@ public class RectangleTest {
         @Test
         public void testSingleSidedRectangleRejectsNegativeValueForSide() {
             assertEquals(
-                    "Side is less than zero",
+                    "Negative value is not allowed for a side",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Rectangle(BigDecimal.valueOf(-0.01))
@@ -96,6 +96,22 @@ public class RectangleTest {
             );
 
         }
+    }
+
+    @Nested
+    @DisplayName("Rectangle zero argument constructor tests")
+    class ZeroArgumentConstructorTests {
+
+        @Test
+        public void testGetLengthZeroArgumentRectangle() {
+            assertEquals(BigDecimal.valueOf(20.00), zeroArgumentRectangle.getLength());
+        }
+
+        @Test
+        public void testGetWidthZeroArgumentRectangle() {
+            assertEquals(BigDecimal.valueOf(10.00), zeroArgumentRectangle.getWidth());
+        }
+
     }
 
     @Test
@@ -157,13 +173,4 @@ public class RectangleTest {
         assertEquals(BigDecimal.valueOf(497.39), rectangle.getArea());
     }
 
-    @Test
-    public void testGetLengthZeroArgumentRectangle() {
-        assertEquals(BigDecimal.valueOf(20.00), zeroArgumentRectangle.getLength());
-    }
-
-    @Test
-    public void testGetWidthZeroArgumentRectangle() {
-        assertEquals(BigDecimal.valueOf(10.00), zeroArgumentRectangle.getWidth());
-    }
 }
