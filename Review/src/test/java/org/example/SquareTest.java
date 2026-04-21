@@ -20,7 +20,7 @@ public class SquareTest {
     }
 
     @Nested
-    @DisplayName("Constructor tests")
+    @DisplayName("Square constructor tests")
     class SquareConstructorTests {
 
         @Test
@@ -46,32 +46,37 @@ public class SquareTest {
         }
     }
 
-    @Test
-    public void testSquareSetSideNullValue() {
-        assertEquals(
-                "Null value is not allowed for a side",
-                assertThrows(
-                        NullPointerException.class,
-                        () -> square.setSide(null)
-                ).getMessage()
-        );
-    }
+    @Nested
+    @DisplayName("Square setter tests")
+    class SquareSetterTests {
 
-    @Test
-    public void testSquareSetSideNegativeValue() {
-        assertEquals(
-                "Negative value is not allowed for a side",
-                assertThrows(
-                        IllegalArgumentException.class,
-                        () -> square.setSide(BigDecimal.valueOf(-5))
-                ).getMessage()
-        );
-    }
+        @Test
+        public void testSquareSetSideNullValue() {
+            assertEquals(
+                    "Null value is not allowed for a side",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> square.setSide(null)
+                    ).getMessage()
+            );
+        }
 
-    @Test
-    public void testSquareSetSide() {
-        square.setSide(BigDecimal.valueOf(89.12));
-        assertEquals(BigDecimal.valueOf(89.12), square.getSide());
+        @Test
+        public void testSquareSetSideNegativeValue() {
+            assertEquals(
+                    "Negative value is not allowed for a side",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> square.setSide(BigDecimal.valueOf(-5))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSquareSetSide() {
+            square.setSide(BigDecimal.valueOf(89.12));
+            assertEquals(BigDecimal.valueOf(89.12), square.getSide());
+        }
     }
 
     @Test
