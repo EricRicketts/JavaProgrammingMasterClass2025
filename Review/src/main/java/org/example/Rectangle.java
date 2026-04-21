@@ -3,21 +3,20 @@ package org.example;
 import java.math.BigDecimal;
 
 public class Rectangle {
-
     private BigDecimal length;
     private BigDecimal width;
 
     public Rectangle(BigDecimal length, BigDecimal width) {
         this.length = ValueValidator.validateNumberAndReturn(
                 length,
-                "Null value not allowed for length",
-                "Length is less than zero"
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage()
         );
 
         this.width = ValueValidator.validateNumberAndReturn(
                 width,
-                "Null value not allowed for width",
-                "Width is less than zero"
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
     }
 
@@ -36,8 +35,8 @@ public class Rectangle {
     public void setLength(BigDecimal length) {
         this.length = ValueValidator.validateNumberAndReturn(
                 length,
-                "Null value not allowed for length",
-                "Length is less than zero"
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage()
         );
     }
 
@@ -48,8 +47,8 @@ public class Rectangle {
     public void setWidth(BigDecimal width) {
         this.width = ValueValidator.validateNumberAndReturn(
                 width,
-                "Null value not allowed for width",
-                "Width is less than zero"
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
     }
 
