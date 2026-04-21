@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class RectangleTest {
 
     private Rectangle rectangle, zeroArgumentRectangle;
-    private Rectangle singleArgumentRectangle;
+    private Rectangle square;
 
     @BeforeEach
     public void setUp() {
         rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
-        singleArgumentRectangle = new Rectangle(BigDecimal.valueOf(67.48));
+        square = new Rectangle(BigDecimal.valueOf(67.48));
         zeroArgumentRectangle = new Rectangle();
     }
 
@@ -114,20 +114,24 @@ public class RectangleTest {
     }
 
     @Nested
-    @DisplayName("Rectangle Single argument getter and setter tests")
+    @DisplayName("square getter, setter and area tests")
     class SingleArgumentRectangleGetterAndSetterTests {
 
         @Test
-        public void testSingleArgumentRectangleGetSide() {
-            assertEquals(BigDecimal.valueOf(67.48), singleArgumentRectangle.getSquare().getSide());
+        public void testSquareGetSide() {
+            assertEquals(BigDecimal.valueOf(67.48), square.getSquare().getSide());
         }
 
         @Test
-        public void testSingleArgumentRectangleSetSide() {
-            singleArgumentRectangle.getSquare().setSide(BigDecimal.valueOf(84.76));
-            assertEquals(BigDecimal.valueOf(84.76), singleArgumentRectangle.getSquare().getSide());
+        public void testSquareGetArea() {
+            assertEquals(BigDecimal.valueOf(4_553.55), square.getSquare().getArea());
         }
 
+        @Test
+        public void testSquareSetSide() {
+            square.getSquare().setSide(BigDecimal.valueOf(84.76));
+            assertEquals(BigDecimal.valueOf(84.76), square.getSquare().getSide());
+        }
     }
 
     @Nested
