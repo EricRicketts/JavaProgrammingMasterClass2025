@@ -47,12 +47,6 @@ public class SquareTest {
     }
 
     @Test
-    public void testSquareSetAndGetSide() {
-        square.setSide(BigDecimal.valueOf(89.12));
-        assertEquals(BigDecimal.valueOf(89.12), square.getSide());
-    }
-
-    @Test
     public void testSquareSetSideNullValue() {
         assertEquals(
                 "Null value is not allowed for a side",
@@ -72,6 +66,12 @@ public class SquareTest {
                         () -> square.setSide(BigDecimal.valueOf(-5))
                 ).getMessage()
         );
+    }
+
+    @Test
+    public void testSquareSetSide() {
+        square.setSide(BigDecimal.valueOf(89.12));
+        assertEquals(BigDecimal.valueOf(89.12), square.getSide());
     }
 
     @Test
