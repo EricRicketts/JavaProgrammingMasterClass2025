@@ -12,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
-    private Rectangle rectangle, zeroArgumentRectangle;
+    private Rectangle rectangle, singleArgumentRectangle, zeroArgumentRectangle;
 
     @BeforeEach
     public void setUp() {
         rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
+        singleArgumentRectangle = new Rectangle(BigDecimal.valueOf(67.48));
         zeroArgumentRectangle = new Rectangle();
     }
 
@@ -66,6 +67,34 @@ public class RectangleTest {
                             () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
                     ).getMessage()
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("Single argument constructor tests")
+    class SingleArgumentConstructorTests {
+
+        @Test
+        public void testSingleSidedRectangleRejectsNullValueForSide() {
+            assertEquals(
+                    "Null value not allowed for a side",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Rectangle(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSingleSidedRectangleRejectsNegativeValueForSide() {
+            assertEquals(
+                    "Side is less than zero",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(-0.01))
+                    ).getMessage()
+            );
+
         }
     }
 
