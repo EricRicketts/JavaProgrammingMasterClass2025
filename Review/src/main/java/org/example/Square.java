@@ -9,8 +9,8 @@ public class Square extends Rectangle {
     public Square(BigDecimal side) {
         this.side = ValueValidator.validateNumberAndReturn(
                 side,
-                "Null value not allowed for a side",
-                "Side is less than zero"
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
     }
 
@@ -21,8 +21,8 @@ public class Square extends Rectangle {
     public void setSide(BigDecimal side) {
         this.side = ValueValidator.validateNumberAndReturn(
                 side,
-                "Null value not allowed for a side",
-                "Side is less than zero"
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
     }
 
