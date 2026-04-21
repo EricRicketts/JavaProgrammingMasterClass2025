@@ -22,13 +22,13 @@ public class RectangleTest {
     }
 
     @Nested
-    @DisplayName("Two argument constructor tests")
+    @DisplayName("Rectangle two argument constructor tests")
     class TwoArgumentConstructorTests {
 
         @Test
         public void testRectangleConstructorRejectsNullValueForLength() {
             assertEquals(
-                    "Null value not allowed for length",
+                    "Null value is not allowed for length",
                     assertThrows(
                             NullPointerException.class,
                             () -> new Rectangle(null, BigDecimal.valueOf(10.45))
@@ -39,7 +39,7 @@ public class RectangleTest {
         @Test
         public void testRectangleConstructorRejectsNegativeValueForLength() {
             assertEquals(
-                    "Length is less than zero",
+                    "Negative value is not allowed for length",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45))
@@ -50,7 +50,7 @@ public class RectangleTest {
         @Test
         public void testRectangleConstructorRejectsNullValueForWidth() {
             assertEquals(
-                    "Null value not allowed for width",
+                    "Null value is not allowed for width",
                     assertThrows(
                             NullPointerException.class,
                             () -> new Rectangle(BigDecimal.valueOf(10.45), null)
@@ -61,7 +61,7 @@ public class RectangleTest {
         @Test
         public void testRectangleConstructorRejectsNegativeValueForWidth() {
             assertEquals(
-                    "Width is less than zero",
+                    "Negative value is not allowed for width",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
