@@ -22,7 +22,7 @@ public class Rectangle {
     }
 
     public Rectangle(BigDecimal side) {
-        this(side, side);
+        new Square(side);
     }
 
     public Rectangle() {

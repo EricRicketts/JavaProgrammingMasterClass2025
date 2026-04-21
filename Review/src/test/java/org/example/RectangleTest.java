@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -18,47 +20,53 @@ public class RectangleTest {
         zeroArgumentRectangle = new Rectangle();
     }
 
-    @Test
-    public void testRectangleConstructorRejectsNullValueForLength() {
-        assertEquals(
-                "Null value not allowed for length",
-                assertThrows(
-                        NullPointerException.class,
-                        () -> new Rectangle(null, BigDecimal.valueOf(10.45))
-                ).getMessage()
-        );
-    }
+    @Nested
+    @DisplayName("Two argument constructor tests")
+    class TwoArgumentConstructorTests {
 
-    @Test
-    public void testRectangleConstructorRejectsNegativeValueForLength() {
-        assertEquals(
-                "Length is less than zero",
-                assertThrows(
-                        IllegalArgumentException.class,
-                        () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45))
-                ).getMessage()
-        );
-    }
-    @Test
-    public void testRectangleConstructorRejectsNullValueForWidth() {
-        assertEquals(
-                "Null value not allowed for width",
-                assertThrows(
-                        NullPointerException.class,
-                        () -> new Rectangle(BigDecimal.valueOf(10.45), null)
-                ).getMessage()
-        );
-    }
+        @Test
+        public void testRectangleConstructorRejectsNullValueForLength() {
+            assertEquals(
+                    "Null value not allowed for length",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Rectangle(null, BigDecimal.valueOf(10.45))
+                    ).getMessage()
+            );
+        }
 
-    @Test
-    public void testRectangleConstructorRejectsNegativeValueForWidth() {
-        assertEquals(
-                "Width is less than zero",
-                assertThrows(
-                        IllegalArgumentException.class,
-                        () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
-                ).getMessage()
-        );
+        @Test
+        public void testRectangleConstructorRejectsNegativeValueForLength() {
+            assertEquals(
+                    "Length is less than zero",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testRectangleConstructorRejectsNullValueForWidth() {
+            assertEquals(
+                    "Null value not allowed for width",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testRectangleConstructorRejectsNegativeValueForWidth() {
+            assertEquals(
+                    "Width is less than zero",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
+                    ).getMessage()
+            );
+        }
     }
 
     @Test
