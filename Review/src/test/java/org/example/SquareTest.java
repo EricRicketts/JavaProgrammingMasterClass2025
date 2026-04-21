@@ -20,7 +20,7 @@ public class SquareTest {
     @Test
     public void testSquareConstructorRejectsNullValue() {
         assertEquals(
-                "Null value not allowed for a side",
+                "Null value is not allowed for a side",
                 assertThrows(
                         NullPointerException.class,
                         () -> new Square(null)
@@ -31,7 +31,7 @@ public class SquareTest {
     @Test
     public void testSquareConstructorRejectsNegativeValue() {
         assertEquals(
-                "Side is less than zero",
+                "Negative value is not allowed for a side",
                 assertThrows(
                         IllegalArgumentException.class,
                         () -> new Square(BigDecimal.valueOf(-4))
@@ -48,7 +48,7 @@ public class SquareTest {
     @Test
     public void testSquareSetSideNullValue() {
         assertEquals(
-                "Null value not allowed for a side",
+                "Null value is not allowed for a side",
                 assertThrows(
                         NullPointerException.class,
                         () -> square.setSide(null)
@@ -59,7 +59,7 @@ public class SquareTest {
     @Test
     public void testSquareSetSideNegativeValue() {
         assertEquals(
-                "Side is less than zero",
+                "Negative value is not allowed for a side",
                 assertThrows(
                         IllegalArgumentException.class,
                         () -> square.setSide(BigDecimal.valueOf(-5))
