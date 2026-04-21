@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
-    private Rectangle rectangle, singleArgumentRectangle, zeroArgumentRectangle;
+    private Rectangle rectangle, zeroArgumentRectangle;
+    private Rectangle singleArgumentRectangle;
 
     @BeforeEach
     public void setUp() {
@@ -94,12 +95,11 @@ public class RectangleTest {
                             () -> new Rectangle(BigDecimal.valueOf(-0.01))
                     ).getMessage()
             );
-
         }
     }
 
     @Nested
-    @DisplayName("Rectangle zero argument constructor tests")
+    @DisplayName("Rectangle zero argument object tests")
     class ZeroArgumentConstructorTests {
 
         @Test
@@ -110,6 +110,22 @@ public class RectangleTest {
         @Test
         public void testGetWidthZeroArgumentRectangle() {
             assertEquals(BigDecimal.valueOf(10.00), zeroArgumentRectangle.getWidth());
+        }
+    }
+
+    @Nested
+    @DisplayName("Rectangle Single argument getter and setter tests")
+    class SingleArgumentRectangleGetterAndSetterTests {
+
+        @Test
+        public void testSingleArgumentRectangleGetSide() {
+            assertEquals(BigDecimal.valueOf(67.48), singleArgumentRectangle.getSquare().getSide());
+        }
+
+        @Test
+        public void testSingleArgumentRectangleSetSide() {
+            singleArgumentRectangle.getSquare().setSide(BigDecimal.valueOf(84.76));
+            assertEquals(BigDecimal.valueOf(84.76), singleArgumentRectangle.getSquare().getSide());
         }
 
     }

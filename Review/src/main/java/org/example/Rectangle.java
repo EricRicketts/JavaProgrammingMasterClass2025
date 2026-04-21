@@ -3,8 +3,8 @@ package org.example;
 import java.math.BigDecimal;
 
 public class Rectangle {
-    private BigDecimal length;
-    private BigDecimal width;
+    private BigDecimal length, width;
+    private Square square;
 
     public Rectangle(BigDecimal length, BigDecimal width) {
         this.length = ValueValidator.validateNumberAndReturn(
@@ -18,14 +18,26 @@ public class Rectangle {
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
+
+        if (length.equals(width)) {
+            this.square = new Square(length);
+        }
     }
 
     public Rectangle(BigDecimal side) {
-        new Square(side);
+        this.square = new Square(side);
     }
 
     public Rectangle() {
         this(BigDecimal.valueOf(20.00), BigDecimal.valueOf(10.00));
+    }
+
+    public Square getSquare() {
+        return square;
+    }
+
+    public void setSquare(BigDecimal side) {
+        this.square = new Square(side);
     }
 
     public BigDecimal getLength() {
