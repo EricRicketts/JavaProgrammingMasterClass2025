@@ -114,14 +114,19 @@ public class RectangleTest {
 
     }
 
-    @Test
-    public void testGetRectangleLength() {
-        assertEquals(BigDecimal.valueOf(31.52), rectangle.getLength());
-    }
+    @Nested
+    @DisplayName("Rectangle getter tests")
+    class RectangleGetterTests {
 
-    @Test
-    public void testGetRectangleWidth() {
-        assertEquals(BigDecimal.valueOf(15.78), rectangle.getWidth());
+        @Test
+        public void testGetRectangleLength() {
+            assertEquals(BigDecimal.valueOf(31.52), rectangle.getLength());
+        }
+    
+        @Test
+        public void testGetRectangleWidth() {
+            assertEquals(BigDecimal.valueOf(15.78), rectangle.getWidth());
+        }
     }
 
     @Test
