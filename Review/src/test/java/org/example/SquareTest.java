@@ -79,8 +79,13 @@ public class SquareTest {
         }
     }
 
-    @Test
-    public void testSquareGetArea() {
-        assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
+    @Nested
+    @DisplayName("Square getter tests")
+    class SquareGetterTests {
+        
+        @Test
+        public void testSquareGetArea() {
+            assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
+        }
     }
 }
