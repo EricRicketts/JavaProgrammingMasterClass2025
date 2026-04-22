@@ -214,4 +214,17 @@ public class RectangleTest {
             assertEquals(BigDecimal.valueOf(54.76), rectangle.getWidth());
         }
     }
+
+    @Nested
+    @DisplayName("Rectangle toString test")
+    class RectangleToStringTest {
+
+        @Test
+        public void testRectangleToString() {
+            // 31.52; 15.78
+            String expected = "Rectangle[length = 31.52, width = 15.78]";
+            String actual = rectangle.toString();
+            assertEquals(expected, actual);
+        }
+    }
 }
