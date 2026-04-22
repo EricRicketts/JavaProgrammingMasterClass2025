@@ -27,18 +27,6 @@ public class Rectangle {
         this(BigDecimal.valueOf(20.00), BigDecimal.valueOf(10.00));
     }
 
-    public BigDecimal getHeight() {
-        return height;
-    }
-
-    public void setHeight(BigDecimal height) {
-        this.height = ValueValidator.validateNumberAndReturn(
-                height,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
-        );
-    }
-
     public BigDecimal getWidth() {
         return width;
     }
@@ -48,6 +36,18 @@ public class Rectangle {
                 width,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+        );
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = ValueValidator.validateNumberAndReturn(
+                height,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
         );
     }
 
