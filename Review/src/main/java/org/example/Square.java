@@ -2,7 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 
-public class Square extends Rectangle {
+public class Square {
 
     private BigDecimal side;
 

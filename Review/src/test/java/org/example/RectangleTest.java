@@ -25,7 +25,7 @@ public class RectangleTest {
     class TwoArgumentConstructorTests {
 
         @Test
-        public void testRectangleConstructorRejectsNullValueForHeight() {
+        public void testRectangleConstructorRejectsNullValueForWidth() {
             assertEquals(
                     "Null value is not allowed for width",
                     assertThrows(
@@ -36,7 +36,7 @@ public class RectangleTest {
         }
 
         @Test
-        public void testRectangleConstructorRejectsNegativeValueForHeight() {
+        public void testRectangleConstructorRejectsNegativeValueForWidth() {
             assertEquals(
                     "Negative value is not allowed for width",
                     assertThrows(
@@ -47,7 +47,7 @@ public class RectangleTest {
         }
 
         @Test
-        public void testRectangleConstructorRejectsNullValueForWidth() {
+        public void testRectangleConstructorRejectsNullValueForHeight() {
             assertEquals(
                     "Null value is not allowed for height",
                     assertThrows(
@@ -58,7 +58,7 @@ public class RectangleTest {
         }
 
         @Test
-        public void testRectangleConstructorRejectsNegativeValueForWidth() {
+        public void testRectangleConstructorRejectsNegativeValueForHeight() {
             assertEquals(
                     "Negative value is not allowed for height",
                     assertThrows(
@@ -74,12 +74,12 @@ public class RectangleTest {
     class ZeroArgumentConstructorTests {
 
         @Test
-        public void testGetHeightZeroArgumentRectangle() {
+        public void testGetWidthZeroArgumentRectangle() {
             assertEquals(BigDecimal.valueOf(20.00), zeroArgumentRectangle.getWidth());
         }
 
         @Test
-        public void testGetWidthZeroArgumentRectangle() {
+        public void testGetHeightZeroArgumentRectangle() {
             assertEquals(BigDecimal.valueOf(10.00), zeroArgumentRectangle.getHeight());
         }
     }
@@ -109,28 +109,6 @@ public class RectangleTest {
     class RectangleSetterTests {
 
         @Test
-        public void testSetRectangleLengthNullValue() {
-            assertEquals(
-                    "Null value is not allowed for height",
-                    assertThrows(
-                    NullPointerException.class,
-                    () -> rectangle.setHeight(null)
-                ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSetRectangleLengthNegativeValue() {
-            assertEquals(
-                    "Negative value is not allowed for height",
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> rectangle.setHeight(BigDecimal.valueOf(-10))
-                    ).getMessage()
-            );
-        }
-
-        @Test
         public void testSetRectangleWidthNullValue() {
             assertEquals(
                     "Null value is not allowed for width",
@@ -153,15 +131,37 @@ public class RectangleTest {
         }
 
         @Test
-        public void testSetRectangleHeight() {
-            rectangle.setHeight(BigDecimal.valueOf(78.43));
-            assertEquals(BigDecimal.valueOf(78.43), rectangle.getHeight());
+        public void testSetRectangleHeightNullValue() {
+            assertEquals(
+                    "Null value is not allowed for height",
+                    assertThrows(
+                    NullPointerException.class,
+                    () -> rectangle.setHeight(null)
+                ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSetRectangleHeightNegativeValue() {
+            assertEquals(
+                    "Negative value is not allowed for height",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> rectangle.setHeight(BigDecimal.valueOf(-10))
+                    ).getMessage()
+            );
         }
 
         @Test
         public void testSetRectangleWidth() {
             rectangle.setWidth(BigDecimal.valueOf(54.76));
             assertEquals(BigDecimal.valueOf(54.76), rectangle.getWidth());
+        }
+
+        @Test
+        public void testSetRectangleHeight() {
+            rectangle.setHeight(BigDecimal.valueOf(78.43));
+            assertEquals(BigDecimal.valueOf(78.43), rectangle.getHeight());
         }
     }
 
