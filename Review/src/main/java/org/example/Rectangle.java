@@ -3,52 +3,36 @@ package org.example;
 import java.math.BigDecimal;
 
 public class Rectangle {
-    private BigDecimal length, width;
-    private Square square;
+    private BigDecimal width, height;
 
-    public Rectangle(BigDecimal length, BigDecimal width) {
-        this.length = ValueValidator.validateNumberAndReturn(
-                length,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage(),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage()
-        );
-
+    public Rectangle(BigDecimal width, BigDecimal height) {
         this.width = ValueValidator.validateNumberAndReturn(
                 width,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
 
-        if (length.equals(width)) {
-            this.square = new Square(length);
-        }
+        this.height = ValueValidator.validateNumberAndReturn(
+                height,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+        );
     }
 
-    public Rectangle(BigDecimal side) {
-        this.square = new Square(side);
-    }
 
     public Rectangle() {
         this(BigDecimal.valueOf(20.00), BigDecimal.valueOf(10.00));
     }
 
-    public Square getSquare() {
-        return square;
+    public BigDecimal getHeight() {
+        return height;
     }
 
-    public void setSquare(BigDecimal side) {
-        this.square = new Square(side);
-    }
-
-    public BigDecimal getLength() {
-        return length;
-    }
-
-    public void setLength(BigDecimal length) {
-        this.length = ValueValidator.validateNumberAndReturn(
-                length,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage(),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_LENGTH.getErrorMessage()
+    public void setHeight(BigDecimal height) {
+        this.height = ValueValidator.validateNumberAndReturn(
+                height,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
         );
     }
 
@@ -66,15 +50,15 @@ public class Rectangle {
 
     public BigDecimal getArea() {
         return NumberUtils.setScale(
-                getLength().multiply(getWidth()), 2);
+                getHeight().multiply(getWidth()), 2);
     }
 
     @Override
     public String toString() {
-        return "Rectangle[length = " +
-                length +
-                ", width = " +
+        return "Rectangle[width = " +
                 width +
+                ", height = " +
+                height +
                 "]";
     }
 }
