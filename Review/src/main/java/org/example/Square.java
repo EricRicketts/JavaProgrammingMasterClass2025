@@ -30,4 +30,9 @@ public class Square extends Rectangle {
         return NumberUtils.setScale(
                 getSide().multiply(getSide()), 2);
     }
+
+    @Override
+    public String toString() {
+        return "Square[side = " + side + "]";
+    }
 }

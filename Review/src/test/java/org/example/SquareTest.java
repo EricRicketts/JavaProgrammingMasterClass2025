@@ -88,4 +88,17 @@ public class SquareTest {
             assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
         }
     }
+
+    @Nested
+    @DisplayName("Square toString test")
+    class SquareToStringTest {
+
+        @Test
+        public void testSquareToString() {
+            String expected = "Square[side = 56.98]";
+            String actual = square.toString();
+
+            assertEquals(expected, actual);
+        }
+    }
 }
