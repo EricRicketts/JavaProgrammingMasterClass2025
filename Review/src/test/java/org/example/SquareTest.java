@@ -47,6 +47,16 @@ public class SquareTest {
     }
 
     @Nested
+    @DisplayName("Square getter tests")
+    class SquareGetterTests {
+
+        @Test
+        public void testSquareGetArea() {
+            assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
+        }
+    }
+
+    @Nested
     @DisplayName("Square setter tests")
     class SquareSetterTests {
 
@@ -76,16 +86,6 @@ public class SquareTest {
         public void testSquareSetSide() {
             square.setSide(BigDecimal.valueOf(89.12));
             assertEquals(BigDecimal.valueOf(89.12), square.getSide());
-        }
-    }
-
-    @Nested
-    @DisplayName("Square getter tests")
-    class SquareGetterTests {
-
-        @Test
-        public void testSquareGetArea() {
-            assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
         }
     }
 
