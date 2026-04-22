@@ -201,5 +201,17 @@ public class RectangleTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testSetRectangleLength() {
+            rectangle.setLength(BigDecimal.valueOf(78.43));
+            assertEquals(BigDecimal.valueOf(78.43), rectangle.getLength());
+        }
+
+        @Test
+        public void testSetRectangleWidth() {
+            rectangle.setWidth(BigDecimal.valueOf(54.76));
+            assertEquals(BigDecimal.valueOf(54.76), rectangle.getWidth());
+        }
     }
 }

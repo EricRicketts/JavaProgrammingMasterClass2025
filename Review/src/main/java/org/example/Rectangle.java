@@ -68,4 +68,13 @@ public class Rectangle {
         return NumberUtils.setScale(
                 getLength().multiply(getWidth()), 2);
     }
+
+    @Override
+    public String toString() {
+        return "Rectangle[length = " +
+                length +
+                ", width = " +
+                width +
+                "]";
+    }
 }
