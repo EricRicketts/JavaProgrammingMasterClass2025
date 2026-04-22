@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangleTest {
 
-    private Rectangle rectangle, zeroArgumentRectangle;
+    private Rectangle rectangle, singleArgumentRectangle, zeroArgumentRectangle;
 
     @BeforeEach
     public void setUp() {
         rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
+        singleArgumentRectangle = new Rectangle(BigDecimal.valueOf(13.45));
         zeroArgumentRectangle = new Rectangle();
     }
 
@@ -96,10 +97,11 @@ public class RectangleTest {
 
         @Test
         public void testSingleArgumentRectangleHasSameWidthAndHeight() {
-            Rectangle rectangle = new Rectangle(BigDecimal.valueOf(13.45));
             assertTrue(
-                    BigDecimal.valueOf(13.45).equals(rectangle.getWidth()) &&
-                    rectangle.getWidth().equals(rectangle.getHeight())
+                    BigDecimal.valueOf(13.45)
+                            .equals(singleArgumentRectangle.getWidth()) &&
+                            singleArgumentRectangle.getWidth()
+                            .equals(singleArgumentRectangle.getHeight())
             );
         }
     }
