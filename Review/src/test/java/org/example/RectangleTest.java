@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangleTest {
 
@@ -65,6 +64,42 @@ public class RectangleTest {
                             IllegalArgumentException.class,
                             () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
                     ).getMessage()
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("Rectangle single argument constructor tests")
+    class SingleArgumentConstructorTests {
+
+        @Test
+        public void testSingleArgumentRectangleConstructorRejectsNullValue() {
+            assertEquals(
+                    "Null value is not allowed for width",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Rectangle(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSingleArgumentRectangleConstructorRejectsNegativeValue() {
+            assertEquals(
+                    "Negative value is not allowed for width",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(-9.56))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSingleArgumentRectangleHasSameWidthAndHeight() {
+            Rectangle rectangle = new Rectangle(BigDecimal.valueOf(13.45));
+            assertTrue(
+                    BigDecimal.valueOf(13.45).equals(rectangle.getWidth()) &&
+                    rectangle.getWidth().equals(rectangle.getHeight())
             );
         }
     }
