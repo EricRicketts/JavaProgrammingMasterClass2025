@@ -51,6 +51,11 @@ public class SquareTest {
     class SquareGetterTests {
 
         @Test
+        public void testSquareGetSide() {
+            assertEquals(BigDecimal.valueOf(56.98), square.getSide());
+        }
+
+        @Test
         public void testSquareGetArea() {
             assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
         }

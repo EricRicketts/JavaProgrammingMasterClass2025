@@ -100,7 +100,7 @@ public class RectangleTest {
             assertTrue(
                     BigDecimal.valueOf(13.45)
                             .equals(singleArgumentRectangle.getWidth()) &&
-                            singleArgumentRectangle.getWidth()
+                            BigDecimal.valueOf(13.45)
                             .equals(singleArgumentRectangle.getHeight())
             );
         }
@@ -172,8 +172,8 @@ public class RectangleTest {
             assertEquals(
                     "Null value is not allowed for height",
                     assertThrows(
-                    NullPointerException.class,
-                    () -> rectangle.setHeight(null)
+                            NullPointerException.class,
+                            () -> rectangle.setHeight(null)
                 ).getMessage()
             );
         }
