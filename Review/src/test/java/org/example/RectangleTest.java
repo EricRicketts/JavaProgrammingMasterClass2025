@@ -11,13 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangleTest {
 
-    private Rectangle rectangle, singleArgumentRectangle, zeroArgumentRectangle;
+    private Rectangle rectangle, singleArgumentRectangle;
 
     @BeforeEach
     public void setUp() {
         rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
         singleArgumentRectangle = new Rectangle(BigDecimal.valueOf(13.45));
-        zeroArgumentRectangle = new Rectangle();
     }
 
     @Nested
@@ -97,27 +96,8 @@ public class RectangleTest {
 
         @Test
         public void testSingleArgumentRectangleHasSameWidthAndHeight() {
-            assertTrue(
-                    BigDecimal.valueOf(13.45)
-                            .equals(singleArgumentRectangle.getWidth()) &&
-                            BigDecimal.valueOf(13.45)
-                            .equals(singleArgumentRectangle.getHeight())
-            );
-        }
-    }
-
-    @Nested
-    @DisplayName("Rectangle zero argument object tests")
-    class ZeroArgumentConstructorTests {
-
-        @Test
-        public void testGetWidthZeroArgumentRectangle() {
-            assertEquals(BigDecimal.valueOf(20.00), zeroArgumentRectangle.getWidth());
-        }
-
-        @Test
-        public void testGetHeightZeroArgumentRectangle() {
-            assertEquals(BigDecimal.valueOf(10.00), zeroArgumentRectangle.getHeight());
+            assertEquals(BigDecimal.valueOf(13.45), singleArgumentRectangle.getWidth());
+            assertEquals(BigDecimal.valueOf(13.45), singleArgumentRectangle.getHeight());
         }
     }
 
@@ -137,68 +117,7 @@ public class RectangleTest {
 
         @Test
         public void testGetRectangleArea() {
-            assertEquals(BigDecimal.valueOf(497.39), rectangle.getArea());
-        }
-    }
-
-    @Nested
-    @DisplayName("Rectangle setter tests")
-    class RectangleSetterTests {
-
-        @Test
-        public void testSetRectangleWidthNullValue() {
-            assertEquals(
-                    "Null value is not allowed for width",
-                    assertThrows(
-                            NullPointerException.class,
-                            () -> rectangle.setWidth(null)
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSetRectangleWidthNegativeValue() {
-            assertEquals(
-                    "Negative value is not allowed for width",
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> rectangle.setWidth(BigDecimal.valueOf(-10))
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSetRectangleHeightNullValue() {
-            assertEquals(
-                    "Null value is not allowed for height",
-                    assertThrows(
-                            NullPointerException.class,
-                            () -> rectangle.setHeight(null)
-                ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSetRectangleHeightNegativeValue() {
-            assertEquals(
-                    "Negative value is not allowed for height",
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> rectangle.setHeight(BigDecimal.valueOf(-10))
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSetRectangleWidth() {
-            rectangle.setWidth(BigDecimal.valueOf(54.76));
-            assertEquals(BigDecimal.valueOf(54.76), rectangle.getWidth());
-        }
-
-        @Test
-        public void testSetRectangleHeight() {
-            rectangle.setHeight(BigDecimal.valueOf(78.43));
-            assertEquals(BigDecimal.valueOf(78.43), rectangle.getHeight());
+            assertEquals(BigDecimal.valueOf(497.39), rectangle.area());
         }
     }
 
@@ -208,7 +127,6 @@ public class RectangleTest {
 
         @Test
         public void testRectangleToString() {
-            // 31.52; 15.78
             String expected = "Rectangle[width = 31.52, height = 15.78]";
             String actual = rectangle.toString();
             assertEquals(expected, actual);

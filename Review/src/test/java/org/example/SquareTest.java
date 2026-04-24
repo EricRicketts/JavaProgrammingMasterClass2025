@@ -56,41 +56,8 @@ public class SquareTest {
         }
 
         @Test
-        public void testSquareGetArea() {
-            assertEquals(BigDecimal.valueOf(3_246.72), square.getArea());
-        }
-    }
-
-    @Nested
-    @DisplayName("Square setter tests")
-    class SquareSetterTests {
-
-        @Test
-        public void testSquareSetSideNullValue() {
-            assertEquals(
-                    "Null value is not allowed for a side",
-                    assertThrows(
-                            NullPointerException.class,
-                            () -> square.setSide(null)
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSquareSetSideNegativeValue() {
-            assertEquals(
-                    "Negative value is not allowed for a side",
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> square.setSide(BigDecimal.valueOf(-5))
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSquareSetSide() {
-            square.setSide(BigDecimal.valueOf(89.12));
-            assertEquals(BigDecimal.valueOf(89.12), square.getSide());
+        public void testSquareArea() {
+            assertEquals(BigDecimal.valueOf(3_246.72), square.area());
         }
     }
 
