@@ -7,19 +7,9 @@ public class Rectangle {
     private final BigDecimal height;
 
     public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
-        this.width = ValueValidator.validateNumberAndReturn(
-                width,
-                scaleFactor,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
-        );
-
-        this.height = ValueValidator.validateNumberAndReturn(
-                height,
-                scaleFactor,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
-        );
+        scaleFactor = validateScaleFactor(scaleFactor);
+        this.width = validateWidth(width, scaleFactor);
+        this.height = validateHeight(height, scaleFactor);
     }
 
     public Rectangle(BigDecimal side, int scaleFactor) {
@@ -34,10 +24,43 @@ public class Rectangle {
         return height;
     }
 
-    public BigDecimal area() {
+    public BigDecimal area(int scaleFactor) {
+
         return NumberUtils.setScale(
-                getHeight().multiply(getWidth()), 2);
+                (getWidth().multiply(getHeight())), scaleFactor);
     }
+
+    private BigDecimal validateWidth(BigDecimal width, int scaleFactor) {
+        ValueValidator.checkForNull(
+                width,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+        );
+        ValueValidator.checkForNegativeValue(
+                width,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+        );
+        return NumberUtils.setScale(width, scaleFactor);
+    }
+
+    private BigDecimal validateHeight(BigDecimal height, int scaleFactor) {
+        ValueValidator.checkForNull(
+                height,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+        );
+        ValueValidator.checkForNegativeValue(
+                height,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+        );
+        return NumberUtils.setScale(height, scaleFactor);
+    }
+
+    private int validateScaleFactor(int scaleFactor) {
+        return ValueValidator.checkForNegativeOrZeroValue(
+                scaleFactor,
+                ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+        );
+    }
+
 
     @Override
     public String toString() {

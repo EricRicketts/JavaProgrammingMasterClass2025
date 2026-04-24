@@ -7,7 +7,8 @@ public enum ErrorMessages {
     NULL_VALUE_MESSAGE_FOR_WIDTH("Null value is not allowed for width"),
     NEGATIVE_VALUE_MESSAGE_FOR_WIDTH("Negative value is not allowed for width"),
     NULL_VALUE_MESSAGE_FOR_SIDE("Null value is not allowed for a side"),
-    NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for a side");
+    NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for a side"),
+    NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR("Negative or zero value is not allowed for a scale factor");
 
     private final String message;
 

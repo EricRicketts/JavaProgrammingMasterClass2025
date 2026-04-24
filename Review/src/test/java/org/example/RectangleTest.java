@@ -132,7 +132,7 @@ public class RectangleTest {
 
         @Test
         public void testGetRectangleArea() {
-            assertEquals(BigDecimal.valueOf(497.39), rectangle.area());
+            assertEquals(BigDecimal.valueOf(497.39), rectangle.area(SCALE_FACTOR));
         }
     }
 

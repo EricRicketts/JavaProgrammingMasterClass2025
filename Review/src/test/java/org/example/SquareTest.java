@@ -58,7 +58,7 @@ public class SquareTest {
 
         @Test
         public void testSquareArea() {
-            assertEquals(BigDecimal.valueOf(3_246.72), square.area());
+            assertEquals(BigDecimal.valueOf(3_246.72), square.area(SCALE_FACTOR));
         }
     }
 
