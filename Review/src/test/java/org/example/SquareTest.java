@@ -48,6 +48,34 @@ public class SquareTest {
     }
 
     @Nested
+    @DisplayName("Scale Factor must be positive")
+    class ScaleFactorTests {
+
+        @Test
+        public void testNegativeScaleFactor() {
+            assertEquals(
+                    "Negative or zero value is not allowed for a scale factor",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Square(BigDecimal.valueOf(10.45), -3)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testZeroScaleFactor() {
+            assertEquals(
+                    "Negative or zero value is not allowed for a scale factor",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Square(BigDecimal.valueOf(43.56), 0)
+                    ).getMessage()
+            );
+        }
+    }
+
+
+    @Nested
     @DisplayName("Square getter tests")
     class SquareGetterTests {
 
