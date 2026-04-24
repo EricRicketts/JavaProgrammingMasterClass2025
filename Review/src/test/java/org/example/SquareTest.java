@@ -45,6 +45,13 @@ public class SquareTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testSquareConstructorRoundsThreeDecimalWidth() {
+            Square square =
+                    new Square(BigDecimal.valueOf(59.458), SCALE_FACTOR);
+            assertEquals(BigDecimal.valueOf(59.46), square.getSide());
+        }
     }
 
     @Nested

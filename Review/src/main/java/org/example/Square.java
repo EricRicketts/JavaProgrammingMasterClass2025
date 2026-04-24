@@ -8,7 +8,7 @@ public class Square {
 
     public Square(BigDecimal side, int scaleFactor) {
         scaleFactor = validateScaleFactor(scaleFactor);
-        this.side = validateSide(side);
+        this.side = validateSide(side, scaleFactor);
     }
 
     public BigDecimal getSide() {
@@ -25,13 +25,13 @@ public class Square {
         return "Square[side = " + side + "]";
     }
 
-    private BigDecimal validateSide(BigDecimal side) {
+    private BigDecimal validateSide(BigDecimal side, int scaleFactor) {
         ValueValidator.validateNumberAndReturn(
                 side,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
-        return side;
+        return NumberUtils.setScale(side, scaleFactor);
     }
 
     private int validateScaleFactor(int scaleFactor) {
