@@ -6,22 +6,24 @@ public class Rectangle {
     private final BigDecimal width;
     private final BigDecimal height;
 
-    public Rectangle(BigDecimal width, BigDecimal height) {
+    public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
         this.width = ValueValidator.validateNumberAndReturn(
                 width,
+                scaleFactor,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
 
         this.height = ValueValidator.validateNumberAndReturn(
                 height,
+                scaleFactor,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
         );
     }
 
-    public Rectangle(BigDecimal side) {
-        this(side, side);
+    public Rectangle(BigDecimal side, int scaleFactor) {
+        this(side, side, scaleFactor);
     }
 
     public BigDecimal getWidth() {

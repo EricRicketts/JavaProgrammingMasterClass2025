@@ -12,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RectangleTest {
 
     private Rectangle rectangle, singleArgumentRectangle;
+    private static final int SCALE_FACTOR = 2;
 
     @BeforeEach
     public void setUp() {
-        rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78));
-        singleArgumentRectangle = new Rectangle(BigDecimal.valueOf(13.45));
+        rectangle = new Rectangle(BigDecimal.valueOf(31.52), BigDecimal.valueOf(15.78), SCALE_FACTOR);
+        singleArgumentRectangle = new Rectangle(BigDecimal.valueOf(13.45), SCALE_FACTOR);
     }
 
     @Nested
@@ -29,7 +30,7 @@ public class RectangleTest {
                     "Null value is not allowed for width",
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Rectangle(null, BigDecimal.valueOf(10.45))
+                            () -> new Rectangle(null, BigDecimal.valueOf(10.45), SCALE_FACTOR)
                     ).getMessage()
             );
         }
@@ -40,7 +41,7 @@ public class RectangleTest {
                     "Negative value is not allowed for width",
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45))
+                            () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45), SCALE_FACTOR)
                     ).getMessage()
             );
         }
@@ -51,7 +52,7 @@ public class RectangleTest {
                     "Null value is not allowed for height",
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Rectangle(BigDecimal.valueOf(10.45), null)
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), null, SCALE_FACTOR)
                     ).getMessage()
             );
         }
@@ -62,9 +63,16 @@ public class RectangleTest {
                     "Negative value is not allowed for height",
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01), SCALE_FACTOR)
                     ).getMessage()
             );
+        }
+
+        @Test
+        public void testRectangleConstructorRoundsThreeDecimalWidth() {
+            Rectangle rectangle =
+                    new Rectangle(BigDecimal.valueOf(23.785), BigDecimal.valueOf(12.34), SCALE_FACTOR);
+            assertEquals(BigDecimal.valueOf(23.79), rectangle.getWidth());
         }
     }
 
@@ -78,7 +86,7 @@ public class RectangleTest {
                     "Null value is not allowed for width",
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Rectangle(null)
+                            () -> new Rectangle(null, SCALE_FACTOR)
                     ).getMessage()
             );
         }
@@ -89,7 +97,7 @@ public class RectangleTest {
                     "Negative value is not allowed for width",
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Rectangle(BigDecimal.valueOf(-9.56))
+                            () -> new Rectangle(BigDecimal.valueOf(-9.56), SCALE_FACTOR)
                     ).getMessage()
             );
         }

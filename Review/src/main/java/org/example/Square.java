@@ -6,9 +6,10 @@ public class Square {
 
     private final BigDecimal side;
 
-    public Square(BigDecimal side) {
+    public Square(BigDecimal side, int scaleFactor) {
         this.side = ValueValidator.validateNumberAndReturn(
                 side,
+                scaleFactor,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );

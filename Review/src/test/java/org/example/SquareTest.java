@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SquareTest {
 
     private Square square;
+    private static final int SCALE_FACTOR = 2;
 
     @BeforeEach
     public void setUp() {
-        square = new Square(BigDecimal.valueOf(56.98));
+        square = new Square(BigDecimal.valueOf(56.98), SCALE_FACTOR);
     }
 
     @Nested
@@ -29,7 +30,7 @@ public class SquareTest {
                     "Null value is not allowed for a side",
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Square(null)
+                            () -> new Square(null, SCALE_FACTOR)
                     ).getMessage()
             );
         }
@@ -40,7 +41,7 @@ public class SquareTest {
                     "Negative value is not allowed for a side",
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Square(BigDecimal.valueOf(-4))
+                            () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
                     ).getMessage()
             );
         }

@@ -31,12 +31,13 @@ public class ValueValidator {
     }
 
     public static BigDecimal validateNumberAndReturn(
-            BigDecimal amount,
+            BigDecimal number,
+            int scaleFactor,
             String nullMessage,
             String negativeMessage
     ) {
-        ValueValidator.checkForNull(amount, nullMessage);
-        ValueValidator.checkForNegativeValue(amount, negativeMessage);
-        return amount;
+        ValueValidator.checkForNull(number, nullMessage);
+        ValueValidator.checkForNegativeValue(number, negativeMessage);
+        return NumberUtils.setScale(number, scaleFactor);
     }
 }
