@@ -47,7 +47,7 @@ public class SquareTest {
         }
 
         @Test
-        public void testSquareConstructorRoundsThreeDecimalWidth() {
+        public void testSquareConstructorRoundsThreeDecimalSide() {
             Square square =
                     new Square(BigDecimal.valueOf(59.458), SCALE_FACTOR);
             assertEquals(BigDecimal.valueOf(59.46), square.getSide());
@@ -93,7 +93,7 @@ public class SquareTest {
 
         @Test
         public void testSquareArea() {
-            assertEquals(BigDecimal.valueOf(3_246.72), square.area(SCALE_FACTOR));
+            assertEquals(BigDecimal.valueOf(3_246.72), square.area());
         }
     }
 

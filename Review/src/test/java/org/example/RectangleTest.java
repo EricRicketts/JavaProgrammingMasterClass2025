@@ -90,7 +90,7 @@ public class RectangleTest {
         @Test
         public void testNegativeScaleFactor() {
             assertEquals(
-       "Negative or zero value is not allowed for a scale factor",
+                    "Negative or zero value is not allowed for a scale factor",
                 assertThrows(
                         IllegalArgumentException.class,
                         () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(43.56), -3)
@@ -159,7 +159,7 @@ public class RectangleTest {
 
         @Test
         public void testGetRectangleArea() {
-            assertEquals(BigDecimal.valueOf(497.39), rectangle.area(SCALE_FACTOR));
+            assertEquals(BigDecimal.valueOf(497.39), rectangle.area());
         }
     }
 

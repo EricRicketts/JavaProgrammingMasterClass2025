@@ -5,11 +5,12 @@ import java.math.BigDecimal;
 public class Rectangle {
     private final BigDecimal width;
     private final BigDecimal height;
+    private final int scaleFactor;
 
     public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
-        scaleFactor = validateScaleFactor(scaleFactor);
-        this.width = validateWidth(width, scaleFactor);
-        this.height = validateHeight(height, scaleFactor);
+        this.scaleFactor = validateScaleFactor(scaleFactor);
+        this.width = validateAndScaleWidth(width, this.scaleFactor);
+        this.height = validateAndScaleHeight(height, this.scaleFactor);
     }
 
     public Rectangle(BigDecimal side, int scaleFactor) {
@@ -24,13 +25,13 @@ public class Rectangle {
         return height;
     }
 
-    public BigDecimal area(int scaleFactor) {
+    public BigDecimal area() {
 
         return NumberUtils.setScale(
                 (getWidth().multiply(getHeight())), scaleFactor);
     }
 
-    private BigDecimal validateWidth(BigDecimal width, int scaleFactor) {
+    private BigDecimal validateAndScaleWidth(BigDecimal width, int scaleFactor) {
         ValueValidator.checkForNull(
                 width,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
@@ -42,7 +43,7 @@ public class Rectangle {
         return NumberUtils.setScale(width, scaleFactor);
     }
 
-    private BigDecimal validateHeight(BigDecimal height, int scaleFactor) {
+    private BigDecimal validateAndScaleHeight(BigDecimal height, int scaleFactor) {
         ValueValidator.checkForNull(
                 height,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()

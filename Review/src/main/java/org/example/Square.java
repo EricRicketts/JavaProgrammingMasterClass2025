@@ -5,17 +5,18 @@ import java.math.BigDecimal;
 public class Square {
 
     private final BigDecimal side;
+    private final int scaleFactor;
 
     public Square(BigDecimal side, int scaleFactor) {
-        scaleFactor = validateScaleFactor(scaleFactor);
-        this.side = validateSide(side, scaleFactor);
+        this.scaleFactor = validateScaleFactor(scaleFactor);
+        this.side = validateAndScaleSide(side, this.scaleFactor);
     }
 
     public BigDecimal getSide() {
         return side;
     }
 
-    public BigDecimal area(int scaleFactor) {
+    public BigDecimal area() {
         return NumberUtils.setScale(
                 getSide().multiply(getSide()), scaleFactor);
     }
@@ -25,7 +26,7 @@ public class Square {
         return "Square[side = " + side + "]";
     }
 
-    private BigDecimal validateSide(BigDecimal side, int scaleFactor) {
+    private BigDecimal validateAndScaleSide(BigDecimal side, int scaleFactor) {
         ValueValidator.validateNumberAndReturn(
                 side,
                 ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
