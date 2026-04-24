@@ -84,6 +84,33 @@ public class RectangleTest {
     }
 
     @Nested
+    @DisplayName("Scale Factor must be positive")
+    class ScaleFactorTests {
+
+        @Test
+        public void testNegativeScaleFactor() {
+            assertEquals(
+       "Negative or zero value is not allowed for a scale factor",
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(43.56), -3)
+                ).getMessage()
+            );
+        }
+
+        @Test
+        public void testZeroScaleFactor() {
+            assertEquals(
+                    "Negative or zero value is not allowed for a scale factor",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(43.56), 0)
+                    ).getMessage()
+            );
+        }
+    }
+
+    @Nested
     @DisplayName("Rectangle single argument constructor tests")
     class SingleArgumentConstructorTests {
 

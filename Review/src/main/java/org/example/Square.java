@@ -7,6 +7,7 @@ public class Square {
     private final BigDecimal side;
 
     public Square(BigDecimal side, int scaleFactor) {
+        scaleFactor = validateScaleFactor(scaleFactor);
         this.side = validateSide(side);
     }
 
@@ -31,5 +32,12 @@ public class Square {
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
         return side;
+    }
+
+    private int validateScaleFactor(int scaleFactor) {
+        return ValueValidator.checkForNegativeOrZeroValue(
+                scaleFactor,
+                ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+        );
     }
 }
