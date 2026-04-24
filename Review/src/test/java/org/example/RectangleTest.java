@@ -74,6 +74,13 @@ public class RectangleTest {
                     new Rectangle(BigDecimal.valueOf(23.785), BigDecimal.valueOf(12.34), SCALE_FACTOR);
             assertEquals(BigDecimal.valueOf(23.79), rectangle.getWidth());
         }
+
+        @Test
+        public void testRectangleConstructorRoundsThreeDecimalHeight() {
+            Rectangle rectangle =
+                    new Rectangle(BigDecimal.valueOf(23.78), BigDecimal.valueOf(12.344), SCALE_FACTOR);
+            assertEquals(BigDecimal.valueOf(12.34), rectangle.getHeight());
+        }
     }
 
     @Nested
