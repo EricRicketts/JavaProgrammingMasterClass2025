@@ -93,5 +93,16 @@ public class PersonTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testZeroValueForAgeInConstructor() {
+            assertEquals(
+                    "Negative or zero value is not allowed for age",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Person("Elmer Fudd", 0)
+                    ).getMessage()
+            );
+        }
     }
 }
