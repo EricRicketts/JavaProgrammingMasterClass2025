@@ -1,0 +1,37 @@
+package org.example;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class PersonTest {
+
+    private Person firstPerson;
+    private Person secondPerson;
+
+    @BeforeEach
+    public void setUp() {
+        firstPerson = new Person("Elmer Fudd", 43, "Hollywood");
+        secondPerson = new Person("John Doe", 50);
+    }
+
+    @Nested
+    @DisplayName("Test three argument constructor checks")
+    class ThreeArgumentConstructorChecks {
+
+        @Test
+        public void testNullValueForNameInConstructor() {
+            assertEquals(
+                    "Null value is not allowed for name",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Person(null, 43, "Hollywood")
+                    ).getMessage()
+            );
+        }
+    }
+}
