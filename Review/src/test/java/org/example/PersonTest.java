@@ -105,4 +105,24 @@ public class PersonTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("Getter tests for three argument constructor")
+    class GetterChecksForThreeArgumentConstructor {
+
+        @Test
+        public void testGetPersonName() {
+            assertEquals("Elmer Fudd", firstPerson.getName());
+        }
+
+        @Test
+        public void testGetPersonAge() {
+            assertEquals(43, firstPerson.getAge());
+        }
+
+        @Test
+        public void testGetPersonCity() {
+            assertEquals("Hollywood", firstPerson.getCity());
+        }
+    }
 }
