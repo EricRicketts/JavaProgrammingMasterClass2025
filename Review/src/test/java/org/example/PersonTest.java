@@ -33,5 +33,16 @@ public class PersonTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testNullValueForCityInConstructor() {
+            assertEquals(
+                    "Null value is not allowed for city",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Person("Elmer Fudd", 43, null)
+                    ).getMessage()
+            );
+        }
     }
 }

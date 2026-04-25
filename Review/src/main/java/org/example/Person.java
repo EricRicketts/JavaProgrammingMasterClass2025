@@ -39,6 +39,6 @@ public class Person {
     }
 
     private String validateCityAndReturn(String city) {
-        return ValueValidator.checkForNull(name, "Null value is not allowed for city");
+        return ValueValidator.checkForNull(city, "Null value is not allowed for city");
     }
 }
