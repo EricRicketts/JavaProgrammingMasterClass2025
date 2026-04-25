@@ -67,4 +67,31 @@ public class PersonTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("Test two argument constructor checks")
+    class TwoArgumentConstructorChecks {
+
+        @Test
+        public void testNullValueForNameInConstructor() {
+            assertEquals(
+                    "Null value is not allowed for name",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Person(null, 12)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testNegativeValueForAgeInConstructor() {
+            assertEquals(
+                    "Negative or zero value is not allowed for age",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Person("Elmer Fudd", -4)
+                    ).getMessage()
+            );
+        }
+    }
 }
