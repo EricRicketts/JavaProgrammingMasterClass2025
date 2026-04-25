@@ -1,11 +1,11 @@
 ## AI Assistant
-## Review of , , and their tests `Rectangle``Square`
+## Review of Rectangle Square Classes and Their Tests
 Great progress — the refactor turned out **clean, consistent, and well-tested**. The separation between generic validation in , field-specific wiring in / , and messages in is now exactly where it should be. `ValueValidator``Rectangle``Square``ErrorMessages`
 Below is a focused review with grades, strengths, and a few polish suggestions.
 ## ✅ Strengths
 ### 1. Validation is well separated
 - stays generic — just takes a value and a message. `ValueValidator`
-- / supply the right message. `Rectangle``Square`
+- supply the right message. `Rectangle``Square`
 - stays the single source of truth for text. `ErrorMessages`
 
 That’s a clean three-layer split.
@@ -36,12 +36,14 @@ You cover:
 That’s a solid set for both classes.
 ## 🔍 A few polish suggestions
 ### 1. Parameter reassignment in constructors
-In both constructors you do:``` java
-scaleFactor = validateScaleFactor(scaleFactor);
+In both constructors you do:
+```java
+    scaleFactor = validateScaleFactor(scaleFactor);
 ```
 
 That reassigns a method parameter, which works but is generally discouraged because it can confuse readers (and some linters flag it).
-A cleaner pattern is to use a local variable:``` java
+A cleaner pattern is to use a local variable:
+```java
     public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
         int validatedScaleFactor = validateScaleFactor(scaleFactor);
         this.width = validateWidth(width, validatedScaleFactor);
@@ -49,7 +51,8 @@ A cleaner pattern is to use a local variable:``` java
     }
 ```
 
-Same idea applies to Square:``` java
+Same idea applies to Square:
+``` java
     public Square(BigDecimal side, int scaleFactor) {
         int validatedScaleFactor = validateScaleFactor(scaleFactor);
         this.side = validateSide(side, validatedScaleFactor);
@@ -58,17 +61,17 @@ Same idea applies to Square:``` java
 
 This avoids mutating the incoming parameter, which IntelliJ’s inspections generally prefer.
  
-2. validateSide naming vs. behavior
-validateSide currently does two things:
-validates the value
-scales it
+2. ### ```validateSide``` naming vs. behavior
+```validateSide``` currently does two things:
+1.  validates the value
+2.  scales it
 Its name suggests only validation. Two options:
-Keep the name but accept it — fine for small helpers.
-Rename for honesty — e.g. validateAndScaleSide, following the AndReturn style you already use in Book / BookRecord.
+* **Keep the name but accept it** — fine for small helpers.
+* **Rename for honesty** — e.g. validateAndScaleSide, following the AndReturn style you already use in Book / BookRecord.
 Same reasoning for validateWidth and validateHeight in Rectangle.
 This would make the naming style consistent with your other classes:
-validatePagesAndReturn
-validateTitleAndReturn
+```validatePagesAndReturn```
+```validateTitleAndReturn```
 validateSideAndScale (or similar)
 Only a style suggestion, not a correctness issue.
  
