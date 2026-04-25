@@ -145,4 +145,25 @@ public class PersonTest {
             assertEquals("Unknown", secondPerson.getCity());
         }
     }
+
+    @Nested
+    @DisplayName("Test Person toString method")
+    class PersonToStringTest {
+
+        @Test
+        public void testToStringForFirstPerson() {
+            String expected = "Person[name = Elmer Fudd, age = 43, city = Hollywood]";
+            String actual = firstPerson.toString();
+
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void testToStringForSecondPerson() {
+            String expected = "Person[name = John Doe, age = 50, city = Unknown]";
+            String actual = secondPerson.toString();
+
+            assertEquals(expected, actual);
+        }
+    }
 }

@@ -27,6 +27,11 @@ public class Person {
         return city;
     }
 
+    @Override
+    public String toString() {
+        return "Person[name = " + name + ", age = " + age + ", city = " + city + "]";
+    }
+
     private int validateAgeAndReturn(int age) {
         return ValueValidator.checkForNegativeOrZeroValue(
                 age,
