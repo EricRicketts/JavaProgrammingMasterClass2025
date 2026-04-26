@@ -127,6 +127,26 @@ public class PersonTest {
     }
 
     @Nested
+    @DisplayName("Getter tests for two argument constructor")
+    class GetterChecksForTwoArgumentConstructor {
+
+        @Test
+        public void testGetPersonName() {
+            assertEquals("John Doe", secondPerson.getName());
+        }
+
+        @Test
+        public void testGetPersonAge() {
+            assertEquals(50, secondPerson.getAge());
+        }
+
+        @Test
+        public void testGetPersonCity() {
+            assertEquals("Unknown", secondPerson.getCity());
+        }
+    }
+
+    @Nested
     @DisplayName("Setter tests for age")
     class SetterChecksForAge {
 
@@ -178,26 +198,6 @@ public class PersonTest {
         public void testSetCityForPerson() {
             secondPerson.setCity("Oklahoma City, OK");
             assertEquals("Oklahoma City, OK", secondPerson.getCity());
-        }
-    }
-
-    @Nested
-    @DisplayName("Getter tests for two argument constructor")
-    class GetterChecksForTwoArgumentConstructor {
-
-        @Test
-        public void testGetPersonName() {
-            assertEquals("John Doe", secondPerson.getName());
-        }
-
-        @Test
-        public void testGetPersonAge() {
-            assertEquals(50, secondPerson.getAge());
-        }
-
-        @Test
-        public void testGetPersonCity() {
-            assertEquals("Unknown", secondPerson.getCity());
         }
     }
 
