@@ -127,6 +127,33 @@ public class PersonTest {
     }
 
     @Nested
+    @DisplayName("Setter tests for age")
+    class SetterChecksForAge {
+
+        @Test
+        public void testSetNegativeAgeForPerson() {
+            assertEquals(
+                    "Negative or zero value is not allowed for age",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> firstPerson.setAge(-12)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSetZeroAgeForPerson() {
+            assertEquals(
+                    "Negative or zero value is not allowed for age",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> secondPerson.setAge(0)
+                    ).getMessage()
+            );
+        }
+    }
+
+    @Nested
     @DisplayName("Getter tests for two argument constructor")
     class GetterChecksForTwoArgumentConstructor {
 

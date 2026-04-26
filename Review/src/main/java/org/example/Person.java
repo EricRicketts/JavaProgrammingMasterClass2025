@@ -3,8 +3,8 @@ package org.example;
 public class Person {
 
     private final String name;
-    private final int age;
-    private final String city;
+    private int age;
+    private String city;
 
     public Person(String name, int age) {
         this(name, age, "Unknown");
@@ -23,8 +23,16 @@ public class Person {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = validateAgeAndReturn(age);
+    }
+
     public String getCity() {
         return city;
+    }
+
+    public void setCity(String city) {
+        this.city = validateCityAndReturn(city);
     }
 
     @Override
