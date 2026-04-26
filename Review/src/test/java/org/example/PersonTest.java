@@ -169,9 +169,15 @@ public class PersonTest {
                     "Null value is not allowed for city",
                     assertThrows(
                             NullPointerException.class,
-                            () -> firstPerson.setCity(null)
+                            () -> secondPerson.setCity(null)
                     ).getMessage()
             );
+        }
+
+        @Test
+        public void testSetCityForPerson() {
+            secondPerson.setCity("Oklahoma City, OK");
+            assertEquals("Oklahoma City, OK", secondPerson.getCity());
         }
     }
 
