@@ -147,9 +147,15 @@ public class PersonTest {
                     "Negative or zero value is not allowed for age",
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> secondPerson.setAge(0)
+                            () -> firstPerson.setAge(0)
                     ).getMessage()
             );
+        }
+
+        @Test
+        public void setAgeForPerson() {
+            firstPerson.setAge(18);
+            assertEquals(18, firstPerson.getAge());
         }
     }
 
