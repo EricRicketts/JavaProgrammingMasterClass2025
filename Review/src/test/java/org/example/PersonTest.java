@@ -154,6 +154,22 @@ public class PersonTest {
     }
 
     @Nested
+    @DisplayName("Setter tests for city")
+    class SetterChecksForCity {
+
+        @Test
+        public void testSetNullValueForCity() {
+            assertEquals(
+                    "Null value is not allowed for city",
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> firstPerson.setCity(null)
+                    ).getMessage()
+            );
+        }
+    }
+
+    @Nested
     @DisplayName("Getter tests for two argument constructor")
     class GetterChecksForTwoArgumentConstructor {
 
