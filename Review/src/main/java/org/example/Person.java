@@ -9,6 +9,7 @@ public class Person {
     public Person(String name, int age) {
         this(name, age, "Unknown");
     }
+
     public Person(String name, int age, String city) {
         this.name = validateNameAndReturn(name);
         this.age = validateAgeAndReturn(age);
