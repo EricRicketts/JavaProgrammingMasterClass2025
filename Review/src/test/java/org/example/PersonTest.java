@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -91,6 +90,7 @@ public class PersonTest {
                     ).getMessage()
             );
         }
+
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
@@ -135,7 +135,7 @@ public class PersonTest {
                     ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Person("", 43, "Hollywood")
+                            () -> new Person("", 43)
                     ).getMessage()
             );
         }
@@ -146,7 +146,7 @@ public class PersonTest {
                     ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Person(" ", 43, "Hollywood")
+                            () -> new Person(" ", 43)
                     ).getMessage()
             );
         }
@@ -299,9 +299,8 @@ public class PersonTest {
         public void testFirstPersonToString() {
             List<String> stringList = Arrays.asList(firstPerson.toString().split("[,=\\]\\[]+"));
             String[] expectedTraits = {"Elmer Fudd", "43", "Hollywood"};
-            for (int index = 0; index < stringList.size(); index++) {
-                stringList.set(index, stringList.get(index).trim());
-            }
+
+            stringList.replaceAll(String::trim);
             for (String trait : expectedTraits) {
                 assertTrue(stringList.contains(trait));
             }
@@ -311,9 +310,8 @@ public class PersonTest {
         public void testSecondPersonToString() {
             List<String> stringList = Arrays.asList(secondPerson.toString().split("[,=\\]\\[]+"));
             String[] expectedTraits = {"John Doe", "50", "Unknown"};
-            for (int index = 0; index < stringList.size(); index++) {
-                stringList.set(index, stringList.get(index).trim());
-            }
+            
+            stringList.replaceAll(String::trim);
             for (String trait : expectedTraits) {
                 assertTrue(stringList.contains(trait));
             }
