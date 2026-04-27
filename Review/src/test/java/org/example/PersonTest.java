@@ -24,7 +24,7 @@ public class PersonTest {
     class ThreeArgumentConstructorChecks {
 
         @Test
-        public void testNullValueForNameInConstructor() {
+        public void testConstructorRejectsNullName() {
             assertEquals(
                     "Null value is not allowed for name",
                     assertThrows(
@@ -35,7 +35,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testEmptyValueForNameInConstructor() {
+        public void testConstructorRejectsEmptyName() {
             assertEquals(
                     "Blank or empty value is not allowed for name",
                     assertThrows(
@@ -46,7 +46,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testBlankValueForNameInConstructor() {
+        public void testConstructorRejectsBlankName() {
             assertEquals(
                     "Blank or empty value is not allowed for name",
                     assertThrows(
@@ -57,7 +57,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testNullValueForCityInConstructor() {
+        public void testConstructorRejectsNullCity() {
             assertEquals(
                     "Null value is not allowed for city",
                     assertThrows(
@@ -68,7 +68,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testEmptyValueForCityInConstructor() {
+        public void testConstructorRejectsEmptyCity() {
             assertEquals(
                     "Blank or empty value is not allowed for city",
                     assertThrows(
@@ -79,7 +79,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testBlankValueForCityInConstructor() {
+        public void testConstructorRejectsBlankCity() {
             assertEquals(
                     "Blank or empty value is not allowed for city",
                     assertThrows(
@@ -89,7 +89,7 @@ public class PersonTest {
             );
         }
         @Test
-        public void testNegativeValueForAgeInConstructor() {
+        public void testConstructorRejectsNegativeAge() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
                     assertThrows(
@@ -100,7 +100,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testZeroValueForAgeInConstructor() {
+        public void testConstructorRejectsZeroAge() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
                     assertThrows(
@@ -116,7 +116,7 @@ public class PersonTest {
     class TwoArgumentConstructorChecks {
 
         @Test
-        public void testNullValueForNameInConstructor() {
+        public void testConstructorRejectsNullName() {
             assertEquals(
                     "Null value is not allowed for name",
                     assertThrows(
@@ -127,7 +127,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testEmptyValueForNameInConstructor() {
+        public void testConstructorRejectsEmptyName() {
             assertEquals(
                     "Blank or empty value is not allowed for name",
                     assertThrows(
@@ -138,7 +138,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testBlankValueForNameInConstructor() {
+        public void testConstructorRejectsBlankName() {
             assertEquals(
                     "Blank or empty value is not allowed for name",
                     assertThrows(
@@ -149,7 +149,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testNegativeValueForAgeInConstructor() {
+        public void testConstructorRejectsNegativeAge() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
                     assertThrows(
@@ -160,7 +160,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testZeroValueForAgeInConstructor() {
+        public void testConstructorRejectsZeroAge() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
                     assertThrows(
@@ -216,7 +216,7 @@ public class PersonTest {
     class SetterChecksForAge {
 
         @Test
-        public void testSetNegativeAgeForPerson() {
+        public void testSetterRejectsNegativeAge() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
                     assertThrows(
@@ -227,7 +227,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testSetZeroAgeForPerson() {
+        public void testSetterRejectsZeroAge() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
                     assertThrows(
@@ -238,7 +238,7 @@ public class PersonTest {
         }
 
         @Test
-        public void setAgeForPerson() {
+        public void testSetAge() {
             firstPerson.setAge(18);
             assertEquals(18, firstPerson.getAge());
         }
@@ -249,7 +249,7 @@ public class PersonTest {
     class SetterChecksForCity {
 
         @Test
-        public void testSetNullValueForCity() {
+        public void testSetterRejectsNullCity() {
             assertEquals(
                     "Null value is not allowed for city",
                     assertThrows(
@@ -260,7 +260,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testSetEmptyValueForCity() {
+        public void testSetterRejectsEmptyCity() {
             assertEquals(
                     "Blank or empty value is not allowed for city",
                     assertThrows(
@@ -271,7 +271,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testSetBlankValueForCity() {
+        public void testSetterRejectsBlankCity() {
             assertEquals(
                     "Blank or empty value is not allowed for city",
                     assertThrows(
@@ -282,7 +282,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testSetCityForPerson() {
+        public void testSetCity() {
             secondPerson.setCity("Oklahoma City, OK");
             assertEquals("Oklahoma City, OK", secondPerson.getCity());
         }
