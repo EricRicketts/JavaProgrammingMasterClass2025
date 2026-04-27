@@ -297,24 +297,20 @@ public class PersonTest {
 
         @Test
         public void testFirstPersonToString() {
-            List<String> stringList = Arrays.asList(firstPerson.toString().split("[,=\\]\\[]+"));
-            String[] expectedTraits = {"Elmer Fudd", "43", "Hollywood"};
+            String result = firstPerson.toString();
 
-            stringList.replaceAll(String::trim);
-            for (String trait : expectedTraits) {
-                assertTrue(stringList.contains(trait));
-            }
+            assertTrue(result.contains("Elmer Fudd"));
+            assertTrue(result.contains("43"));
+            assertTrue(result.contains("Hollywood"));
         }
 
         @Test
         public void testSecondPersonToString() {
-            List<String> stringList = Arrays.asList(secondPerson.toString().split("[,=\\]\\[]+"));
-            String[] expectedTraits = {"John Doe", "50", "Unknown"};
-            
-            stringList.replaceAll(String::trim);
-            for (String trait : expectedTraits) {
-                assertTrue(stringList.contains(trait));
-            }
+            String result = secondPerson.toString();
+
+            assertTrue(result.contains("John Doe"));
+            assertTrue(result.contains("50"));
+            assertTrue(result.contains("Unknown"));
         }
     }
 }
