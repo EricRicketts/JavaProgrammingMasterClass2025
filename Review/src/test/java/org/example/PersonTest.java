@@ -260,6 +260,28 @@ public class PersonTest {
         }
 
         @Test
+        public void testSetEmptyValueForCity() {
+            assertEquals(
+                    "Blank or empty value is not allowed for city",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> secondPerson.setCity("")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSetBlankValueForCity() {
+            assertEquals(
+                    "Blank or empty value is not allowed for city",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> secondPerson.setCity(" ")
+                    ).getMessage()
+            );
+        }
+
+        @Test
         public void testSetCityForPerson() {
             secondPerson.setCity("Oklahoma City, OK");
             assertEquals("Oklahoma City, OK", secondPerson.getCity());
