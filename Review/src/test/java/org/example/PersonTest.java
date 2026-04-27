@@ -293,7 +293,7 @@ public class PersonTest {
     class PersonToStringTest {
 
         @Test
-        public void testToStringForFirstPerson() {
+        public void testFirstPersonToString() {
             String expected = "Person[name = Elmer Fudd, age = 43, city = Hollywood]";
             String actual = firstPerson.toString();
 
@@ -301,7 +301,7 @@ public class PersonTest {
         }
 
         @Test
-        public void testToStringForSecondPerson() {
+        public void testSecondPersonToString() {
             String expected = "Person[name = John Doe, age = 50, city = Unknown]";
             String actual = secondPerson.toString();
 
