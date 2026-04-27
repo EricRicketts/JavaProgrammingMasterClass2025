@@ -49,10 +49,28 @@ public class Person {
     }
 
     private String validateNameAndReturn(String name) {
-        return ValueValidator.checkForNull(name, "Null value is not allowed for name");
+        if (name == null) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+            );
+        } else if (name.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+            );
+        }
+        return name;
     }
 
     private String validateCityAndReturn(String city) {
-        return ValueValidator.checkForNull(city, "Null value is not allowed for city");
+        if (city == null) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+            );
+        } else if (city.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+            );
+        }
+        return city;
     }
 }

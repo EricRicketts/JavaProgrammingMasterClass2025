@@ -29,6 +29,18 @@ public class ValueValidator {
         return Objects.requireNonNull(value, message);
     }
 
+    public static String checkForNullOrBlankString(
+            String value,
+            String nullMessage,
+            String blankMessage
+    ) {
+        if (value == null) {
+            throw new NullPointerException(nullMessage);
+        } else if (value.isBlank()) {
+            throw new IllegalArgumentException(blankMessage);
+        }
+        return value;
+    }
     public static BigDecimal validateNumberAndReturn(
             BigDecimal number,
             String nullMessage,
