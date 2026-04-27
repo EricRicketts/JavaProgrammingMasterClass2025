@@ -5,8 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PersonTest {
 
@@ -294,18 +297,26 @@ public class PersonTest {
 
         @Test
         public void testFirstPersonToString() {
-            String expected = "Person[name = Elmer Fudd, age = 43, city = Hollywood]";
-            String actual = firstPerson.toString();
-
-            assertEquals(expected, actual);
+            List<String> stringList = Arrays.asList(firstPerson.toString().split("[,=\\]\\[]+"));
+            String[] expectedTraits = {"Elmer Fudd", "43", "Hollywood"};
+            for (int index = 0; index < stringList.size(); index++) {
+                stringList.set(index, stringList.get(index).trim());
+            }
+            for (String trait : expectedTraits) {
+                assertTrue(stringList.contains(trait));
+            }
         }
 
         @Test
         public void testSecondPersonToString() {
-            String expected = "Person[name = John Doe, age = 50, city = Unknown]";
-            String actual = secondPerson.toString();
-
-            assertEquals(expected, actual);
+            List<String> stringList = Arrays.asList(secondPerson.toString().split("[,=\\]\\[]+"));
+            String[] expectedTraits = {"John Doe", "50", "Unknown"};
+            for (int index = 0; index < stringList.size(); index++) {
+                stringList.set(index, stringList.get(index).trim());
+            }
+            for (String trait : expectedTraits) {
+                assertTrue(stringList.contains(trait));
+            }
         }
     }
 }

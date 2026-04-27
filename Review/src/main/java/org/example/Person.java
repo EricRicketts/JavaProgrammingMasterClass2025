@@ -38,7 +38,14 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person[name = " + name + ", age = " + age + ", city = " + city + "]";
+        return
+                "Person[name = " +
+                        name +
+                        ", age = " +
+                        age +
+                        ", city = " +
+                        city +
+                        "]";
     }
 
     private int validateAgeAndReturn(int age) {
