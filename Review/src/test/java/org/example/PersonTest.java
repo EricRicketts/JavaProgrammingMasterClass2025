@@ -29,7 +29,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNullName() {
             assertEquals(
-                    "Null value is not allowed for name",
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Person(null, 43, "Hollywood")
