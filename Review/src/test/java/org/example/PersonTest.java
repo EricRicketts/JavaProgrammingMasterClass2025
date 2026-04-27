@@ -127,6 +127,28 @@ public class PersonTest {
         }
 
         @Test
+        public void testEmptyValueForNameInConstructor() {
+            assertEquals(
+                    "Blank or empty value is not allowed for name",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Person("", 43, "Hollywood")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBlankValueForNameInConstructor() {
+            assertEquals(
+                    "Blank or empty value is not allowed for name",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Person(" ", 43, "Hollywood")
+                    ).getMessage()
+            );
+        }
+
+        @Test
         public void testNegativeValueForAgeInConstructor() {
             assertEquals(
                     "Negative or zero value is not allowed for age",
