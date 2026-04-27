@@ -40,7 +40,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    "Blank or empty value is not allowed for name",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("", 43, "Hollywood")
@@ -51,7 +51,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsBlankName() {
             assertEquals(
-                    "Blank or empty value is not allowed for name",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person(" ", 43, "Hollywood")
@@ -62,7 +62,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNullCity() {
             assertEquals(
-                    "Null value is not allowed for city",
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Person("Elmer Fudd", 43, null)
@@ -73,7 +73,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyCity() {
             assertEquals(
-                    "Blank or empty value is not allowed for city",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 43, "")
@@ -84,7 +84,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsBlankCity() {
             assertEquals(
-                    "Blank or empty value is not allowed for city",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 43, " ")
@@ -94,7 +94,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
-                    "Negative or zero value is not allowed for age",
+                    ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                            IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", -1, "Hollywood")
@@ -105,7 +105,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsZeroAge() {
             assertEquals(
-                    "Negative or zero value is not allowed for age",
+                    ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 0, "Hollywood")
@@ -121,7 +121,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNullName() {
             assertEquals(
-                    "Null value is not allowed for name",
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Person(null, 12)
@@ -132,7 +132,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    "Blank or empty value is not allowed for name",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("", 43, "Hollywood")
@@ -143,7 +143,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsBlankName() {
             assertEquals(
-                    "Blank or empty value is not allowed for name",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person(" ", 43, "Hollywood")
@@ -154,7 +154,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
-                    "Negative or zero value is not allowed for age",
+                    ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", -4)
@@ -165,7 +165,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsZeroAge() {
             assertEquals(
-                    "Negative or zero value is not allowed for age",
+                    ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 0)
@@ -221,7 +221,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsNegativeAge() {
             assertEquals(
-                    "Negative or zero value is not allowed for age",
+                    ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> firstPerson.setAge(-12)
@@ -232,7 +232,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsZeroAge() {
             assertEquals(
-                    "Negative or zero value is not allowed for age",
+                    ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> firstPerson.setAge(0)
@@ -254,7 +254,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsNullCity() {
             assertEquals(
-                    "Null value is not allowed for city",
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
                             () -> secondPerson.setCity(null)
@@ -265,7 +265,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsEmptyCity() {
             assertEquals(
-                    "Blank or empty value is not allowed for city",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> secondPerson.setCity("")
@@ -276,7 +276,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsBlankCity() {
             assertEquals(
-                    "Blank or empty value is not allowed for city",
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> secondPerson.setCity(" ")
