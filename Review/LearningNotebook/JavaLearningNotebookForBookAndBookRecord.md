@@ -16,8 +16,34 @@ Write a short summary of what the lesson was about.
 List the main concepts and define them briefly.
 
 - **Concept 1:**
+    - Ensure all fields in the class are private.
+        - This means if variables are meant to be exposed and/or modified the methods have to be implemented to do so.
+        - The setter should have validation logic, this ensures data integrity.  This is "Enacapsulation with Guardrails", we ensure the data has met certain data integrity standards before public exposure.
+        - If the desire is to make the field read-only then only a getter is needed.
 - **Concept 2:**
+    - Validation logic should be put in the constructor.
+        - This ensures object data integrity, i.e. a valid object, at the time of creation.
+        - Good pattern to always consider:
+            - Constructor calls the setters.
+            - Setters enforce validation.
+        - If the validation logic is in the setters then it is in only one location, so the developer has to go to only one location to update the validation logic.
 - **Concept 3:**
+    - Make liberaly use of the `@Nested` and `@DisplayName` annotations in your tests.
+        - This help to organize the tests and make them more readable.
+        - Additionally, such organization enables faster debugging as the feature being tested is clearly identified at the beginning of the test grouping.
+        - Prefer direct assertions over looping through arrayed data and asserting on each item in the array, this reduces complexity in the given test. 
+- **Concept 4:**
+    - Use `@Override` to clearly identify methods being changed in class or sub-classes.
+- **Concept 5:**
+    - Give as must attention, if not more to naming your test methods as you do to your class and its methods.
+- **Concept 6:**
+    - Understand the implications of using a `try {} catch{}` block.
+        - A `try {} catch {}` block will capture an exception within the `catch` part of the code and there will be no propagation of the exception outside of the method.  This means an exception cannot be asserted on in a test.
+        - One way to work around this is to return as string from the method calling the `try {} catch{}` block and assert on the string value.
+- **Concept 7:**
+- **Concept 8:**
+- **Concept 9:**
+- **Concept 10:**
 
 ## 4) Syntax / Rules I Should Remember
 Write down anything you want to remember exactly.

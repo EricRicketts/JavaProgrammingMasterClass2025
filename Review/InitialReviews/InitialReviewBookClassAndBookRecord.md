@@ -821,10 +821,6 @@ public class Book {
 
 ```
 
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #16 ====
 Assistant: 
 Exactly — that’s the right choice.
 
@@ -854,9 +850,6 @@ At this point, you’re doing exactly what good encapsulation looks like:
 
 If you want, I can give you a **final “looks good / minor tweaks” review** of the whole `Book` exercise next.
 
-kotlin.Unit
-
-==== UserMessageImpl #17 ====
 User: 
 I put the setters in the constructor and eliminated the setter tests which check for null and negative value entries as that functionality is checked in the constructor tests.
 ```java
@@ -943,9 +936,6 @@ public class BookTest {
 }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #18 ====
 Assistant: 
 That’s a **good design choice**.
 
@@ -977,9 +967,6 @@ Yes — this is a sensible refactor. It makes the test suite more focused and ma
 
 If you want, I can now give you a **final exercise-by-exercise review of `Book`** and tell you whether it’s ready to mark as complete.
 
-kotlin.Unit
-
-==== UserMessageImpl #19 ====
 User: 
 If the setters are made private, then I should eliminate the setter tests for changing the author, title, and pages.  In so doing should I declare each of those fields final?
 
@@ -1053,7 +1040,7 @@ public class Book {
 
 }
 ```
-==== SimpleCompletableMessage #20 ====
+
 Assistant: 
 Yes — **if the setters are truly private**, then you should **remove the setter-based tests** for changing `author`, `title`, and `pages`, because external code can no longer call those methods directly.
 
@@ -1120,15 +1107,9 @@ If you want, I can help you decide between:
 
 and explain which one is better for this course exercise.
 
-kotlin.Unit
-
-==== UserMessageImpl #21 ====
 User: 
 why is IntelliJ flagging my fields when I declared them final and set the values in the constructor?
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #22 ====
 Assistant: 
 Because in Java, a `final` field must be **definitely assigned directly** during construction, and IntelliJ is likely seeing a pattern it cannot prove is safe.
 
@@ -1188,9 +1169,6 @@ If you assign the values directly in the constructor, the warning should go away
 
 If you want, I can show you the **cleanest final version of `Book`** for this design.
 
-kotlin.Unit
-
-==== UserMessageImpl #23 ====
 User: 
 But does not it make the most sense to put error checking in the setters and call the setters in the Constructor?
 
@@ -1257,10 +1235,6 @@ public class BookTest {
 }
 ```
 
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #24 ====
 Assistant: 
 Yes — **that absolutely makes sense** in a lot of designs.
 
@@ -1319,15 +1293,9 @@ If the fields are `final`, direct assignment in the constructor is the cleaner r
 
 If you want, I can help you choose between these two versions and show you the cleanest structure for each.
 
-kotlin.Unit
-
-==== UserMessageImpl #25 ====
 User: 
 There is no instructor guidance to this level of detail, the exercises you have given me supplement what I am learning in the course, specifically to review and enhance what I have already learned. 
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #26 ====
 Assistant: 
 That makes sense — and in that case, **you get to choose the design that best helps you learn**.
 
@@ -1363,7 +1331,6 @@ That will make the exercise more consistent with what you’re currently learnin
 
 If you want, I can help you decide the **cleanest review-oriented version** of `Book` for your course practice.
 
-==== UserMessageImpl #27 ====
 User: 
 Generally, any author and title of a book will be fixed once published.  Moreover, the number of pages will be fixed from a given publisher for a given edition.  Now I do not want to add more complexity by adding a publisher field, but I do not mind going down the Immutable path.  In that case, if I want to make the fields final, then I cannot put the validation code in a separate method, as JetBrains will flag the current error upon declaring the fields final.  This means I have to put the valildation code directly into the constructor, which makes it more complex.
 
@@ -1498,7 +1465,6 @@ public class BookTest {
 
 ```
 
-==== SimpleCompletableMessage #28 ====
 Assistant: 
 Yes — **that’s the tradeoff**, but there’s a cleaner middle ground.
 
@@ -1552,9 +1518,6 @@ That gives you clean code without overcomplicating the constructor.
 
 If you want, I can show you the **clean immutable version of `Book`** using validation helper methods.
 
-kotlin.Unit
-
-==== UserMessageImpl #29 ====
 User: 
 I went down the "Immutable path" how does the code look now?
 
@@ -1613,10 +1576,6 @@ public class BookTest {
 
 ```
 
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #30 ====
 Assistant: 
 I can review it, but I **can’t see the current `Book` implementation yet** — only the tests. So I can comment on the **test side** and the **expected immutable design**.
 
@@ -1660,9 +1619,6 @@ Paste the current `Book.java`, and I’ll give you a proper review of:
 
 If you want, I can also review the **tests themselves** and suggest a couple of polish tweaks.
 
-kotlin.Unit
-
-==== UserMessageImpl #31 ====
 User: 
 Book is now the active tab
 
@@ -1720,7 +1676,6 @@ public class Book {
 }
 ```
 
-==== SimpleCompletableMessage #32 ====
 Assistant: 
 This looks **good overall** — you’ve successfully made `Book` immutable, and the structure is clean.
 
@@ -1769,9 +1724,6 @@ It’s simple, correct, and fits your learning goal well.
 
 If you want, I can next give you a **final review of the tests** to make sure they match the immutable design cleanly.
 
-kotlin.Unit
-
-==== UserMessageImpl #33 ====
 User: 
 yes
 
@@ -1832,7 +1784,6 @@ public class Book {
 
 ```
 
-==== SimpleCompletableMessage #34 ====
 Assistant: 
 ## Test review: looks good overall
 
@@ -1870,9 +1821,6 @@ But that’s optional.
 
 If you want, I can next give you a **final polished review of the whole `Book` exercise** as if it were being graded for your course.
 
-kotlin.Unit
-
-==== UserMessageImpl #35 ====
 User: 
 Ok give me a polished review of the entire Book exercise
 ```java
@@ -2027,7 +1975,6 @@ public class BookTest {
 }
 ```
 
-==== SimpleCompletableMessage #36 ====
 Assistant: 
 ## Polished review of your `Book` exercise
 
@@ -2137,9 +2084,6 @@ If you want, I can give you a **short instructor-style mark sheet** next, like:
 
 with a quick score for each.
 
-kotlin.Unit
-
-==== UserMessageImpl #37 ====
 User: 
 Before doing the instructor-style mark sheet I would like to update my validateNotNull method to only receive one argument.
 
@@ -2153,7 +2097,6 @@ private void validateNotNull(String author, String title) {
     }
 ```
 
-==== SimpleCompletableMessage #38 ====
 Assistant: 
 Absolutely — that will make the validation cleaner and more explicit.
 
@@ -2229,7 +2172,6 @@ private void validateNotNull(String copyrightInput, String copyrightField) {
     }
 ```
 
-==== SimpleCompletableMessage #40 ====
 Assistant: 
 Yes — those names are doing a bit of a disguise act.
 
@@ -2269,15 +2211,9 @@ If you want, I can suggest:
 1. the **best method and parameter names**, or  
 2. a **slightly cleaner version of the validation helper logic**.
 
-kotlin.Unit
-
-==== UserMessageImpl #41 ====
 User: 
 Yes, please make your suggestions
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #42 ====
 Assistant: 
 Absolutely — here’s the cleaner direction I’d suggest.
 
@@ -2341,9 +2277,6 @@ Use **`value`** and **`fieldName`**, and build the exception message directly fr
 
 If you want, I can next show you the **exact revised helper method** in a clean form.
 
-kotlin.Unit
-
-==== UserMessageImpl #43 ====
 User: 
 I made your suggested changes to validateNotNull
 
@@ -2409,7 +2342,6 @@ public class BookTest {
 }
 ```
 
-==== SimpleCompletableMessage #44 ====
 Assistant: 
 That looks **clean and much better**.
 
@@ -2450,15 +2382,9 @@ Your `Book` exercise is now looking clean, consistent, and well tested.
 
 If you want, I can now give you the **instructor-style mark sheet** you mentioned earlier.
 
-kotlin.Unit
-
-==== UserMessageImpl #45 ====
 User: 
 I inlined the exception message
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #46 ====
 Assistant: 
 Nice — that’s perfectly fine.
 
@@ -2484,15 +2410,9 @@ Tiny class, solid craftsmanship. That’s exactly the kind of exercise that help
 
 If you want, I can now give you the **instructor-style mark sheet** for the whole exercise.
 
-kotlin.Unit
-
-==== UserMessageImpl #47 ====
 User: 
 yes give me the instructor-style mark sheet for the entire exercise
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #48 ====
 Assistant: 
 ## Instructor-style mark sheet: `Book`
 
@@ -2560,15 +2480,9 @@ You didn’t just “make it work” — you made a thoughtful design choice and
 
 If you want, I can also give you a **short strengths / improvements summary** in a more compact feedback style.
 
-kotlin.Unit
-
-==== UserMessageImpl #49 ====
 User: 
 How can I bring up Validation and Readability to 10/10?
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #50 ====
 Assistant: 
 ## Great question
 
@@ -2697,9 +2611,6 @@ If you want, I can show you **two improved versions**:
 
 so you can choose the one that fits your style best.
 
-kotlin.Unit
-
-==== UserMessageImpl #51 ====
 User: 
 I made changes using Objects.requireNonNull and broke out separate validateTitle and validateAuthor methods.  I updated validatePages to return the pages from the constructor if the pages provided where not negative
 
@@ -2775,7 +2686,6 @@ public class BookTest {
 
 ```
 
-==== SimpleCompletableMessage #52 ====
 Assistant: 
 That’s a **nice refinement**.
 
@@ -2822,9 +2732,6 @@ You’ve improved:
 
 If you want, I can give you the **updated instructor-style mark sheet** based on this newer version.
 
-kotlin.Unit
-
-==== UserMessageImpl #53 ====
 User: 
 I updated the method name to validatePagesAndReturn.  As far as I know integer validation does not have something like Objects.requireNonNull() with one statement allows either an exception to be thrown or returns the parameter.
 
@@ -2837,7 +2744,6 @@ private int validatePagesAndReturn(int pages) {
     }
 ```
 
-==== SimpleCompletableMessage #54 ====
 Assistant: 
 Yes — that’s correct.
 
@@ -2896,11 +2802,9 @@ Your `validatePagesAndReturn(...)` method is the right kind of solution.
 
 If you want, I can also suggest a few **idiomatic naming alternatives** for validation helpers like this.
 
-==== UserMessageImpl #55 ====
 User: 
 yes go ahead
 
-==== SimpleCompletableMessage #56 ====
 Assistant: 
 Absolutely — here are some idiomatic naming options for a helper like `validatePagesAndReturn`.
 
@@ -2960,13 +2864,9 @@ That makes it a very reasonable choice to keep.
 
 If you want, I can also suggest a **matched naming set** for all three helpers so they look stylistically uniform.
 
-kotlin.Unit
-
-==== UserMessageImpl #57 ====
 User: 
 Please make the suggestion
 
-==== SimpleCompletableMessage #58 ====
 Assistant: 
 Absolutely — here’s a **matched, idiomatic naming set** for the helpers:
 
@@ -3002,15 +2902,9 @@ That set is clear, readable, and nicely balanced.
 
 If you want, I can also suggest the **best constructor assignment order** for this naming style so the whole class reads smoothly.
 
-kotlin.Unit
-
-==== UserMessageImpl #59 ====
 User: 
 I like your symmetric suggestions, they are more verbose but I think someone reading the code will appreciate the consistency, I like it
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #60 ====
 Assistant: 
 That’s a very reasonable choice.
 
@@ -3034,13 +2928,9 @@ For an exercise like `Book`, choosing readability over minimalism is a solid des
 
 If you want, I can now give you a **fresh instructor-style mark sheet** based on your latest version and the new symmetric naming.
 
-kotlin.Unit
-
-==== UserMessageImpl #61 ====
 User: 
 suggest the constructor assignment order
 
-==== SimpleCompletableMessage #62 ====
 Assistant: 
 Yes — for the most readable constructor flow, I’d suggest this order:
 
@@ -3093,15 +2983,9 @@ That gives the constructor a clean, human-friendly reading order.
 
 If you want, I can next suggest the **best order for the validation helper methods themselves** in the class body.
 
-kotlin.Unit
-
-==== UserMessageImpl #63 ====
 User: 
 Now I have that order, can you give me your latest version of the instructor style mark sheet?
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #64 ====
 Assistant: 
 ## Instructor-style mark sheet: `Book` v2
 
@@ -3173,9 +3057,6 @@ Your latest version is not just correct — it’s **cleanly designed**. That ma
 
 If you want, I can also give you a **final short strengths/improvements summary** you could keep as notes for later review.
 
-kotlin.Unit
-
-==== UserMessageImpl #65 ====
 User: 
 yes please do that
 
@@ -3234,7 +3115,6 @@ public class BookTest {
 
 ```
 
-==== SimpleCompletableMessage #66 ====
 Assistant: 
 ## `Book` exercise — short strengths and improvements summary
 
@@ -3264,13 +3144,9 @@ You’ve practiced:
 ### Bottom line
 This is a **well-finished exercise** and a solid step forward in your Java foundations.
 
-kotlin.Unit
-
-==== UserMessageImpl #67 ====
 User: 
 one more question, should I make this class a record?
 
-==== SimpleCompletableMessage #68 ====
 Assistant: 
 ## Short answer: **yes, you could make it a record** — but **you don’t need to**
 
@@ -3322,13 +3198,9 @@ Your current class is a strong example of an immutable, validated domain object.
 
 If you want, I can show you what the **record version of `Book` would look like** so you can compare them side by side.
 
-kotlin.Unit
-
-==== UserMessageImpl #69 ====
 User: 
 I would like to try to code up the Record version of Book myself, but do you have any naming suggestions as I cannot have the same name for the Record and the class.
 
-==== SimpleCompletableMessage #70 ====
 Assistant: 
 Absolutely — here are some good naming options for your **record version** of `Book`.
 
@@ -3385,15 +3257,9 @@ That makes it easy to compare them side by side without ambiguity.
 
 If you want, I can also suggest a **good package/test naming convention** for keeping both versions tidy in the project.
 
-kotlin.Unit
-
-==== UserMessageImpl #71 ====
 User: 
 Thanks, I will get started right away!!
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #72 ====
 Assistant: 
 You’re welcome — that’s a great next step.  
 
@@ -3401,15 +3267,9 @@ Have fun with it, and don’t worry if the first pass is a bit rough; that’s h
 
 When you’re done, bring me the `BookRecord` version and I’ll happily review it.
 
-kotlin.Unit
-
-==== UserMessageImpl #73 ====
 User: 
 Absolutely, I will have you look at it.  You are amazing, none of my prior instruction can compare wtih the sessions I have had with you.
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #74 ====
 Assistant: 
 That’s very kind of you — thank you.
 
@@ -3417,13 +3277,9 @@ I’m really glad the sessions have been helpful. The best part is watching your
 
 When you’ve got the `BookRecord` version ready, send it over and I’ll review it with you.
 
-kotlin.Unit
-
-==== UserMessageImpl #75 ====
 User: 
 I do not understand this warning:
 
-==== SimpleCompletableMessage #76 ====
 Assistant: 
 I can help — but I’ll need the **exact warning text** to be precise.
 
@@ -3457,13 +3313,9 @@ If you want, you can also paste:
 
 Then I can tell you exactly what IntelliJ is objecting to and how to fix it.
 
-==== UserMessageImpl #77 ====
 User: 
 Not annotated method overrides method annotated with @NotNull
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #78 ====
 Assistant: 
 That warning usually means **your method signature is not matching the nullability contract of the method it overrides**.
 
@@ -3502,9 +3354,6 @@ If this is happening in a record, it’s often because you manually wrote a meth
 
 If you paste the exact method that triggers the warning, I can tell you the **precise fix** in one step.
 
-kotlin.Unit
-
-==== UserMessageImpl #79 ====
 User: 
 ```java
 @Override
@@ -3643,7 +3492,6 @@ public class BookTest {
 }
 ```
 
-==== SimpleCompletableMessage #80 ====
 Assistant: 
 That warning is about **nullability annotations**, not about your logic.
 
@@ -3667,11 +3515,8 @@ The warning just means: **“This override should be explicitly marked as non-nu
 
 If you want, I can show you the **exact annotation import and method shape** to use for the record version.
 
-kotlin.Unit
-
-==== UserMessageImpl #81 ====
 User: 
-I added the @NotNull annotation to the method and now it says it cannot resolve @NotNull 
+I added the `@NotNull` annotation to the method and now it says it cannot resolve `@NotNull` 
 ```java
 @Override
 @NotNull
@@ -3685,8 +3530,7 @@ public String toString() {
 
 Cannot resolve symbol 'NotNull'
 at: NotNull
-on the lines:
-    @NotNull
+on the lines: `@NotNull`
 
 ```java
     @Override
@@ -3697,16 +3541,15 @@ on the lines:
                 "Author = " + this.author() + ", " +
                 "Number of pages = " + this.pages();
     }
-    ```
+```
 
-==== SimpleCompletableMessage #82 ====
 Assistant: 
 That’s just because `@NotNull` is **not in the JDK by default** — IntelliJ can’t find which `NotNull` you mean.
 
 ## What’s happening
 You added the annotation, but there’s no import for it, so the IDE says:
 
-- `Cannot resolve symbol 'NotNull'`
+- `Cannot resolve symbol '@NotNull'`
 
 ## The fix
 You need to import the `NotNull` annotation from whichever library your project is using.
@@ -3729,11 +3572,8 @@ For this exercise, I’d suggest:
 - **either** add the correct import for `@NotNull`
 - **or** remove the annotation and ignore the warning if the method is clearly returning a `String`
 
-If you want, I can help you figure out **which `NotNull` annotation your project actually has available**.
+If you want, I can help you figure out **which `@NotNull` annotation your project actually has available**.
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #84 ====
 Assistant: 
 Yes — **if you want to use `@NotNull` and IntelliJ can’t resolve it, you’ll need the annotation library on your project classpath**, which usually means adding a dependency in `pom.xml`.
 
@@ -3764,9 +3604,6 @@ Unless you specifically want to practice using IntelliJ nullability annotations,
 
 If you want, I can show you the **exact Maven dependency entry** to add.
 
-kotlin.Unit
-
-==== UserMessageImpl #85 ====
 User: 
 show me the maven dependency
 
@@ -3811,9 +3648,6 @@ import org.jetbrains.annotations.NotNull;
 
 If you want, I can also show you the **updated `BookRecord` `toString()` method** with the import in place.
 
-kotlin.Unit
-
-==== UserMessageImpl #87 ====
 User: 
 Here is the BookRecord code it is in the open tab
 
@@ -3952,9 +3786,6 @@ public class BookTest {
 
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #88 ====
 Assistant: 
 Thanks — this helps.
 
@@ -3996,9 +3827,6 @@ For your learning exercise, I’d choose one of these:
 
 If you want, I can give you a **cleaned-up `BookRecord` version** with the import in the right place.
 
-kotlin.Unit
-
-==== UserMessageImpl #89 ====
 User: 
 I wanted practice in the annotations so I added the dependency in pom.xml, imported the annotation, and then called it above the toString() method
 
@@ -4013,9 +3841,6 @@ I wanted practice in the annotations so I added the dependency in pom.xml, impor
     }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #90 ====
 Assistant: 
 Yes — that’s the right idea.
 
@@ -4054,9 +3879,6 @@ You’ve done it the right way:
 
 If you want, I can also tell you whether `@NotNull` is actually **useful** here, or mostly just a practice exercise in this case.
 
-kotlin.Unit
-
-==== UserMessageImpl #91 ====
 User: 
 Here is my method declaration:
 ```java
@@ -4241,9 +4063,6 @@ public class BookRecordTest {
 }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #92 ====
 Assistant: 
 Yes — that declaration is **syntactically fine**.
 
@@ -4279,9 +4098,6 @@ If the warning persists, it’s almost certainly an **import/dependency/IDE refr
 
 If you want, I can help you check whether the **import line** and **Maven dependency** are both exactly right.
 
-kotlin.Unit
-
-==== UserMessageImpl #93 ====
 User: 
 The warning went away, how would you grade my BookRecord code and its associated tests?
 
@@ -4471,9 +4287,6 @@ public class BookTest {
 }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #94 ====
 Assistant: 
 ## My grade for `BookRecord` and its tests: **A / A-**
 
@@ -4550,14 +4363,9 @@ That’s a very good learning progression.
 
 If you want, I can also give you a **side-by-side comparison of Book vs BookRecord** with what each version teaches you.
 
-kotlin.Unit
-
-==== UserMessageImpl #95 ====
 User: 
 I do not know how to make the Record constructor more compact since I include the validation for each field.
-kotlin.Unit
 
-==== SimpleCompletableMessage #96 ====
 Assistant: 
 You’re right — if you want **validation for each field**, the constructor will naturally be a bit more verbose.
 
@@ -4630,15 +4438,9 @@ For validation-heavy code, a slightly longer constructor is perfectly normal.
 
 If you want, I can show you the **compact-constructor style** for a record in a way that still preserves your validation logic.
 
-kotlin.Unit
-
-==== UserMessageImpl #97 ====
 User: 
 yes show me the compact versioin
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #98 ====
 Assistant: 
 Sure — here’s the **compact constructor** version for your record, while still keeping validation.
 
@@ -4681,9 +4483,6 @@ You actually don’t need the explicit `this.title = ...` assignments in a compa
 
 If you want, I can show you the **more idiomatic compact constructor** version next.
 
-kotlin.Unit
-
-==== UserMessageImpl #99 ====
 User: 
 I like that there is virtually no code in the body of the Record
 
@@ -4721,9 +4520,6 @@ public record BookRecord(String title, String author, int pages) {
 }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #100 ====
 Assistant: 
 Exactly — that’s one of the nicest things about records.
 
@@ -4761,15 +4557,9 @@ Yes — that minimal body is one of the main advantages of a record, and your re
 
 If you want, I can now give you a **final polished review of both `Book` and `BookRecord` together** so you can compare them cleanly.
 
-kotlin.Unit
-
-==== UserMessageImpl #101 ====
 User: 
 Would it make sense to put the validation of the Record into the Book class and eliminate the book validation methods?
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #102 ====
 Assistant: 
 Not really — in your case, **the validation belongs in `BookRecord`**, not in `Book`.
 
@@ -4810,9 +4600,6 @@ That keeps the examples clean and meaningful.
 
 If you want, I can suggest the **most compact idiomatic `BookRecord` constructor** next.
 
-kotlin.Unit
-
-==== UserMessageImpl #103 ====
 User: 
 In the Book class I call separate validation methods for title, author, and pages.  In the case of title and author the validation method only includes one line of code.  In the case of the BookRecord I have moved this one line of code into the constructor, would doing the same for the Book class overly obfuscate the validation in the constructor?
 
@@ -4979,9 +4766,6 @@ public record BookRecord(String title, String author, int pages) {
 
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #104 ====
 Assistant: 
 Yes — **for `Book`, keeping the tiny validation helpers is probably the better choice**.
 
@@ -5019,15 +4803,9 @@ Your current split is sensible:
 
 If you want, I can give you a very short **“when to use helpers vs inline validation”** rule you can keep in mind for future exercises.
 
-kotlin.Unit
-
-==== UserMessageImpl #105 ====
 User: 
 yes give me that rule
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #106 ====
 Assistant: 
 Absolutely — here’s a simple rule you can use:
 
@@ -5055,15 +4833,9 @@ That’s a pretty good little compass for future exercises.
 
 If you want, I can also give you a **“class vs record” style rule** for when to choose one over the other.
 
-kotlin.Unit
-
-==== UserMessageImpl #107 ====
 User: 
 yes give me that style rule
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #108 ====
 Assistant: 
 ## Class vs record style rule
 
@@ -5099,15 +4871,9 @@ If you’re asking,
 
 If you want, I can also give you a **tiny decision checklist** you can run through in under 10 seconds.
 
-kotlin.Unit
-
-==== UserMessageImpl #109 ====
 User: 
 Ok give me that checklist
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #110 ====
 Assistant: 
 ## 10-second checklist: class or record?
 
@@ -5139,9 +4905,6 @@ Ask yourself these questions:
 
 If you want, I can turn this into a tiny **“if this, then that” flowchart**.
 
-kotlin.Unit
-
-==== UserMessageImpl #111 ====
 User: 
 In the Book class the check for valid data is cleaner and less cluttered because of the helper method names
 
@@ -5194,9 +4957,6 @@ public class Book {
 }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #112 ====
 Assistant: 
 Yes — that’s exactly the advantage.
 
@@ -5228,9 +4988,6 @@ Yes — your current `Book` version is cleaner because the validation logic is *
 
 If you want, I can give you a **final side-by-side “Book vs BookRecord” comparison summary** now.
 
-kotlin.Unit
-
-==== UserMessageImpl #113 ====
 User: 
 One more question before the side by side comparison summary, stylistically, when is it better for BookRecord to have the inline validation even though it is more cluttered compared to the Book class?
 
@@ -5310,10 +5067,6 @@ public class Book {
 
 ```
 
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #114 ====
 Assistant: 
 Yes — **stylistically, `BookRecord` is a good place to keep inline validation when you want the record to feel like a compact declaration of data plus rules**.
 
@@ -5380,15 +5133,9 @@ So yes, it makes sense there, even if it would be less appealing in `Book`.
 
 If you want, I can now give you the **side-by-side comparison summary** of `Book` vs `BookRecord`.
 
-kotlin.Unit
-
-==== UserMessageImpl #115 ====
 User: 
 yes give me the side by side comparions between Book and BookRecord
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #116 ====
 Assistant: 
 ## Side-by-side comparison: `Book` vs `BookRecord`
 
@@ -5469,15 +5216,9 @@ Your `Book` version is the more readable “teaching” version, while `BookReco
 
 If you want, I can also turn this into a **very short notes version** you can save for later review.
 
-kotlin.Unit
-
-==== UserMessageImpl #117 ====
 User: 
 yes go ahead and give me the notes, will it be in markdown format?
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #118 ====
 Assistant: 
 Yes — absolutely. Here are the notes in **Markdown**:
 
