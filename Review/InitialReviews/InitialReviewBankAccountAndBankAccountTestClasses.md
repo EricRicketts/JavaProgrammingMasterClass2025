@@ -54,14 +54,10 @@ I can review the test class for:
 - assertion style
 - whether the tests match the production code behavior exactly
 
-kotlin.Unit
-
-==== UserMessageImpl #3 ====
 User: 
+
 Ok give a full review of both the BankAccount class and the BankAccountTest class
 
-
-==== SimpleCompletableMessage #4 ====
 Assistant: 
 ## Full review: `BankAccount` and `BankAccountTest`
 
@@ -125,6 +121,7 @@ This method:
 That’s fine, but the name suggests it is *ensuring* funds before the subtraction happens. In reality it is validating the result after subtraction.
 
 A clearer name might be something like:
+
 - `validateNonNegativeBalance`
 - `ensureNonNegativeBalanceAfterWithdrawal`
 
@@ -159,6 +156,7 @@ If `NumberUtils.setScale()` uses a standard rounding mode, good. If not, that co
 
 ### 1. Good coverage of core behavior
 You test:
+
 - constructor validation
 - getter/setter behavior
 - rounding in deposit
@@ -200,6 +198,7 @@ That’s acceptable for learning, but if you wanted to tighten the suite later, 
 
 ### 3. Some tests could be more explicit in naming
 A few names are a bit long or slightly awkward:
+
 - `testBankAccountRejectsNegativeBalanceInConstructor`
 - `testWithdrawRejectsNegativeNumberForWithdrawAmount`
 
@@ -249,6 +248,7 @@ This is the biggest overall point:
 Your tests are actually validating the intended behavior of the class rather than just exercising methods randomly. That’s a good sign.
 
 In particular:
+
 - constructor validation aligns with the constructor code
 - rounding tests align with `NumberUtils.setScale(...)`
 - withdrawal failure aligns with the insufficient-funds check
@@ -287,15 +287,9 @@ If you want, I can do one of these next:
 2. **rewrite both files in a cleaner style**
 3. **review for edge cases you still aren’t testing**
 
-kotlin.Unit
-
-==== UserMessageImpl #5 ====
 User: 
 The setScale has rounding incorporated, so the rounding is consistent through the entire class
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #6 ====
 Assistant: 
 Yes — that’s a good design choice.
 
@@ -324,15 +318,11 @@ That’s great **as long as** `NumberUtils.setScale(...)` really uses the roundi
 
 If you want, I can now do a **second-pass review** of the class with that assumption baked in, and focus only on the remaining issues.
 
-kotlin.Unit
-
-==== UserMessageImpl #7 ====
 User: 
 If I remove the exception variables and want to check the message for a null value, how would I get the message?
 
-
-==== SimpleCompletableMessage #8 ====
-Assistant: 
+Assistant:
+ 
 Yes — `assertThrows(...)` returns the thrown exception, so you can grab the message from that object.
 
 ## Example
@@ -372,10 +362,8 @@ This works only if the exception actually has a message. If the code throws `new
 
 If you want, I can show you how to rewrite your `BankAccountTest` exception tests in this style.
 
-kotlin.Unit
-
-==== UserMessageImpl #9 ====
-User: 
+User:
+ 
 ```java
 public void withdraw(BigDecimal withdrawAmount) {
         BigDecimal validWithdrawAmount = ensureValidAmount(
@@ -389,22 +377,24 @@ public void withdraw(BigDecimal withdrawAmount) {
         );
         this.balance = NumberUtils.setScale(remainingBalance, 2);
     }
-    ```
+```
 
-==== SimpleCompletableMessage #10 ====
-Assistant: 
+Assistant:
+ 
 Yes — if you’re okay **dropping the rounding-up / rounding-down distinctions**, you can simplify a lot.
 
 ## Simplest way
 Keep just **one positive deposit test** and **one positive withdraw test**.
 
 For example, test that:
+
 - deposit increases balance correctly
 - withdraw decreases balance correctly
 
 That way you’re testing the behavior without repeating the same pattern with different decimal inputs.
 
 ### Example shape
+
 ```java
 @Test
 public void testDepositIncreasesBalance() {
@@ -470,15 +460,9 @@ If you remove the rounding-specific tests, you’re no longer directly testing t
 
 If you want, I can rewrite your `BankAccountTest` into a **shorter, less repetitive version**.
 
-kotlin.Unit
-
-==== UserMessageImpl #11 ====
 User: 
-Ok I have updated the code, tests and method names please review the BankAccount Class and the BankAccontTest Class 
+Ok I have updated the code, tests and method names please review the `BankAccount` Class and the `BankAccontTest` Class 
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #12 ====
 Assistant: 
 ## Review of `BankAccount` and `BankAccountTest`
 
@@ -573,6 +557,7 @@ That makes the tests stronger.
 
 ### 3. Better naming
 These names are clearer now:
+
 - `testConstructorRejectsNegativeAccountNumber`
 - `testConstructorRejectsNegativeBalance`
 - `testDepositIncreasesBalance`
@@ -617,6 +602,7 @@ You added message checks for some exception tests, which is good. But these two 
 If you want consistency, you could also verify their messages.
 
 Example idea:
+
 - deposit null → `"Null value not allowed for deposit amount"`
 - withdraw null → `"Null value not allowed for withdraw amount"`
 
@@ -628,6 +614,7 @@ That would make the suite more complete.
 You use `var` for some exception tests and not others. That’s not wrong, just stylistic.
 
 If you want a more uniform test class, you could either:
+
 - use `var` everywhere for exception variables, or
 - use explicit exception types everywhere
 
@@ -662,13 +649,9 @@ If you only change a few things, I’d do these:
 
 If you want, I can next give you a **fully polished version of both files** with just the minimal edits.
 
-kotlin.Unit
-
-==== UserMessageImpl #13 ====
 User: 
 Ok I made the changes give me another review of the BankAccount Class and the BankAccountTest class
 
-==== SimpleCompletableMessage #14 ====
 Assistant: 
 ## Review of `BankAccount` and `BankAccountTest`
 
@@ -727,6 +710,7 @@ I don’t see any correctness problems in the current version. The logic matches
 
 ### 1. Much cleaner than the earlier versions
 This test suite is now:
+
 - shorter
 - less repetitive
 - easier to understand
@@ -735,6 +719,7 @@ That’s a real improvement.
 
 ### 2. Good use of exception message checks
 You now check both:
+
 - the exception type
 - the exception message
 
@@ -742,6 +727,7 @@ That makes the tests more robust.
 
 ### 3. Better test names
 These are clear and descriptive:
+
 - `testConstructorRejectsNegativeAccountNumber`
 - `testConstructorRejectsNegativeBalance`
 - `testDepositIncreasesBalance`
@@ -751,6 +737,7 @@ Much better than a lot of verbose naming that doesn’t add clarity.
 
 ### 4. The core behavior is covered well
 You now cover:
+
 - valid construction
 - invalid construction
 - valid deposit
@@ -780,6 +767,7 @@ The test itself is fine — just make the name match what it actually does.
 
 ## Optional improvement
 You currently assert messages for some exception tests, which is great. If you want to be fully consistent, you could also add message checks for:
+
 - null deposit
 - null withdraw
 
@@ -800,12 +788,10 @@ The suite is cleaner and more focused now. The only real cleanup item is the out
 ---
 
 If you want, I can next give you:
+
 1. a **line-by-line polish review**, or  
 2. a **final “this is ready to submit” assessment**.
 
-
-
-==== SimpleCompletableMessage #16 ====
 Assistant: 
 Got it — thanks for the correction.
 
@@ -827,11 +813,6 @@ If you want, I can do one final pass focused only on:
 - **edge cases you may still be missing**
 - or **whether the tests are “just enough” versus “over-tested”**
 
-kotlin.Unit
-
-
-
-==== SimpleCompletableMessage #18 ====
 Assistant: 
 ## Missing edge cases
 
@@ -912,6 +893,4 @@ For example, if you had separate tests for:
 - **Missing edge cases:** only a few optional ones, mainly `null balance`, zero amounts, and exact-zero withdrawal
 
 If you want, I can next give you a **ranked list of which missing tests are most worth adding**, from “most useful” to “probably unnecessary.”
-
-kotlin.Unit
 

@@ -1,9 +1,3 @@
-Chat 'ChatTitle(text=Testing Java Listener Functionality in Depth, isCustom=true)' (2aee4b7a-5c74-4b49-8fe6-d0e8c92a974a)
-
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #2 ====
 Assistant: 
 If you mean a **Java listener** in this project, the usual way to test it is:
 
@@ -18,6 +12,7 @@ If your listener is attached to some object, don’t test the listener in isolat
 Instead, call the method that should emit the event and verify the result.
 
 Example idea:
+
 - perform action
 - listener reacts
 - assert final state or side effect
@@ -64,20 +59,13 @@ For things like `PropertyChangeListener`, test that:
 ---
 
 ### For your current setup
-I can’t see the listener class from the visible files, so I don’t want to guess wrong.  
-If you paste the listener code or tell me its name, I can show you the **exact test method** to add in `src/test/java/org/example/...`.
+I can’t see the listener class from the visible files, so I don’t want to guess wrong.  If you paste the listener code or tell me its name, I can show you the **exact test method** to add in `src/test/java/org/example/...`.
 
 If you want, I can also help you write the test in the same style as your existing `BankAccountTest`.
 
-kotlin.Unit
-
-==== UserMessageImpl #3 ====
 User: 
 I started a new chat is there anyway to retrieve the previous chat?
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #4 ====
 Assistant: 
 I can’t directly retrieve a previous chat once you’ve started a new one.
 
@@ -94,9 +82,6 @@ If you want, send me either:
 
 and I’ll pick up from there.
 
-kotlin.Unit
-
-==== UserMessageImpl #5 ====
 User: 
 Before we do that, give me an instructor style grading on the current implementation of the BankAccount class and its tests.
 
@@ -297,10 +282,6 @@ public class BankAccountTest {
 }
 ```
 
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #6 ====
 Assistant: 
 ## Instructor-style grading: `BankAccount` implementation + tests
 
@@ -313,6 +294,7 @@ You’ve got a **solid, well-structured implementation** with good validation an
 ## What you did well
 
 ### 1. Strong encapsulation — **A-**
+
 - Fields are private.
 - State changes happen through methods rather than direct access.
 - Invalid input is checked early.
@@ -321,6 +303,7 @@ This is exactly the kind of defensive class design I’d want to see at this sta
 
 ### 2. Good validation behavior — **A**
 You consistently validate:
+
 - `null`
 - negative values
 - insufficient funds
@@ -332,6 +315,7 @@ Using `BigDecimal` and rounding to two decimals shows good awareness of money-ha
 
 ### 4. Tests cover the main behavior — **B+**
 Your tests verify:
+
 - constructor validation
 - getters/setters
 - deposit
@@ -347,6 +331,7 @@ That is a good functional test suite, not just a “happy path only” set.
 
 ### 1. Duplicate test coverage — **C**
 You have at least one redundant test:
+
 - `testNullValueForBankName`
 - `testNullBankName`
 
@@ -354,17 +339,20 @@ These are testing the same behavior. Redundancy isn’t disastrous, but it weake
 
 ### 2. Test naming is inconsistent — **B-**
 Some names are clear, but others are a bit awkward:
+
 - `testNegativeEntryForDepositAmount`
 - `testNegativeSignOnWithdrawAmount`
 
 These work, but they read like notes rather than polished test names. Better names would be more direct and behavior-focused.
 
 Example style:
+
 - `testDepositRejectsNegativeAmount`
 - `testWithdrawRejectsNegativeAmount`
 
 ### 3. Some tests are a little too tied to implementation details — **B-**
 For example, checking exact exception messages is fine in coursework, but in production tests you’d often focus more on:
+
 - the exception type
 - the specific behavior
 
@@ -372,6 +360,7 @@ Message checks are okay here, just a little brittle if messages change later.
 
 ### 4. The class is doing a lot of validation inline — **B**
 This is acceptable, but the logic is somewhat repetitive. You could improve readability by introducing small private helper methods, especially for repeated patterns like:
+
 - null checks
 - negative checks
 - balance updates
@@ -386,12 +375,14 @@ The flow is correct, but the intermediate variable and validation sequence could
 ## Design feedback on `BankAccount`
 
 ### Strengths
+
 - Good use of private state
 - Clear public API
 - No unsafe direct exposure of balance
 - Constructor enforces valid object state
 
 ### Concerns
+
 - `bankName` is mutable, but `accountNumber` is not. That may be fine, but it’s worth asking whether a bank account’s bank name should really be mutable in this model.
 - There is no getter for `accountNumber`. That may be intentional, but if this is meant to be a true account object, you’d usually expose it read-only.
 - The class mixes business rules and formatting/range normalization in a way that could eventually benefit from helper methods.

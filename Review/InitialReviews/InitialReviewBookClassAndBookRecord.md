@@ -1,12 +1,8 @@
-Chat 'ChatTitle(text=Reading and Interpreting Markdown Files, isCustom=true)' 
-
-==== UserMessageImpl #1 ====
 User: 
 can you read a markdown file?
 
 Note not all the text shown was generated, some text like this sentence, was added when I edited the markdown file.
 
-==== SimpleCompletableMessage #2 ====
 Assistant: 
 Yes — I can read Markdown files.
 
@@ -18,7 +14,6 @@ If you want, you can:
 
 If you share it, I’ll take a look.
 
-==== UserMessageImpl #3 ====
 User: 
 Here is the file, it was the review you generated for me for my current course, "Java Programming Master Class 2025" from Udemy.  I have finished Exercise 1: Book and I would like you to review my code for Book and its associated tests.
 
@@ -125,9 +120,6 @@ public class BookTest {
 }
 ```
 
-
-
-==== SimpleCompletableMessage #4 ====
 Assistant: 
 ## Review of your `Book` class and tests
 
@@ -194,6 +186,7 @@ That said, your current approach is still clear and acceptable for learning.
 
 ### 4. Consider whether setters should allow invalid values later
 For this exercise, plain setters are fine. But later you may want to think about:
+
 - should `pages` be allowed to go negative?
 - should title/author allow `null`?
 
@@ -209,6 +202,7 @@ Your tests are **functionally correct**, but there are two style improvements yo
 - **Keep test names consistent and descriptive**, which you already mostly do.
 
 For example:
+
 - `testBookGetAndSetTitle()` → good
 - `testBookToString()` → good
 
@@ -220,6 +214,7 @@ So naming is already in good shape.
 
 ### Your submission is **correct and well-structured**.
 You’ve shown that you understand:
+
 - encapsulation
 - object construction
 - basic unit testing
@@ -240,15 +235,9 @@ If you want, I can do one of these next:
 
 If you'd like, I can show you a **cleaned-up version of your `BookTest`** next.
 
-kotlin.Unit
-
-==== UserMessageImpl #5 ====
 User: 
 Her name was actually "Jane Austin"
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #6 ====
 Assistant: 
 Got it — then your test data is perfectly fine for your exercise.  
 
@@ -259,12 +248,8 @@ If you want, I can now review your code again with a slightly stricter eye and f
 - **test quality**
 - **anything that might matter in a course submission**
 
-
-
-kotlin.Unit
-
-==== UserMessageImpl #7 ====
-User: 
+User:
+ 
 Before going onto the "Best Next Step" I am going to add your suggested setter checks for null and negative values
 
 ```java
@@ -321,11 +306,8 @@ public class Book {
 
 ```
 
-
-kotlin.Unit
-
-==== SimpleCompletableMessage #8 ====
-Assistant: 
+Assistant:
+ 
 Good idea — that’s a sensible next step for strengthening the class.
 
 A nice upgrade is to make the object defend itself from invalid state:
@@ -409,9 +391,6 @@ If you want, I can next help you write:
 - **tests for the invalid cases**, or
 - a **slightly more polished version** using `Objects.requireNonNull(...)` for the strings.
 
-kotlin.Unit
-
-==== UserMessageImpl #9 ====
 User: 
 I do not understand why my test for passing a null value for my author is not throwing an exception
 
@@ -506,7 +485,6 @@ public class BookTest {
 }
 ```
 
-==== SimpleCompletableMessage #10 ====
 Assistant: 
 You’re very close — the reason is in your `setAuthor()` implementation:
 
@@ -594,11 +572,9 @@ You generally want one clear rule, not a mix of both.
 
 If you want, I can show you the **best matching pair of `Book` setters and tests** for the null/negative validation style.
 
-kotlin.Unit
-
-==== UserMessageImpl #11 ====
 User: 
 I have updated the code to throw an exception if a null value for author and title have been passed in.  I have updated the code to thrown an exception if the number of pages passed in is less than zero.  The tests have been updated to verify the new behavior.
+
 ```java
 @Test
     public void testExpectedExceptionNullValueForSetAuthor() {
@@ -672,9 +648,6 @@ public class Book {
 }
 ```
 
-kotlin.Unit
-
-==== SimpleCompletableMessage #12 ====
 Assistant: 
 That’s a good improvement, and your approach is on the right track.
 
@@ -748,7 +721,6 @@ Your updated behavior sounds correct **as long as**:
 
 If you want, I can help you write the **exact updated tests** for all three invalid cases.
 
-==== SimpleCompletableMessage #14 ====
 Assistant: 
 Perfect — then you’ve already got the right testing pattern in place. Nice work.
 
@@ -781,9 +753,6 @@ You’ve moved from “basic POJO” to a **properly defended class**, which is 
 
 If you want, I can now give you a **final review of the `Book` exercise** and tell you whether it’s ready to move on to the next chapter.
 
-kotlin.Unit
-
-==== UserMessageImpl #15 ====
 User: 
 I will use the setters in the constructor as they validate the inputs
 
