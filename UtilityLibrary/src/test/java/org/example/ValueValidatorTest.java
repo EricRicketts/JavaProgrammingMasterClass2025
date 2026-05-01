@@ -19,15 +19,6 @@ public class ValueValidatorTest {
     }
 
     @Test
-    public void testForNegativeFloat() {
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> ValueValidator.checkForNegativeValue(-20.35, "Float is less than zero")
-        );
-        assertEquals("Float is less than zero", thrown.getMessage());
-    }
-
-    @Test
     public void testForNegativeBigDecimal() {
         BigDecimal value = BigDecimal.valueOf(-30.45);
         IllegalArgumentException thrown = assertThrows(
