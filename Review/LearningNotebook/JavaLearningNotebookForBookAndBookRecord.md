@@ -301,21 +301,21 @@ Another comment by the AI.  Inline validation is often more appropriate for Reco
 
 ### Class vs record style rule
 
-## Choose a record when:
+## Choose a **record** when:
 
-the type is mostly data
-the values are set once and never changed
-you want a compact, readable definition
-behavior is minimal compared to the data
-equality should usually be based on the field values
+* the type is mostly data
+* the values are set once and never changed
+* you want a compact, readable definition
+* behavior is minimal compared to the data
+* equality should usually be based on the field values
 
-## Choose a class when:
+## Choose a **class** when:
 
-the object has more behavior than data
-you need richer control over construction or mutation
-you want custom methods beyond simple data access
-the object may evolve over time
-the design is more about process than payload
+* the object has more behavior than data
+* you need richer control over construction or mutation
+* you want custom methods beyond simple data access
+* the object may evolve over time
+* the design is more about process than payload
 
 ## Short version
 
