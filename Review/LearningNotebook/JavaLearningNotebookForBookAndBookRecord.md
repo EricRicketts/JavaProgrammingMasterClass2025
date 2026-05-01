@@ -20,6 +20,7 @@ List the main concepts and define them briefly.
         - This means if variables are meant to be exposed and/or modified the methods have to be implemented to do so.
         - The setter should have validation logic, this ensures data integrity.  This is "Enacapsulation with Guardrails", we ensure the data has met certain data integrity standards before public exposure.
         - If the desire is to make the field read-only then only a getter is needed.
+        - If a field is final and then set only once in the constructor then it does not make sense to have a corresponding setter.  Subsitutite a private validation method for setting the value of a field in the constructor.
 - **Concept 2:**
     - Validation logic should be put in the constructor.
         - This ensures object data integrity, i.e. a valid object, at the time of creation.
@@ -41,8 +42,31 @@ List the main concepts and define them briefly.
         - A `try {} catch {}` block will capture an exception within the `catch` part of the code and there will be no propagation of the exception outside of the method.  This means an exception cannot be asserted on in a test.
         - One way to work around this is to return as string from the method calling the `try {} catch{}` block and assert on the string value.
 - **Concept 7:**
+    - Having a primary constructor which other constructor variants call is a good design decision.
+        - All validation logic is in just one constructor.
+        - Other constructors can make use of the keyword `this` to call the primary constructor.
 - **Concept 8:**
+    - A `final` instance field must be assigned at declaration or in every constructor path.
+        - An IDE might complain if setters are used in the constructor, becuase the logic in the setter does the field assignment.
+        - IDE's prefer direct assignment of the field in the constructor, as this is a verfiable and direct path to initializing the field.
+    - In other words, IDE's prefer:
+        ```java
+        this.field = validationLogic(field)
+        ```
+    - We see above if the validation logic returns a verified field then IDE should not complain about the assignment.
+    - So we have the following pattern:
+        - Constructor recieves raw inputs.
+        - Helper methods validate inputs and return safe values.
+        - Constructor assigns the validated values to the `final` fields.
+    - Add specificity to the error messages.  Discourage error messages from logging mulitple errors, one error type per message makes debugging easier.
+    - Likewise validation logic should only check for one kind of illegal value, this makes the logic much simpler to understand.  As an example do not combine `NullPointerException` and `IllegalArgumentException` logic in one validation method.
+    - Tips for readability:
+        - "What does this helper do?"
+        - "Why is this here?"
+        - "What happens if the input is invalid?"    
 - **Concept 9:**
+    - Valdiation order can be important in making code more readable.
+        - For instance when thinking of a book, people consider, in order: title, author, and pages.  More information would follow: usually publisher and copyright in that order.
 - **Concept 10:**
 
 ## 4) Syntax / Rules I Should Remember
@@ -236,3 +260,64 @@ I chose the second option, I threw my own exception
 
 ## 10) One-Sentence Summary
 - **Today I learned that...**
+
+## 11) Notes On Differences Between A Class And A Record
+
+## 10-second checklist: class or record?
+
+Ask yourself these questions:
+
+1. **Is this mostly data?**
+
+    - yes → lean record
+    - no → lean class
+
+2. **Will the values stay fixed after creation?**
+
+    - yes → record fits well
+    - no → class fits better
+
+3. **Do I want the simplest possible definition?**
+
+    - yes → record
+    - no → class
+
+4. **Am I practicing object design and validation?**
+
+    - yes → class
+    - no, I just want a clean data holder → record
+
+5. **Would behavior be more important than the fields themselves?**
+
+    - yes → class
+    - no → record
+
+6. **Quick summary**
+
+    - Mostly data + immutable + simple → record
+    - More behavior + more control + design practice → class
+
+Another comment by the AI.  Inline validation is often more appropriate for Records because Records have less focus on ceremony, helper code, more focus on the "data shape".  Records are meant to be stores of immutable data.
+
+### Class vs record style rule
+
+## Choose a record when:
+
+the type is mostly data
+the values are set once and never changed
+you want a compact, readable definition
+behavior is minimal compared to the data
+equality should usually be based on the field values
+
+## Choose a class when:
+
+the object has more behavior than data
+you need richer control over construction or mutation
+you want custom methods beyond simple data access
+the object may evolve over time
+the design is more about process than payload
+
+## Short version
+
+**Record = data-first**
+**Class = behavior-first**    
