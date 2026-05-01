@@ -9,7 +9,7 @@ public class NumberUtils {
         return value.setScale(scaleFactor, RoundingMode.HALF_UP);
     }
 
-    public static int checkNumberRangeAndReturn(
+    public static int checkNumberInRangeAndReturn(
             int number,
             int lower,
             int upper,
