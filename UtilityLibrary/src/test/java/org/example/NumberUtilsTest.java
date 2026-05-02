@@ -28,4 +28,23 @@ public class NumberUtilsTest {
             assertEquals(0, expected.compareTo(actual));
         }
     }
+
+    @Nested
+    @DisplayName("Numeric range checks")
+    class NumberWithinRange {
+
+        @Test
+        public void testIntegerWithinRange() {
+            int number = 15;
+            assertEquals(
+                    number,
+                    NumberUtils.checkNumberInRangeAndReturn(
+                            number,
+                            10,
+                            20,
+                            "Number outside of range"
+                            )
+            );
+        }
+    }
 }
