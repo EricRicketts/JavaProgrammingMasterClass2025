@@ -121,13 +121,28 @@ public class ValueValidatorTest {
     class NullValueChecks {
 
         @Test
-        public void testForNull() {
+        public void testNull() {
             NullPointerException thrown = assertThrows(
                     NullPointerException.class,
                     () -> ValueValidator.checkForNullValueAndReturn(
                             null, "Null value is not allowed")
             );
-            assertEquals("Null value is not allowed", thrown.getMessage());
+            assertEquals(
+                    "Null value is not allowed",
+                    thrown.getMessage()
+            );
+        }
+
+        @Test
+        public void testNullReturnsObject() {
+            Object obj = new Object();
+            assertEquals(
+                    System.identityHashCode(obj),
+                    ValueValidator.checkForNullValueAndReturn(
+                            System.identityHashCode(obj),
+                           "Null value is not allowed"
+                    )
+            );
         }
     }
 }
