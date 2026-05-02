@@ -91,8 +91,14 @@ public class ValueValidatorTest {
 
         @Test
         public void testNonNegativeInteger() {
-
+            assertEquals(
+                    5,
+                    ValueValidator.checkForNegativeValueAndReturn(
+                            5,
+                            "Negative integer is not allowed")
+            );
         }
+    }
 
         @Test
         public void testForNull() {
@@ -102,5 +108,4 @@ public class ValueValidatorTest {
             );
             assertEquals("Null value not allowed", thrown.getMessage());
         }
-    }
 }
