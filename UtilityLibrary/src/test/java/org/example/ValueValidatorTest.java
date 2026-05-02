@@ -18,10 +18,12 @@ public class ValueValidatorTest {
         @Test
         public void testForIntegerZeroValue() {
             assertEquals(
-                    "Zero not allowed",
+                    "Integer zero not allowed",
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> ValueValidator.checkForZeroValueAndReturn(0, "Zero not allowed")
+                            () -> ValueValidator.checkForZeroValueAndReturn(
+                                    0,
+                                    "Integer zero not allowed")
                     ).getMessage()
             );
         }
