@@ -35,15 +35,27 @@ public class NumberUtilsTest {
 
         @Test
         public void testIntegerWithinRange() {
-            int number = 15;
             assertEquals(
-                    number,
+                    15,
                     NumberUtils.checkNumberInRangeAndReturn(
-                            number,
+                            15,
                             10,
                             20,
                             "Number outside of range"
                             )
+            );
+        }
+
+        @Test
+        public void testLowerBoundIncludedInRange() {
+            assertEquals(
+                    10,
+                    NumberUtils.checkNumberInRangeAndReturn(
+                            10,
+                            10,
+                            20,
+                            "Number outside of range"
+                    )
             );
         }
     }
