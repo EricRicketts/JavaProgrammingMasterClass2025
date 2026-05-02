@@ -16,7 +16,7 @@ public class ValueValidatorTest {
     class ZeroValueChecks {
 
         @Test
-        public void testForIntegerZeroValue() {
+        public void testIntegerZeroValue() {
             assertEquals(
                     "Integer zero not allowed",
                     assertThrows(
@@ -29,7 +29,7 @@ public class ValueValidatorTest {
         }
 
        @Test
-        public void testForBigDecimalZeroValue() {
+        public void testBigDecimalZeroValue() {
             assertEquals(
                     "BigDecimal zero not allowed",
                     assertThrows(
@@ -38,6 +38,14 @@ public class ValueValidatorTest {
                                     BigDecimal.valueOf(0.00),
                                     "BigDecimal zero not allowed")
                     ).getMessage()
+            );
+        }
+
+        @Test
+        public void testIntegerNonZeroValue() {
+            assertEquals(1, ValueValidator.checkForZeroValueAndReturn(
+                    1,
+                    "Integer zero not allowed")
             );
         }
 
