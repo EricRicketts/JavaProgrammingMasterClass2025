@@ -58,5 +58,18 @@ public class NumberUtilsTest {
                     )
             );
         }
+
+        @Test
+        public void testUpperBoundIncludedInRange() {
+            assertEquals(
+                    20,
+                    NumberUtils.checkNumberInRangeAndReturn(
+                            20,
+                            10,
+                            20,
+                            "Number outside of range"
+                    )
+            );
+        }
     }
 }
