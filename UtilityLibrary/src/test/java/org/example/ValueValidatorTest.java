@@ -75,7 +75,10 @@ public class ValueValidatorTest {
                             -10,
                             "Negative integer is not allowed")
             );
-            assertEquals("Negative integer is not allowed", thrown.getMessage());
+            assertEquals(
+                    "Negative integer is not allowed",
+                    thrown.getMessage()
+            );
         }
 
         @Test
@@ -86,7 +89,10 @@ public class ValueValidatorTest {
                             BigDecimal.valueOf(-30.45),
                             "Negative BigDecimal is not allowed")
             );
-            assertEquals("Negative BigDecimal is not allowed", thrown.getMessage());
+            assertEquals(
+                    "Negative BigDecimal is not allowed",
+                    thrown.getMessage()
+            );
         }
 
         @Test
@@ -96,6 +102,16 @@ public class ValueValidatorTest {
                     ValueValidator.checkForNegativeValueAndReturn(
                             5,
                             "Negative integer is not allowed")
+            );
+        }
+
+        @Test
+        public void testNonNegativeBigDecimal() {
+            assertEquals(
+                    BigDecimal.valueOf(87.34),
+                    ValueValidator.checkForNegativeValueAndReturn(
+                            BigDecimal.valueOf(87.34),
+                            "Negative BigDecimal is not allowed")
             );
         }
     }
