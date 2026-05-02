@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NumberUtilsTest {
 
@@ -30,7 +31,7 @@ public class NumberUtilsTest {
     }
 
     @Nested
-    @DisplayName("Numeric range checks")
+    @DisplayName("Integer range checks")
     class NumberWithinRange {
 
         @Test
@@ -41,8 +42,9 @@ public class NumberUtilsTest {
                             15,
                             10,
                             20,
-                            "Number outside of range"
-                            )
+                            "Number violates lower bound of 10",
+                            "Number violates upper bound of 20"
+                    )
             );
         }
 
@@ -54,7 +56,9 @@ public class NumberUtilsTest {
                             10,
                             10,
                             20,
-                            "Number outside of range"
+                            "Number violates lower bound of 10",
+                            "Number violates upper bound of 20"
+
                     )
             );
         }
@@ -67,8 +71,26 @@ public class NumberUtilsTest {
                             20,
                             10,
                             20,
-                            "Number outside of range"
+                            "Number violates lower bound of 10",
+                            "Number violates upper bound of 20"
                     )
+            );
+        }
+
+        @Test
+        public void testLowerBoundRangeViolation() {
+            assertEquals(
+                    "Number violates lower bound of 10",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> NumberUtils.checkNumberInRangeAndReturn(
+                                    9,
+                                    10,
+                                    20,
+                                    "Number violates lower bound of 10",
+                                    "Number violates upper bound of 20"
+                            )
+                    ).getMessage()
             );
         }
     }

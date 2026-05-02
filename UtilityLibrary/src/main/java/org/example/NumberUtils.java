@@ -13,10 +13,13 @@ public class NumberUtils {
             int number,
             int lower,
             int upper,
-            String errorMessage
+            String lowerBoundErrorMessage,
+            String upperBoundErrorMessage
     ) {
-        if (number < lower || number > upper) {
-            throw new IllegalArgumentException(errorMessage);
+        if (number < lower) {
+            throw new IllegalArgumentException(lowerBoundErrorMessage);
+        } else if (number > upper) {
+            throw new IllegalArgumentException(upperBoundErrorMessage);
         }
         return number;
     }
