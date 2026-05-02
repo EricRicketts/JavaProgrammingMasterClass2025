@@ -93,5 +93,23 @@ public class NumberUtilsTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testUpperBoundRangeViolation() {
+            assertEquals(
+                    "Number violates upper bound of 20",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> NumberUtils.checkNumberInRangeAndReturn(
+                                    21,
+                                    10,
+                                    20,
+                                    "Number violates lower bound of 10",
+                                    "Number violates upper bound of 20"
+
+                            )
+                    ).getMessage()
+            );
+        }
     }
 }
