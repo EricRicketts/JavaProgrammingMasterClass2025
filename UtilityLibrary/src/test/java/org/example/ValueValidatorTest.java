@@ -28,6 +28,19 @@ public class ValueValidatorTest {
             );
         }
 
+       @Test
+        public void testForBigDecimalZeroValue() {
+            assertEquals(
+                    "BigDecimal zero not allowed",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.checkForZeroValueAndReturn(
+                                    BigDecimal.valueOf(0.00),
+                                    "BigDecimal zero not allowed")
+                    ).getMessage()
+            );
+        }
+
     }
 
     @Test
