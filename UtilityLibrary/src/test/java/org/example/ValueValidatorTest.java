@@ -18,12 +18,12 @@ public class ValueValidatorTest {
         @Test
         public void testIntegerZeroValue() {
             assertEquals(
-                    "Integer zero not allowed",
+                    "Integer zero is not allowed",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> ValueValidator.checkForZeroValueAndReturn(
                                     0,
-                                    "Integer zero not allowed")
+                                    "Integer zero is not allowed")
                     ).getMessage()
             );
         }
@@ -31,12 +31,12 @@ public class ValueValidatorTest {
        @Test
         public void testBigDecimalZeroValue() {
             assertEquals(
-                    "BigDecimal zero not allowed",
+                    "BigDecimal zero is not allowed",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> ValueValidator.checkForZeroValueAndReturn(
                                     BigDecimal.valueOf(0.00),
-                                    "BigDecimal zero not allowed")
+                                    "BigDecimal zero is not allowed")
                     ).getMessage()
             );
         }
@@ -47,7 +47,7 @@ public class ValueValidatorTest {
                     1,
                     ValueValidator.checkForZeroValueAndReturn(
                     1,
-                    "Integer zero not allowed")
+                    "Integer zero is not allowed")
             );
         }
 
@@ -57,7 +57,7 @@ public class ValueValidatorTest {
                     BigDecimal.valueOf(10.87),
                     ValueValidator.checkForZeroValueAndReturn(
                             BigDecimal.valueOf(10.87),
-                            "BigDecimal zero not allowed"
+                            "BigDecimal zero is not allowed"
                     )
             );
         }
@@ -73,19 +73,25 @@ public class ValueValidatorTest {
                     IllegalArgumentException.class,
                     () -> ValueValidator.checkForNegativeValueAndReturn(
                             -10,
-                            "Integer is less than zero")
+                            "Negative integer is not allowed")
             );
-            assertEquals("Integer is less than zero", thrown.getMessage());
+            assertEquals("Negative integer is not allowed", thrown.getMessage());
         }
 
         @Test
         public void testNegativeBigDecimal() {
-            BigDecimal value = BigDecimal.valueOf(-30.45);
             IllegalArgumentException thrown = assertThrows(
                     IllegalArgumentException.class,
-                    () -> ValueValidator.checkForNegativeValueAndReturn(value, "Big Decimal is less than zero")
+                    () -> ValueValidator.checkForNegativeValueAndReturn(
+                            BigDecimal.valueOf(-30.45),
+                            "Negative BigDecimal is not allowed")
             );
-            assertEquals("Big Decimal is less than zero", thrown.getMessage());
+            assertEquals("Negative BigDecimal is not allowed", thrown.getMessage());
+        }
+
+        @Test
+        public void testNonNegativeInteger() {
+
         }
 
         @Test
