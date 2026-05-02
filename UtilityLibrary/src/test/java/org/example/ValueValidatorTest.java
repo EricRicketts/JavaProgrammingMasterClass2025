@@ -1,5 +1,7 @@
 package org.example;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -9,11 +11,28 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ValueValidatorTest {
 
+    @Nested
+    @DisplayName("zero value checks")
+    class ZeroValueChecks {
+
+        @Test
+        public void testForIntegerZeroValue() {
+            assertEquals(
+                    "Zero not allowed",
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.checkForZeroValueAndReturn(0, "Zero not allowed")
+                    ).getMessage()
+            );
+        }
+
+    }
+
     @Test
     public void testForNegativeInteger() {
         IllegalArgumentException thrown = assertThrows(
             IllegalArgumentException.class,
-                () -> ValueValidator.checkForNegativeValue(-10, "Integer is less than zero")
+                () -> ValueValidator.checkForNegativeValueAndReturn(-10, "Integer is less than zero")
         );
         assertEquals("Integer is less than zero", thrown.getMessage());
     }
@@ -23,7 +42,7 @@ public class ValueValidatorTest {
         BigDecimal value = BigDecimal.valueOf(-30.45);
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> ValueValidator.checkForNegativeValue(value, "Big Decimal is less than zero")
+                () -> ValueValidator.checkForNegativeValueAndReturn(value, "Big Decimal is less than zero")
         );
         assertEquals("Big Decimal is less than zero", thrown.getMessage());
     }
@@ -32,7 +51,7 @@ public class ValueValidatorTest {
     public void testForNull() {
         NullPointerException thrown = assertThrows(
                 NullPointerException.class,
-                () -> ValueValidator.checkForNull(null, "Null value not allowed")
+                () -> ValueValidator.checkForNullValueAndReturn(null, "Null value not allowed")
         );
         assertEquals("Null value not allowed", thrown.getMessage());
     }
