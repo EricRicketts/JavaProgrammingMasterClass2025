@@ -10,10 +10,10 @@ public class BankAccount {
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
         this.bankName =
-                ValueValidator.checkForNull(bankName,
+                ValueValidator.checkForNullValueAndReturn(bankName,
                 "Null value not allowed for bank name");
         this.accountNumber =
-                ValueValidator.checkForNegativeValue(accountNumber,
+                ValueValidator.checkForNegativeValueAndReturn(accountNumber,
                         "Account number is less than zero");
         BigDecimal nonNullOrNonNegativeBalance =
                 this.validateAmountAndReturn(balance,
@@ -62,12 +62,12 @@ public class BankAccount {
             String nullMessage,
             String negativeMessage
     ) {
-        ValueValidator.checkForNull(amount, nullMessage);
-        ValueValidator.checkForNegativeValue(amount, negativeMessage);
+        ValueValidator.checkForNullValueAndReturn(amount, nullMessage);
+        ValueValidator.checkForNegativeValueAndReturn(amount, negativeMessage);
         return amount;
     }
 
     private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
-        return ValueValidator.checkForNegativeValue(newBalance, message);
+        return ValueValidator.checkForNegativeValueAndReturn(newBalance, message);
     }
 }

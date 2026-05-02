@@ -12,11 +12,17 @@ public enum ErrorMessages {
 
     NULL_VALUE_MESSAGE_FOR_SIDE("Null value is not allowed for a side"),
 
+    ZERO_VALUE_MESSAGE_FOR_SIDE("Zero value is not allowed for a side"),
+
     NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for a side"),
 
-    NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR("Negative or zero value is not allowed for a scale factor"),
+   ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR("Zero value is not allowed for a scale factor"),
 
-    NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE("Negative or zero value is not allowed for age"),
+    NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR("Negative value is not allowed for a scale factor"),
+
+    ZERO_VALUE_MESSAGE_FOR_AGE("Zero value is not allowed for age"),
+
+    NEGATIVE_VALUE_MESSAGE_FOR_AGE("Negative value is not allowed for age"),
 
     NULL_VALUE_MESSAGE_FOR_NAME("Null value is not allowed for name"),
 

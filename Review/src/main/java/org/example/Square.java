@@ -27,18 +27,28 @@ public class Square {
     }
 
     private BigDecimal validateAndScaleSide(BigDecimal side, int scaleFactor) {
-        ValueValidator.validateNumberAndReturn(
+        BigDecimal nonNullSide = ValueValidator.checkForNullValueAndReturn(
                 side,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+        );
+
+        BigDecimal nonNegativeSide = ValueValidator.checkForNegativeValueAndReturn(
+                nonNullSide,
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
-        return NumberUtils.setScale(side, scaleFactor);
+
+        return NumberUtils.setScale(nonNegativeSide, scaleFactor);
     }
 
     private int validateScaleFactor(int scaleFactor) {
-        return ValueValidator.checkForNegativeOrZeroValue(
+        int nonZeroScaleFactor = ValueValidator.checkForZeroValueAndReturn(
                 scaleFactor,
-                ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+        );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                nonZeroScaleFactor,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
     }
 }

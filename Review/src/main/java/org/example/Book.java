@@ -34,15 +34,15 @@ public class Book {
     }
 
     private String validateAuthorAndReturn(String author) {
-        return ValueValidator.checkForNull(author, "Null value assigned to author");
+        return ValueValidator.checkForNullValueAndReturn(author, "Null value assigned to author");
     }
 
     private int validatePagesAndReturn(int pages) {
         String message = "Number of pages assigned to book is less than zero";
-        return ValueValidator.checkForNegativeValue(pages, message);
+        return ValueValidator.checkForNegativeValueAndReturn(pages, message);
     }
 
     private String validateTitleAndReturn(String title) {
-        return ValueValidator.checkForNull(title, "Null value assigned to title");
+        return ValueValidator.checkForNullValueAndReturn(title, "Null value assigned to title");
     }
 }

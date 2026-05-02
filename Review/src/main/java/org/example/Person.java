@@ -49,9 +49,14 @@ public class Person {
     }
 
     private int validateAgeAndReturn(int age) {
-        return ValueValidator.checkForNegativeOrZeroValue(
+        int nonNullAge = ValueValidator.checkForZeroValueAndReturn(
                 age,
-                ErrorMessages.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+        );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                nonNullAge,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
         );
     }
 
