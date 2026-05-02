@@ -43,9 +43,22 @@ public class ValueValidatorTest {
 
         @Test
         public void testIntegerNonZeroValue() {
-            assertEquals(1, ValueValidator.checkForZeroValueAndReturn(
+            assertEquals(
+                    1,
+                    ValueValidator.checkForZeroValueAndReturn(
                     1,
                     "Integer zero not allowed")
+            );
+        }
+
+        @Test
+        public void testBigDecimalNonZeroValue() {
+            assertEquals(
+                    BigDecimal.valueOf(10.87),
+                    ValueValidator.checkForZeroValueAndReturn(
+                            BigDecimal.valueOf(10.87),
+                            "BigDecimal zero not allowed"
+                    )
             );
         }
 
