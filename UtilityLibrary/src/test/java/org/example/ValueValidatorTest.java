@@ -116,12 +116,18 @@ public class ValueValidatorTest {
         }
     }
 
+    @Nested
+    @DisplayName("Null value checks")
+    class NullValueChecks {
+
         @Test
         public void testForNull() {
             NullPointerException thrown = assertThrows(
                     NullPointerException.class,
-                    () -> ValueValidator.checkForNullValueAndReturn(null, "Null value not allowed")
+                    () -> ValueValidator.checkForNullValueAndReturn(
+                            null, "Null value is not allowed")
             );
-            assertEquals("Null value not allowed", thrown.getMessage());
+            assertEquals("Null value is not allowed", thrown.getMessage());
         }
+    }
 }
