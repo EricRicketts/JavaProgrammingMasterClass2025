@@ -61,34 +61,40 @@ public class ValueValidatorTest {
                     )
             );
         }
-
     }
 
-    @Test
-    public void testForNegativeInteger() {
-        IllegalArgumentException thrown = assertThrows(
-            IllegalArgumentException.class,
-                () -> ValueValidator.checkForNegativeValueAndReturn(-10, "Integer is less than zero")
-        );
-        assertEquals("Integer is less than zero", thrown.getMessage());
-    }
+    @Nested
+    @DisplayName("Negative value checks")
+    class NegativeValueChecks {
 
-    @Test
-    public void testForNegativeBigDecimal() {
-        BigDecimal value = BigDecimal.valueOf(-30.45);
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> ValueValidator.checkForNegativeValueAndReturn(value, "Big Decimal is less than zero")
-        );
-        assertEquals("Big Decimal is less than zero", thrown.getMessage());
-    }
+        @Test
+        public void testNegativeInteger() {
+            IllegalArgumentException thrown = assertThrows(
+                    IllegalArgumentException.class,
+                    () -> ValueValidator.checkForNegativeValueAndReturn(
+                            -10,
+                            "Integer is less than zero")
+            );
+            assertEquals("Integer is less than zero", thrown.getMessage());
+        }
 
-    @Test
-    public void testForNull() {
-        NullPointerException thrown = assertThrows(
-                NullPointerException.class,
-                () -> ValueValidator.checkForNullValueAndReturn(null, "Null value not allowed")
-        );
-        assertEquals("Null value not allowed", thrown.getMessage());
+        @Test
+        public void testNegativeBigDecimal() {
+            BigDecimal value = BigDecimal.valueOf(-30.45);
+            IllegalArgumentException thrown = assertThrows(
+                    IllegalArgumentException.class,
+                    () -> ValueValidator.checkForNegativeValueAndReturn(value, "Big Decimal is less than zero")
+            );
+            assertEquals("Big Decimal is less than zero", thrown.getMessage());
+        }
+
+        @Test
+        public void testForNull() {
+            NullPointerException thrown = assertThrows(
+                    NullPointerException.class,
+                    () -> ValueValidator.checkForNullValueAndReturn(null, "Null value not allowed")
+            );
+            assertEquals("Null value not allowed", thrown.getMessage());
+        }
     }
 }
