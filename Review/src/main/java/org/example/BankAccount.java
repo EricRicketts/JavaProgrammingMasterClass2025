@@ -9,14 +9,10 @@ public class BankAccount {
     private BigDecimal balance;
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
-        this.bankName =
-                ValueValidator.checkForNullValueAndReturn(bankName,
-                "Null value not allowed for bank name");
-        this.accountNumber =
-                ValueValidator.checkForNegativeValueAndReturn(accountNumber,
-                        "Account number is less than zero");
+        this.bankName = validateBankNameAndReturn(bankName);
+        this.accountNumber = validateAccountNumberAndReturn(accountNumber);
         BigDecimal nonNullOrNonNegativeBalance =
-                this.validateAmountAndReturn(balance,
+                this.validateDepositAndReturn(balance,
                         "Null value not allowed for balance",
                         "Balance is less than zero");
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
@@ -35,7 +31,7 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
-        BigDecimal validDepositAmount = validateAmountAndReturn(
+        BigDecimal validDepositAmount = validateDepositAndReturn(
                 depositAmount,
                 "Null value not allowed for deposit amount",
                 "Deposit amount cannot be less than zero"
@@ -44,7 +40,7 @@ public class BankAccount {
     }
 
     public void withdraw(BigDecimal withdrawAmount) {
-        BigDecimal validWithdrawAmount = validateAmountAndReturn(
+        BigDecimal validWithdrawAmount = validateWithdrawAndReturn(
                 withdrawAmount,
                 "Null value not allowed for withdraw amount",
                 "Withdraw amount cannot be less than zero"
@@ -57,17 +53,50 @@ public class BankAccount {
         this.balance = NumberUtils.setScale(remainingBalance, 2);
     }
 
-    private BigDecimal validateAmountAndReturn(
-            BigDecimal amount,
+    private BigDecimal validateDepositAndReturn(
+            BigDecimal depositAmount,
             String nullMessage,
             String negativeMessage
     ) {
-        ValueValidator.checkForNullValueAndReturn(amount, nullMessage);
-        ValueValidator.checkForNegativeValueAndReturn(amount, negativeMessage);
-        return amount;
+        BigDecimal nonNullDepositAmount =
+                ValueValidator.checkForNullValueAndReturn(depositAmount, nullMessage);
+        return ValueValidator.checkForNegativeValueAndReturn(nonNullDepositAmount, negativeMessage);
     }
+
+    private BigDecimal validateWithdrawAndReturn(
+            BigDecimal withdrawAmount,
+            String nullMessage,
+            String negativeMessage
+    ) {
+        BigDecimal nonNullWithdrawAmount =
+                ValueValidator.checkForNullValueAndReturn(withdrawAmount, nullMessage);
+        return ValueValidator.checkForNegativeValueAndReturn(nonNullWithdrawAmount, negativeMessage);
+    }
+
 
     private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
         return ValueValidator.checkForNegativeValueAndReturn(newBalance, message);
     }
+
+   private String validateBankNameAndReturn(String bankName) {
+        String nonNullBankName = ValueValidator.checkForNullValueAndReturn(
+            bankName,
+            ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+        );
+       return ValueValidator.checkForBlankValueAndReturn(
+           nonNullBankName,
+           ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+       );
+   }
+
+   private int validateAccountNumberAndReturn(int accountNumber) {
+        int nonZeroAccountNumber = ValueValidator.checkForZeroValueAndReturn(
+                accountNumber,
+                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+        );
+        return ValueValidator.checkForNegativeValueAndReturn(
+                nonZeroAccountNumber,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+        );
+   }
 }

@@ -1,10 +1,14 @@
 package org.example;
 
-public enum ErrorMessage {
+public enum ErrorMessages {
 
     NULL_VALUE_MESSAGE_FOR_NAME("Null value is not allowed for name"),
 
     BLANK_VALUE_MESSAGE_FOR_NAME("Blank value is not allowed for name"),
+
+    NULL_VALUE_MESSAGE_FOR_BANK_NAME("Null value is not allowed for bank name"),
+
+    BLANK_VALUE_MESSAGE_FOR_BANK_NAME("Blank value is not allowed for bank name"),
 
     NULL_VALUE_MESSAGE_FOR_CITY("Null value is not allowed for city"),
 
@@ -13,6 +17,10 @@ public enum ErrorMessage {
     ZERO_VALUE_MESSAGE_FOR_AGE("Zero value is not allowed for age"),
 
     NEGATIVE_VALUE_MESSAGE_FOR_AGE("Negative value is not allowed for age"),
+
+    ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER("Zero value is not allowed for account number"),
+
+    NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER("Negative value is not allowed for account number"),
 
     ZERO_VALUE_MESSAGE_FOR_ID("Zero value is not allowed for id"),
 
@@ -42,7 +50,7 @@ public enum ErrorMessage {
 
     private final String errorMessage;
 
-    ErrorMessage(String errorMessage) {
+    ErrorMessages(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

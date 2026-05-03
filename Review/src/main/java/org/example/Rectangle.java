@@ -34,11 +34,11 @@ public class Rectangle {
     private BigDecimal validateAndScaleWidth(BigDecimal width, int scaleFactor) {
         ValueValidator.checkForNullValueAndReturn(
                 width,
-                ErrorMessage.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
         ValueValidator.checkForNegativeValueAndReturn(
                 width,
-                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
         );
         return NumberUtils.setScale(width, scaleFactor);
     }
@@ -46,11 +46,11 @@ public class Rectangle {
     private BigDecimal validateAndScaleHeight(BigDecimal height, int scaleFactor) {
         ValueValidator.checkForNullValueAndReturn(
                 height,
-                ErrorMessage.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
         );
         ValueValidator.checkForNegativeValueAndReturn(
                 height,
-                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
         );
         return NumberUtils.setScale(height, scaleFactor);
     }
@@ -59,12 +59,12 @@ public class Rectangle {
        int nonZeroScaleFactor =
                ValueValidator.checkForZeroValueAndReturn(
                 scaleFactor,
-                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
         );
 
        return ValueValidator.checkForNegativeValueAndReturn(
                nonZeroScaleFactor,
-               ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+               ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
        );
     }
 

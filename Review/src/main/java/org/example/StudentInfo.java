@@ -17,33 +17,33 @@ public class StudentInfo {
     private String validateNameAndReturn(String name) {
         String nonNullName = ValueValidator.checkForNullValueAndReturn(
                 name,
-                ErrorMessage.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
         );
         return ValueValidator.checkForBlankValueAndReturn(
                 nonNullName,
-                ErrorMessage.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
         );
     }
 
     private int validateIDAndReturn(int id) {
         int nonZeroId = ValueValidator.checkForZeroValueAndReturn(
                 id,
-                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
         );
         return  ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroId,
-                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
         );
     }
 
     private BigDecimal validateGPAAndReturn(BigDecimal gpa) {
         BigDecimal nonZeroGpa = ValueValidator.checkForZeroValueAndReturn(
                 gpa,
-                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
         );
         return  ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroGpa,
-                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
         );
     }
 }
