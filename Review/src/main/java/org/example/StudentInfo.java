@@ -9,15 +9,30 @@ public class StudentInfo {
     private BigDecimal gpa;
 
     public StudentInfo(String name, int id, BigDecimal gpa) {
-        this.name = ValueValidator.validateNameAndReturn(name);
+        this.name = validateNameAndReturn(name);
     }
 
     private String validateNameAndReturn(String name) {
-        ValueValidator.checkForNullValueOrBlankStringAndReturn(
+        String nonNullName = ValueValidator.checkForNullValueAndReturn(
                 name,
-                "Null value is not allowed for name",
-                "Blank or empty value is not allowed for name"
+                ErrorMessage.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
         );
-        return name;
+        return ValueValidator.checkForBlankValueAndReturn(
+                nonNullName,
+                ErrorMessage.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+        );
+    }
+
+    private String validateIDAndReturn(int id) {
+        int nonZeroId = ValueValidator.checkForZeroValueAndReturn(
+                id,
+                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+        );
+        return  ValueValidator.checkForNegativeValueAndReturn(
+                nonZeroId,
+                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+        ).getMessage()
     }
 }
+
+

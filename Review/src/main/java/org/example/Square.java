@@ -29,12 +29,12 @@ public class Square {
     private BigDecimal validateAndScaleSide(BigDecimal side, int scaleFactor) {
         BigDecimal nonNullSide = ValueValidator.checkForNullValueAndReturn(
                 side,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                ErrorMessage.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
 
         BigDecimal nonNegativeSide = ValueValidator.checkForNegativeValueAndReturn(
                 nonNullSide,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
 
         return NumberUtils.setScale(nonNegativeSide, scaleFactor);
@@ -43,12 +43,12 @@ public class Square {
     private int validateScaleFactor(int scaleFactor) {
         int nonZeroScaleFactor = ValueValidator.checkForZeroValueAndReturn(
                 scaleFactor,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
 
         return ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroScaleFactor,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
         );
     }
 }

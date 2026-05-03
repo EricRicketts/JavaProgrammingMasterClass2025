@@ -51,23 +51,23 @@ public class Person {
     private int validateAgeAndReturn(int age) {
         int nonNullAge = ValueValidator.checkForZeroValueAndReturn(
                 age,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
         );
 
         return ValueValidator.checkForNegativeValueAndReturn(
                 nonNullAge,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
         );
     }
 
     private String validateNameAndReturn(String name) {
         if (name == null) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                    ErrorMessage.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
             );
         } else if (name.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                    ErrorMessage.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
             );
         }
         return name;
@@ -76,11 +76,11 @@ public class Person {
     private String validateCityAndReturn(String city) {
         if (city == null) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+                    ErrorMessage.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
             );
         } else if (city.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+                    ErrorMessage.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
             );
         }
         return city;

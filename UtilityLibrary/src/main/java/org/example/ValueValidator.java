@@ -37,24 +37,10 @@ public class ValueValidator {
         return Objects.requireNonNull(value, message);
     }
 
-    public static String checkForNullValueOrBlankStringAndReturn(
-            String value,
-            String nullMessage,
-            String blankMessage
-    ) {
-        if (value == null) {
-            throw new NullPointerException(nullMessage);
-        } else if (value.isBlank()) {
-            throw new IllegalArgumentException(blankMessage);
+    public static String checkForBlankValueAndReturn(String value, String message) {
+        if (value.isBlank()) {
+            throw new IllegalArgumentException(message);
         }
         return value;
-    }
-    public static BigDecimal checkForNullOrNegativeNumberAndReturn(
-            BigDecimal number,
-            String nullMessage,
-            String negativeMessage
-    ) {
-        BigDecimal nonNullNumber = checkForNullValueAndReturn(number, nullMessage);
-        return checkForNegativeValueAndReturn(nonNullNumber, negativeMessage);
     }
 }
