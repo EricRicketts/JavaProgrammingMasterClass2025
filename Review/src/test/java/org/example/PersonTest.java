@@ -91,7 +91,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
-                    ErrorMessage.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                            IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", -1, "Hollywood")
@@ -102,7 +102,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsZeroAge() {
             assertEquals(
-                    ErrorMessage.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessage.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 0, "Hollywood")
@@ -151,7 +151,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
-                    ErrorMessage.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", -4)
@@ -162,7 +162,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsZeroAge() {
             assertEquals(
-                    ErrorMessage.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessage.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 0)
@@ -218,7 +218,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsNegativeAge() {
             assertEquals(
-                    ErrorMessage.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> firstPerson.setAge(-12)
@@ -229,7 +229,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsZeroAge() {
             assertEquals(
-                    ErrorMessage.NEGATIVE_OR_ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessage.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> firstPerson.setAge(0)

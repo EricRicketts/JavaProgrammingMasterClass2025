@@ -10,6 +10,8 @@ public class StudentInfo {
 
     public StudentInfo(String name, int id, BigDecimal gpa) {
         this.name = validateNameAndReturn(name);
+        this.id = validateIDAndReturn(id);
+        this.gpa = validateGPAAndReturn(gpa);
     }
 
     private String validateNameAndReturn(String name) {
@@ -23,7 +25,7 @@ public class StudentInfo {
         );
     }
 
-    private String validateIDAndReturn(int id) {
+    private int validateIDAndReturn(int id) {
         int nonZeroId = ValueValidator.checkForZeroValueAndReturn(
                 id,
                 ErrorMessage.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
@@ -31,7 +33,18 @@ public class StudentInfo {
         return  ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroId,
                 ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-        ).getMessage()
+        );
+    }
+
+    private BigDecimal validateGPAAndReturn(BigDecimal gpa) {
+        BigDecimal nonZeroGpa = ValueValidator.checkForZeroValueAndReturn(
+                gpa,
+                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+        );
+        return  ValueValidator.checkForNegativeValueAndReturn(
+                nonZeroGpa,
+                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+        );
     }
 }
 

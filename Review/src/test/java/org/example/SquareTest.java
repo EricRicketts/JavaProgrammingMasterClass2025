@@ -27,7 +27,7 @@ public class SquareTest {
         @Test
         public void testSquareConstructorRejectsNullValue() {
             assertEquals(
-                    "Null value is not allowed for a side",
+                    "Null value is not allowed for side",
                     assertThrows(
                             NullPointerException.class,
                             () -> new Square(null, SCALE_FACTOR)
@@ -38,7 +38,7 @@ public class SquareTest {
         @Test
         public void testSquareConstructorRejectsNegativeValue() {
             assertEquals(
-                    "Negative value is not allowed for a side",
+                    "Negative value is not allowed for side",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
@@ -61,7 +61,7 @@ public class SquareTest {
         @Test
         public void testNegativeScaleFactor() {
             assertEquals(
-                    "Negative or zero value is not allowed for a scale factor",
+                    "Negative value is not allowed for scale factor",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Square(BigDecimal.valueOf(10.45), -3)
@@ -72,7 +72,7 @@ public class SquareTest {
         @Test
         public void testZeroScaleFactor() {
             assertEquals(
-                    "Negative or zero value is not allowed for a scale factor",
+                    "Zero value is not allowed for scale factor",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Square(BigDecimal.valueOf(43.56), 0)

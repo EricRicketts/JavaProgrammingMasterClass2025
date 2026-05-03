@@ -43,12 +43,12 @@ public class Square {
     private int validateScaleFactor(int scaleFactor) {
         int nonZeroScaleFactor = ValueValidator.checkForZeroValueAndReturn(
                 scaleFactor,
-                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                ErrorMessage.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
         );
 
         return ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroScaleFactor,
-                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                ErrorMessage.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
         );
     }
 }
