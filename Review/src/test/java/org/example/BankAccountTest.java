@@ -155,7 +155,44 @@ public class BankAccountTest {
                     ).getMessage()
             );
         }
+    }
 
+    @Nested
+    @DisplayName("Withdraw checks for null value, negative value and overdraft")
+    class InvalidWithdrawChecks {
+
+        @Test
+        public void testWithdrawRejectsNullValue() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () ->  bankAccount.withdraw(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testWithdrawRejectsNegativeAmount() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testWithdrawRejectsExceedingBalance() {
+            assertEquals(
+                    ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
+                    ).getMessage()
+            );
+        }
     }
 
     @Test
@@ -201,39 +238,6 @@ public class BankAccountTest {
     public void testZeroDepositLeavesBalanceUnchanged() {
         bankAccount.deposit(BigDecimal.valueOf(0.00));
         assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testWithdrawRejectsNullValue() {
-        assertEquals(
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
-                assertThrows(
-                NullPointerException.class,
-                () ->  bankAccount.withdraw(null)
-            ).getMessage()
-        );
-    }
-
-    @Test
-    public void testWithdrawRejectsExceedingBalance() {
-        assertEquals(
-                ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
-                assertThrows(
-                IllegalArgumentException.class,
-                () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
-            ).getMessage()
-        );
-    }
-
-    @Test
-    public void testWithdrawRejectsNegativeAmount() {
-        assertEquals(
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
-                assertThrows(
-                IllegalArgumentException.class,
-                () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
-            ).getMessage()
-        );
     }
 
     @Test
