@@ -224,10 +224,21 @@ public class BankAccountTest {
         }
     }
 
-    @Test
-    public void testDepositIncreasesBalanceAndRoundsForThreeDecimalPlaces() {
-        bankAccount.deposit(BigDecimal.valueOf(100.505));
-        assertEquals(BigDecimal.valueOf(612.87), bankAccount.getBalance());
+    @Nested
+    @DisplayName("Deposit tests, test three decimal place deposit, large deposit and small deposit")
+    class BankAccountDepositChecks {
+
+        @Test
+        public void testDepositRoundsUpAndIncreasesBalance() {
+            bankAccount.deposit(BigDecimal.valueOf(100.505));
+            assertEquals(BigDecimal.valueOf(612.87), bankAccount.getBalance());
+        }
+
+        @Test
+        public void testDepositRoundsDownAndIncreasesBalance() {
+            bankAccount.deposit(BigDecimal.valueOf(100.504));
+            assertEquals(BigDecimal.valueOf(612.86), bankAccount.getBalance());
+        }
     }
 
     @Test
