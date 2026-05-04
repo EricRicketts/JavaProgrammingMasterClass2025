@@ -225,7 +225,7 @@ public class BankAccountTest {
     }
 
     @Nested
-    @DisplayName("Deposit tests, test three decimal place deposit, large deposit and small deposit")
+    @DisplayName("Deposit tests, test three decimal place deposit, large deposit, small deposit and zero deposit")
     class BankAccountDepositChecks {
 
         @Test
@@ -244,6 +244,24 @@ public class BankAccountTest {
         public void testSmallDepositIncreasesBalance() {
             bankAccount.deposit(BigDecimal.valueOf(0.01));
             assertEquals(BigDecimal.valueOf(512.37), bankAccount.getBalance());
+        }
+
+        @Test
+        public void testLargeDepositIncreasesBalance() {
+            bankAccount.deposit(BigDecimal.valueOf(1_000_000.64));
+            assertEquals(
+                    NumberUtils.setScale(BigDecimal.valueOf(1_000_513.00), 2),
+                    bankAccount.getBalance()
+            );
+        }
+
+        @Test
+        public void testZeroDepositBalanceUnchanged() {
+            bankAccount.deposit(BigDecimal.valueOf(0.00));
+            assertEquals(
+                    BigDecimal.valueOf(512.36),
+                    bankAccount.getBalance()
+            );
         }
     }
 
