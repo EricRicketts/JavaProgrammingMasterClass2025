@@ -65,6 +65,37 @@ public class BankAccountTest {
                 );
             }
         }
+
+        @Nested
+        @DisplayName("Constructor checks for account number")
+        class BankAccountConstructorChecksForAccountNumber {
+
+            @Test
+            public void testConstructorRejectsZeroAccountNumber() {
+                assertEquals(
+                        "Zero value is not allowed for account number",
+                        assertThrows(
+                                IllegalArgumentException.class,
+                                () -> new BankAccount("Capital One", 0,
+                                        BigDecimal.valueOf(512.3578))
+                        ).getMessage()
+                );
+            }
+
+            @Test
+            public void testConstructorRejectsNegativeAccountNumber() {
+                assertEquals(
+                        "Negative value is not allowed for account number",
+                        assertThrows(
+                                IllegalArgumentException.class,
+                                () -> new BankAccount("Capital One", -12345,
+                                        BigDecimal.valueOf(512.3578))
+                        ).getMessage()
+                );
+            }
+
+
+        }
     }
 
     @Test
@@ -84,17 +115,6 @@ public class BankAccountTest {
         assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
     }
 
-    @Test
-    public void testConstructorRejectsNegativeAccountNumber() {
-        assertEquals(
-            "Negative value is not allowed for account number",
-            assertThrows(
-            IllegalArgumentException.class,
-            () -> new BankAccount("Capital One", -12345,
-            BigDecimal.valueOf(512.3578))
-            ).getMessage()
-        );
-    }
 
     @Test
     public void testConstructorRejectsNullBalance() {
