@@ -149,7 +149,7 @@ public class BankAccountTest {
         }
 
         @Test
-        public void testDepositRejectsNegativeAmount() {
+        public void testBalanceUnchangedWhenDepositRejectsNegativeAmount() {
             assertEquals(
                     ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
                     assertThrows(
@@ -157,6 +157,7 @@ public class BankAccountTest {
                             () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
                     ).getMessage()
             );
+            assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
         }
     }
 
