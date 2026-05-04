@@ -166,7 +166,7 @@ public class BankAccountTest {
     class InvalidWithdrawChecks {
 
         @Test
-        public void testWithdrawRejectsNullValue() {
+        public void testBalanceUnchangedWhenWithdrawRejectsNullValue() {
             assertEquals(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
                     assertThrows(
@@ -174,10 +174,11 @@ public class BankAccountTest {
                             () ->  bankAccount.withdraw(null)
                     ).getMessage()
             );
+            assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
         }
 
         @Test
-        public void testWithdrawRejectsNegativeAmount() {
+        public void testBalanceUnchangedWhenWithdrawRejectsNegativeAmount() {
             assertEquals(
                     ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
                     assertThrows(
@@ -185,10 +186,11 @@ public class BankAccountTest {
                             () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
                     ).getMessage()
             );
+            assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
         }
 
         @Test
-        public void testWithdrawRejectsExceedingBalance() {
+        public void testBalanceUnchangedWhenWithdrawRejectsExceedingBalance() {
             assertEquals(
                     ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
                     assertThrows(
@@ -196,24 +198,30 @@ public class BankAccountTest {
                             () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
                     ).getMessage()
             );
+            assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
         }
     }
 
-    @Test
-    public void testGetAccountNumber() {
-        assertEquals(12345678, bankAccount.getAccountNumber());
-    }
+    @Nested
+    @DisplayName("Bank Account getter tests")
+    class BankAccountGetterChecks {
+
+        @Test
+        public void testGetAccountNumber() {
+            assertEquals(12345678, bankAccount.getAccountNumber());
+        }
 
 
-    @Test
-    public void testGetBankName() {
-        assertEquals("Capital One", bankAccount.getBankName());
-    }
+        @Test
+        public void testGetBankName() {
+            assertEquals("Capital One", bankAccount.getBankName());
+        }
 
 
-    @Test
-    public void testGetBalance() {
-        assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
+        @Test
+        public void testGetBalance() {
+            assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
+        }
     }
 
     @Test
