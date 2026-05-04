@@ -304,12 +304,17 @@ public class BankAccountTest {
         }
     }
 
+    @Nested
+    @DisplayName("Bank Account withdraw tests, small, large, zero amounts and three decimal places")
+    class BankAccountWithdrawChecks {
+        
+    }
+
+
     @Test
-    public void testDepositAndWithdrawSmallestPracticalAmount() {
-        bankAccount.deposit(BigDecimal.valueOf(0.01));
-        assertEquals(BigDecimal.valueOf(512.37), bankAccount.getBalance());
+    public void testWithdrawSmallestPracticalAmount() {
         bankAccount.withdraw(BigDecimal.valueOf(0.01));
-        assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
+        assertEquals(BigDecimal.valueOf(512.35), bankAccount.getBalance());
     }
 
     @Test
