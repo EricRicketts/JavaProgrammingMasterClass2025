@@ -239,6 +239,12 @@ public class BankAccountTest {
             bankAccount.deposit(BigDecimal.valueOf(100.504));
             assertEquals(BigDecimal.valueOf(612.86), bankAccount.getBalance());
         }
+
+        @Test
+        public void testSmallDepositIncreasesBalance() {
+            bankAccount.deposit(BigDecimal.valueOf(0.01));
+            assertEquals(BigDecimal.valueOf(512.37), bankAccount.getBalance());
+        }
     }
 
     @Test
