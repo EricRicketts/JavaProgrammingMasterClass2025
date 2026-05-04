@@ -115,7 +115,7 @@ public class BankAccountTest {
             }
 
             @Test
-            public void testConstructorRejectsNegativeBalance() {
+            public void testBalanceUnchangedWhenConstructorRejectsNegativeBalance() {
                 assertEquals(
                         ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
                         assertThrows(
@@ -127,6 +127,7 @@ public class BankAccountTest {
                                 )
                         ).getMessage()
                 );
+                assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
             }
         }
     }
