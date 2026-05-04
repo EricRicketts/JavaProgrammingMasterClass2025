@@ -112,6 +112,21 @@ public class BankAccountTest {
                         ).getMessage()
                 );
             }
+
+            @Test
+            public void testConstructorRejectsNegativeBalance() {
+                assertEquals(
+                        ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
+                        assertThrows(
+                                IllegalArgumentException.class,
+                                () -> new BankAccount(
+                                        "Capital One",
+                                        123456,
+                                        BigDecimal.valueOf(-112.34)
+                                )
+                        ).getMessage()
+                );
+            }
         }
     }
 
