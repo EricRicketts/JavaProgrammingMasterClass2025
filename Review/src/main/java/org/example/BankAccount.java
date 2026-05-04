@@ -83,8 +83,14 @@ public class BankAccount {
             bankName,
             ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
         );
-       return ValueValidator.checkForBlankValueAndReturn(
-           nonNullBankName,
+
+        String nonEmptyBankName = ValueValidator.checkForEmptyValueAndReturn(
+                nonNullBankName,
+                ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+        );
+
+        return ValueValidator.checkForBlankValueAndReturn(
+           nonEmptyBankName,
            ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
        );
    }
@@ -94,9 +100,22 @@ public class BankAccount {
                 accountNumber,
                 ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
         );
+
         return ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroAccountNumber,
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+        );
+   }
+
+   private BigDecimal validateBalanceAndReturn(BigDecimal balance) {
+        BigDecimal nonNullBalance = ValueValidator.checkForNullValueAndReturn(
+                balance,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+        );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                nonNullBalance,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
         );
    }
 }

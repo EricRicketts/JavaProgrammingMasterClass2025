@@ -43,4 +43,11 @@ public class ValueValidator {
         }
         return value;
     }
+
+    public static String checkForEmptyValueAndReturn(String value, String message) {
+        if (value.isEmpty()) {
+            throw new IllegalArgumentException(message);
+        }
+        return value;
+    }
 }

@@ -10,9 +10,17 @@ public enum ErrorMessages {
 
     BLANK_VALUE_MESSAGE_FOR_BANK_NAME("Blank value is not allowed for bank name"),
 
+    EMPTY_VALUE_MESSAGE_FOR_BANK_NAME("Empty value is not allowed for bank name"),
+
     NULL_VALUE_MESSAGE_FOR_CITY("Null value is not allowed for city"),
 
     BLANK_VALUE_MESSAGE_FOR_CITY("Blank value is not allowed for city"),
+
+    EMPTY_VALUE_MESSAGE_FOR_CITY("Empty value is not allowed for city"),
+
+    NULL_VALUE_MESSAGE_FOR_BALANCE("Null value is not allowed for balance"),
+
+    NEGATIVE_VALUE_MESSAGE_FOR_BALANCE("Negative value is not allowed for balance"),
 
     ZERO_VALUE_MESSAGE_FOR_AGE("Zero value is not allowed for age"),
 

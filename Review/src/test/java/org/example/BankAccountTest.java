@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -19,22 +21,45 @@ public class BankAccountTest {
                 12345678, BigDecimal.valueOf(512.3578));
     }
 
+    @Nested
+    @DisplayName("Constructor checks for bank name, account number and balance")
+    class BankAccountConstructorChecks {
+
+        @Nested
+        @DisplayName("Constructor checks for bank name")
+        class  BankAccountConstructorChecksForBankName {
+
+            @Test
+            public void testConstructorRejectsNullBankName() {
+                assertEquals(
+                        "Null value is not allowed for bank name",
+                        assertThrows(
+                                NullPointerException.class,
+                                () -> new BankAccount(null, 12345,
+                                        BigDecimal.valueOf(512.3578))
+                        ).getMessage()
+                );
+            }
+
+            @Test
+            public void testConstructorRejectsEmptyBankName() {
+                assertEquals(
+                        "Empty value is not allowed for bank name",
+                        assertThrows(
+                                IllegalArgumentException.class,
+                                () -> new BankAccount("", 12345,
+                                        BigDecimal.valueOf(512.3578))
+                        ).getMessage()
+                );
+            }
+        }
+    }
+
     @Test
     public void testGetAccountNumber() {
         assertEquals(12345678, bankAccount.getAccountNumber());
     }
 
-    @Test
-    public void testConstructorRejectsNullBankName() {
-        assertEquals(
-                "Null value not allowed for bank name",
-                assertThrows(
-                NullPointerException.class,
-                () -> new BankAccount(null, 12345,
-                BigDecimal.valueOf(512.3578))
-            ).getMessage()
-        );
-    }
 
     @Test
     public void testGetBankName() {
@@ -50,7 +75,7 @@ public class BankAccountTest {
     @Test
     public void testConstructorRejectsNegativeAccountNumber() {
         assertEquals(
-            "Account number is less than zero",
+            "Negative value is not allowed for account number",
             assertThrows(
             IllegalArgumentException.class,
             () -> new BankAccount("Capital One", -12345,
