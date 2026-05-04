@@ -137,7 +137,7 @@ public class BankAccountTest {
     class InvalidDepositChecks {
 
         @Test
-        public void testDepositRejectsNullValue() {
+        public void testBalanceUnchangedWhenDepositRejectsNullValue() {
             assertEquals(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
                     assertThrows(
@@ -145,6 +145,7 @@ public class BankAccountTest {
                             () ->  bankAccount.deposit(null)
                     ).getMessage()
             );
+            assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
         }
 
         @Test
