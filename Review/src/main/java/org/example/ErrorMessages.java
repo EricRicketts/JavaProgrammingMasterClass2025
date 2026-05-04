@@ -54,7 +54,17 @@ public enum ErrorMessages {
 
     ZERO_VALUE_MESSAGE_FOR_SIDE("Zero value is not allowed for side"),
 
-    NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for side");
+    NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for side"),
+
+    NULL_VALUE_MESSAGE_FOR_DEPOSIT("Null value is not allowed for deposit"),
+
+    NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT("Negative value is not allowed for deposit"),
+
+    NULL_VALUE_MESSAGE_FOR_WITHDRAW("Null value is not allowed for withdraw"),
+
+    NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW("Negative value is not allowed for withdraw"),
+
+    INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW("Insufficient funds for withdraw");
 
     private final String errorMessage;
 

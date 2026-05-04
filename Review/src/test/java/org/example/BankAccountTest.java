@@ -32,7 +32,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsNullBankName() {
                 assertEquals(
-                        "Null value is not allowed for bank name",
+                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage(),
                         assertThrows(
                                 NullPointerException.class,
                                 () -> new BankAccount(null, 12345,
@@ -44,7 +44,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsEmptyBankName() {
                 assertEquals(
-                        "Empty value is not allowed for bank name",
+                        ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage(),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("", 12345,
@@ -56,7 +56,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsBlankBankName() {
                 assertEquals(
-                        "Blank value is not allowed for bank name",
+                        ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage(),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("  ", 12345,
@@ -73,7 +73,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsZeroAccountNumber() {
                 assertEquals(
-                        "Zero value is not allowed for account number",
+                        ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage(),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("Capital One", 0,
@@ -85,7 +85,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsNegativeAccountNumber() {
                 assertEquals(
-                        "Negative value is not allowed for account number",
+                        ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage(),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("Capital One", -12345,
@@ -93,8 +93,25 @@ public class BankAccountTest {
                         ).getMessage()
                 );
             }
+        }
 
+        @Nested
+        @DisplayName("Constructor checks for balance")
+        class BankAccountConstructorChecksForBalance {
 
+            @Test
+            public void testConstructorRejectsNullBalance() {
+                assertEquals(
+                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
+                        assertThrows(
+                                NullPointerException.class,
+                                () -> new BankAccount(
+                                        "Capital One",
+                                        123456,
+                                        null)
+                        ).getMessage()
+                );
+            }
         }
     }
 
@@ -119,7 +136,7 @@ public class BankAccountTest {
     @Test
     public void testConstructorRejectsNullBalance() {
         assertEquals(
-                "Null value not allowed for balance",
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
                 assertThrows(
                         NullPointerException.class,
                         () -> new BankAccount( "Capital One", 12345678, null)
@@ -130,7 +147,7 @@ public class BankAccountTest {
     @Test
     public void testConstructorRejectsNegativeBalance() {
         assertEquals(
-                "Balance is less than zero",
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
                 assertThrows(
                 IllegalArgumentException.class,
                 () -> new BankAccount("Capital One", 12345,
@@ -142,7 +159,7 @@ public class BankAccountTest {
     @Test
     public void testDepositRejectsNullValue() {
         assertEquals(
-                "Null value not allowed for deposit amount",
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
                 assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.deposit(null)
@@ -153,7 +170,7 @@ public class BankAccountTest {
     @Test
     public void testDepositRejectsNegativeAmount() {
         assertEquals(
-                "Deposit amount cannot be less than zero",
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
                 assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
@@ -192,7 +209,7 @@ public class BankAccountTest {
     @Test
     public void testWithdrawRejectsNullValue() {
         assertEquals(
-                "Null value not allowed for withdraw amount",
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
                 assertThrows(
                 NullPointerException.class,
                 () ->  bankAccount.withdraw(null)
@@ -203,7 +220,7 @@ public class BankAccountTest {
     @Test
     public void testWithdrawRejectsExceedingBalance() {
         assertEquals(
-                "Insufficient funds",
+                ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
                 assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
@@ -214,7 +231,7 @@ public class BankAccountTest {
     @Test
     public void testWithdrawRejectsNegativeAmount() {
         assertEquals(
-                "Withdraw amount cannot be less than zero",
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
                 assertThrows(
                 IllegalArgumentException.class,
                 () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))

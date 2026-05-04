@@ -11,10 +11,7 @@ public class BankAccount {
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
         this.bankName = validateBankNameAndReturn(bankName);
         this.accountNumber = validateAccountNumberAndReturn(accountNumber);
-        BigDecimal nonNullOrNonNegativeBalance =
-                this.validateDepositAndReturn(balance,
-                        "Null value not allowed for balance",
-                        "Balance is less than zero");
+        BigDecimal nonNullOrNonNegativeBalance = this.validateBalanceAndReturn(balance);
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
     }
 
@@ -32,45 +29,50 @@ public class BankAccount {
 
     public void deposit(BigDecimal depositAmount) {
         BigDecimal validDepositAmount = validateDepositAndReturn(
-                depositAmount,
-                "Null value not allowed for deposit amount",
-                "Deposit amount cannot be less than zero"
+                depositAmount
         );
         this.balance = NumberUtils.setScale(this.balance.add(validDepositAmount), 2);
     }
 
     public void withdraw(BigDecimal withdrawAmount) {
         BigDecimal validWithdrawAmount = validateWithdrawAndReturn(
-                withdrawAmount,
-                "Null value not allowed for withdraw amount",
-                "Withdraw amount cannot be less than zero"
+                withdrawAmount
         );
 
-        BigDecimal remainingBalance = ensureNonNegativeBalanceAfterWithdraw(
-                this.balance.subtract(validWithdrawAmount),
-                "Insufficient funds"
+        this.balance = ensureNonNegativeBalanceAfterWithdraw(
+                NumberUtils.setScale(this.balance.subtract(validWithdrawAmount), 2),
+                ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage()
         );
-        this.balance = NumberUtils.setScale(remainingBalance, 2);
     }
 
     private BigDecimal validateDepositAndReturn(
-            BigDecimal depositAmount,
-            String nullMessage,
-            String negativeMessage
+            BigDecimal depositAmount
     ) {
         BigDecimal nonNullDepositAmount =
-                ValueValidator.checkForNullValueAndReturn(depositAmount, nullMessage);
-        return ValueValidator.checkForNegativeValueAndReturn(nonNullDepositAmount, negativeMessage);
+                ValueValidator.checkForNullValueAndReturn(
+                        depositAmount,
+                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
+                );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                NumberUtils.setScale(nonNullDepositAmount, 2),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
+        );
     }
 
     private BigDecimal validateWithdrawAndReturn(
-            BigDecimal withdrawAmount,
-            String nullMessage,
-            String negativeMessage
+            BigDecimal withdrawAmount
     ) {
         BigDecimal nonNullWithdrawAmount =
-                ValueValidator.checkForNullValueAndReturn(withdrawAmount, nullMessage);
-        return ValueValidator.checkForNegativeValueAndReturn(nonNullWithdrawAmount, negativeMessage);
+                ValueValidator.checkForNullValueAndReturn(
+                        withdrawAmount,
+                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+                );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                NumberUtils.setScale(nonNullWithdrawAmount, 2),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+        );
     }
 
 
@@ -114,7 +116,7 @@ public class BankAccount {
         );
 
         return ValueValidator.checkForNegativeValueAndReturn(
-                nonNullBalance,
+                NumberUtils.setScale(nonNullBalance, 2),
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
         );
    }
