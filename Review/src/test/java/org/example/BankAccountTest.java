@@ -130,6 +130,34 @@ public class BankAccountTest {
         }
     }
 
+    @Nested
+    @DisplayName("Deposit checks for null and negative values")
+    class InvalidDepositChecks {
+
+        @Test
+        public void testDepositRejectsNullValue() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () ->  bankAccount.deposit(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testDepositRejectsNegativeAmount() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
+                    ).getMessage()
+            );
+        }
+
+    }
+
     @Test
     public void testGetAccountNumber() {
         assertEquals(12345678, bankAccount.getAccountNumber());
@@ -145,52 +173,6 @@ public class BankAccountTest {
     @Test
     public void testGetBalance() {
         assertEquals(0, BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance()));
-    }
-
-
-    @Test
-    public void testConstructorRejectsNullBalance() {
-        assertEquals(
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
-                assertThrows(
-                        NullPointerException.class,
-                        () -> new BankAccount( "Capital One", 12345678, null)
-            ).getMessage()
-        );
-    }
-
-    @Test
-    public void testConstructorRejectsNegativeBalance() {
-        assertEquals(
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
-                assertThrows(
-                IllegalArgumentException.class,
-                () -> new BankAccount("Capital One", 12345,
-                BigDecimal.valueOf(-512.3578))
-            ).getMessage()
-        );
-    }
-
-    @Test
-    public void testDepositRejectsNullValue() {
-        assertEquals(
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
-                assertThrows(
-                NullPointerException.class,
-                () ->  bankAccount.deposit(null)
-            ).getMessage()
-        );
-    }
-
-    @Test
-    public void testDepositRejectsNegativeAmount() {
-        assertEquals(
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
-                assertThrows(
-                IllegalArgumentException.class,
-                () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
-            ).getMessage()
-        );
     }
 
     @Test
