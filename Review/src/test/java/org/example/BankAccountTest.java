@@ -52,6 +52,18 @@ public class BankAccountTest {
                         ).getMessage()
                 );
             }
+
+            @Test
+            public void testConstructorRejectsBlankBankName() {
+                assertEquals(
+                        "Blank value is not allowed for bank name",
+                        assertThrows(
+                                IllegalArgumentException.class,
+                                () -> new BankAccount("  ", 12345,
+                                        BigDecimal.valueOf(512.3578))
+                        ).getMessage()
+                );
+            }
         }
     }
 
