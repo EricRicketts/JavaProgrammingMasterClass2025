@@ -27,6 +27,14 @@ public class BankAccount {
         return balance;
     }
 
+    @Override
+    public String toString() {
+        String output =  "Bank name = " + bankName + "\n" +
+                "Account number = " + accountNumber + "\n" +
+                "Current balance = " + NumberUtils.setScale(balance, 2);
+        return output.trim();
+    }
+
     public void deposit(BigDecimal depositAmount) {
         BigDecimal validDepositAmount = validateDepositAndReturn(
                 depositAmount

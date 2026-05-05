@@ -224,7 +224,7 @@ public class BankAccountTest {
     }
 
     @Nested
-    @DisplayName("Bank Account getter tests")
+    @DisplayName("Bank Account getter tests and toString test")
     class BankAccountGetterChecks {
 
         @Test
@@ -249,6 +249,19 @@ public class BankAccountTest {
             assertEquals(
                     0,
                     BigDecimal.valueOf(512.36).compareTo(bankAccount.getBalance())
+            );
+        }
+
+        @Test
+        public void testToString() {
+            String expected = """
+                    Bank name = Capital One
+                    Account number = 12345678
+                    Current balance = 512.36
+                    """.trim();
+            assertEquals(
+                    expected,
+                    bankAccount.toString()
             );
         }
     }

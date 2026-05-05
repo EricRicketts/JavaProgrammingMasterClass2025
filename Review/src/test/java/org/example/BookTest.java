@@ -8,10 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookTest {
 
     private Book book;
-    /*
-        The variable below was introduced to prevent the Markdown editor from
-        truncating the text.
-    */
     String message;
 
     @BeforeEach
