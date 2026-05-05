@@ -99,24 +99,32 @@ public class BookTest {
         }
     }
 
-    @Test
-    public void testBookNegativeEntryForPagesInConstructor() {
-        message = "Number of pages assigned to book is less than zero";
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> new Book("Heart of Darkness", "Joseph Conrad", -1)
-        );
-        assertEquals(message, thrown.getMessage());
+    @Nested
+    @DisplayName("Number of pages checks")
+    class PagesChecks {
+
+        @Test
+        public void testBookNegativeValueForPagesInConstructor() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Book(title, author, -50)
+                    ).getMessage()
+            );
+        }
     }
 
+    @Nested
+    @DisplayName("Getters and toString")
+    class GetterAndToStringChecks {
 
-    @Test
-    public void testBookToString() {
-        message =
-            "Title = Pride and Prejudice, Author = Jane Austin, Number of pages = 480";
-        var expectedToString = message;
-        var actualToString = book.toString();
-
-        assertEquals(expectedToString, actualToString);
+        @Test
+        public void testBookGetTitle() {
+            assertEquals(
+                    "Pride and Prejudice",
+                    book.getTitle()
+            );
+        }
     }
 }

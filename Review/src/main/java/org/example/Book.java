@@ -25,10 +25,11 @@ public class Book {
 
     @Override
     public String toString() {
-
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return """
+                Title = %s
+                Author = %s
+                Number of pages = %s
+                """.formatted(title, author, pages);
     }
 
     private String validateAuthorAndReturn(String author) {
@@ -47,8 +48,10 @@ public class Book {
     }
 
     private int validatePagesAndReturn(int pages) {
-        String message = "Number of pages assigned to book is less than zero";
-        return ValueValidator.checkForNegativeValueAndReturn(pages, message);
+        return ValueValidator.checkForNegativeValueAndReturn(
+                pages,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage()
+        );
     }
 
     private String validateTitleAndReturn(String title) {

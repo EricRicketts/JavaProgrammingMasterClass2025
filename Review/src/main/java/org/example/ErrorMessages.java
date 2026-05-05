@@ -78,7 +78,9 @@ public enum ErrorMessages {
 
     NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW("Negative value is not allowed for withdraw"),
 
-    INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW("Insufficient funds for withdraw");
+    INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW("Insufficient funds for withdraw"),
+
+    NEGATIVE_VALUE_MESSAGE_FOR_PAGES("Negative value is not allowed for pages");
 
     private final String errorMessage;
 
