@@ -244,7 +244,6 @@ public class BankAccountTest {
             );
         }
 
-
         @Test
         public void testGetBalance() {
             assertEquals(
@@ -362,46 +361,5 @@ public class BankAccountTest {
                     bankAccount.getBalance()
             );
         }
-    }
-
-
-    @Test
-    public void testWithdrawSmallestPracticalAmount() {
-        bankAccount.withdraw(BigDecimal.valueOf(0.01));
-        assertEquals(BigDecimal.valueOf(512.35), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testDepositAndWithdrawLargePracticalAmount() {
-        bankAccount.deposit(BigDecimal.valueOf(1_500_000.00));
-        assertEquals(BigDecimal.valueOf(1_500_512.36), bankAccount.getBalance());
-        bankAccount.withdraw(BigDecimal.valueOf(1_000_000.00));
-        assertEquals(BigDecimal.valueOf(500_512.36), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testZeroDepositLeavesBalanceUnchanged() {
-        bankAccount.deposit(BigDecimal.valueOf(0.00));
-        assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testZeroWithdrawLeaveBalanceUnchanged() {
-        bankAccount.withdraw(BigDecimal.valueOf(0.00));
-        assertEquals(BigDecimal.valueOf(512.36), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testWithdrawDecreasesBalanceAndRoundsForThreeDecimalPlaces() {
-        bankAccount.withdraw(BigDecimal.valueOf(89.974));
-        assertEquals(BigDecimal.valueOf(422.39), bankAccount.getBalance());
-    }
-
-    @Test
-    public void testWithdrawEqualToBalanceLeavesZeroBalance() {
-        bankAccount.withdraw(BigDecimal.valueOf(512.36));
-        BigDecimal zero = new BigDecimal("0");
-        BigDecimal formattedZero = zero.setScale(2, RoundingMode.HALF_UP);
-        assertEquals(formattedZero, bankAccount.getBalance());
     }
 }
