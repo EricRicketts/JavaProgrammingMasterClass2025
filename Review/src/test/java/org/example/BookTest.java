@@ -134,5 +134,13 @@ public class BookTest {
                     book.getAuthor()
             );
         }
+
+        @Test
+        public void testBookGetPages() {
+            assertEquals(
+                    480,
+                    book.getPages()
+            );
+        }
     }
 }
