@@ -14,6 +14,8 @@ public class BookTest {
 
     private final static String author = "Joseph Conrad";
 
+    private final static String title = "Heart of Darkness";
+
     private final static int pages = 300;
 
     @BeforeEach
@@ -69,11 +71,32 @@ public class BookTest {
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Book("Heart of Darkness", null, 300)
+                            () -> new Book(title, null, pages)
                     ).getMessage()
             );
         }
 
+        @Test
+        public void testBookEmptyValueForAuthorInConstructor() {
+            assertEquals(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Book(title, "", pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookBlankValueForAuthorInConstructor() {
+            assertEquals(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Book(title, "  ", pages)
+                    ).getMessage()
+            );
+        }
     }
 
     @Test
