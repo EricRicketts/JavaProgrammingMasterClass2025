@@ -99,6 +99,22 @@ public class BookRecordTest {
         }
     }
 
+    @Nested
+    @DisplayName("Number of pages checks")
+    class PageChecks {
+
+        @Test
+        public void testBookRecordNegativeValueForPagesInConstructor() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new BookRecord(title, author, -10)
+                    ).getMessage()
+            );
+        }
+    }
+
     @Test
     public void testBookRecordNullValueForAuthorInConstructor() {
         NullPointerException thrown = assertThrows(
