@@ -126,5 +126,13 @@ public class BookTest {
                     book.getTitle()
             );
         }
+
+        @Test
+        public void testBookGetAuthor() {
+            assertEquals(
+                    "Jane Austin",
+                    book.getAuthor()
+            );
+        }
     }
 }
