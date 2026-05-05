@@ -307,7 +307,16 @@ public class BankAccountTest {
     @Nested
     @DisplayName("Bank Account withdraw tests, small, large, zero amounts and three decimal places")
     class BankAccountWithdrawChecks {
-        
+
+        @Test
+        public void testWithdrawRoundsUpAndDecreasesBalance() {
+            bankAccount.withdraw(BigDecimal.valueOf(54.546));
+            assertEquals(
+                    BigDecimal.valueOf(457.81),
+                    bankAccount.getBalance()
+            );
+        }
+
     }
 
 
