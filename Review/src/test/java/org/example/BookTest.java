@@ -12,6 +12,10 @@ public class BookTest {
     private Book book;
     String message;
 
+    private final static String author = "Joseph Conrad";
+
+    private final static int pages = 300;
+
     @BeforeEach
     public void setUp() {
         book = new Book("Pride and Prejudice", "Jane Austin", 480);
@@ -20,10 +24,6 @@ public class BookTest {
     @Nested
     @DisplayName("Title checks")
     class TitleChecks {
-
-        private final static String author = "Joseph Conrad";
-
-        private final static int pages = 300;
 
         @Test
         public void testBookNullValueForTitleInConstructor() {
@@ -59,19 +59,20 @@ public class BookTest {
         }
     }
 
-    @Test
-    public void testBookNullValueForAuthorInConstructor() {
-        assertEquals(
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
-                assertThrows(
-                        NullPointerException.class,
-                        () -> new Book("Heart of Darkness", null, 300)
-                ).getMessage()
-        );
-    }
+    @Nested
+    @DisplayName("Author checks")
+    class AuthorChecks {
 
-    @Test
-    public void testBookEmptyValueForAuthorInConstructor() {
+        @Test
+        public void testBookNullValueForAuthorInConstructor() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Book("Heart of Darkness", null, 300)
+                    ).getMessage()
+            );
+        }
 
     }
 
