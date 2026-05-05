@@ -21,13 +21,39 @@ public class BookTest {
     @DisplayName("Title checks")
     class TitleChecks {
 
+        private final static String author = "Joseph Conrad";
+
+        private final static int pages = 300;
+
         @Test
         public void testBookNullValueForTitleInConstructor() {
             assertEquals(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Book(null, "Joseph Conrad", 300)
+                            () -> new Book(null, author, pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookEmptyValueForTitleInConstructor() {
+            assertEquals(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Book("", author, pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookBlankValueForTitleInConstructor() {
+            assertEquals(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Book("   ", author, pages)
                     ).getMessage()
             );
         }
