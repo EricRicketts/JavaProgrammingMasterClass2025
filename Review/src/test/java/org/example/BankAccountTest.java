@@ -325,6 +325,15 @@ public class BankAccountTest {
                     bankAccount.getBalance()
             );
         }
+
+        @Test
+        public void testSmallWithdrawDecreasesBalance() {
+            bankAccount.withdraw(BigDecimal.valueOf(0.01));
+            assertEquals(
+                    BigDecimal.valueOf(512.35),
+                    bankAccount.getBalance()
+            );
+        }
     }
 
 
