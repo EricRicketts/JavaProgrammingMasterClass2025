@@ -317,6 +317,14 @@ public class BankAccountTest {
             );
         }
 
+        @Test
+        public void testWithdrawRoundsDownAndDecreasesBalance() {
+            bankAccount.withdraw(BigDecimal.valueOf(54.544));
+            assertEquals(
+                    BigDecimal.valueOf(457.82),
+                    bankAccount.getBalance()
+            );
+        }
     }
 
 
