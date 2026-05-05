@@ -6,6 +6,20 @@ public enum ErrorMessages {
 
     BLANK_VALUE_MESSAGE_FOR_NAME("Blank value is not allowed for name"),
 
+    EMPTY_VALUE_MESSAGE_FOR_NAME("Empty value is not allowed for name"),
+
+    NULL_VALUE_MESSAGE_FOR_AUTHOR("Null value is not allowed for author"),
+
+    BLANK_VALUE_MESSAGE_FOR_AUTHOR("Blank value is not allowed for author"),
+
+    EMPTY_VALUE_MESSAGE_FOR_AUTHOR("Empty value is not allowed for author"),
+
+    NULL_VALUE_MESSAGE_FOR_TITLE("Null value is not allowed for title"),
+
+    BLANK_VALUE_MESSAGE_FOR_TITLE("Blank value is not allowed for title"),
+
+    EMPTY_VALUE_MESSAGE_FOR_TITLE("Empty value is not allowed for title"),
+
     NULL_VALUE_MESSAGE_FOR_BANK_NAME("Null value is not allowed for bank name"),
 
     BLANK_VALUE_MESSAGE_FOR_BANK_NAME("Blank value is not allowed for bank name"),

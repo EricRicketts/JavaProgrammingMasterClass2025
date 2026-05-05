@@ -17,12 +17,10 @@ public class StudentInfo {
     private String validateNameAndReturn(String name) {
         String nonNullName = ValueValidator.checkForNullValueAndReturn(
                 name,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-        );
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage() );
         return ValueValidator.checkForBlankValueAndReturn(
                 nonNullName,
-                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-        );
+                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage() );
     }
 
     private int validateIDAndReturn(int id) {

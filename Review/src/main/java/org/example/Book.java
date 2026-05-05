@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Objects;
-
 public class Book {
 
     private final String title, author;
@@ -34,7 +32,18 @@ public class Book {
     }
 
     private String validateAuthorAndReturn(String author) {
-        return ValueValidator.checkForNullValueAndReturn(author, "Null value assigned to author");
+        String nonNullAuthor = ValueValidator.checkForNullValueAndReturn(
+                author,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+        );
+        String nonEmptyAuthor = ValueValidator.checkForEmptyValueAndReturn(
+                nonNullAuthor,
+                ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+        );
+        return ValueValidator.checkForBlankValueAndReturn(
+                nonEmptyAuthor,
+                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+        );
     }
 
     private int validatePagesAndReturn(int pages) {
@@ -43,6 +52,17 @@ public class Book {
     }
 
     private String validateTitleAndReturn(String title) {
-        return ValueValidator.checkForNullValueAndReturn(title, "Null value assigned to title");
+        String nonNullTitle = ValueValidator.checkForNullValueAndReturn(
+                title,
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+        );
+        String nonEmptyTitle = ValueValidator.checkForEmptyValueAndReturn(
+                nonNullTitle,
+                ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+        );
+        return ValueValidator.checkForBlankValueAndReturn(
+                nonEmptyTitle,
+                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+        );
     }
 }

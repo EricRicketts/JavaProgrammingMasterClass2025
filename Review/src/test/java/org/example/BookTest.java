@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,13 +17,36 @@ public class BookTest {
         book = new Book("Pride and Prejudice", "Jane Austin", 480);
     }
 
+    @Nested
+    @DisplayName("Title checks")
+    class TitleChecks {
+
+        @Test
+        public void testBookNullValueForTitleInConstructor() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Book(null, "Joseph Conrad", 300)
+                    ).getMessage()
+            );
+        }
+    }
+
     @Test
     public void testBookNullValueForAuthorInConstructor() {
-        NullPointerException thrown = assertThrows(
-                NullPointerException.class,
-                () -> new Book("Heart of Darkness", null, 300)
+        assertEquals(
+                ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                assertThrows(
+                        NullPointerException.class,
+                        () -> new Book("Heart of Darkness", null, 300)
+                ).getMessage()
         );
-        assertEquals("Null value assigned to author", thrown.getMessage());
+    }
+
+    @Test
+    public void testBookEmptyValueForAuthorInConstructor() {
+
     }
 
     @Test
@@ -34,14 +59,6 @@ public class BookTest {
         assertEquals(message, thrown.getMessage());
     }
 
-    @Test
-    public void testBookNullValueForTitleInConstructor() {
-        NullPointerException thrown = assertThrows(
-                NullPointerException.class,
-                () -> new Book(null, "Heart of Darkness", 150)
-        );
-        assertEquals("Null value assigned to title", thrown.getMessage());
-    }
 
     @Test
     public void testBookToString() {
