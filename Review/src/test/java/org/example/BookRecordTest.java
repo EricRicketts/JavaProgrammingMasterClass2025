@@ -61,6 +61,44 @@ public class BookRecordTest {
         }
     }
 
+    @Nested
+    @DisplayName("Author checks")
+    class AuthorChecks {
+
+        @Test
+        public void testBookRecordNullValueForAuthorInConstructor() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new BookRecord(title, null, pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookRecordEmptyValueForAuthorInConstructor() {
+            assertEquals(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new BookRecord(title, "", pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookRecordBlankValueForAuthorInConstructor() {
+            assertEquals(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new BookRecord(title, "  ", pages)
+                    ).getMessage()
+            );
+        }
+    }
+
     @Test
     public void testBookRecordNullValueForAuthorInConstructor() {
         NullPointerException thrown = assertThrows(
