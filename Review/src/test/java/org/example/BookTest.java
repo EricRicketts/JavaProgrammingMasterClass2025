@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookTest {
-
     private Book book;
-    String message;
 
     private final static String author = "Joseph Conrad";
 
@@ -140,6 +138,19 @@ public class BookTest {
             assertEquals(
                     480,
                     book.getPages()
+            );
+        }
+
+        @Test
+        public void testBookToString() {
+            String expected = """
+                    Title = Pride and Prejudice
+                    Author = Jane Austin
+                    Number of pages = 480
+                    """.trim();
+            assertEquals(
+                    expected,
+                    book.toString()
             );
         }
     }

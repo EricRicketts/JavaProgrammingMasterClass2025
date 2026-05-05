@@ -29,7 +29,7 @@ public class Book {
                 Title = %s
                 Author = %s
                 Number of pages = %s
-                """.formatted(title, author, pages);
+                """.formatted(title, author, pages).trim();
     }
 
     private String validateAuthorAndReturn(String author) {
