@@ -352,6 +352,16 @@ public class BankAccountTest {
                     bankAccount.getBalance()
             );
         }
+
+        @Test
+        public void testWithdrawEqualToBalanceLeavesZeroBalance() {
+            bankAccount.withdraw(BigDecimal.valueOf(512.36));
+            BigDecimal zero = NumberUtils.setScale(BigDecimal.valueOf(0.00), 2);
+            assertEquals(
+                    zero,
+                    bankAccount.getBalance()
+            );
+        }
     }
 
 
