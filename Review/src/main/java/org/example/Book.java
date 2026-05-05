@@ -1,5 +1,7 @@
 package org.example;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Book {
 
     private final String title, author;
@@ -24,6 +26,7 @@ public class Book {
     }
 
     @Override
+    @NotNull
     public String toString() {
         return """
                 Title = %s

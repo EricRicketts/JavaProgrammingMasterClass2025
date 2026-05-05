@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,16 +10,55 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BookRecordTest {
 
+    private static final String author = "Charles Dickens";
+
+    private static final String title = "Oliver Twist";
+
+    private static final int pages = 608;
+
     private BookRecord bookRecord;
-    /*
-        The variable below was introduced so that the markdown application would not
-        truncate any text.
-    */
-    String message;
 
     @BeforeEach
     public void setUp() {
         bookRecord = new BookRecord("Oliver Twist", "Charles Dickens", 608);
+    }
+
+    @Nested
+    @DisplayName("Title checks")
+    class TitleChecks {
+
+        @Test
+        public void testBookRecordNullValueForTitleInConstructor() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new BookRecord(null, author, pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookRecordEmptyValueForTitleInConstructor() {
+            assertEquals(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new BookRecord("", author, pages)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBookRecordBlankValueForTitleInConstructor() {
+            assertEquals(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new BookRecord("  ", author, pages)
+                    ).getMessage()
+            );
+        }
     }
 
     @Test
@@ -31,7 +72,7 @@ public class BookRecordTest {
 
     @Test
     public void testBookRecordNegativeEntryForPagesInConstructor() {
-        message = "Number of pages assigned to book is less than zero";
+        String message = "Number of pages assigned to book is less than zero";
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> new BookRecord("Oliver Twist", "Charles Dickens", -1)
