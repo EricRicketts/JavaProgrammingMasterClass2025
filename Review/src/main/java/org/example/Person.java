@@ -1,7 +1,11 @@
 package org.example;
 
+import java.util.regex.Pattern;
+
 public class Person {
 
+    private final Pattern ONE_OR_MORE_SPACES = Pattern.compile("\\s+");
+    private final String EMPTY_STRING = "";
     private final String name;
     private int age;
     private String city;
@@ -38,14 +42,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return
-                "Person[name = " +
-                        name +
-                        ", age = " +
-                        age +
-                        ", city = " +
-                        city +
-                        "]";
+        return String.format(
+                "name = %s%n" +
+                "age = %d%n" +
+                "city = %s%n", name, age, city
+        ).trim();
     }
 
     private int validateAgeAndReturn(int age) {
@@ -61,22 +62,28 @@ public class Person {
     }
 
     private String validateNameAndReturn(String name) {
-        if (name == null) {
-            throw new NullPointerException(
+        return switch(name) {
+            case null -> throw new NullPointerException(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
             );
-        } else if (name.isBlank()) {
-            throw new IllegalArgumentException(
+            case EMPTY_STRING -> throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+            );
+            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
                     ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
             );
-        }
-        return name;
+            default -> name;
+        };
     }
 
     private String validateCityAndReturn(String city) {
         if (city == null) {
             throw new NullPointerException(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+            );
+        } else if (city.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
             );
         } else if (city.isBlank()) {
             throw new IllegalArgumentException(

@@ -36,7 +36,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("", 43, "Hollywood")
@@ -69,7 +69,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyCity() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 43, "")
@@ -129,7 +129,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("", 43)
@@ -143,7 +143,7 @@ public class PersonTest {
                     ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Person(" ", 43)
+                            () -> new Person("  ", 43)
                     ).getMessage()
             );
         }
@@ -262,7 +262,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsEmptyCity() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> secondPerson.setCity("")
