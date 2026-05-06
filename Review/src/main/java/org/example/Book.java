@@ -31,7 +31,10 @@ public class Book {
         return String.format(
                 "Title = %s%n" +
                 "Author = %s%n" +
-                "Number of pages = %s%n", title, author, pages
+                "Number of pages = %s%n",
+                title,
+                author,
+                pages
         ).trim();
     }
 
