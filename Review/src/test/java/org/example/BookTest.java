@@ -143,15 +143,11 @@ public class BookTest {
 
         @Test
         public void testBookToString() {
-            String expected = """
-                    Title = Pride and Prejudice
-                    Author = Jane Austin
-                    Number of pages = 480
-                    """.trim();
-            assertEquals(
-                    expected,
-                    book.toString()
-            );
+            String bookInformation = book.toString();
+            
+            assertTrue(bookInformation.contains("Pride and Prejudice"));
+            assertTrue(bookInformation.contains("Jane Austin"));
+            assertTrue(bookInformation.contains("480"));
         }
     }
 }

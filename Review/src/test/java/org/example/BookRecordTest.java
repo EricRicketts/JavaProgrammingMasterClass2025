@@ -145,7 +145,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordToString() {
             String bookRecordInformation = bookRecord.toString();
-            
+
             assertTrue(bookRecordInformation.contains("Oliver Twist"));
             assertTrue(bookRecordInformation.contains("Charles Dickens"));
             assertTrue(bookRecordInformation.contains("608"));
