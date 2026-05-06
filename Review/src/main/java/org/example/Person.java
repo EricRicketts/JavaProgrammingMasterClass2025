@@ -44,8 +44,8 @@ public class Person {
     public String toString() {
         return String.format(
                 "name = %s%n" +
-                "age = %d%n" +
-                "city = %s%n", name, age, city
+                        "age = %d%n" +
+                        "city = %s%n", name, age, city
         ).trim();
     }
 
@@ -62,7 +62,7 @@ public class Person {
     }
 
     private String validateNameAndReturn(String name) {
-        return switch(name) {
+        return switch (name) {
             case null -> throw new NullPointerException(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
             );
@@ -77,19 +77,17 @@ public class Person {
     }
 
     private String validateCityAndReturn(String city) {
-        if (city == null) {
-            throw new NullPointerException(
+        return switch (city) {
+            case null -> throw new NullPointerException(
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
             );
-        } else if (city.isEmpty()) {
-            throw new IllegalArgumentException(
+            case EMPTY_STRING -> throw new IllegalArgumentException(
                     ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
             );
-        } else if (city.isBlank()) {
-            throw new IllegalArgumentException(
+            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
                     ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
             );
-        }
-        return city;
+            default -> city;
+        };
     }
 }
