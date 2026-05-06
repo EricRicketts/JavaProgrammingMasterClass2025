@@ -11,7 +11,7 @@ public class BankAccount {
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
         this.bankName = validateBankNameAndReturn(bankName);
         this.accountNumber = validateAccountNumberAndReturn(accountNumber);
-        BigDecimal nonNullOrNonNegativeBalance = this.validateBalanceAndReturn(balance);
+        BigDecimal nonNullOrNonNegativeBalance = validateBalanceAndReturn(balance);
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
     }
 
@@ -29,10 +29,14 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        String output =  "Bank name = " + bankName + "\n" +
-                "Account number = " + accountNumber + "\n" +
-                "Current balance = " + NumberUtils.setScale(balance, 2);
-        return output.trim();
+        return String.format(
+                "Bank name = %s%n" +
+                "Account number = %s%n" +
+                "Current balance = %s%n",
+                bankName,
+                accountNumber,
+                NumberUtils.setScale(balance, 2)
+        ).trim();
     }
 
     public void deposit(BigDecimal depositAmount) {
