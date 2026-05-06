@@ -28,11 +28,11 @@ public class Book {
     @Override
     @NotNull
     public String toString() {
-        return """
-                Title = %s
-                Author = %s
-                Number of pages = %s
-                """.formatted(title, author, pages).trim();
+        return String.format(
+                "Title = %s%n" +
+                "Author = %s%n" +
+                "Number of pages = %s%n", title, author, pages
+        ).trim();
     }
 
     private String validateAuthorAndReturn(String author) {
