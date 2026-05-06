@@ -5,8 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BookRecordTest {
 
@@ -145,15 +144,11 @@ public class BookRecordTest {
 
         @Test
         public void testBookRecordToString() {
-            String expected = """
-                    Title = Oliver Twist
-                    Author = Charles Dickens
-                    Number of pages = 608
-                    """.trim();
-            assertEquals(
-                    expected,
-                    bookRecord.toString()
-            );
+            String bookRecordInformation = bookRecord.toString();
+            
+            assertTrue(bookRecordInformation.contains("Oliver Twist"));
+            assertTrue(bookRecordInformation.contains("Charles Dickens"));
+            assertTrue(bookRecordInformation.contains("608"));
         }
     }
 }

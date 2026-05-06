@@ -253,7 +253,7 @@ public class BankAccountTest {
         @Test
         public void testToString() {
             String bankAccountInformation = bankAccount.toString();
-            
+
             assertTrue(bankAccountInformation.contains("Capital One"));
             assertTrue(bankAccountInformation.contains("12345678"));
             assertTrue(bankAccountInformation.contains("512.36"));
