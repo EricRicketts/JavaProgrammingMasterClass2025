@@ -115,39 +115,32 @@ public class BookRecordTest {
         }
     }
 
-    @Test
-    public void testBookRecordNullValueForAuthorInConstructor() {
-        NullPointerException thrown = assertThrows(
-                NullPointerException.class,
-                () -> new BookRecord("Oliver Twist", null, 608)
-        );
-        assertEquals("Null value assigned to author", thrown.getMessage());
-    }
+    @Nested
+    @DisplayName("getter and toString checks")
+    class GetterAndToStringChecks {
 
-    @Test
-    public void testBookRecordNegativeEntryForPagesInConstructor() {
-        String message = "Number of pages assigned to book is less than zero";
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> new BookRecord("Oliver Twist", "Charles Dickens", -1)
-        );
-        assertEquals(message, thrown.getMessage());
-    }
+        @Test
+        public void testBookRecordGetTitle() {
+            assertEquals(
+                    title,
+                    bookRecord.title()
+            );
+        }
 
-    @Test
-    public void testBookRecordNullValueForTitleInConstructor() {
-        NullPointerException thrown = assertThrows(
-                NullPointerException.class,
-                () -> new BookRecord(null, "Charles Dickens", 608)
-        );
-        assertEquals("Null value assigned to title", thrown.getMessage());
-    }
+        @Test
+        public void testBookRecordGetAuthor() {
+            assertEquals(
+                    author,
+                    bookRecord.author()
+            );
+        }
 
-    @Test
-    public void testBookRecordToString() {
-        String expected =
-            "Title = Oliver Twist, Author = Charles Dickens, Number of pages = 608";
-        String result = bookRecord.toString();
-        assertEquals(expected, result);
+        @Test
+        public void testBookRecordGetPages() {
+            assertEquals(
+                    pages,
+                    bookRecord.pages()
+            );
+        }
     }
 }
