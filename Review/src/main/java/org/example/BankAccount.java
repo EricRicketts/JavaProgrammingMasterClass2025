@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.regex.Pattern;
 
 public class BankAccount {
 
@@ -93,20 +94,21 @@ public class BankAccount {
     }
 
    private String validateBankNameAndReturn(String bankName) {
-        String nonNullBankName = ValueValidator.checkForNullValueAndReturn(
-            bankName,
-            ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
-        );
+        final Pattern ONE_OR_MORE_SPACES = Pattern.compile("\\s+");
+        final String EMPTY_STRING = "";
 
-        String nonEmptyBankName = ValueValidator.checkForEmptyValueAndReturn(
-                nonNullBankName,
-                ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
-        );
-
-        return ValueValidator.checkForBlankValueAndReturn(
-           nonEmptyBankName,
-           ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
-       );
+        return switch(bankName) {
+            case null -> throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+            );
+            case EMPTY_STRING -> throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+            );
+            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+            );
+            default -> bankName;
+       };
    }
 
    private int validateAccountNumberAndReturn(int accountNumber) {
