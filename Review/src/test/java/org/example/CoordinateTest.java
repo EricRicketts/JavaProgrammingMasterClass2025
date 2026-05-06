@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,13 +16,36 @@ public class CoordinateTest {
         point = new Coordinate(8, 10);
     }
 
-    @Test
-    public void testGetXCoord() {
-        assertEquals(8, point.x());
-    }
+    @Nested
+    @DisplayName("getters and toSting")
+    class CoordinateGettersAndToString {
 
-    @Test
-    public void testGetYCoord() {
-        assertEquals(10, point.y());
+        @Test
+        public void testGetXCoord() {
+            assertEquals(
+                    8,
+                    point.x()
+            );
+        }
+
+        @Test
+        public void testGetYCoord() {
+            assertEquals(
+                    10,
+                    point.y()
+            );
+        }
+
+        @Test
+        public void testToString() {
+            String expected = """
+                    X coordinate = 8
+                    Y coordinate = 10
+                    """.trim();
+            assertEquals(
+                    expected,
+                    point.toString()
+            );
+        }
     }
 }
