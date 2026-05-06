@@ -142,5 +142,18 @@ public class BookRecordTest {
                     bookRecord.pages()
             );
         }
+
+        @Test
+        public void testBookRecordToString() {
+            String expected = """
+                    Title = Oliver Twist
+                    Author = Charles Dickens
+                    Number of pages = 608
+                    """.trim();
+            assertEquals(
+                    expected,
+                    bookRecord.toString()
+            );
+        }
     }
 }
