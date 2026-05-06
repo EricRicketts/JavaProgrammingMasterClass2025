@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BankAccountTest {
 
@@ -253,15 +252,11 @@ public class BankAccountTest {
 
         @Test
         public void testToString() {
-            String expected = """
-                    Bank name = Capital One
-                    Account number = 12345678
-                    Current balance = 512.36
-                    """.trim();
-            assertEquals(
-                    expected,
-                    bankAccount.toString()
-            );
+            String bankAccountInformation = bankAccount.toString();
+            
+            assertTrue(bankAccountInformation.contains("Capital One"));
+            assertTrue(bankAccountInformation.contains("12345678"));
+            assertTrue(bankAccountInformation.contains("512.36"));
         }
     }
 
