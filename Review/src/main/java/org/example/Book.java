@@ -2,9 +2,16 @@ package org.example;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.regex.Pattern;
+
 public class Book {
 
+    private final Pattern ONE_OR_MORE_SPACES = Pattern.compile("\\s+");
+
+    private final String EMPTY_STRING = "";
+
     private final String title, author;
+
     private final int pages;
 
     public Book(String title, String author, int pages) {
@@ -39,18 +46,18 @@ public class Book {
     }
 
     private String validateAuthorAndReturn(String author) {
-        String nonNullAuthor = ValueValidator.checkForNullValueAndReturn(
-                author,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
-        );
-        String nonEmptyAuthor = ValueValidator.checkForEmptyValueAndReturn(
-                nonNullAuthor,
-                ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
-        );
-        return ValueValidator.checkForBlankValueAndReturn(
-                nonEmptyAuthor,
-                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
-        );
+        return switch(author) {
+            case null -> throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+            );
+            case EMPTY_STRING -> throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+            );
+            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+            );
+            default -> author;
+        };
     }
 
     private int validatePagesAndReturn(int pages) {
