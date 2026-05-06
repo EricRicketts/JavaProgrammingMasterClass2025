@@ -68,17 +68,17 @@ public class Book {
     }
 
     private String validateTitleAndReturn(String title) {
-        String nonNullTitle = ValueValidator.checkForNullValueAndReturn(
-                title,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
-        );
-        String nonEmptyTitle = ValueValidator.checkForEmptyValueAndReturn(
-                nonNullTitle,
-                ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
-        );
-        return ValueValidator.checkForBlankValueAndReturn(
-                nonEmptyTitle,
-                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
-        );
+        return switch(title) {
+            case null -> throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+            );
+            case EMPTY_STRING -> throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+            );
+            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+            );
+            default -> title;
+        };
     }
 }
