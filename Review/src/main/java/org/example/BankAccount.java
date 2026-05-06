@@ -112,15 +112,17 @@ public class BankAccount {
    }
 
    private int validateAccountNumberAndReturn(int accountNumber) {
-        int nonZeroAccountNumber = ValueValidator.checkForZeroValueAndReturn(
-                accountNumber,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
-        );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                nonZeroAccountNumber,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
-        );
+        if (accountNumber == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+            );
+        } else if (accountNumber < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+            );
+        } else {
+            return accountNumber;
+        }
    }
 
    private BigDecimal validateBalanceAndReturn(BigDecimal balance) {
