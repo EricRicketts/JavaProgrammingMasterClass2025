@@ -144,7 +144,7 @@ public class BookTest {
         @Test
         public void testBookToString() {
             String bookInformation = book.toString();
-            
+
             assertTrue(bookInformation.contains("Pride and Prejudice"));
             assertTrue(bookInformation.contains("Jane Austin"));
             assertTrue(bookInformation.contains("480"));

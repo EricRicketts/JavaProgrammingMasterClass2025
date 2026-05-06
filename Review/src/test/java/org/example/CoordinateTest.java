@@ -38,6 +38,8 @@ public class CoordinateTest {
 
         @Test
         public void testToString() {
+            // The toString information is so small it does not make sense to check for
+            // individual pieces of data, as is done in the other toString tests.
             String expected = """
                     X coordinate = 8
                     Y coordinate = 10
