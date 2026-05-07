@@ -2,11 +2,11 @@ package org.example;
 
 public enum ErrorMessages {
 
-    NULL_VALUE_MESSAGE_FOR_NAME("Null value is not allowed for name"),
-
-    BLANK_VALUE_MESSAGE_FOR_NAME("Blank value is not allowed for name"),
+     NULL_VALUE_MESSAGE_FOR_NAME("Null value is not allowed for name"),
 
     EMPTY_VALUE_MESSAGE_FOR_NAME("Empty value is not allowed for name"),
+
+    BLANK_VALUE_MESSAGE_FOR_NAME("Blank value is not allowed for name"),
 
     NULL_VALUE_MESSAGE_FOR_AUTHOR("Null value is not allowed for author"),
 

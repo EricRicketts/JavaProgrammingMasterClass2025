@@ -1,49 +1,35 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class StudentInfo {
 
-    private String name;
-    private int id;
-    private BigDecimal gpa;
+    private final String name;
+    private final int id;
+    private final BigDecimal gpa;
 
     public StudentInfo(String name, int id, BigDecimal gpa) {
         this.name = validateNameAndReturn(name);
-        this.id = validateIDAndReturn(id);
-        this.gpa = validateGPAAndReturn(gpa);
+        this.id = id;
+        this.gpa = gpa;
     }
 
     private String validateNameAndReturn(String name) {
-        String nonNullName = ValueValidator.checkForNullValueAndReturn(
-                name,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage() );
-        return ValueValidator.checkForBlankValueAndReturn(
-                nonNullName,
-                ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage() );
-    }
-
-    private int validateIDAndReturn(int id) {
-        int nonZeroId = ValueValidator.checkForZeroValueAndReturn(
-                id,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-        );
-        return  ValueValidator.checkForNegativeValueAndReturn(
-                nonZeroId,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-        );
-    }
-
-    private BigDecimal validateGPAAndReturn(BigDecimal gpa) {
-        BigDecimal nonZeroGpa = ValueValidator.checkForZeroValueAndReturn(
-                gpa,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-        );
-        return  ValueValidator.checkForNegativeValueAndReturn(
-                nonZeroGpa,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-        );
+        if (Objects.isNull(name)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+            );
+        } else if (name.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+            );
+        } else if (name.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+            );
+        } else {
+            return name;
+        }
     }
 }
-
-
