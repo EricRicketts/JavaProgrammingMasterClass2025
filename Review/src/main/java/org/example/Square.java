@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Square {
 
@@ -27,28 +28,34 @@ public class Square {
     }
 
     private BigDecimal validateAndScaleSide(BigDecimal side, int scaleFactor) {
-        BigDecimal nonNullSide = ValueValidator.checkForNullValueAndReturn(
-                side,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
-        );
-
-        BigDecimal nonNegativeSide = ValueValidator.checkForNegativeValueAndReturn(
-                nonNullSide,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
-        );
-
-        return NumberUtils.setScale(nonNegativeSide, scaleFactor);
+        if (Objects.isNull(side)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+            );
+        } else if (side.compareTo(BigDecimal.ZERO) == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+            );
+        } else if (side.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+            );
+        } else {
+            return NumberUtils.setScale(side, scaleFactor);
+        }
     }
 
     private int validateScaleFactor(int scaleFactor) {
-        int nonZeroScaleFactor = ValueValidator.checkForZeroValueAndReturn(
-                scaleFactor,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
-        );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                nonZeroScaleFactor,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
-        );
+         if (scaleFactor == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+            );
+        } else if (scaleFactor < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+            );
+        } else {
+            return scaleFactor;
+        }
     }
 }
