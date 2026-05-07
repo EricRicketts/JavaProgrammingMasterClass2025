@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,9 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StudentInfoTest {
 
+    private StudentInfo studentInfo;
     private final String name = "Elmer Fudd";
     private final int id = 123456;
     private final BigDecimal gpa = BigDecimal.valueOf(2.55);
+
+    @BeforeEach
+    public void setUp() {
+        studentInfo = new StudentInfo(name, id, gpa);
+    }
 
     @Nested
     @DisplayName("constructor checks for name")
@@ -114,6 +121,35 @@ public class StudentInfoTest {
                             IllegalArgumentException.class,
                             () -> new StudentInfo(name, id, new BigDecimal("-2.45"))
                     ).getMessage()
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("getter checks")
+    class GetterChecks {
+
+        @Test
+        public void testGetName() {
+            assertEquals(
+                    name,
+                    studentInfo.getName()
+            );
+        }
+
+        @Test
+        public void testGetID() {
+            assertEquals(
+                    id,
+                    studentInfo.getID()
+            );
+        }
+
+        @Test
+        public void testGetGPA() {
+            assertEquals(
+                    gpa,
+                    studentInfo.getGPA()
             );
         }
     }

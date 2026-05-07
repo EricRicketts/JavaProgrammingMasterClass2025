@@ -64,4 +64,16 @@ public class StudentInfo {
             return gpa;
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getID() {
+        return id;
+    }
+
+    public BigDecimal getGPA() {
+        return gpa;
+    }
 }
