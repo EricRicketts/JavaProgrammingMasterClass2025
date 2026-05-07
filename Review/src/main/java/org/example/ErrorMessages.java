@@ -54,9 +54,13 @@ public enum ErrorMessages {
 
     NULL_VALUE_MESSAGE_FOR_WIDTH("Null value is not allowed for width"),
 
+    ZERO_VALUE_MESSAGE_FOR_WIDTH("Zero value is not allowed for width"),
+
     NEGATIVE_VALUE_MESSAGE_FOR_WIDTH("Negative value is not allowed for width"),
 
     NULL_VALUE_MESSAGE_FOR_HEIGHT("Null value is not allowed for height"),
+
+    ZERO_VALUE_MESSAGE_FOR_HEIGHT("Zero value is not allowed for height"),
 
     NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT("Negative value is not allowed for height"),
 
