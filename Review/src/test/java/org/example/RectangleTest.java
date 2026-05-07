@@ -109,8 +109,6 @@ public class RectangleTest {
         }
     }
 
-/*
-
     @Nested
     @DisplayName("Scale Factor must be positive")
     class ScaleFactorTests {
@@ -139,6 +137,96 @@ public class RectangleTest {
     }
 
     @Nested
+    @DisplayName("Rectangle two argument constructor tests")
+    class TwoArgumentConstructorWidthTests {
+
+        @Test
+        public void testTwoRectangleConstructorRejectsNullValueForWidth() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Rectangle(null, BigDecimal.valueOf(14.45))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testTwoRectangleConstructorRejectsZeroValueForWidth() {
+            assertEquals(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(0.00), BigDecimal.valueOf(34.29))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testTwoRectangleConstructorRejectsNegativeValueForWidth() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(-0.01), BigDecimal.valueOf(10.45))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testTwoRectangleConstructorRoundsThreeDecimalWidth() {
+            Rectangle rectangle =
+                    new Rectangle(BigDecimal.valueOf(23.785), BigDecimal.valueOf(12.34));
+            assertEquals(BigDecimal.valueOf(23.79), rectangle.getWidth());
+        }
+    }
+
+    @Nested
+    @DisplayName("Two Rectangle constructor tests for height")
+    class TwoArgumentConstructorHeightTests {
+
+        @Test
+        public void testTwoRectangleConstructorRejectsNullValueForHeight() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testTwoRectangleConstructorRejectsZeroValueForHeight() {
+            assertEquals(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(44.59), BigDecimal.valueOf(0.00))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testTwoRectangleConstructorRejectsNegativeValueForHeight() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(10.45), BigDecimal.valueOf(-0.01))
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testTwoRectangleConstructorRoundsThreeDecimalHeight() {
+            Rectangle rectangle =
+                    new Rectangle(BigDecimal.valueOf(23.78), BigDecimal.valueOf(12.344));
+            assertEquals(BigDecimal.valueOf(12.34), rectangle.getHeight());
+        }
+    }
+
+    @Nested
     @DisplayName("Rectangle single argument constructor tests")
     class SingleArgumentConstructorTests {
 
@@ -148,7 +236,18 @@ public class RectangleTest {
                     ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
                     assertThrows(
                             NullPointerException.class,
-                            () -> new Rectangle(null, SCALE_FACTOR)
+                            () -> new Rectangle(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testSingleArgumentRectangleConstructorRejectsZeroValue() {
+            assertEquals(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Rectangle(BigDecimal.valueOf(0.00))
                     ).getMessage()
             );
         }
@@ -159,15 +258,9 @@ public class RectangleTest {
                     ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage(),
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Rectangle(BigDecimal.valueOf(-9.56), SCALE_FACTOR)
+                            () -> new Rectangle(BigDecimal.valueOf(-9.56))
                     ).getMessage()
             );
-        }
-
-        @Test
-        public void testSingleArgumentRectangleHasSameWidthAndHeight() {
-            assertEquals(BigDecimal.valueOf(13.45), singleArgumentRectangle.getWidth());
-            assertEquals(BigDecimal.valueOf(13.45), singleArgumentRectangle.getHeight());
         }
     }
 
@@ -205,5 +298,4 @@ public class RectangleTest {
         }
     }
 
-    */
 }
