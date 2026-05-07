@@ -52,4 +52,20 @@ public class StudentInfoTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("constructor checks for id")
+    class IDConstructorChecks {
+
+        @Test
+        public void testConstructorRejectsZeroID() {
+            assertEquals(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new StudentInfo(name, 0, gpa)
+                    ).getMessage()
+            );
+        }
+    }
 }

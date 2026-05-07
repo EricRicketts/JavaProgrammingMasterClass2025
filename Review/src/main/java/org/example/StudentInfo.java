@@ -11,7 +11,7 @@ public class StudentInfo {
 
     public StudentInfo(String name, int id, BigDecimal gpa) {
         this.name = validateNameAndReturn(name);
-        this.id = id;
+        this.id = validateIDAndReturn(id);
         this.gpa = gpa;
     }
 
@@ -31,5 +31,14 @@ public class StudentInfo {
         } else {
             return name;
         }
+    }
+
+    private int validateIDAndReturn(int id) {
+        if (id == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+            );
+        }
+        return id;
     }
 }
