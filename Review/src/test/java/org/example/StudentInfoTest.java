@@ -29,5 +29,16 @@ public class StudentInfoTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testConstructorRejectsEmptyName() {
+            assertEquals(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new StudentInfo("", id, gpa)
+                    ).getMessage()
+            );
+        }
     }
 }
