@@ -12,7 +12,7 @@ public class StudentInfo {
     public StudentInfo(String name, int id, BigDecimal gpa) {
         this.name = validateNameAndReturn(name);
         this.id = validateIDAndReturn(id);
-        this.gpa = gpa;
+        this.gpa = validateAndReturn(gpa);
     }
 
     private String validateNameAndReturn(String name) {
@@ -44,6 +44,24 @@ public class StudentInfo {
             );
         } else {
             return id;
+        }
+    }
+
+    private BigDecimal validateAndReturn(BigDecimal gpa) {
+        if (Objects.isNull(gpa)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
+            );
+        } else if (gpa.compareTo(BigDecimal.ZERO) == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
+            );
+        } else if (gpa.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
+            );
+        } else {
+            return gpa;
         }
     }
 }

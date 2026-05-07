@@ -79,4 +79,42 @@ public class StudentInfoTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("constructor checks for gpa")
+    class GPAConstructorChecks {
+
+        @Test
+        public void testConstructorRejectsNullGPA() {
+            assertEquals(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_GPA.getErrorMessage(),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new StudentInfo(name, id, null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testConstructorRejectsZeroGPA() {
+            assertEquals(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_GPA.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new StudentInfo(name, id, BigDecimal.ZERO)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testConstructorRejectsNegativeGPA() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_GPA.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new StudentInfo(name, id, new BigDecimal("-2.45"))
+                    ).getMessage()
+            );
+        }
+    }
 }
