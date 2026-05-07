@@ -67,5 +67,16 @@ public class StudentInfoTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testConstructorRejectsNegativeID() {
+            assertEquals(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage(),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new StudentInfo(name, -34, gpa)
+                    ).getMessage()
+            );
+        }
     }
 }

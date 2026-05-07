@@ -38,7 +38,12 @@ public class StudentInfo {
             throw new IllegalArgumentException(
                     ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
             );
+        } else if (id < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+            );
+        } else {
+            return id;
         }
-        return id;
     }
 }
