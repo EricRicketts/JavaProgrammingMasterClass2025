@@ -10,59 +10,9 @@ public class StudentInfo {
     private final BigDecimal gpa;
 
     public StudentInfo(String name, int id, BigDecimal gpa) {
-        this.name = validateNameAndReturn(name);
-        this.id = validateIDAndReturn(id);
-        this.gpa = validateAndReturn(gpa);
-    }
-
-    private String validateNameAndReturn(String name) {
-        if (Objects.isNull(name)) {
-            throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-            );
-        } else if (name.isEmpty()) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-            );
-        } else if (name.isBlank()) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-            );
-        } else {
-            return name;
-        }
-    }
-
-    private int validateIDAndReturn(int id) {
-        if (id == 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-            );
-        } else if (id < 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
-            );
-        } else {
-            return id;
-        }
-    }
-
-    private BigDecimal validateAndReturn(BigDecimal gpa) {
-        if (Objects.isNull(gpa)) {
-            throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
-            );
-        } else if (gpa.compareTo(BigDecimal.ZERO) == 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
-            );
-        } else if (gpa.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
-            );
-        } else {
-            return gpa;
-        }
+        this.name = ValueValidator.validateNameAndReturn(name);
+        this.id = ValueValidator.validateIDAndReturn(id);
+        this.gpa = ValueValidator.validateGPAAndReturn(gpa);
     }
 
     public String getName() {

@@ -26,7 +26,7 @@ public enum ErrorMessages {
 
     EMPTY_VALUE_MESSAGE_FOR_TITLE("Empty value is not allowed for title"),
 
-     NULL_VALUE_MESSAGE_FOR_BANK_NAME("Null value is not allowed for bank name"),
+    NULL_VALUE_MESSAGE_FOR_BANK_NAME("Null value is not allowed for bank name"),
 
     BLANK_VALUE_MESSAGE_FOR_BANK_NAME("Blank value is not allowed for bank name"),
 
