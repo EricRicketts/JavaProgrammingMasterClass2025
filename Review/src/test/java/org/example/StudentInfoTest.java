@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class StudentInfoTest {
 
     private StudentInfo studentInfo;
+    private final String literalName = "name";
+    private final String literalID = "id";
+    private final String literalGPA = "gpa";
     private final String name = "Elmer Fudd";
     private final int id = 123456;
     private final BigDecimal gpa = BigDecimal.valueOf(2.55);
@@ -29,7 +32,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsNullName() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.nullValue(literalName),
                     assertThrows(
                             NullPointerException.class,
                             () -> new StudentInfo(null, id, gpa)
@@ -40,7 +43,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.emptyValue(literalName),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new StudentInfo("", id, gpa)
@@ -51,7 +54,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsBlankName() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.blankValue(literalName),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new StudentInfo("  ", id, gpa)
@@ -67,7 +70,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsZeroID() {
             assertEquals(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage(),
+                    ErrorMessages.zeroValue(literalID),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new StudentInfo(name, 0, gpa)
@@ -78,7 +81,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsNegativeID() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage(),
+                    ErrorMessages.negativeValue(literalID),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new StudentInfo(name, -34, gpa)
@@ -94,7 +97,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsNullGPA() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_GPA.getErrorMessage(),
+                    ErrorMessages.nullValue(literalGPA),
                     assertThrows(
                             NullPointerException.class,
                             () -> new StudentInfo(name, id, null)
@@ -105,7 +108,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsZeroGPA() {
             assertEquals(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_GPA.getErrorMessage(),
+                    ErrorMessages.zeroValue(literalGPA),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new StudentInfo(name, id, BigDecimal.ZERO)
@@ -116,7 +119,7 @@ public class StudentInfoTest {
         @Test
         public void testConstructorRejectsNegativeGPA() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_GPA.getErrorMessage(),
+                    ErrorMessages.negativeValue(literalGPA),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new StudentInfo(name, id, new BigDecimal("-2.45"))

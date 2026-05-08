@@ -15,6 +15,8 @@ public class SquareTest {
     private Square square;
     private static final int SCALE_FACTOR = 2;
 
+    private final String literalSide = "side";
+
     @BeforeEach
     public void setUp() {
         square = new Square(BigDecimal.valueOf(56.98), SCALE_FACTOR);
@@ -27,7 +29,7 @@ public class SquareTest {
         @Test
         public void testSquareConstructorRejectsNullValue() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
+                    ErrorMessages.nullValue(literalSide),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Square(null, SCALE_FACTOR)
@@ -38,7 +40,7 @@ public class SquareTest {
         @Test
         public void testSquareConstructorRejectsZeroValue() {
             assertEquals(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage(),
+                    ErrorMessages.,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Square(BigDecimal.valueOf(0.00), SCALE_FACTOR)

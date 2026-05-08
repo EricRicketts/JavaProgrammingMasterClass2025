@@ -53,17 +53,18 @@ public class ValueValidator {
     }
 
     public static String validateNameAndReturn(String name) {
+        String literalValue = "name";
         if (Objects.isNull(name)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (name.isEmpty()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                    ErrorMessages.emptyValue(literalValue)
             );
         } else if (name.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
+                    ErrorMessages.blankValue(literalValue)
             );
         } else {
             return name;
@@ -71,17 +72,18 @@ public class ValueValidator {
     }
 
     public static String validateAuthorAndReturn(String author) {
+        String literalValue = "author";
         if (Objects.isNull(author)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (author.isEmpty()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+                    ErrorMessages.emptyValue(literalValue)
             );
         } else if (author.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+                    ErrorMessages.blankValue(literalValue)
             );
         } else {
             return author;
@@ -89,17 +91,18 @@ public class ValueValidator {
     }
 
     public static String validateCityAndReturn(String city) {
+        String literalValue = "city";
         if (Objects.isNull(city)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (city.isEmpty()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+                    ErrorMessages.emptyValue(literalValue)
             );
         } else if (city.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+                    ErrorMessages.blankValue(literalValue)
             );
         } else {
             return city;
@@ -107,17 +110,18 @@ public class ValueValidator {
     }
 
     public static String validateTitleAndReturn(String title) {
+        String literalValue = "title";
         if (Objects.isNull(title)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (title.isEmpty()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+                    ErrorMessages.emptyValue(literalValue)
             );
         } else if (title.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+                    ErrorMessages.blankValue(literalValue)
             );
         } else {
             return title;
@@ -125,13 +129,14 @@ public class ValueValidator {
     }
 
     public static int validateIDAndReturn(int id) {
+        String literalValue = "id";
         if (id == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (id < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ID.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return id;
@@ -139,13 +144,14 @@ public class ValueValidator {
     }
 
     public static int validateAgeAndReturn(int age) {
+        String literalValue = "age";
         if (age == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (age < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return age;
@@ -153,13 +159,14 @@ public class ValueValidator {
     }
 
     public static int validatePagesAndReturn(int pages) {
+        String literalValue = "pages";
         if (pages == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_PAGES.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (pages < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return pages;
@@ -167,49 +174,50 @@ public class ValueValidator {
     }
 
     public static BigDecimal validateGPAAndReturn(BigDecimal gpa) {
+        String literalValue = "gpa";
         if (Objects.isNull(gpa)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (gpa.compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (gpa.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_GPA.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return gpa;
         }
     }
 
-    public static BigDecimal validateDepositAndReturn( BigDecimal depositAmount ) {
+    public static BigDecimal validateDepositAndReturn(BigDecimal depositAmount) {
+        String literalValue = "deposit";
         if (Objects.isNull(depositAmount)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (depositAmount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return depositAmount;
         }
     }
 
-    public static BigDecimal validateWithdrawAndReturn(
-            BigDecimal withdrawAmount
-    ) {
+    public static BigDecimal validateWithdrawAndReturn(BigDecimal withdrawAmount) {
+        String literalValue = "withdraw";
         BigDecimal nonNullWithdrawAmount =
                 ValueValidator.checkForNullValueAndReturn(
                         withdrawAmount,
-                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+                        ErrorMessages.nullValue(literalValue)
                 );
 
         return ValueValidator.checkForNegativeValueAndReturn(
                 NumberUtils.setScale(nonNullWithdrawAmount, 2),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+                ErrorMessages.negativeValue(literalValue)
         );
     }
 
@@ -219,17 +227,18 @@ public class ValueValidator {
     }
 
     public static String validateBankNameAndReturn(String bankName) {
+        String literalValue = "bank name";
         if (Objects.isNull(bankName)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (bankName.isEmpty()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+                    ErrorMessages.emptyValue(literalValue)
             );
         } else if (bankName.isBlank()) {
             throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+                    ErrorMessages.blankValue(literalValue)
             );
         } else {
             return bankName;
@@ -237,13 +246,14 @@ public class ValueValidator {
     }
 
     public static int validateAccountNumberAndReturn(int accountNumber) {
+        String literalValue = "account number";
         if (accountNumber == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (accountNumber < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return accountNumber;
@@ -251,17 +261,18 @@ public class ValueValidator {
     }
 
     public static BigDecimal validateBalanceAndReturn(BigDecimal balance) {
+        String literalValue = "balance";
         if (balance == null) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (balance.compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (balance.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return balance;
@@ -269,17 +280,18 @@ public class ValueValidator {
     }
 
     public static BigDecimal validateAndScaleWidth(BigDecimal width, int scaleFactor) {
+        String literalValue = "width";
         if (Objects.isNull(width)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (width.compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (width.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return NumberUtils.setScale(width, scaleFactor);
@@ -287,17 +299,18 @@ public class ValueValidator {
     }
 
     public static BigDecimal validateAndScaleHeight(BigDecimal height, int scaleFactor) {
+        String literalValue = "height";
         if (Objects.isNull(height)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (height.compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (height.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return NumberUtils.setScale(height, scaleFactor);
@@ -305,32 +318,34 @@ public class ValueValidator {
     }
 
     public static BigDecimal validateAndScaleSide(BigDecimal side, int scaleFactor) {
+        String literalValue = "side";
         if (Objects.isNull(side)) {
             throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                    ErrorMessages.nullValue(literalValue)
             );
         } else if (side.compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                    ErrorMessages.zeroValue(literalValue)
             );
         } else if (side.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+                    ErrorMessages.negativeValue(literalValue)
             );
         } else {
             return NumberUtils.setScale(side, scaleFactor);
         }
     }
     public static int validateScaleFactor(int scaleFactor) {
+        String literalValue = "scale factor";
         int nonZeroScaleFactor =
                 ValueValidator.checkForZeroValueAndReturn(
                         scaleFactor,
-                        ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+                        ErrorMessages.zeroValue(literalValue)
                 );
 
         return ValueValidator.checkForNegativeValueAndReturn(
                 nonZeroScaleFactor,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+                ErrorMessages.negativeValue(literalValue)
         );
     }
 }

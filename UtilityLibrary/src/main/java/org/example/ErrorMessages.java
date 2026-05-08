@@ -1,110 +1,30 @@
 package org.example;
 
-public enum ErrorMessages {
+public final class ErrorMessages {
 
-    NULL_VALUE_MESSAGE_FOR_NAME("Null value is not allowed for name"),
+    private ErrorMessages() {}
 
-    BLANK_VALUE_MESSAGE_FOR_NAME("Blank value is not allowed for name"),
-
-    EMPTY_VALUE_MESSAGE_FOR_NAME("Empty value is not allowed for name"),
-
-    NULL_VALUE_MESSAGE_FOR_GPA("Null value is not allowed for gpa"),
-
-    BLANK_VALUE_MESSAGE_FOR_GPA("Blank value is not allowed for gpa"),
-
-    EMPTY_VALUE_MESSAGE_FOR_GPA("Empty value is not allowed for gpa"),
-
-    NULL_VALUE_MESSAGE_FOR_AUTHOR("Null value is not allowed for author"),
-
-    BLANK_VALUE_MESSAGE_FOR_AUTHOR("Blank value is not allowed for author"),
-
-    EMPTY_VALUE_MESSAGE_FOR_AUTHOR("Empty value is not allowed for author"),
-
-    NULL_VALUE_MESSAGE_FOR_TITLE("Null value is not allowed for title"),
-
-    BLANK_VALUE_MESSAGE_FOR_TITLE("Blank value is not allowed for title"),
-
-    EMPTY_VALUE_MESSAGE_FOR_TITLE("Empty value is not allowed for title"),
-
-    NULL_VALUE_MESSAGE_FOR_BANK_NAME("Null value is not allowed for bank name"),
-
-    BLANK_VALUE_MESSAGE_FOR_BANK_NAME("Blank value is not allowed for bank name"),
-
-    EMPTY_VALUE_MESSAGE_FOR_BANK_NAME("Empty value is not allowed for bank name"),
-
-    NULL_VALUE_MESSAGE_FOR_CITY("Null value is not allowed for city"),
-
-    BLANK_VALUE_MESSAGE_FOR_CITY("Blank value is not allowed for city"),
-
-    EMPTY_VALUE_MESSAGE_FOR_CITY("Empty value is not allowed for city"),
-
-    NULL_VALUE_MESSAGE_FOR_BALANCE("Null value is not allowed for balance"),
-
-   ZERO_VALUE_MESSAGE_FOR_BALANCE("Zero value is not allowed for balance"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_BALANCE("Negative value is not allowed for balance"),
-
-    ZERO_VALUE_MESSAGE_FOR_AGE("Zero value is not allowed for age"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_AGE("Negative value is not allowed for age"),
-
-    ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER("Zero value is not allowed for account number"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER("Negative value is not allowed for account number"),
-
-    ZERO_VALUE_MESSAGE_FOR_ID("Zero value is not allowed for id"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_ID("Negative value is not allowed for id"),
-
-    ZERO_VALUE_MESSAGE_FOR_GPA("Zero value is not allowed for gpa"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_GPA("Negative value is not allowed for gpa"),
-
-    NULL_VALUE_MESSAGE_FOR_WIDTH("Null value is not allowed for width"),
-
-    ZERO_VALUE_MESSAGE_FOR_WIDTH("Zero value is not allowed for width"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_WIDTH("Negative value is not allowed for width"),
-
-    NULL_VALUE_MESSAGE_FOR_HEIGHT("Null value is not allowed for height"),
-
-    ZERO_VALUE_MESSAGE_FOR_HEIGHT("Zero value is not allowed for height"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT("Negative value is not allowed for height"),
-
-    ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR("Zero value is not allowed for scale factor"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR("Negative value is not allowed for scale factor"),
-
-    NULL_VALUE_MESSAGE_FOR_SIDE("Null value is not allowed for side"),
-
-    ZERO_VALUE_MESSAGE_FOR_SIDE("Zero value is not allowed for side"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for side"),
-
-    NULL_VALUE_MESSAGE_FOR_DEPOSIT("Null value is not allowed for deposit"),
-
-    ZERO_VALUE_MESSAGE_FOR_DEPOSIT("Zero value is not allowed for deposit"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT("Negative value is not allowed for deposit"),
-
-    NULL_VALUE_MESSAGE_FOR_WITHDRAW("Null value is not allowed for withdraw"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW("Negative value is not allowed for withdraw"),
-
-    INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW("Insufficient funds for withdraw"),
-
-    ZERO_VALUE_MESSAGE_FOR_PAGES("Zero value is not allowed for pages"),
-
-    NEGATIVE_VALUE_MESSAGE_FOR_PAGES("Negative value is not allowed for pages");
-
-    private final String errorMessage;
-
-    ErrorMessages(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public static String nullValue(String field) {
+        return "Null value is not allowed for " + field;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public static String emptyValue(String field) {
+        return "Empty value is not allowed for " + field;
+    }
+
+    public static String blankValue(String field) {
+        return "Blank value is not allowed for " + field;
+    }
+
+    public static String zeroValue(String field) {
+        return "Zero value is not allowed for " + field;
+    }
+
+    public static String negativeValue(String field) {
+        return "Negative value is not allowed for " + field;
+    }
+
+    public static String insufficientFunds(String action) {
+        return "Insufficient funds for " + action;
     }
 }
