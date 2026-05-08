@@ -16,7 +16,7 @@ public class Book {
 
     public Book(String title, String author, int pages) {
         this.title = this.validateTitleAndReturn(title);
-        this.author = this.validateAuthorAndReturn(author);
+        this.author = ValueValidator.validateAuthorAndReturn(author);
         this.pages = this.validatePagesAndReturn(pages);
     }
 
@@ -43,21 +43,6 @@ public class Book {
                 author,
                 pages
         ).trim();
-    }
-
-    private String validateAuthorAndReturn(String author) {
-        return switch(author) {
-            case null -> throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
-            );
-            case EMPTY_STRING -> throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
-            );
-            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
-            );
-            default -> author;
-        };
     }
 
     private int validatePagesAndReturn(int pages) {

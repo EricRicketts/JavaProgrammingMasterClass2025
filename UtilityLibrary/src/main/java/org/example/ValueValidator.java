@@ -70,6 +70,24 @@ public class ValueValidator {
         }
     }
 
+    public static String validateAuthorAndReturn(String author) {
+        if (Objects.isNull(author)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+            );
+        } else if (author.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+            );
+        } else if (author.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage()
+            );
+        } else {
+            return author;
+        }
+    }
+
     public static int validateIDAndReturn(int id) {
         if (id == 0) {
             throw new IllegalArgumentException(
