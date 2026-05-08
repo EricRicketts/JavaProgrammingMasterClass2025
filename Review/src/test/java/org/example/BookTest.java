@@ -20,8 +20,6 @@ public class BookTest {
 
     private final String titleLiteral = "title";
 
-    private final String pagesLiteral = "300";
-
     @BeforeEach
     public void setUp() {
         book = new Book("Pride and Prejudice", "Jane Austin", 480);
@@ -110,7 +108,7 @@ public class BookTest {
         @Test
         public void testBookNegativeValueForPagesInConstructor() {
             assertEquals(
-                    ErrorMessages.negativeValue(pagesLiteral),
+                    ErrorMessages.negativeValue("pages"),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Book(title, author, -50)

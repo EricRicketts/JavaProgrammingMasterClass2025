@@ -75,7 +75,7 @@ public class SquareTest {
         @Test
         public void testNegativeScaleFactor() {
             assertEquals(
-                    ErrorMessages.negativeValue(literalSide),
+                    ErrorMessages.negativeValue(literalScaleFactor),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Square(BigDecimal.valueOf(10.45), -3)

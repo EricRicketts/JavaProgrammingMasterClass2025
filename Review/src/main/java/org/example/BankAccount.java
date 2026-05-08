@@ -50,7 +50,7 @@ public class BankAccount {
 
         this.balance = ValueValidator.ensureNonNegativeBalanceAfterWithdraw(
                 NumberUtils.setScale(this.balance.subtract(validWithdrawAmount), 2),
-                ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+                ErrorMessages.insufficientFunds("withdraw")
         );
     }
 }
