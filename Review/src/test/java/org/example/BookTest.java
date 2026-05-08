@@ -16,6 +16,12 @@ public class BookTest {
 
     private final static int pages = 300;
 
+    private final String authorLiteral = "author";
+
+    private final String titleLiteral = "title";
+
+    private final String pagesLiteral = "300";
+
     @BeforeEach
     public void setUp() {
         book = new Book("Pride and Prejudice", "Jane Austin", 480);
@@ -28,7 +34,7 @@ public class BookTest {
         @Test
         public void testBookNullValueForTitleInConstructor() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    ErrorMessages.nullValue(titleLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Book(null, author, pages)
@@ -39,7 +45,7 @@ public class BookTest {
         @Test
         public void testBookEmptyValueForTitleInConstructor() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    ErrorMessages.emptyValue(titleLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Book("", author, pages)
@@ -50,7 +56,7 @@ public class BookTest {
         @Test
         public void testBookBlankValueForTitleInConstructor() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    ErrorMessages.blankValue(titleLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Book("   ", author, pages)
@@ -66,7 +72,7 @@ public class BookTest {
         @Test
         public void testBookNullValueForAuthorInConstructor() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    ErrorMessages.nullValue(authorLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Book(title, null, pages)
@@ -77,7 +83,7 @@ public class BookTest {
         @Test
         public void testBookEmptyValueForAuthorInConstructor() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    ErrorMessages.emptyValue(authorLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Book(title, "", pages)
@@ -88,7 +94,7 @@ public class BookTest {
         @Test
         public void testBookBlankValueForAuthorInConstructor() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    ErrorMessages.blankValue(authorLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Book(title, "  ", pages)
@@ -104,7 +110,7 @@ public class BookTest {
         @Test
         public void testBookNegativeValueForPagesInConstructor() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage(),
+                    ErrorMessages.negativeValue(pagesLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Book(title, author, -50)
