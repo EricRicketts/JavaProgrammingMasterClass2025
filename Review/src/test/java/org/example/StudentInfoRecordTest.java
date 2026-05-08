@@ -126,7 +126,7 @@ public class StudentInfoRecordTest {
     }
 
     @Nested
-    @DisplayName("getter checks")
+    @DisplayName("getter and toString checks")
     class GetterChecks {
 
         @Test
@@ -150,6 +150,20 @@ public class StudentInfoRecordTest {
             assertEquals(
                     gpa,
                     studentInfoRecord.gpa()
+            );
+        }
+
+        @Test
+        public void testToString() {
+            String expected = """
+                    Student Information:
+                    name = %s
+                    id = %d
+                    gpa = %.2f%n
+                    """.formatted(name, id, gpa).trim();
+            assertEquals(
+                    expected,
+                    studentInfoRecord.toString()
             );
         }
     }
