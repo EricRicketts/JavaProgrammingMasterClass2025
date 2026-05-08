@@ -42,8 +42,8 @@ public class Person {
     public String toString() {
         return String.format(
                 "name = %s%n" +
-                        "age = %d%n" +
-                        "city = %s%n", name, age, city
+                "age = %d%n" +
+                "city = %s%n", name, age, city
         ).trim();
     }
 }
