@@ -29,6 +29,6 @@ public class Square {
                 "Square:%n" +
                 "side = " + scaledDimension,
                 side
-                ).trim();
+        ).trim();
     }
 }

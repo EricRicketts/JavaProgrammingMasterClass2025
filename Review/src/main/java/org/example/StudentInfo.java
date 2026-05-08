@@ -1,5 +1,7 @@
 package org.example;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -25,5 +27,20 @@ public class StudentInfo {
 
     public BigDecimal getGPA() {
         return gpa;
+    }
+
+    @Override
+    @NotNull
+    public String toString() {
+        String scaledDimension = "%." + 2 + "f%n";
+        return String.format(
+                "Student Information:%n" +
+                "name = %s%n" +
+                "id = %d%n" +
+                "gpa = " + scaledDimension,
+                name,
+                id,
+                gpa
+        ).trim();
     }
 }

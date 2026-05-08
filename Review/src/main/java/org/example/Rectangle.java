@@ -45,6 +45,7 @@ public class Rectangle {
                 "width = " + scaledDimension +
                 "height = " + scaledDimension,
                 width,
-                height).trim();
+                height
+        ).trim();
     }
 }

@@ -43,7 +43,10 @@ public class Person {
         return String.format(
                 "name = %s%n" +
                 "age = %d%n" +
-                "city = %s%n", name, age, city
+                "city = %s%n",
+                name,
+                age,
+                city
         ).trim();
     }
 }

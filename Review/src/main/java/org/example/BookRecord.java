@@ -20,6 +20,7 @@ public record BookRecord(String title, String author, int pages) {
                 "Number of pages = %s%n",
                 title,
                 author,
-                pages).trim();
+                pages
+        ).trim();
     }
 }

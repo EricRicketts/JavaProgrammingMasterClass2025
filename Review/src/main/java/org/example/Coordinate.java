@@ -9,7 +9,9 @@ public record Coordinate(int x, int y) {
     public String toString() {
         return String.format(
                 "X coordinate = %d%n" +
-                "Y coordinate = %d%n", x, y
+                "Y coordinate = %d%n",
+                x,
+                y
         ).trim();
     }
 }
