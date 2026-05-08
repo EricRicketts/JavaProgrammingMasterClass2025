@@ -12,7 +12,7 @@ public class BankAccount {
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
         this.bankName = ValueValidator.validateBankNameAndReturn(bankName);
         this.accountNumber = ValueValidator.validateAccountNumberAndReturn(accountNumber);
-        BigDecimal nonNullOrNonNegativeBalance = validateBalanceAndReturn(balance);
+        BigDecimal nonNullOrNonNegativeBalance = ValueValidator.validateBalanceAndReturn(balance);
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
     }
 
@@ -55,22 +55,6 @@ public class BankAccount {
     }
 
     /*
-   private int validateAccountNumberAndReturn(int accountNumber) {
-        if (accountNumber == 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
-            );
-        } else if (accountNumber < 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
-            );
-        } else {
-            return accountNumber;
-        }
-   }
-
-     */
-
    private BigDecimal validateBalanceAndReturn(BigDecimal balance) {
         BigDecimal nonNullBalance = ValueValidator.checkForNullValueAndReturn(
                 balance,
@@ -82,4 +66,6 @@ public class BankAccount {
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
         );
    }
+
+     */
 }
