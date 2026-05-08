@@ -13,6 +13,16 @@ public class BankAccountTest {
 
     private BankAccount bankAccount;
 
+    private final String bankNameLiteral = "bank name";
+
+    private final String accountNumberLiteral = "account number";
+
+    private final String balanceLiteral = "balance";
+
+    private final String depositLiteral = "deposit";
+
+    private final String withdrawLiteral = "withdraw";
+
     @BeforeEach
     public void setUp() {
         bankAccount = new BankAccount("Capital One",
@@ -30,7 +40,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsNullBankName() {
                 assertEquals(
-                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage(),
+                        ErrorMessages.nullValue(bankNameLiteral),
                         assertThrows(
                                 NullPointerException.class,
                                 () -> new BankAccount(null, 12345,
@@ -42,7 +52,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsEmptyBankName() {
                 assertEquals(
-                        ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage(),
+                        ErrorMessages.emptyValue(bankNameLiteral),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("", 12345,
@@ -54,7 +64,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsBlankBankName() {
                 assertEquals(
-                        ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage(),
+                        ErrorMessages.blankValue(bankNameLiteral),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("  ", 12345,
@@ -71,7 +81,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsZeroAccountNumber() {
                 assertEquals(
-                        ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage(),
+                        ErrorMessages.zeroValue(accountNumberLiteral),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("Capital One", 0,
@@ -83,7 +93,7 @@ public class BankAccountTest {
             @Test
             public void testConstructorRejectsNegativeAccountNumber() {
                 assertEquals(
-                        ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage(),
+                        ErrorMessages.negativeValue(accountNumberLiteral),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount("Capital One", -12345,
@@ -100,7 +110,7 @@ public class BankAccountTest {
             @Test
             public void testBalanceUnchangedWhenConstructorRejectsNullBalance() {
                 assertEquals(
-                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
+                        ErrorMessages.nullValue(balanceLiteral),
                         assertThrows(
                                 NullPointerException.class,
                                 () -> new BankAccount(
@@ -118,7 +128,7 @@ public class BankAccountTest {
             @Test
             public void testBalanceUnchangedWhenConstructorRejectsNegativeBalance() {
                 assertEquals(
-                        ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage(),
+                        ErrorMessages.negativeValue(balanceLiteral),
                         assertThrows(
                                 IllegalArgumentException.class,
                                 () -> new BankAccount(
@@ -143,7 +153,7 @@ public class BankAccountTest {
         @Test
         public void testBalanceUnchangedWhenDepositRejectsNullValue() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
+                    ErrorMessages.nullValue(depositLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () ->  bankAccount.deposit(null)
@@ -158,7 +168,7 @@ public class BankAccountTest {
         @Test
         public void testBalanceUnchangedWhenDepositRejectsNegativeAmount() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage(),
+                    ErrorMessages.negativeValue(depositLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> bankAccount.deposit( BigDecimal.valueOf(-512.3578))
@@ -178,7 +188,7 @@ public class BankAccountTest {
         @Test
         public void testBalanceUnchangedWhenWithdrawRejectsNullValue() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
+                    ErrorMessages.nullValue(withdrawLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () ->  bankAccount.withdraw(null)
@@ -193,7 +203,7 @@ public class BankAccountTest {
         @Test
         public void testBalanceUnchangedWhenWithdrawRejectsNegativeAmount() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
+                    ErrorMessages.negativeValue(withdrawLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> bankAccount.withdraw(BigDecimal.valueOf(-300.45))
@@ -208,7 +218,7 @@ public class BankAccountTest {
         @Test
         public void testBalanceUnchangedWhenWithdrawRejectsExceedingBalance() {
             assertEquals(
-                    ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage(),
+                    ErrorMessages.insufficientFunds(withdrawLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))
