@@ -15,6 +15,10 @@ public class BookRecordTest {
 
     private static final int pages = 608;
 
+    private final String authorLiteral = "author";
+
+    private final String titleLiteral = "title";
+
     private BookRecord bookRecord;
 
     @BeforeEach
@@ -29,7 +33,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordNullValueForTitleInConstructor() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    ErrorMessages.nullValue(titleLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new BookRecord(null, author, pages)
@@ -40,7 +44,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordEmptyValueForTitleInConstructor() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    ErrorMessages.emptyValue(titleLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new BookRecord("", author, pages)
@@ -51,7 +55,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordBlankValueForTitleInConstructor() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage(),
+                    ErrorMessages.blankValue(titleLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new BookRecord("  ", author, pages)
@@ -67,7 +71,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordNullValueForAuthorInConstructor() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    ErrorMessages.nullValue(authorLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new BookRecord(title, null, pages)
@@ -78,7 +82,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordEmptyValueForAuthorInConstructor() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    ErrorMessages.emptyValue(authorLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new BookRecord(title, "", pages)
@@ -89,7 +93,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordBlankValueForAuthorInConstructor() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_AUTHOR.getErrorMessage(),
+                    ErrorMessages.blankValue(authorLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new BookRecord(title, "  ", pages)
@@ -105,7 +109,7 @@ public class BookRecordTest {
         @Test
         public void testBookRecordNegativeValueForPagesInConstructor() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage(),
+                    ErrorMessages.negativeValue("pages"),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new BookRecord(title, author, -10)
