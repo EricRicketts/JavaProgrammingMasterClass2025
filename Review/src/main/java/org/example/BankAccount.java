@@ -36,7 +36,7 @@ public class BankAccount {
                 "Current balance = %s%n",
                 bankName,
                 accountNumber,
-                NumberUtils.setScale(balance, 2)
+                balance
         ).trim();
     }
 
@@ -53,19 +53,4 @@ public class BankAccount {
                 ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage()
         );
     }
-
-    /*
-   private BigDecimal validateBalanceAndReturn(BigDecimal balance) {
-        BigDecimal nonNullBalance = ValueValidator.checkForNullValueAndReturn(
-                balance,
-                ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
-        );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                NumberUtils.setScale(nonNullBalance, 2),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
-        );
-   }
-
-     */
 }
