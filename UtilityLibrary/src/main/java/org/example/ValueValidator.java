@@ -88,6 +88,24 @@ public class ValueValidator {
         }
     }
 
+    public static String validateTitleAndReturn(String title) {
+        if (Objects.isNull(title)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+            );
+        } else if (title.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+            );
+        } else if (title.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_TITLE.getErrorMessage()
+            );
+        } else {
+            return title;
+        }
+    }
+
     public static int validateIDAndReturn(int id) {
         if (id == 0) {
             throw new IllegalArgumentException(
@@ -99,6 +117,20 @@ public class ValueValidator {
             );
         } else {
             return id;
+        }
+    }
+
+    public static int validatePagesAndReturn(int pages) {
+        if (pages == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_PAGES.getErrorMessage()
+            );
+        } else if (pages < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_PAGES.getErrorMessage()
+            );
+        } else {
+            return pages;
         }
     }
 
