@@ -114,7 +114,10 @@ public class SquareTest {
 
         @Test
         public void testSquareToString() {
-            String expected = "Square[side = 56.98]";
+            String expected = """
+                    Square:
+                    side = 56.98
+                    """.trim();
             String actual = square.toString();
 
             assertEquals(expected, actual);

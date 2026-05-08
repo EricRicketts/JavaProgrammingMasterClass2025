@@ -304,6 +304,23 @@ public class ValueValidator {
         }
     }
 
+    public static BigDecimal validateAndScaleSide(BigDecimal side, int scaleFactor) {
+        if (Objects.isNull(side)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+            );
+        } else if (side.compareTo(BigDecimal.ZERO) == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+            );
+        } else if (side.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SIDE.getErrorMessage()
+            );
+        } else {
+            return NumberUtils.setScale(side, scaleFactor);
+        }
+    }
     public static int validateScaleFactor(int scaleFactor) {
         int nonZeroScaleFactor =
                 ValueValidator.checkForZeroValueAndReturn(
