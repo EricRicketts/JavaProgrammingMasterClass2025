@@ -6,10 +6,6 @@ import java.util.regex.Pattern;
 
 public class Book {
 
-    private final Pattern ONE_OR_MORE_SPACES = Pattern.compile("\\s+");
-
-    private final String EMPTY_STRING = "";
-
     private final String title, author;
 
     private final int pages;
