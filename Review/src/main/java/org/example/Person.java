@@ -4,8 +4,6 @@ import java.util.regex.Pattern;
 
 public class Person {
 
-    private final Pattern ONE_OR_MORE_SPACES = Pattern.compile("\\s+");
-    private final String EMPTY_STRING = "";
     private final String name;
     private int age;
     private String city;
@@ -15,9 +13,9 @@ public class Person {
     }
 
     public Person(String name, int age, String city) {
-        this.name = validateNameAndReturn(name);
-        this.age = validateAgeAndReturn(age);
-        this.city = validateCityAndReturn(city);
+        this.name = ValueValidator.validateNameAndReturn(name);
+        this.age = ValueValidator.validateAgeAndReturn(age);
+        this.city = ValueValidator.validateCityAndReturn(city);
     }
 
     public String getName() {
@@ -29,7 +27,7 @@ public class Person {
     }
 
     public void setAge(int age) {
-        this.age = validateAgeAndReturn(age);
+        this.age = ValueValidator.validateAgeAndReturn(age);
     }
 
     public String getCity() {
@@ -37,7 +35,7 @@ public class Person {
     }
 
     public void setCity(String city) {
-        this.city = validateCityAndReturn(city);
+        this.city = ValueValidator.validateCityAndReturn(city);
     }
 
     @Override
@@ -47,47 +45,5 @@ public class Person {
                         "age = %d%n" +
                         "city = %s%n", name, age, city
         ).trim();
-    }
-
-    private int validateAgeAndReturn(int age) {
-        int nonNullAge = ValueValidator.checkForZeroValueAndReturn(
-                age,
-                ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
-        );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                nonNullAge,
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
-        );
-    }
-
-    private String validateNameAndReturn(String name) {
-        return switch (name) {
-            case null -> throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-            );
-            case EMPTY_STRING -> throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-            );
-            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage()
-            );
-            default -> name;
-        };
-    }
-
-    private String validateCityAndReturn(String city) {
-        return switch (city) {
-            case null -> throw new NullPointerException(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
-            );
-            case EMPTY_STRING -> throw new IllegalArgumentException(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
-            );
-            case String s when ONE_OR_MORE_SPACES.matcher(s).matches() -> throw new IllegalArgumentException(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
-            );
-            default -> city;
-        };
     }
 }

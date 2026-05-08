@@ -88,6 +88,24 @@ public class ValueValidator {
         }
     }
 
+    public static String validateCityAndReturn(String city) {
+        if (Objects.isNull(city)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+            );
+        } else if (city.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+            );
+        } else if (city.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage()
+            );
+        } else {
+            return city;
+        }
+    }
+
     public static String validateTitleAndReturn(String title) {
         if (Objects.isNull(title)) {
             throw new NullPointerException(
@@ -117,6 +135,20 @@ public class ValueValidator {
             );
         } else {
             return id;
+        }
+    }
+
+    public static int validateAgeAndReturn(int age) {
+        if (age == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+            );
+        } else if (age < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage()
+            );
+        } else {
+            return age;
         }
     }
 
