@@ -10,7 +10,7 @@ public class BankAccount {
     private BigDecimal balance;
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
-        this.bankName = validateBankNameAndReturn(bankName);
+        this.bankName = ValueValidator.validateBankNameAndReturn(bankName);
         this.accountNumber = validateAccountNumberAndReturn(accountNumber);
         BigDecimal nonNullOrNonNegativeBalance = validateBalanceAndReturn(balance);
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
@@ -48,35 +48,13 @@ public class BankAccount {
     public void withdraw(BigDecimal withdrawAmount) {
         BigDecimal validWithdrawAmount = ValueValidator.validateWithdrawAndReturn(withdrawAmount);
 
-        this.balance = ensureNonNegativeBalanceAfterWithdraw(
+        this.balance = ValueValidator.ensureNonNegativeBalanceAfterWithdraw(
                 NumberUtils.setScale(this.balance.subtract(validWithdrawAmount), 2),
                 ErrorMessages.INSUFFICIENT_FUNDS_MESSAGE_FOR_WITHDRAW.getErrorMessage()
         );
     }
 
-    /*
-    private BigDecimal validateWithdrawAndReturn(
-            BigDecimal withdrawAmount
-    ) {
-        BigDecimal nonNullWithdrawAmount =
-                ValueValidator.checkForNullValueAndReturn(
-                        withdrawAmount,
-                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
-                );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                NumberUtils.setScale(nonNullWithdrawAmount, 2),
-                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
-        );
-    }
-
-     */
-
-
-    private BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
-        return ValueValidator.checkForNegativeValueAndReturn(newBalance, message);
-    }
-
+   /*
    private String validateBankNameAndReturn(String bankName) {
         final Pattern ONE_OR_MORE_SPACES = Pattern.compile("\\s+");
         final String EMPTY_STRING = "";
@@ -94,6 +72,8 @@ public class BankAccount {
             default -> bankName;
        };
    }
+
+    */
 
    private int validateAccountNumberAndReturn(int accountNumber) {
         if (accountNumber == 0) {
