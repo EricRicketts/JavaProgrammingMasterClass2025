@@ -41,9 +41,7 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
-        BigDecimal validDepositAmount = validateDepositAndReturn(
-                depositAmount
-        );
+        BigDecimal validDepositAmount = ValueValidator.validateDepositAndReturn(depositAmount);
         this.balance = NumberUtils.setScale(this.balance.add(validDepositAmount), 2);
     }
 
@@ -58,6 +56,7 @@ public class BankAccount {
         );
     }
 
+    /*
     private BigDecimal validateDepositAndReturn(
             BigDecimal depositAmount
     ) {
@@ -72,6 +71,8 @@ public class BankAccount {
                 ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
         );
     }
+
+     */
 
     private BigDecimal validateWithdrawAndReturn(
             BigDecimal withdrawAmount

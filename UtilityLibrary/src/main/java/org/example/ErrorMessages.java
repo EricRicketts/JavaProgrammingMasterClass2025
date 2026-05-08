@@ -40,6 +40,8 @@ public enum ErrorMessages {
 
     NULL_VALUE_MESSAGE_FOR_BALANCE("Null value is not allowed for balance"),
 
+   ZERO_VALUE_MESSAGE_FOR_BALANCE("Zero value is not allowed for balance"),
+
     NEGATIVE_VALUE_MESSAGE_FOR_BALANCE("Negative value is not allowed for balance"),
 
     ZERO_VALUE_MESSAGE_FOR_AGE("Zero value is not allowed for age"),
@@ -81,6 +83,8 @@ public enum ErrorMessages {
     NEGATIVE_VALUE_MESSAGE_FOR_SIDE("Negative value is not allowed for side"),
 
     NULL_VALUE_MESSAGE_FOR_DEPOSIT("Null value is not allowed for deposit"),
+
+    ZERO_VALUE_MESSAGE_FOR_DEPOSIT("Zero value is not allowed for deposit"),
 
     NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT("Negative value is not allowed for deposit"),
 

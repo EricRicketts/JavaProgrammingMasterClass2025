@@ -2,6 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class ValueValidator {
 
@@ -101,4 +102,87 @@ public class ValueValidator {
         }
     }
 
+    public static BigDecimal validateDepositAndReturn( BigDecimal depositAmount ) {
+        if (Objects.isNull(depositAmount)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
+            );
+        } else if (depositAmount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_DEPOSIT.getErrorMessage()
+            );
+        } else {
+            return depositAmount;
+        }
+    }
+
+    public static BigDecimal validateWithdrawAndReturn(
+            BigDecimal withdrawAmount
+    ) {
+        BigDecimal nonNullWithdrawAmount =
+                ValueValidator.checkForNullValueAndReturn(
+                        withdrawAmount,
+                        ErrorMessages.NULL_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+                );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                NumberUtils.setScale(nonNullWithdrawAmount, 2),
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WITHDRAW.getErrorMessage()
+        );
+    }
+
+
+    public static BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
+        return ValueValidator.checkForNegativeValueAndReturn(newBalance, message);
+    }
+
+    public static String validateBankNameAndReturn(String bankName) {
+        if (Objects.isNull(bankName)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+            );
+        } else if (bankName.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+            );
+        } else if (bankName.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_BANK_NAME.getErrorMessage()
+            );
+        } else {
+            return bankName;
+        }
+    }
+
+    public static int validateAccountNumberAndReturn(int accountNumber) {
+        if (accountNumber == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+            );
+        } else if (accountNumber < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_ACCOUNT_NUMBER.getErrorMessage()
+            );
+        } else {
+            return accountNumber;
+        }
+    }
+
+    public static BigDecimal validateBalanceAndReturn(BigDecimal balance) {
+        if (balance == null) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+            );
+        } else if (balance.compareTo(BigDecimal.ZERO) == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+            );
+        } else if (balance.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_BALANCE.getErrorMessage()
+            );
+        } else {
+            return balance;
+        }
+    }
 }
