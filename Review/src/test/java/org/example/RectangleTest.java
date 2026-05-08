@@ -292,7 +292,11 @@ public class RectangleTest {
         // the entire string.
         @Test
         public void testRectangleToString() {
-            String expected = "Rectangle[width = 31.52, height = 15.78]";
+            String expected = """
+                    Rectangle:
+                    width = 31.52
+                    height = 15.78
+                    """.trim();
             String actual = rectangle.toString();
             assertEquals(expected, actual);
         }

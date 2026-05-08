@@ -267,4 +267,53 @@ public class ValueValidator {
             return balance;
         }
     }
+
+    public static BigDecimal validateAndScaleWidth(BigDecimal width, int scaleFactor) {
+        if (Objects.isNull(width)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+            );
+        } else if (width.compareTo(BigDecimal.ZERO) == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+            );
+        } else if (width.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_WIDTH.getErrorMessage()
+            );
+        } else {
+            return NumberUtils.setScale(width, scaleFactor);
+        }
+    }
+
+    public static BigDecimal validateAndScaleHeight(BigDecimal height, int scaleFactor) {
+        if (Objects.isNull(height)) {
+            throw new NullPointerException(
+                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+            );
+        } else if (height.compareTo(BigDecimal.ZERO) == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+            );
+        } else if (height.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_HEIGHT.getErrorMessage()
+            );
+        } else {
+            return NumberUtils.setScale(height, scaleFactor);
+        }
+    }
+
+    public static int validateScaleFactor(int scaleFactor) {
+        int nonZeroScaleFactor =
+                ValueValidator.checkForZeroValueAndReturn(
+                        scaleFactor,
+                        ErrorMessages.ZERO_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+                );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                nonZeroScaleFactor,
+                ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_SCALE_FACTOR.getErrorMessage()
+        );
+    }
 }
