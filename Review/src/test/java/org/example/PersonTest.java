@@ -12,6 +12,10 @@ public class PersonTest {
     private Person firstPerson;
     private Person secondPerson;
 
+    private final String nameLiteral = "name";
+    private final String ageLiteral = "age";
+    private final String cityLiteral = "city";
+
     @BeforeEach
     public void setUp() {
         firstPerson = new Person("Elmer Fudd", 43, "Hollywood");
@@ -25,7 +29,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNullName() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.nullValue(nameLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Person(null, 43, "Hollywood")
@@ -36,7 +40,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.emptyValue(nameLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("", 43, "Hollywood")
@@ -47,7 +51,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsBlankName() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.blankValue(nameLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person(" ", 43, "Hollywood")
@@ -58,7 +62,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNullCity() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.nullValue(cityLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Person("Elmer Fudd", 43, null)
@@ -69,7 +73,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyCity() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.emptyValue(cityLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 43, "")
@@ -80,7 +84,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsBlankCity() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.blankValue(cityLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 43, " ")
@@ -91,7 +95,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessages.negativeValue(ageLiteral),
                     assertThrows(
                            IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", -1, "Hollywood")
@@ -102,7 +106,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsZeroAge() {
             assertEquals(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessages.zeroValue(ageLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 0, "Hollywood")
@@ -118,7 +122,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNullName() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.nullValue(nameLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> new Person(null, 12)
@@ -129,7 +133,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsEmptyName() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.emptyValue(nameLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("", 43)
@@ -140,7 +144,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsBlankName() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_NAME.getErrorMessage(),
+                    ErrorMessages.blankValue(nameLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("  ", 43)
@@ -151,7 +155,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsNegativeAge() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessages.negativeValue(ageLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", -4)
@@ -162,7 +166,7 @@ public class PersonTest {
         @Test
         public void testConstructorRejectsZeroAge() {
             assertEquals(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessages.zeroValue(ageLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Person("Elmer Fudd", 0)
@@ -218,7 +222,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsNegativeAge() {
             assertEquals(
-                    ErrorMessages.NEGATIVE_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessages.negativeValue(ageLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> firstPerson.setAge(-12)
@@ -229,7 +233,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsZeroAge() {
             assertEquals(
-                    ErrorMessages.ZERO_VALUE_MESSAGE_FOR_AGE.getErrorMessage(),
+                    ErrorMessages.zeroValue(ageLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> firstPerson.setAge(0)
@@ -251,7 +255,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsNullCity() {
             assertEquals(
-                    ErrorMessages.NULL_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.nullValue(cityLiteral),
                     assertThrows(
                             NullPointerException.class,
                             () -> secondPerson.setCity(null)
@@ -262,7 +266,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsEmptyCity() {
             assertEquals(
-                    ErrorMessages.EMPTY_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.emptyValue(cityLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> secondPerson.setCity("")
@@ -273,7 +277,7 @@ public class PersonTest {
         @Test
         public void testSetterRejectsBlankCity() {
             assertEquals(
-                    ErrorMessages.BLANK_VALUE_MESSAGE_FOR_CITY.getErrorMessage(),
+                    ErrorMessages.blankValue(cityLiteral),
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> secondPerson.setCity(" ")
