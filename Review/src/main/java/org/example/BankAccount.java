@@ -10,7 +10,7 @@ public class BankAccount {
     private BigDecimal balance;
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
-        this.bankName = ValueValidator.validateBankNameAndReturn(bankName);
+        this.bankName = validateBankNameAndReturn(bankName);
         this.accountNumber = ValueValidator.validateAccountNumberAndReturn(accountNumber);
         BigDecimal nonNullOrNonNegativeBalance = ValueValidator.validateBalanceAndReturn(balance);
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
@@ -52,5 +52,9 @@ public class BankAccount {
                 NumberUtils.setScale(this.balance.subtract(validWithdrawAmount), 2),
                 ErrorMessages.insufficientFunds("withdraw")
         );
+    }
+
+    private String validateBankNameAndReturn(String bankName) {
+        return ValueValidator.validateTextAndReturn(bankName, "bank name");
     }
 }
