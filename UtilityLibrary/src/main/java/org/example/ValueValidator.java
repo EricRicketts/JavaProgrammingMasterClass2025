@@ -128,6 +128,25 @@ public class ValueValidator {
         }
     }
 
+    public static String validateBankNameAndReturn(String bankName) {
+        String literalValue = "bank name";
+        if (Objects.isNull(bankName)) {
+            throw new NullPointerException(
+                    ErrorMessages.nullValue(literalValue)
+            );
+        } else if (bankName.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.emptyValue(literalValue)
+            );
+        } else if (bankName.isBlank()) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.blankValue(literalValue)
+            );
+        } else {
+            return bankName;
+        }
+    }
+
     public static int validateIDAndReturn(int id) {
         String literalValue = "id";
         if (id == 0) {
@@ -171,6 +190,35 @@ public class ValueValidator {
         } else {
             return pages;
         }
+    }
+
+    public static int validateAccountNumberAndReturn(int accountNumber) {
+        String literalValue = "account number";
+        if (accountNumber == 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.zeroValue(literalValue)
+            );
+        } else if (accountNumber < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.negativeValue(literalValue)
+            );
+        } else {
+            return accountNumber;
+        }
+    }
+
+    public static int validateScaleFactor(int scaleFactor) {
+        String literalValue = "scale factor";
+        int nonZeroScaleFactor =
+                ValueValidator.checkForZeroValueAndReturn(
+                        scaleFactor,
+                        ErrorMessages.zeroValue(literalValue)
+                );
+
+        return ValueValidator.checkForNegativeValueAndReturn(
+                nonZeroScaleFactor,
+                ErrorMessages.negativeValue(literalValue)
+        );
     }
 
     public static BigDecimal validateGPAAndReturn(BigDecimal gpa) {
@@ -224,40 +272,6 @@ public class ValueValidator {
 
     public static BigDecimal ensureNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
         return ValueValidator.checkForNegativeValueAndReturn(newBalance, message);
-    }
-
-    public static String validateBankNameAndReturn(String bankName) {
-        String literalValue = "bank name";
-        if (Objects.isNull(bankName)) {
-            throw new NullPointerException(
-                    ErrorMessages.nullValue(literalValue)
-            );
-        } else if (bankName.isEmpty()) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.emptyValue(literalValue)
-            );
-        } else if (bankName.isBlank()) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.blankValue(literalValue)
-            );
-        } else {
-            return bankName;
-        }
-    }
-
-    public static int validateAccountNumberAndReturn(int accountNumber) {
-        String literalValue = "account number";
-        if (accountNumber == 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.zeroValue(literalValue)
-            );
-        } else if (accountNumber < 0) {
-            throw new IllegalArgumentException(
-                    ErrorMessages.negativeValue(literalValue)
-            );
-        } else {
-            return accountNumber;
-        }
     }
 
     public static BigDecimal validateBalanceAndReturn(BigDecimal balance) {
@@ -334,18 +348,5 @@ public class ValueValidator {
         } else {
             return NumberUtils.setScale(side, scaleFactor);
         }
-    }
-    public static int validateScaleFactor(int scaleFactor) {
-        String literalValue = "scale factor";
-        int nonZeroScaleFactor =
-                ValueValidator.checkForZeroValueAndReturn(
-                        scaleFactor,
-                        ErrorMessages.zeroValue(literalValue)
-                );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                nonZeroScaleFactor,
-                ErrorMessages.negativeValue(literalValue)
-        );
     }
 }
