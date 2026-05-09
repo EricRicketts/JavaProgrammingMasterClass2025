@@ -257,16 +257,17 @@ public class ValueValidator {
 
     public static BigDecimal validateWithdrawAndReturn(BigDecimal withdrawAmount) {
         String literalValue = "withdraw";
-        BigDecimal nonNullWithdrawAmount =
-                ValueValidator.checkForNullValueAndReturn(
-                        withdrawAmount,
-                        ErrorMessages.nullValue(literalValue)
-                );
-
-        return ValueValidator.checkForNegativeValueAndReturn(
-                NumberUtils.setScale(nonNullWithdrawAmount, 2),
-                ErrorMessages.negativeValue(literalValue)
-        );
+        if (Objects.isNull(withdrawAmount)) {
+            throw new NullPointerException(
+                    ErrorMessages.nullValue(literalValue)
+            );
+        } else if (withdrawAmount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    ErrorMessages.negativeValue(literalValue)
+            );
+        } else {
+            return withdrawAmount;
+        }
     }
 
 
