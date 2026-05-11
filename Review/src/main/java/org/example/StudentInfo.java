@@ -12,9 +12,9 @@ public class StudentInfo {
     private final BigDecimal gpa;
 
     public StudentInfo(String name, int id, BigDecimal gpa) {
-        this.name = ValueValidator.validateNameAndReturn(name);
-        this.id = ValueValidator.validateIDAndReturn(id);
-        this.gpa = ValueValidator.validateGPAAndReturn(gpa);
+        this.name = validateNameAndReturn(name);
+        this.id = validateIDAndReturn(id);
+        this.gpa = validateGPAAndReturn(gpa);
     }
 
     public String getName() {
@@ -42,5 +42,17 @@ public class StudentInfo {
                 id,
                 gpa
         ).trim();
+    }
+
+    public static BigDecimal validateGPAAndReturn(BigDecimal gpa) {
+        return ValueValidator.validateNonNegativeBigDecimalAndReturn(gpa, "gpa");
+    }
+
+    public static int validateIDAndReturn(int id) {
+        return ValueValidator.validatePositiveIntAndReturn(id, "id");
+    }
+
+    public static String validateNameAndReturn(String name) {
+        return ValueValidator.validateTextAndReturn(name, "name");
     }
 }

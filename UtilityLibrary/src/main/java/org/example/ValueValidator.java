@@ -27,13 +27,6 @@ public class ValueValidator {
         return number;
     }
 
-    public static BigDecimal validateNonNegativeValueAndReturn(BigDecimal number, String message) {
-        if (number.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException(message);
-        }
-        return number;
-    }
-
     public static <T> T checkForNullValueAndReturn(T value, String message) {
         return Objects.requireNonNull(value, message);
     }
