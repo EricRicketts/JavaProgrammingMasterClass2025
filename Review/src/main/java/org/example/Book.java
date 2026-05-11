@@ -6,14 +6,16 @@ import java.util.regex.Pattern;
 
 public class Book {
 
-    private final String title, author;
+    private final String title;
+
+    private final String author;
 
     private final int pages;
 
     public Book(String title, String author, int pages) {
-        this.title = ValueValidator.validateTitleAndReturn(title);
-        this.author = ValueValidator.validateAuthorAndReturn(author);
-        this.pages = ValueValidator.validatePagesAndReturn(pages);
+        this.title = validateTitleAndReturn(title);
+        this.author = validateAuthorAndReturn(author);
+        this.pages = validatePagesAndReturn(pages);
     }
 
     public String getAuthor() {
@@ -39,5 +41,17 @@ public class Book {
                 author,
                 pages
         ).trim();
+    }
+
+    public static String validateAuthorAndReturn(String author) {
+        return ValueValidator.validateTextAndReturn(author, "author");
+    }
+
+    public static int validatePagesAndReturn(int pages) {
+        return ValueValidator.validatePositiveIntAndReturn(pages, "pages");
+    }
+
+    public static String validateTitleAndReturn(String title) {
+        return ValueValidator.validateTextAndReturn(title, "title");
     }
 }

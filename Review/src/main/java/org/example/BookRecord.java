@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 public record BookRecord(String title, String author, int pages) {
 
     public BookRecord(String title, String author, int pages) {
-        this.title = ValueValidator.validateTitleAndReturn(title);
-        this.author = ValueValidator.validateAuthorAndReturn(author);
-        this.pages = ValueValidator.validatePagesAndReturn(pages);
+        this.title = Book.validateTitleAndReturn(title);
+        this.author = Book.validateAuthorAndReturn(author);
+        this.pages = Book.validatePagesAndReturn(pages);
     }
 
     @Override

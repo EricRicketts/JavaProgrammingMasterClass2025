@@ -13,9 +13,9 @@ public class Person {
     }
 
     public Person(String name, int age, String city) {
-        this.name = ValueValidator.validateNameAndReturn(name);
-        this.age = ValueValidator.validateAgeAndReturn(age);
-        this.city = ValueValidator.validateCityAndReturn(city);
+        this.name = validateNameAndReturn(name);
+        this.age = validateAgeAndReturn(age);
+        this.city = validateCityAndReturn(city);
     }
 
     public String getName() {
@@ -27,7 +27,7 @@ public class Person {
     }
 
     public void setAge(int age) {
-        this.age = ValueValidator.validateAgeAndReturn(age);
+        this.age = validateAgeAndReturn(age);
     }
 
     public String getCity() {
@@ -35,7 +35,7 @@ public class Person {
     }
 
     public void setCity(String city) {
-        this.city = ValueValidator.validateCityAndReturn(city);
+        this.city = validateCityAndReturn(city);
     }
 
     @Override
@@ -48,5 +48,17 @@ public class Person {
                 age,
                 city
         ).trim();
+    }
+
+    private int validateAgeAndReturn(int age) {
+        return ValueValidator.validatePositiveIntAndReturn(age, "age");
+    }
+
+    private String validateCityAndReturn(String city) {
+        return ValueValidator.validateTextAndReturn(city, "city");
+    }
+
+    private String validateNameAndReturn(String name) {
+        return ValueValidator.validateTextAndReturn(name, "name");
     }
 }

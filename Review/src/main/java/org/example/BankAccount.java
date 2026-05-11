@@ -1,7 +1,6 @@
 package org.example;
 
 import java.math.BigDecimal;
-import java.util.regex.Pattern;
 
 public class BankAccount {
 
@@ -11,8 +10,8 @@ public class BankAccount {
 
     public BankAccount(String bankName, int accountNumber, BigDecimal balance) {
         this.bankName = validateBankNameAndReturn(bankName);
-        this.accountNumber = ValueValidator.validateAccountNumberAndReturn(accountNumber);
-        BigDecimal nonNullOrNonNegativeBalance = ValueValidator.validateBalanceAndReturn(balance);
+        this.accountNumber = validateAccountNumberAndReturn(accountNumber);
+        BigDecimal nonNullOrNonNegativeBalance = validateBalanceAndReturn(balance);
         this.balance = NumberUtils.setScale(nonNullOrNonNegativeBalance, 2);
     }
 
@@ -41,20 +40,37 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal depositAmount) {
-        BigDecimal validDepositAmount = ValueValidator.validateDepositAndReturn(depositAmount);
+        BigDecimal validDepositAmount = validateDepositAndReturn(depositAmount);
         this.balance = NumberUtils.setScale(this.balance.add(validDepositAmount), 2);
     }
 
     public void withdraw(BigDecimal withdrawAmount) {
-        BigDecimal validWithdrawAmount = ValueValidator.validateWithdrawAndReturn(withdrawAmount);
+        BigDecimal nonNegativeWithdraw = validateWithdrawAndReturn(withdrawAmount);
 
-        this.balance = ValueValidator.ensureNonNegativeBalanceAfterWithdraw(
-                NumberUtils.setScale(this.balance.subtract(validWithdrawAmount), 2),
-                ErrorMessages.insufficientFunds("withdraw")
-        );
+        if (nonNegativeWithdraw.compareTo(this.balance) > 0) {
+            throw new IllegalArgumentException("Insufficient funds for withdraw");
+        } else {
+            this.balance = NumberUtils.setScale(this.balance.subtract(nonNegativeWithdraw), 2);
+        }
     }
 
     private String validateBankNameAndReturn(String bankName) {
         return ValueValidator.validateTextAndReturn(bankName, "bank name");
+    }
+
+    private int validateAccountNumberAndReturn(int accountNumber) {
+        return ValueValidator.validatePositiveIntAndReturn(accountNumber, "account number");
+    }
+
+    private BigDecimal validateBalanceAndReturn(BigDecimal balance) {
+        return ValueValidator.validateNonNegativeBigDecimalAndReturn(balance, "balance");
+    }
+
+    private BigDecimal validateDepositAndReturn(BigDecimal deposit) {
+        return ValueValidator.validateNonNegativeBigDecimalAndReturn(deposit, "deposit");
+    }
+
+    private BigDecimal validateWithdrawAndReturn(BigDecimal withdraw) {
+        return ValueValidator.validateNonNegativeBigDecimalAndReturn(withdraw, "withdraw");
     }
 }

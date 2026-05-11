@@ -23,8 +23,4 @@ public final class ErrorMessages {
     public static String negativeValue(String field) {
         return "Negative value is not allowed for " + field;
     }
-
-    public static String insufficientFunds(String action) {
-        return "Insufficient funds for " + action;
-    }
 }
