@@ -5,13 +5,15 @@ import java.util.Objects;
 
 public class Rectangle {
     private final BigDecimal width;
+
     private final BigDecimal height;
+
     private final int scaleFactor;
 
     public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
-        this.scaleFactor = ValueValidator.validateScaleFactor(scaleFactor);
-        this.width = ValueValidator.validateAndScaleWidth(width, scaleFactor);
-       this.height = ValueValidator.validateAndScaleHeight(height, scaleFactor);
+        this.height = validateHeightAndReturn(height);
+        this.scaleFactor = validateScaleFactor(scaleFactor);
+        this.width = validateWidthAndReturn(width);
     }
 
     public Rectangle(BigDecimal width, BigDecimal height) {
@@ -22,12 +24,12 @@ public class Rectangle {
         this(side, side, 2);
     }
 
-    public BigDecimal getWidth() {
-        return width;
-    }
-
     public BigDecimal getHeight() {
         return height;
+    }
+
+    public BigDecimal getWidth() {
+        return width;
     }
 
     public BigDecimal area() {
@@ -47,5 +49,19 @@ public class Rectangle {
                 width,
                 height
         ).trim();
+    }
+
+    public BigDecimal validateHeightAndReturn(BigDecimal height) {
+        BigDecimal validHeight = ValueValidator.validatePositiveBigDecimalAndReturn(height, "height");
+        return NumberUtils.setScale(validHeight, this.scaleFactor);
+    }
+
+    public int validateScaleFactor(int scaleFactor) {
+        return ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
+    }
+
+    public BigDecimal validateWidthAndReturn(BigDecimal width) {
+        BigDecimal validWidth = ValueValidator.validatePositiveBigDecimalAndReturn(width, "width");
+        return NumberUtils.setScale(validWidth, this.scaleFactor);
     }
 }
