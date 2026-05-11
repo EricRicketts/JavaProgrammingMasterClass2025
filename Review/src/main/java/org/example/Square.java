@@ -9,8 +9,8 @@ public class Square {
     private final int scaleFactor;
 
     public Square(BigDecimal side, int scaleFactor) {
-        this.scaleFactor = ValueValidator.validateScaleFactor(scaleFactor);
-        this.side = ValueValidator.validateAndScaleSide(side, this.scaleFactor);
+        this.scaleFactor = ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
+        this.side = validateSideAndReturn(side);
     }
 
     public BigDecimal getSide() {
@@ -30,5 +30,12 @@ public class Square {
                 "side = " + scaledDimension,
                 side
         ).trim();
+    }
+
+    private BigDecimal validateSideAndReturn(BigDecimal side) {
+        return NumberUtils.setScale(
+                ValueValidator.validatePositiveBigDecimalAndReturn(side, "side"),
+                this.scaleFactor
+        );
     }
 }

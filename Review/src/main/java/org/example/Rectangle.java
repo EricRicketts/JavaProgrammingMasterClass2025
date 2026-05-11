@@ -12,7 +12,7 @@ public class Rectangle {
 
     public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
         this.height = validateHeightAndReturn(height);
-        this.scaleFactor = validateScaleFactor(scaleFactor);
+        this.scaleFactor = ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
         this.width = validateWidthAndReturn(width);
     }
 
@@ -51,16 +51,12 @@ public class Rectangle {
         ).trim();
     }
 
-    public BigDecimal validateHeightAndReturn(BigDecimal height) {
+    private BigDecimal validateHeightAndReturn(BigDecimal height) {
         BigDecimal validHeight = ValueValidator.validatePositiveBigDecimalAndReturn(height, "height");
         return NumberUtils.setScale(validHeight, this.scaleFactor);
     }
 
-    public int validateScaleFactor(int scaleFactor) {
-        return ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
-    }
-
-    public BigDecimal validateWidthAndReturn(BigDecimal width) {
+    private BigDecimal validateWidthAndReturn(BigDecimal width) {
         BigDecimal validWidth = ValueValidator.validatePositiveBigDecimalAndReturn(width, "width");
         return NumberUtils.setScale(validWidth, this.scaleFactor);
     }
