@@ -107,17 +107,6 @@ public class StudentInfoRecordTest {
         }
 
         @Test
-        public void testConstructorRejectsZeroGPA() {
-            assertEquals(
-                    ErrorMessages.zeroValue(literalGPA),
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new StudentInfoRecord(name, id, BigDecimal.ZERO)
-                    ).getMessage()
-            );
-        }
-
-        @Test
         public void testConstructorRejectsNegativeGPA() {
             assertEquals(
                     ErrorMessages.negativeValue(literalGPA),

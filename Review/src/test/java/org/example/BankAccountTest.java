@@ -218,7 +218,7 @@ public class BankAccountTest {
         @Test
         public void testBalanceUnchangedWhenWithdrawRejectsExceedingBalance() {
             assertEquals(
-                    ErrorMessages.insufficientFunds(withdrawLiteral),
+                "Insufficient funds for withdraw",
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> bankAccount.withdraw(BigDecimal.valueOf(540.87))

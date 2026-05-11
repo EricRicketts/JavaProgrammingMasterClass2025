@@ -2,7 +2,6 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class ValueValidator {
 
@@ -116,9 +115,5 @@ public class ValueValidator {
     ) {
         BigDecimal validValue = validatePositiveBigDecimalAndReturn(value, fieldName);
         return NumberUtils.setScale(validValue, scaleFactor);
-    }
-
-    public static BigDecimal validateNonNegativeBalanceAfterWithdraw(BigDecimal newBalance, String message) {
-        return ValueValidator.validateNonNegativeValueAndReturn(newBalance, message);
     }
 }

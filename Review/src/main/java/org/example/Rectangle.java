@@ -11,9 +11,9 @@ public class Rectangle {
     private final int scaleFactor;
 
     public Rectangle(BigDecimal width, BigDecimal height, int scaleFactor) {
-        this.height = validateHeightAndReturn(height);
         this.scaleFactor = ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
         this.width = validateWidthAndReturn(width);
+        this.height = validateHeightAndReturn(height);
     }
 
     public Rectangle(BigDecimal width, BigDecimal height) {
