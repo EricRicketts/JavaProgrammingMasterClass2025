@@ -1,0 +1,92 @@
+package org.example;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class ValueValidatorTest {
+
+    @Nested
+    @DisplayName("test ValidateTextAndReturn")
+    class TestValidateTextAndReturn {
+
+        @Test
+        public void testNullValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.nullValue("field"),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> ValueValidator.validateTextAndReturn(null, "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testEmptyValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.emptyValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validateTextAndReturn("", "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testBlankValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.blankValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validateTextAndReturn("  ", "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testValidReturnValue() {
+            assertEquals(
+                    "foo",
+                    ValueValidator.validateTextAndReturn("foo", "field")
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test validatePositiveIntAndReturn")
+    class TestValidatePositiveIntAndReturn {
+
+        @Test
+        public void testZeroValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.zeroValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validatePositiveIntAndReturn(0, "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testNegativeValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.negativeValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validatePositiveIntAndReturn(-3, "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testValidReturnValue() {
+            assertEquals(
+                    3,
+                    ValueValidator.validatePositiveIntAndReturn(3, "field")
+            );
+        }
+    }
+}
