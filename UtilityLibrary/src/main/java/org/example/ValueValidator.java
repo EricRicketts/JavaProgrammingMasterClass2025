@@ -5,24 +5,6 @@ import java.util.Objects;
 
 public class ValueValidator {
 
-    public static <T> T checkForNullValueAndReturn(T value, String message) {
-        return Objects.requireNonNull(value, message);
-    }
-
-    public static String checkForBlankValueAndReturn(String value, String message) {
-        if (value.isBlank()) {
-            throw new IllegalArgumentException(message);
-        }
-        return value;
-    }
-
-    public static String checkForEmptyValueAndReturn(String value, String message) {
-        if (value.isEmpty()) {
-            throw new IllegalArgumentException(message);
-        }
-        return value;
-    }
-
     public static String validateTextAndReturn(String value, String fieldName) {
         if(Objects.isNull(value)) {
             throw new NullPointerException(
