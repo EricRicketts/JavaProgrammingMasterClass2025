@@ -5,13 +5,6 @@ import java.util.Objects;
 
 public class ValueValidator {
 
-    public static int checkForNegativeValueAndReturn(int number, String message) {
-        if (number < 0) {
-            throw new IllegalArgumentException(message);
-        }
-        return number;
-    }
-
     public static <T> T checkForNullValueAndReturn(T value, String message) {
         return Objects.requireNonNull(value, message);
     }
