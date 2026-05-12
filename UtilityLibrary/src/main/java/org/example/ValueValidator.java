@@ -5,13 +5,6 @@ import java.util.Objects;
 
 public class ValueValidator {
 
-    public static BigDecimal checkForZeroValueAndReturn(BigDecimal number, String message) {
-        if (number.compareTo(BigDecimal.ZERO) == 0) {
-            throw new IllegalArgumentException(message);
-        }
-        return number;
-    }
-
     public static int checkForNegativeValueAndReturn(int number, String message) {
         if (number < 0) {
             throw new IllegalArgumentException(message);
