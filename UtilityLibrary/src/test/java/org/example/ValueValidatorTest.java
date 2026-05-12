@@ -137,4 +137,39 @@ public class ValueValidatorTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test nonNegativeBigDecimalAndReturn")
+    class TestValidateNonNegativeBigDecimalAndReturn {
+
+        @Test
+        public void testNullValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.nullValue("field"),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> ValueValidator.validateNonNegativeBigDecimalAndReturn(null, "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testNegativeValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.negativeValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validateNonNegativeBigDecimalAndReturn(BigDecimal.valueOf(-3.45), "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testValidBigDecimalAndReturn() {
+            assertEquals(
+                    BigDecimal.valueOf(3.45),
+                    ValueValidator.validateNonNegativeBigDecimalAndReturn(BigDecimal.valueOf(3.45), "field")
+            );
+        }
+    }
 }
