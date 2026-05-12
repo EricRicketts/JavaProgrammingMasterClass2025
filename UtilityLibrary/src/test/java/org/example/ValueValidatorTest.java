@@ -172,4 +172,33 @@ public class ValueValidatorTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test scale positive BigDecimal")
+    class TestValidateScaledPositiveBigDecimal {
+        // Note all cases for Exceptions were covered in test class TestValidatePositiveBigDecimalAndReturn
+        @Test
+        public void testValidBigDecimalNumberIsScaledDown() {
+            assertEquals(
+            BigDecimal.valueOf(3.47),
+            ValueValidator.validateAndScalePositiveBigDecimal(
+                    BigDecimal.valueOf(3.474),
+                    2,
+                    "field"
+                )
+            );
+        }
+
+        @Test
+        public void testValidBigDecimalNumberIsScaledUp() {
+            assertEquals(
+                    BigDecimal.valueOf(3.48),
+                    ValueValidator.validateAndScalePositiveBigDecimal(
+                            BigDecimal.valueOf(3.475),
+                            2,
+                            "field"
+                    )
+            );
+        }
+    }
 }
