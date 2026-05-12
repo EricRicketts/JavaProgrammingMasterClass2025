@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -86,6 +88,52 @@ public class ValueValidatorTest {
             assertEquals(
                     3,
                     ValueValidator.validatePositiveIntAndReturn(3, "field")
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test validatePositiveBigDecimalAndReturn")
+    class TestValidatePositiveBigDecimalAndReturn {
+
+        @Test
+        public void testNullValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.nullValue("field"),
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> ValueValidator.validatePositiveBigDecimalAndReturn(null, "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testZeroValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.zeroValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validatePositiveBigDecimalAndReturn(BigDecimal.valueOf(0), "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testNegativeValueThrowsException() {
+            assertEquals(
+                    ErrorMessages.negativeValue("field"),
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> ValueValidator.validatePositiveBigDecimalAndReturn(BigDecimal.valueOf(-4.33), "field")
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testValidBigDecimalAndReturn() {
+            assertEquals(
+                    BigDecimal.valueOf(3.45),
+                    ValueValidator.validatePositiveBigDecimalAndReturn(BigDecimal.valueOf(3.45), "field")
             );
         }
     }
