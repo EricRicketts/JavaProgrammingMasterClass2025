@@ -4,43 +4,77 @@ import java.math.BigDecimal;
 
 public class Temperature {
 
-    private final static double CONVERSION_TO_FAHRENHEIT_MULTIPLIER = 9.00/5.00;
+    private final static BigDecimal CONVERSION_TO_FAHRENHEIT_MULTIPLIER = BigDecimal.valueOf(9.00/5.00);
 
-    private final static double CONVERSION_TO_FAHRENHEIT_ADDEND = 32;
+    private final static BigDecimal CONVERSION_TO_FAHRENHEIT_ADDEND = BigDecimal.valueOf(32);
 
-    private final static double CONVERSION_TO_KELVIN_ADDEND = 273.15;
+    private final static BigDecimal CONVERSION_TO_KELVIN_ADDEND = BigDecimal.valueOf(273.15);
 
-    private double currentTemperature = 0.00;
+    private BigDecimal currentTemperature = BigDecimal.valueOf(0.00);
+
+    private final static int scaleFactor;
 
     public final static String TEMPERATURE_VIOLATION =
             "Entered Fahrenheit temperature is below absolute zero in Kelvin";
 
-    public static double convertToFahrenheit(double C, int scaleFactor) {
-        if (Temperature.convertToKelvin(C, scaleFactor) < 0.00) {
+    public static BigDecimal convertToFahrenheit(BigDecimal C) {
+        if (Temperature.convertToKelvin(C).compareTo(BigDecimal.valueOf(0.00)) < 0) {
             throw new IllegalArgumentException(TEMPERATURE_VIOLATION);
         } else {
-            BigDecimal rawConversion = BigDecimal.valueOf(
-                    (C * CONVERSION_TO_FAHRENHEIT_MULTIPLIER) + CONVERSION_TO_FAHRENHEIT_ADDEND);
-            return NumberUtils.setScale(rawConversion, scaleFactor).doubleValue();
+            BigDecimal rawConversion =
+                    C.multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
+                            .add(CONVERSION_TO_FAHRENHEIT_ADDEND);
+            return NumberUtils.setScale(rawConversion, scaleFactor);
         }
     }
 
-    public static double convertToKelvin(double C, int scaleFactor) {
-        BigDecimal rawConversion = BigDecimal.valueOf(
-                (C + CONVERSION_TO_KELVIN_ADDEND)
-        );
+    public static BigDecimal convertToKelvin(BigDecimal C) {
+        BigDecimal rawConversion = C.add(CONVERSION_TO_KELVIN_ADDEND);
         if (rawConversion.compareTo(BigDecimal.valueOf(0.00)) < 0) {
             throw new IllegalArgumentException(TEMPERATURE_VIOLATION);
         } else {
-            return NumberUtils.setScale(rawConversion, scaleFactor).doubleValue();
+            return NumberUtils.setScale(rawConversion, scaleFactor);
         }
     }
 
-    public double getCurrentTemperature() {
+    public Temperature(BigDecimal C, int scaling) {
+        scaleFactor = scaling;
+        BigDecimal validTemperature = this.checkForValidTemperature(C);
+        this.currentTemperature = NumberUtils.setScale(
+                validTemperature,
+                scaleFactor
+        );
+    }
+
+    public Temperature(BigDecimal C) {
+        this(C, 2);
+    }
+
+    public Temperature() {
+        this(BigDecimal.valueOf(100.00), 2);
+    }
+
+    public BigDecimal getCurrentTemperature() {
         return currentTemperature;
     }
 
-    public void setCurrentTemperature(double currentTemperature) {
-        this.currentTemperature = currentTemperature;
+    public void setCurrentTemperature(BigDecimal currentTemperature) {
+        this.currentTemperature = this.checkForValidTemperatureAndScale(currentTemperature);
+    }
+
+    private BigDecimal checkForValidTemperature(BigDecimal C) {
+        BigDecimal rawConversion = C.add(CONVERSION_TO_KELVIN_ADDEND);
+        if (rawConversion.compareTo(BigDecimal.valueOf(0.00)) < 0) {
+            throw new IllegalArgumentException(TEMPERATURE_VIOLATION);
+        } else {
+            return rawConversion;
+        }
+    }
+
+    private BigDecimal checkForValidTemperatureAndScale(BigDecimal C) {
+        return NumberUtils.setScale(
+                this.checkForValidTemperature(C),
+                scaleFactor
+        );
     }
 }

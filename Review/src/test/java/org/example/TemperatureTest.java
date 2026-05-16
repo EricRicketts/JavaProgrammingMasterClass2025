@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -97,6 +98,18 @@ public class TemperatureTest {
                     ).getMessage()
             );
         }
+    }
+
+    @Nested
+    @DisplayName("test temperature getter and setters")
+    class TestTemperatureGetterAndSetters {
+
+        @BeforeEach
+        public void setUp() {
+
+        }
+        @Test
+        public void test
     }
 
 }
