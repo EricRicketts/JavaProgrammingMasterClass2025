@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TemperatureTest {
 
@@ -46,6 +47,30 @@ public class TemperatureTest {
             assertEquals(
                     245.99,
                     Temperature.convertToKelvin(-16.89, 2)
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("check negative floor for Fahrenheit")
+    class TestNegativeFloorForFahrenheit {
+
+        @Test
+        public void testLowestTemperatureForCelsius() {
+            assertEquals(
+                    -273.15,
+                    Temperature.convertToCelsius(-459.67, 2)
+            );
+        }
+
+        @Test
+        public void testUnderLowestTemperatureForCelsius() {
+            assertEquals(
+                    Temperature.TEMPERATURE_VIOLATION,
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> Temperature.convertToCelsius(-459.68, 2)
+                    ).getMessage()
             );
         }
     }
