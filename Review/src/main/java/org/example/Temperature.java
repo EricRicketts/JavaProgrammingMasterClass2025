@@ -1,7 +1,6 @@
 package org.example;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class Temperature {
 
@@ -25,5 +24,5 @@ public class Temperature {
                 (F + CONVERSION_TO_KELVIN_ADDEND) * CONVERSION_TO_KELVIN_MULTIPLIER
         );
         return NumberUtils.setScale(rawConversion, scaleFactor).doubleValue();
-    };
+    }
 }
