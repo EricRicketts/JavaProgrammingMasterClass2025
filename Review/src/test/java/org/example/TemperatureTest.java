@@ -23,8 +23,8 @@ public class TemperatureTest {
         @Test
         public void testConvertFahrenheitToCelsiusRoundUp() {
             assertEquals(
-                    11.61,
-                    Temperature.convertToCelsius(52.89, 2)
+                    -47.09,
+                    Temperature.convertToCelsius(-52.76, 2)
             );
         }
     }
