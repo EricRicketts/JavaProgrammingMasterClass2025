@@ -10,43 +10,43 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class TemperatureTest {
 
     @Nested
-    @DisplayName("test valid temperature conversions Fahrenheit to Celsius")
+    @DisplayName("test valid temperature conversions Celsius to Fahrenheit")
     class TestConvertValidTemperaturesFahrenheitToCelsius {
 
         @Test
         public void testConvertFahrenheitToCelsiusRoundDown() {
             assertEquals(
-                    25.73,
-                    Temperature.convertToCelsius(78.32, 2)
+                    78.31,
+                    Temperature.convertToFahrenheit(25.73, 2)
             );
         }
 
         @Test
         public void testConvertFahrenheitToCelsiusRoundUp() {
             assertEquals(
-                    -47.09,
-                    Temperature.convertToCelsius(-52.76, 2)
+                    -53.61,
+                    Temperature.convertToFahrenheit(-47.56, 2)
             );
         }
     }
 
     @Nested
-    @DisplayName("test valid temperature conversions Fahrenheit to Kelvin")
+    @DisplayName("test valid temperature conversions Celsius to Kelvin")
     class TestConvertValidTemperaturesFahrenheitToKelvin {
 
         @Test
         public void testConvertFahrenheitToKelvinRoundDown() {
             assertEquals(
-                    388.57,
-                    Temperature.convertToKelvin(239.76, 2)
+                    386.69,
+                    Temperature.convertToKelvin(113.54, 2)
             );
         }
 
         @Test
-        public void testConvertFahrenheitToKelvinRoundUp() {
+        public void testConvertNegativeCelsiusToKelvin() {
             assertEquals(
-                    245.99,
-                    Temperature.convertToKelvin(-16.89, 2)
+                    33.39,
+                    Temperature.convertToKelvin(-239.76, 2)
             );
         }
     }
@@ -56,20 +56,20 @@ public class TemperatureTest {
     class TestNegativeFloorForFahrenheitToCelsius {
 
         @Test
-        public void testLowestTemperatureForFahrenheitToCelsiusConversion() {
+        public void testLowestTemperatureForCelsiusToFahrenheitConversion() {
             assertEquals(
-                    -273.15,
-                    Temperature.convertToCelsius(-459.67, 2)
+                    -459.67,
+                    Temperature.convertToFahrenheit(-273.15, 2)
             );
         }
 
         @Test
-        public void testUnderLowestTemperatureForFahrenheitToCelsiusConversion() {
+        public void testLessThanLowestTemperatureForCelsiusToFahrenheitConversion() {
             assertEquals(
                     Temperature.TEMPERATURE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> Temperature.convertToCelsius(-459.68, 2)
+                            () -> Temperature.convertToFahrenheit(-273.16, 2)
                     ).getMessage()
             );
         }
@@ -80,20 +80,20 @@ public class TemperatureTest {
     class TestNegativeFloorForFahrenheitToKelvin {
 
         @Test
-        public void testLowestTemperatureForFahrenheitToKelvinConversion() {
+        public void testLowestTemperatureForCelsiusToKelvinConversion() {
             assertEquals(
                     0.00,
-                    Temperature.convertToKelvin(-459.67, 2)
+                    Temperature.convertToKelvin(-273.15, 2)
             );
         }
 
         @Test
-        public void testUnderLowestTemperatureForFahrenheitToKelvinConversion() {
+        public void testLessThanLowestTemperatureForCelsiusToKelvinConversion() {
             assertEquals(
                     Temperature.TEMPERATURE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> Temperature.convertToKelvin(-459.68, 2)
+                            () -> Temperature.convertToKelvin(-273.16, 2)
                     ).getMessage()
             );
         }
