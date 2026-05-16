@@ -52,11 +52,11 @@ public class TemperatureTest {
     }
 
     @Nested
-    @DisplayName("check negative floor for Fahrenheit")
-    class TestNegativeFloorForFahrenheit {
+    @DisplayName("check temperature floor for Fahrenheit to Celsius")
+    class TestNegativeFloorForFahrenheitToCelsius {
 
         @Test
-        public void testLowestTemperatureForCelsius() {
+        public void testLowestTemperatureForFahrenheitToCelsiusConversion() {
             assertEquals(
                     -273.15,
                     Temperature.convertToCelsius(-459.67, 2)
@@ -64,7 +64,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testUnderLowestTemperatureForCelsius() {
+        public void testUnderLowestTemperatureForFahrenheitToCelsiusConversion() {
             assertEquals(
                     Temperature.TEMPERATURE_VIOLATION,
                     assertThrows(
@@ -74,4 +74,29 @@ public class TemperatureTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("check temperature floor for Fahrenheit to Kelvin")
+    class TestNegativeFloorForFahrenheitToKelvin {
+
+        @Test
+        public void testLowestTemperatureForFahrenheitToKelvinConversion() {
+            assertEquals(
+                    0.00,
+                    Temperature.convertToKelvin(-459.67, 2)
+            );
+        }
+
+        @Test
+        public void testUnderLowestTemperatureForFahrenheitToKelvinConversion() {
+            assertEquals(
+                    Temperature.TEMPERATURE_VIOLATION,
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> Temperature.convertToKelvin(-459.68, 2)
+                    ).getMessage()
+            );
+        }
+    }
+
 }
