@@ -117,5 +117,16 @@ public class TemperatureTest {
                     temperature.getCurrentTemperature()
             );
         }
+
+        @Test
+        public void testInitializeLessThanLowestTemperatureForCelsius() {
+            assertEquals(
+                    Temperature.TEMPERATURE_VIOLATION,
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Temperature(BigDecimal.valueOf(-273.16), 2)
+                    ).getMessage()
+            );
+        }
     }
 }
