@@ -15,7 +15,7 @@ public class Temperature {
     private final int scaleFactor;
 
     public final static String TEMPERATURE_VIOLATION =
-            "Entered Fahrenheit temperature is below absolute zero in Kelvin";
+            "Upon conversion to Kelvin, entered temperature is below absolute zero.";
 
     public BigDecimal convertToFahrenheit() {
         if (this.convertToKelvin().compareTo(BigDecimal.valueOf(0.00)) < 0) {
