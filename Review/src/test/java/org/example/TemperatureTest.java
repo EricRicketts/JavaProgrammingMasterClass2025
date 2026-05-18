@@ -90,7 +90,7 @@ public class TemperatureTest {
     class TestNegativeFloorForFahrenheitToCelsius {
 
         @Test
-        public void testLowestTemperatureForCelsius() {
+        public void testSetLowestTemperatureForCelsius() {
             temperature.setCurrentTemperature(BigDecimal.valueOf(-273.15));
             assertEquals(
                     BigDecimal.valueOf(-273.15),
@@ -99,13 +99,22 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testLessThanLowestTemperatureForCelsius() {
+        public void testSetLessThanLowestTemperatureForCelsius() {
             assertEquals(
                     Temperature.TEMPERATURE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> temperature.setCurrentTemperature(BigDecimal.valueOf(-273.16))
                     ).getMessage()
+            );
+        }
+
+        @Test
+        public void testInitializeLowestTemperatureForCelsius() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(-273.15), 2);
+            assertEquals(
+                    BigDecimal.valueOf(-273.15),
+                    temperature.getCurrentTemperature()
             );
         }
     }
