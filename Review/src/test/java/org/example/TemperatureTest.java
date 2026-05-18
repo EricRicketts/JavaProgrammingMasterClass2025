@@ -47,7 +47,7 @@ public class TemperatureTest {
     class TestConvertValidTemperaturesCelsiusToFahrenheit {
 
         @Test
-        public void testConvertCelsiusToFahrenheitRoundDown() {
+        public void testConvertPositiveCelsiusToFahrenheitRoundDown() {
             assertEquals(
                     BigDecimal.valueOf(78.31),
                     new Temperature(BigDecimal.valueOf(25.73), 2).convertToFahrenheit()
@@ -55,7 +55,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testConvertCelsiusToFahrenheitRoundUp() {
+        public void testConvertNegativeCelsiusToFahrenheitRoundUp() {
             assertEquals(
                     BigDecimal.valueOf(-53.61),
                     new Temperature(BigDecimal.valueOf(-47.56), 2).convertToFahrenheit()
@@ -68,7 +68,7 @@ public class TemperatureTest {
     class TestConvertValidTemperaturesFahrenheitToKelvin {
 
         @Test
-        public void testConvertCelsiusToKelvin() {
+        public void testConvertPositiveCelsiusToKelvin() {
             assertEquals(
                     BigDecimal.valueOf(285.49),
                     temperature.convertToKelvin()
