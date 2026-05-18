@@ -5,28 +5,60 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TemperatureTest {
 
+    private Temperature temperature;
+
+    @BeforeEach
+    @DisplayName("set up temperature object for tests")
+    public void setUp() {
+        temperature = new Temperature(BigDecimal.valueOf(12.34), 2);
+    }
+
     @Nested
-    @DisplayName("test valid temperature conversions Celsius to Fahrenheit")
-    class TestConvertValidTemperaturesFahrenheitToCelsius {
+    @DisplayName("test getters and setters")
+    class TestTemperatureGetterAndSetter {
 
         @Test
-        public void testConvertFahrenheitToCelsiusRoundDown() {
+        public void testTemperatureGetter() {
             assertEquals(
-                    78.31,
-                    Temperature.convertToFahrenheit(25.73, 2)
+                    BigDecimal.valueOf(12.34),
+                    temperature.getCurrentTemperature()
             );
         }
 
         @Test
-        public void testConvertFahrenheitToCelsiusRoundUp() {
+        public void testTemperatureSetter() {
+            temperature.setCurrentTemperature(BigDecimal.valueOf(45.67));
             assertEquals(
-                    -53.61,
-                    Temperature.convertToFahrenheit(-47.56, 2)
+                    BigDecimal.valueOf(45.67),
+                    temperature.getCurrentTemperature()
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test valid temperature conversions Celsius to Fahrenheit")
+    class TestConvertValidTemperaturesCelsiusToFahrenheit {
+
+        @Test
+        public void testConvertCelsiusToFahrenheitRoundDown() {
+            assertEquals(
+                    BigDecimal.valueOf(78.31),
+                    new Temperature(BigDecimal.valueOf(25.73), 2).convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitRoundUp() {
+            assertEquals(
+                    BigDecimal.valueOf(-53.61),
+                    new Temperature(BigDecimal.valueOf(-47.56), 2).convertToFahrenheit()
             );
         }
     }
@@ -36,80 +68,45 @@ public class TemperatureTest {
     class TestConvertValidTemperaturesFahrenheitToKelvin {
 
         @Test
-        public void testConvertFahrenheitToKelvinRoundDown() {
+        public void testConvertCelsiusToKelvin() {
             assertEquals(
-                    386.69,
-                    Temperature.convertToKelvin(113.54, 2)
+                    BigDecimal.valueOf(285.49),
+                    temperature.convertToKelvin()
             );
         }
 
         @Test
         public void testConvertNegativeCelsiusToKelvin() {
+            temperature.setCurrentTemperature(BigDecimal.valueOf(-123.45));
             assertEquals(
-                    33.39,
-                    Temperature.convertToKelvin(-239.76, 2)
+                    NumberUtils.setScale(BigDecimal.valueOf(149.70), 2),
+                    temperature.convertToKelvin()
             );
         }
     }
 
     @Nested
-    @DisplayName("check temperature floor for Fahrenheit to Celsius")
+    @DisplayName("check temperature floor for Celsius")
     class TestNegativeFloorForFahrenheitToCelsius {
 
         @Test
-        public void testLowestTemperatureForCelsiusToFahrenheitConversion() {
+        public void testLowestTemperatureForCelsius() {
+            temperature.setCurrentTemperature(BigDecimal.valueOf(-273.15));
             assertEquals(
-                    -459.67,
-                    Temperature.convertToFahrenheit(-273.15, 2)
+                    BigDecimal.valueOf(-273.15),
+                    temperature.getCurrentTemperature()
             );
         }
 
         @Test
-        public void testLessThanLowestTemperatureForCelsiusToFahrenheitConversion() {
-            assertEquals(
-                    Temperature.TEMPERATURE_VIOLATION,
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> Temperature.convertToFahrenheit(-273.16, 2)
-                    ).getMessage()
-            );
-        }
-    }
-
-    @Nested
-    @DisplayName("check temperature floor for Fahrenheit to Kelvin")
-    class TestNegativeFloorForFahrenheitToKelvin {
-
-        @Test
-        public void testLowestTemperatureForCelsiusToKelvinConversion() {
-            assertEquals(
-                    0.00,
-                    Temperature.convertToKelvin(-273.15, 2)
-            );
-        }
-
-        @Test
-        public void testLessThanLowestTemperatureForCelsiusToKelvinConversion() {
+        public void testLessThanLowestTemperatureForCelsius() {
             assertEquals(
                     Temperature.TEMPERATURE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> Temperature.convertToKelvin(-273.16, 2)
+                            () -> temperature.setCurrentTemperature(BigDecimal.valueOf(-273.16))
                     ).getMessage()
             );
         }
     }
-
-    @Nested
-    @DisplayName("test temperature getter and setters")
-    class TestTemperatureGetterAndSetters {
-
-        @BeforeEach
-        public void setUp() {
-
-        }
-        @Test
-        public void test
-    }
-
 }
