@@ -193,4 +193,48 @@ public class TemperatureTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test exact freezing and boiling points")
+    class TestExactFreezingAndBoilingPointsInAllTemperatureScales {
+
+        @Test
+        public void testFreezingPoint() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(0.00), 2);
+            assertEquals(
+                    NumberUtils.setScale(BigDecimal.valueOf(32.00), 2),
+                    temperature.convertToFahrenheit()
+            );
+            assertEquals(
+                    BigDecimal.valueOf(273.15),
+                    temperature.convertToKelvin()
+            );
+        }
+
+        @Test
+        public void testBoilingPoint() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(100.00), 2);
+            assertEquals(
+                    NumberUtils.setScale(BigDecimal.valueOf(212.00), 2),
+                    temperature.convertToFahrenheit()
+            );
+            assertEquals(
+                    BigDecimal.valueOf(373.15),
+                    temperature.convertToKelvin()
+            );
+        }
+
+        @Test
+        public void testSharedTemperatureBetweenCelsiusAndFahrenheit() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(-40.00), 2);
+            assertEquals(
+                    NumberUtils.setScale(BigDecimal.valueOf(-40.00), 2),
+                    temperature.convertToFahrenheit()
+            );
+            assertEquals(
+                    BigDecimal.valueOf(233.15),
+                    temperature.convertToKelvin()
+            );
+        }
+    }
 }
