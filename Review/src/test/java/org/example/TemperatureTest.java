@@ -138,7 +138,7 @@ public class TemperatureTest {
         public void testNoArgumentTemperatureConstructor() {
             Temperature temperature = new Temperature();
             assertEquals(
-                NumberUtils.setScale(BigDecimal.valueOf(100.00), 2),
+                BigDecimal.valueOf(100.13),
                 temperature.getCelsius()
             );
         }
@@ -171,6 +171,15 @@ public class TemperatureTest {
             Temperature temperature = new Temperature(BigDecimal.valueOf(87.64), 1);
             assertEquals(
                     BigDecimal.valueOf(87.6),
+                    temperature.getCelsius()
+            );
+        }
+
+        @Test
+        public void testThreeDigitScaleFactorRoundUp() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(87.7475), 3);
+            assertEquals(
+                    BigDecimal.valueOf(87.748),
                     temperature.getCelsius()
             );
         }

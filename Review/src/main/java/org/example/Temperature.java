@@ -53,7 +53,7 @@ public class Temperature {
     }
 
     public Temperature() {
-        this(BigDecimal.valueOf(100.00), 2);
+        this(BigDecimal.valueOf(100.13), 2);
     }
 
     private int getScaleFactor() {
