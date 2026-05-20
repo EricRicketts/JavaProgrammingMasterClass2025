@@ -24,23 +24,16 @@ public class Temperature {
             "Null value is not allowed for a temperature entry";
 
     public BigDecimal convertToFahrenheit() {
-        if (this.convertToKelvin().compareTo(BigDecimal.valueOf(0.00)) < 0) {
-            throw new IllegalArgumentException(TEMPERATURE_VALUE_VIOLATION);
-        } else {
             BigDecimal rawConversion =
                     this.getCelsius().multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
                             .add(CONVERSION_TO_FAHRENHEIT_ADDEND);
             return NumberUtils.setScale(rawConversion, scaleFactor);
-        }
     }
 
     public BigDecimal convertToKelvin() {
         BigDecimal rawConversion = this.getCelsius().add(CONVERSION_TO_KELVIN_ADDEND);
-        if (rawConversion.compareTo(BigDecimal.valueOf(0.00)) < 0) {
-            throw new IllegalArgumentException(TEMPERATURE_VALUE_VIOLATION);
-        } else {
-            return NumberUtils.setScale(rawConversion, getScaleFactor());
-        }
+        return NumberUtils.setScale(rawConversion, getScaleFactor());
+
     }
 
     public Temperature(BigDecimal celsius, int scaling) {
