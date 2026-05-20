@@ -183,5 +183,14 @@ public class TemperatureTest {
                     temperature.getCelsius()
             );
         }
+
+        @Test
+        public void testThreeDigitScaleFactorRoundDown() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(87.7474), 3);
+            assertEquals(
+                    BigDecimal.valueOf(87.747),
+                    temperature.getCelsius()
+            );
+        }
     }
 }
