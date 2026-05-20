@@ -209,6 +209,28 @@ public class TemperatureTest {
                     temperature.getCelsius()
             );
         }
+
+        @Test
+        public void testNegativeScaleFactor() {
+            assertEquals(
+                    Temperature.NEGATIVE_VALUE_SCALE_FACTOR_VIOLATION,
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Temperature(BigDecimal.valueOf(23.45), -2)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testExcessiveScaleFactorPrecision() {
+            assertEquals(
+                    Temperature.SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION,
+                    assertThrows(
+                            IllegalArgumentException.class,
+                            () -> new Temperature(BigDecimal.valueOf(23.45), 5)
+                    ).getMessage()
+            );
+        }
     }
 
     @Nested
