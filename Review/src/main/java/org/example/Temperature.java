@@ -15,8 +15,6 @@ public class Temperature {
 
     private BigDecimal celsius = BigDecimal.valueOf(0.00);
 
-    private final int scaleFactor;
-
     public static final String TEMPERATURE_VALUE_VIOLATION =
             "Upon conversion to Kelvin, entered temperature is below absolute zero.";
 
@@ -29,6 +27,7 @@ public class Temperature {
     public static final String SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION =
             "Scale factor is too large, keep to four decimals or less";
 
+    private final int scaleFactor;
 
     public BigDecimal convertToFahrenheit() {
             BigDecimal rawConversion =
@@ -67,7 +66,7 @@ public class Temperature {
     public void setCelsius(BigDecimal celsius) {
         this.celsius = this.validateCelsiusTemperatureAndScale(celsius);
     }
-    
+
     public int getScaleFactor() {
         return scaleFactor;
     }
