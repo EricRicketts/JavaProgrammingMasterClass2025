@@ -67,6 +67,7 @@ public class Temperature {
     public void setCelsius(BigDecimal celsius) {
         this.celsius = this.validateCelsiusTemperatureAndScale(celsius);
     }
+    
     public int getScaleFactor() {
         return scaleFactor;
     }
