@@ -22,7 +22,7 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("test getters and setters")
-    class TestTemperatureGetterAndSetter {
+    class TestTemperatureGettersAndSetters {
 
         @Test
         public void testTemperatureGetter() {
@@ -98,7 +98,7 @@ public class TemperatureTest {
     class TestAbsoluteZeroBoundaryForCelsius {
 
         @Test
-        public void testSetLowestTemperatureForCelsius() {
+        public void testSetAbsoluteZeroForCelsius() {
             temperature.setCelsius(BigDecimal.valueOf(-273.15));
             assertEquals(
                     BigDecimal.valueOf(-273.15),
@@ -107,7 +107,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testSetLessThanLowestTemperatureForCelsius() {
+        public void testSetLessThanAbsoluteZeroForCelsius() {
             assertEquals(
                     Temperature.TEMPERATURE_VALUE_VIOLATION,
                     assertThrows(
@@ -118,7 +118,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testInitializeLowestTemperatureForCelsius() {
+        public void testInitializeAbsoluteZeroForCelsius() {
             Temperature temperature = new Temperature(BigDecimal.valueOf(-273.15), 2);
             assertEquals(
                     BigDecimal.valueOf(-273.15),
@@ -127,7 +127,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testInitializeLessThanLowestTemperatureForCelsius() {
+        public void testInitializeLessThanAbsoluteZeroForCelsius() {
             assertEquals(
                     Temperature.TEMPERATURE_VALUE_VIOLATION,
                     assertThrows(
@@ -138,7 +138,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testFahrenheitAtAbsoluteZeroWithSetter() {
+        public void testSetAbsoluteZeroForFahrenheit() {
             temperature.setCelsius(BigDecimal.valueOf(-273.15));
             assertEquals(
                     BigDecimal.valueOf(-459.67),
@@ -172,7 +172,7 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("test different scale factors")
-    class TestTemperatureScaleFactors {
+    class TestScaleFactorsForTemperature {
 
         @Test
         public void testSingleDigitScaleFactorRoundUp() {
@@ -213,7 +213,7 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("test exact freezing and boiling points")
-    class TestExactFreezingAndBoilingPointsInAllTemperatureScales {
+    class TestFreezingAndBoilingPointsForAllTemperatureScales {
 
         @Test
         public void testFreezingPoint() {
@@ -242,7 +242,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testSharedTemperatureBetweenCelsiusAndFahrenheit() {
+        public void testTheOneSharedTemperatureBetweenCelsiusAndFahrenheit() {
             Temperature temperature = new Temperature(BigDecimal.valueOf(-40.00), 2);
             assertEquals(
                     NumberUtils.setScale(BigDecimal.valueOf(-40.00), 2),
