@@ -853,122 +853,137 @@ Though it will happen tomorrow, I plan to fix all the issues and resubmit for an
 That is an excellent mindset, with one small adjustment:
 Aim for “professional-quality,” not emotionally perfect
 Wanting each final product to be as correct, clean, and thoughtful as possible is a very good habit. That is how you build taste as a programmer.
-But “perfect” can become a trap if it makes you afraid to write imperfect first drafts. Good programmers usually work like this:
-Make it work
-Make it correct
-Make it clean
-Make it well-tested
-Review it like someone else will maintain it
-That process is how strong code gets written.
-Your instinct is right: repeated practice writing correct, readable, tested code is how you develop judgment.
+But “perfect” can become a trap if it makes you afraid to write imperfect first drafts.
+
+Good programmers usually work like this:
+* Make it work
+* Make it correct
+* Make it clean
+* Make it well-tested
+* Review it like someone else will maintain it
+
+That process is how strong code gets written.  Your instinct is right: repeated practice writing correctreadable tested code is how you develop judgment.
  
 For your Temperature resubmission, your goal should be:
 1. Correct behavior
 The class should clearly and correctly support:
-storing Celsius
-converting Celsius to Fahrenheit
-converting Celsius to Kelvin
-rejecting temperatures below absolute zero
-respecting the requested scale
-using constructor chaining properly
+    1. storing Celsius
+    2. converting Celsius to Fahrenheit
+    3. converting Celsius to Kelvin
+    4. rejecting temperatures below absolute zero
+    5. respecting the requested scale
+    6. using constructor chaining properly
  
 2. Clear naming
 Make the code explain itself.
-For example, prefer names like:``` java
+For example, prefer names like:
+
+``` java
 private BigDecimal celsius;
 ```
 
-or:``` java
+or:
+
+```java
 private BigDecimal currentTemperatureCelsius;
 ```
 
-over:``` java
+over:
+
+``` java
 private BigDecimal currentTemperature;
 ```
 
-Because the second version leaves the reader asking, “Current temperature in what unit?”
-That is the kind of naming improvement that separates merely working code from good code.
+Because the second version leaves the reader asking, “Current temperature in what unit?”  That is the kind of naming improvement that separates merely working code from good code.
  
 3. Strong validation
 Good code protects its own state.
 Your Temperature object should not be allowed to represent an impossible temperature. That means validation belongs in:
-constructors
-setters
+    1. constructors
+    2. setters
 You already did this well. Your resubmission can make it cleaner.
  
 4. Clean tests
 Your tests should read like a checklist of behavior.
 A strong test suite might include:
-Constructor tests
-full constructor stores Celsius correctly
-one-argument constructor uses default scale
-no-argument constructor uses default value
-constructor rejects below absolute zero
-Getter/setter tests
-getter returns Celsius
-setter updates Celsius
-setter applies scale
-setter rejects below absolute zero
-Conversion tests
-0°C to Fahrenheit is 32.00°F
-100°C to Fahrenheit is 212.00°F
--40°C to Fahrenheit is -40.00°F
-0°C to Kelvin is 273.15K
-100°C to Kelvin is 373.15K
--273.15°C to Kelvin is 0.00K
--273.15°C to Fahrenheit is -459.67°F
-Scale tests
-scale 1 returns one decimal place
-scale 3 returns three decimal places
+    1. Constructor tests
+        1. full constructor stores Celsius correctly
+        2. one-argument constructor uses default scale
+        3. no-argument constructor uses default value
+        4. constructor rejects below absolute zero
+    2. Getter/setter tests
+        1. getter returns Celsius
+        2. setter updates Celsius
+        3. setter applies scale
+        4. setter rejects below absolute zero
+    3. Conversion tests
+        1. 0°C to Fahrenheit is 32.00°F
+        2. 100°C to Fahrenheit is 212.00°F
+        3. -40°C to Fahrenheit is -40.00°F
+        4. 0°C to Kelvin is 273.15K
+        5. 100°C to Kelvin is 373.15K
+        6. -273.15°C to Kelvin is 0.00K
+        7. -273.15°C to Fahrenheit is -459.67°F
+    4. Scale tests
+        1. scale 1 returns one decimal place
+        2. scale 3 returns three decimal places
  
 A good “perfect enough” checklist
 Before you resubmit, ask yourself:
-Class design
-Are fields private?
-Are constants private static final?
-Do field names clearly describe the unit?
-Do constructors chain properly?
-Is invalid state prevented?
-Method design
-Does each method do one clear thing?
-Are method names accurate?
-Is there any duplicated or redundant logic?
-Are helper methods private when only used internally?
-Testing
-Do tests cover normal cases?
-Do tests cover edge cases?
-Do tests cover invalid input?
-Do test names accurately describe behavior?
-Do nested test class names match what they are testing?
-Readability
-Could another beginner understand this code?
-Could future-you understand this code quickly?
-Are there any misleading names?
-Is the formatting consistent?
+
+1. Class design
+    1. Are fields private?
+    2. Are constants private static final?
+    3. Do field names clearly describe the unit?
+    4. Do constructors chain properly?
+    5. Is invalid state prevented?
+
+2. Method design
+    1. Does each method do one clear thing?
+    2. Are method names accurate?
+    3. Is there any duplicated or redundant logic?
+    4. Are helper methods private when only used internally?
+
+3. Testing
+    1. Do tests cover normal cases?
+    2. Do tests cover edge cases?
+    3. Do tests cover invalid input?
+    4. Do test names accurately describe behavior?
+    5. Do nested test class names match what they are testing?
+
+4. Readability
+    1. Could another beginner understand this code?
+    2. Could future-you understand this code quickly?
+    3. Are there any misleading names?
+    4. Is the formatting consistent?
  
-The deeper learning point
-You are not just learning how to make a Temperature class.
-You are learning how to think like this:
-“What states should this object allow?” “What states should be impossible?” “What should be public?” “What should stay private?” “How do I prove this works?” “Would the names make sense to someone else?”
+5. The deeper learning point
+    1. You are not just learning how to make a Temperature class.
+    2. You are learning how to think like this:
+        1. “What states should this object allow?”
+        2. “What states should be impossible?”
+        3. “What should be public?”
+        4. “What should stay private?”
+        5. “How do I prove this works?”
+        6. “Would the names make sense to someone else?”
+    
 That is object-oriented programming.
  
-My recommendation for tomorrow
-When you come back to fix it, do not try to change everything randomly.
+My recommendation for tomorrow.  When you come back to fix it, do not try to change everything randomly.
+
 Work in this order:
-Rename for clarity
-make it obvious the stored value is Celsius
-Improve constants
-make conversion constants static final
-Simplify redundant logic
-especially in convertToFahrenheit()
-Add missing tests
-constructor tests
-scale tests
-known conversion tests
-Run tests
-make sure the existing tests and new tests pass
-Ask for a second grade
-I can then grade it again stricter, as a resubmission
+
+1. Rename for clarity
+    1. make it obvious the stored value is Celsius
+    2. Improve constants
+    3. make conversion constants static final
+    4. Simplify redundant logic; especially in convertToFahrenheit()
+    5. Add missing tests
+    6. constructor tests
+    7. scale tests
+    8. known conversion tests
+    
+    Run tests; make sure the existing tests and new tests pass, then ask for a second grade.  I can then grade it again stricter, as a resubmission
  
 You are approaching this the right way. If you keep practicing with this level of care, you will start to develop an internal sense for clean code. At first, you need checklists and reviews. Eventually, you will start seeing these issues before anyone points them out.
 
@@ -977,36 +992,47 @@ Yes, "professional-quality" is less emotional.
 
 ## AI Assistant
 
-Exactly. “Professional-quality” is a much healthier and more useful target than “perfect.”
-“Perfect” can make every flaw feel personal.
+Exactly. “Professional-quality” is a much healthier and more useful target than “perfect.”  “Perfect” can make every flaw feel personal.
+
 “Professional-quality” turns it into an engineering question:
-Does this code meet the requirements? Is it readable? Is it maintainable? Is it tested? Does it prevent invalid state? Would another developer understand it?
+* Does this code meet the requirements?
+* Is it readable?
+* Is it maintainable?
+* Is it tested?
+* Does it prevent invalid state?
+* Would another developer understand it?
+
 That is much more objective.
  
 A good mindset shift
 Instead of:
+
 “I need this to be perfect.”
+
 Use:
+
 “I want this to be correct, clear, tested, and maintainable.”
 That is exactly what professional developers aim for.
  
 Professional-quality code usually means:
-Correct: it does what it is supposed to do
-Readable: the names and structure explain the intent
-Maintainable: future changes would be easy
-Tested: important behavior is verified
-Robust: invalid states are prevented or handled
-Consistent: style and formatting match the rest of the project
+* Correct: it does what it is supposed to do
+* Readable: the names and structure explain the intent
+* Maintainable: future changes would be easy
+* Tested: important behavior is verified
+* Robust: invalid states are prevented or handled
+* Consistent: style and formatting match the rest of the project
  
 And importantly:
 Professional-quality does not mean the first version is great.
 It means you know how to improve code through a process:
-Write a working version
-Test it
-Notice weak spots
-Refactor
-Test again
-Review again
+
+* Write a working version
+* Test it
+* Notice weak spots
+* Refactor
+* Test again
+* Review again
+
 That is exactly what you are doing with the Temperature class.
 
 

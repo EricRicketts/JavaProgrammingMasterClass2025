@@ -60,16 +60,15 @@ public class Temperature {
         this(BigDecimal.valueOf(100.13), 2);
     }
 
-    private int getScaleFactor() {
-        return scaleFactor;
-    }
-
     public BigDecimal getCelsius() {
         return celsius;
     }
 
     public void setCelsius(BigDecimal celsius) {
         this.celsius = this.validateCelsiusTemperatureAndScale(celsius);
+    }
+    public int getScaleFactor() {
+        return scaleFactor;
     }
 
     private BigDecimal validateCelsiusTemperature(BigDecimal celsius) {

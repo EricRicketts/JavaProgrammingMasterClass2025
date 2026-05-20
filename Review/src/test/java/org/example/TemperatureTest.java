@@ -40,6 +40,14 @@ public class TemperatureTest {
                     temperature.getCelsius()
             );
         }
+
+        @Test
+        public void testScaleFactorGetter() {
+            assertEquals(
+                    2,
+                    temperature.getScaleFactor()
+            );
+        }
     }
 
     @Nested
