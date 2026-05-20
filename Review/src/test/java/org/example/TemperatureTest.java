@@ -28,16 +28,16 @@ public class TemperatureTest {
         public void testTemperatureGetter() {
             assertEquals(
                     BigDecimal.valueOf(12.34),
-                    temperature.getCurrentTemperature()
+                    temperature.getCelsius()
             );
         }
 
         @Test
         public void testTemperatureSetter() {
-            temperature.setCurrentTemperature(BigDecimal.valueOf(45.67));
+            temperature.setCelsius(BigDecimal.valueOf(45.67));
             assertEquals(
                     BigDecimal.valueOf(45.67),
-                    temperature.getCurrentTemperature()
+                    temperature.getCelsius()
             );
         }
     }
@@ -65,7 +65,7 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("test valid temperature conversions Celsius to Kelvin")
-    class TestConvertValidTemperaturesFahrenheitToKelvin {
+    class TestConvertValidTemperaturesCelsiusToKelvin {
 
         @Test
         public void testConvertPositiveCelsiusToKelvin() {
@@ -77,7 +77,7 @@ public class TemperatureTest {
 
         @Test
         public void testConvertNegativeCelsiusToKelvin() {
-            temperature.setCurrentTemperature(BigDecimal.valueOf(-123.45));
+            temperature.setCelsius(BigDecimal.valueOf(-123.45));
             assertEquals(
                     NumberUtils.setScale(BigDecimal.valueOf(149.70), 2),
                     temperature.convertToKelvin()
@@ -87,14 +87,14 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("check temperature floor for Celsius")
-    class TestNegativeFloorForFahrenheitToCelsius {
+    class TestAbsoluteZeroBoundaryForCelsius {
 
         @Test
         public void testSetLowestTemperatureForCelsius() {
-            temperature.setCurrentTemperature(BigDecimal.valueOf(-273.15));
+            temperature.setCelsius(BigDecimal.valueOf(-273.15));
             assertEquals(
                     BigDecimal.valueOf(-273.15),
-                    temperature.getCurrentTemperature()
+                    temperature.getCelsius()
             );
         }
 
@@ -104,7 +104,7 @@ public class TemperatureTest {
                     Temperature.TEMPERATURE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> temperature.setCurrentTemperature(BigDecimal.valueOf(-273.16))
+                            () -> temperature.setCelsius(BigDecimal.valueOf(-273.16))
                     ).getMessage()
             );
         }
@@ -114,7 +114,7 @@ public class TemperatureTest {
             Temperature temperature = new Temperature(BigDecimal.valueOf(-273.15), 2);
             assertEquals(
                     BigDecimal.valueOf(-273.15),
-                    temperature.getCurrentTemperature()
+                    temperature.getCelsius()
             );
         }
 
@@ -126,6 +126,29 @@ public class TemperatureTest {
                             IllegalArgumentException.class,
                             () -> new Temperature(BigDecimal.valueOf(-273.16), 2)
                     ).getMessage()
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("zero and one argument constructor tests")
+    class TestTemperatureConstructors {
+
+        @Test
+        public void testNoArgumentTemperatureConstructor() {
+            Temperature temperature = new Temperature();
+            assertEquals(
+                NumberUtils.setScale(BigDecimal.valueOf(100.00), 2),
+                temperature.getCelsius()
+            );
+        }
+
+        @Test
+        public void testSingleArgumentTemperatureConstructor() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(98.76));
+            assertEquals(
+                    NumberUtils.setScale(BigDecimal.valueOf(98.76), 2),
+                    temperature.getCelsius()
             );
         }
     }
