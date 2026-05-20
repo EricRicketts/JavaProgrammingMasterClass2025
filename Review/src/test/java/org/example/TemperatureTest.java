@@ -27,16 +27,16 @@ public class TemperatureTest {
         @Test
         public void testTemperatureGetter() {
             assertEquals(
-                    BigDecimal.valueOf(12.34),
+                    new BigDecimal("12.34"),
                     temperature.getCelsius()
             );
         }
 
         @Test
         public void testTemperatureSetter() {
-            temperature.setCelsius(BigDecimal.valueOf(45.67));
+            temperature.setCelsius(new BigDecimal("45.67"));
             assertEquals(
-                    BigDecimal.valueOf(45.67),
+                    new BigDecimal("45.67"),
                     temperature.getCelsius()
             );
         }
@@ -57,16 +57,16 @@ public class TemperatureTest {
         @Test
         public void testConvertPositiveCelsiusToFahrenheitRoundDown() {
             assertEquals(
-                    BigDecimal.valueOf(78.31),
-                    new Temperature(BigDecimal.valueOf(25.73), 2).convertToFahrenheit()
+                    new BigDecimal("78.31"),
+                    new Temperature(new BigDecimal("25.73"), 2).convertToFahrenheit()
             );
         }
 
         @Test
         public void testConvertNegativeCelsiusToFahrenheitRoundUp() {
             assertEquals(
-                    BigDecimal.valueOf(-53.61),
-                    new Temperature(BigDecimal.valueOf(-47.56), 2).convertToFahrenheit()
+                    new BigDecimal("-53.61"),
+                    new Temperature(new BigDecimal("-47.56"), 2).convertToFahrenheit()
             );
         }
     }
@@ -78,16 +78,16 @@ public class TemperatureTest {
         @Test
         public void testConvertPositiveCelsiusToKelvin() {
             assertEquals(
-                    BigDecimal.valueOf(285.49),
+                    new BigDecimal("285.49"),
                     temperature.convertToKelvin()
             );
         }
 
         @Test
         public void testConvertNegativeCelsiusToKelvin() {
-            temperature.setCelsius(BigDecimal.valueOf(-123.45));
+            temperature.setCelsius(new BigDecimal("-123.45"));
             assertEquals(
-                    NumberUtils.setScale(BigDecimal.valueOf(149.70), 2),
+                    NumberUtils.setScale(new BigDecimal("149.70"), 2),
                     temperature.convertToKelvin()
             );
         }
@@ -99,9 +99,9 @@ public class TemperatureTest {
 
         @Test
         public void testSetAbsoluteZeroForCelsius() {
-            temperature.setCelsius(BigDecimal.valueOf(-273.15));
+            temperature.setCelsius(new BigDecimal("-273.15"));
             assertEquals(
-                    BigDecimal.valueOf(-273.15),
+                    new BigDecimal("-273.15"),
                     temperature.getCelsius()
             );
         }
@@ -112,16 +112,16 @@ public class TemperatureTest {
                     Temperature.TEMPERATURE_VALUE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> temperature.setCelsius(BigDecimal.valueOf(-273.16))
+                            () -> temperature.setCelsius(new BigDecimal("-273.16"))
                     ).getMessage()
             );
         }
 
         @Test
         public void testInitializeAbsoluteZeroForCelsius() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(-273.15), 2);
+            Temperature temperature = new Temperature(new BigDecimal("-273.15"), 2);
             assertEquals(
-                    BigDecimal.valueOf(-273.15),
+                    new BigDecimal("-273.15"),
                     temperature.getCelsius()
             );
         }
@@ -132,16 +132,16 @@ public class TemperatureTest {
                     Temperature.TEMPERATURE_VALUE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Temperature(BigDecimal.valueOf(-273.16), 2)
+                            () -> new Temperature(new BigDecimal("-273.16"), 2)
                     ).getMessage()
             );
         }
 
         @Test
         public void testSetAbsoluteZeroForFahrenheit() {
-            temperature.setCelsius(BigDecimal.valueOf(-273.15));
+            temperature.setCelsius(new BigDecimal("-273.15"));
             assertEquals(
-                    BigDecimal.valueOf(-459.67),
+                    new BigDecimal("-459.67"),
                     temperature.convertToFahrenheit()
             );
         }
@@ -155,16 +155,16 @@ public class TemperatureTest {
         public void testNoArgumentTemperatureConstructor() {
             Temperature temperature = new Temperature();
             assertEquals(
-                BigDecimal.valueOf(100.13),
+                new BigDecimal("100.13"),
                 temperature.getCelsius()
             );
         }
 
         @Test
         public void testSingleArgumentTemperatureConstructor() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(98.76));
+            Temperature temperature = new Temperature(new BigDecimal("98.76"));
             assertEquals(
-                    NumberUtils.setScale(BigDecimal.valueOf(98.76), 2),
+                    NumberUtils.setScale(new BigDecimal("98.76"), 2),
                     temperature.getCelsius()
             );
         }
@@ -176,36 +176,36 @@ public class TemperatureTest {
 
         @Test
         public void testSingleDigitScaleFactorRoundUp() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(87.65), 1);
+            Temperature temperature = new Temperature(new BigDecimal("87.65"), 1);
             assertEquals(
-                    BigDecimal.valueOf(87.7),
+                    new BigDecimal("87.7"),
                     temperature.getCelsius()
             );
         }
 
         @Test
         public void testSingleDigitScaleFactorRoundDown() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(87.64), 1);
+            Temperature temperature = new Temperature(new BigDecimal("87.64"), 1);
             assertEquals(
-                    BigDecimal.valueOf(87.6),
+                    new BigDecimal("87.6"),
                     temperature.getCelsius()
             );
         }
 
         @Test
         public void testThreeDigitScaleFactorRoundUp() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(87.7475), 3);
+            Temperature temperature = new Temperature(new BigDecimal("87.7475"), 3);
             assertEquals(
-                    BigDecimal.valueOf(87.748),
+                    new BigDecimal("87.748"),
                     temperature.getCelsius()
             );
         }
 
         @Test
         public void testThreeDigitScaleFactorRoundDown() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(87.7474), 3);
+            Temperature temperature = new Temperature(new BigDecimal("87.7474"), 3);
             assertEquals(
-                    BigDecimal.valueOf(87.747),
+                    new BigDecimal("87.747"),
                     temperature.getCelsius()
             );
         }
@@ -216,7 +216,7 @@ public class TemperatureTest {
                     Temperature.NEGATIVE_VALUE_SCALE_FACTOR_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Temperature(BigDecimal.valueOf(23.45), -2)
+                            () -> new Temperature(new BigDecimal("23.45"), -2)
                     ).getMessage()
             );
         }
@@ -227,7 +227,7 @@ public class TemperatureTest {
                     Temperature.SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
-                            () -> new Temperature(BigDecimal.valueOf(23.45), 5)
+                            () -> new Temperature(new BigDecimal("23.45"), 5)
                     ).getMessage()
             );
         }
@@ -239,39 +239,39 @@ public class TemperatureTest {
 
         @Test
         public void testFreezingPoint() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(0.00), 2);
+            Temperature temperature = new Temperature(new BigDecimal("0.00"), 2);
             assertEquals(
-                    NumberUtils.setScale(BigDecimal.valueOf(32.00), 2),
+                    NumberUtils.setScale(new BigDecimal("32.00"), 2),
                     temperature.convertToFahrenheit()
             );
             assertEquals(
-                    BigDecimal.valueOf(273.15),
+                    new BigDecimal("273.15"),
                     temperature.convertToKelvin()
             );
         }
 
         @Test
         public void testBoilingPoint() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(100.00), 2);
+            Temperature temperature = new Temperature(new BigDecimal("100.00"), 2);
             assertEquals(
-                    NumberUtils.setScale(BigDecimal.valueOf(212.00), 2),
+                    NumberUtils.setScale(new BigDecimal("212.00"), 2),
                     temperature.convertToFahrenheit()
             );
             assertEquals(
-                    BigDecimal.valueOf(373.15),
+                    new BigDecimal("373.15"),
                     temperature.convertToKelvin()
             );
         }
 
         @Test
         public void testTheOneSharedTemperatureBetweenCelsiusAndFahrenheit() {
-            Temperature temperature = new Temperature(BigDecimal.valueOf(-40.00), 2);
+            Temperature temperature = new Temperature(new BigDecimal("-40.00"), 2);
             assertEquals(
-                    NumberUtils.setScale(BigDecimal.valueOf(-40.00), 2),
+                    NumberUtils.setScale(new BigDecimal("-40.00"), 2),
                     temperature.convertToFahrenheit()
             );
             assertEquals(
-                    BigDecimal.valueOf(233.15),
+                    new BigDecimal("233.15"),
                     temperature.convertToKelvin()
             );
         }
