@@ -128,6 +128,15 @@ public class TemperatureTest {
                     ).getMessage()
             );
         }
+
+        @Test
+        public void testFahrenheitAtAbsoluteZeroWithSetter() {
+            temperature.setCelsius(BigDecimal.valueOf(-273.15));
+            assertEquals(
+                    BigDecimal.valueOf(-459.67),
+                    temperature.convertToFahrenheit()
+            );
+        }
     }
 
     @Nested
