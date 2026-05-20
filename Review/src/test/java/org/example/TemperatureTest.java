@@ -101,7 +101,7 @@ public class TemperatureTest {
         @Test
         public void testSetLessThanLowestTemperatureForCelsius() {
             assertEquals(
-                    Temperature.TEMPERATURE_VIOLATION,
+                    Temperature.TEMPERATURE_VALUE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> temperature.setCelsius(BigDecimal.valueOf(-273.16))
@@ -121,7 +121,7 @@ public class TemperatureTest {
         @Test
         public void testInitializeLessThanLowestTemperatureForCelsius() {
             assertEquals(
-                    Temperature.TEMPERATURE_VIOLATION,
+                    Temperature.TEMPERATURE_VALUE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(BigDecimal.valueOf(-273.16), 2)
@@ -243,6 +243,44 @@ public class TemperatureTest {
             assertEquals(
                     BigDecimal.valueOf(233.15),
                     temperature.convertToKelvin()
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test null values in setters and constructors")
+    class TestNullValuesInSettersAndConstructors {
+
+        @Test
+        public void testNullValueInSetter() {
+            assertEquals(
+                    Temperature.NULL_VALUE_VIOLATION,
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> temperature.setCelsius(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testNullValueInSingleArgumentConstructor() {
+            assertEquals(
+                    Temperature.NULL_VALUE_VIOLATION,
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Temperature(null)
+                    ).getMessage()
+            );
+        }
+
+        @Test
+        public void testNullValueInTwoArgumentConstructor() {
+            assertEquals(
+                    Temperature.NULL_VALUE_VIOLATION,
+                    assertThrows(
+                            NullPointerException.class,
+                            () -> new Temperature(null, 2)
+                    ).getMessage()
             );
         }
     }

@@ -2,6 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 public class Temperature {
 
@@ -12,16 +13,19 @@ public class Temperature {
 
     private static final BigDecimal CONVERSION_TO_KELVIN_ADDEND = BigDecimal.valueOf(273.15);
 
-    private BigDecimal currentTemperature = BigDecimal.valueOf(0.00);
+    private BigDecimal celsius = BigDecimal.valueOf(0.00);
 
     private final int scaleFactor;
 
-    public final static String TEMPERATURE_VIOLATION =
+    public final static String TEMPERATURE_VALUE_VIOLATION =
             "Upon conversion to Kelvin, entered temperature is below absolute zero.";
+
+    public final static String NULL_VALUE_VIOLATION =
+            "Null value is not allowed for a temperature entry";
 
     public BigDecimal convertToFahrenheit() {
         if (this.convertToKelvin().compareTo(BigDecimal.valueOf(0.00)) < 0) {
-            throw new IllegalArgumentException(TEMPERATURE_VIOLATION);
+            throw new IllegalArgumentException(TEMPERATURE_VALUE_VIOLATION);
         } else {
             BigDecimal rawConversion =
                     this.getCelsius().multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
@@ -33,7 +37,7 @@ public class Temperature {
     public BigDecimal convertToKelvin() {
         BigDecimal rawConversion = this.getCelsius().add(CONVERSION_TO_KELVIN_ADDEND);
         if (rawConversion.compareTo(BigDecimal.valueOf(0.00)) < 0) {
-            throw new IllegalArgumentException(TEMPERATURE_VIOLATION);
+            throw new IllegalArgumentException(TEMPERATURE_VALUE_VIOLATION);
         } else {
             return NumberUtils.setScale(rawConversion, getScaleFactor());
         }
@@ -42,7 +46,7 @@ public class Temperature {
     public Temperature(BigDecimal celsius, int scaling) {
         scaleFactor = scaling;
         BigDecimal validTemperature = this.validateCelsiusTemperature(celsius);
-        this.currentTemperature = NumberUtils.setScale(
+        this.celsius = NumberUtils.setScale(
                 validTemperature,
                 scaleFactor
         );
@@ -61,17 +65,18 @@ public class Temperature {
     }
 
     public BigDecimal getCelsius() {
-        return currentTemperature;
+        return celsius;
     }
 
-    public void setCelsius(BigDecimal currentTemperature) {
-        this.currentTemperature = this.validateCelsiusTemperatureAndScale(currentTemperature);
+    public void setCelsius(BigDecimal celsius) {
+        this.celsius = this.validateCelsiusTemperatureAndScale(celsius);
     }
 
     private BigDecimal validateCelsiusTemperature(BigDecimal celsius) {
-        BigDecimal kelvinConversion = celsius.add(CONVERSION_TO_KELVIN_ADDEND);
-        if (kelvinConversion.compareTo(BigDecimal.valueOf(0.00)) < 0) {
-            throw new IllegalArgumentException(TEMPERATURE_VIOLATION);
+        if (Objects.isNull(celsius)) {
+            throw new NullPointerException(NULL_VALUE_VIOLATION);
+        } else if (celsius.add(CONVERSION_TO_KELVIN_ADDEND).compareTo(BigDecimal.valueOf(0.00)) < 0) {
+            throw new IllegalArgumentException(TEMPERATURE_VALUE_VIOLATION);
         } else {
             return celsius;
         }
