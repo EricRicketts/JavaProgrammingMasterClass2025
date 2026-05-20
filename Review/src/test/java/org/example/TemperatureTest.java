@@ -152,4 +152,19 @@ public class TemperatureTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test different scale factors")
+    class TestTemperatureScaleFactors {
+
+        @Test
+        public void testSingleDigitScaleFactorRoundUp() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(87.65), 1);
+            assertEquals(
+                    BigDecimal.valueOf(87.7),
+                    temperature.getCelsius()
+            );
+
+        }
+    }
 }
