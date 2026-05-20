@@ -155,7 +155,7 @@ public class TemperatureTest {
         public void testNoArgumentTemperatureConstructor() {
             Temperature temperature = new Temperature();
             assertEquals(
-                new BigDecimal("100.13"),
+                new BigDecimal("0.00"),
                 temperature.getCelsius()
             );
         }

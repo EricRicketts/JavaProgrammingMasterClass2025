@@ -56,7 +56,7 @@ public class Temperature {
     }
 
     public Temperature() {
-        this(BigDecimal.valueOf(100.13), 2);
+        this(BigDecimal.valueOf(0.00), 2);
     }
 
     public BigDecimal getCelsius() {
