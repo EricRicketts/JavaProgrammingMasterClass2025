@@ -164,7 +164,15 @@ public class TemperatureTest {
                     BigDecimal.valueOf(87.7),
                     temperature.getCelsius()
             );
+        }
 
+        @Test
+        public void testSingleDigitScaleFactorRoundDown() {
+            Temperature temperature = new Temperature(BigDecimal.valueOf(87.64), 1);
+            assertEquals(
+                    BigDecimal.valueOf(87.6),
+                    temperature.getCelsius()
+            );
         }
     }
 }
