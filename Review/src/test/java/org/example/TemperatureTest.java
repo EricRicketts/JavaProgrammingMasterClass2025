@@ -87,7 +87,7 @@ public class TemperatureTest {
         public void testConvertNegativeCelsiusToKelvin() {
             temperature.setCelsius(new BigDecimal("-123.45"));
             assertEquals(
-                    NumberUtils.setScale(new BigDecimal("149.70"), 2),
+                    new BigDecimal("149.70"),
                     temperature.convertToKelvin()
             );
         }
@@ -164,7 +164,7 @@ public class TemperatureTest {
         public void testSingleArgumentTemperatureConstructor() {
             Temperature temperature = new Temperature(new BigDecimal("98.76"));
             assertEquals(
-                    NumberUtils.setScale(new BigDecimal("98.76"), 2),
+                    new BigDecimal("98.76"),
                     temperature.getCelsius()
             );
         }
@@ -241,7 +241,7 @@ public class TemperatureTest {
         public void testFreezingPoint() {
             Temperature temperature = new Temperature(new BigDecimal("0.00"), 2);
             assertEquals(
-                    NumberUtils.setScale(new BigDecimal("32.00"), 2),
+                    new BigDecimal("32.00"),
                     temperature.convertToFahrenheit()
             );
             assertEquals(
@@ -254,7 +254,7 @@ public class TemperatureTest {
         public void testBoilingPoint() {
             Temperature temperature = new Temperature(new BigDecimal("100.00"), 2);
             assertEquals(
-                    NumberUtils.setScale(new BigDecimal("212.00"), 2),
+                    new BigDecimal("212.00"),
                     temperature.convertToFahrenheit()
             );
             assertEquals(
@@ -267,7 +267,7 @@ public class TemperatureTest {
         public void testTheOneSharedTemperatureBetweenCelsiusAndFahrenheit() {
             Temperature temperature = new Temperature(new BigDecimal("-40.00"), 2);
             assertEquals(
-                    NumberUtils.setScale(new BigDecimal("-40.00"), 2),
+                    new BigDecimal("-40.00"),
                     temperature.convertToFahrenheit()
             );
             assertEquals(
