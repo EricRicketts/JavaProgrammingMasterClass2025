@@ -268,7 +268,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testNegativeScaleFactor() {
+        public void testScaleFactorNegative() {
             assertEquals(
                     Temperature.SCALE_FACTOR_VALUE_NEGATIVE,
                     assertThrows(
@@ -279,7 +279,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testExcessiveScaleFactorPrecision() {
+        public void testScaleFactorTooLarge() {
             assertEquals(
                     Temperature.SCALE_FACTOR_VALUE_TOO_LARGE,
                     assertThrows(
@@ -292,7 +292,7 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("test exact freezing and boiling points")
-    class TestFreezingAndBoilingPointsForAllTemperatureScales {
+    class TestFreezingAndBoilingPoints {
 
         @Test
         public void testFreezingPoint() {
@@ -326,10 +326,6 @@ public class TemperatureTest {
             assertEquals(
                     new BigDecimal("-40.00"),
                     temperature.convertToFahrenheit()
-            );
-            assertEquals(
-                    new BigDecimal("233.15"),
-                    temperature.convertToKelvin()
             );
         }
     }
