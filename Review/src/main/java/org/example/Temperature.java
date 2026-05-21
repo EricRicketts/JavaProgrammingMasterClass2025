@@ -21,10 +21,10 @@ public class Temperature {
     public static final String NULL_VALUE_NOT_ALLOWED =
             "Null value is not allowed for a temperature entry";
 
-    public static final String SCALE_FACTOR_VALUE_NEGATIVE_VIOLATION =
+    public static final String SCALE_FACTOR_VALUE_NEGATIVE =
             "Negative value is not allowed for scale factor";
 
-    public static final String SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION =
+    public static final String SCALE_FACTOR_VALUE_TOO_LARGE =
             "Scale factor is too large, keep to four decimals or less";
 
     private final int scaleFactor;
@@ -90,9 +90,9 @@ public class Temperature {
 
     private int validateScaleFactor(int scaleFactor) {
         if (scaleFactor < 0) {
-            throw new IllegalArgumentException(SCALE_FACTOR_VALUE_NEGATIVE_VIOLATION);
+            throw new IllegalArgumentException(SCALE_FACTOR_VALUE_NEGATIVE);
         } else if (scaleFactor > 4) {
-            throw new IllegalArgumentException(SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION);
+            throw new IllegalArgumentException(SCALE_FACTOR_VALUE_TOO_LARGE);
         } else {
             return scaleFactor;
         }

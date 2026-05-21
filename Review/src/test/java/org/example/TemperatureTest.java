@@ -51,8 +51,8 @@ public class TemperatureTest {
     }
 
     @Nested
-    @DisplayName("test valid temperature conversions Celsius to Fahrenheit")
-    class TestConvertValidTemperaturesCelsiusToFahrenheit {
+    @DisplayName("test convert Celsius to Fahrenheit")
+    class TestConvertCelsiusToFahrenheit {
 
         @Test
         public void testConvertPositiveCelsiusToFahrenheitRoundDown() {
@@ -72,8 +72,8 @@ public class TemperatureTest {
     }
 
     @Nested
-    @DisplayName("test valid temperature conversions Celsius to Kelvin")
-    class TestConvertValidTemperaturesCelsiusToKelvin {
+    @DisplayName("test convert Celsius to Kelvin")
+    class TestConvertCelsiusToKelvin {
 
         @Test
         public void testConvertPositiveCelsiusToKelvin() {
@@ -95,7 +95,7 @@ public class TemperatureTest {
 
     @Nested
     @DisplayName("check temperature floor for Celsius")
-    class TestAbsoluteZeroBoundaryForCelsius {
+    class TestAbsoluteZeroBoundary {
 
         @Test
         public void testSetAbsoluteZeroForCelsius() {
@@ -148,7 +148,7 @@ public class TemperatureTest {
     }
 
     @Nested
-    @DisplayName("zero and one argument constructor tests")
+    @DisplayName("zero, one and two argument constructor tests")
     class TestTemperatureConstructors {
 
         @Test
@@ -158,6 +158,10 @@ public class TemperatureTest {
                 new BigDecimal("0.00"),
                 temperature.getCelsius()
             );
+            assertEquals(
+                    2,
+                    temperature.getScaleFactor()
+            );
         }
 
         @Test
@@ -166,6 +170,23 @@ public class TemperatureTest {
             assertEquals(
                     new BigDecimal("98.76"),
                     temperature.getCelsius()
+            );
+            assertEquals(
+                    2,
+                    temperature.getScaleFactor()
+            );
+        }
+
+        @Test
+        public void testTwoArgumentTemperatureConstructor() {
+            Temperature temperature = new Temperature(new BigDecimal("67.89"), 2);
+            assertEquals(
+                    new BigDecimal("67.89"),
+                    temperature.getCelsius()
+            );
+            assertEquals(
+                    2,
+                    temperature.getScaleFactor()
             );
         }
     }
@@ -193,6 +214,24 @@ public class TemperatureTest {
         }
 
         @Test
+        public void testTwoDigitScaleFactorRoundUp() {
+            Temperature temperature = new Temperature(new BigDecimal("34.455"), 2);
+            assertEquals(
+                    new BigDecimal("34.46"),
+                    temperature.getCelsius()
+            );
+        }
+
+        @Test
+        public void testTwoDigitScaleFactorRoundDown() {
+            Temperature temperature = new Temperature(new BigDecimal("34.454"), 2);
+            assertEquals(
+                    new BigDecimal("34.45"),
+                    temperature.getCelsius()
+            );
+        }
+
+        @Test
         public void testThreeDigitScaleFactorRoundUp() {
             Temperature temperature = new Temperature(new BigDecimal("87.7475"), 3);
             assertEquals(
@@ -211,9 +250,27 @@ public class TemperatureTest {
         }
 
         @Test
+        public void testFourDigitScaleFactorRoundUp() {
+            Temperature temperature = new Temperature(new BigDecimal("12.34565"), 4);
+            assertEquals(
+                    new BigDecimal("12.3457"),
+                    temperature.getCelsius()
+            );
+        }
+
+        @Test
+        public void testFourDigitScaleFactorRoundDown() {
+            Temperature temperature = new Temperature(new BigDecimal("12.34564"), 4);
+            assertEquals(
+                    new BigDecimal("12.3456"),
+                    temperature.getCelsius()
+            );
+        }
+
+        @Test
         public void testNegativeScaleFactor() {
             assertEquals(
-                    Temperature.SCALE_FACTOR_VALUE_NEGATIVE_VIOLATION,
+                    Temperature.SCALE_FACTOR_VALUE_NEGATIVE,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("23.45"), -2)
@@ -224,7 +281,7 @@ public class TemperatureTest {
         @Test
         public void testExcessiveScaleFactorPrecision() {
             assertEquals(
-                    Temperature.SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION,
+                    Temperature.SCALE_FACTOR_VALUE_TOO_LARGE,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("23.45"), 5)
@@ -264,7 +321,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testTheOneSharedTemperatureBetweenCelsiusAndFahrenheit() {
+        public void testSameTemperatureForCelsiusAndFahrenheit() {
             Temperature temperature = new Temperature(new BigDecimal("-40.00"), 2);
             assertEquals(
                     new BigDecimal("-40.00"),
