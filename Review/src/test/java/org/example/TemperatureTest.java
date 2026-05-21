@@ -17,7 +17,7 @@ public class TemperatureTest {
     @BeforeEach
     @DisplayName("set up temperature object for tests")
     public void setUp() {
-        temperature = new Temperature(BigDecimal.valueOf(12.34), 2);
+        temperature = new Temperature(new BigDecimal("12.34"), 2);
     }
 
     @Nested
@@ -109,7 +109,7 @@ public class TemperatureTest {
         @Test
         public void testSetLessThanAbsoluteZeroForCelsius() {
             assertEquals(
-                    Temperature.TEMPERATURE_VALUE_VIOLATION,
+                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> temperature.setCelsius(new BigDecimal("-273.16"))
@@ -129,7 +129,7 @@ public class TemperatureTest {
         @Test
         public void testInitializeLessThanAbsoluteZeroForCelsius() {
             assertEquals(
-                    Temperature.TEMPERATURE_VALUE_VIOLATION,
+                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("-273.16"), 2)
@@ -213,7 +213,7 @@ public class TemperatureTest {
         @Test
         public void testNegativeScaleFactor() {
             assertEquals(
-                    Temperature.NEGATIVE_VALUE_SCALE_FACTOR_VIOLATION,
+                    Temperature.SCALE_FACTOR_VALUE_NEGATIVE_VIOLATION,
                     assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("23.45"), -2)
@@ -284,7 +284,7 @@ public class TemperatureTest {
         @Test
         public void testNullValueInSetter() {
             assertEquals(
-                    Temperature.NULL_VALUE_VIOLATION,
+                    Temperature.NULL_VALUE_NOT_ALLOWED,
                     assertThrows(
                             NullPointerException.class,
                             () -> temperature.setCelsius(null)
@@ -295,7 +295,7 @@ public class TemperatureTest {
         @Test
         public void testNullValueInSingleArgumentConstructor() {
             assertEquals(
-                    Temperature.NULL_VALUE_VIOLATION,
+                    Temperature.NULL_VALUE_NOT_ALLOWED,
                     assertThrows(
                             NullPointerException.class,
                             () -> new Temperature(null)
@@ -306,7 +306,7 @@ public class TemperatureTest {
         @Test
         public void testNullValueInTwoArgumentConstructor() {
             assertEquals(
-                    Temperature.NULL_VALUE_VIOLATION,
+                    Temperature.NULL_VALUE_NOT_ALLOWED,
                     assertThrows(
                             NullPointerException.class,
                             () -> new Temperature(null, 2)

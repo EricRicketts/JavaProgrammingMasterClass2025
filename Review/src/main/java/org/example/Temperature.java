@@ -15,13 +15,13 @@ public class Temperature {
 
     private BigDecimal celsius = BigDecimal.valueOf(0.00);
 
-    public static final String TEMPERATURE_VALUE_VIOLATION =
+    public static final String TEMPERATURE_VALUE_TOO_LOW =
             "Upon conversion to Kelvin, entered temperature is below absolute zero.";
 
-    public static final String NULL_VALUE_VIOLATION =
+    public static final String NULL_VALUE_NOT_ALLOWED =
             "Null value is not allowed for a temperature entry";
 
-    public static final String NEGATIVE_VALUE_SCALE_FACTOR_VIOLATION =
+    public static final String SCALE_FACTOR_VALUE_NEGATIVE_VIOLATION =
             "Negative value is not allowed for scale factor";
 
     public static final String SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION =
@@ -73,9 +73,9 @@ public class Temperature {
 
     private BigDecimal validateCelsiusTemperature(BigDecimal celsius) {
         if (Objects.isNull(celsius)) {
-            throw new NullPointerException(NULL_VALUE_VIOLATION);
+            throw new NullPointerException(NULL_VALUE_NOT_ALLOWED);
         } else if (celsius.add(CONVERSION_TO_KELVIN_ADDEND).compareTo(BigDecimal.valueOf(0.00)) < 0) {
-            throw new IllegalArgumentException(TEMPERATURE_VALUE_VIOLATION);
+            throw new IllegalArgumentException(TEMPERATURE_VALUE_TOO_LOW);
         } else {
             return celsius;
         }
@@ -90,7 +90,7 @@ public class Temperature {
 
     private int validateScaleFactor(int scaleFactor) {
         if (scaleFactor < 0) {
-            throw new IllegalArgumentException(NEGATIVE_VALUE_SCALE_FACTOR_VIOLATION);
+            throw new IllegalArgumentException(SCALE_FACTOR_VALUE_NEGATIVE_VIOLATION);
         } else if (scaleFactor > 4) {
             throw new IllegalArgumentException(SCALE_FACTOR_VALUE_TOO_LARGE_VIOLATION);
         } else {
