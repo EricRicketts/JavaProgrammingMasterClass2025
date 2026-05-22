@@ -10,12 +10,6 @@ import java.util.Objects;
  * @version 1.0-SNAPSHOT
  */
 public class Temperature {
-
-/**
- * The conversion of Celsius to Fahrenheit is F = C * (9/5) + 32.  One constant is the multiplier and the
- * other is the addend.
- * The conversion of Celsius to Kelvin is K = C + 273.15.
- */
     private static final BigDecimal CONVERSION_TO_FAHRENHEIT_MULTIPLIER =
             new BigDecimal("9.00").divide(new BigDecimal("5.00"), RoundingMode.HALF_UP);
 
@@ -39,10 +33,6 @@ public class Temperature {
 
     private final int scaleFactor;
 
-    /**
-     * 
-     * @return
-     */
     public BigDecimal convertToFahrenheit() {
             BigDecimal rawConversion =
             this.getCelsius().multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER).add(CONVERSION_TO_FAHRENHEIT_ADDEND);
@@ -55,6 +45,13 @@ public class Temperature {
         return NumberUtils.setScale(rawConversion, getScaleFactor());
     }
 
+    /**
+     * a referenced constructor in a constructor chaining
+     * scale factor is checked for negative values, and for excessive accuracy
+     * temperature value is checked for null values and below absolute zero
+     * @param celsius stored temperature
+     * @param scaling stored scaling value
+     */
     public Temperature(BigDecimal celsius, int scaling) {
         scaleFactor = this.validateScaleFactor(scaling);
         BigDecimal validTemperature = this.validateCelsius(celsius);
@@ -101,6 +98,11 @@ public class Temperature {
         );
     }
 
+    /**
+     * checks that the scale factor is not negative and within the accuracy bounds
+     * @param scaleFactor - input
+     * @return scaleFactor - validated input
+     */
     private int validateScaleFactor(int scaleFactor) {
         if (scaleFactor < 0) {
             throw new IllegalArgumentException(SCALE_FACTOR_VALUE_NEGATIVE);
