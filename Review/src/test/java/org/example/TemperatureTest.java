@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TemperatureTest {
 
@@ -254,20 +253,36 @@ public class TemperatureTest {
     class TestScaleFactorsForTemperature {
 
         @Test
-        public void testScaleFactorZeroRoundUp() {
-            Temperature temperature = new Temperature(new BigDecimal("87.65"), 0);
-            assertEquals(
-                    new BigDecimal("88"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testScaleFactorZeroRoundDown() {
-            Temperature temperature = new Temperature(new BigDecimal("87.45"), 0);
-            assertEquals(
-                    new BigDecimal("87"),
-                    temperature.getCelsius()
+        public void testScaleFactorsZeroAndOne() {
+            assertAll("Scale factor values zero and one for zero and one digit precision",
+                () -> {
+                    temperature = new Temperature(new BigDecimal("87.65"), 0);
+                    assertEquals(
+                        new BigDecimal("88"),
+                        temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("87.45"), 0);
+                    assertEquals(
+                            new BigDecimal("87"),
+                            temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("87.65"), 1);
+                    assertEquals(
+                            new BigDecimal("87.7"),
+                            temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("87.64"), 1);
+                    assertEquals(
+                            new BigDecimal("87.6"),
+                            temperature.getCelsius()
+                    );
+                }
             );
         }
 
