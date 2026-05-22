@@ -245,6 +245,27 @@ public class TemperatureTest {
     class TestFreezingAndBoilingPoints {
 
         @Test
+        public void testFreezingAndBoilingPoints() {
+            assertAll("Freezing and boiling points in Fahrenheit and Kelvin",
+                () -> {
+                    temperature = new Temperature(new BigDecimal("0.00"), 2);
+                    assertEquals(new BigDecimal("32.00"), temperature.convertToFahrenheit());
+                    assertEquals(new BigDecimal("273.15"), temperature.convertToKelvin());
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("100.00"), 2);
+                    assertEquals(new BigDecimal("212.00"), temperature.convertToFahrenheit());
+                    assertEquals(new BigDecimal("373.15"), temperature.convertToKelvin());
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("-40.00"), 2);
+                    assertEquals(new BigDecimal("-40.00"), temperature.convertToFahrenheit());
+                }
+            );
+        }
+
+
+        @Test
         public void testFreezingPoint() {
             Temperature temperature = new Temperature(new BigDecimal("0.00"), 2);
             assertEquals(
