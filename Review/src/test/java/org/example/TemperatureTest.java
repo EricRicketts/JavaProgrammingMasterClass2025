@@ -94,36 +94,36 @@ public class TemperatureTest {
 
         @Test
         public void testConvertCelsiusToFahrenheitScaleFactorThreeRoundDown() {
-            temperature = new Temperature(new BigDecimal("25.73"), 3);
+            temperature = new Temperature(new BigDecimal("25.733"), 3);
             assertEquals(
-                    new BigDecimal("78.31"),
+                    new BigDecimal("78.319"),
                     temperature.convertToFahrenheit()
             );
         }
 
         @Test
         public void testConvertCelsiusToFahrenheitScaleFactorThreeRoundUp() {
-            temperature = new Temperature(new BigDecimal("-47.56"), 3);
+            temperature = new Temperature(new BigDecimal("-47.561"), 3);
             assertEquals(
-                    new BigDecimal("-53.61"),
+                    new BigDecimal("-53.610"),
                     temperature.convertToFahrenheit()
             );
         }
 
         @Test
         public void testConvertCelsiusToFahrenheitScaleFactorFourRoundDown() {
-            temperature = new Temperature(new BigDecimal("25.73"), 4);
+            temperature = new Temperature(new BigDecimal("25.7334"), 4);
             assertEquals(
-                    new BigDecimal("78.31"),
+                    new BigDecimal("78.3201"),
                     temperature.convertToFahrenheit()
             );
         }
 
         @Test
         public void testConvertCelsiusToFahrenheitScaleFactorFourRoundUp() {
-            temperature = new Temperature(new BigDecimal("-47.56"), 4);
+            temperature = new Temperature(new BigDecimal("-47.5612"), 4);
             assertEquals(
-                    new BigDecimal("-53.61"),
+                    new BigDecimal("-53.6102"),
                     temperature.convertToFahrenheit()
             );
         }
