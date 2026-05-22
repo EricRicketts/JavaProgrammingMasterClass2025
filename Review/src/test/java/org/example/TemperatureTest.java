@@ -255,7 +255,20 @@ public class TemperatureTest {
 
         @Test
         public void testScaleFactorZeroRoundUp() {
+            Temperature temperature = new Temperature(new BigDecimal("87.65"), 0);
+            assertEquals(
+                    new BigDecimal("88"),
+                    temperature.getCelsius()
+            );
+        }
 
+        @Test
+        public void testScaleFactorZeroRoundDown() {
+            Temperature temperature = new Temperature(new BigDecimal("87.45"), 0);
+            assertEquals(
+                    new BigDecimal("87"),
+                    temperature.getCelsius()
+            );
         }
 
         @Test
