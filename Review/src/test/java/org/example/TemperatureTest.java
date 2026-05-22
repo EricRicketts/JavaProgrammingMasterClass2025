@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigDecimal;
 
@@ -252,6 +254,16 @@ public class TemperatureTest {
     @DisplayName("test different scale factors")
     class TestScaleFactorsForTemperature {
 
+        @ParameterizedTest
+        @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
+        public void testZeroAndOneValues (String temperatureValue, int scaleFactor, String result) {
+            temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
+            assertEquals(
+                new BigDecimal(result),
+                temperature.getCelsius()
+            );
+        }
+
         @Test
         public void testScaleFactorsZeroAndOne() {
             assertAll("Test scale factor values zero and one for zero and one digit precision",
@@ -364,7 +376,7 @@ public class TemperatureTest {
             );
         }
     }
-    
+
     @Nested
     @DisplayName("test exact freezing and boiling points")
     class TestFreezingAndBoilingPoints {
