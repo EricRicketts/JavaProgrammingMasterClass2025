@@ -256,7 +256,7 @@ public class TemperatureTest {
 
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
-        public void testZeroAndOneValues (String temperatureValue, int scaleFactor, String result) {
+        public void testScaleFactorsZeroAndOne (String temperatureValue, int scaleFactor, String result) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
             assertEquals(
                 new BigDecimal(result),
@@ -264,74 +264,25 @@ public class TemperatureTest {
             );
         }
 
-        @Test
-        public void testScaleFactorsZeroAndOne() {
-            assertAll("Test scale factor values zero and one for zero and one digit precision",
-                () -> {
-                    temperature = new Temperature(new BigDecimal("87.65"), 0);
-                    assertEquals(
-                        new BigDecimal("88"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("87.45"), 0);
-                    assertEquals(
-                        new BigDecimal("87"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("87.65"), 1);
-                    assertEquals(
-                        new BigDecimal("87.7"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("87.64"), 1);
-                    assertEquals(
-                        new BigDecimal("87.6"),
-                        temperature.getCelsius()
-                    );
-                }
+        @ParameterizedTest
+        @CsvSource({"34.455, 2, 34.46", "34.454, 2, 34.45", "87.7475, 3, 87.748", "87.7474, 3, 87.747"})
+        public void testScaleFactorsTwoAndThree (String temperatureValue, int scaleFactor, String result) {
+            temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
+            assertEquals(
+                new BigDecimal(result),
+                temperature.getCelsius()
             );
         }
 
-        @Test
-        public void testScaleFactorsTwoAndThree() {
-            assertAll("Test scale factors two and three for two and three digit precision",
-                () -> {
-                    temperature = new Temperature(new BigDecimal("34.455"), 2);
-                    assertEquals(
-                        new BigDecimal("34.46"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("34.454"), 2);
-                    assertEquals(
-                        new BigDecimal("34.45"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("87.7475"), 3);
-                    assertEquals(
-                        new BigDecimal("87.748"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("87.7474"), 3);
-                    assertEquals(
-                        new BigDecimal("87.747"),
-                        temperature.getCelsius()
-                    );
-                }
+        @ParameterizedTest
+        @CsvSource({"12.34565, 4, 12.3457", "12.34564, 4, 12.3456"})
+        public void testScaleFactorFour(String temperatureValue, int scaleFactor, String result) {
+            temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
+            assertEquals(
+                new BigDecimal(result),
+                temperature.getCelsius()
             );
         }
-
         @Test
         public void testScaleFactorFour() {
             assertAll("Test scale factors four for four digit precision",
