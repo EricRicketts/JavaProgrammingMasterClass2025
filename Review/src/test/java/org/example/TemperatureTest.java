@@ -55,18 +55,76 @@ public class TemperatureTest {
     class TestConvertCelsiusToFahrenheit {
 
         @Test
-        public void testConvertPositiveCelsiusToFahrenheitRoundDown() {
+        public void testConvertCelsiusToFahrenheitScaleFactorOneRoundDown() {
+            // scales to 54.3 for temperature object
+            temperature = new Temperature(new BigDecimal("54.34"), 1);
             assertEquals(
-                    new BigDecimal("78.31"),
-                    new Temperature(new BigDecimal("25.73"), 2).convertToFahrenheit()
+                    new BigDecimal("129.7"),
+                    temperature.convertToFahrenheit()
             );
         }
 
         @Test
-        public void testConvertNegativeCelsiusToFahrenheitRoundUp() {
+        public void testConvertCelsiusToFahrenheitScaleFactorOneRoundUp() {
+            // scales to 54.4 for temperature object
+            temperature = new Temperature(new BigDecimal("54.35"), 1);
+            assertEquals(
+                    new BigDecimal("129.9"),
+                    temperature.convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitScaleFactorTwoRoundDown() {
+            temperature = new Temperature(new BigDecimal("25.73"), 2);
+            assertEquals(
+                    new BigDecimal("78.31"),
+                    temperature.convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitScaleFactorTwoRoundUp() {
+            temperature = new Temperature(new BigDecimal("-47.56"), 2);
             assertEquals(
                     new BigDecimal("-53.61"),
-                    new Temperature(new BigDecimal("-47.56"), 2).convertToFahrenheit()
+                    temperature.convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitScaleFactorThreeRoundDown() {
+            temperature = new Temperature(new BigDecimal("25.73"), 3);
+            assertEquals(
+                    new BigDecimal("78.31"),
+                    temperature.convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitScaleFactorThreeRoundUp() {
+            temperature = new Temperature(new BigDecimal("-47.56"), 3);
+            assertEquals(
+                    new BigDecimal("-53.61"),
+                    temperature.convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitScaleFactorFourRoundDown() {
+            temperature = new Temperature(new BigDecimal("25.73"), 4);
+            assertEquals(
+                    new BigDecimal("78.31"),
+                    temperature.convertToFahrenheit()
+            );
+        }
+
+        @Test
+        public void testConvertCelsiusToFahrenheitScaleFactorFourRoundUp() {
+            temperature = new Temperature(new BigDecimal("-47.56"), 4);
+            assertEquals(
+                    new BigDecimal("-53.61"),
+                    temperature.convertToFahrenheit()
             );
         }
     }
