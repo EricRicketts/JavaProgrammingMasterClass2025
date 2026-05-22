@@ -254,7 +254,12 @@ public class TemperatureTest {
     class TestScaleFactorsForTemperature {
 
         @Test
-        public void testSingleDigitScaleFactorRoundUp() {
+        public void testScaleFactorZeroRoundUp() {
+
+        }
+
+        @Test
+        public void testScaleFactorOneRoundUp() {
             Temperature temperature = new Temperature(new BigDecimal("87.65"), 1);
             assertEquals(
                     new BigDecimal("87.7"),
@@ -263,7 +268,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testSingleDigitScaleFactorRoundDown() {
+        public void testScaleFactorOneRoundDown() {
             Temperature temperature = new Temperature(new BigDecimal("87.64"), 1);
             assertEquals(
                     new BigDecimal("87.6"),
@@ -272,7 +277,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testTwoDigitScaleFactorRoundUp() {
+        public void testSaleFactorTwoRoundUp() {
             Temperature temperature = new Temperature(new BigDecimal("34.455"), 2);
             assertEquals(
                     new BigDecimal("34.46"),
@@ -281,7 +286,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testTwoDigitScaleFactorRoundDown() {
+        public void testSaleFactorTwoRoundDown() {
             Temperature temperature = new Temperature(new BigDecimal("34.454"), 2);
             assertEquals(
                     new BigDecimal("34.45"),
@@ -290,7 +295,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testThreeDigitScaleFactorRoundUp() {
+        public void testSaleFactorThreeRoundUp() {
             Temperature temperature = new Temperature(new BigDecimal("87.7475"), 3);
             assertEquals(
                     new BigDecimal("87.748"),
@@ -299,7 +304,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testThreeDigitScaleFactorRoundDown() {
+        public void testSaleFactorThreeRoundDown() {
             Temperature temperature = new Temperature(new BigDecimal("87.7474"), 3);
             assertEquals(
                     new BigDecimal("87.747"),
@@ -308,7 +313,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testFourDigitScaleFactorRoundUp() {
+        public void testSaleFactorFourRoundUp() {
             Temperature temperature = new Temperature(new BigDecimal("12.34565"), 4);
             assertEquals(
                     new BigDecimal("12.3457"),
@@ -317,7 +322,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testFourDigitScaleFactorRoundDown() {
+        public void testSaleFactorFourRoundDown() {
             Temperature temperature = new Temperature(new BigDecimal("12.34564"), 4);
             assertEquals(
                     new BigDecimal("12.3456"),
