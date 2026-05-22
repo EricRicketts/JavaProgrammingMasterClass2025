@@ -341,28 +341,30 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testScaleFactorNegative() {
-            assertEquals(
-                    Temperature.SCALE_FACTOR_VALUE_NEGATIVE,
-                    assertThrows(
+        public void testScaleFactorNegativeAndTooLarge() {
+            assertAll("test scale negative and too large for exceptions",
+                () -> {
+                    assertEquals(
+                        Temperature.SCALE_FACTOR_VALUE_NEGATIVE,
+                        assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("23.45"), -2)
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testScaleFactorTooLarge() {
-            assertEquals(
-                    Temperature.SCALE_FACTOR_VALUE_TOO_LARGE,
-                    assertThrows(
+                        ).getMessage()
+                    );
+                },
+                () -> {
+                    assertEquals(
+                        Temperature.SCALE_FACTOR_VALUE_TOO_LARGE,
+                        assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("23.45"), 5)
-                    ).getMessage()
+                        ).getMessage()
+                    );
+                }
             );
         }
     }
-
+    
     @Nested
     @DisplayName("test exact freezing and boiling points")
     class TestFreezingAndBoilingPoints {
