@@ -59,77 +59,27 @@ public class TemperatureTest {
     @DisplayName("test convert Celsius to Fahrenheit")
     class TestConvertCelsiusToFahrenheit {
 
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorOneRoundDown() {
-            // scales to 54.3 for temperature object
-            temperature = new Temperature(new BigDecimal("54.34"), 1);
-            assertEquals(
-                    new BigDecimal("129.7"),
-                    temperature.convertToFahrenheit()
-            );
-        }
+        @ParameterizedTest
+        @CsvSource(
+            {
+                "54.34, 1, 129.7",
+                "54.35, 1, 129.9",
+                "25.73, 2, 78.31",
+                "-47.56, 2, -53.61",
+                "25.733, 3, 78.319",
+                "-47.561, 3, -53.610",
+                "25.7334, 4, 78.3201",
+                "-47.5612, 4, -53.6102"
+            }
+        )
 
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorOneRoundUp() {
-            // scales to 54.4 for temperature object
-            temperature = new Temperature(new BigDecimal("54.35"), 1);
+        public void testConvertCelsiusToFahrenheitAllScaleFactors(
+            String temperatureValue, int scaleFactor, String expected
+        ) {
+            temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
             assertEquals(
-                    new BigDecimal("129.9"),
-                    temperature.convertToFahrenheit()
-            );
-        }
-
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorTwoRoundDown() {
-            temperature = new Temperature(new BigDecimal("25.73"), 2);
-            assertEquals(
-                    new BigDecimal("78.31"),
-                    temperature.convertToFahrenheit()
-            );
-        }
-
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorTwoRoundUp() {
-            temperature = new Temperature(new BigDecimal("-47.56"), 2);
-            assertEquals(
-                    new BigDecimal("-53.61"),
-                    temperature.convertToFahrenheit()
-            );
-        }
-
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorThreeRoundDown() {
-            temperature = new Temperature(new BigDecimal("25.733"), 3);
-            assertEquals(
-                    new BigDecimal("78.319"),
-                    temperature.convertToFahrenheit()
-            );
-        }
-
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorThreeRoundUp() {
-            temperature = new Temperature(new BigDecimal("-47.561"), 3);
-            assertEquals(
-                    new BigDecimal("-53.610"),
-                    temperature.convertToFahrenheit()
-            );
-        }
-
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorFourRoundDown() {
-            temperature = new Temperature(new BigDecimal("25.7334"), 4);
-            assertEquals(
-                    new BigDecimal("78.3201"),
-                    temperature.convertToFahrenheit()
-            );
-        }
-
-        @Test
-        public void testConvertCelsiusToFahrenheitScaleFactorFourRoundUp() {
-            temperature = new Temperature(new BigDecimal("-47.5612"), 4);
-            assertEquals(
-                    new BigDecimal("-53.6102"),
-                    temperature.convertToFahrenheit()
+                new BigDecimal(expected),
+                temperature.convertToFahrenheit()
             );
         }
     }
@@ -258,6 +208,13 @@ public class TemperatureTest {
     @DisplayName("test different scale factors")
     class TestScaleFactorsForTemperature {
 
+        static Stream<Arguments> stringIntStringProvider() {
+            return Stream.of(
+                arguments("23.45", -2, Temperature.SCALE_FACTOR_VALUE_NEGATIVE),
+                arguments("23.45", 5, Temperature.SCALE_FACTOR_VALUE_TOO_LARGE)
+            );
+        }
+
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
         public void testScaleFactorsZeroAndOne (String temperatureValue, int scaleFactor, String result) {
@@ -297,37 +254,6 @@ public class TemperatureTest {
                     IllegalArgumentException.class,
                     () -> new Temperature(new BigDecimal(temperatureValue), scaleFactor)
                 ).getMessage()
-            );
-        }
-
-        static Stream<Arguments> stringIntStringProvider() {
-            return Stream.of(
-                arguments("23.45", -2, Temperature.SCALE_FACTOR_VALUE_NEGATIVE),
-                arguments("23.45", 5, Temperature.SCALE_FACTOR_VALUE_TOO_LARGE)
-            );
-        }
-
-        @Test
-        public void testScaleFactorNegativeAndTooLarge() {
-            assertAll("test scale negative and too large for exceptions",
-                () -> {
-                    assertEquals(
-                        Temperature.SCALE_FACTOR_VALUE_NEGATIVE,
-                        assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Temperature(new BigDecimal("23.45"), -2)
-                        ).getMessage()
-                    );
-                },
-                () -> {
-                    assertEquals(
-                        Temperature.SCALE_FACTOR_VALUE_TOO_LARGE,
-                        assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Temperature(new BigDecimal("23.45"), 5)
-                        ).getMessage()
-                    );
-                }
             );
         }
     }
