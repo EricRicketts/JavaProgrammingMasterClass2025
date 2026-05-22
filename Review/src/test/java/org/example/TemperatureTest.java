@@ -254,7 +254,7 @@ public class TemperatureTest {
 
         @Test
         public void testScaleFactorsZeroAndOne() {
-            assertAll("Scale factor values zero and one for zero and one digit precision",
+            assertAll("Test scale factor values zero and one for zero and one digit precision",
                 () -> {
                     temperature = new Temperature(new BigDecimal("87.65"), 0);
                     assertEquals(
@@ -265,96 +265,78 @@ public class TemperatureTest {
                 () -> {
                     temperature = new Temperature(new BigDecimal("87.45"), 0);
                     assertEquals(
-                            new BigDecimal("87"),
-                            temperature.getCelsius()
+                        new BigDecimal("87"),
+                        temperature.getCelsius()
                     );
                 },
                 () -> {
                     temperature = new Temperature(new BigDecimal("87.65"), 1);
                     assertEquals(
-                            new BigDecimal("87.7"),
-                            temperature.getCelsius()
+                        new BigDecimal("87.7"),
+                        temperature.getCelsius()
                     );
                 },
                 () -> {
                     temperature = new Temperature(new BigDecimal("87.64"), 1);
                     assertEquals(
-                            new BigDecimal("87.6"),
-                            temperature.getCelsius()
+                        new BigDecimal("87.6"),
+                        temperature.getCelsius()
                     );
                 }
             );
         }
 
         @Test
-        public void testScaleFactorOneRoundUp() {
-            Temperature temperature = new Temperature(new BigDecimal("87.65"), 1);
-            assertEquals(
-                    new BigDecimal("87.7"),
-                    temperature.getCelsius()
+        public void testScaleFactorsTwoAndThree() {
+            assertAll("Test scale factors two and three for two and three digit precision",
+                () -> {
+                    temperature = new Temperature(new BigDecimal("34.455"), 2);
+                    assertEquals(
+                        new BigDecimal("34.46"),
+                        temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("34.454"), 2);
+                    assertEquals(
+                        new BigDecimal("34.45"),
+                        temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("87.7475"), 3);
+                    assertEquals(
+                        new BigDecimal("87.748"),
+                        temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("87.7474"), 3);
+                    assertEquals(
+                        new BigDecimal("87.747"),
+                        temperature.getCelsius()
+                    );
+                }
             );
         }
 
         @Test
-        public void testScaleFactorOneRoundDown() {
-            Temperature temperature = new Temperature(new BigDecimal("87.64"), 1);
-            assertEquals(
-                    new BigDecimal("87.6"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testSaleFactorTwoRoundUp() {
-            Temperature temperature = new Temperature(new BigDecimal("34.455"), 2);
-            assertEquals(
-                    new BigDecimal("34.46"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testSaleFactorTwoRoundDown() {
-            Temperature temperature = new Temperature(new BigDecimal("34.454"), 2);
-            assertEquals(
-                    new BigDecimal("34.45"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testSaleFactorThreeRoundUp() {
-            Temperature temperature = new Temperature(new BigDecimal("87.7475"), 3);
-            assertEquals(
-                    new BigDecimal("87.748"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testSaleFactorThreeRoundDown() {
-            Temperature temperature = new Temperature(new BigDecimal("87.7474"), 3);
-            assertEquals(
-                    new BigDecimal("87.747"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testSaleFactorFourRoundUp() {
-            Temperature temperature = new Temperature(new BigDecimal("12.34565"), 4);
-            assertEquals(
-                    new BigDecimal("12.3457"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testSaleFactorFourRoundDown() {
-            Temperature temperature = new Temperature(new BigDecimal("12.34564"), 4);
-            assertEquals(
-                    new BigDecimal("12.3456"),
-                    temperature.getCelsius()
+        public void testScaleFactorFour() {
+            assertAll("Test scale factors four for four digit precision",
+                () -> {
+                    temperature = new Temperature(new BigDecimal("12.34565"), 4);
+                    assertEquals(
+                        new BigDecimal("12.3457"),
+                        temperature.getCelsius()
+                    );
+                },
+                () -> {
+                    Temperature temperature = new Temperature(new BigDecimal("12.34564"), 4);
+                    assertEquals(
+                        new BigDecimal("12.3456"),
+                        temperature.getCelsius()
+                    );
+                }
             );
         }
 
