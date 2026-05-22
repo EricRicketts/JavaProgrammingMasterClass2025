@@ -5,11 +5,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class TemperatureTest {
 
@@ -283,23 +287,23 @@ public class TemperatureTest {
                 temperature.getCelsius()
             );
         }
-        @Test
-        public void testScaleFactorFour() {
-            assertAll("Test scale factors four for four digit precision",
-                () -> {
-                    temperature = new Temperature(new BigDecimal("12.34565"), 4);
-                    assertEquals(
-                        new BigDecimal("12.3457"),
-                        temperature.getCelsius()
-                    );
-                },
-                () -> {
-                    Temperature temperature = new Temperature(new BigDecimal("12.34564"), 4);
-                    assertEquals(
-                        new BigDecimal("12.3456"),
-                        temperature.getCelsius()
-                    );
-                }
+
+        @ParameterizedTest
+        @MethodSource("stringIntStringProvider")
+        public void testScaleFactorsNegativeAndTooLarge(String temperatureValue, int scaleFactor, String expected) {
+            assertEquals(
+                expected,
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Temperature(new BigDecimal(temperatureValue), scaleFactor)
+                ).getMessage()
+            );
+        }
+
+        static Stream<Arguments> stringIntStringProvider() {
+            return Stream.of(
+                arguments("23.45", -2, Temperature.SCALE_FACTOR_VALUE_NEGATIVE),
+                arguments("23.45", 5, Temperature.SCALE_FACTOR_VALUE_TOO_LARGE)
             );
         }
 
