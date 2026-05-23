@@ -21,16 +21,16 @@ public class Temperature {
 
     private static final int MAX_SCALE_FACTOR = 4;
 
-    public static final String TEMPERATURE_VALUE_TOO_LOW =
+    private static final String TEMPERATURE_VALUE_TOO_LOW =
             "Upon conversion to Kelvin, entered temperature is below absolute zero.";
 
-    public static final String NULL_VALUE_NOT_ALLOWED =
+    private static final String NULL_VALUE_NOT_ALLOWED =
             "Null value is not allowed for a temperature entry";
 
-    public static final String SCALE_FACTOR_VALUE_NEGATIVE =
+    private static final String SCALE_FACTOR_VALUE_NEGATIVE =
             "Negative value is not allowed for scale factor";
 
-    public static final String SCALE_FACTOR_VALUE_TOO_LARGE =
+    private static final String SCALE_FACTOR_VALUE_TOO_LARGE =
             "Scale factor is too large, keep to four decimals or less";
 
     private final int scaleFactor;

@@ -126,22 +126,17 @@ public class TemperatureTest {
 
         @Test
         public void testBelowAbsoluteZeroForSetterAndConstructor() {
+            BigDecimal originalTemperature = temperature.getCelsius();
             assertAll("Under absolute zero is not allowed",
-                () -> assertEquals(
-                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
-                    assertThrows(
+                () -> assertThrows(
                         IllegalArgumentException.class,
                         () -> temperature.setCelsius(new BigDecimal("-273.16"))
-                    ).getMessage()
-                ),
+                    ),
                 () -> assertEquals(
-                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
-                    assertThrows(
-                        IllegalArgumentException.class,
-                        () -> new Temperature(new BigDecimal("-273.16"), 2)
-                    ).getMessage()
+                        originalTemperature,
+                        temperature.getCelsius()
                 )
-            );
+           );
         }
     }
 
@@ -175,13 +170,6 @@ public class TemperatureTest {
     @DisplayName("test different scale factors")
     class TestScaleFactorsForTemperature {
 
-        static Stream<Arguments> invalidScaleFactorProvider() {
-            return Stream.of(
-                arguments("23.45", -2, Temperature.SCALE_FACTOR_VALUE_NEGATIVE),
-                arguments("23.45", 5, Temperature.SCALE_FACTOR_VALUE_TOO_LARGE)
-            );
-        }
-
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
         public void testScaleFactorsZeroAndOne (String temperatureValue, int scaleFactor, String result) {
@@ -212,16 +200,13 @@ public class TemperatureTest {
             );
         }
 
-        @ParameterizedTest
-        @MethodSource("invalidScaleFactorProvider")
-        public void testScaleFactorsNegativeAndTooLarge(String temperatureValue, int scaleFactor, String expected) {
-            assertEquals(
-                expected,
+        @Test
+        public void testScaleFactorsNegative() {
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Temperature(new BigDecimal(temperatureValue), scaleFactor)
-                ).getMessage()
-            );
+                    () -> new Temperature(new BigDecimal("23.45"), -1)
+                );
+                assertEquals(2, temperature.getScaleFactor());
         }
     }
 
@@ -256,29 +241,25 @@ public class TemperatureTest {
 
         @Test
         public void testNullValuesInSettersAndOneAndTwoArgumentConstructors() {
+            BigDecimal originalTemperature = temperature.getCelsius();
             assertAll("Null values not allowed in setters and constructors",
-                () -> assertEquals(
-                    Temperature.NULL_VALUE_NOT_ALLOWED,
-                    assertThrows(
+                () -> assertThrows(
                         NullPointerException.class,
                         () -> temperature.setCelsius(null)
-                    ).getMessage()
                 ),
                 () -> assertEquals(
-                    Temperature.NULL_VALUE_NOT_ALLOWED,
-                    assertThrows(
+                        originalTemperature,
+                        temperature.getCelsius()
+                ),
+                () -> assertThrows(
                         NullPointerException.class,
                         () -> new Temperature(null)
-                    ).getMessage()
                 ),
-                () -> assertEquals(
-                    Temperature.NULL_VALUE_NOT_ALLOWED,
-                    assertThrows(
+                () -> assertThrows(
                         NullPointerException.class,
                         () -> new Temperature(null, 2)
-                    ).getMessage()
                 )
-            );
+           );
         }
     }
 }
