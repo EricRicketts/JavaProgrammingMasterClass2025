@@ -220,19 +220,19 @@ public class TemperatureTest {
         @Test
         public void testFreezingAndBoilingPoints() {
             assertAll("Freezing and boiling points in Fahrenheit and Kelvin",
-                () -> {
+                () -> { // Celsius freezing point of water
                     temperature = new Temperature(new BigDecimal("0.00"), 2);
 
                     assertEquals(new BigDecimal("32.00"), temperature.convertToFahrenheit());
                     assertEquals(new BigDecimal("273.15"), temperature.convertToKelvin());
                 },
-                () -> {
+                () -> { // Celsius boiling point of water
                     temperature = new Temperature(new BigDecimal("100.00"), 2);
 
                     assertEquals(new BigDecimal("212.00"), temperature.convertToFahrenheit());
                     assertEquals(new BigDecimal("373.15"), temperature.convertToKelvin());
                 },
-                () -> {
+                () -> { // Celsius and Fahrenheit are the same when converting
                     temperature = new Temperature(new BigDecimal("-40.00"), 2);
 
                     assertEquals(new BigDecimal("-40.00"), temperature.convertToFahrenheit());
@@ -246,26 +246,31 @@ public class TemperatureTest {
     class TestNullValuesInSettersAndConstructors {
 
         @Test
-        public void testNullValuesInSettersAndOneAndTwoArgumentConstructors() {
+        public void testNullValueInSetterDoesNotChangeOriginalTemperature() {
             BigDecimal originalTemperature = temperature.getCelsius();
-            assertAll("Null values not allowed in setters and constructors",
-                () -> assertThrows(
-                        IllegalArgumentException.class,
-                        () -> temperature.setCelsius(null)
-                ),
-                () -> assertEquals(
-                        originalTemperature,
-                        temperature.getCelsius()
-                ),
-                () -> assertThrows(
-                        IllegalArgumentException.class,
-                        () -> new Temperature(null)
-                ),
-                () -> assertThrows(
-                        IllegalArgumentException.class,
-                        () -> new Temperature(null, 2)
-                )
-           );
+
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> temperature.setCelsius(null)
+            );
+
+            assertEquals(originalTemperature, temperature.getCelsius());
+        }
+
+        @Test
+        public void testNullValuesNotAllowedInOneArgumentConstructor() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Temperature(null)
+            );
+        }
+
+        @Test
+        public void testNullValuesNotAllowedInTwoArgumentConstructor() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Temperature(null, 2)
+            );
         }
     }
 }
