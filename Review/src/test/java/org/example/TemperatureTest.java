@@ -194,7 +194,7 @@ public class TemperatureTest {
         public void testTwoArgumentConstructor() {
             Temperature scaledTemperature = new Temperature(new BigDecimal(ORIGINAL_TEMPERATURE), 3);
 
-            assertEquals(new BigDecimal(ORIGINAL_TEMPERATURE.concat("0")), scaledTemperature.getCelsius());
+            assertEquals(new BigDecimal("67.980"), scaledTemperature.getCelsius());
             assertEquals(3, scaledTemperature.getScaleFactor());
         }
     }
@@ -207,8 +207,10 @@ public class TemperatureTest {
 
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
-        public void testConstructorsRoundCelsiusToZeroAndOneDecimalPlaces (
-            String temperatureValue, int scaleFactor, String result
+        public void testConstructorsRoundCelsiusToZeroAndOneDecimalPlaces(
+            String temperatureValue,
+            int scaleFactor,
+            String result
         ) {
             Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
@@ -217,8 +219,10 @@ public class TemperatureTest {
 
         @ParameterizedTest
         @CsvSource({"34.455, 2, 34.46", "34.454, 2, 34.45", "87.7475, 3, 87.748", "87.7474, 3, 87.747"})
-        public void testConstructorRoundsCelsiusToTwoAndThreeDecimalPlaces
-            (String temperatureValue, int scaleFactor, String result
+        public void testConstructorRoundsCelsiusToTwoAndThreeDecimalPlaces(
+            String temperatureValue,
+            int scaleFactor,
+            String result
             ) {
             Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
@@ -228,7 +232,9 @@ public class TemperatureTest {
         @ParameterizedTest
         @CsvSource({"12.34565, 4, 12.3457", "12.34564, 4, 12.3456"})
         public void testConstructorRoundsCelsiusToFourDecimalPlaces(
-            String temperatureValue, int scaleFactor, String result
+            String temperatureValue,
+            int scaleFactor,
+            String result
         ) {
             Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
@@ -258,26 +264,26 @@ public class TemperatureTest {
     class TestFreezingAndBoilingPoints {
 
         @Test
-        public void testFreezingAndBoilingPoints() {
-            assertAll("Freezing and boiling points in Fahrenheit and Kelvin",
-                () -> { // Celsius freezing point of water
-                    Temperature temperature = new Temperature(new BigDecimal("0.00"), DEFAULT_SCALE_FACTOR);
+        public void testFreezingPointConversions() {
+            Temperature temperature = new Temperature(new BigDecimal("0.00"), DEFAULT_SCALE_FACTOR);
 
-                    assertEquals(new BigDecimal("32.00"), temperature.convertToFahrenheit());
-                    assertEquals(new BigDecimal("273.15"), temperature.convertToKelvin());
-                },
-                () -> { // Celsius boiling point of water
-                    Temperature temperature = new Temperature(new BigDecimal("100.00"), DEFAULT_SCALE_FACTOR);
+            assertEquals(new BigDecimal("32.00"), temperature.convertToFahrenheit());
+            assertEquals(new BigDecimal("273.15"), temperature.convertToKelvin());
+        }
 
-                    assertEquals(new BigDecimal("212.00"), temperature.convertToFahrenheit());
-                    assertEquals(new BigDecimal("373.15"), temperature.convertToKelvin());
-                },
-                () -> { // Celsius and Fahrenheit are the same when converting
-                    Temperature temperature = new Temperature(new BigDecimal("-40.00"), DEFAULT_SCALE_FACTOR);
+        @Test
+        public void testBoilingPointConversions() {
+            Temperature temperature = new Temperature(new BigDecimal("100.00"), DEFAULT_SCALE_FACTOR);
 
-                    assertEquals(new BigDecimal("-40.00"), temperature.convertToFahrenheit());
-                }
-            );
+            assertEquals(new BigDecimal("212.00"), temperature.convertToFahrenheit());
+            assertEquals(new BigDecimal("373.15"), temperature.convertToKelvin());
+        }
+
+        @Test
+        public void testNegativeFortyCelsiusEqualsNegativeFortyFahrenheit() {
+            Temperature temperature = new Temperature(new BigDecimal("-40.00"), DEFAULT_SCALE_FACTOR);
+
+            assertEquals(new BigDecimal("-40.00"), temperature.convertToFahrenheit());
         }
     }
 
