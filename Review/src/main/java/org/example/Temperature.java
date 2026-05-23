@@ -36,8 +36,9 @@ public class Temperature {
     private final int scaleFactor;
 
     public BigDecimal convertToFahrenheit() {
-            BigDecimal rawConversion =
-            this.getCelsius().multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER).add(CONVERSION_TO_FAHRENHEIT_ADDEND);
+            BigDecimal rawConversion = this.getCelsius()
+                .multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
+                .add(CONVERSION_TO_FAHRENHEIT_ADDEND);
 
             return NumberUtils.setScale(rawConversion, scaleFactor);
     }
@@ -90,7 +91,7 @@ public class Temperature {
      */
     private BigDecimal validateCelsius(BigDecimal celsius) {
         if (Objects.isNull(celsius)) {
-            throw new NullPointerException(NULL_VALUE_NOT_ALLOWED);
+            throw new IllegalArgumentException(NULL_VALUE_NOT_ALLOWED);
         } else if (celsius.add(CONVERSION_TO_KELVIN_ADDEND).compareTo(BigDecimal.valueOf(0.00)) < 0) {
             throw new IllegalArgumentException(TEMPERATURE_VALUE_TOO_LOW);
         } else {

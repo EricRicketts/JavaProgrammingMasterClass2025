@@ -244,7 +244,7 @@ public class TemperatureTest {
             BigDecimal originalTemperature = temperature.getCelsius();
             assertAll("Null values not allowed in setters and constructors",
                 () -> assertThrows(
-                        NullPointerException.class,
+                        IllegalArgumentException.class,
                         () -> temperature.setCelsius(null)
                 ),
                 () -> assertEquals(
@@ -252,11 +252,11 @@ public class TemperatureTest {
                         temperature.getCelsius()
                 ),
                 () -> assertThrows(
-                        NullPointerException.class,
+                        IllegalArgumentException.class,
                         () -> new Temperature(null)
                 ),
                 () -> assertThrows(
-                        NullPointerException.class,
+                        IllegalArgumentException.class,
                         () -> new Temperature(null, 2)
                 )
            );
