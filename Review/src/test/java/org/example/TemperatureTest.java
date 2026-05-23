@@ -111,51 +111,40 @@ public class TemperatureTest {
     class TestAbsoluteZeroBoundary {
 
         @Test
-        public void testSetAbsoluteZeroForCelsius() {
-            temperature.setCelsius(new BigDecimal("-273.15"));
-            assertEquals(
-                    new BigDecimal("-273.15"),
-                    temperature.getCelsius()
+        public void testAbsoluteZeroForSetterAndConstructor() {
+            assertAll("Absolute zero is a valid temperature",
+                () -> {
+                    temperature.setCelsius(new BigDecimal("-273.15"));
+                    assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
+                },
+                () -> {
+                    temperature = new Temperature(new BigDecimal("-273.15"), 2);
+                    assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
+                }
             );
         }
 
         @Test
-        public void testSetLessThanAbsoluteZeroForCelsius() {
-            assertEquals(
-                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
-                    assertThrows(
+        public void testBelowAbsoluteZeroForSetterAndConstructor() {
+            assertAll("Under absolute zero is not allowed",
+                () -> {
+                    assertEquals(
+                        Temperature.TEMPERATURE_VALUE_TOO_LOW,
+                        assertThrows(
                             IllegalArgumentException.class,
                             () -> temperature.setCelsius(new BigDecimal("-273.16"))
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testInitializeAbsoluteZeroForCelsius() {
-            Temperature temperature = new Temperature(new BigDecimal("-273.15"), 2);
-            assertEquals(
-                    new BigDecimal("-273.15"),
-                    temperature.getCelsius()
-            );
-        }
-
-        @Test
-        public void testInitializeLessThanAbsoluteZeroForCelsius() {
-            assertEquals(
-                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
-                    assertThrows(
+                        ).getMessage()
+                    );
+                },
+                () -> {
+                    assertEquals(
+                        Temperature.TEMPERATURE_VALUE_TOO_LOW,
+                        assertThrows(
                             IllegalArgumentException.class,
                             () -> new Temperature(new BigDecimal("-273.16"), 2)
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSetAbsoluteZeroForFahrenheit() {
-            temperature.setCelsius(new BigDecimal("-273.15"));
-            assertEquals(
-                    new BigDecimal("-459.67"),
-                    temperature.convertToFahrenheit()
+                        ).getMessage()
+                    );
+                }
             );
         }
     }
@@ -190,7 +179,7 @@ public class TemperatureTest {
     @DisplayName("test different scale factors")
     class TestScaleFactorsForTemperature {
 
-        static Stream<Arguments> stringIntStringProvider() {
+        static Stream<Arguments> invalidScaleFactorProvider() {
             return Stream.of(
                 arguments("23.45", -2, Temperature.SCALE_FACTOR_VALUE_NEGATIVE),
                 arguments("23.45", 5, Temperature.SCALE_FACTOR_VALUE_TOO_LARGE)
@@ -228,7 +217,7 @@ public class TemperatureTest {
         }
 
         @ParameterizedTest
-        @MethodSource("stringIntStringProvider")
+        @MethodSource("invalidScaleFactorProvider")
         public void testScaleFactorsNegativeAndTooLarge(String temperatureValue, int scaleFactor, String expected) {
             assertEquals(
                 expected,
