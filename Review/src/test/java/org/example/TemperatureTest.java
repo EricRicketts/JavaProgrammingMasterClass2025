@@ -255,35 +255,29 @@ public class TemperatureTest {
     class TestNullValuesInSettersAndConstructors {
 
         @Test
-        public void testNullValueInSetter() {
-            assertEquals(
+        public void testNullValuesInSettersAndOneAndTwoArgumentConstructors() {
+            assertAll("Null values not allowed in setters and constructors",
+                () -> assertEquals(
                     Temperature.NULL_VALUE_NOT_ALLOWED,
                     assertThrows(
-                            NullPointerException.class,
-                            () -> temperature.setCelsius(null)
+                        NullPointerException.class,
+                        () -> temperature.setCelsius(null)
                     ).getMessage()
-            );
-        }
-
-        @Test
-        public void testNullValueInSingleArgumentConstructor() {
-            assertEquals(
+                ),
+                () -> assertEquals(
                     Temperature.NULL_VALUE_NOT_ALLOWED,
                     assertThrows(
-                            NullPointerException.class,
-                            () -> new Temperature(null)
+                        NullPointerException.class,
+                        () -> new Temperature(null)
                     ).getMessage()
-            );
-        }
-
-        @Test
-        public void testNullValueInTwoArgumentConstructor() {
-            assertEquals(
+                ),
+                () -> assertEquals(
                     Temperature.NULL_VALUE_NOT_ALLOWED,
                     assertThrows(
-                            NullPointerException.class,
-                            () -> new Temperature(null, 2)
+                        NullPointerException.class,
+                        () -> new Temperature(null, 2)
                     ).getMessage()
+                )
             );
         }
     }
