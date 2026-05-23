@@ -13,11 +13,13 @@ public class Temperature {
     private static final BigDecimal CONVERSION_TO_FAHRENHEIT_MULTIPLIER =
             new BigDecimal("9.00").divide(new BigDecimal("5.00"), RoundingMode.HALF_UP);
 
-    private static final BigDecimal CONVERSION_TO_FAHRENHEIT_ADDEND = BigDecimal.valueOf(32);
+    private static final BigDecimal CONVERSION_TO_FAHRENHEIT_ADDEND = new BigDecimal("32");
 
-    private static final BigDecimal CONVERSION_TO_KELVIN_ADDEND = BigDecimal.valueOf(273.15);
+    private static final BigDecimal CONVERSION_TO_KELVIN_ADDEND = new BigDecimal("273.15");
 
-    private BigDecimal celsius = BigDecimal.valueOf(0.00);
+    private BigDecimal celsius = new BigDecimal("0.00");
+
+    private static final int MAX_SCALE_FACTOR = 4;
 
     public static final String TEMPERATURE_VALUE_TOO_LOW =
             "Upon conversion to Kelvin, entered temperature is below absolute zero.";
@@ -116,7 +118,7 @@ public class Temperature {
     private int validateScaleFactor(int scaleFactor) {
         if (scaleFactor < 0) {
             throw new IllegalArgumentException(SCALE_FACTOR_VALUE_NEGATIVE);
-        } else if (scaleFactor > 4) {
+        } else if (scaleFactor > MAX_SCALE_FACTOR) {
             throw new IllegalArgumentException(SCALE_FACTOR_VALUE_TOO_LARGE);
         } else {
             return scaleFactor;
