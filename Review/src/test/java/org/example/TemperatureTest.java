@@ -162,7 +162,11 @@ public class TemperatureTest {
         public void testConstructorRejectsTemperatureBelowAbsoluteZero() {
             assertThrows(
                 IllegalArgumentException.class,
-                () -> new Temperature((ABSOLUTE_ZERO.subtract(new BigDecimal("0.01"))), DEFAULT_SCALE_FACTOR));
+                () -> new Temperature(
+                    ABSOLUTE_ZERO.subtract(new BigDecimal("0.01")),
+                    DEFAULT_SCALE_FACTOR
+                )
+            );
         }
     }
 
