@@ -227,7 +227,7 @@ public class TemperatureTest {
             String temperatureValue,
             int scaleFactor,
             String result
-       ) {
+        ) {
             Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
             assertEquals(new BigDecimal(result), temperature.getCelsius());
