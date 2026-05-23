@@ -81,7 +81,7 @@ public class TemperatureTest {
             }
         )
 
-        public void testConvertCelsiusToFahrenheitAllScaleFactors(
+        public void testConvertToFahrenheitAllScaleFactors(
             String temperatureValue, int scaleFactor, String expected
         ) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
@@ -114,7 +114,7 @@ public class TemperatureTest {
             "0.00, 3, 273.150",
             "0.00, 4, 273.1500"
         })
-        public void testConvertToKelvinWithDifferentScaleFactors(
+        public void testConvertToKelvinAllScaleFactors(
             String temperatureValue,
             int scaleFactor,
             String expected
@@ -150,7 +150,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testConstructorAcceptsAbsoluteZero() {
+        public void testAbsoluteZeroConstructor() {
             temperature = new Temperature(ABSOLUTE_ZERO, 2);
 
             assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
@@ -232,7 +232,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testConstructorDecimalPlacesRoundingNumberIsNegative() {
+        public void testConstructorRejectsNegativeScaleFactor() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(new BigDecimal("23.45"), -1)
@@ -240,7 +240,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testConstructorDecimalPlacesRoundingNumberExceedsLimit() {
+        public void testConstructorRejectsTooLargeScaleFactor() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(new BigDecimal("23.45"), MAX_SCALE_FACTOR + 1)
@@ -293,7 +293,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testTemperatureSingleArgumentConstructorRejectsNullValue() {
+        public void testTemperatureOneArgumentConstructorRejectsNullValue() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(null)
