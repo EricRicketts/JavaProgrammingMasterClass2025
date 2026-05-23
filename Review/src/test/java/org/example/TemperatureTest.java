@@ -109,7 +109,7 @@ public class TemperatureTest {
     }
 
     @Nested
-    @DisplayName("check temperature floor for Celsius")
+    @DisplayName("check temperature boundary for Celsius")
     class TestAbsoluteZeroBoundary {
 
         @Test
