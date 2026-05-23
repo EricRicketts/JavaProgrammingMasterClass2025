@@ -127,24 +127,20 @@ public class TemperatureTest {
         @Test
         public void testBelowAbsoluteZeroForSetterAndConstructor() {
             assertAll("Under absolute zero is not allowed",
-                () -> {
-                    assertEquals(
-                        Temperature.TEMPERATURE_VALUE_TOO_LOW,
-                        assertThrows(
-                            IllegalArgumentException.class,
-                            () -> temperature.setCelsius(new BigDecimal("-273.16"))
-                        ).getMessage()
-                    );
-                },
-                () -> {
-                    assertEquals(
-                        Temperature.TEMPERATURE_VALUE_TOO_LOW,
-                        assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Temperature(new BigDecimal("-273.16"), 2)
-                        ).getMessage()
-                    );
-                }
+                () -> assertEquals(
+                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
+                    assertThrows(
+                        IllegalArgumentException.class,
+                        () -> temperature.setCelsius(new BigDecimal("-273.16"))
+                    ).getMessage()
+                ),
+                () -> assertEquals(
+                    Temperature.TEMPERATURE_VALUE_TOO_LOW,
+                    assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Temperature(new BigDecimal("-273.16"), 2)
+                    ).getMessage()
+                )
             );
         }
     }
