@@ -45,7 +45,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testSetterAppliesScaleFactorRoundUp() {
+        public void testSetterAppliesScaleFactorRoundingUp() {
             Temperature temperature = new Temperature(new BigDecimal("12.123"), 3);
 
             temperature.setCelsius(new BigDecimal("12.3455"));
@@ -54,7 +54,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testSetterAppliesScaleFactorRoundDown() {
+        public void testSetterAppliesScaleFactorRoundingDown() {
             Temperature temperature = new Temperature(new BigDecimal("12.123"), 3);
 
             temperature.setCelsius(new BigDecimal("12.3454"));
