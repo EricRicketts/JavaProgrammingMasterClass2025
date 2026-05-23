@@ -34,8 +34,8 @@ public class TemperatureTest {
         @Test
         public void testTemperatureGetter() {
             assertEquals(
-                    new BigDecimal("12.34"),
-                    temperature.getCelsius()
+                new BigDecimal("12.34"),
+                temperature.getCelsius()
             );
         }
 
@@ -43,17 +43,14 @@ public class TemperatureTest {
         public void testTemperatureSetter() {
             temperature.setCelsius(new BigDecimal("45.67"));
             assertEquals(
-                    new BigDecimal("45.67"),
-                    temperature.getCelsius()
+                new BigDecimal("45.67"),
+                temperature.getCelsius()
             );
         }
 
         @Test
         public void testScaleFactorGetter() {
-            assertEquals(
-                    2,
-                    temperature.getScaleFactor()
-            );
+            assertEquals(2, temperature.getScaleFactor());
         }
     }
 
@@ -93,8 +90,8 @@ public class TemperatureTest {
         @Test
         public void testConvertPositiveCelsiusToKelvin() {
             assertEquals(
-                    new BigDecimal("285.49"),
-                    temperature.convertToKelvin()
+                new BigDecimal("285.49"),
+                temperature.convertToKelvin()
             );
         }
 
@@ -102,8 +99,8 @@ public class TemperatureTest {
         public void testConvertNegativeCelsiusToKelvin() {
             temperature.setCelsius(new BigDecimal("-123.45"));
             assertEquals(
-                    new BigDecimal("149.70"),
-                    temperature.convertToKelvin()
+                new BigDecimal("149.70"),
+                temperature.convertToKelvin()
             );
         }
     }
@@ -114,23 +111,23 @@ public class TemperatureTest {
 
         @Test
         public void testAbsoluteZeroBoundaryForSetter() {
-                temperature.setCelsius(ABSOLUTE_ZERO);
-                assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
+            temperature.setCelsius(ABSOLUTE_ZERO);
+            assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
         @Test
         public void testBelowAbsoluteZeroSetterDoesNotChangeExistingTemperature() {
             temperature.setCelsius(new BigDecimal("25.00"));
 
-                 assertThrows(
-                        IllegalArgumentException.class,
-                        () -> temperature.setCelsius(ABSOLUTE_ZERO.add(new BigDecimal("-0.01")))
-                    );
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> temperature.setCelsius(ABSOLUTE_ZERO.add(new BigDecimal("-0.01")))
+            );
 
-                assertEquals(
-                    new BigDecimal("25.00"),
-                    temperature.getCelsius()
-                );
+            assertEquals(
+                new BigDecimal("25.00"),
+                temperature.getCelsius()
+            );
         }
 
         @Test
@@ -154,26 +151,30 @@ public class TemperatureTest {
 
         private static final BigDecimal ZERO = new BigDecimal("0.00");
 
-        private static final String originalTemperature = "67.98";
+        private static final String ORIGINAL_TEMPERATURE = "67.98";
 
         @Test
         public void testNoArgumentConstructor() {
             temperature = new Temperature();
+
             assertEquals(ZERO, temperature.getCelsius());
             assertEquals(2, temperature.getScaleFactor());
         }
 
         @Test
         public void testSingleArgumentConstructor() {
-            temperature = new Temperature(new BigDecimal(originalTemperature));
-            assertEquals(new BigDecimal(originalTemperature), temperature.getCelsius());
+            temperature = new Temperature(new BigDecimal(ORIGINAL_TEMPERATURE));
+
+            assertEquals(new BigDecimal(ORIGINAL_TEMPERATURE), temperature.getCelsius());
             assertEquals(2, temperature.getScaleFactor());
         }
 
         @Test
         public void testTwoArgumentConstructor() {
-            temperature = new Temperature(new BigDecimal(originalTemperature), 3);
-            assertEquals(new BigDecimal(originalTemperature.concat("0")), temperature.getCelsius());
+            temperature = new Temperature(new BigDecimal(ORIGINAL_TEMPERATURE), 3);
+
+            assertEquals(new BigDecimal(ORIGINAL_TEMPERATURE.concat("0")), temperature.getCelsius());
+
             assertEquals(3, temperature.getScaleFactor());
         }
     }
@@ -182,43 +183,47 @@ public class TemperatureTest {
     @DisplayName("test different scale factors")
     class TestScaleFactorsForTemperature {
 
+        private final int MAX_SCALE_FACTOR = 4;
+
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
         public void testScaleFactorsZeroAndOne (String temperatureValue, int scaleFactor, String result) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
-            assertEquals(
-                new BigDecimal(result),
-                temperature.getCelsius()
-            );
+
+            assertEquals(new BigDecimal(result), temperature.getCelsius());
         }
 
         @ParameterizedTest
         @CsvSource({"34.455, 2, 34.46", "34.454, 2, 34.45", "87.7475, 3, 87.748", "87.7474, 3, 87.747"})
         public void testScaleFactorsTwoAndThree (String temperatureValue, int scaleFactor, String result) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
-            assertEquals(
-                new BigDecimal(result),
-                temperature.getCelsius()
-            );
+
+            assertEquals(new BigDecimal(result), temperature.getCelsius());
         }
 
         @ParameterizedTest
         @CsvSource({"12.34565, 4, 12.3457", "12.34564, 4, 12.3456"})
         public void testScaleFactorFour(String temperatureValue, int scaleFactor, String result) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
-            assertEquals(
-                new BigDecimal(result),
-                temperature.getCelsius()
-            );
+
+            assertEquals(new BigDecimal(result), temperature.getCelsius());
+            assertEquals(MAX_SCALE_FACTOR, temperature.getScaleFactor());
         }
 
         @Test
         public void testScaleFactorsNegative() {
-                assertThrows(
-                    IllegalArgumentException.class,
-                    () -> new Temperature(new BigDecimal("23.45"), -1)
-                );
-                assertEquals(2, temperature.getScaleFactor());
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Temperature(new BigDecimal("23.45"), -1)
+           );
+        }
+
+        @Test
+        public void testScaleFactorTooLarge() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Temperature(new BigDecimal("23.45"), MAX_SCALE_FACTOR + 1)
+            );
         }
     }
 
