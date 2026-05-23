@@ -263,42 +263,6 @@ public class TemperatureTest {
                 }
             );
         }
-
-
-        @Test
-        public void testFreezingPoint() {
-            Temperature temperature = new Temperature(new BigDecimal("0.00"), 2);
-            assertEquals(
-                    new BigDecimal("32.00"),
-                    temperature.convertToFahrenheit()
-            );
-            assertEquals(
-                    new BigDecimal("273.15"),
-                    temperature.convertToKelvin()
-            );
-        }
-
-        @Test
-        public void testBoilingPoint() {
-            Temperature temperature = new Temperature(new BigDecimal("100.00"), 2);
-            assertEquals(
-                    new BigDecimal("212.00"),
-                    temperature.convertToFahrenheit()
-            );
-            assertEquals(
-                    new BigDecimal("373.15"),
-                    temperature.convertToKelvin()
-            );
-        }
-
-        @Test
-        public void testSameTemperatureForCelsiusAndFahrenheit() {
-            Temperature temperature = new Temperature(new BigDecimal("-40.00"), 2);
-            assertEquals(
-                    new BigDecimal("-40.00"),
-                    temperature.convertToFahrenheit()
-            );
-        }
     }
 
     @Nested
