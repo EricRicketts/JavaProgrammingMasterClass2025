@@ -81,6 +81,11 @@ public class Temperature {
         return scaleFactor;
     }
 
+    /**
+     * Celsius temperature is first checked for null value and then checked if it is under absolute zero
+     * @param celsius - proposed temperature for the object
+     * @return a valid temperature, if the temperature is invalid, an exception is thrown
+     */
     private BigDecimal validateCelsius(BigDecimal celsius) {
         if (Objects.isNull(celsius)) {
             throw new NullPointerException(NULL_VALUE_NOT_ALLOWED);
@@ -91,6 +96,11 @@ public class Temperature {
         }
     }
 
+    /**
+     * input temperature is first validated and then returned after applying the object's scale factor
+     * @param celsius - Celsius temperature to be validated and scaled
+     * @return Validated temperature with scaling
+     */
     private BigDecimal scaleValidatedCelsius(BigDecimal celsius) {
         return NumberUtils.setScale(
                 this.validateCelsius(celsius),
@@ -100,8 +110,8 @@ public class Temperature {
 
     /**
      * checks that the scale factor is not negative and within the accuracy bounds
-     * @param scaleFactor - input
-     * @return scaleFactor - validated input
+     * @param scaleFactor - proposed decimal accuracy for the object
+     * @return validated decimal accuracy for use by the object
      */
     private int validateScaleFactor(int scaleFactor) {
         if (scaleFactor < 0) {
