@@ -111,17 +111,15 @@ public class TemperatureTest {
     class TestAbsoluteZeroBoundary {
 
         @Test
-        public void testAbsoluteZeroForSetterAndConstructor() {
-            assertAll("Absolute zero is a valid temperature",
-                () -> {
-                    temperature.setCelsius(new BigDecimal("-273.15"));
-                    assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
-                },
-                () -> {
-                    temperature = new Temperature(new BigDecimal("-273.15"), 2);
-                    assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
-                }
-            );
+        public void testAbsoluteZeroBoundaryForSetter() {
+                temperature.setCelsius(new BigDecimal("-273.15"));
+                assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
+
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> temperature.setCelsius(new BigDecimal("-273.16"))
+                );
+                assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
         }
 
         @Test
