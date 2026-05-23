@@ -43,6 +43,24 @@ public class TemperatureTest {
         public void testScaleFactorGetter() {
             assertEquals(2, temperature.getScaleFactor());
         }
+
+        @Test
+        public void testSetterAppliesScaleFactorRoundUp() {
+            Temperature temperature = new Temperature(new BigDecimal("12.123"), 3);
+
+            temperature.setCelsius(new BigDecimal("12.3455"));
+
+            assertEquals(new BigDecimal("12.346"), temperature.getCelsius());
+        }
+
+        @Test
+        public void testSetterAppliesScaleFactorRoundDown() {
+            Temperature temperature = new Temperature(new BigDecimal("12.123"), 3);
+
+            temperature.setCelsius(new BigDecimal("12.3454"));
+
+            assertEquals(new BigDecimal("12.345"), temperature.getCelsius());
+        }
     }
 
     @Nested
