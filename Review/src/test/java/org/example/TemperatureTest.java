@@ -33,19 +33,14 @@ public class TemperatureTest {
 
         @Test
         public void testTemperatureGetter() {
-            assertEquals(
-                new BigDecimal("12.34"),
-                temperature.getCelsius()
-            );
+            assertEquals(new BigDecimal("12.34"), temperature.getCelsius());
         }
 
         @Test
         public void testTemperatureSetter() {
             temperature.setCelsius(new BigDecimal("45.67"));
-            assertEquals(
-                new BigDecimal("45.67"),
-                temperature.getCelsius()
-            );
+
+            assertEquals(new BigDecimal("45.67"), temperature.getCelsius());
         }
 
         @Test
@@ -76,10 +71,8 @@ public class TemperatureTest {
             String temperatureValue, int scaleFactor, String expected
         ) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
-            assertEquals(
-                new BigDecimal(expected),
-                temperature.convertToFahrenheit()
-            );
+
+            assertEquals(new BigDecimal(expected), temperature.convertToFahrenheit());
         }
     }
 
@@ -89,19 +82,14 @@ public class TemperatureTest {
 
         @Test
         public void testConvertPositiveCelsiusToKelvin() {
-            assertEquals(
-                new BigDecimal("285.49"),
-                temperature.convertToKelvin()
-            );
+            assertEquals(new BigDecimal("285.49"), temperature.convertToKelvin());
         }
 
         @Test
         public void testConvertNegativeCelsiusToKelvin() {
             temperature.setCelsius(new BigDecimal("-123.45"));
-            assertEquals(
-                new BigDecimal("149.70"),
-                temperature.convertToKelvin()
-            );
+
+            assertEquals(new BigDecimal("149.70"), temperature.convertToKelvin());
         }
     }
 
@@ -112,6 +100,7 @@ public class TemperatureTest {
         @Test
         public void testAbsoluteZeroBoundaryForSetter() {
             temperature.setCelsius(ABSOLUTE_ZERO);
+
             assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
@@ -124,15 +113,13 @@ public class TemperatureTest {
                 () -> temperature.setCelsius(ABSOLUTE_ZERO.add(new BigDecimal("-0.01")))
             );
 
-            assertEquals(
-                new BigDecimal("25.00"),
-                temperature.getCelsius()
-            );
+            assertEquals(new BigDecimal("25.00"), temperature.getCelsius());
         }
 
         @Test
         public void testAbsoluteZeroBoundaryForCreatingTemperatureObject() {
             temperature = new Temperature(ABSOLUTE_ZERO, 2);
+
             assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
@@ -174,7 +161,6 @@ public class TemperatureTest {
             temperature = new Temperature(new BigDecimal(ORIGINAL_TEMPERATURE), 3);
 
             assertEquals(new BigDecimal(ORIGINAL_TEMPERATURE.concat("0")), temperature.getCelsius());
-
             assertEquals(3, temperature.getScaleFactor());
         }
     }
@@ -236,16 +222,19 @@ public class TemperatureTest {
             assertAll("Freezing and boiling points in Fahrenheit and Kelvin",
                 () -> {
                     temperature = new Temperature(new BigDecimal("0.00"), 2);
+
                     assertEquals(new BigDecimal("32.00"), temperature.convertToFahrenheit());
                     assertEquals(new BigDecimal("273.15"), temperature.convertToKelvin());
                 },
                 () -> {
                     temperature = new Temperature(new BigDecimal("100.00"), 2);
+
                     assertEquals(new BigDecimal("212.00"), temperature.convertToFahrenheit());
                     assertEquals(new BigDecimal("373.15"), temperature.convertToKelvin());
                 },
                 () -> {
                     temperature = new Temperature(new BigDecimal("-40.00"), 2);
+
                     assertEquals(new BigDecimal("-40.00"), temperature.convertToFahrenheit());
                 }
             );
