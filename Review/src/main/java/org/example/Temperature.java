@@ -28,6 +28,8 @@ public class Temperature {
 
     private static final int MAX_SCALE_FACTOR = 4;
 
+    private static final int DEFAULT_SCALE_FACTOR = 2;
+
     private static final String TEMPERATURE_VALUE_TOO_LOW =
             "Upon conversion to Kelvin, entered temperature is below absolute zero.";
 
@@ -77,13 +79,13 @@ public class Temperature {
      * conversion results.</p>
      *
      * @param celsius the initial Celsius temperature
-     * @param scaling the number of decimal places to use when rounding
+     * @param scaleFactor the number of decimal places to use when rounding
      * @throws IllegalArgumentException if {@code celsius} is null, below absolute
      *         zero, or if {@code scaling} is negative or greater than the maximum
      *         allowed scale
      */
-    public Temperature(BigDecimal celsius, int scaling) {
-        scaleFactor = this.validateScaleFactor(scaling);
+    public Temperature(BigDecimal celsius, int scaleFactor) {
+        this.scaleFactor = this.validateScaleFactor(scaleFactor);
         BigDecimal validTemperature = this.validateCelsius(celsius);
 
         this.celsius = NumberUtils.setScale(
@@ -100,14 +102,14 @@ public class Temperature {
      * @throws IllegalArgumentException if {@code celsius} is null or below absolute zero
      */
     public Temperature(BigDecimal celsius) {
-        this(celsius, 2);
+        this(celsius, DEFAULT_SCALE_FACTOR);
     }
 
     /**
      * Creates a temperature of 0.00 degrees Celsius with a default scale factor of 2.
      */
     public Temperature() {
-        this(ZERO, 2);
+        this(ZERO, DEFAULT_SCALE_FACTOR);
     }
 
     /**
