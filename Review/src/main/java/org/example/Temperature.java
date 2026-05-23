@@ -24,8 +24,6 @@ public class Temperature {
 
     private static final BigDecimal ZERO = new BigDecimal("0.00");
 
-    private BigDecimal celsius = ZERO;
-
     private static final int MAX_SCALE_FACTOR = 4;
 
     private static final int DEFAULT_SCALE_FACTOR = 2;
@@ -41,6 +39,8 @@ public class Temperature {
 
     private static final String SCALE_FACTOR_VALUE_TOO_LARGE =
             "Scale factor is too large, keep to four decimals or less";
+
+    private BigDecimal celsius = ZERO;
 
     private final int scaleFactor;
 

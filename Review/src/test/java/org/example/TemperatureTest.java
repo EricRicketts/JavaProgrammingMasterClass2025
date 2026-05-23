@@ -203,7 +203,7 @@ public class TemperatureTest {
     @DisplayName("test different scale factors")
     class TestScaleFactorsForTemperature {
 
-        private final int MAX_SCALE_FACTOR = 4;
+        private static final int MAX_SCALE_FACTOR = 4;
 
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
@@ -223,7 +223,7 @@ public class TemperatureTest {
             String temperatureValue,
             int scaleFactor,
             String result
-            ) {
+       ) {
             Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
             assertEquals(new BigDecimal(result), temperature.getCelsius());
