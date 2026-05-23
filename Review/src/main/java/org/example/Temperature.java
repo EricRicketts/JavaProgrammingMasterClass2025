@@ -81,7 +81,7 @@ public class Temperature {
      * @param celsius the initial Celsius temperature
      * @param scaleFactor the number of decimal places to use when rounding
      * @throws IllegalArgumentException if {@code celsius} is null, below absolute
-     *         zero, or if {@code scaling} is negative or greater than the maximum
+     *         zero, or if {@code scaleFactor} is negative or greater than the maximum
      *         allowed scale
      */
     public Temperature(BigDecimal celsius, int scaleFactor) {
@@ -90,7 +90,7 @@ public class Temperature {
 
         this.celsius = NumberUtils.setScale(
             validTemperature,
-            scaleFactor
+            this.scaleFactor
         );
     }
 
