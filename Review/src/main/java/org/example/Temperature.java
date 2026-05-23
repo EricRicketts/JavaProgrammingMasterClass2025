@@ -5,7 +5,12 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 /**
- * Stores a Celsius temperature, provides conversion to Kelvin and Fahrenheit.
+ * Represents a temperature stored in degrees Celsius.
+ *
+ * <p>The temperature can be converted to Fahrenheit or Kelvin. Values below
+ * absolute zero are not allowed. Temperature values and conversion results are
+ * rounded using the object's scale factor.</p>
+ *
  * @author Eric Ricketts
  * @version 1.0-SNAPSHOT
  */
@@ -37,6 +42,12 @@ public class Temperature {
 
     private final int scaleFactor;
 
+    /**
+     * Converts the stored Celsius temperature to Fahrenheit.
+     *
+     * @return the Fahrenheit equivalent of the stored Celsius temperature, rounded
+     *         using this object's scale factor
+     */
     public BigDecimal convertToFahrenheit() {
         BigDecimal rawConversion = this.getCelsius()
             .multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
@@ -45,6 +56,12 @@ public class Temperature {
         return NumberUtils.setScale(rawConversion, scaleFactor);
     }
 
+    /**
+     * Converts the stored Celsius temperature to Kelvin.
+     *
+     * @return the Kelvin equivalent of the stored Celsius temperature, rounded
+     *         using this object's scale factor
+     */
     public BigDecimal convertToKelvin() {
         BigDecimal rawConversion = this.getCelsius()
             .add(CONVERSION_TO_KELVIN_ADDEND);
@@ -53,11 +70,17 @@ public class Temperature {
     }
 
     /**
-     * a referenced constructor in a constructor chaining
-     * scale factor is checked for negative values, and for excessive decimal accuracy
-     * temperature value is checked for null and below absolute zero values
-     * @param celsius stored temperature
-     * @param scaling stored scaling value
+     * Creates a temperature with the specified Celsius value and scale factor.
+     *
+     * <p>The Celsius value is rounded using the provided scale factor. The scale
+     * factor determines the number of decimal places used for stored values and
+     * conversion results.</p>
+     *
+     * @param celsius the initial Celsius temperature
+     * @param scaling the number of decimal places to use when rounding
+     * @throws IllegalArgumentException if {@code celsius} is null, below absolute
+     *         zero, or if {@code scaling} is negative or greater than the maximum
+     *         allowed scale
      */
     public Temperature(BigDecimal celsius, int scaling) {
         scaleFactor = this.validateScaleFactor(scaling);
@@ -69,30 +92,60 @@ public class Temperature {
         );
     }
 
+    /**
+     * Creates a temperature with the specified Celsius value and a default scale
+     * factor of 2.
+     *
+     * @param celsius the initial Celsius temperature
+     * @throws IllegalArgumentException if {@code celsius} is null or below absolute zero
+     */
     public Temperature(BigDecimal celsius) {
         this(celsius, 2);
     }
 
+    /**
+     * Creates a temperature of 0.00 degrees Celsius with a default scale factor of 2.
+     */
     public Temperature() {
         this(ZERO, 2);
     }
 
+    /**
+     * Returns the stored Celsius temperature.
+     *
+     * @return the current Celsius temperature
+     */
     public BigDecimal getCelsius() {
         return celsius;
     }
 
+    /**
+     * Sets the stored Celsius temperature.
+     *
+     * <p>The new value is rounded using this object's scale factor.</p>
+     *
+     * @param celsius the new Celsius temperature
+     * @throws IllegalArgumentException if {@code celsius} is null or below absolute zero
+     */
     public void setCelsius(BigDecimal celsius) {
         this.celsius = this.scaleValidatedCelsius(celsius);
     }
 
+    /**
+     * Returns the scale factor used for rounding stored values and conversion results.
+     *
+     * @return the number of decimal places used for rounding
+     */
     public int getScaleFactor() {
         return scaleFactor;
     }
 
     /**
-     * Celsius temperature is first checked for null value and then checked if it is under absolute zero
-     * @param celsius - proposed temperature for the object
-     * @return a valid temperature, if the temperature is invalid, an exception is thrown
+     * Validates that a Celsius temperature is not null and is not below absolute zero.
+     *
+     * @param celsius the Celsius temperature to validate
+     * @return the validated Celsius temperature
+     * @throws IllegalArgumentException if {@code celsius} is null or below absolute zero
      */
     private BigDecimal validateCelsius(BigDecimal celsius) {
         if (Objects.isNull(celsius)) {
@@ -105,9 +158,11 @@ public class Temperature {
     }
 
     /**
-     * input temperature is first validated and then returned after applying the object's scale factor
-     * @param celsius - Celsius temperature to be validated and scaled
-     * @return Scaled and validated temperature
+     * Validates and rounds a Celsius temperature using this object's scale factor.
+     *
+     * @param celsius the Celsius temperature to validate and round
+     * @return the validated and rounded Celsius temperature
+     * @throws IllegalArgumentException if {@code celsius} is null or below absolute zero
      */
     private BigDecimal scaleValidatedCelsius(BigDecimal celsius) {
         return NumberUtils.setScale(
@@ -117,9 +172,12 @@ public class Temperature {
     }
 
     /**
-     * checks that the scale factor is not negative and within the accuracy bounds
-     * @param scaleFactor - proposed decimal accuracy for the object
-     * @return validated decimal accuracy for use by the object
+     * Validates that a scale factor is within the allowed range.
+     *
+     * @param scaleFactor the scale factor to validate
+     * @return the validated scale factor
+     * @throws IllegalArgumentException if {@code scaleFactor} is negative or greater
+     *         than the maximum allowed scale
      */
     private int validateScaleFactor(int scaleFactor) {
         if (scaleFactor < 0) {
