@@ -169,7 +169,9 @@ public class TemperatureTest {
 
         @ParameterizedTest
         @CsvSource({"87.65, 0, 88", "87.45, 0, 87", "87.65, 1, 87.7", "87.64, 1, 87.6"})
-        public void testScaleFactorsZeroAndOne (String temperatureValue, int scaleFactor, String result) {
+        public void testConstructorsRoundCelsiusToZeroAndOneDecimalPlaces (
+            String temperatureValue, int scaleFactor, String result
+        ) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
             assertEquals(new BigDecimal(result), temperature.getCelsius());
@@ -177,7 +179,7 @@ public class TemperatureTest {
 
         @ParameterizedTest
         @CsvSource({"34.455, 2, 34.46", "34.454, 2, 34.45", "87.7475, 3, 87.748", "87.7474, 3, 87.747"})
-        public void testScaleFactorsTwoAndThree (String temperatureValue, int scaleFactor, String result) {
+        public void testConstructorRoundsCelsiusToTwoAndThreeDecimalPlaces (String temperatureValue, int scaleFactor, String result) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
             assertEquals(new BigDecimal(result), temperature.getCelsius());
@@ -185,7 +187,7 @@ public class TemperatureTest {
 
         @ParameterizedTest
         @CsvSource({"12.34565, 4, 12.3457", "12.34564, 4, 12.3456"})
-        public void testScaleFactorFour(String temperatureValue, int scaleFactor, String result) {
+        public void testConstructorRoundsCelsiusToFourDecimalPlaces(String temperatureValue, int scaleFactor, String result) {
             temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
             assertEquals(new BigDecimal(result), temperature.getCelsius());
@@ -193,7 +195,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testScaleFactorsNegative() {
+        public void testConstructorDecimalPlacesRoundingNumberIsNegative() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(new BigDecimal("23.45"), -1)
@@ -201,7 +203,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testScaleFactorTooLarge() {
+        public void testConstructorDecimalPlacesRoundingNumberExceedsLimit() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(new BigDecimal("23.45"), MAX_SCALE_FACTOR + 1)
