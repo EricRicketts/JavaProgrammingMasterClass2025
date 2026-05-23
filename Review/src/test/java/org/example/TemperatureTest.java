@@ -87,6 +87,24 @@ public class TemperatureTest {
 
             assertEquals(new BigDecimal("149.70"), temperature.convertToKelvin());
         }
+
+        @ParameterizedTest
+        @CsvSource({
+            "0.00, 0, 273",
+            "0.00, 1, 273.2",
+            "0.00, 2, 273.15",
+            "0.00, 3, 273.150",
+            "0.00, 4, 273.1500"
+        })
+        public void testConvertToKelvinWithDifferentScaleFactors(
+            String temperatureValue,
+            int scaleFactor,
+            String expected
+        ) {
+            Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
+
+            assertEquals(new BigDecimal(expected), temperature.convertToKelvin());
+        }
     }
 
     @Nested
