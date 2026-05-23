@@ -132,6 +132,20 @@ public class TemperatureTest {
                     temperature.getCelsius()
                 );
         }
+
+        @Test
+        public void testAbsoluteZeroBoundaryForCreatingTemperatureObject() {
+            temperature = new Temperature(ABSOLUTE_ZERO, 2);
+            assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
+        }
+
+        @Test
+        public void testBelowAbsoluteZeroForCreatingTemperatureObjectResultsInException() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Temperature((ABSOLUTE_ZERO.add(new BigDecimal("-0.01"))), 2)
+            );
+        }
     }
 
     @Nested
