@@ -54,8 +54,8 @@ public class Temperature {
 
     /**
      * a referenced constructor in a constructor chaining
-     * scale factor is checked for negative values, and for excessive accuracy
-     * temperature value is checked for null values and below absolute zero
+     * scale factor is checked for negative values, and for excessive decimal accuracy
+     * temperature value is checked for null and below absolute zero values
      * @param celsius stored temperature
      * @param scaling stored scaling value
      */
@@ -107,7 +107,7 @@ public class Temperature {
     /**
      * input temperature is first validated and then returned after applying the object's scale factor
      * @param celsius - Celsius temperature to be validated and scaled
-     * @return Validated temperature with scaling
+     * @return Scaled and validated temperature
      */
     private BigDecimal scaleValidatedCelsius(BigDecimal celsius) {
         return NumberUtils.setScale(
