@@ -246,7 +246,7 @@ public class TemperatureTest {
     class TestNullValuesInSettersAndConstructors {
 
         @Test
-        public void testNullValueInSetterDoesNotChangeOriginalTemperature() {
+        public void testTemperatureSetterRejectsNullValueAndKeepsOriginalTemperature() {
             BigDecimal originalTemperature = temperature.getCelsius();
 
             assertThrows(
@@ -258,7 +258,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testNullValuesNotAllowedInOneArgumentConstructor() {
+        public void testTemperatureSingleArgumentConstructorRejectsNullValue() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(null)
@@ -266,7 +266,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testNullValuesNotAllowedInTwoArgumentConstructor() {
+        public void testTemperatureTwoArgumentConstructorRejectsNullValue() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(null, 2)
