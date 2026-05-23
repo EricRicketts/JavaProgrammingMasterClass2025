@@ -116,27 +116,21 @@ public class TemperatureTest {
         public void testAbsoluteZeroBoundaryForSetter() {
                 temperature.setCelsius(ABSOLUTE_ZERO);
                 assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
-
-                assertThrows(
-                    IllegalArgumentException.class,
-                    () -> temperature.setCelsius(new BigDecimal("-273.16"))
-                );
-                assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
         @Test
         public void testBelowAbsoluteZeroSetterDoesNotChangeExistingTemperature() {
-            BigDecimal originalTemperature = temperature.getCelsius();
-            assertAll("Under absolute zero is not allowed",
-                () -> assertThrows(
+            temperature.setCelsius(new BigDecimal("25.00"));
+
+                 assertThrows(
                         IllegalArgumentException.class,
-                        () -> temperature.setCelsius(new BigDecimal("-273.16"))
-                    ),
-                () -> assertEquals(
-                        originalTemperature,
-                        temperature.getCelsius()
-                )
-           );
+                        () -> temperature.setCelsius(ABSOLUTE_ZERO.add(new BigDecimal("-0.01")))
+                    );
+
+                assertEquals(
+                    new BigDecimal("25.00"),
+                    temperature.getCelsius()
+                );
         }
     }
 
