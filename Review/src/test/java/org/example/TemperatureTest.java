@@ -17,6 +17,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class TemperatureTest {
 
+    private static final BigDecimal ABSOLUTE_ZERO = new BigDecimal("-273.15");
+
     private Temperature temperature;
 
     @BeforeEach
@@ -112,18 +114,18 @@ public class TemperatureTest {
 
         @Test
         public void testAbsoluteZeroBoundaryForSetter() {
-                temperature.setCelsius(new BigDecimal("-273.15"));
-                assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
+                temperature.setCelsius(ABSOLUTE_ZERO);
+                assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
 
                 assertThrows(
                     IllegalArgumentException.class,
                     () -> temperature.setCelsius(new BigDecimal("-273.16"))
                 );
-                assertEquals(new BigDecimal("-273.15"), temperature.getCelsius());
+                assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
         @Test
-        public void testBelowAbsoluteZeroForSetterAndConstructor() {
+        public void testBelowAbsoluteZeroSetterDoesNotChangeExistingTemperature() {
             BigDecimal originalTemperature = temperature.getCelsius();
             assertAll("Under absolute zero is not allowed",
                 () -> assertThrows(
