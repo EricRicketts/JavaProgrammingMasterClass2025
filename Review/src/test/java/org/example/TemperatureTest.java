@@ -130,36 +130,37 @@ public class TemperatureTest {
     class TestAbsoluteZeroBoundary {
 
         @Test
-        public void testAbsoluteZeroBoundaryForSetter() {
+        public void testAbsoluteZeroSetter() {
             temperature.setCelsius(ABSOLUTE_ZERO);
 
             assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
         @Test
-        public void testBelowAbsoluteZeroSetterDoesNotChangeExistingTemperature() {
-            temperature.setCelsius(new BigDecimal("25.00"));
+        public void testSetterRejectsTemperatureBelowAbsoluteZeroAndKeepsPreviousValue() {
+            BigDecimal originalTemperature = new BigDecimal("25.00");
+            temperature.setCelsius(originalTemperature);
 
             assertThrows(
                 IllegalArgumentException.class,
-                () -> temperature.setCelsius(ABSOLUTE_ZERO.add(new BigDecimal("-0.01")))
+                () -> temperature.setCelsius(ABSOLUTE_ZERO.subtract(new BigDecimal("0.01")))
             );
 
-            assertEquals(new BigDecimal("25.00"), temperature.getCelsius());
+            assertEquals(originalTemperature, temperature.getCelsius());
         }
 
         @Test
-        public void testAbsoluteZeroBoundaryForCreatingTemperatureObject() {
+        public void testConstructorAcceptsAbsoluteZero() {
             temperature = new Temperature(ABSOLUTE_ZERO, 2);
 
             assertEquals(ABSOLUTE_ZERO, temperature.getCelsius());
         }
 
         @Test
-        public void testBelowAbsoluteZeroForCreatingTemperatureObjectResultsInException() {
+        public void testConstructorRejectsTemperatureBelowAbsoluteZero() {
             assertThrows(
                 IllegalArgumentException.class,
-                () -> new Temperature((ABSOLUTE_ZERO.add(new BigDecimal("-0.01"))), 2)
+                () -> new Temperature((ABSOLUTE_ZERO.subtract(new BigDecimal("0.01"))), 2)
             );
         }
     }
