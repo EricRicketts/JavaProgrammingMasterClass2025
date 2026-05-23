@@ -231,7 +231,7 @@ public class TemperatureTest {
             Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 
             assertEquals(new BigDecimal(result), temperature.getCelsius());
-        }
+       }
 
         @ParameterizedTest
         @CsvSource({"12.34565, 4, 12.3457", "12.34564, 4, 12.3456"})
@@ -251,7 +251,7 @@ public class TemperatureTest {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Temperature(new BigDecimal("23.45"), -1)
-           );
+            );
         }
 
         @Test
