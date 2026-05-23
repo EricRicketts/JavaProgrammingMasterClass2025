@@ -38,15 +38,17 @@ public class Temperature {
     private final int scaleFactor;
 
     public BigDecimal convertToFahrenheit() {
-            BigDecimal rawConversion = this.getCelsius()
-                .multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
-                .add(CONVERSION_TO_FAHRENHEIT_ADDEND);
+        BigDecimal rawConversion = this.getCelsius()
+            .multiply(CONVERSION_TO_FAHRENHEIT_MULTIPLIER)
+            .add(CONVERSION_TO_FAHRENHEIT_ADDEND);
 
-            return NumberUtils.setScale(rawConversion, scaleFactor);
+        return NumberUtils.setScale(rawConversion, scaleFactor);
     }
 
     public BigDecimal convertToKelvin() {
-        BigDecimal rawConversion = this.getCelsius().add(CONVERSION_TO_KELVIN_ADDEND);
+        BigDecimal rawConversion = this.getCelsius()
+            .add(CONVERSION_TO_KELVIN_ADDEND);
+
         return NumberUtils.setScale(rawConversion, getScaleFactor());
     }
 
@@ -60,9 +62,10 @@ public class Temperature {
     public Temperature(BigDecimal celsius, int scaling) {
         scaleFactor = this.validateScaleFactor(scaling);
         BigDecimal validTemperature = this.validateCelsius(celsius);
+
         this.celsius = NumberUtils.setScale(
-                validTemperature,
-                scaleFactor
+            validTemperature,
+            scaleFactor
         );
     }
 
@@ -108,8 +111,8 @@ public class Temperature {
      */
     private BigDecimal scaleValidatedCelsius(BigDecimal celsius) {
         return NumberUtils.setScale(
-                this.validateCelsius(celsius),
-                scaleFactor
+            this.validateCelsius(celsius),
+            scaleFactor
         );
     }
 
