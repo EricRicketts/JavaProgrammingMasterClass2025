@@ -145,7 +145,7 @@ public class TemperatureTest {
         }
 
         @Test
-        public void testSingleArgumentConstructor() {
+        public void testOneArgumentConstructor() {
             temperature = new Temperature(new BigDecimal(ORIGINAL_TEMPERATURE));
 
             assertEquals(new BigDecimal(ORIGINAL_TEMPERATURE), temperature.getCelsius());
