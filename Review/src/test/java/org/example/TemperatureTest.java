@@ -152,24 +152,28 @@ public class TemperatureTest {
     @DisplayName("zero, one and two argument constructor tests")
     class TestTemperatureConstructors {
 
+        private static final BigDecimal ZERO = new BigDecimal("0.00");
+
+        private static final String originalTemperature = "67.98";
+
         @Test
         public void testNoArgumentConstructor() {
             temperature = new Temperature();
-            assertEquals(new BigDecimal("0.00"), temperature.getCelsius());
+            assertEquals(ZERO, temperature.getCelsius());
             assertEquals(2, temperature.getScaleFactor());
         }
 
         @Test
         public void testSingleArgumentConstructor() {
-            temperature = new Temperature(new BigDecimal("98.76"));
-            assertEquals(new BigDecimal("98.76"), temperature.getCelsius());
+            temperature = new Temperature(new BigDecimal(originalTemperature));
+            assertEquals(new BigDecimal(originalTemperature), temperature.getCelsius());
             assertEquals(2, temperature.getScaleFactor());
         }
 
         @Test
         public void testTwoArgumentConstructor() {
-            temperature = new Temperature(new BigDecimal("67.89"), 3);
-            assertEquals(new BigDecimal("67.890"), temperature.getCelsius());
+            temperature = new Temperature(new BigDecimal(originalTemperature), 3);
+            assertEquals(new BigDecimal(originalTemperature.concat("0")), temperature.getCelsius());
             assertEquals(3, temperature.getScaleFactor());
         }
     }

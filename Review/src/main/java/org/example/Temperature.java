@@ -17,7 +17,9 @@ public class Temperature {
 
     private static final BigDecimal CONVERSION_TO_KELVIN_ADDEND = new BigDecimal("273.15");
 
-    private BigDecimal celsius = new BigDecimal("0.00");
+    private static final BigDecimal ZERO = new BigDecimal("0.00");
+
+    private BigDecimal celsius = ZERO;
 
     private static final int MAX_SCALE_FACTOR = 4;
 
@@ -69,7 +71,7 @@ public class Temperature {
     }
 
     public Temperature() {
-        this(new BigDecimal("0.00"), 2);
+        this(ZERO, 2);
     }
 
     public BigDecimal getCelsius() {
@@ -92,7 +94,7 @@ public class Temperature {
     private BigDecimal validateCelsius(BigDecimal celsius) {
         if (Objects.isNull(celsius)) {
             throw new IllegalArgumentException(NULL_VALUE_NOT_ALLOWED);
-        } else if (celsius.add(CONVERSION_TO_KELVIN_ADDEND).compareTo(new BigDecimal("0.00")) < 0) {
+        } else if (celsius.add(CONVERSION_TO_KELVIN_ADDEND).compareTo(ZERO) < 0) {
             throw new IllegalArgumentException(TEMPERATURE_VALUE_TOO_LOW);
         } else {
             return celsius;
