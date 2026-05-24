@@ -24,13 +24,15 @@ The class has a focused purpose:
 Represent a Celsius temperature, validate it, and convert it to Fahrenheit or Kelvin.
 This is a good example of a class with a clear single responsibility.
 ### 2. Good encapsulation
-The internal state is private:``` java
+The internal state is private:
+```java
 private BigDecimal celsius = ZERO;
 
 private final int scaleFactor;
 ```
 
-The validation logic is also hidden behind private helper methods:``` java
+The validation logic is also hidden behind private helper methods:
+```java
 private BigDecimal validateCelsius(BigDecimal celsius)
 private BigDecimal scaleValidatedCelsius(BigDecimal celsius)
 private int validateScaleFactor(int scaleFactor)
@@ -39,7 +41,8 @@ private int validateScaleFactor(int scaleFactor)
 That means outside code cannot directly bypass your validation rules. This is exactly what encapsulation is supposed to accomplish.
  
 3. Good use of constants
-You use named constants for meaningful values:``` java
+You use named constants for meaningful values:
+```java
 private static final BigDecimal CONVERSION_TO_KELVIN_ADDEND = new BigDecimal("273.15");
 
 private static final int MAX_SCALE_FACTOR = 4;
@@ -50,7 +53,8 @@ private static final int DEFAULT_SCALE_FACTOR = 2;
 This makes the code more readable and maintainable than scattering raw numeric values throughout the class.
  
 4. Constructor chaining is correct
-The simpler constructors correctly delegate to the primary constructor:``` java
+The simpler constructors correctly delegate to the primary constructor:
+```java
 public Temperature(BigDecimal celsius) {
     this(celsius, DEFAULT_SCALE_FACTOR);
 }
@@ -63,7 +67,8 @@ public Temperature() {
 This keeps all validation and initialization centralized in one place.
  
 5. Validation before assignment
-The primary constructor validates both the scale factor and Celsius value before storing the temperature:``` java
+The primary constructor validates both the scale factor and Celsius value before storing the temperature:
+```java
 this.scaleFactor = this.validateScaleFactor(scaleFactor);
 BigDecimal validTemperature = this.validateCelsius(celsius);
 
@@ -73,7 +78,8 @@ this.celsius = NumberUtils.setScale(
 );
 ```
 
-The setter also validates before changing state:``` java
+The setter also validates before changing state:
+```java
 this.celsius = this.scaleValidatedCelsius(celsius);
 ```
 
@@ -91,22 +97,26 @@ This is solid documentation for this assignment level.
 Minor Notes for Temperature.java
 These are not required changes, only small observations.
 1. Field initializer is optional
-Because every constructor assigns a value to celsius, this:``` java
+Because every constructor assigns a value to celsius, this:
+```java
 private BigDecimal celsius = ZERO;
 ```
 
-could technically be:``` java
+could technically be:
+```java
 private BigDecimal celsius;
 ```
 
 However, your current version is safe and readable. I would not count this against you.
  
 2. Internal getter use is a style choice
-This is acceptable:``` java
+This is acceptable:
+```java
 return NumberUtils.setScale(rawConversion, getScaleFactor());
 ```
 
-You could also use the field directly:``` java
+You could also use the field directly:
+```java
 return NumberUtils.setScale(rawConversion, scaleFactor);
 ```
 
@@ -139,18 +149,21 @@ preservation of the previous value after invalid setter input.
 That is excellent coverage for a class of this size.
  
 2. Strong boundary testing
-You test both:``` java
+You test both:
+```java
 ABSOLUTE_ZERO
 ```
 
-and a value just below it:``` java
+and a value just below it:
+```java
 ABSOLUTE_ZERO.subtract(new BigDecimal("0.01"))
 ```
 
 That is exactly the right mindset for boundary-value testing.
  
 3. Good state-preservation tests
-This test is especially strong:``` java
+This test is especially strong:
+```java
 @Test
 public void testSetterRejectsTemperatureBelowAbsoluteZeroAndKeepsPreviousValue() {
     BigDecimal originalTemperature = new BigDecimal("25.00");
@@ -169,7 +182,8 @@ This verifies not only that invalid input is rejected, but also that the existin
 That is excellent testing practice.
  
 4. Good use of parameterized tests
-Your parameterized tests reduce duplication and make scale-factor behavior easy to verify:``` java
+Your parameterized tests reduce duplication and make scale-factor behavior easy to verify:
+```java
 @ParameterizedTest
 @CsvSource({"34.455, 2, 34.46", "34.454, 2, 34.45", "87.7475, 3, 87.748", "87.7474, 3, 87.747"})
 public void testConstructorRoundsCelsiusToTwoAndThreeDecimalPlaces(
@@ -187,7 +201,8 @@ That is a more mature testing approach.
  
 6. Formatting is now clean
 The previously discussed indentation issue in testConstructorRoundsCelsiusToTwoAndThreeDecimalPlaces is now fixed.
-This block is now correctly aligned inside the nested class:``` java
+This block is now correctly aligned inside the nested class:
+```java
 @ParameterizedTest
 @CsvSource({"34.455, 2, 34.46", "34.454, 2, 34.45", "87.7475, 3, 87.748", "87.7474, 3, 87.747"})
 public void testConstructorRoundsCelsiusToTwoAndThreeDecimalPlaces(
@@ -206,7 +221,8 @@ Good cleanup.
 Minor Notes for TemperatureTest.java
 These are very small style comments only.
 1. Some local variable names are still generic
-In a few parameterized tests you use:``` java
+In a few parameterized tests you use:
+```java
 Temperature temperature = new Temperature(new BigDecimal(temperatureValue), scaleFactor);
 ```
 
