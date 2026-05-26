@@ -5,6 +5,12 @@ import java.util.List;
 
 public class Playlist {
 
+    private static final String TRACK_NUMBER_TOO_LARGE =
+        "The requested track number exceeds the number of songs in the play list.";
+
+    private static final String TRACK_NUMBER_TOO_LOW =
+        "The requested track number is equal to or less than zero.";
+
     private final List<Song> songs;
 
     public Playlist() {
@@ -20,7 +26,13 @@ public class Playlist {
     }
 
     public void removeSong(int trackNumber) {
-        this.songs.remove(trackNumber - 1);
+        if (trackNumber <= 0) {
+            throw new IndexOutOfBoundsException(TRACK_NUMBER_TOO_LOW);
+        } else if (trackNumber > this.numberOfSongs()) {
+            throw new IndexOutOfBoundsException(TRACK_NUMBER_TOO_LARGE);
+        } else {
+            this.songs.remove(trackNumber - 1);
+        }
     }
 
 }

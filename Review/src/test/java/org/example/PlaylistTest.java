@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlaylistTest {
 
@@ -54,5 +55,13 @@ public class PlaylistTest {
         playlist.removeSong(2);
 
         assertEquals(2, playlist.numberOfSongs());
+    }
+
+    @Test
+    public void testRemoveSongByTrackNumberTooLarge() {
+        assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> playlist.removeSong(4)
+        );
     }
 }
