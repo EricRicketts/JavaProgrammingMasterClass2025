@@ -5,5 +5,19 @@ import java.util.List;
 
 public class Playlist {
 
-    private List<String> songList = new ArrayList<>();
+    private final List<Song> songs;
+
+    public Playlist() {
+        this.songs = new ArrayList<>();
+    }
+
+    public void addSong(Song song) {
+        this.songs.add(song);
+    }
+
+    public int numberOfSongs() {
+        return this.songs.size();
+    }
+
+
 }
