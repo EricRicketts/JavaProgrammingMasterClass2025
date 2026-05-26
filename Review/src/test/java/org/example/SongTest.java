@@ -18,4 +18,9 @@ public class SongTest {
     public void testGetSongTitle() {
         assertEquals("The Chain", song.getTitle());
     }
+
+    @Test
+    public void testGetSongAlbum() {
+        assertEquals("Rumours", song.getAlbum());
+    }
 }
