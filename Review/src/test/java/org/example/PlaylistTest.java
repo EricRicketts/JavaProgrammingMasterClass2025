@@ -7,6 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlaylistTest {
 
+    private static final String SONG_REMOVED =
+        " successfully removed.";
+
+    private static final String SONG_NOT_FOUND =
+        " not found.";
+
     private int INITIAL_NUMBER_OF_SONGS;
 
     private final Playlist playlist = new Playlist();
@@ -98,7 +104,7 @@ public class PlaylistTest {
         String title = playlist.getSong(2).getTitle();
 
         assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-        assertEquals(title.concat(" successfully removed."), playlist.removeSong(title));
+        assertEquals(title.concat(SONG_REMOVED), playlist.removeSong(title));
 
         assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
         for (int index = 0; index < this.playlist.numberOfSongs(); index++) {
@@ -115,7 +121,7 @@ public class PlaylistTest {
         assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         String title = "You Make Loving Fun";
 
-        assertEquals("You Make Loving Fun not found.", playlist.removeSong(title));
+        assertEquals(title.concat(SONG_NOT_FOUND), playlist.removeSong(title));
         assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
     }
 }
