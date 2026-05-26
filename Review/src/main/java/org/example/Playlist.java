@@ -15,7 +15,7 @@ public class Playlist {
         " successfully removed.";
 
     private static final String SONG_NOT_FOUND =
-        " not found";
+        " not found.";
 
     private final List<Song> songs;
 

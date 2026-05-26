@@ -100,7 +100,7 @@ public class PlaylistTest {
         assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         assertEquals(title.concat(" successfully removed."), playlist.removeSong(title));
 
-        assertEquals(2, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
         for (int index = 0; index < this.playlist.numberOfSongs(); index++) {
             if (this.playlist.getSong(index + 1).getTitle().equals(title)) {
                 found = true;
@@ -110,4 +110,12 @@ public class PlaylistTest {
         assertFalse(found);
     }
 
+    @Test
+    public void testRemoveSongByTitleSongNotFound() {
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+        String title = "You Make Loving Fun";
+
+        assertEquals("You Make Loving Fun not found.", playlist.removeSong(title));
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+    }
 }
