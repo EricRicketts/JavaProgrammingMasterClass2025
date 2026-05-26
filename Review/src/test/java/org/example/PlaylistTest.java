@@ -58,10 +58,13 @@ public class PlaylistTest {
 
     @Test
     public void testRemoveSongByTrackNumberTooLarge() {
+        assertEquals(3, playlist.numberOfSongs());
         assertThrows(
             IndexOutOfBoundsException.class,
             () -> playlist.removeSong(4)
         );
+
+       assertEquals(3, playlist.numberOfSongs());
     }
 
     @Test
@@ -81,4 +84,5 @@ public class PlaylistTest {
         }
         assertFalse(found);
     }
+
 }
