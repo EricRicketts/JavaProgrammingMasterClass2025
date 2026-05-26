@@ -36,13 +36,8 @@ public class Playlist {
     }
 
     public void removeSong(int trackNumber) {
-        if (trackNumber <= 0) {
-            throw new IndexOutOfBoundsException(TRACK_NUMBER_TOO_LOW);
-        } else if (trackNumber > this.numberOfSongs()) {
-            throw new IndexOutOfBoundsException(TRACK_NUMBER_TOO_LARGE);
-        } else {
-            this.songs.remove(trackNumber - 1);
-        }
+        int validTrackNumber = this.validateTrackNumber(trackNumber);
+        this.songs.remove(validTrackNumber - 1);
     }
 
     public String removeSong(String title) {
@@ -62,6 +57,16 @@ public class Playlist {
             }
         }
         return -1;
+    }
+
+    private int validateTrackNumber(int trackNumber) {
+        if (trackNumber <= 0) {
+            throw new IndexOutOfBoundsException(TRACK_NUMBER_TOO_LOW);
+        } else if (trackNumber > this.numberOfSongs()) {
+            throw new IndexOutOfBoundsException(TRACK_NUMBER_TOO_LARGE);
+        } else {
+            return trackNumber;
+        }
     }
 
 }
