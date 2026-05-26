@@ -28,4 +28,9 @@ public class SongTest {
     public void testGetSongArtist() {
         assertEquals("Lindsey Buckingham", song.getArtist());
     }
+
+    @Test
+    public void testGetSongReleaseDate() {
+        assertEquals("February 1977", song.getReleaseDate());
+    }
 }
