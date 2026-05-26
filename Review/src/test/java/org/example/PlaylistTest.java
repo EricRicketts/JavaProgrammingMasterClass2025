@@ -3,12 +3,11 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlaylistTest {
 
-    private Playlist playlist = new Playlist();
+    private final Playlist playlist = new Playlist();
 
     @BeforeEach
     public void setUp() {
@@ -63,5 +62,23 @@ public class PlaylistTest {
             IndexOutOfBoundsException.class,
             () -> playlist.removeSong(4)
         );
+    }
+
+    @Test
+    public void testRemoveSongByTitle() {
+        boolean found = false;
+        String title = playlist.getSong(2).getTitle();
+
+        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(title.concat(" successfully removed."), playlist.removeSong(title));
+
+        assertEquals(2, playlist.numberOfSongs());
+        for (int index = 0; index < this.playlist.numberOfSongs(); index++) {
+            if (this.playlist.getSong(index + 1).getTitle().equals(title)) {
+                found = true;
+                break;
+            }
+        }
+        assertFalse(found);
     }
 }
