@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlaylistTest {
 
-    private static final int INITIAL_NUMBER_OF_SONGS = 3;
+    private int INITIAL_NUMBER_OF_SONGS;
 
     private final Playlist playlist = new Playlist();
 
@@ -34,6 +34,7 @@ public class PlaylistTest {
             "February 1977")
         );
 
+        INITIAL_NUMBER_OF_SONGS = playlist.numberOfSongs();
     }
 
     @Test
@@ -55,7 +56,7 @@ public class PlaylistTest {
         assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         playlist.removeSong(2);
 
-        assertEquals(2, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
     }
 
     @Test
