@@ -993,7 +993,7 @@ I would also raise the design interpretation slightly.
 
 ## Design
 
-** Mark: 9 / 10 ** 
+**Mark: 9 / 10** 
 
 Your design is intentional and domain-aware. The setters are not added randomly; they support realistic state changes.
 

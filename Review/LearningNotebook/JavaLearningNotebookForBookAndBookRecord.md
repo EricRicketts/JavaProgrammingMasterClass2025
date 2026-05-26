@@ -36,11 +36,13 @@ List the main concepts and define them briefly.
 - **Concept 4:**
     - Use `@Override` to clearly identify methods being changed in class or sub-classes.
 - **Concept 5:**
-    - Give as must attention, if not more to naming your test methods as you do to your class and its methods.
+    - Give as much attention, if not more to naming your test methods as you do to your class and its methods.
 - **Concept 6:**
     - Understand the implications of using a `try {} catch{}` block.
         - A `try {} catch {}` block will capture an exception within the `catch` part of the code and there will be no propagation of the exception outside of the method.  This means an exception cannot be asserted on in a test.
         - One way to work around this is to return as string from the method calling the `try {} catch{}` block and assert on the string value.
+        - Tests should focus on behavior, so if invalid data is passed to a method and the method throws an exception, in the test assert that the expected exception type was thrown.
+        - Asserting on the specific exception message thrown is too much of an implementation details, just assert on the type of the exception.
 - **Concept 7:**
     - Having a primary constructor which other constructor variants call is a good design decision.
         - All validation logic is in just one constructor.
@@ -201,7 +203,7 @@ try {
 
 ```Objects.requireNonNull(author)``` does throw a ```NullPointerException``` when ```author``` is ```null```.
 
-But then your ```catch`` block immediately **catches it and swallows it**.
+But then your ```catch``` block immediately **catches it and swallows it**.
 
 So from the test’s point of view, no exception escapes the method, which means:
 
