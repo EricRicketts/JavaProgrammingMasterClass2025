@@ -68,6 +68,17 @@ public class PlaylistTest {
     }
 
     @Test
+    public void testRemoveTrackNumberZero() {
+        assertEquals(3, playlist.numberOfSongs());
+        assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> playlist.removeSong(0)
+        );
+
+        assertEquals(3, playlist.numberOfSongs());
+    }
+
+    @Test
     public void testRemoveSongByTitle() {
         boolean found = false;
         String title = playlist.getSong(2).getTitle();
