@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlaylistTest {
 
+    private static final int INITIAL_NUMBER_OF_SONGS = 3;
+
     private final Playlist playlist = new Playlist();
 
     @BeforeEach
@@ -50,7 +52,7 @@ public class PlaylistTest {
 
     @Test
     public void testRemoveSongByTrackNumber() {
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         playlist.removeSong(2);
 
         assertEquals(2, playlist.numberOfSongs());
@@ -58,35 +60,35 @@ public class PlaylistTest {
 
     @Test
     public void testRemoveSongTrackNumberTooLarge() {
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         assertThrows(
             IndexOutOfBoundsException.class,
             () -> playlist.removeSong(4)
         );
 
-       assertEquals(3, playlist.numberOfSongs());
+       assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
     }
 
     @Test
     public void testRemoveSongTrackNumberZero() {
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         assertThrows(
             IndexOutOfBoundsException.class,
             () -> playlist.removeSong(0)
         );
 
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
     }
 
     @Test
     public void testRemoveSongTrackNumberNegative() {
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         assertThrows(
             IndexOutOfBoundsException.class,
             () -> playlist.removeSong(-1)
         );
 
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
     }
 
     @Test
@@ -94,7 +96,7 @@ public class PlaylistTest {
         boolean found = false;
         String title = playlist.getSong(2).getTitle();
 
-        assertEquals(3, playlist.numberOfSongs());
+        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
         assertEquals(title.concat(" successfully removed."), playlist.removeSong(title));
 
         assertEquals(2, playlist.numberOfSongs());
