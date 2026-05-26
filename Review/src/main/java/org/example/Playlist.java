@@ -19,5 +19,8 @@ public class Playlist {
         return this.songs.size();
     }
 
+    public void removeSong(int trackNumber) {
+        this.songs.remove(trackNumber - 1);
+    }
 
 }
