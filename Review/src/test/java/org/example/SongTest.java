@@ -23,4 +23,9 @@ public class SongTest {
     public void testGetSongAlbum() {
         assertEquals("Rumours", song.getAlbum());
     }
+
+    @Test
+    public void testGetSongArtist() {
+        assertEquals("Lindsey Buckingham", song.getArtist());
+    }
 }
