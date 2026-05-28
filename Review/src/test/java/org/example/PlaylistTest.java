@@ -42,7 +42,48 @@ public class PlaylistTest {
             "February 1977")
         );
 
+        playlist.addSong( new Song(
+            "Stayin' Alive",
+            "Saturday Night Fever Soundtrack",
+            "Barry Gibb, Robin Gibb and Maurice Gibb",
+            "December 1977")
+        );
+
+        playlist.addSong(new Song(
+            "Knowing Me, Knowing You",
+            "Arrival",
+            "Benny Andersson, Björn Ulvaeus, and Stig Anderson",
+            "February 1977")
+        );
+
+        playlist.addSong(new Song(
+            "Eagle",
+            "ABBA: The Album",
+            "Benny Andersson and Björn Ulvaeus",
+            "December 1977")
+        );
+
+        playlist.addSong(new Song(
+            "Dancing Queen",
+            "Arrival",
+            " Benny Andersson, Björn Ulvaeus, and Stig Anderson.",
+            "February 1977")
+        );
+
+
         INITIAL_NUMBER_OF_SONGS = playlist.numberOfSongs();
+    }
+
+    @Nested
+    @DisplayName("test get songs by either track number or title")
+    class GetSongFromPlaylist {
+
+        @Test
+        public void testGetSongByTrackNumber() {
+            Song song = playlist.getSong(4);
+
+            assertEquals("Stayin' Alive", song.getTitle());
+        }
     }
 
     @Nested
@@ -104,7 +145,7 @@ public class PlaylistTest {
              assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
              assertThrows(
                  IndexOutOfBoundsException.class,
-                 () -> playlist.removeSong(4)
+                 () -> playlist.removeSong(INITIAL_NUMBER_OF_SONGS + 1)
              );
 
             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());

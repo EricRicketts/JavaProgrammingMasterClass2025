@@ -35,6 +35,11 @@ public class Playlist {
         return this.songs.get(trackNumber - 1);
     }
 
+    public Song getSong(String title) {
+        int validTrackNumber = this.findSong(title);
+        return this.getSong(validTrackNumber);
+    }
+
     public void removeSong(int trackNumber) {
         int validTrackNumber = this.validateTrackNumber(trackNumber);
         this.songs.remove(validTrackNumber - 1);
