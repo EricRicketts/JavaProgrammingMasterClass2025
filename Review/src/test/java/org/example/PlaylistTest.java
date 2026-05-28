@@ -64,81 +64,86 @@ public class PlaylistTest {
         }
     }
 
-   @Nested
-   @DisplayName("test valid song removal")
-   class TestValidSongRemoval {
-
-       @Test
-       public void testRemoveSongByTrackNumber() {
-           assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-           playlist.removeSong(2);
-
-           assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
-       }
-
-       @Test
-       public void testRemoveSongByTitle() {
-           boolean found = false;
-           String title = playlist.getSong(2).getTitle();
-
-           assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-           assertEquals(title.concat(SONG_REMOVED), playlist.removeSong(title));
-
-           assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
-           for (int index = 0; index < playlist.numberOfSongs(); index++) {
-               if (playlist.getSong(index + 1).getTitle().equals(title)) {
-                   found = true;
-                   break;
-               }
-           }
-           assertFalse(found);
-       }
-   }
-
-   @Nested
-   @DisplayName("test invalid song removal")
-   class TestInvalidSongRemoval {
+    @Nested
+    @DisplayName("test valid song removal")
+    class TestValidSongRemoval {
 
         @Test
-        public void testRemoveSongTrackNumberTooLarge() {
+        public void testRemoveSongByTrackNumber() {
             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-            assertThrows(
-                IndexOutOfBoundsException.class,
-                () -> playlist.removeSong(4)
-            );
+            playlist.removeSong(2);
 
-           assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+            assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
         }
 
         @Test
-        public void testRemoveSongTrackNumberZero() {
-            assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-            assertThrows(
-                IndexOutOfBoundsException.class,
-                () -> playlist.removeSong(0)
-            );
+        public void testRemoveSongByTitle() {
+            boolean found = false;
+            String title = playlist.getSong(2).getTitle();
 
             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+            assertEquals(title.concat(SONG_REMOVED), playlist.removeSong(title));
+
+            assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
+            for (int index = 0; index < playlist.numberOfSongs(); index++) {
+                if (playlist.getSong(index + 1).getTitle().equals(title)) {
+                    found = true;
+                    break;
+                }
+            }
+            assertFalse(found);
         }
+    }
 
-        @Test
-        public void testRemoveSongTrackNumberNegative() {
+    @Nested
+    @DisplayName("test invalid song removal")
+    class TestInvalidSongRemoval {
+
+         @Test
+         public void testRemoveSongTrackNumberTooLarge() {
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+             assertThrows(
+                 IndexOutOfBoundsException.class,
+                 () -> playlist.removeSong(4)
+             );
+
             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-            assertThrows(
-                IndexOutOfBoundsException.class,
-                () -> playlist.removeSong(-1)
-            );
+         }
 
-            assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-        }
-   }
+         @Test
+         public void testRemoveSongTrackNumberZero() {
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+             assertThrows(
+                 IndexOutOfBoundsException.class,
+                 () -> playlist.removeSong(0)
+             );
 
-    @Test
-    public void testRemoveSongByTitleSongNotFound() {
-        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-        String title = "You Make Loving Fun";
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+         }
 
-        assertEquals(title.concat(SONG_NOT_FOUND), playlist.removeSong(title));
-        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+         @Test
+         public void testRemoveSongTrackNumberNegative() {
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+             assertThrows(
+                 IndexOutOfBoundsException.class,
+                 () -> playlist.removeSong(-1)
+             );
+
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+         }
+    }
+
+    @Nested
+    @DisplayName("test remove a song which does not exist in the playlist")
+    class TestRemoveNonExistentSongFromPlaylist {
+
+         @Test
+         public void testRemoveSongByTitleSongNotFound() {
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+             String title = "You Make Loving Fun";
+
+             assertEquals(title.concat(SONG_NOT_FOUND), playlist.removeSong(title));
+             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+         }
     }
 }
