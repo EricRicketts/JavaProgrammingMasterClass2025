@@ -64,13 +64,36 @@ public class PlaylistTest {
         }
     }
 
-    @Test
-    public void testRemoveSongByTrackNumber() {
-        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-        playlist.removeSong(2);
+   @Nested
+   @DisplayName("test valid song removal")
+   class TestValidSongRemoval {
 
-        assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
-    }
+       @Test
+       public void testRemoveSongByTrackNumber() {
+           assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+           playlist.removeSong(2);
+
+           assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
+       }
+
+       @Test
+       public void testRemoveSongByTitle() {
+           boolean found = false;
+           String title = playlist.getSong(2).getTitle();
+
+           assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+           assertEquals(title.concat(SONG_REMOVED), playlist.removeSong(title));
+
+           assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
+           for (int index = 0; index < playlist.numberOfSongs(); index++) {
+               if (playlist.getSong(index + 1).getTitle().equals(title)) {
+                   found = true;
+                   break;
+               }
+           }
+           assertFalse(found);
+       }
+   }
 
     @Test
     public void testRemoveSongTrackNumberTooLarge() {
@@ -103,24 +126,6 @@ public class PlaylistTest {
         );
 
         assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-    }
-
-    @Test
-    public void testRemoveSongByTitle() {
-        boolean found = false;
-        String title = playlist.getSong(2).getTitle();
-
-        assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-        assertEquals(title.concat(SONG_REMOVED), playlist.removeSong(title));
-
-        assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
-        for (int index = 0; index < this.playlist.numberOfSongs(); index++) {
-            if (this.playlist.getSong(index + 1).getTitle().equals(title)) {
-                found = true;
-                break;
-            }
-        }
-        assertFalse(found);
     }
 
     @Test
