@@ -84,6 +84,13 @@ public class PlaylistTest {
 
             assertEquals("Stayin' Alive", song.getTitle());
         }
+
+        @Test
+        public void testGetSongByTitle() {
+            Song song = playlist.getSong("Eagle");
+
+            assertEquals("Eagle", song.getTitle());
+        }
     }
 
     @Nested
