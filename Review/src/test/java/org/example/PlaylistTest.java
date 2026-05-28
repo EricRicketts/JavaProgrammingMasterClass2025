@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,18 +45,23 @@ public class PlaylistTest {
         INITIAL_NUMBER_OF_SONGS = playlist.numberOfSongs();
     }
 
-    @Test
-    public void testAddSong() {
-        Playlist smallPlaylist = new Playlist();
-        assertEquals(0, smallPlaylist.numberOfSongs());
-        smallPlaylist.addSong(new Song(
-            "The Chain",
-            "Rumours",
-            "Lindsey Buckingham",
-            "February 1977")
-        );
+    @Nested
+    @DisplayName("test add a song to a playlist")
+    class AddSongToPlaylist {
 
-        assertEquals(1, smallPlaylist.numberOfSongs());
+        @Test
+        public void testAddSong() {
+            Playlist smallPlaylist = new Playlist();
+            assertEquals(0, smallPlaylist.numberOfSongs());
+            smallPlaylist.addSong(new Song(
+                "The Chain",
+                "Rumours",
+                "Lindsey Buckingham",
+                "February 1977")
+            );
+
+            assertEquals(1, smallPlaylist.numberOfSongs());
+        }
     }
 
     @Test
