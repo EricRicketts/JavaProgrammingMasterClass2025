@@ -89,6 +89,14 @@ public class PlaylistTest {
         }
 
         @Test
+        public void testGetSongByTooLargeATrackNumber() {
+            assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> playlist.getSong(INITIAL_NUMBER_OF_SONGS + 1)
+            );
+        }
+
+        @Test
         public void testGetSongByValidTrackNumber() {
             Song song = playlist.getSong(4);
 
@@ -100,6 +108,14 @@ public class PlaylistTest {
             Song song = playlist.getSong("Eagle");
 
             assertEquals("Eagle", song.getTitle());
+        }
+
+        @Test
+        public void testGetSongByNonExistingTitle() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> playlist.getSong("Nonexistent Song")
+            );
         }
     }
 
