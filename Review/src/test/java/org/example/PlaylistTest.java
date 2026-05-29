@@ -150,10 +150,21 @@ public class PlaylistTest {
 
         @Test
         public void testRemoveExistingSongFromPlaylistByTrackNumber() {
+            boolean songRemoved = true;
+            int track = 3;
+            Song song = playlist.getSong(track);
             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-            playlist.removeSong(2);
+            playlist.removeSong(track);
 
             assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
+            for (int trackNumber = 1; trackNumber <= playlist.numberOfSongs(); trackNumber++) {
+                Song currentSong = playlist.getSong(trackNumber);
+                if (song.getTitle().equals(currentSong.getTitle())) {
+                    songRemoved = false;
+                    break;
+                }
+            }
+            assertTrue(songRemoved);
         }
 
         @Test
