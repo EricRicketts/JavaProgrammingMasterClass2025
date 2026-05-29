@@ -69,8 +69,8 @@ public class PlaylistTest {
     }
 
     @Nested
-    @DisplayName("test get songs by either track number or title")
-    class GetSongFromPlaylist {
+    @DisplayName("test get songs by track number")
+    class TestGetSongFromPlaylistByTrackNumber {
 
         @Test
         public void testGetSongByZeroTrackNumber() {
@@ -102,6 +102,11 @@ public class PlaylistTest {
 
             assertEquals("Stayin' Alive", song.getTitle());
         }
+    }
+
+    @Nested
+    @DisplayName("test get songs by title")
+    class TestGetSongsFromPlaylistByTitle {
 
         @Test
         public void testGetSongByTitle() {

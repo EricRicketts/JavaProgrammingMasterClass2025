@@ -11,9 +11,6 @@ public class Playlist {
     private static final String TRACK_NUMBER_TOO_LOW =
         "The requested track number is equal to or less than zero.";
 
-    private static final String SONG_REMOVED =
-        " successfully removed.";
-
     private static final String SONG_NOT_FOUND_SUFFIX =
         " not found.";
 
@@ -85,5 +82,4 @@ public class Playlist {
             return trackNumber;
         }
     }
-
 }
