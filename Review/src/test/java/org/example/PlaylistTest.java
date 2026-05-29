@@ -81,6 +81,14 @@ public class PlaylistTest {
         }
 
         @Test
+        public void testGetSongByNegativeTrackNumber() {
+            assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> playlist.getSong(-1)
+            );
+        }
+
+        @Test
         public void testGetSongByValidTrackNumber() {
             Song song = playlist.getSong(4);
 
