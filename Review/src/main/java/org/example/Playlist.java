@@ -42,6 +42,7 @@ public class Playlist {
                 .concat(title)
                 .concat(SONG_NOT_FOUND_SUFFIX);
         int validTrackNumber = this.findSong(title);
+
         if (validTrackNumber == -1) {
             throw new IllegalArgumentException(errorMessage);
         } else {
@@ -56,6 +57,7 @@ public class Playlist {
 
     public boolean removeSong(String title) {
         int trackNumber = this.findSong(title);
+
         if (trackNumber > 0) {
             this.removeSong(trackNumber);
             return true;

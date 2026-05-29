@@ -109,14 +109,14 @@ public class PlaylistTest {
     class TestGetSongFromPlaylistByTitle {
 
         @Test
-        public void testGetSongFromPlaylistByExistentTitle() {
+        public void testGetExistentSongFromPlaylistByTitle() {
             Song song = playlist.getSong("Eagle");
 
             assertEquals("Eagle", song.getTitle());
         }
 
         @Test
-        public void testGetSongFromPlaylistByNonExistentTitleThrowsException() {
+        public void testGetNonExistentSongFromPlaylistByTitleThrowsException() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> playlist.getSong("Nonexistent Song")
@@ -132,6 +132,7 @@ public class PlaylistTest {
         public void testAddSongToPlaylist() {
             Playlist smallPlaylist = new Playlist();
             assertEquals(0, smallPlaylist.numberOfSongs());
+
             smallPlaylist.addSong(new Song(
                 "The Chain",
                 "Rumours",
@@ -181,6 +182,7 @@ public class PlaylistTest {
          @Test
          public void testInvalidSongRemovalFromPlaylistTrackNumberTooLarge() {
              assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+
              assertThrows(
                  IndexOutOfBoundsException.class,
                  () -> playlist.removeSong(INITIAL_NUMBER_OF_SONGS + 1)
@@ -192,6 +194,7 @@ public class PlaylistTest {
          @Test
          public void testInvalidSongRemovalFromPlaylistTrackNumberZero() {
              assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+
              assertThrows(
                  IndexOutOfBoundsException.class,
                  () -> playlist.removeSong(0)
@@ -203,6 +206,7 @@ public class PlaylistTest {
          @Test
          public void testInvalidSongRemovalFromPlaylistTrackNumberNegative() {
              assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
+
              assertThrows(
                  IndexOutOfBoundsException.class,
                  () -> playlist.removeSong(-1)
