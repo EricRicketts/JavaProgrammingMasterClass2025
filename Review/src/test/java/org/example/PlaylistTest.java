@@ -9,12 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlaylistTest {
 
-    private static final String SONG_REMOVED =
-        " successfully removed.";
-
-    private static final String SONG_NOT_FOUND =
-        " not found.";
-
     private int INITIAL_NUMBER_OF_SONGS;
 
     private final Playlist playlist = new Playlist();
@@ -79,7 +73,15 @@ public class PlaylistTest {
     class GetSongFromPlaylist {
 
         @Test
-        public void testGetSongByTrackNumber() {
+        public void testGetSongByZeroTrackNumber() {
+            assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> playlist.getSong(0)
+            );
+        }
+
+        @Test
+        public void testGetSongByValidTrackNumber() {
             Song song = playlist.getSong(4);
 
             assertEquals("Stayin' Alive", song.getTitle());
@@ -130,7 +132,7 @@ public class PlaylistTest {
             String title = playlist.getSong(2).getTitle();
 
             assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
-            assertEquals(title.concat(SONG_REMOVED), playlist.removeSong(title));
+            assertTrue(playlist.removeSong(title));
 
             assertEquals(INITIAL_NUMBER_OF_SONGS - 1, playlist.numberOfSongs());
             for (int index = 0; index < playlist.numberOfSongs(); index++) {
@@ -190,7 +192,7 @@ public class PlaylistTest {
              assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
              String title = "You Make Loving Fun";
 
-             assertEquals(title.concat(SONG_NOT_FOUND), playlist.removeSong(title));
+             assertFalse(playlist.removeSong(title));
              assertEquals(INITIAL_NUMBER_OF_SONGS, playlist.numberOfSongs());
          }
     }

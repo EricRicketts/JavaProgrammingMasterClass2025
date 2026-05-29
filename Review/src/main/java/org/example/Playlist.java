@@ -14,8 +14,11 @@ public class Playlist {
     private static final String SONG_REMOVED =
         " successfully removed.";
 
-    private static final String SONG_NOT_FOUND =
+    private static final String SONG_NOT_FOUND_SUFFIX =
         " not found.";
+
+    private static final String SONG_NOT_FOUND_PREFIX =
+        "Song with title ";
 
     private final List<Song> songs;
 
@@ -32,12 +35,21 @@ public class Playlist {
     }
 
     public Song getSong(int trackNumber) {
-        return this.songs.get(trackNumber - 1);
+        int validTrackNumber = this.validateTrackNumber(trackNumber);
+        return this.songs.get(validTrackNumber - 1);
     }
 
     public Song getSong(String title) {
+        String errorMessage =
+            SONG_NOT_FOUND_PREFIX
+                .concat(title)
+                .concat(SONG_NOT_FOUND_SUFFIX);
         int validTrackNumber = this.findSong(title);
-        return this.getSong(validTrackNumber);
+        if (validTrackNumber == -1) {
+            throw new IllegalArgumentException(errorMessage);
+        } else {
+            return this.getSong(validTrackNumber);
+        }
     }
 
     public void removeSong(int trackNumber) {
@@ -45,13 +57,13 @@ public class Playlist {
         this.songs.remove(validTrackNumber - 1);
     }
 
-    public String removeSong(String title) {
+    public boolean removeSong(String title) {
         int trackNumber = this.findSong(title);
         if (trackNumber > 0) {
             this.removeSong(trackNumber);
-            return title.concat(SONG_REMOVED);
+            return true;
         } else {
-            return title.concat(SONG_NOT_FOUND);
+            return false;
         }
     }
 
