@@ -4,7 +4,7 @@
 
 - Why are records good for simple data?
 
-The question asks, "Why are records are good for simple data?"  In thinking about how to answer the question, I thought along the lines of "Why are records a good store for simple data?"  Records provide built in methods specifically designed to store and access data.  These methods do not readily lend themselves to more complicated manipulation of data other than simple deposits and retrievals.  All fields in a record are implicitly final, ensuring the record's state cannot be modified after creation.   
+Records provide built in methods specifically designed to store and access data.  These methods do not lend themselves to more complicated manipulation of data other than simple storage and retrievals.  All fields in a record are implicitly final, ensuring the record's state cannot be modified after creation.   
 
 - When would a record be a bad choice?
 
