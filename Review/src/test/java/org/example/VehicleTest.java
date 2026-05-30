@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class VehicleTest {
 
@@ -66,6 +67,14 @@ public class VehicleTest {
         @Test
         public void testTwoArgumentConstructorStoresValidSpeed() {
             assertEquals(new BigDecimal("25.67"), vehicle.getSpeed());
+        }
+
+        @Test
+        public void testTwoArgumentConstructorValidatesSpeed() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Vehicle("GM", new BigDecimal("-10.98"))
+            );
         }
     }
 
