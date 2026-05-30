@@ -89,5 +89,13 @@ public class CarTest {
         public void testCarTwoArgumentConstructorStoresSpeed() {
             assertEquals(new BigDecimal("0.00"), carSetDoorsAndBrand.getSpeed());
         }
+
+        @Test
+        public void testCarTwoArgumentConstructorValidatesSpeed() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car("Toyota", new BigDecimal("-5.43"), 2)
+            );
+        }
     }
 }
