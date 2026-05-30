@@ -1,9 +1,11 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 public class Car extends Vehicle {
 
     private static final String NOT_ENOUGH_DOORS =
-        "The car must have at least one door";
+        "Car must have at least one door";
 
     private int numberOfDoors;
 
@@ -20,7 +22,22 @@ public class Car extends Vehicle {
         this.numberOfDoors = 2;
     }
 
-    private Integer validateNumberOfDoors(int numberOfDoors) {
+    public Car(int numberOfDoors) {
+        super();
+        this.numberOfDoors = validateNumberOfDoors(numberOfDoors);
+    }
+
+    public Car(String brand, int numberOfDoors) {
+        super(brand);
+        this.numberOfDoors = validateNumberOfDoors(numberOfDoors);
+    }
+
+    public Car(String brand, BigDecimal speed, int numberOfDoors) {
+        super(brand, speed);
+        this.numberOfDoors = validateNumberOfDoors(numberOfDoors);
+    }
+
+    private int validateNumberOfDoors(int numberOfDoors) {
         if (numberOfDoors < 1) {
             throw new IllegalArgumentException(NOT_ENOUGH_DOORS);
         } else {
