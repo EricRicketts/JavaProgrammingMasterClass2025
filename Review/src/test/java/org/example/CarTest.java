@@ -97,5 +97,13 @@ public class CarTest {
                 () -> new Car("Toyota", new BigDecimal("-5.43"), 2)
             );
         }
+
+        @Test
+        public void testCarTwoArgumentConstructorValidateNumberOfDoors() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car("Honda", new BigDecimal("56.89"), -1)
+            );
+        }
     }
 }
