@@ -15,12 +15,14 @@ public class CarTest {
     private Car baseCar;
     private Car carSetDoors;
     private Car carSetDoorsAndBrand;
+    private Car customCar;
 
     @BeforeEach
     public void setUp() {
         baseCar = new Car();
         carSetDoors = new Car(4);
         carSetDoorsAndBrand = new Car("GM", 4);
+        customCar = new Car("Ford", new BigDecimal("60.12"), 2);
     }
 
     @Nested
@@ -104,6 +106,21 @@ public class CarTest {
                 IllegalArgumentException.class,
                 () -> new Car("Honda", new BigDecimal("56.89"), -1)
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("test Car getters")
+    class TestCarGetters {
+
+        @Test
+        public void testCarBrandGetter() {
+            assertEquals("Ford", customCar.getBrand());
+        }
+
+        @Test
+        public void testCarSpeedGetter() {
+            assertEquals(new BigDecimal("60.12"), customCar.getSpeed());
         }
     }
 }
