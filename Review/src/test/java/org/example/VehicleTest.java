@@ -55,6 +55,21 @@ public class VehicleTest {
     }
 
     @Nested
+    @DisplayName("test two argument constructor")
+    class TestTwoArgumentConstructor {
+
+        @Test
+        public void testTwoArgumentConstructorStoresValidBrand() {
+            assertEquals("Ford", vehicle.getBrand());
+        }
+
+        @Test
+        public void testTwoArgumentConstructorStoresValidSpeed() {
+            assertEquals(new BigDecimal("25.67"), vehicle.getSpeed());
+        }
+    }
+
+    @Nested
     @DisplayName("test vehicle getters")
     class TestVehicleGetters {
 
