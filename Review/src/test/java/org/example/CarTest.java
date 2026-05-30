@@ -153,5 +153,29 @@ public class CarTest {
 
             assertEquals(5, customCar.getNumberOfDoors());
         }
+
+        @Test
+        public void testCarSpeedSetterRejectsSpeedBelowZero() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> customCar.setSpeed(new BigDecimal("-12.34"))
+            );
+        }
+
+        @Test
+        public void testCarNumberOfDoorsSetterRejectsZeroDoors() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> customCar.setNumberOfDoors(0)
+            );
+        }
+
+        @Test
+        public void testCarNumberOfDoorsSetterRejectsNegativeDoors() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> customCar.setNumberOfDoors(-1)
+            );
+        }
     }
 }
