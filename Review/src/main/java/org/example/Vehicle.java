@@ -33,6 +33,7 @@ public class Vehicle {
 
     public Vehicle(String brand) {
         this.brand = brand;
+        this.speed = new BigDecimal("0.00");
     }
 
     public Vehicle() {
