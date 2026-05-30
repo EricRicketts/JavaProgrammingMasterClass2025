@@ -128,4 +128,23 @@ public class CarTest {
             assertEquals(2, customCar.getNumberOfDoors());
         }
     }
+
+    @Nested
+    @DisplayName("test Car setters")
+    class TestCarSetters {
+
+        @Test
+        public void testCarBrandSetter() {
+            customCar.setBrand("Bugatti");
+
+            assertEquals("Bugatti", customCar.getBrand());
+        }
+
+        @Test
+        public void testCarSpeedSetter() {
+            customCar.setSpeed(new BigDecimal("12.34"));
+
+            assertEquals(new BigDecimal("12.34"), customCar.getSpeed());
+        }
+    }
 }
