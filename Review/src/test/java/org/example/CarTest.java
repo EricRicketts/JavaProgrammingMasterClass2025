@@ -146,5 +146,12 @@ public class CarTest {
 
             assertEquals(new BigDecimal("12.34"), customCar.getSpeed());
         }
+
+        @Test
+        public void testCarNumberOfDoorsSetter() {
+            customCar.setNumberOfDoors(5);
+
+            assertEquals(5, customCar.getNumberOfDoors());
+        }
     }
 }
