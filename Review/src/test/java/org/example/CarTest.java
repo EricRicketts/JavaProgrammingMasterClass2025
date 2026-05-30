@@ -65,7 +65,15 @@ public class CarTest {
         }
 
         @Test
-        public void testCarSingleArgumentConstructorValidatesNumberOfDoors() {
+        public void testCarSingleArgumentConstructorRejectsZeroDoors() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car(0)
+            );
+        }
+
+        @Test
+        public void testCarSingleArgumentConstructorRejectsNegativeDoors() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Car(-1)
