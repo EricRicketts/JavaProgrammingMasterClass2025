@@ -14,11 +14,13 @@ public class CarTest {
 
     private Car baseCar;
     private Car carSetDoors;
+    private Car carSetDoorsAndBrand;
 
     @BeforeEach
     public void setUp() {
         baseCar = new Car();
         carSetDoors = new Car(4);
+        carSetDoorsAndBrand = new Car("GM", 4);
     }
 
     @Nested
@@ -66,6 +68,26 @@ public class CarTest {
                 IllegalArgumentException.class,
                 () -> new Car(-1)
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("test two argument constructor for car")
+    class TestCarTwoArgumentConstructor {
+
+        @Test
+        public void testCarTwoArgumentConstructorStoresNumberOfDoors() {
+            assertEquals(4, carSetDoorsAndBrand.getNumberOfDoors());
+        }
+
+        @Test
+        public void testCarTwoArgumentConstructorStoresBrand() {
+            assertEquals("GM", carSetDoorsAndBrand.getBrand());
+        }
+
+        @Test
+        public void testCarTwoArgumentConstructorStoresSpeed() {
+            assertEquals(new BigDecimal("0.00"), carSetDoorsAndBrand.getSpeed());
         }
     }
 }
