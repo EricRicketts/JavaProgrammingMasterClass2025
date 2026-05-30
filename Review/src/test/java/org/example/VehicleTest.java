@@ -92,4 +92,31 @@ public class VehicleTest {
             assertEquals(new BigDecimal("25.67"), vehicle.getSpeed());
         }
     }
+
+    @Nested
+    @DisplayName("test vehicle setters")
+    class TestVehicleSetters {
+
+        @Test
+        public void testVehicleBrandSetter() {
+            vehicle.setBrand("Nissan");
+
+            assertEquals("Nissan", vehicle.getBrand());
+        }
+
+        @Test
+        public void testVehicleSpeedSetter() {
+            vehicle.setSpeed(new BigDecimal("45.89"));
+
+            assertEquals(new BigDecimal("45.89"), vehicle.getSpeed());
+        }
+
+        @Test
+        public void testVehicleSpeedSetterValidatesSpeed() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> vehicle.setSpeed(new BigDecimal("-13.45"))
+            );
+        }
+    }
 }
