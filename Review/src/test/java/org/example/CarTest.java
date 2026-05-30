@@ -93,7 +93,7 @@ public class CarTest {
         }
 
         @Test
-        public void testCarTwoArgumentConstructorValidatesSpeed() {
+        public void testCarTwoArgumentConstructorRejectsNegativeSpeed () {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> new Car("Toyota", new BigDecimal("-5.43"), 2)
@@ -101,10 +101,18 @@ public class CarTest {
         }
 
         @Test
-        public void testCarTwoArgumentConstructorValidateNumberOfDoors() {
+        public void testCarTwoArgumentConstructorRejectsZeroDoors() {
             assertThrows(
                 IllegalArgumentException.class,
-                () -> new Car("Honda", new BigDecimal("56.89"), -1)
+                () -> new Car("Honda", new BigDecimal("56.89"), 0)
+            );
+        }
+
+        @Test
+        public void testCarTwoArgumentConstructorRejectsNegativeDoors() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car("Bugatti", new BigDecimal("23.45"), -3)
             );
         }
     }
