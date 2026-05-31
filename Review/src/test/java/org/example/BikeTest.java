@@ -45,4 +45,24 @@ public class BikeTest {
         }
     }
 
+    @Nested
+    @DisplayName("test Bike with single argument")
+    class TestBikeSingleArgument {
+
+        @Test
+        public void testBikeSingleArgumentBrand() {
+            assertEquals("SCOTT", baseBikePlus.getBrand());
+        }
+
+        @Test
+        public void testBikeSingleArgumentSpeed() {
+            assertEquals(new BigDecimal("0.00"), baseBikePlus.getSpeed());
+        }
+
+        @Test
+        public void testBikeSingleArgumentHasBell() {
+            assertFalse(baseBikePlus.getHasBell());
+        }
+    }
+
 }
