@@ -103,4 +103,25 @@ public class BikeTest {
             assertTrue(customBike.getHasBell());
         }
     }
+
+    @Nested
+    @DisplayName("test Bike setters")
+    class TestBikeSetters {
+
+        @Test
+        public void testBikeSetBrand() {
+            assertEquals("Pinarello", customBike.getBrand());
+            customBike.setBrand("Trek");
+
+            assertEquals("Trek", customBike.getBrand());
+        }
+
+        @Test
+        public void testBikeSetSpeed() {
+            assertEquals(new BigDecimal("21.34"), customBike.getSpeed());
+            customBike.setSpeed(new BigDecimal("22.45"));
+
+            assertEquals(new BigDecimal("22.45"), customBike.getSpeed());
+        }
+    }
 }
