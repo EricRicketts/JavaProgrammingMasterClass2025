@@ -30,17 +30,17 @@ public class BikeTest {
     class TestBikeNoArguments {
 
         @Test
-        public void testBikeNoArgumentsBrand() {
+        public void testBikeNoArgumentsConstructorGetBrand() {
             assertEquals("Unknown", baseBike.getBrand());
         }
 
         @Test
-        public void testBikeNoArgumentsSpeed() {
+        public void testBikeNoArgumentsConstructorGetSpeed() {
             assertEquals(new BigDecimal("0.00"), baseBike.getSpeed());
         }
 
         @Test
-        public void testBikeNoArgumentsHasBell() {
+        public void testBikeNoArgumentsConstructorGetHasBell() {
             assertFalse(baseBike.getHasBell());
         }
     }
@@ -50,17 +50,17 @@ public class BikeTest {
     class TestBikeSingleArgument {
 
         @Test
-        public void testBikeSingleArgumentBrand() {
+        public void testBikeSingleArgumentConstructorGetBrand() {
             assertEquals("SCOTT", baseBikePlus.getBrand());
         }
 
         @Test
-        public void testBikeSingleArgumentSpeed() {
+        public void testBikeSingleArgumentConstructorGetSpeed() {
             assertEquals(new BigDecimal("0.00"), baseBikePlus.getSpeed());
         }
 
         @Test
-        public void testBikeSingleArgumentHasBell() {
+        public void testBikeSingleArgumentConstructorGetHasBell() {
             assertFalse(baseBikePlus.getHasBell());
         }
     }
