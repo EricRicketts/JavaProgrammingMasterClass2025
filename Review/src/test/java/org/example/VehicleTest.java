@@ -119,10 +119,13 @@ public class VehicleTest {
 
         @Test
         public void testVehicleSpeedSetterRejectsNegativeSpeed() {
+            assertEquals(new BigDecimal("25.67"), vehicle.getSpeed());
             assertThrows(
                 IllegalArgumentException.class,
                 () -> vehicle.setSpeed(new BigDecimal("-13.45"))
             );
+
+            assertEquals(new BigDecimal("25.67"), vehicle.getSpeed());
         }
     }
 }
