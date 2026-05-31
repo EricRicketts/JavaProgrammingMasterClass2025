@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BikeTest {
 
@@ -83,6 +82,25 @@ public class BikeTest {
         public void testBikeTwoArgumentConstructorGetHasBell() {
             assertFalse(semiCustomBike.getHasBell());
         }
+    }
 
+    @Nested
+    @DisplayName("test Bike getters")
+    class TestBikeGetters {
+
+        @Test
+        public void testBikeGetBrand() {
+            assertEquals("Pinarello", customBike.getBrand());
+        }
+
+        @Test
+        public void testBikeGetSpeed() {
+            assertEquals(new BigDecimal("21.34"), customBike.getSpeed());
+        }
+
+        @Test
+        public void testBikeGetHasBell() {
+            assertTrue(customBike.getHasBell());
+        }
     }
 }
