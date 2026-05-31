@@ -123,5 +123,16 @@ public class BikeTest {
 
             assertEquals(new BigDecimal("22.45"), customBike.getSpeed());
         }
+
+        @Test
+        public void TestBikeRejectsNegativeSpeed() {
+            assertEquals(new BigDecimal("21.34"), customBike.getSpeed());
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> customBike.setSpeed(new BigDecimal("-12.34"))
+            );
+
+            assertEquals(new BigDecimal("21.34"), customBike.getSpeed());
+        }
     }
 }
