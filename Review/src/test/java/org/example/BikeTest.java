@@ -27,27 +27,27 @@ public class BikeTest {
 
     @Nested
     @DisplayName("test Bike with no arguments")
-    class TestBikeNoArguments {
+    class TestBikeNoArgumentConstructor {
 
         @Test
-        public void testBikeNoArgumentsConstructorGetBrand() {
+        public void testBikeNoArgumentConstructorGetBrand() {
             assertEquals("Unknown", baseBike.getBrand());
         }
 
         @Test
-        public void testBikeNoArgumentsConstructorGetSpeed() {
+        public void testBikeNoArgumentConstructorGetSpeed() {
             assertEquals(new BigDecimal("0.00"), baseBike.getSpeed());
         }
 
         @Test
-        public void testBikeNoArgumentsConstructorGetHasBell() {
+        public void testBikeNoArgumentConstructorGetHasBell() {
             assertFalse(baseBike.getHasBell());
         }
     }
 
     @Nested
     @DisplayName("test Bike with single argument")
-    class TestBikeSingleArgument {
+    class TestBikeSingleArgumentConstructor {
 
         @Test
         public void testBikeSingleArgumentConstructorGetBrand() {
@@ -65,4 +65,24 @@ public class BikeTest {
         }
     }
 
+    @Nested
+    @DisplayName("test Bike with two arguments")
+    class TestBikeTwoArgumentConstructor {
+
+        @Test
+        public void testBikeTwoArgumentConstructorGetBrand() {
+            assertEquals("Specialized", semiCustomBike.getBrand());
+        }
+
+        @Test
+        public void testBikeTwoArgumentConstructorGetSpeed() {
+            assertEquals(new BigDecimal("20.12"), semiCustomBike.getSpeed());
+        }
+
+        @Test
+        public void testBikeTwoArgumentConstructorGetHasBell() {
+            assertFalse(semiCustomBike.getHasBell());
+        }
+
+    }
 }
