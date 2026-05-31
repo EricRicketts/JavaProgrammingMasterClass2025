@@ -32,13 +32,11 @@ public class Vehicle {
     }
 
     public Vehicle(String brand) {
-        this.brand = brand;
-        this.speed = new BigDecimal("0.00");
+        this(brand, new BigDecimal("0.00"));
     }
 
     public Vehicle() {
-        this.brand = "Unknown";
-        this.speed = new BigDecimal("0.00");
+        this("Unknown", new BigDecimal("0.00"));
     }
 
     private BigDecimal validateSpeed(BigDecimal speed) {
