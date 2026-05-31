@@ -125,7 +125,7 @@ public class BikeTest {
         }
 
         @Test
-        public void TestBikeRejectsNegativeSpeed() {
+        public void testBikeRejectsNegativeSpeed() {
             assertEquals(new BigDecimal("21.34"), customBike.getSpeed());
             assertThrows(
                 IllegalArgumentException.class,

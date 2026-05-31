@@ -1,24 +1,24 @@
 ## AI Assistant
 ## Review Focused on Assignment Requirements
-### Assignment: → , `Vehicle``Car``Bike`
+### Assignment: → , `Vehicle` `Car` `Bike`
 Requirements appeared to be:
-- Create a base class with and `Vehicle``brand``speed`
-- Create subclass with `Car``numberOfDoors`
-- Create subclass with `Bike``hasBell`
+- Create a base class with and `Vehicle` `brand` `speed`
+- Create subclass with `Car` `numberOfDoors`
+- Create subclass with `Bike` `hasBell`
 - Use inheritance with `extends`
 - Use `super(...)` to initialize inherited state
 - Include child-specific fields/methods
 - Demonstrate inherited behavior through getters/setters and tests
 
 ## Overall Assessment
-You met the main assignment requirements very well. The inheritance relationship is clear, the subclasses correctly extend , and both and add their own specialized state. Your constructors show a good understanding of how subclass constructors can call parent constructors with `super(...)`. `Vehicle``Car``Bike`
-The test coverage is also strong for the scope of this exercise. You are not just checking the custom fields in and ; you are also checking inherited behavior like and , which is exactly what this exercise is meant to reinforce. `Car``Bike``brand``speed`
+You met the main assignment requirements very well. The inheritance relationship is clear, the subclasses correctly extend , and both and add their own specialized state. Your constructors show a good understanding of how subclass constructors can call parent constructors with `super(...)`. `Vehicle` `Car` `Bike`
+The test coverage is also strong for the scope of this exercise. You are not just checking the custom fields in a class, you are also checking inherited behavior, which is exactly what this exercise is meant to reinforce. `Car` `Bike` `brand` ****`speed`
 ## What You Did Well
 ### 1. Correct use of inheritance
-and both correctly extend . `Car``Bike``Vehicle`
+and both correctly extend . `Car` `Bike` `Vehicle`
 That matches the assignment’s intended “is-a” relationship:
-- A is a `Car``Vehicle`
-- A is a `Bike``Vehicle`
+- A is a `Car` `Vehicle`
+- A is a `Bike` `Vehicle`
 
 This is a good use of inheritance for the exercise.
 ### 2. Good use of `super(...)`
@@ -71,9 +71,9 @@ inherited getters
 inherited setters
 subclass-specific getters/setters
 expected default values
-This is especially useful because inheritance bugs often happen when a subclass does not initialize parent fields correctly. Your tests make sure that does not happen.
+**This is especially useful because inheritance bugs often happen when a subclass does not initialize parent fields correctly.** Your tests make sure that does not happen.
 Instructional Comments
-1. Consider constructor chaining to reduce repetition
+1. **Consider constructor chaining to reduce repetition**
 This is not required, but it would make the constructors cleaner and reinforce another topic from your review plan.
 For example, in Vehicle, instead of each constructor assigning fields separately, you could have the simpler constructors call the most complete constructor.
 Conceptually:
@@ -92,7 +92,7 @@ public Vehicle(String brand, BigDecimal speed) {
 }
 ```
 
-This avoids repeating the default speed value in multiple places and makes the “main” constructor the single place where initialization logic happens.
+**This avoids repeating the default speed value in multiple places and makes the “main” constructor the single place where initialization logic happens.**
 Again, this is not a major issue, but it would strengthen the object-initialization part of the assignment.
 2. Bike has no setter for hasBell, which is okay if intentional
 You made hasBell final:

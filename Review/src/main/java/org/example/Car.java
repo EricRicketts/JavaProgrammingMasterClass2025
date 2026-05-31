@@ -7,14 +7,10 @@ public class Car extends Vehicle {
     private static final String NOT_ENOUGH_DOORS =
         "Car must have at least one door";
 
-    private int numberOfDoors;
+    private final int numberOfDoors;
 
     public int getNumberOfDoors() {
         return numberOfDoors;
-    }
-
-    public void setNumberOfDoors(int numberOfDoors) {
-        this.numberOfDoors = validateNumberOfDoors(numberOfDoors);
     }
 
     public Car() {

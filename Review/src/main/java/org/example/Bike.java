@@ -4,10 +4,14 @@ import java.math.BigDecimal;
 
 public class Bike extends Vehicle {
 
-    private final boolean hasBell;
+    private boolean hasBell;
 
     public boolean getHasBell() {
         return hasBell;
+    }
+
+    public void setHasBell(boolean hasBell) {
+        this.hasBell = hasBell;
     }
 
     public Bike() {

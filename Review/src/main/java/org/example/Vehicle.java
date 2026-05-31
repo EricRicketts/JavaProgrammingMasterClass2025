@@ -6,6 +6,8 @@ public class Vehicle {
 
     private static final String SPEED_TO_LOW =
         "Speed cannot be less than zero.";
+    private static final BigDecimal DEFAULT_SPEED = new BigDecimal("0.00");
+    private static final String DEFAULT_BRAND = "Unknown";
 
     private String brand;
     private BigDecimal speed;
@@ -32,11 +34,11 @@ public class Vehicle {
     }
 
     public Vehicle(String brand) {
-        this(brand, new BigDecimal("0.00"));
+        this(brand, DEFAULT_SPEED);
     }
 
     public Vehicle() {
-        this("Unknown", new BigDecimal("0.00"));
+        this(DEFAULT_BRAND, DEFAULT_SPEED);
     }
 
     private BigDecimal validateSpeed(BigDecimal speed) {
