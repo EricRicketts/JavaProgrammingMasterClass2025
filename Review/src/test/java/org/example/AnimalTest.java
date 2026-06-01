@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AnimalTest {
 
@@ -16,6 +17,19 @@ public class AnimalTest {
     public void setUp() {
         animal = new Animal("Lion");
         baseAnimal = new Animal();
+    }
+
+    @Nested
+    @DisplayName("test animal single argument constructor validates Name")
+    class TestAnimalSingleArgumentConstructorRejectsInvalidName {
+
+        @Test
+        public void testAnimalSingleArgumentConstructorRejectsNullName() {
+            assertThrows(
+                NullPointerException.class,
+                () -> new Animal(null)
+            );
+        }
     }
 
     @Nested
