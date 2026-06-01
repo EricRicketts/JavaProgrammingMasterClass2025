@@ -35,6 +35,35 @@ public class AnimalTest {
     }
 
     @Nested
+    @DisplayName("test two argument constructor validates name")
+    class TestAnimalTwoArgumentConstructorRejectsInvalidName {
+
+        @Test
+        public void testAnimalTwoArgumentConstructorRejectsNullName() {
+            assertThrows(
+                NullPointerException.class,
+                () -> new Animal(null, Animal.Size.EXTRA_LARGE)
+            );
+        }
+
+        @Test
+        public void testAnimalTwoArgumentConstructorRejectsEmptyName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Animal("", Animal.Size.LARGE)
+            );
+        }
+
+        @Test
+        public void testAnimalTwoArgumentConstructorRejectsBlankName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Animal("  ", Animal.Size.MEDIUM)
+            );
+        }
+    }
+
+    @Nested
     @DisplayName("test animal single argument constructor validates Name")
     class TestAnimalSingleArgumentConstructorRejectsInvalidName {
 

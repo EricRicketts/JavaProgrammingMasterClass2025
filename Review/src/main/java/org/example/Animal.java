@@ -3,7 +3,7 @@ package org.example;
 public class Animal {
 
     public enum Size {
-        SMALL, MEDIUM, LARGE, VERY_LARGE
+        SMALL, MEDIUM, LARGE, EXTRA_LARGE
     }
     private static final String NAME_IS_NULL =
         "A null value is not allowed for a name.";
