@@ -13,10 +13,25 @@ public class AnimalTest {
     private Animal animal;
     private Animal baseAnimal;
 
+    private Animal customAnimal;
+
     @BeforeEach
     public void setUp() {
         animal = new Animal("Lion");
         baseAnimal = new Animal();
+    }
+
+    @Nested
+    @DisplayName("test two argument constructor with valid data")
+    class TestAnimalTwoArgumentConstructorAcceptsValidNameAndSize {
+
+        @Test
+        public void testAnimalTwoArgumentConstructorAcceptsValidNameAndSize() {
+            customAnimal = new Animal("Jaguar", Animal.Size.SMALL);
+
+            assertEquals("Jaguar", customAnimal.getName());
+            assertEquals(Animal.Size.SMALL, customAnimal.getSize());
+        }
     }
 
     @Nested

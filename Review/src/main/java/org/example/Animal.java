@@ -2,6 +2,9 @@ package org.example;
 
 public class Animal {
 
+    public enum Size {
+        SMALL, MEDIUM, LARGE, VERY_LARGE
+    }
     private static final String NAME_IS_NULL =
         "A null value is not allowed for a name.";
 
@@ -13,6 +16,16 @@ public class Animal {
 
     private String name;
 
+    private Size size;
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
     public String getName() {
         return name;
     }
@@ -21,12 +34,17 @@ public class Animal {
         this.name = validateName(name);
     }
 
-    public Animal(String name) {
+    public Animal(String name, Size size) {
         this.name = validateName(name);
+        this.size = size;
+    }
+
+    public Animal(String name) {
+        this(name, Size.MEDIUM);
     }
 
     public Animal() {
-        this("Unknown Animal");
+        this("Unknown Animal", Size.MEDIUM);
     }
 
     private String validateName(String name) {
