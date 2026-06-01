@@ -30,6 +30,14 @@ public class AnimalTest {
                 () -> new Animal(null)
             );
         }
+
+        @Test
+        public void testAnimalSingleArgumentConstructorRejectsEmptyName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Animal("")
+            );
+        }
     }
 
     @Nested
