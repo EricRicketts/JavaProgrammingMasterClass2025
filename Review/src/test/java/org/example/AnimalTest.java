@@ -38,6 +38,14 @@ public class AnimalTest {
                 () -> new Animal("")
             );
         }
+
+        @Test
+        public void testAnimalSingleArgumentConstructorRejectsBlankName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Animal("  ")
+            );
+        }
     }
 
     @Nested
