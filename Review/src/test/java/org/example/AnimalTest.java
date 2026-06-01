@@ -17,25 +17,24 @@ public class AnimalTest {
 
     @BeforeEach
     public void setUp() {
+        customAnimal = new Animal("Jaguar", Animal.Size.SMALL);
         animal = new Animal("Lion");
         baseAnimal = new Animal();
     }
 
     @Nested
-    @DisplayName("test two argument constructor with valid data")
+    @DisplayName("test animal two argument constructor with valid data")
     class TestAnimalTwoArgumentConstructorAcceptsValidNameAndSize {
 
         @Test
         public void testAnimalTwoArgumentConstructorAcceptsValidNameAndSize() {
-            customAnimal = new Animal("Jaguar", Animal.Size.SMALL);
-
             assertEquals("Jaguar", customAnimal.getName());
             assertEquals(Animal.Size.SMALL, customAnimal.getSize());
         }
     }
 
     @Nested
-    @DisplayName("test two argument constructor validates name")
+    @DisplayName("test animal two argument constructor validates name")
     class TestAnimalTwoArgumentConstructorRejectsInvalidName {
 
         @Test
@@ -112,6 +111,16 @@ public class AnimalTest {
         public void testAnimalSingleArgumentConstructorGetName() {
             assertEquals("Lion", animal.getName());
         }
+
+        @Test
+        public void testAnimalTwoArgumentConstructorGetName() {
+            assertEquals("Jaguar", customAnimal.getName());
+        }
+
+        @Test
+        public void testAnimalTwoArgumentConstructorGetSize() {
+            assertEquals(Animal.Size.SMALL, customAnimal.getSize());
+        }
     }
 
     @Nested
@@ -132,6 +141,22 @@ public class AnimalTest {
             animal.setName("Tiger");
 
             assertEquals("Tiger", animal.getName());
+        }
+
+        @Test
+        public void testAnimalTwoArgumentConstructorSetName() {
+            assertEquals("Jaguar", customAnimal.getName());
+            customAnimal.setName("Leopard");
+
+            assertEquals("Leopard", customAnimal.getName());
+        }
+
+        @Test
+        public void testAnimalTwoArgumentConstructorSetSize() {
+            assertEquals(Animal.Size.SMALL, customAnimal.getSize());
+            customAnimal.setSize(Animal.Size.MEDIUM);
+
+            assertEquals(Animal.Size.MEDIUM, customAnimal.getSize());
         }
     }
 
