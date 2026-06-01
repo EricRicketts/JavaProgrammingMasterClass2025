@@ -90,4 +90,33 @@ public class AnimalTest {
             assertEquals("Tiger", animal.getName());
         }
     }
+
+    @Nested
+    @DisplayName("test animal setter rejects invalid names")
+    class TestAnimalSetterRejectsInvalidName {
+
+        @Test
+        public void testAnimalSetterRejectsNullName() {
+            assertThrows(
+                NullPointerException.class,
+                () -> animal.setName(null)
+            );
+        }
+
+        @Test
+        public void testAnimalSetterRejectsEmptyName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> animal.setName("")
+            );
+        }
+
+        @Test
+        public void testAnimalSetterRejectsBlankName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> animal.setName("  ")
+            );
+        }
+    }
 }
