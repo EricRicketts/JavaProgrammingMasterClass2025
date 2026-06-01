@@ -19,8 +19,8 @@ public class AnimalTest {
     }
 
     @Nested
-    @DisplayName("test animal constructors")
-    class TestAnimalConstructors {
+    @DisplayName("test animal getters")
+    class TestAnimalGetters {
 
         @Test
         public void testAnimalNoArgumentConstructorGetName() {
@@ -30,6 +30,27 @@ public class AnimalTest {
         @Test
         public void testAnimalSingleArgumentConstructorGetName() {
             assertEquals("Lion", animal.getName());
+        }
+    }
+
+    @Nested
+    @DisplayName("test animal setters")
+    class TestAnimalSetters {
+
+        @Test
+        public void testAnimalNoArgumentConstructorSetName() {
+            assertEquals("Unknown Animal", baseAnimal.getName());
+            baseAnimal.setName("Another Unknown Animal");
+
+            assertEquals("Another Unknown Animal", baseAnimal.getName());
+        }
+
+        @Test
+        public void testAnimalSingleArgumentConstructorSetName() {
+            assertEquals("Lion", animal.getName());
+            animal.setName("Tiger");
+
+            assertEquals("Tiger", animal.getName());
         }
     }
 }
