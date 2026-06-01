@@ -46,6 +46,13 @@ public class AnimalTest {
                 () -> new Animal("  ")
             );
         }
+
+        @Test
+        public void testAnimalSingleArgumentConstructorAcceptsValidName() {
+            Animal testAnimal = new Animal("Puma");
+
+            assertEquals("Puma", testAnimal.getName());
+        }
     }
 
     @Nested
