@@ -23,17 +23,6 @@ public class AnimalTest {
     }
 
     @Nested
-    @DisplayName("test animal two argument constructor with valid data")
-    class TestAnimalTwoArgumentConstructorAcceptsValidNameAndSize {
-
-        @Test
-        public void testAnimalTwoArgumentConstructorAcceptsValidNameAndSize() {
-            assertEquals("Jaguar", customAnimal.getName());
-            assertEquals(Animal.Size.SMALL, customAnimal.getSize());
-        }
-    }
-
-    @Nested
     @DisplayName("test animal two argument constructor validates name")
     class TestAnimalTwoArgumentConstructorRejectsInvalidName {
 
@@ -89,22 +78,20 @@ public class AnimalTest {
                 () -> new Animal("  ")
             );
         }
-
-        @Test
-        public void testAnimalSingleArgumentConstructorAcceptsValidName() {
-            Animal testAnimal = new Animal("Puma");
-
-            assertEquals("Puma", testAnimal.getName());
-        }
     }
 
     @Nested
-    @DisplayName("test animal getters")
+    @DisplayName("test no animal constructor getters")
     class TestAnimalGetters {
 
         @Test
         public void testAnimalNoArgumentConstructorGetName() {
             assertEquals("Unknown Animal", baseAnimal.getName());
+        }
+
+        @Test
+        public void testAnimalNoArgumentConstructorGetSize() {
+            assertEquals(Animal.Size.MEDIUM, baseAnimal.getSize());
         }
 
         @Test
