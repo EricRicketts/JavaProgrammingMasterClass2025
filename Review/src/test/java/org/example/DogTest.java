@@ -102,5 +102,10 @@ public class DogTest {
         public void testDogSingleArgumentConstructorGetName() {
             assertEquals("German Shepherd", dog.getName());
         }
+
+        @Test
+        public void testDogSingleArgumentConstructorGetSize() {
+            assertEquals(Animal.Size.MEDIUM, dog.getSize());
+        }
     }
 }
