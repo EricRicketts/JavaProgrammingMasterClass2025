@@ -108,4 +108,19 @@ public class DogTest {
             assertEquals(Animal.Size.MEDIUM, dog.getSize());
         }
     }
+
+    @Nested
+    @DisplayName("test two argument dog constructor getters")
+    class TestDogTwoArgumentConstructorGetters {
+
+        @Test
+        public void testDogTwoArgumentConstructorGetName() {
+            assertEquals("Bulldog", customDog.getName());
+        }
+
+        @Test
+        public void testDogTwoArgumentConstructorGetSize() {
+            assertEquals(Animal.Size.MEDIUM, customDog.getSize());
+        }
+    }
 }
