@@ -48,4 +48,17 @@ public class DogTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test dog single argument constructor validates name")
+    class TestDogSingleArgumentConstructorRejectsInvalidName {
+
+        @Test
+        public void testDogSingleArgumentConstructorRejectsNullName() {
+            assertThrows(
+                NullPointerException.class,
+                () -> new Dog(null)
+            );
+        }
+    }
 }
