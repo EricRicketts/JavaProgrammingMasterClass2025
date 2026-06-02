@@ -81,8 +81,8 @@ public class AnimalTest {
     }
 
     @Nested
-    @DisplayName("test no animal constructor getters")
-    class TestAnimalGetters {
+    @DisplayName("test no argument animal constructor getters")
+    class TestNoArgumentAnimalConstructorGetters {
 
         @Test
         public void testAnimalNoArgumentConstructorGetName() {
@@ -93,11 +93,26 @@ public class AnimalTest {
         public void testAnimalNoArgumentConstructorGetSize() {
             assertEquals(Animal.Size.MEDIUM, baseAnimal.getSize());
         }
+    }
+
+    @Nested
+    @DisplayName("test single argument animal constructor getters")
+    class TestSingleArgumentAnimalConstructorGetters {
 
         @Test
-        public void testAnimalSingleArgumentConstructorGetName() {
+        public void testSingleArgumentAnimalConstructorGetName() {
             assertEquals("Lion", animal.getName());
         }
+
+        @Test
+        public void testSingleArgumentAnimalConstructorGetSize() {
+            assertEquals(Animal.Size.MEDIUM, animal.getSize());
+        }
+    }
+
+    @Nested
+    @DisplayName("test two argument animal constructor getters")
+    class TestTwoArgumentAnimalConstructorGetters {
 
         @Test
         public void testAnimalTwoArgumentConstructorGetName() {
