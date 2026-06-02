@@ -1,6 +1,11 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DogTest {
 
@@ -10,8 +15,21 @@ public class DogTest {
 
     @BeforeEach
     public void setUp() {
-        dog = new Dog("German Shepherd");
         baseDog = new Dog();
+        dog = new Dog("German Shepherd");
         customDog = new Dog("Bulldog", Animal.Size.MEDIUM);
+    }
+
+    @Nested
+    @DisplayName("test dog two argument constructor validates name")
+    class TestDogTwoArgumentConstructorRejectsInvalidName {
+
+        @Test
+        public void testDogTwoArgumentConstructorRejectsNullName() {
+            assertThrows(
+                NullPointerException.class,
+                () -> new Dog(null, Animal.Size.SMALL)
+            );
+        }
     }
 }

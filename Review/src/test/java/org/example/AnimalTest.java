@@ -17,9 +17,9 @@ public class AnimalTest {
 
     @BeforeEach
     public void setUp() {
-        customAnimal = new Animal("Jaguar", Animal.Size.SMALL);
         animal = new Animal("Lion");
         baseAnimal = new Animal();
+        customAnimal = new Animal("Jaguar", Animal.Size.SMALL);
     }
 
     @Nested
@@ -126,8 +126,8 @@ public class AnimalTest {
     }
 
     @Nested
-    @DisplayName("test animal setters")
-    class TestAnimalSetters {
+    @DisplayName("test no argument constructor animal setters")
+    class TestNoArgumentAnimalConstructorSetters {
 
         @Test
         public void testAnimalNoArgumentConstructorSetName() {
