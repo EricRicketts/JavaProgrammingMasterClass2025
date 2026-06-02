@@ -47,6 +47,10 @@ public class Animal {
         this("Unknown Animal", Size.MEDIUM);
     }
 
+    public String makeSound() {
+        return "Generic animal sound";
+    }
+
     private String validateName(String name) {
         if (name == null) {
             throw new NullPointerException(NAME_IS_NULL);

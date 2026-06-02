@@ -188,4 +188,14 @@ public class AnimalTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test make sourd method")
+    class TestAnimalMakeSound {
+
+        @Test
+        public void testAnimalMakeSourd() {
+            assertEquals("Generic animal sound", animal.makeSound());
+        }
+    }
 }
