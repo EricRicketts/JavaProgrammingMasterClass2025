@@ -17,8 +17,8 @@ public class AnimalTest {
 
     @BeforeEach
     public void setUp() {
-        animal = new Animal("Lion");
         baseAnimal = new Animal();
+        animal = new Animal("Lion");
         customAnimal = new Animal("Jaguar", Animal.Size.SMALL);
     }
 
@@ -138,12 +138,38 @@ public class AnimalTest {
         }
 
         @Test
+        public void testAnimalNoArgumentConstructorSetSize() {
+            assertEquals(Animal.Size.MEDIUM, baseAnimal.getSize());
+            baseAnimal.setSize(Animal.Size.LARGE);
+
+            assertEquals(Animal.Size.LARGE, baseAnimal.getSize());
+        }
+    }
+
+    @Nested
+    @DisplayName("test single argument animal constructor setters")
+    class TestSingleArgumentAnimalConstructorSetters {
+
+        @Test
         public void testAnimalSingleArgumentConstructorSetName() {
             assertEquals("Lion", animal.getName());
             animal.setName("Tiger");
 
             assertEquals("Tiger", animal.getName());
         }
+
+        @Test
+        public void testAnimalSingleArgumentConstructorSetSize() {
+            assertEquals(Animal.Size.MEDIUM, animal.getSize());
+            animal.setSize(Animal.Size.EXTRA_LARGE);
+
+            assertEquals(Animal.Size.EXTRA_LARGE, animal.getSize());
+        }
+    }
+
+    @Nested
+    @DisplayName("test two argument animal constructor setters")
+    class TestTwoArgumentAnimalConstructorSetters {
 
         @Test
         public void testAnimalTwoArgumentConstructorSetName() {
