@@ -60,5 +60,13 @@ public class DogTest {
                 () -> new Dog(null)
             );
         }
+
+        @Test
+        public void testDogSingleArgumentConstructorRejectsEmptyName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Dog("")
+            );
+        }
     }
 }
