@@ -82,7 +82,7 @@ public class AnimalTest {
 
     @Nested
     @DisplayName("test no argument animal constructor getters")
-    class TestNoArgumentAnimalConstructorGetters {
+    class TestAnimalNoArgumentConstructorGetters {
 
         @Test
         public void testAnimalNoArgumentConstructorGetName() {
@@ -97,22 +97,22 @@ public class AnimalTest {
 
     @Nested
     @DisplayName("test single argument animal constructor getters")
-    class TestSingleArgumentAnimalConstructorGetters {
+    class TestAnimalSingleArgumentConstructorGetters {
 
         @Test
-        public void testSingleArgumentAnimalConstructorGetName() {
+        public void testAnimalSingleArgumentConstructorGetName() {
             assertEquals("Lion", animal.getName());
         }
 
         @Test
-        public void testSingleArgumentAnimalConstructorGetSize() {
+        public void testAnimalSingleArgumentConstructorGetSize() {
             assertEquals(Animal.Size.MEDIUM, animal.getSize());
         }
     }
 
     @Nested
     @DisplayName("test two argument animal constructor getters")
-    class TestTwoArgumentAnimalConstructorGetters {
+    class TestAnimalTwoArgumentConstructorGetters {
 
         @Test
         public void testAnimalTwoArgumentConstructorGetName() {
@@ -127,7 +127,7 @@ public class AnimalTest {
 
     @Nested
     @DisplayName("test no argument constructor animal setters")
-    class TestNoArgumentAnimalConstructorSetters {
+    class TestAnimalNoArgumentConstructorSetters {
 
         @Test
         public void testAnimalNoArgumentConstructorSetName() {
@@ -148,7 +148,7 @@ public class AnimalTest {
 
     @Nested
     @DisplayName("test single argument animal constructor setters")
-    class TestSingleArgumentAnimalConstructorSetters {
+    class TestAnimalSingleArgumentConstructorSetters {
 
         @Test
         public void testAnimalSingleArgumentConstructorSetName() {

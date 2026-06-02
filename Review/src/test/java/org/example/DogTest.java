@@ -80,8 +80,8 @@ public class DogTest {
     }
 
     @Nested
-    @DisplayName("no argument dog constructor getters")
-    class TestNoArgumentDogConstructorGetters {
+    @DisplayName("test no argument dog constructor getters")
+    class TestDogNoArgumentConstructorGetters {
 
         @Test
         public void testDogNoArgumentConstructorGetName() {
@@ -91,6 +91,16 @@ public class DogTest {
         @Test
         public void testDogNoArgumentConstructorGetSize() {
             assertEquals(Animal.Size.MEDIUM, baseDog.getSize());
+        }
+    }
+
+    @Nested
+    @DisplayName("test single argument dog constructor getters")
+    class TestDogSingleArgumentConstructorGetters {
+
+        @Test
+        public void testDogSingleArgumentConstructorGetName() {
+            assertEquals("German Shepherd", dog.getName());
         }
     }
 }
