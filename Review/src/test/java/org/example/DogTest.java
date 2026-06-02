@@ -39,5 +39,13 @@ public class DogTest {
                 () -> new Dog("", Animal.Size.MEDIUM)
             );
         }
+
+        @Test
+        public void testDogTwoArgumentConstructorRejectsBlankName() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Dog(" ", Animal.Size.LARGE)
+            );
+        }
     }
 }
