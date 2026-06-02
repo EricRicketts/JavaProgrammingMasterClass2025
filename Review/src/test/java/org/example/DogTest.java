@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DogTest {
@@ -75,6 +76,21 @@ public class DogTest {
                 IllegalArgumentException.class,
                 () -> new Dog(" ")
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("no argument dog constructor getters")
+    class TestNoArgumentDogConstructorGetters {
+
+        @Test
+        public void testDogNoArgumentConstructorGetName() {
+            assertEquals("Unknown Name", baseDog.getName());
+        }
+
+        @Test
+        public void testDogNoArgumentConstructorGetSize() {
+            assertEquals(Animal.Size.MEDIUM, baseDog.getSize());
         }
     }
 }
