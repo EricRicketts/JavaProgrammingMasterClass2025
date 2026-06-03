@@ -191,6 +191,38 @@ public class DogTest {
     @DisplayName("test dog setter rejects invalid name")
     class TestDogSetterRejectsInvalidName {
 
+        @Test
+        public void testDogSetterRejectsNullName() {
+            assertEquals("German Shepherd", dog.getName());
+            assertThrows(
+                NullPointerException.class,
+                () -> dog.setName(null)
+            );
+
+            assertEquals("German Shepherd", dog.getName());
+        }
+
+        @Test
+        public void testDogSetterRejectsEmptyName() {
+            assertEquals("German Shepherd", dog.getName());
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> dog.setName("")
+            );
+
+            assertEquals("German Shepherd", dog.getName());
+        }
+
+        @Test
+        public void testDogSetterRejectsBlankName() {
+            assertEquals("German Shepherd", dog.getName());
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> dog.setName(" ")
+            );
+
+            assertEquals("German Shepherd", dog.getName());
+        }
     }
 
     @Nested
