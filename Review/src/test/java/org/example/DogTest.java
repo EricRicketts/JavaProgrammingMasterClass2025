@@ -139,8 +139,10 @@ public class DogTest {
         @Test
         public void testDogNoArgumentConstructorSetSize() {
             assertEquals(Animal.Size.MEDIUM, baseDog.getSize());
-        }
+            baseDog.setSize(Animal.Size.LARGE);
 
+            assertEquals(Animal.Size.LARGE, baseDog.getSize());
+        }
     }
 
     @Nested
