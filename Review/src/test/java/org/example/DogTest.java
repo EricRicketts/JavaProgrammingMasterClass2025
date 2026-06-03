@@ -148,6 +148,7 @@ public class DogTest {
     @Nested
     @DisplayName("test dog single argument constructor setters")
     class TestDogSingleArgumentConstructorSetters {
+
         @Test
         public void testDogSingleArgumentConstructorSetName() {
             assertEquals("German Shepherd", dog.getName());
@@ -169,6 +170,21 @@ public class DogTest {
     @DisplayName("test dog two argument constructor setters")
     class TestDogTwoArgumentConstructorSetters {
 
+        @Test
+        public void testDogTwoArgumentConstructorSetName() {
+            assertEquals("Bulldog", customDog.getName());
+            customDog.setName("Bull Terrier");
+
+            assertEquals("Bull Terrier", customDog.getName());
+        }
+
+        @Test
+        public void testDogTwoArgumentConstructorSetSize() {
+            assertEquals(Animal.Size.MEDIUM, customDog.getSize());
+            customDog.setSize(Animal.Size.LARGE);
+
+            assertEquals(Animal.Size.LARGE, customDog.getSize());
+        }
     }
 
     @Nested
