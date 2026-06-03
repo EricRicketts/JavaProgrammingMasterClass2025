@@ -123,4 +123,47 @@ public class DogTest {
             assertEquals(Animal.Size.MEDIUM, customDog.getSize());
         }
     }
+
+    @Nested
+    @DisplayName("test dog no argument constructor setters")
+    class TestDogNoArgumentConstructorSetters {
+
+        @Test
+        public void testDogNoArgumentConstructorSetName() {
+            assertEquals("Unknown Name", baseDog.getName());
+            baseDog.setName("New name");
+
+            assertEquals("New name", baseDog.getName());
+        }
+
+        @Test
+        public void testDogNoArgumentConstructorSetSize() {
+            assertEquals(Animal.Size.MEDIUM, baseDog.getSize());
+        }
+
+    }
+
+    @Nested
+    @DisplayName("test dog single argument constructor setters")
+    class TestDogSingleArgumentConstructorSetters {
+
+    }
+
+    @Nested
+    @DisplayName("test dog two argument constructor setters")
+    class TestDogTwoArgumentConstructorSetters {
+
+    }
+
+    @Nested
+    @DisplayName("test dog setter rejects invalid name")
+    class TestDogSetterRejectsInvalidName {
+
+    }
+
+    @Nested
+    @DisplayName("test dog make sound and trained status")
+    class TestDogMakeSoundAndTrainedStatus {
+
+    }
 }
