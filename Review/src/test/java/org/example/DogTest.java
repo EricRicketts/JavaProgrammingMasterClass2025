@@ -148,7 +148,21 @@ public class DogTest {
     @Nested
     @DisplayName("test dog single argument constructor setters")
     class TestDogSingleArgumentConstructorSetters {
+        @Test
+        public void testDogSingleArgumentConstructorSetName() {
+            assertEquals("German Shepherd", dog.getName());
+            dog.setName("Labrador");
 
+            assertEquals("Labrador", dog.getName());
+        }
+
+        @Test
+        public void testDogSingleArgumentConstructorSetSize() {
+            assertEquals(Animal.Size.MEDIUM, dog.getSize());
+            dog.setSize(Animal.Size.LARGE);
+
+            assertEquals(Animal.Size.LARGE, dog.getSize());
+        }
     }
 
     @Nested
