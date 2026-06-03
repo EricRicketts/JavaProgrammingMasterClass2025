@@ -6,16 +6,17 @@ public class Dog extends Animal {
 
     private boolean trained;
 
-    public Dog(String name, Size size) {
+    public Dog(String name, Size size, boolean trained) {
         super(name, size);
+        this.trained = trained;
     }
 
     public Dog(String name) {
-        this(name, MEDIUM);
+        this(name, MEDIUM, false);
     }
 
     public Dog() {
-        this("Unknown Name", MEDIUM);
+        this("Unknown Name", MEDIUM, false);
     }
 
     @Override

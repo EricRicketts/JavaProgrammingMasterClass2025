@@ -5,10 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DogTest {
+
+    private static final boolean DEFAULT_TRAINING = false;
 
     private Dog dog;
     private Dog baseDog;
@@ -18,7 +19,7 @@ public class DogTest {
     public void setUp() {
         baseDog = new Dog();
         dog = new Dog("German Shepherd");
-        customDog = new Dog("Bulldog", Animal.Size.MEDIUM);
+        customDog = new Dog("Bulldog", Animal.Size.MEDIUM, DEFAULT_TRAINING);
     }
 
     @Nested
@@ -29,7 +30,7 @@ public class DogTest {
         public void testDogTwoArgumentConstructorRejectsNullName() {
             assertThrows(
                 NullPointerException.class,
-                () -> new Dog(null, Animal.Size.SMALL)
+                () -> new Dog(null, Animal.Size.SMALL, DEFAULT_TRAINING)
             );
         }
 
@@ -37,7 +38,7 @@ public class DogTest {
         public void TestDogTwoArgumentConstructorRejectsEmptyName() {
             assertThrows(
                 IllegalArgumentException.class,
-                () -> new Dog("", Animal.Size.MEDIUM)
+                () -> new Dog("", Animal.Size.MEDIUM, DEFAULT_TRAINING)
             );
         }
 
@@ -45,7 +46,7 @@ public class DogTest {
         public void testDogTwoArgumentConstructorRejectsBlankName() {
             assertThrows(
                 IllegalArgumentException.class,
-                () -> new Dog(" ", Animal.Size.LARGE)
+                () -> new Dog(" ", Animal.Size.LARGE, DEFAULT_TRAINING)
             );
         }
     }
@@ -229,5 +230,22 @@ public class DogTest {
     @DisplayName("test dog make sound and trained status")
     class TestDogMakeSoundAndTrainedStatus {
 
+        @Test
+        public void testDogMakeSound() {
+            assertEquals("Woof!!", dog.makeSound());
+        }
+
+        @Test
+        public void testDogGetTrainedStatus() {
+            assertFalse(customDog.isTrained());
+        }
+
+        @Test
+        public void testDogSetTrainedStatus() {
+            assertFalse(customDog.isTrained());
+            customDog.setTrained(true);
+
+            assertTrue(customDog.isTrained());
+        }
     }
 }
