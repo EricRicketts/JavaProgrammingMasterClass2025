@@ -63,7 +63,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test invalid String inputs for print(String) method")
-    class TestInvalidInputsForPrintMethodWithStringArgument {
+    class TestInvalidStringInputsForPrintMethodWithStringArgument {
 
         @Test
         public void testNullInputRejectedForPrintMethodWithStringArgument() {
@@ -92,7 +92,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test invalid int inputs for print(int) method")
-    class TestInvalidInputsForPrintMethodWithIntArgument {
+    class TestInvalidIntInputsForPrintMethodWithIntArgument {
 
         @Test
         public void testNegativeInputRejectedForPrintMethodWithIntArgument() {
@@ -113,7 +113,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test invalid String inputs for print(String, int) method")
-    class TestInvalidInputsForPrintMethodWithStringAndIntArguments {
+    class TestInvalidStringInputsForPrintMethodWithStringAndIntArguments {
 
         @Test
         public void testNullInputRejectedForPrintMethodWithStringAndIntArguments() {
@@ -136,6 +136,27 @@ public class PrinterTest {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("  ", 1)
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test invalid int inputs for print(String, int) method")
+    class TestInvalidIntInputsForPrintMethodWithStringAndIntArguments {
+
+        @Test
+        public void testNegativeInputRejectedForPrintMethodWithStringAndIntArguments() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> printer.print("Foobar", -1)
+            );
+        }
+
+        @Test
+        public void testZeroInputRejectedForPrintMethodWithStringAndIntArguments() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> printer.print("Foobar", 0)
             );
         }
     }
