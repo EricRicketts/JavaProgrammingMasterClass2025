@@ -19,7 +19,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test print(String) method")
-    class TestPrintStringMethod {
+    class TestPrintMethodWithStringArgument {
 
         @Test
         public void testPrintMethodWithStringArgument() {
@@ -32,7 +32,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test print(int) method")
-    class TestPrintIntMethod {
+    class TestPrintMethodWithIntArgument {
 
         @Test
         public void testPrintMethodWithIntArgument() {
@@ -47,7 +47,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test print(String, int) method")
-    class TestPrintStringIntMethod {
+    class TestPrintMethodWithStringAndIntArguments {
 
         @Test
         public void testPrintMethodWithStringAndIntArguments() {
