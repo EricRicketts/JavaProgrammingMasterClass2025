@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PrinterTest {
 
@@ -58,5 +59,18 @@ public class PrinterTest {
             );
         }
 
+    }
+
+    @Nested
+    @DisplayName("test invalid String inputs for print(String) method")
+    class TestInvalidInputsForPrintMethodWithStringArgument {
+
+        @Test
+        public void testNullInputForPrintMethodWithStringArgument() {
+            assertThrows(
+                NullPointerException.class,
+                () -> printer.print(null)
+            );
+        }
     }
 }
