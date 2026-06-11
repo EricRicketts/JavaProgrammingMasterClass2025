@@ -72,5 +72,13 @@ public class PrinterTest {
                 () -> printer.print(null)
             );
         }
+
+        @Test
+        public void testEmptyStringInputForPrintMethodWithStringArgument() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> printer.print("")
+            );
+        }
     }
 }
