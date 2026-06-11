@@ -110,4 +110,33 @@ public class PrinterTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test invalid String inputs for print(String, int) method")
+    class TestInvalidInputsForPrintMethodWithStringAndIntArguments {
+
+        @Test
+        public void testNullInputRejectedForPrintMethodWithStringAndIntArguments() {
+            assertThrows(
+                NullPointerException.class,
+                () -> printer.print(null, 1)
+            );
+        }
+
+        @Test
+        public void testEmptyStringInputRejectedForPrintMethodWithStringAndIntArguments() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> printer.print("", 1)
+            );
+        }
+
+        @Test
+        public void testBlankStringInputRejectedForPrintMethodWithStringAndIntArguments() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> printer.print("  ", 1)
+            );
+        }
+    }
 }
