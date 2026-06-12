@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PrinterTest {
 
     Printer printer;
+    NullPointerException nullPointerException;
+    IllegalArgumentException illegalArgumentException;
 
     @BeforeEach
     public void setUp() {
@@ -67,26 +69,40 @@ public class PrinterTest {
 
         @Test
         public void testPrintStringRejectsNull() {
-            assertThrows(
+           nullPointerException = assertThrows(
                 NullPointerException.class,
                 () -> printer.print(null)
             );
+
+           assertEquals(
+               ErrorMessages.nullValue(Printer.STRING_FIELD_NAME_PRINT_STRING),
+               nullPointerException.getMessage()
+           );
         }
 
         @Test
         public void testPrintStringRejectsEmptyString() {
-            assertThrows(
+            illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("")
+            );
+
+            assertEquals(
+                ErrorMessages.emptyValue(Printer.STRING_FIELD_NAME_PRINT_STRING),
+                illegalArgumentException.getMessage()
             );
         }
 
         @Test
         public void testPrintStringRejectsBlankString() {
-            assertThrows(
+            illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("  ")
             );
+
+            assertEquals(
+                ErrorMessages.blankValue(Printer.STRING_FIELD_NAME_PRINT_STRING),
+                illegalArgumentException.getMessage());
         }
     }
 
@@ -96,17 +112,27 @@ public class PrinterTest {
 
         @Test
         public void testPrintIntRejectsNegativeInteger() {
-            assertThrows(
+            illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print(-1)
+            );
+
+            assertEquals(
+                ErrorMessages.negativeValue(Printer.INT_FIELD_NAME_PRINT_INT),
+                illegalArgumentException.getMessage()
             );
         }
 
         @Test
         public void testPrintIntRejectsZeroInput() {
-            assertThrows(
+            illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print(0)
+            );
+
+            assertEquals(
+                ErrorMessages.zeroValue(Printer.INT_FIELD_NAME_PRINT_INT),
+                illegalArgumentException.getMessage()
             );
         }
     }

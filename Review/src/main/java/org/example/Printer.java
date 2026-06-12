@@ -2,10 +2,10 @@ package org.example;
 
 public class Printer {
 
-    private static final String STRING_FIELD_NAME_PRINT_STRING = "the string argument for print(String) method";
-    private static final String INT_FIELD_NAME_PRINT_INT = "the int argument for print(int) method";
-    private static final String STRING_FIELD_NAME_PRINT_STRING_INT = "the string argument for print(String, int) method";
-    private static final String INT_FIELD_NAME_PRINT_STRING_INT = "the int argument for print(String, int) method";
+    public static final String STRING_FIELD_NAME_PRINT_STRING = "the string argument for print(String) method";
+    public static final String INT_FIELD_NAME_PRINT_INT = "the int argument for print(int) method";
+    public static final String STRING_FIELD_NAME_PRINT_STRING_INT = "the string argument for print(String, int) method";
+    public static final String INT_FIELD_NAME_PRINT_STRING_INT = "the int argument for print(String, int) method";
 
     public String print(int intArg) {
         int validInt = ValueValidator.validatePositiveIntAndReturn(intArg, INT_FIELD_NAME_PRINT_INT);
