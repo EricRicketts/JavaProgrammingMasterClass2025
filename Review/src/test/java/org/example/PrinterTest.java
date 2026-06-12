@@ -10,7 +10,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PrinterTest {
 
-    Printer printer;
+    private Printer printer;
+    private static final String STRING_FIELD_NAME_PRINT_STRING =
+        "the string argument for print(String) method";
+    
+    private static final String INT_FIELD_NAME_PRINT_INT =
+        "the int argument for print(int) method";
+    
+    private static final String STRING_FIELD_NAME_PRINT_STRING_INT =
+        "the string argument for print(String, int) method";
+    
+    private static final String INT_FIELD_NAME_PRINT_STRING_INT =
+        "the int argument for print(String, int) method";
     NullPointerException nullPointerException;
     IllegalArgumentException illegalArgumentException;
 
@@ -72,10 +83,10 @@ public class PrinterTest {
            nullPointerException = assertThrows(
                 NullPointerException.class,
                 () -> printer.print(null)
-            );
+           );
 
            assertEquals(
-               ErrorMessages.nullValue(Printer.STRING_FIELD_NAME_PRINT_STRING),
+               ErrorMessages.nullValue(STRING_FIELD_NAME_PRINT_STRING),
                nullPointerException.getMessage()
            );
         }
@@ -88,7 +99,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.emptyValue(Printer.STRING_FIELD_NAME_PRINT_STRING),
+                ErrorMessages.emptyValue(STRING_FIELD_NAME_PRINT_STRING),
                 illegalArgumentException.getMessage()
             );
         }
@@ -101,7 +112,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.blankValue(Printer.STRING_FIELD_NAME_PRINT_STRING),
+                ErrorMessages.blankValue(STRING_FIELD_NAME_PRINT_STRING),
                 illegalArgumentException.getMessage());
         }
     }
@@ -118,7 +129,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.negativeValue(Printer.INT_FIELD_NAME_PRINT_INT),
+                ErrorMessages.negativeValue(INT_FIELD_NAME_PRINT_INT),
                 illegalArgumentException.getMessage()
             );
         }
@@ -131,7 +142,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.zeroValue(Printer.INT_FIELD_NAME_PRINT_INT),
+                ErrorMessages.zeroValue(INT_FIELD_NAME_PRINT_INT),
                 illegalArgumentException.getMessage()
             );
         }
@@ -149,7 +160,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.nullValue(Printer.STRING_FIELD_NAME_PRINT_STRING_INT),
+                ErrorMessages.nullValue(STRING_FIELD_NAME_PRINT_STRING_INT),
                 nullPointerException.getMessage()
             );
         }
@@ -162,7 +173,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.emptyValue(Printer.STRING_FIELD_NAME_PRINT_STRING_INT),
+                ErrorMessages.emptyValue(STRING_FIELD_NAME_PRINT_STRING_INT),
                 illegalArgumentException.getMessage()
             );
         }
@@ -175,7 +186,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.blankValue(Printer.STRING_FIELD_NAME_PRINT_STRING_INT),
+                ErrorMessages.blankValue(STRING_FIELD_NAME_PRINT_STRING_INT),
                 illegalArgumentException.getMessage()
             );
         }
@@ -193,7 +204,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.negativeValue(Printer.INT_FIELD_NAME_PRINT_STRING_INT),
+                ErrorMessages.negativeValue(INT_FIELD_NAME_PRINT_STRING_INT),
                 illegalArgumentException.getMessage()
             );
         }
@@ -206,7 +217,7 @@ public class PrinterTest {
             );
 
             assertEquals(
-                ErrorMessages.zeroValue(Printer.INT_FIELD_NAME_PRINT_STRING_INT),
+                ErrorMessages.zeroValue(INT_FIELD_NAME_PRINT_STRING_INT),
                 illegalArgumentException.getMessage()
             );
         }
