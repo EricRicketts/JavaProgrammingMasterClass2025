@@ -1,0 +1,115 @@
+Messages: 2
+======================================================================================
+
+==== UserMessageImpl #1 ====
+User: 
+Please critique my answers to the Self-Check questions
+Attachments:
+Attachment Name: PhaseFiveSelfCheckQuestions.md
+Attachments Kind: Visible
+Attachments Source: User / FileChatAttachment
+Attachments Text:
+```markdown
+## Self-check Questions
+
+### Phase 5: Encapsulation
+
+- Why use inheritance instead of copying code?
+
+Inhertitance is a more efficient way, via the `extends` keyword in the class declaration, of providing all the fields and methods of the parent class to the subclass without doing an explicit copy.  Otherwise, all subclasses would be forced to copy the code of the parent class to get access to the parent's fields and methods.   
+
+- What does `super()` do?
+
+`super()` enables the subclass to call the parent constructor and do initialization in the parent class which is shared by the subclass, without having to declare those identical constructors and fields in the subclass.
+
+- When is inheritance a bad fit?
+
+If there are no shared traits and behavior between a class and a potential parent then inheritance would not make any sense.
+```
+
+==== SimpleCompletableMessage #2 ====
+Assistant: 
+## Overall critique
+
+Your answers are **clear and mostly correct**, especially for an introductory self-check. You understand the basic idea that inheritance lets a subclass reuse behavior from a parent class, and you correctly connect `super()` with parent-class constructor initialization.
+
+The main improvement I’d suggest is to be a little more precise: inheritance is not just about “avoiding copying code.” It is mainly about modeling an **is-a relationship** and sharing common behavior through a parent type. Code reuse is a benefit, but it should not be the only reason to use inheritance.
+
+---
+
+## Question 1: Why use inheritance instead of copying code?
+
+Your answer:
+
+> Inhertitance is a more efficient way, via the `extends` keyword in the class declaration, of providing all the fields and methods of the parent class to the subclass without doing an explicit copy. Otherwise, all subclasses would be forced to copy the code of the parent class to get access to the parent's fields and methods.
+
+### What’s good
+
+- You correctly identify that inheritance avoids duplicate code.
+- You correctly mention `extends`.
+- You correctly explain that subclasses can receive behavior from a parent class without manually copying it.
+
+### What to improve
+
+- Small spelling issue: **“Inhertitance” → “Inheritance.”**
+- Be careful saying inheritance provides **all fields and methods** to the subclass. A subclass inherits accessible members, but `private` fields and methods are not directly accessible from the subclass. They still exist as part of the object, but the subclass interacts with them through public/protected methods.
+- The answer could mention that inheritance is best when the subclass truly **is a specialized version** of the parent class.
+- “More efficient” is a little vague. It is more maintainable and less repetitive, but not necessarily more efficient in runtime performance.
+
+### Stronger version
+
+> Inheritance lets a class reuse and specialize the behavior of another class without duplicating code. In Java, a subclass uses `extends` to inherit accessible fields and methods from a parent class. This improves maintainability because shared logic can be written once in the parent class and reused by subclasses. Inheritance is most appropriate when the subclass represents an **is-a** relationship with the parent class.
+
+---
+
+## Question 2: What does `super()` do?
+
+Your answer:
+
+> `super()` enables the subclass to call the parent constructor and do initialization in the parent class which is shared by the subclass, without having to declare those identical constructors and fields in the subclass.
+
+### What’s good
+
+- You correctly state that `super()` calls the parent constructor.
+- You correctly connect it with parent-class initialization.
+- You understand that it helps avoid duplicating initialization logic.
+
+### What to improve
+
+- `super()` specifically calls the **no-argument constructor** of the parent class.
+- If the parent constructor requires arguments, you use `super(arguments)`.
+- `super(...)` must be the **first statement** in a subclass constructor.
+- It does not mean you avoid declaring constructors in the subclass entirely. The subclass still declares its own constructor when it needs to initialize subclass-specific fields or choose which parent constructor to call.
+
+### Stronger version
+
+> `super()` calls the no-argument constructor of the parent class from inside a subclass constructor. If the parent constructor requires values, the subclass can call it with `super(arguments)`. This lets the parent class initialize its own fields before the subclass finishes initializing its fields. A call to `super(...)` must be the first statement in the subclass constructor.
+
+---
+
+## Question 3: When is inheritance a bad fit?
+
+Your answer:
+
+> If there are no shared traits and behavior between a class and a potential parent then inheritance would not make any sense.
+
+### What’s good
+
+- This is correct.
+- You recognize that inheritance needs shared structure or behavior.
+- The answer is concise and understandable.
+
+### What to improve
+
+This answer could be expanded. Inheritance can also be a bad fit when:
+
+- The relationship is not really an **is-a** relationship.
+- You only want code reuse but not a true type relationship.
+- Composition would be clearer, such as one class **has-a** helper object.
+- The parent class behavior would force the subclass to inherit methods that do not make sense.
+- The hierarchy would become fragile or hard to change.
+
+### Stronger version
+
+> Inheritance is a bad fit when the subclass is not truly an **is-a** version of the parent.
+

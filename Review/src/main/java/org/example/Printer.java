@@ -6,6 +6,7 @@ public class Printer {
     private static final String intFieldNamePrintInt = "the int argument for print(int) method";
     private static final String stringFieldNamePrintStringInt = "the string argument for print(String, int) method";
     private static final String intFieldNamePrintStringInt = "the int argument for print(String, int) method";
+
     public String print(int intArg) {
         String fieldName = "the int argument for print(int) method";
         int validInt = ValueValidator.validatePositiveIntAndReturn(intArg, fieldName);
