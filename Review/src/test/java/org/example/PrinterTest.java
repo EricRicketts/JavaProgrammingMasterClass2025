@@ -22,7 +22,7 @@ public class PrinterTest {
     class TestPrintMethodWithStringArgument {
 
         @Test
-        public void testPrintMethodWithStringArgument() {
+        public void testPrintString() {
             assertEquals(
                 "The argument for the print(String) overloaded method is Foobar.\n",
                 printer.print("Foobar")
@@ -35,7 +35,7 @@ public class PrinterTest {
     class TestPrintMethodWithIntArgument {
 
         @Test
-        public void testPrintMethodWithIntArgument() {
+        public void testPrintInt() {
             assertEquals(
                 "The argument for the print(int) overloaded method is 15.\n",
                 printer.print(15)
@@ -50,7 +50,7 @@ public class PrinterTest {
     class TestPrintMethodWithStringAndIntArguments {
 
         @Test
-        public void testPrintMethodWithStringAndIntArguments() {
+        public void testPrintStringInt() {
             assertEquals(
                 "The arguments for the print(String, int) overloaded method are as follows:\n"
                         .concat("The argument for the print(String) overloaded method is Foobar.\n")
@@ -66,7 +66,7 @@ public class PrinterTest {
     class TestInvalidStringInputsForPrintMethodWithStringArgument {
 
         @Test
-        public void testNullInputRejectedForPrintMethodWithStringArgument() {
+        public void testPrintStringRejectsNull() {
             assertThrows(
                 NullPointerException.class,
                 () -> printer.print(null)
@@ -74,7 +74,7 @@ public class PrinterTest {
         }
 
         @Test
-        public void testEmptyStringInputRejectedForPrintMethodWithStringArgument() {
+        public void testPrintStringRejectsEmptyString() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("")
@@ -82,7 +82,7 @@ public class PrinterTest {
         }
 
         @Test
-        public void testBlankStringInputRejectedForPrintMethodWithStringArgument() {
+        public void testPrintStringRejectsBlankString() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("  ")
@@ -95,7 +95,7 @@ public class PrinterTest {
     class TestInvalidIntInputsForPrintMethodWithIntArgument {
 
         @Test
-        public void testNegativeInputRejectedForPrintMethodWithIntArgument() {
+        public void testPrintIntRejectsNegativeInteger() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print(-1)
@@ -103,7 +103,7 @@ public class PrinterTest {
         }
 
         @Test
-        public void testZeroInputRejectedForPrintMethodWithIntArgument() {
+        public void testPrintIntRejectsZeroInput() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print(0)
@@ -116,7 +116,7 @@ public class PrinterTest {
     class TestInvalidStringInputsForPrintMethodWithStringAndIntArguments {
 
         @Test
-        public void testNullInputRejectedForPrintMethodWithStringAndIntArguments() {
+        public void testPrintStringIntRejectsNull() {
             assertThrows(
                 NullPointerException.class,
                 () -> printer.print(null, 1)
@@ -124,7 +124,7 @@ public class PrinterTest {
         }
 
         @Test
-        public void testEmptyStringInputRejectedForPrintMethodWithStringAndIntArguments() {
+        public void testPrintStringIntRejectsEmptyString() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("", 1)
@@ -132,7 +132,7 @@ public class PrinterTest {
         }
 
         @Test
-        public void testBlankStringInputRejectedForPrintMethodWithStringAndIntArguments() {
+        public void testPrintStringIntRejectsBlankString() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("  ", 1)
@@ -145,7 +145,7 @@ public class PrinterTest {
     class TestInvalidIntInputsForPrintMethodWithStringAndIntArguments {
 
         @Test
-        public void testNegativeInputRejectedForPrintMethodWithStringAndIntArguments() {
+        public void testPrintStringIntRejectsNegativeInteger() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("Foobar", -1)
@@ -153,7 +153,7 @@ public class PrinterTest {
         }
 
         @Test
-        public void testZeroInputRejectedForPrintMethodWithStringAndIntArguments() {
+        public void testPrintStringIntRejectsZero() {
             assertThrows(
                 IllegalArgumentException.class,
                 () -> printer.print("Foobar", 0)
