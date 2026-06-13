@@ -61,5 +61,19 @@ public class ShapeTest {
                 exception.getMessage()
             );
         }
+
+        @Test
+        public void testShapeConstructorRejectsZeroLength() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Shape(0, 1)
+                );
+
+            assertEquals(
+                ErrorMessages.zeroValue("length"),
+                exception.getMessage()
+            );
+        }
     }
 }
