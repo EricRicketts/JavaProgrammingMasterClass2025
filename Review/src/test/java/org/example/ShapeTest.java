@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ShapeTest {
 
@@ -40,6 +41,25 @@ public class ShapeTest {
         @Test
         public void testNoArgumentShapeConstructorSetsWidth() {
             assertEquals(1, secondShape.getWidth());
+        }
+    }
+
+    @Nested
+    @DisplayName("test shape constructor validation")
+    class TestShapeConstructorValidation {
+
+        @Test
+        public void testShapeConstructorRejectsNegativeLength() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Shape(-1, 1)
+            );
+
+            assertEquals(
+                ErrorMessages.negativeValue("length"),
+                exception.getMessage()
+            );
         }
     }
 }
