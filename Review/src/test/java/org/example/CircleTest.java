@@ -122,6 +122,39 @@ public class CircleTest {
     }
 
     @Nested
+    @DisplayName("test circle setter validates scale factor")
+    class TestCircleSetterValidatesScaleFactor {
+
+        @Test
+        public void testCircleSetterRejectsZeroScaleFactor() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> circle.setScaleFactor(0)
+                );
+
+                assertEquals(
+                    ErrorMessages.zeroValue("scale factor"),
+                    exception.getMessage()
+                );
+        }
+
+        @Test
+        public void testCircleSetterRejectsNegativeScaleFactor() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> circle.setScaleFactor(-1)
+                );
+
+            assertEquals(
+                ErrorMessages.negativeValue("scale factor"),
+                exception.getMessage()
+            );
+        }
+    }
+
+    @Nested
     @DisplayName("test circle radius getter")
     class TestCircleRadiusGetter {
 
