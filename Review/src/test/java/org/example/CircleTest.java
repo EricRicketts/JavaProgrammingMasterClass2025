@@ -23,8 +23,8 @@ public class CircleTest {
     }
 
     @Nested
-    @DisplayName("test circle validates radius")
-    class TestCircleValidatesRadius {
+    @DisplayName("test circle constructor validates radius")
+    class TestCircleConstructorValidatesRadius {
 
         @Test
         public void testCircleConstructorRejectsNullRadius() {
@@ -34,10 +34,10 @@ public class CircleTest {
                     () -> new Circle(null)
                 );
 
-            assertEquals(
-                ErrorMessages.nullValue("radius"),
-                exception.getMessage()
-            );
+                assertEquals(
+                    ErrorMessages.nullValue("radius"),
+                    exception.getMessage()
+                );
         }
 
         @Test
@@ -48,11 +48,43 @@ public class CircleTest {
                     () -> new Circle(new BigDecimal("-0.01"))
                 );
 
-            assertEquals(
-                ErrorMessages.negativeValue("radius"),
-                exception.getMessage()
-            );
+                assertEquals(
+                    ErrorMessages.negativeValue("radius"),
+                    exception.getMessage()
+                );
+        }
+    }
+
+    @Nested
+    @DisplayName("test circle setter validates radius")
+    class TestCircleSetterValidatesRadius {
+
+        @Test
+        public void testCircleSetterRejectsNullRadius() {
+            NullPointerException exception =
+                assertThrows(
+                    NullPointerException.class,
+                    () -> firstCircle.setRadius(null)
+                );
+
+                assertEquals(
+                    ErrorMessages.nullValue("radius"),
+                    exception.getMessage()
+                );
         }
 
+        @Test
+        public void testCircleSetterRejectsNegativeRadius() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> firstCircle.setRadius(new BigDecimal("-0.01"))
+                );
+
+                assertEquals(
+                    ErrorMessages.negativeValue("radius"),
+                    exception.getMessage()
+                );
+        }
     }
 }
