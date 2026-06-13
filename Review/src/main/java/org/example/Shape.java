@@ -7,6 +7,6 @@ public class Shape {
     public Shape() {}
 
     public BigDecimal area() {
-        return new BigDecimal("1.5");
+        return BigDecimal.ZERO;
     }
 }

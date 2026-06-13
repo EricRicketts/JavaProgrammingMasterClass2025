@@ -11,6 +11,6 @@ public class ShapeTest {
 
     @Test
     public void testShapeArea() {
-        assertEquals(new BigDecimal("1.5"), new Shape().area());
+        assertEquals(BigDecimal.ZERO, new Shape().area());
     }
 }
