@@ -12,14 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CircleTest {
 
-    private Circle firstCircle;
-
-    private Circle secondCircle;
+    private Circle circle;
 
     @BeforeEach
     public void setUp() {
-        firstCircle = new Circle(new BigDecimal("4.53"));
-        secondCircle = new Circle();
+        circle = new Circle(new BigDecimal("4.53"));
     }
 
     @Nested
@@ -64,7 +61,7 @@ public class CircleTest {
             NullPointerException exception =
                 assertThrows(
                     NullPointerException.class,
-                    () -> firstCircle.setRadius(null)
+                    () -> circle.setRadius(null)
                 );
 
                 assertEquals(
@@ -78,7 +75,7 @@ public class CircleTest {
             IllegalArgumentException exception =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> firstCircle.setRadius(new BigDecimal("-0.01"))
+                    () -> circle.setRadius(new BigDecimal("-0.01"))
                 );
 
                 assertEquals(
@@ -94,12 +91,12 @@ public class CircleTest {
 
         @Test
         public void testCircleOneArgumentConstructorGetRadius() {
-            assertEquals(new BigDecimal("4.53"), firstCircle.getRadius());
+            assertEquals(new BigDecimal("4.53"), circle.getRadius());
         }
 
         @Test
         public void testCircleZeroArgumentConstructorGetRadius() {
-            assertEquals(new BigDecimal("1.54"), secondCircle.getRadius());
+            assertEquals(new BigDecimal("1.54"), new Circle().getRadius());
         }
     }
 
@@ -112,7 +109,7 @@ public class CircleTest {
             BigDecimal radius = new BigDecimal("4.53");
             BigDecimal expectedArea = BigDecimal.valueOf(Math.PI).multiply(radius).multiply(radius);
 
-            assertEquals(expectedArea, firstCircle.area());
+            assertEquals(expectedArea, circle.area());
         }
 
         @Test
@@ -123,7 +120,7 @@ public class CircleTest {
                     .multiply(new BigDecimal(Math.PI))
                     .multiply(radius);
 
-            assertEquals(expectedCircumference, firstCircle.circumference());
+            assertEquals(expectedCircumference, circle.circumference());
         }
     }
 }
