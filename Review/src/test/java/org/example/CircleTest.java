@@ -102,4 +102,28 @@ public class CircleTest {
             assertEquals(new BigDecimal("1.54"), secondCircle.getRadius());
         }
     }
+
+    @Nested
+    @DisplayName("test circle area snd circumference")
+    class TestCircleAreaAndCircumference {
+
+        @Test
+        public void testCircleArea() {
+            BigDecimal radius = new BigDecimal("4.53");
+            BigDecimal expectedArea = BigDecimal.valueOf(Math.PI).multiply(radius).multiply(radius);
+
+            assertEquals(expectedArea, firstCircle.area());
+        }
+
+        @Test
+        public void testCircleCircumference() {
+            BigDecimal radius = new BigDecimal("4.53");
+            BigDecimal expectedCircumference =
+                new BigDecimal("2")
+                    .multiply(new BigDecimal(Math.PI))
+                    .multiply(radius);
+
+            assertEquals(expectedCircumference, firstCircle.circumference());
+        }
+    }
 }
