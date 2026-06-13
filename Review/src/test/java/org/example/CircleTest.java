@@ -155,7 +155,7 @@ public class CircleTest {
 
         @Test
         public void testCircleConstructorGetScaleFactor() {
-            assertEquals(scaleFactor, new Circle().getScaleFactor());
+            assertEquals(scaleFactor, circle.getScaleFactor());
         }
     }
 
@@ -207,7 +207,7 @@ public class CircleTest {
         public void testZeroCircleArea() {
             assertEquals(
                 new BigDecimal("0.00"),
-                zeroCircle.area().setScale(scaleFactor, RoundingMode.HALF_UP)
+                zeroCircle.area()
             );
         }
 
@@ -215,7 +215,7 @@ public class CircleTest {
         public void testZeroCircleCircumference() {
             assertEquals(
                 new BigDecimal("0.00"),
-                zeroCircle.circumference().setScale(scaleFactor, RoundingMode.HALF_UP)
+                zeroCircle.circumference()
             );
         }
     }

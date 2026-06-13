@@ -36,7 +36,7 @@ public class Circle extends Shape {
 
     @Override
     public BigDecimal area() {
-        BigDecimal radiusSquared = this.getRadius().multiply(this.getRadius());
+        BigDecimal radiusSquared = radius.multiply(radius);
         BigDecimal unscaledArea = BigDecimal.valueOf(Math.PI).multiply(radiusSquared);
 
         return unscaledArea.setScale(scaleFactor, RoundingMode.HALF_UP);
@@ -44,7 +44,7 @@ public class Circle extends Shape {
 
     public BigDecimal circumference() {
         BigDecimal unscaledCircumference =
-            new BigDecimal("2").multiply(new BigDecimal(Math.PI)).multiply(this.getRadius());
+            new BigDecimal(2).multiply(BigDecimal.valueOf(Math.PI)).multiply(radius);
 
         return unscaledCircumference.setScale(scaleFactor, RoundingMode.HALF_UP);
     }
