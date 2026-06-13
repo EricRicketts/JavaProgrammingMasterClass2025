@@ -155,40 +155,44 @@ public class CircleTest {
     }
 
     @Nested
-    @DisplayName("test circle radius getter")
+    @DisplayName("test circle radius and scale factor getters")
     class TestCircleRadiusGetter {
 
         @Test
-        public void testCircleOneArgumentConstructorGetRadius() {
+        public void testCircleConstructorGetRadius() {
             assertEquals(new BigDecimal("4.53"), circle.getRadius());
         }
 
         @Test
-        public void testCircleZeroArgumentConstructorGetRadius() {
-            assertEquals(new BigDecimal("1.54"), new Circle().getRadius());
+        public void testCircleConstructorGetScaleFactor() {
+            assertEquals(scaleFactor, new Circle().getScaleFactor());
         }
     }
 
     @Nested
-    @DisplayName("test circle area snd circumference")
+    @DisplayName("test circle area and circumference")
     class TestCircleAreaAndCircumference {
 
         @Test
         public void testCircleArea() {
-            BigDecimal radius = new BigDecimal("4.53");
-            BigDecimal unscaledExpectedArea = BigDecimal.valueOf(Math.PI).multiply(radius).multiply(radius);
-            BigDecimal scaledExpectedArea = unscaledExpectedArea.setScale(scaleFactor, RoundingMode.HALF_UP);
+            BigDecimal unscaledExpectedArea =
+                BigDecimal.valueOf(Math.PI)
+                    .multiply(circle.getRadius())
+                    .multiply(circle.getRadius());
+
+            BigDecimal scaledExpectedArea =
+                unscaledExpectedArea.setScale(scaleFactor, RoundingMode.HALF_UP);
 
             assertEquals(scaledExpectedArea, circle.area());
         }
 
         @Test
         public void testCircleCircumference() {
-            BigDecimal radius = new BigDecimal("4.53");
             BigDecimal unscaledExpectedCircumference =
                 new BigDecimal("2")
                     .multiply(new BigDecimal(Math.PI))
-                    .multiply(radius);
+                    .multiply(circle.getRadius());
+
             BigDecimal scaledExpectedCircumference =
                 unscaledExpectedCircumference.setScale(scaleFactor, RoundingMode.HALF_UP);
 
@@ -200,7 +204,7 @@ public class CircleTest {
             Circle zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
 
             assertEquals(
-                new BigDecimal("0.00").setScale(2, RoundingMode.HALF_UP),
+                new BigDecimal("0.00").setScale(scaleFactor, RoundingMode.HALF_UP),
                 zeroCircle.area()
             );
         }
