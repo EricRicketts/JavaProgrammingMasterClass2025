@@ -37,6 +37,16 @@ public class ValueValidator {
         }
     }
 
+    public static int validateNonNegativeIntAndReturn(int value, String fieldName) {
+        if (value < 0) {
+            throw new IllegalArgumentException(
+                ErrorMessages.negativeValue(fieldName)
+            );
+        } else {
+            return value;
+        }
+    }
+
     public static BigDecimal validatePositiveBigDecimalAndReturn(BigDecimal value, String fieldName) {
         if (Objects.isNull(value)) {
             throw new NullPointerException(
