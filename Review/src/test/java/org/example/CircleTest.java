@@ -190,6 +190,20 @@ public class CircleTest {
         }
 
         @Test
+        public void testCircleAreaWithZeroScaleFactor() {
+            circle = new Circle(new BigDecimal("4.5"), 0);
+
+            assertEquals(new BigDecimal("64"), circle.area());
+        }
+
+        @Test
+        public void testCircleCircumferenceWithZeroScaleFactor() {
+            circle = new Circle(new BigDecimal("4.5"), 0);
+
+            assertEquals(new BigDecimal("28"), circle.circumference());
+        }
+
+        @Test
         public void testZeroCircleArea() {
             assertEquals(
                 new BigDecimal("0.00"),
