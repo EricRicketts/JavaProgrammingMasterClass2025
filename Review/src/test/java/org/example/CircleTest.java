@@ -15,7 +15,7 @@ public class CircleTest {
 
     private Circle circle;
 
-    private int scaleFactor = 2;
+    private final int scaleFactor = 2;
 
     @BeforeEach
     public void setUp() {
@@ -50,6 +50,39 @@ public class CircleTest {
 
                 assertEquals(
                     ErrorMessages.negativeValue("radius"),
+                    exception.getMessage()
+                );
+        }
+    }
+
+    @Nested
+    @DisplayName("test circle constructor validates scale factor")
+    class TestCircleConstructorValidatesScaleFactor {
+
+        @Test
+        public void testCircleConstructorRejectsZeroScaleFactor() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Circle(new BigDecimal("1.45"), 0)
+                );
+
+                assertEquals(
+                    ErrorMessages.zeroValue("scale factor"),
+                    exception.getMessage()
+                );
+        }
+
+        @Test
+        public void testCircleConstructorRejectsNegativeScaleFactor() {
+            IllegalArgumentException exception =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Circle(new BigDecimal("1.45"), -1)
+                );
+
+                assertEquals(
+                    ErrorMessages.negativeValue("scale factor"),
                     exception.getMessage()
                 );
         }
