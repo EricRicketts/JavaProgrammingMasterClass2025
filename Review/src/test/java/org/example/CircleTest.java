@@ -18,7 +18,7 @@ public class CircleTest {
 
     @BeforeEach
     public void setUp() {
-        firstCircle = new Circle(new BigDecimal("4.5"));
+        firstCircle = new Circle(new BigDecimal("4.53"));
         secondCircle = new Circle();
     }
 
@@ -85,6 +85,21 @@ public class CircleTest {
                     ErrorMessages.negativeValue("radius"),
                     exception.getMessage()
                 );
+        }
+    }
+
+    @Nested
+    @DisplayName("test circle radius getter")
+    class TestCircleRadiusGetter {
+
+        @Test
+        public void testCircleOneArgumentConstructorGetRadius() {
+            assertEquals(new BigDecimal("4.53"), firstCircle.getRadius());
+        }
+
+        @Test
+        public void testCircleZeroArgumentConstructorGetRadius() {
+            assertEquals(new BigDecimal("1.54"), secondCircle.getRadius());
         }
     }
 }

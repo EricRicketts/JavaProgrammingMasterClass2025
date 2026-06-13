@@ -11,7 +11,7 @@ public class Circle extends Shape {
     }
 
     public Circle() {
-        this(new BigDecimal("1.5"));
+        this(new BigDecimal("1.54"));
     }
 
     public BigDecimal getRadius() {
