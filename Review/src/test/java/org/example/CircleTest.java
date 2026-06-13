@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,9 +15,11 @@ public class CircleTest {
 
     private Circle circle;
 
+    private int scaleFactor = 2;
+
     @BeforeEach
     public void setUp() {
-        circle = new Circle(new BigDecimal("4.53"));
+        circle = new Circle(new BigDecimal("4.53"), scaleFactor);
     }
 
     @Nested
@@ -28,7 +31,7 @@ public class CircleTest {
             NullPointerException exception =
                 assertThrows(
                     NullPointerException.class,
-                    () -> new Circle(null)
+                    () -> new Circle(null, scaleFactor)
                 );
 
                 assertEquals(
@@ -42,7 +45,7 @@ public class CircleTest {
             IllegalArgumentException exception =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Circle(new BigDecimal("-0.01"))
+                    () -> new Circle(new BigDecimal("-0.01"), scaleFactor)
                 );
 
                 assertEquals(
@@ -107,20 +110,33 @@ public class CircleTest {
         @Test
         public void testCircleArea() {
             BigDecimal radius = new BigDecimal("4.53");
-            BigDecimal expectedArea = BigDecimal.valueOf(Math.PI).multiply(radius).multiply(radius);
+            BigDecimal unscaledExpectedArea = BigDecimal.valueOf(Math.PI).multiply(radius).multiply(radius);
+            BigDecimal scaledExpectedArea = unscaledExpectedArea.setScale(scaleFactor, RoundingMode.HALF_UP);
 
-            assertEquals(expectedArea, circle.area());
+            assertEquals(scaledExpectedArea, circle.area());
         }
 
         @Test
         public void testCircleCircumference() {
             BigDecimal radius = new BigDecimal("4.53");
-            BigDecimal expectedCircumference =
+            BigDecimal unscaledExpectedCircumference =
                 new BigDecimal("2")
                     .multiply(new BigDecimal(Math.PI))
                     .multiply(radius);
+            BigDecimal scaledExpectedCircumference =
+                unscaledExpectedCircumference.setScale(scaleFactor, RoundingMode.HALF_UP);
 
-            assertEquals(expectedCircumference, circle.circumference());
+            assertEquals(scaledExpectedCircumference, circle.circumference());
+        }
+
+        @Test
+        public void testZeroCircleArea() {
+            Circle zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
+
+            assertEquals(
+                new BigDecimal("0.00").setScale(2, RoundingMode.HALF_UP),
+                zeroCircle.area()
+            );
         }
     }
 }
