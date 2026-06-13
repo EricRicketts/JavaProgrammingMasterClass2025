@@ -11,7 +11,7 @@ public class Circle extends Shape {
 
     public Circle(BigDecimal radius, int scaleFactor) {
         this.radius = ValueValidator.validateNonNegativeBigDecimalAndReturn(radius, "radius");
-        this.scaleFactor = ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
+        this.scaleFactor = ValueValidator.validateNonNegativeIntAndReturn(scaleFactor, "scale factor");
     }
 
     public Circle() {
@@ -23,7 +23,7 @@ public class Circle extends Shape {
     }
 
     public void setScaleFactor(int scaleFactor) {
-        this.scaleFactor = ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
+        this.scaleFactor = ValueValidator.validateNonNegativeIntAndReturn(scaleFactor, "scale factor");
     }
 
     public BigDecimal getRadius() {

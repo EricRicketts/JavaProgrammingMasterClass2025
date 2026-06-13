@@ -15,11 +15,14 @@ public class CircleTest {
 
     private Circle circle;
 
+    private Circle zeroCircle;
+
     private final int scaleFactor = 2;
 
     @BeforeEach
     public void setUp() {
         circle = new Circle(new BigDecimal("4.53"), scaleFactor);
+        zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
     }
 
     @Nested
@@ -58,20 +61,6 @@ public class CircleTest {
     @Nested
     @DisplayName("test circle constructor validates scale factor")
     class TestCircleConstructorValidatesScaleFactor {
-
-        @Test
-        public void testCircleConstructorRejectsZeroScaleFactor() {
-            IllegalArgumentException exception =
-                assertThrows(
-                    IllegalArgumentException.class,
-                    () -> new Circle(new BigDecimal("1.45"), 0)
-                );
-
-                assertEquals(
-                    ErrorMessages.zeroValue("scale factor"),
-                    exception.getMessage()
-                );
-        }
 
         @Test
         public void testCircleConstructorRejectsNegativeScaleFactor() {
@@ -141,20 +130,6 @@ public class CircleTest {
     class TestCircleSetterValidatesScaleFactor {
 
         @Test
-        public void testCircleSetterRejectsZeroScaleFactor() {
-            IllegalArgumentException exception =
-                assertThrows(
-                    IllegalArgumentException.class,
-                    () -> circle.setScaleFactor(0)
-                );
-
-                assertEquals(
-                    ErrorMessages.zeroValue("scale factor"),
-                    exception.getMessage()
-                );
-        }
-
-        @Test
         public void testCircleSetterRejectsNegativeScaleFactor() {
             IllegalArgumentException exception =
                 assertThrows(
@@ -216,23 +191,18 @@ public class CircleTest {
 
         @Test
         public void testZeroCircleArea() {
-            Circle zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
-
             assertEquals(
                 new BigDecimal("0.00"),
-                zeroCircle.circumference().setScale(scaleFactor, RoundingMode.HALF_UP)
+                zeroCircle.area().setScale(scaleFactor, RoundingMode.HALF_UP)
             );
         }
 
         @Test
         public void testZeroCircleCircumference() {
-            Circle zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
-
             assertEquals(
                 new BigDecimal("0.00"),
                 zeroCircle.circumference().setScale(scaleFactor, RoundingMode.HALF_UP)
             );
-
         }
     }
 }
