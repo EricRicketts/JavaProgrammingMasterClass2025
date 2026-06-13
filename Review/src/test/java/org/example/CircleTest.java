@@ -89,6 +89,21 @@ public class CircleTest {
     }
 
     @Nested
+    @DisplayName("test no argument circle constructor")
+    class TestNoArgumentCircleConstructor {
+
+        @Test
+        public void testNoArgumentCircleConstructorHasRadius() {
+            assertEquals(new BigDecimal("1.54"), new Circle().getRadius());
+        }
+
+        @Test
+        public void testNoArgumentConstructorHasScaleFactor() {
+            assertEquals(2, new Circle().getScaleFactor());
+        }
+    }
+
+    @Nested
     @DisplayName("test circle setter validates radius")
     class TestCircleSetterValidatesRadius {
 
