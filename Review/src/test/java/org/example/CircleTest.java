@@ -204,9 +204,20 @@ public class CircleTest {
             Circle zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
 
             assertEquals(
-                new BigDecimal("0.00").setScale(scaleFactor, RoundingMode.HALF_UP),
-                zeroCircle.area()
+                new BigDecimal("0.00"),
+                zeroCircle.circumference().setScale(scaleFactor, RoundingMode.HALF_UP)
             );
+        }
+
+        @Test
+        public void testZeroCircleCircumference() {
+            Circle zeroCircle = new Circle(new BigDecimal("0.00"), scaleFactor);
+
+            assertEquals(
+                new BigDecimal("0.00"),
+                zeroCircle.circumference().setScale(scaleFactor, RoundingMode.HALF_UP)
+            );
+
         }
     }
 }
