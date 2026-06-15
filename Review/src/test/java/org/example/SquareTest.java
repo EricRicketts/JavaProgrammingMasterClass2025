@@ -102,6 +102,32 @@ public class SquareTest {
     @DisplayName("test square setter validates side")
     class TestSquareSetterValidatesSide {
 
+        @Test
+        public void testSquareSetterRejectsNullSide() {
+            nullPointerException = assertThrows(
+                NullPointerException.class,
+                () -> square.setSide(null)
+            );
+
+            assertEquals(
+                ErrorMessages.nullValue("side"),
+                nullPointerException.getMessage()
+            );
+        }
+
+        @Test
+        public void testSquareSetterRejectsNegativeSide() {
+            illegalArgumentException = assertThrows(
+                IllegalArgumentException.class,
+                () -> square.setSide(BigDecimal.valueOf(-4.56))
+            );
+
+            assertEquals(
+                ErrorMessages.negativeValue("side"),
+                illegalArgumentException.getMessage()
+            );
+        }
+
     }
 
     @Nested
