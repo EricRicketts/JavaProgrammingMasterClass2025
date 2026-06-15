@@ -18,6 +18,8 @@ public class SquareTest {
 
     private Square square;
 
+    private Square defaultSquare;
+
     private static final int SCALE_FACTOR = 2;
 
     private final String literalSide = "side";
@@ -27,6 +29,7 @@ public class SquareTest {
     @BeforeEach
     public void setUp() {
         square = new Square(BigDecimal.valueOf(56.98), SCALE_FACTOR);
+        defaultSquare = new Square();
     }
 
     @Nested
@@ -82,6 +85,16 @@ public class SquareTest {
     @Nested
     @DisplayName("test no argument square constructor")
     class TestNoArgumentSquareConstructor {
+
+        @Test
+        public void testNoArgumentSquareConstructorHasSide() {
+            assertEquals(BigDecimal.valueOf(2), defaultSquare.getSide());
+        }
+
+        @Test
+        public void testNoArgumentSquareConstructorHasScaleFactor() {
+            assertEquals(2, defaultSquare.getScaleFactor());
+        }
 
     }
 
