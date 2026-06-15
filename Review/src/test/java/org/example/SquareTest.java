@@ -23,13 +23,15 @@ public class SquareTest {
 
     private static final int SCALE_FACTOR = 3;
 
+    private static final BigDecimal SIDE = BigDecimal.valueOf(56.98);
+
     private final String literalSide = "side";
 
     private final String literalScaleFactor = "scale factor";
 
     @BeforeEach
     public void setUp() {
-        square = new Square(BigDecimal.valueOf(56.98), SCALE_FACTOR);
+        square = new Square(SIDE, SCALE_FACTOR);
         defaultSquare = new Square();
     }
 
@@ -109,7 +111,7 @@ public class SquareTest {
             );
 
             assertEquals(
-                ErrorMessages.nullValue("side"),
+                ErrorMessages.nullValue(literalSide),
                 nullPointerException.getMessage()
             );
         }
@@ -152,12 +154,12 @@ public class SquareTest {
 
         @Test
         public void testSquareGetSide() {
-            assertEquals(BigDecimal.valueOf(56.98), square.getSide());
+            assertEquals(SIDE, square.getSide());
         }
 
         @Test
         public void testSquareGetScaleFactor() {
-            assertEquals(3, square.getScaleFactor());
+            assertEquals(SCALE_FACTOR, square.getScaleFactor());
         }
     }
 
@@ -167,8 +169,7 @@ public class SquareTest {
 
         @Test
         public void testSquareArea() {
-            BigDecimal unscaledArea =
-                BigDecimal.valueOf(56.98).multiply(BigDecimal.valueOf(56.98));
+            BigDecimal unscaledArea = SIDE.multiply(SIDE);
             BigDecimal scaledArea =
                 unscaledArea.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
 
@@ -196,8 +197,7 @@ public class SquareTest {
 
         @Test
         public void testSquarePerimeter() {
-            BigDecimal unscaledPerimeter =
-                BigDecimal.valueOf(4).multiply(BigDecimal.valueOf(56.98));
+            BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(SIDE);
             BigDecimal scaledPerimeter =
                 unscaledPerimeter.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
 
