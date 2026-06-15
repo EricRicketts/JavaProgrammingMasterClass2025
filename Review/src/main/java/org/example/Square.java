@@ -17,7 +17,9 @@ public class Square extends Shape {
         int nonNegativeScaleFactor =
             ValueValidator.validateNonNegativeIntAndReturn(scaleFactor, "scale factor");
         this.scaleFactor = validateScaleFactorSize(nonNegativeScaleFactor);
-        this.side = ValueValidator.validateNonNegativeBigDecimalAndReturn(side, "side");
+
+        BigDecimal validSide = ValueValidator.validateNonNegativeBigDecimalAndReturn(side, "side");
+        this.side = applyScale(validSide);
     }
 
     public Square() {
@@ -54,9 +56,9 @@ public class Square extends Shape {
     private int validateScaleFactorSize(int scaleFactor) {
         if (scaleFactor > MAX_SCALE_FACTOR) {
             throw new IllegalArgumentException(SCALE_FACTOR_ERROR_MESSAGE);
-        } else {
-            return scaleFactor;
         }
+
+            return scaleFactor;
     }
 
     private BigDecimal applyScale(BigDecimal value) {
