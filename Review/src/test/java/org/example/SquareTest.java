@@ -175,6 +175,20 @@ public class SquareTest {
             assertEquals(scaledArea, square.area());
         }
 
+        @Test
+        public void testSquareAreaZeroScaleFactor() {
+            square = new Square(BigDecimal.valueOf(20.543), 0);
+
+            assertEquals(BigDecimal.valueOf(422), square.area());
+        }
+
+        @Test
+        public void testSquareAreaZeroSquare() {
+            square = new Square(new BigDecimal("0.000"), SCALE_FACTOR);
+
+            assertEquals(new BigDecimal("0.000"), square.area());
+        }
+
     }
 
     @Nested
