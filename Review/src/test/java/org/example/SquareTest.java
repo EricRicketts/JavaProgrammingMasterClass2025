@@ -169,7 +169,10 @@ public class SquareTest {
 
         @Test
         public void testSquareArea() {
-            BigDecimal unscaledArea = SIDE.multiply(SIDE);
+            BigDecimal side = BigDecimal.valueOf(14.567);
+            square = new Square(side, SCALE_FACTOR);
+
+            BigDecimal unscaledArea = side.multiply(side);
             BigDecimal scaledArea =
                 unscaledArea.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
 
@@ -197,7 +200,10 @@ public class SquareTest {
 
         @Test
         public void testSquarePerimeter() {
-            BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(SIDE);
+            BigDecimal side = BigDecimal.valueOf(87.592);
+            Square square = new Square(side, SCALE_FACTOR);
+
+            BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(side);
             BigDecimal scaledPerimeter =
                 unscaledPerimeter.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
 
