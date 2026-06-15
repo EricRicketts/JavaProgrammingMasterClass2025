@@ -188,7 +188,6 @@ public class SquareTest {
 
             assertEquals(new BigDecimal("0.000"), square.area());
         }
-
     }
 
     @Nested
@@ -218,6 +217,5 @@ public class SquareTest {
 
             assertEquals(new BigDecimal("0.000"), square.perimeter());
         }
-
     }
 }

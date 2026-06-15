@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Square extends Shape {
@@ -35,11 +36,14 @@ public class Square extends Shape {
 
     @Override
     public BigDecimal area() {
-        return NumberUtils.setScale(
-                getSide().multiply(getSide()), scaleFactor);
+        BigDecimal unscaledArea = side.multiply(side);
+
+        return unscaledArea.setScale(scaleFactor, RoundingMode.HALF_UP);
     }
 
     public BigDecimal perimeter() {
-        return NumberUtils.setScale(BigDecimal.valueOf(4).multiply(side), scaleFactor);
+        BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(side);
+
+        return unscaledPerimeter.setScale(scaleFactor, RoundingMode.HALF_UP);
     }
 }
