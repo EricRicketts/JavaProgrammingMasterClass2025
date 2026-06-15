@@ -34,7 +34,7 @@ public class SquareTest {
     class TestSquareConstructorValidatesSide {
 
         @Test
-        public void testSquareConstructorRejectsSideNullValue() {
+        public void testSquareConstructorRejectsNullSideValue() {
                 nullPointerException = assertThrows(
                     NullPointerException.class,
                     () -> new Square(null, SCALE_FACTOR)
@@ -47,7 +47,7 @@ public class SquareTest {
         }
 
         @Test
-        public void testSquareConstructorRejectsSideNegativeValue() {
+        public void testSquareConstructorRejectsNegativeSideValue() {
                 illegalArgumentException = assertThrows(
                     IllegalArgumentException.class,
                     () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
@@ -63,6 +63,19 @@ public class SquareTest {
     @Nested
     @DisplayName("test square constructor validates scale factor")
     class TestSquareConstructorValidatesScaleFactor {
+
+        @Test
+        public void testSquareConstructorRejectsNegativeScaleFactor() {
+            illegalArgumentException = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Square(BigDecimal.valueOf(4), -1)
+            );
+
+            assertEquals(
+                ErrorMessages.negativeValue("scale factor"),
+                illegalArgumentException.getMessage()
+            );
+        }
 
     }
 
