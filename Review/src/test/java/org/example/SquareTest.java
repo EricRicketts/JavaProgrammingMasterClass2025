@@ -112,6 +112,29 @@ public class SquareTest {
     }
 
     @Nested
+    @DisplayName("test square setters update side and scale factor")
+    class TestSquareSettersUpdateSideAndScaleFactor {
+
+        @Test
+        public void testSetSizeUpdatesSide() {
+            BigDecimal newSide = BigDecimal.valueOf(10.25);
+
+            square.setSide(newSide);
+
+            assertEquals(newSide, square.getSide());
+        }
+
+        @Test
+        public void testSetSizeUpdatesScaleFactor() {
+            int newScaleFactor = 5;
+
+            square.setScaleFactor(newScaleFactor);
+
+            assertEquals(newScaleFactor, square.getScaleFactor());
+        }
+    }
+
+    @Nested
     @DisplayName("test square setter validates side")
     class TestSquareSetterValidatesSide {
 
