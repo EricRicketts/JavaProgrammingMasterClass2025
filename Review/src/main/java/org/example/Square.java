@@ -3,18 +3,22 @@ package org.example;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Square {
+public class Square extends Shape {
 
-    private final BigDecimal side;
+    private BigDecimal side;
     private final int scaleFactor;
 
     public Square(BigDecimal side, int scaleFactor) {
-        this.scaleFactor = ValueValidator.validatePositiveIntAndReturn(scaleFactor, "scale factor");
-        this.side = validateSideAndReturn(side);
+        this.scaleFactor = ValueValidator.validateNonNegativeIntAndReturn(scaleFactor, "scale factor");
+        this.side = ValueValidator.validateNonNegativeBigDecimalAndReturn(side, "side");
     }
 
     public BigDecimal getSide() {
         return side;
+    }
+
+    public void setSide(BigDecimal side) {
+        this.side = ValueValidator.validateNonNegativeBigDecimalAndReturn(side, "side");
     }
 
     public BigDecimal area() {
@@ -22,20 +26,7 @@ public class Square {
                 getSide().multiply(getSide()), scaleFactor);
     }
 
-    @Override
-    public String toString() {
-        String scaledDimension = "%." + scaleFactor + "f%n";
-        return String.format(
-                "Square:%n" +
-                "side = " + scaledDimension,
-                side
-        ).trim();
-    }
-
-    private BigDecimal validateSideAndReturn(BigDecimal side) {
-        return NumberUtils.setScale(
-                ValueValidator.validatePositiveBigDecimalAndReturn(side, "side"),
-                this.scaleFactor
-        );
+    public BigDecimal perimeter() {
+        return NumberUtils.setScale(BigDecimal.valueOf(4).multiply(side), scaleFactor);
     }
 }

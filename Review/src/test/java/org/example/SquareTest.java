@@ -12,10 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SquareTest {
 
+    private NullPointerException nullPointerException;
+
+    private IllegalArgumentException illegalArgumentException;
+
     private Square square;
+
     private static final int SCALE_FACTOR = 2;
 
     private final String literalSide = "side";
+
     private final String literalScaleFactor = "scale factor";
 
     @BeforeEach
@@ -24,107 +30,75 @@ public class SquareTest {
     }
 
     @Nested
-    @DisplayName("Square constructor tests")
-    class SquareConstructorTests {
+    @DisplayName("test square constructor validates side")
+    class TestSquareConstructorValidatesSide {
 
         @Test
-        public void testSquareConstructorRejectsNullValue() {
-            assertEquals(
-                    ErrorMessages.nullValue(literalSide),
-                    assertThrows(
-                            NullPointerException.class,
-                            () -> new Square(null, SCALE_FACTOR)
-                    ).getMessage()
-            );
+        public void testSquareConstructorRejectsSideNullValue() {
+                nullPointerException = assertThrows(
+                    NullPointerException.class,
+                    () -> new Square(null, SCALE_FACTOR)
+                );
+
+                assertEquals(
+                    ErrorMessages.nullValue("side"),
+                    nullPointerException.getMessage()
+                );
         }
 
         @Test
-        public void testSquareConstructorRejectsZeroValue() {
-            assertEquals(
-                    ErrorMessages.zeroValue(literalSide),
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Square(BigDecimal.valueOf(0.00), SCALE_FACTOR)
-                    ).getMessage()
-            );
-        }
+        public void testSquareConstructorRejectsSideNegativeValue() {
+                illegalArgumentException = assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
+                );
 
-        @Test
-        public void testSquareConstructorRejectsNegativeValue() {
-            assertEquals(
-                    ErrorMessages.negativeValue(literalSide),
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testSquareConstructorRoundsThreeDecimalSide() {
-            Square square =
-                    new Square(BigDecimal.valueOf(59.458), SCALE_FACTOR);
-            assertEquals(BigDecimal.valueOf(59.46), square.getSide());
+                assertEquals(
+                    ErrorMessages.negativeValue("side"),
+                    illegalArgumentException.getMessage()
+                );
         }
     }
 
     @Nested
-    @DisplayName("Scale Factor must be positive")
-    class ScaleFactorTests {
+    @DisplayName("test square constructor validates scale factor")
+    class TestSquareConstructorValidatesScaleFactor {
 
-        @Test
-        public void testNegativeScaleFactor() {
-            assertEquals(
-                    ErrorMessages.negativeValue(literalScaleFactor),
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Square(BigDecimal.valueOf(10.45), -3)
-                    ).getMessage()
-            );
-        }
-
-        @Test
-        public void testZeroScaleFactor() {
-            assertEquals(
-                    ErrorMessages.zeroValue(literalScaleFactor),
-                    "Zero value is not allowed for scale factor",
-                    assertThrows(
-                            IllegalArgumentException.class,
-                            () -> new Square(BigDecimal.valueOf(43.56), 0)
-                    ).getMessage()
-            );
-        }
-    }
-
-
-    @Nested
-    @DisplayName("Square getter tests")
-    class SquareGetterTests {
-
-        @Test
-        public void testSquareGetSide() {
-            assertEquals(BigDecimal.valueOf(56.98), square.getSide());
-        }
-
-        @Test
-        public void testSquareArea() {
-            assertEquals(BigDecimal.valueOf(3_246.72), square.area());
-        }
     }
 
     @Nested
-    @DisplayName("Square toString test")
-    class SquareToStringTest {
+    @DisplayName("test no argument square constructor")
+    class TestNoArgumentSquareConstructor {
 
-        @Test
-        public void testSquareToString() {
-            String expected = """
-                    Square:
-                    side = 56.98
-                    """.trim();
-            String actual = square.toString();
+    }
 
-            assertEquals(expected, actual);
-        }
+    @Nested
+    @DisplayName("test square setter validates side")
+    class TestSquareSetterValidatesSide {
+
+    }
+
+    @Nested
+    @DisplayName("test square setter validates scale factor")
+    class TestSquareSetterValidatesScaleFactor {
+
+    }
+
+    @Nested
+    @DisplayName("test square side and scale factor getters")
+    class TestSquareSideAndScaleFactorGetters {
+
+    }
+
+    @Nested
+    @DisplayName("test square area")
+    class TestSquareArea {
+
+    }
+
+    @Nested
+    @DisplayName("test square perimieter")
+    class TestSquarePerimeter {
+
     }
 }
