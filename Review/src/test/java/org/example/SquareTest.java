@@ -55,7 +55,7 @@ public class SquareTest {
         public void testSquareConstructorRejectsNegativeSideValue() {
             IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
-                () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
+                () -> new Square(new BigDecimal("-4"), SCALE_FACTOR)
             );
 
             assertEquals(
@@ -80,7 +80,7 @@ public class SquareTest {
         public void testSquareConstructorRejectsNegativeScaleFactor() {
             IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
-                () -> new Square(BigDecimal.valueOf(4), -1)
+                () -> new Square(new BigDecimal("4"), -1)
             );
 
             assertEquals(
@@ -93,7 +93,7 @@ public class SquareTest {
         public void testSquareConstructorRejectsTooHighAScaleFactor() {
             IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
-                () -> new Square(BigDecimal.valueOf(11.45), 11)
+                () -> new Square(new BigDecimal("11.45"), 11)
             );
 
             assertEquals(
@@ -169,13 +169,23 @@ public class SquareTest {
         public void testSquareSetterRejectsNegativeSide() {
             IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
-                () -> square.setSide(BigDecimal.valueOf(-4.56))
+                () -> square.setSide(new BigDecimal("-4.56"))
             );
 
             assertEquals(
                 ErrorMessages.negativeValue(LITERAL_SIDE),
                 illegalArgumentException.getMessage()
             );
+        }
+
+        @Test
+        public void testSquareSetterRejectsNegativeSideAndKeepsOriginalSide() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> square.setSide(new BigDecimal("-4.56"))
+            );
+
+            assertEquals(SIDE, square.getSide());
         }
     }
 
@@ -207,6 +217,16 @@ public class SquareTest {
                 SCALE_FACTOR_ERROR_MESSAGE,
                 illegalArgumentException.getMessage()
             );
+        }
+
+        @Test
+        public void testSquareSetterRejectsNegativeScaleFactorAndKeepsOriginalScaleFactor() {
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> square.setScaleFactor(-5)
+            );
+
+            assertEquals(SCALE_FACTOR, square.getScaleFactor());
         }
     }
 
@@ -243,9 +263,9 @@ public class SquareTest {
 
         @Test
         public void testSquareAreaZeroScaleFactor() {
-            square = new Square(BigDecimal.valueOf(20.543), 0);
+            square = new Square(new BigDecimal("20.543"), 0);
 
-            assertEquals(BigDecimal.valueOf(441), square.area());
+            assertEquals(new BigDecimal("441"), square.area());
         }
 
         @Test
@@ -257,11 +277,11 @@ public class SquareTest {
 
         @Test
         public void testChangingScaleFactorChangesAreaScale() {
-            square = new Square(BigDecimal.valueOf(2.555), 2);
+            square = new Square(new BigDecimal("2.555"), 2);
 
             square.setScaleFactor(1);
 
-            assertEquals(BigDecimal.valueOf(6.6), square.area());
+            assertEquals(new BigDecimal("6.6"), square.area());
         }
     }
 
@@ -274,7 +294,7 @@ public class SquareTest {
             BigDecimal side = new BigDecimal("87.592");
             Square square = new Square(side, SCALE_FACTOR);
 
-            BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(side);
+            BigDecimal unscaledPerimeter = new BigDecimal("4").multiply(side);
             BigDecimal scaledPerimeter =
                 unscaledPerimeter.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
 
@@ -283,9 +303,9 @@ public class SquareTest {
 
         @Test
         public void testSquarePerimeterZeroScaleFactor() {
-            square = new Square(BigDecimal.valueOf(23.456), 0);
+            square = new Square(new BigDecimal("23.456"), 0);
 
-            assertEquals(BigDecimal.valueOf(92), square.perimeter());
+            assertEquals(new BigDecimal("92"), square.perimeter());
         }
 
         @Test
@@ -297,11 +317,11 @@ public class SquareTest {
 
         @Test
         public void testChangingScaleFactorChangesPerimeterScale() {
-            square = new Square(BigDecimal.valueOf(2.555), 2);
+            square = new Square(new BigDecimal("2.555"), 2);
 
             square.setScaleFactor(1);
 
-            assertEquals(BigDecimal.valueOf(10.2), square.perimeter());
+            assertEquals(new BigDecimal("10.2"), square.perimeter());
         }
     }
 }
