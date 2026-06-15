@@ -44,7 +44,7 @@ public class SquareTest {
                 );
 
                 assertEquals(
-                    ErrorMessages.nullValue("side"),
+                    ErrorMessages.nullValue(literalSide),
                     nullPointerException.getMessage()
                 );
         }
@@ -57,7 +57,7 @@ public class SquareTest {
                 );
 
                 assertEquals(
-                    ErrorMessages.negativeValue("side"),
+                    ErrorMessages.negativeValue(literalSide),
                     illegalArgumentException.getMessage()
                 );
         }
@@ -75,11 +75,10 @@ public class SquareTest {
             );
 
             assertEquals(
-                ErrorMessages.negativeValue("scale factor"),
+                ErrorMessages.negativeValue(literalScaleFactor),
                 illegalArgumentException.getMessage()
             );
         }
-
     }
 
     @Nested
@@ -95,7 +94,6 @@ public class SquareTest {
         public void testNoArgumentSquareConstructorHasScaleFactor() {
             assertEquals(2, defaultSquare.getScaleFactor());
         }
-
     }
 
     @Nested
@@ -123,17 +121,28 @@ public class SquareTest {
             );
 
             assertEquals(
-                ErrorMessages.negativeValue("side"),
+                ErrorMessages.negativeValue(literalSide),
                 illegalArgumentException.getMessage()
             );
         }
-
     }
 
     @Nested
     @DisplayName("test square setter validates scale factor")
     class TestSquareSetterValidatesScaleFactor {
 
+        @Test
+        public void testSquareSetterRejectsNegativeScaleFactor() {
+            illegalArgumentException = assertThrows(
+                IllegalArgumentException.class,
+                () -> square.setScaleFactor(-5)
+            );
+
+            assertEquals(
+                ErrorMessages.negativeValue(literalScaleFactor),
+                illegalArgumentException.getMessage()
+            );
+        }
     }
 
     @Nested
@@ -149,7 +158,7 @@ public class SquareTest {
     }
 
     @Nested
-    @DisplayName("test square perimieter")
+    @DisplayName("test square perimeter")
     class TestSquarePerimeter {
 
     }
