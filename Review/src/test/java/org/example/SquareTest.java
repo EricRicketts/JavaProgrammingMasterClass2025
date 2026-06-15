@@ -22,7 +22,7 @@ public class SquareTest {
     private static final String SCALE_FACTOR_ERROR_MESSAGE =
         "Scale factor is too large.";
 
-    private static final BigDecimal SIDE = BigDecimal.valueOf(56.98);
+    private static final BigDecimal SIDE = new BigDecimal("56.98");
 
     private static final String literalSide = "side";
 
@@ -117,7 +117,7 @@ public class SquareTest {
 
         @Test
         public void testSetSizeUpdatesSide() {
-            BigDecimal newSide = BigDecimal.valueOf(10.25);
+            BigDecimal newSide = new BigDecimal("10.25");
 
             square.setSide(newSide);
 
@@ -217,7 +217,7 @@ public class SquareTest {
 
         @Test
         public void testSquareArea() {
-            BigDecimal side = BigDecimal.valueOf(14.567);
+            BigDecimal side = new BigDecimal("14.567");
             square = new Square(side, SCALE_FACTOR);
 
             BigDecimal unscaledArea = side.multiply(side);
@@ -257,7 +257,7 @@ public class SquareTest {
 
         @Test
         public void testSquarePerimeter() {
-            BigDecimal side = BigDecimal.valueOf(87.592);
+            BigDecimal side = new BigDecimal("87.592");
             Square square = new Square(side, SCALE_FACTOR);
 
             BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(side);
