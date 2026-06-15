@@ -240,6 +240,15 @@ public class SquareTest {
 
             assertEquals(new BigDecimal("0.000"), square.area());
         }
+
+        @Test
+        public void testChangingScaleFactorChangesAreaScale() {
+            square = new Square(BigDecimal.valueOf(2.555), 2);
+
+            square.setScaleFactor(1);
+
+            assertEquals(BigDecimal.valueOf(6.5), square.area());
+        }
     }
 
     @Nested
@@ -270,6 +279,15 @@ public class SquareTest {
             square = new Square(new BigDecimal("0.000"), SCALE_FACTOR);
 
             assertEquals(new BigDecimal("0.000"), square.perimeter());
+        }
+
+        @Test
+        public void testChangingScaleFactorChangesPerimeterScale() {
+            square = new Square(BigDecimal.valueOf(2.555), 2);
+
+            square.setScaleFactor(1);
+
+            assertEquals(BigDecimal.valueOf(10.2), square.perimeter());
         }
     }
 }
