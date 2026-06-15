@@ -44,15 +44,11 @@ public class Square extends Shape {
 
     @Override
     public BigDecimal area() {
-        BigDecimal unscaledArea = side.multiply(side);
-
-        return unscaledArea.setScale(scaleFactor, RoundingMode.HALF_UP);
+        return applyScale(side.multiply(side));
     }
 
     public BigDecimal perimeter() {
-        BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(side);
-
-        return unscaledPerimeter.setScale(scaleFactor, RoundingMode.HALF_UP);
+        return applyScale(BigDecimal.valueOf(4).multiply(side));
     }
 
     private int validateScaleFactorSize(int scaleFactor) {
@@ -61,5 +57,9 @@ public class Square extends Shape {
         } else {
             return scaleFactor;
         }
+    }
+
+    private BigDecimal applyScale(BigDecimal value) {
+        return value.setScale(scaleFactor, RoundingMode.HALF_UP);
     }
 }

@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SquareTest {
 
-    private NullPointerException nullPointerException;
-
-    private IllegalArgumentException illegalArgumentException;
-
     private Square square;
 
     private Square defaultSquare;
@@ -28,9 +24,9 @@ public class SquareTest {
 
     private static final BigDecimal SIDE = BigDecimal.valueOf(56.98);
 
-    private final String literalSide = "side";
+    private static final String literalSide = "side";
 
-    private final String literalScaleFactor = "scale factor";
+    private static final String literalScaleFactor = "scale factor";
 
     @BeforeEach
     public void setUp() {
@@ -44,28 +40,28 @@ public class SquareTest {
 
         @Test
         public void testSquareConstructorRejectsNullSideValue() {
-                nullPointerException = assertThrows(
-                    NullPointerException.class,
-                    () -> new Square(null, SCALE_FACTOR)
-                );
+            NullPointerException nullPointerException = assertThrows(
+                NullPointerException.class,
+                () -> new Square(null, SCALE_FACTOR)
+            );
 
-                assertEquals(
-                    ErrorMessages.nullValue(literalSide),
-                    nullPointerException.getMessage()
-                );
+            assertEquals(
+                ErrorMessages.nullValue(literalSide),
+                nullPointerException.getMessage()
+            );
         }
 
         @Test
         public void testSquareConstructorRejectsNegativeSideValue() {
-                illegalArgumentException = assertThrows(
-                    IllegalArgumentException.class,
-                    () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
-                );
+            IllegalArgumentException illegalArgumentException = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Square(BigDecimal.valueOf(-4), SCALE_FACTOR)
+            );
 
-                assertEquals(
-                    ErrorMessages.negativeValue(literalSide),
-                    illegalArgumentException.getMessage()
-                );
+            assertEquals(
+                ErrorMessages.negativeValue(literalSide),
+                illegalArgumentException.getMessage()
+            );
         }
     }
 
@@ -75,7 +71,7 @@ public class SquareTest {
 
         @Test
         public void testSquareConstructorRejectsNegativeScaleFactor() {
-            illegalArgumentException = assertThrows(
+            IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> new Square(BigDecimal.valueOf(4), -1)
             );
@@ -88,7 +84,7 @@ public class SquareTest {
 
         @Test
         public void testSquareConstructorRejectsTooHighAScaleFactor() {
-            illegalArgumentException = assertThrows(
+            IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> new Square(BigDecimal.valueOf(11.45), 11)
             );
@@ -121,7 +117,7 @@ public class SquareTest {
 
         @Test
         public void testSquareSetterRejectsNullSide() {
-            nullPointerException = assertThrows(
+            NullPointerException nullPointerException = assertThrows(
                 NullPointerException.class,
                 () -> square.setSide(null)
             );
@@ -134,7 +130,7 @@ public class SquareTest {
 
         @Test
         public void testSquareSetterRejectsNegativeSide() {
-            illegalArgumentException = assertThrows(
+            IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> square.setSide(BigDecimal.valueOf(-4.56))
             );
@@ -152,7 +148,7 @@ public class SquareTest {
 
         @Test
         public void testSquareSetterRejectsNegativeScaleFactor() {
-            illegalArgumentException = assertThrows(
+            IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> square.setScaleFactor(-5)
             );
@@ -165,7 +161,7 @@ public class SquareTest {
 
         @Test
         public void testSquareSetterRejectsTooHighAScaleFactor() {
-            illegalArgumentException = assertThrows(
+            IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> square.setScaleFactor(11)
             );
