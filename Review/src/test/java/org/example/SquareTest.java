@@ -195,5 +195,15 @@ public class SquareTest {
     @DisplayName("test square perimeter")
     class TestSquarePerimeter {
 
+        @Test
+        public void testSquarePerimeter() {
+            BigDecimal unscaledPerimeter =
+                BigDecimal.valueOf(4).multiply(BigDecimal.valueOf(56.98));
+            BigDecimal scaledPerimeter =
+                unscaledPerimeter.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
+
+            assertEquals(scaledPerimeter, square.perimeter());
+        }
+
     }
 }
