@@ -149,6 +149,15 @@ public class SquareTest {
     @DisplayName("test square side and scale factor getters")
     class TestSquareSideAndScaleFactorGetters {
 
+        @Test
+        public void testSquareGetSide() {
+            assertEquals(BigDecimal.valueOf(56.98), square.getSide());
+        }
+
+        @Test
+        public void testSquareGetScaleFactor() {
+            assertEquals(2, square.getScaleFactor());
+        }
     }
 
     @Nested
