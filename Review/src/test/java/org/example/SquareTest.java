@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,7 +21,7 @@ public class SquareTest {
 
     private Square defaultSquare;
 
-    private static final int SCALE_FACTOR = 2;
+    private static final int SCALE_FACTOR = 3;
 
     private final String literalSide = "side";
 
@@ -156,13 +157,23 @@ public class SquareTest {
 
         @Test
         public void testSquareGetScaleFactor() {
-            assertEquals(2, square.getScaleFactor());
+            assertEquals(3, square.getScaleFactor());
         }
     }
 
     @Nested
     @DisplayName("test square area")
     class TestSquareArea {
+
+        @Test
+        public void testSquareArea() {
+            BigDecimal unscaledArea =
+                BigDecimal.valueOf(56.98).multiply(BigDecimal.valueOf(56.98));
+            BigDecimal scaledArea =
+                unscaledArea.setScale(SCALE_FACTOR, RoundingMode.HALF_UP);
+
+            assertEquals(scaledArea, square.area());
+        }
 
     }
 
