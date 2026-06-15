@@ -33,6 +33,7 @@ public class Square extends Shape {
         this.side = ValueValidator.validateNonNegativeBigDecimalAndReturn(side, "side");
     }
 
+    @Override
     public BigDecimal area() {
         return NumberUtils.setScale(
                 getSide().multiply(getSide()), scaleFactor);

@@ -205,5 +205,19 @@ public class SquareTest {
             assertEquals(scaledPerimeter, square.perimeter());
         }
 
+        @Test
+        public void testSquarePerimeterZeroScaleFactor() {
+            square = new Square(BigDecimal.valueOf(23.456), 0);
+
+            assertEquals(BigDecimal.valueOf(94), square.perimeter());
+        }
+
+        @Test
+        public void testSquarePerimeterZeroSquare() {
+            square = new Square(new BigDecimal("0.000"), SCALE_FACTOR);
+
+            assertEquals(new BigDecimal("0.000"), square.perimeter());
+        }
+
     }
 }
