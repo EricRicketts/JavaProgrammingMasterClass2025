@@ -15,7 +15,7 @@ private int scaleFactor;
 Both fields are private and exposed through controlled getters and setters. That is exactly what I would expect at this stage of the course.
 You are not allowing outside code to directly assign invalid state to the object.
  
-1. Constructor validation is good
+### 1. Constructor validation is good
 ``` java
 public Square(BigDecimal side, int scaleFactor) {
     this.scaleFactor = ValueValidator.validateNonNegativeIntAndReturn(scaleFactor, "scale factor");
@@ -26,7 +26,7 @@ public Square(BigDecimal side, int scaleFactor) {
 This is good defensive programming. You validate both incoming values before storing them.
 A square with a negative side length should not exist, and your class prevents that.
  
-2. Default constructor uses constructor chaining
+### 2. Default constructor uses constructor chaining
 ``` java
 public Square() {
     this(BigDecimal.valueOf(2), 2);
@@ -36,7 +36,7 @@ public Square() {
 Excellent. This avoids duplicated assignment logic and keeps the validation path consistent.
 This is exactly the right use of constructor chaining.
  
-3. Setter validation is consistent with constructor validation
+### 3. Setter validation is consistent with constructor validation
 ``` java
 public void setScaleFactor(int scaleFactor) {
     this.scaleFactor = ValueValidator.validateNonNegativeIntAndReturn(scaleFactor, "scale factor");
@@ -50,7 +50,7 @@ public void setSide(BigDecimal side) {
 This is important. A common beginner mistake is validating constructor parameters but forgetting that setters can later put the object into an invalid state.
 You avoided that.
  
-4. Correct area() override
+### 4. Correct area() override
 ``` java
 @Override
 public BigDecimal area() {
@@ -66,7 +66,7 @@ result is rounded using the instance’s scaleFactor
 @Override is correctly used
 This demonstrates the main point of the exercise: overriding inherited behavior.
  
-5. perimeter() is a logical addition
+### 5. perimeter() is a logical addition
 ``` java
 public BigDecimal perimeter() {
     BigDecimal unscaledPerimeter = BigDecimal.valueOf(4).multiply(side);
@@ -80,7 +80,7 @@ I also like that you applied the same rounding policy to both area() and perimet
  
 Design Notes and Improvement Areas
 
-6. Consider whether zero side length should be allowed
+### 1. Consider whether zero side length should be allowed
 Right now, this is allowed:
 ``` java
 new Square(BigDecimal.ZERO, 3)
@@ -94,7 +94,7 @@ If you want to allow “empty” or “zero” shapes, your current validation i
 If you want only physically meaningful squares, validate side as positive, not merely non-negative.
 Given your tests include a zero square, your design appears intentional. I would not mark this as an error.
  
-7. Scale factor may need an upper limit eventually
+### 2. Scale factor may need an upper limit eventually
 You validate that scaleFactor is not negative, which is good.
 However, this means a user could technically do:
 ``` java
@@ -111,7 +111,7 @@ private static final int MAX_SCALE_FACTOR = 10;
 Then reject anything above it.
 Again, not a major issue for this course phase, but worth thinking about.
  
-8. The scale factor design is reasonable
+### 3. The scale factor design is reasonable
 You mentioned this yourself:
 It could be argued the scale factor should be final, but I decided the user might want to change the scale factor on a given instance.
 That is a valid design choice.
@@ -133,7 +133,7 @@ This makes the object more flexible.
 Since your class already has a setSide() method, mutability is already part of the object’s design. So a mutable scaleFactor is consistent.
 I would not penalize you for this.
  
-9. Possible improvement: avoid repeated rounding logic
+### 4. Possible improvement: avoid repeated rounding logic
 Both area() and perimeter() do this:
 ``` java
 return value.setScale(scaleFactor, RoundingMode.HALF_UP);
@@ -193,7 +193,7 @@ Grade: A-
 The tests are thorough, organized, and demonstrate that you understand both normal behavior and invalid input behavior. You are testing more than the minimum required, which is good.
  
 What You Did Well in the Tests
-1. Good use of nested test classes
+### 1. Good use of nested test classes
 ``` java
 @Nested
 @DisplayName("test square constructor validates side")
@@ -211,7 +211,7 @@ area
 perimeter
 That is a strong testing habit.
  
-2. Good use of @BeforeEach
+### 2. Good use of @BeforeEach
 ``` java
 @BeforeEach
 public void setUp() {
@@ -223,7 +223,7 @@ public void setUp() {
 This reduces repetition and ensures each test starts with a fresh object.
 Good.
  
-3. You test constructor validation
+### 3. You test constructor validation
 You test null side:
 ``` java
 () -> new Square(null, SCALE_FACTOR)
@@ -241,7 +241,7 @@ You test negative scale factor:
 
 That is exactly the kind of testing I want to see for constructors.
  
-4. You test setter validation
+### 4. You test setter validation
 You correctly check that invalid values are rejected after object creation:
 ``` java
 () -> square.setSide(null)
@@ -258,7 +258,7 @@ You correctly check that invalid values are rejected after object creation:
 This matters because invalid state can enter through setters as well as constructors.
 Good coverage.
  
-5. You test default constructor values
+### 5. You test default constructor values
 ``` java
 assertEquals(BigDecimal.valueOf(2), defaultSquare.getSide());
 assertEquals(2, defaultSquare.getScaleFactor());
@@ -267,7 +267,7 @@ assertEquals(2, defaultSquare.getScaleFactor());
 This verifies that the no-argument constructor produces the expected default object.
 Good.
  
-6. You test computed area and perimeter
+### 6. You test computed area and perimeter
 For area:
 ``` java
 BigDecimal unscaledArea = side.multiply(side);
@@ -288,7 +288,7 @@ assertEquals(scaledPerimeter, square.perimeter());
 
 This is a good testing pattern because you are calculating the expected value independently inside the test.
  
-7. You test zero scale factor
+### 7. You test zero scale factor
 ``` java
 square = new Square(BigDecimal.valueOf(20.543), 0);
 
@@ -305,7 +305,7 @@ assertEquals(BigDecimal.valueOf(94), square.perimeter());
 These are useful because scaleFactor = 0 changes the result noticeably.
 You are verifying rounding behavior, not just arithmetic.
  
-8. You test zero side length
+### 8. You test zero side length
 ``` java
 square = new Square(new BigDecimal("0.000"), SCALE_FACTOR);
 
@@ -316,7 +316,7 @@ And similarly for perimeter.
 This confirms your chosen rule that zero side length is allowed.
  
 Test Improvement Areas
-1. Avoid storing exception objects as fields
+### 1. Avoid storing exception objects as fields
 You currently have:
 ``` java
 private NullPointerException nullPointerException;
@@ -344,7 +344,7 @@ makes each test more self-contained
 reduces the chance of accidental reuse later
 This is not a correctness problem, but it is a style improvement.
  
-2. Constants should usually be static final
+### 2. Constants should usually be static final
 These are currently instance fields:
 ``` java
 private final String literalSide = "side";
@@ -360,7 +360,7 @@ private static final String LITERAL_SCALE_FACTOR = "scale factor";
 
 This is more idiomatic Java style.
  
-3. Some test indentation is off
+### 3. Some test indentation is off
 In a few tests, the body is indented more than expected:
 ``` java
 @Test
@@ -390,7 +390,7 @@ public void testSquareConstructorRejectsNullSideValue() {
 
 Small style issue, not a logic issue.
  
-4. Add tests that setters actually update valid values
+### 4. Add tests that setters actually update valid values
 You test that setters reject invalid values, but you do not currently test that setters accept valid values and update the object.
 You should consider adding:
 ``` java
@@ -422,7 +422,7 @@ invalid values are rejected
 But they do not prove:
 valid values are accepted and assigned
  
-5. Consider testing that changing scale factor affects area/perimeter
+### 5. Consider testing that changing scale factor affects area/perimeter
 Since you intentionally made scaleFactor mutable, it would be good to test the behavior that justifies that design.
 For example:
 ``` java
@@ -439,7 +439,7 @@ public void testChangingScaleFactorChangesAreaScale() {
 This test would show that setScaleFactor() affects later calculations.
 That would strengthen your argument that scaleFactor is intentionally mutable.
  
-6. Be careful with BigDecimal.valueOf(double)
+### 6. Be careful with BigDecimal.valueOf(double)
 You use examples like:
 ``` java
 BigDecimal.valueOf(56.98)

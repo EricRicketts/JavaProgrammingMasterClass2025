@@ -23,6 +23,9 @@ public class SquareTest {
 
     private static final int SCALE_FACTOR = 3;
 
+    private static final String SCALE_FACTOR_ERROR_MESSAGE =
+        "Scale factor is too large.";
+
     private static final BigDecimal SIDE = BigDecimal.valueOf(56.98);
 
     private final String literalSide = "side";
@@ -79,6 +82,19 @@ public class SquareTest {
 
             assertEquals(
                 ErrorMessages.negativeValue(literalScaleFactor),
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testSquareConstructorRejectsTooHighAScaleFactor() {
+            illegalArgumentException = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Square(BigDecimal.valueOf(11.45), 11)
+            );
+
+            assertEquals(
+                SCALE_FACTOR_ERROR_MESSAGE,
                 illegalArgumentException.getMessage()
             );
         }
@@ -143,6 +159,19 @@ public class SquareTest {
 
             assertEquals(
                 ErrorMessages.negativeValue(literalScaleFactor),
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testSquareSetterRejectsTooHighAScaleFactor() {
+            illegalArgumentException = assertThrows(
+                IllegalArgumentException.class,
+                () -> square.setScaleFactor(11)
+            );
+
+            assertEquals(
+                SCALE_FACTOR_ERROR_MESSAGE,
                 illegalArgumentException.getMessage()
             );
         }
