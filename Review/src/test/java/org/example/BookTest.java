@@ -78,35 +78,44 @@ public class BookTest {
 
         @Test
         public void testBookNullValueForAuthorInConstructor() {
-            assertEquals(
-                ErrorMessages.nullValue(authorLiteral),
+            NullPointerException nullPointerException =
                 assertThrows(
                     NullPointerException.class,
                     () -> new Book(title, null, pages)
-                ).getMessage()
-            );
+                );
+            
+                assertEquals(
+                    ErrorMessages.nullValue(authorLiteral),
+                    nullPointerException.getMessage()
+                );
         }
 
         @Test
         public void testBookEmptyValueForAuthorInConstructor() {
-            assertEquals(
-                ErrorMessages.emptyValue(authorLiteral),
+            IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
                     () -> new Book(title, "", pages)
-                ).getMessage()
-            );
+                );
+
+                assertEquals(
+                    ErrorMessages.emptyValue(authorLiteral),
+                    illegalArgumentException.getMessage()
+                );
         }
 
         @Test
         public void testBookBlankValueForAuthorInConstructor() {
-            assertEquals(
-                ErrorMessages.blankValue(authorLiteral),
+            IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
                     () -> new Book(title, "  ", pages)
-                ).getMessage()
-            );
+                );
+
+                assertEquals(
+                    ErrorMessages.blankValue(authorLiteral),
+                    illegalArgumentException.getMessage()
+                );
         }
     }
 
