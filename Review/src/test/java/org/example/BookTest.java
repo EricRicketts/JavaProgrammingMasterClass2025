@@ -10,15 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookTest {
     private Book book;
 
-    private final static String author = "Joseph Conrad";
+    private final static String AUTHOR = "Joseph Conrad";
 
-    private final static String title = "Heart of Darkness";
+    private final static String TITLE = "Heart of Darkness";
 
-    private final static int pages = 300;
+    private final static int PAGES = 300;
 
-    private final static String authorLiteral = "author";
+    private final static String AUTHOR_LITERAL = "author";
 
-    private final static String titleLiteral = "title";
+    private final static String TITLE_LITERAL = "title";
+
+    private final static String PAGES_LITERAL = "pages";
 
     @BeforeEach
     public void setUp() {
@@ -34,11 +36,11 @@ public class BookTest {
             NullPointerException nullPointerException =
                 assertThrows(
                     NullPointerException.class,
-                    () -> new Book(null, author, pages)
+                    () -> new Book(null, AUTHOR, PAGES)
                 );
 
                 assertEquals(
-                    ErrorMessages.nullValue(titleLiteral),
+                    ErrorMessages.nullValue(TITLE_LITERAL),
                     nullPointerException.getMessage()
                 );
         }
@@ -48,11 +50,11 @@ public class BookTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Book("", author, pages)
+                    () -> new Book("", AUTHOR, PAGES)
                 );
 
                 assertEquals(
-                    ErrorMessages.emptyValue(titleLiteral),
+                    ErrorMessages.emptyValue(TITLE_LITERAL),
                     illegalArgumentException.getMessage()
                 );
         }
@@ -62,11 +64,11 @@ public class BookTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Book("   ", author, pages)
+                    () -> new Book("   ", AUTHOR, PAGES)
                 );
 
                 assertEquals(
-                    ErrorMessages.blankValue(titleLiteral),
+                    ErrorMessages.blankValue(TITLE_LITERAL),
                     illegalArgumentException.getMessage()
                 );
             }
@@ -81,11 +83,11 @@ public class BookTest {
             NullPointerException nullPointerException =
                 assertThrows(
                     NullPointerException.class,
-                    () -> new Book(title, null, pages)
+                    () -> new Book(TITLE, null, PAGES)
                 );
-            
+
                 assertEquals(
-                    ErrorMessages.nullValue(authorLiteral),
+                    ErrorMessages.nullValue(AUTHOR_LITERAL),
                     nullPointerException.getMessage()
                 );
         }
@@ -95,11 +97,11 @@ public class BookTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Book(title, "", pages)
+                    () -> new Book(TITLE, "", PAGES)
                 );
 
                 assertEquals(
-                    ErrorMessages.emptyValue(authorLiteral),
+                    ErrorMessages.emptyValue(AUTHOR_LITERAL),
                     illegalArgumentException.getMessage()
                 );
         }
@@ -109,11 +111,11 @@ public class BookTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Book(title, "  ", pages)
+                    () -> new Book(TITLE, "  ", PAGES)
                 );
 
                 assertEquals(
-                    ErrorMessages.blankValue(authorLiteral),
+                    ErrorMessages.blankValue(AUTHOR_LITERAL),
                     illegalArgumentException.getMessage()
                 );
         }
@@ -125,12 +127,29 @@ public class BookTest {
 
         @Test
         public void testBookNegativeValueForPagesInConstructor() {
-            assertEquals(
-                ErrorMessages.negativeValue("pages"),
+            IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Book(title, author, -50)
-                ).getMessage()
+                    () -> new Book(TITLE, AUTHOR, -50)
+                );
+
+                assertEquals(
+                    ErrorMessages.negativeValue(PAGES_LITERAL),
+                    illegalArgumentException.getMessage()
+                );
+        }
+
+        @Test
+        public void testBookZeroValueForPagesInConstructor() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Book(TITLE, AUTHOR, 0)
+                );
+
+            assertEquals(
+                ErrorMessages.zeroValue(PAGES_LITERAL),
+                illegalArgumentException.getMessage()
             );
         }
     }
