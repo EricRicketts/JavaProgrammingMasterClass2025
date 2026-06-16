@@ -47,28 +47,28 @@ public class LibraryTest {
                 assertEquals(expectedTitle, book.title());
             }
         }
-    }
 
-    @Test
-    public void testBookAuthors() {
-        String expectedAuthor = "Jane Austen";
+        @Test
+        public void testBookAuthors() {
+            String expectedAuthor = "Jane Austen";
 
-        books = library.getBooks();
+            books = library.getBooks();
 
-        for (Book book : books) {
-            assertEquals(expectedAuthor, book.author());
+            for (Book book : books) {
+                assertEquals(expectedAuthor, book.author());
+            }
         }
-    }
 
-    @Test
-    public void testBookPages() {
-        List<Integer> expectedPages = Arrays.asList(304, 320, 520);
+        @Test
+        public void testBookPages() {
+            List<Integer> expectedPages = Arrays.asList(304, 320, 520);
 
-        for(int index = 0; index < books.size(); index++) {
-            Book book = books.get(index);
-            Integer pages = expectedPages.get(index);
+            for(int index = 0; index < books.size(); index++) {
+                Book book = books.get(index);
+                Integer pages = expectedPages.get(index);
 
-            assertEquals(pages, book.pages());
+                assertEquals(pages, book.pages());
+            }
         }
     }
 }
