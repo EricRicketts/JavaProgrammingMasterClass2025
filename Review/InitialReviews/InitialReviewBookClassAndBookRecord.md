@@ -297,9 +297,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
 }
@@ -371,9 +371,9 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
 }
@@ -759,8 +759,6 @@ I will use the setters in the constructor as they validate the inputs
 ```java
 package org.example;
 
-import java.util.Objects;
-
 public class Book {
 
     private String title, author;
@@ -812,9 +810,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
 }
@@ -1033,9 +1031,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
 }
@@ -1763,9 +1761,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
     private void validateNotNull(String authorOrTitle) {
@@ -3386,6 +3384,7 @@ public String toString() {
             "Number of pages = " + this.pages();
 }
 ```
+
 ```java
 package org.example;
 
@@ -3417,9 +3416,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
     private String validateAuthorAndReturn(String author) {
@@ -3901,6 +3900,7 @@ public String toString() {
                 "Number of pages = " + this.pages();
     }
 ```
+
 ```java
 package org.example;
 
@@ -3932,9 +3932,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
     private String validateAuthorAndReturn(String author) {
@@ -4180,6 +4180,7 @@ public class BookRecordTest {
     }
 }
 ```
+
 ```java
 package org.example;
 
@@ -4211,9 +4212,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
     private String validateAuthorAndReturn(String author) {
@@ -5263,6 +5264,7 @@ If you want, I can turn this into an even shorter **study-card version** for you
 kotlin.Unit
 
 ### Final Code
+
 ```java
 package org.example;
 
@@ -5294,9 +5296,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Title = " + this.getTitle() + ", " +
-                "Author = " + this.getAuthor() + ", " +
-                "Number of pages = " + this.getPages();
+        return "Title = " + this.title() + ", " +
+            "Author = " + this.author() + ", " +
+            "Number of pages = " + this.pages();
     }
 
     private String validateAuthorAndReturn(String author) {
