@@ -27,8 +27,8 @@ public class LibraryTest {
     }
 
     @Nested
-    @DisplayName("test titles of books in library")
-    class TestBookTitles {
+    @DisplayName("test features of books in library")
+    class TestBookFeatures {
 
         @Test
         public void testBookTitles() {
@@ -57,6 +57,18 @@ public class LibraryTest {
 
         for (Book book : books) {
             assertEquals(expectedAuthor, book.author());
+        }
+    }
+
+    @Test
+    public void testBookPages() {
+        List<Integer> expectedPages = Arrays.asList(304, 320, 520);
+
+        for(int index = 0; index < books.size(); index++) {
+            Book book = books.get(index);
+            Integer pages = expectedPages.get(index);
+
+            assertEquals(pages, book.pages());
         }
     }
 }
