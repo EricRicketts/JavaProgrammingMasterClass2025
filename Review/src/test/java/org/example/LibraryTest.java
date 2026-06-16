@@ -71,4 +71,34 @@ public class LibraryTest {
             }
         }
     }
+
+    @Nested
+    @DisplayName("test add a book to the library")
+    class AddBookToLibrary {
+
+        @Test
+        public void testAddNewBookInstanceToLibraryIncreasesBookCountByOne() {
+            int expectedBookCount = 3;
+            assertEquals(expectedBookCount, books.size());
+
+            library.addBook(new Book("Persuasion", "Jane Austen", 208));
+
+            assertEquals(expectedBookCount + 1, library.getBooks().size());
+        }
+
+        @Test
+        public void testAddNewBookInstanceToLibraryPlacesBookAtEndOfLibrary() {
+            String expectedTitle = "Persuasion";
+            String expectedAuthor = "Jane Austen";
+            int expectedPages = 208;
+
+            library.addBook(new Book("Persuasion", "Jane Austen", 208));
+
+            Book book = library.getBooks().getLast();
+
+            assertEquals(expectedTitle, book.title());
+            assertEquals(expectedAuthor, book.author());
+            assertEquals(expectedPages, book.pages());
+        }
+    }
 }

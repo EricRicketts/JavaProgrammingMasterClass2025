@@ -9,11 +9,15 @@ public class Library {
     private List<Book> books;
 
     public Library(List<Book> books) {
-        this.books = validateBooksNotBlank(books);
+        this.books = new ArrayList<>(validateBooksNotBlank(books));
     }
 
     public List<Book> getBooks() {
         return books;
+    }
+
+    public void addBook(Book book) {
+        this.books.add(Objects.requireNonNull(book));
     }
 
     private List<Book> validateBooksNotNull(List<Book> books) {
