@@ -9,7 +9,11 @@ public class Library {
     private List<Book> books;
 
     public Library(List<Book> books) {
-        this.books = books;
+        this.books = validateBooksNotBlank(books);
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     private List<Book> validateBooksNotNull(List<Book> books) {
@@ -28,5 +32,15 @@ public class Library {
         }
 
         return nonNullBooks;
+    }
+
+    private List<Book> validateBooksNotBlank(List<Book> books) {
+        List<Book> nonEmptyBooks = validateBooksNotEmpty(books);
+
+        if(nonEmptyBooks.stream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException();
+        }
+
+        return nonEmptyBooks;
     }
 }
