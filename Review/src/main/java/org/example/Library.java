@@ -2,9 +2,25 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class Library {
+
+    private static final String EMPTY_LIBRARY =
+        "No books can be removed from an empty library.";
+
+    private static final String NULL_LIBRARY =
+        "A null value is not allowed for a library's list of books.";
+
+    private static final String EMPTY_LIST_OF_BOOKS =
+        "The initial list of books for a library must have at least one book.";
+
+    private static final String NULL_BOOK_IN_LIBRARY =
+        "A null value for a book is not allowed in a library.";
+
+    private static final String BOOK_NOT_FOUND =
+        "No book with the given title exists in this library";
 
     private List<Book> books;
 
@@ -21,18 +37,20 @@ public class Library {
     }
 
     public Book removeBook(String title) {
-        int indexOfBook = 0;
-        for (Book book : books) {
-            if (Objects.equals(title, book.title())) {
-                indexOfBook = books.indexOf(book);
-            }
+        if (books.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_LIBRARY);
+        }
+
+        int indexOfBook = findBook(title);
+        if (indexOfBook == -1) {
+            throw new NoSuchElementException(BOOK_NOT_FOUND);
         }
         return books.remove(indexOfBook);
     }
 
     private List<Book> validateBooksNotNull(List<Book> books) {
         if (books == null) {
-            throw new NullPointerException();
+            throw new NullPointerException(NULL_LIBRARY);
         }
 
         return books;
@@ -42,7 +60,7 @@ public class Library {
         List<Book> nonNullBooks = validateBooksNotNull(books);
 
         if (nonNullBooks.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(EMPTY_LIST_OF_BOOKS);
         }
 
         return nonNullBooks;
@@ -52,9 +70,20 @@ public class Library {
         List<Book> nonEmptyBooks = validateBooksNotEmpty(books);
 
         if(nonEmptyBooks.stream().anyMatch(Objects::isNull)) {
-            throw new NullPointerException();
+            throw new NullPointerException(NULL_BOOK_IN_LIBRARY);
         }
 
         return nonEmptyBooks;
+    }
+
+    private int findBook(String title) {
+        for (int index = 0; index < books.size(); index++) {
+            Book currentBook = books.get(index);
+
+            if(Objects.equals(currentBook.title(), title)) {
+                return index;
+            }
+        }
+        return -1;
     }
 }

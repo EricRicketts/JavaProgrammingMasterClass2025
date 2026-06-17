@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LibraryTest {
 
@@ -99,6 +100,20 @@ public class LibraryTest {
             assertEquals(expectedTitle, book.title());
             assertEquals(expectedAuthor, book.author());
             assertEquals(expectedPages, book.pages());
+        }
+
+        @Test
+        public void testLibraryRejectsAddingANullBookValue() {
+            NullPointerException nullPointerException =
+                assertThrows(
+                    NullPointerException.class,
+                    () -> library.addBook(null)
+                );
+
+            assertEquals(
+                null,
+                nullPointerException.getMessage()
+            );
         }
     }
 
