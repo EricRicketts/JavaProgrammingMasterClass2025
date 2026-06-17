@@ -155,6 +155,31 @@ public class BookTest {
     }
 
     @Nested
+    @DisplayName("test equal books")
+    class TestEqualBooks {
+
+        @Test
+        public void testEqualBooks() {
+            Book firstBook =
+                new Book("Pride and Prejudice", "Jane Austin", 480);
+            Book secondBook =
+                new Book("Pride and Prejudice", "Jane Austin", 480);
+
+            assertEquals(firstBook, secondBook);
+        }
+
+        @Test
+        public void testNonEqualBooks() {
+            Book firstBook =
+                new Book("Pride and Prejudice", "Jane Austin", 480);
+            Book secondBook =
+                new Book("Sense and Sensibility", "Jane Austin", 304);
+
+            assertNotEquals(firstBook, secondBook);
+        }
+    }
+
+    @Nested
     @DisplayName("Getters and toString")
     class GetterAndToStringChecks {
 

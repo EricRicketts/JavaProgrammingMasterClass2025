@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public record Book(String title, String author, int pages) {
 
     public Book(String title, String author, int pages) {
@@ -8,6 +10,15 @@ public record Book(String title, String author, int pages) {
         this.pages = validatePagesAndReturn(pages);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null) return false;
+        if (!(object instanceof Book)) return false;
+        return (Objects.equals(this.title, ((Book) object).title()) &&
+            Objects.equals(this.author, ((Book) object).author()) &&
+            this.pages == ((Book) object).pages());
+    }
     public static String validateAuthorAndReturn(String author) {
         return ValueValidator.validateTextAndReturn(author, "author");
     }
