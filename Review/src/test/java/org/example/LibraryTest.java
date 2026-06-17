@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,6 +21,9 @@ public class LibraryTest {
 
     private static final String REMOVE_BLANK_VALUE =
         "Attempting to remove a book of blank value is not allowed.";
+
+    private static final String BOOK_NOT_FOUND =
+        "No book with the given title exists in this library";
 
     List<Book> books;
 
@@ -123,8 +127,8 @@ public class LibraryTest {
     }
 
     @Nested
-    @DisplayName("test remove a book from the library")
-    class RemoveBookFromLibrary {
+    @DisplayName("test error checking when removing a book from the library")
+    class ErrorChecksRemoveBookFromLibrary {
 
         @Test
         public void testLibraryRejectsRemovalOfNullBookTitle() {
@@ -167,6 +171,11 @@ public class LibraryTest {
                 illegalArgumentException.getMessage()
             );
         }
+    }
+
+    @Nested
+    @DisplayName("test remove book from library")
+    class RemoveBookFromLibrary {
 
         @Test
         public void testRemoveBookFromLibraryReturnsRemovedBook() {
@@ -186,6 +195,20 @@ public class LibraryTest {
             library.removeBook("Pride and Prejudice");
 
             assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
+        }
+
+        @Test
+        public void testRemoveNonExistentBookFromLibraryReturnsException() {
+            NoSuchElementException noSuchElementException =
+                assertThrows(
+                    NoSuchElementException.class,
+                    () -> library.removeBook("Heart of Darkness")
+                );
+
+            assertEquals(
+                BOOK_NOT_FOUND,
+                noSuchElementException.getMessage()
+            );
         }
     }
 }
