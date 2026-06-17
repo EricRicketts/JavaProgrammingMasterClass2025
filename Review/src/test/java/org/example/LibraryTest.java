@@ -8,10 +8,18 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
+
+    private static final String REMOVE_NULL_VALUE =
+        "Attempting to remove a book of null value is not allowed.";
+
+    private static final String REMOVE_EMPTY_VALUE =
+        "Attempting to remove a book of empty value is not allowed.";
+
+    private static final String REMOVE_BLANK_VALUE =
+        "Attempting to remove a book of blank value is not allowed.";
 
     List<Book> books;
 
@@ -110,16 +118,55 @@ public class LibraryTest {
                     () -> library.addBook(null)
                 );
 
-            assertEquals(
-                null,
-                nullPointerException.getMessage()
-            );
+            assertNull(nullPointerException.getMessage());
         }
     }
 
     @Nested
     @DisplayName("test remove a book from the library")
     class RemoveBookFromLibrary {
+
+        @Test
+        public void testLibraryRejectsRemovalOfNullBookTitle() {
+            NullPointerException nullPointerException =
+                assertThrows(
+                    NullPointerException.class,
+                    () -> library.removeBook(null)
+                );
+
+            assertEquals(
+                REMOVE_NULL_VALUE,
+                nullPointerException.getMessage()
+            );
+        }
+
+        @Test
+        public void testLibraryRejectsRemovalOfEmptyBookTitle() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> library.removeBook("")
+                );
+
+            assertEquals(
+                REMOVE_EMPTY_VALUE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testLibraryRejectsRemovalOfBlankBookTitle() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> library.removeBook("  ")
+                );
+
+            assertEquals(
+                REMOVE_BLANK_VALUE,
+                illegalArgumentException.getMessage()
+            );
+        }
 
         @Test
         public void testRemoveBookFromLibraryReturnsRemovedBook() {

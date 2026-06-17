@@ -22,6 +22,15 @@ public class Library {
     private static final String BOOK_NOT_FOUND =
         "No book with the given title exists in this library";
 
+    private static final String REMOVE_NULL_VALUE =
+        "Attempting to remove a book of null value is not allowed.";
+
+    private static final String REMOVE_EMPTY_VALUE =
+        "Attempting to remove a book of empty value is not allowed.";
+
+    private static final String REMOVE_BLANK_VALUE =
+        "Attempting to remove a book of blank value is not allowed.";
+
     private List<Book> books;
 
     public Library(List<Book> books) {
@@ -37,11 +46,10 @@ public class Library {
     }
 
     public Book removeBook(String title) {
-        if (books.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_LIBRARY);
-        }
+        String validTitle = validateTitleNotNullEmptyOrBlank(title);
+        validateLibraryIsNotEmpty(books);
 
-        int indexOfBook = findBook(title);
+        int indexOfBook = findBook(validTitle);
         if (indexOfBook == -1) {
             throw new NoSuchElementException(BOOK_NOT_FOUND);
         }
@@ -76,6 +84,23 @@ public class Library {
         return nonEmptyBooks;
     }
 
+    private String validateTitleNotNullEmptyOrBlank(String title) {
+        if (title == null) {
+            throw new NullPointerException(REMOVE_NULL_VALUE);
+        } else if (title.isEmpty()) {
+            throw new IllegalArgumentException(REMOVE_EMPTY_VALUE);
+        } else if (title.isBlank()) {
+            throw new IllegalArgumentException(REMOVE_BLANK_VALUE);
+        } else {
+            return title;
+        }
+    }
+
+    private void validateLibraryIsNotEmpty(List<Book> books) {
+        if (books.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_LIBRARY);
+        }
+    }
     private int findBook(String title) {
         for (int index = 0; index < books.size(); index++) {
             Book currentBook = books.get(index);
