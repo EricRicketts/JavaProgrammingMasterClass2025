@@ -101,4 +101,19 @@ public class LibraryTest {
             assertEquals(expectedPages, book.pages());
         }
     }
+
+    @Nested
+    @DisplayName("test remove a book from the library")
+    class RemoveBookFromLibrary {
+
+        @Test
+        public void testRemoveBookFromLibraryReturnsRemovedBook() {
+            Book expectedBook =
+                new Book("Pride and Prejudice", "Jane Austen", 320);
+
+            Book removedBook = library.removeBook("Pride and Prejudice");
+
+            assertEquals(expectedBook, removedBook);
+        }
+    }
 }

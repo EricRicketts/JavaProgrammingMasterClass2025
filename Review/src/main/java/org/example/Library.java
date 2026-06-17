@@ -20,6 +20,16 @@ public class Library {
         this.books.add(Objects.requireNonNull(book));
     }
 
+    public Book removeBook(String title) {
+        int indexOfBook = 0;
+        for (Book book : books) {
+            if (Objects.equals(title, book.title())) {
+                indexOfBook = books.indexOf(book);
+            }
+        }
+        return books.remove(indexOfBook);
+    }
+
     private List<Book> validateBooksNotNull(List<Book> books) {
         if (books == null) {
             throw new NullPointerException();
