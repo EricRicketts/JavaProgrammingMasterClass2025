@@ -51,7 +51,7 @@ public class LibraryTest {
                 "Mansfield Park"
             );
 
-            books = library.getBooks();
+            books = library.books();
 
             for (int index = 0; index < books.size(); index++) {
                 String expectedTitle = expectedTitles.get(index);
@@ -65,7 +65,7 @@ public class LibraryTest {
         public void testBookAuthors() {
             String expectedAuthor = "Jane Austen";
 
-            books = library.getBooks();
+            books = library.books();
 
             for (Book book : books) {
                 assertEquals(expectedAuthor, book.author());
@@ -96,7 +96,7 @@ public class LibraryTest {
 
             library.addBook(new Book("Persuasion", "Jane Austen", 208));
 
-            assertEquals(expectedBookCount + 1, library.getBooks().size());
+            assertEquals(expectedBookCount + 1, library.books().size());
         }
 
         @Test
@@ -107,7 +107,7 @@ public class LibraryTest {
 
             library.addBook(new Book("Persuasion", "Jane Austen", 208));
 
-            Book book = library.getBooks().getLast();
+            Book book = library.books().getLast();
 
             assertEquals(expectedTitle, book.title());
             assertEquals(expectedAuthor, book.author());
@@ -190,11 +190,11 @@ public class LibraryTest {
         @Test
         public void testRemoveBookFromLibraryDecreasesBooksInLibraryByOne() {
             int expectedNumberOfBooks = 3;
-            assertEquals(expectedNumberOfBooks, library.getBooks().size());
+            assertEquals(expectedNumberOfBooks, library.books().size());
 
             library.removeBook("Pride and Prejudice");
 
-            assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
+            assertEquals(expectedNumberOfBooks - 1, library.books().size());
         }
 
         @Test
@@ -209,6 +209,22 @@ public class LibraryTest {
                 BOOK_NOT_FOUND,
                 noSuchElementException.getMessage()
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("test library toString")
+    class LibraryToString {
+
+        @Test
+        public void testLibraryToString() {
+            String libraryInformation = library.toString();
+
+            for (Book book : books) {
+                assertTrue(libraryInformation.contains(book.title()));
+                assertTrue(libraryInformation.contains(book.author()));
+                assertTrue(libraryInformation.contains(String.valueOf(book.pages())));
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 public record Book(String title, String author, int pages) {
@@ -8,6 +10,13 @@ public record Book(String title, String author, int pages) {
         this.title = validateTitleAndReturn(title);
         this.author = validateAuthorAndReturn(author);
         this.pages = validatePagesAndReturn(pages);
+    }
+
+
+    @Override
+    @NotNull
+    public String toString() {
+        return "Book{title = " + title + " author = " + author + " pages = " + pages + "}";
     }
 
     @Override
@@ -19,15 +28,15 @@ public record Book(String title, String author, int pages) {
             Objects.equals(this.author, ((Book) object).author()) &&
             this.pages == ((Book) object).pages());
     }
-    public static String validateAuthorAndReturn(String author) {
+    private static String validateAuthorAndReturn(String author) {
         return ValueValidator.validateTextAndReturn(author, "author");
     }
 
-    public static int validatePagesAndReturn(int pages) {
+    private static int validatePagesAndReturn(int pages) {
         return ValueValidator.validatePositiveIntAndReturn(pages, "pages");
     }
 
-    public static String validateTitleAndReturn(String title) {
+    private static String validateTitleAndReturn(String title) {
         return ValueValidator.validateTextAndReturn(title, "title");
     }
 }

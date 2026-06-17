@@ -1,11 +1,13 @@
 package org.example;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class Library {
+public record Library(List<Book> books) {
 
     private static final String EMPTY_LIBRARY =
         "No books can be removed from an empty library.";
@@ -31,14 +33,8 @@ public class Library {
     private static final String REMOVE_BLANK_VALUE =
         "Attempting to remove a book of blank value is not allowed.";
 
-    private List<Book> books;
-
     public Library(List<Book> books) {
         this.books = new ArrayList<>(validateBooksNotBlank(books));
-    }
-
-    public List<Book> getBooks() {
-        return books;
     }
 
     public void addBook(Book book) {
@@ -54,6 +50,17 @@ public class Library {
             throw new NoSuchElementException(BOOK_NOT_FOUND);
         }
         return books.remove(indexOfBook);
+    }
+
+    @Override
+    @NotNull
+    public String toString() {
+        String libraryString = "List of library books:\n";
+        for (Book book : books) {
+            libraryString = libraryString.concat(book.toString() + "\n");
+        }
+
+        return libraryString;
     }
 
     private List<Book> validateBooksNotNull(List<Book> books) {
@@ -77,7 +84,7 @@ public class Library {
     private List<Book> validateBooksNotBlank(List<Book> books) {
         List<Book> nonEmptyBooks = validateBooksNotEmpty(books);
 
-        if(nonEmptyBooks.stream().anyMatch(Objects::isNull)) {
+        if (nonEmptyBooks.stream().anyMatch(Objects::isNull)) {
             throw new NullPointerException(NULL_BOOK_IN_LIBRARY);
         }
 
@@ -101,11 +108,12 @@ public class Library {
             throw new IllegalArgumentException(EMPTY_LIBRARY);
         }
     }
+
     private int findBook(String title) {
         for (int index = 0; index < books.size(); index++) {
             Book currentBook = books.get(index);
 
-            if(Objects.equals(currentBook.title(), title)) {
+            if (Objects.equals(currentBook.title(), title)) {
                 return index;
             }
         }
