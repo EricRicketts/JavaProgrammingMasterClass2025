@@ -177,5 +177,15 @@ public class LibraryTest {
 
             assertEquals(expectedBook, removedBook);
         }
+
+        @Test
+        public void testRemoveBookFromLibraryDecreasesBooksInLibraryByOne() {
+            int expectedNumberOfBooks = 3;
+            assertEquals(expectedNumberOfBooks, library.getBooks().size());
+
+            library.removeBook("Pride and Prejudice");
+
+            assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
+        }
     }
 }
