@@ -216,7 +216,7 @@ public class BookTest {
 
     @Nested
     @DisplayName("test book title setter")
-    class TestBookSetters {
+    class TestBookTitleSetter {
 
         @Test
         public void testSetBookTitle() {
@@ -279,6 +279,74 @@ public class BookTest {
             );
 
             assertEquals(TEST_TITLE, book.getTitle());
+        }
+    }
+
+    @Nested
+    @DisplayName("test book author setter")
+    class TestBookAuthorSetter {
+
+        @Test
+        public void testSetBookAuthor() {
+            assertEquals(TEST_AUTHOR, book.getAuthor());
+
+            book.setAuthor(AUTHOR);
+
+            assertEquals(AUTHOR, book.getAuthor());
+        }
+
+        @Test
+        public void testBookTitleSetterRejectsNullValue() {
+            assertEquals(TEST_AUTHOR, book.getAuthor());
+
+            NullPointerException nullPointerException =
+                assertThrows(
+                    NullPointerException.class,
+                    () -> book.setAuthor(null)
+                );
+
+            assertEquals(
+                ErrorMessages.nullValue(AUTHOR_LITERAL),
+                nullPointerException.getMessage()
+            );
+
+            assertEquals(TEST_AUTHOR, book.getAuthor());
+        }
+
+        @Test
+        public void testBookAuthorSetterRejectsEmptyValue() {
+            assertEquals(TEST_AUTHOR, book.getAuthor());
+
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> book.setAuthor("")
+                );
+
+            assertEquals(
+                ErrorMessages.emptyValue(AUTHOR_LITERAL),
+                illegalArgumentException.getMessage()
+            );
+
+            assertEquals(TEST_AUTHOR, book.getAuthor());
+        }
+
+        @Test
+        public void testBookAuthorSetterRejectsBlankValue() {
+            assertEquals(TEST_AUTHOR, book.getAuthor());
+
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> book.setAuthor("  ")
+                );
+
+            assertEquals(
+                ErrorMessages.blankValue(AUTHOR_LITERAL),
+                illegalArgumentException.getMessage()
+            );
+
+            assertEquals(TEST_AUTHOR, book.getAuthor());
         }
     }
 
