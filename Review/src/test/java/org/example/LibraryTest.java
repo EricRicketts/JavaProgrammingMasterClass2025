@@ -180,12 +180,26 @@ public class LibraryTest {
             library.addBook(new Book("Emma", "Jane Austen", 400));
 
             assertEquals(5, library.getBooks().size());
+            assertEquals(
+                new Book("Persuasion", "Jane Austen", 208),
+                library.getBooks().get(3)
+            );
+            assertEquals(
+                new Book("Emma", "Jane Austen", 400),
+                library.getBooks().get(4)
+            );
 
             library.removeBook("Mansfield Park");
 
             assertEquals(4, library.getBooks().size());
-            assertEquals(new Book("Persuasion", "Jane Austen", 208), library.getBooks().get(2));
-            assertEquals(new Book("Emma", "Jane Austen", 400), library.getBooks().get(3));
+            assertEquals(
+                new Book("Persuasion", "Jane Austen", 208),
+                library.getBooks().get(2)
+            );
+            assertEquals(
+                new Book("Emma", "Jane Austen", 400),
+                library.getBooks().get(3)
+            );
         }
     }
 
