@@ -35,6 +35,12 @@ public class LibraryTest {
 
     private static final String NEXT_BOOK_TITLE = "Emma";
 
+    private static final int BOOK_PAGES = 208;
+
+    private static final int NEXT_BOOK_PAGES = 400;
+
+    private static final String REMOVED_BOOK_TITLE = "Pride and Prejudice";
+
     List<Book> books;
 
     Library library;
@@ -74,22 +80,20 @@ public class LibraryTest {
             int expectedBookCount = 3;
             assertEquals(expectedBookCount, library.getBooks().size());
 
-            library.addBook(new Book(BOOK_TITLE, AUTHOR, 208));
+            library.addBook(new Book(BOOK_TITLE, AUTHOR, BOOK_PAGES));
 
             assertEquals(expectedBookCount + 1, library.getBooks().size());
         }
 
         @Test
         public void testAddNewBookInstanceToLibraryPlacesBookAtEndOfLibrary() {
-            int expectedPages = 208;
-
-            library.addBook(new Book(BOOK_TITLE, AUTHOR, 208));
+            library.addBook(new Book(BOOK_TITLE, AUTHOR, BOOK_PAGES));
 
             Book book = library.getBooks().getLast();
 
             assertEquals(BOOK_TITLE, book.getTitle());
             assertEquals(AUTHOR, book.getAuthor());
-            assertEquals(expectedPages, book.getPages());
+            assertEquals(BOOK_PAGES, book.getPages());
         }
     }
 
@@ -161,9 +165,9 @@ public class LibraryTest {
         @Test
         public void testRemoveBookFromLibraryReturnsRemovedBook() {
             Book expectedBook =
-                new Book("Pride and Prejudice", "Jane Austen", 320);
+                new Book(REMOVED_BOOK_TITLE, AUTHOR, 320);
 
-            Book removedBook = library.removeBook("Pride and Prejudice");
+            Book removedBook = library.removeBook(REMOVED_BOOK_TITLE);
 
             assertEquals(expectedBook, removedBook);
         }
@@ -173,23 +177,23 @@ public class LibraryTest {
             int expectedNumberOfBooks = 3;
             assertEquals(expectedNumberOfBooks, library.getBooks().size());
 
-            library.removeBook("Pride and Prejudice");
+            library.removeBook(REMOVED_BOOK_TITLE);
 
             assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
         }
 
         @Test
         public void testRemoveBookFromLibraryShiftsFollowingElementsLeft() {
-            library.addBook(new Book(BOOK_TITLE, AUTHOR, 208));
-            library.addBook(new Book(NEXT_BOOK_TITLE, AUTHOR, 400));
+            library.addBook(new Book(BOOK_TITLE, AUTHOR, BOOK_PAGES));
+            library.addBook(new Book(NEXT_BOOK_TITLE, AUTHOR, NEXT_BOOK_PAGES));
 
             assertEquals(5, library.getBooks().size());
             assertEquals(
-                new Book(BOOK_TITLE, AUTHOR, 208),
+                new Book(BOOK_TITLE, AUTHOR, BOOK_PAGES),
                 library.getBooks().get(3)
             );
             assertEquals(
-                new Book(NEXT_BOOK_TITLE, AUTHOR, 400),
+                new Book(NEXT_BOOK_TITLE, AUTHOR, NEXT_BOOK_PAGES),
                 library.getBooks().get(4)
             );
 
@@ -197,11 +201,11 @@ public class LibraryTest {
 
             assertEquals(4, library.getBooks().size());
             assertEquals(
-                new Book(BOOK_TITLE, AUTHOR, 208),
+                new Book(BOOK_TITLE, AUTHOR, BOOK_PAGES),
                 library.getBooks().get(2)
             );
             assertEquals(
-                new Book(NEXT_BOOK_TITLE, AUTHOR, 400),
+                new Book(NEXT_BOOK_TITLE, AUTHOR, NEXT_BOOK_PAGES),
                 library.getBooks().get(3)
             );
         }
