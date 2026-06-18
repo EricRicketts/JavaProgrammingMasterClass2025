@@ -51,13 +51,13 @@ public class LibraryTest {
                 "Mansfield Park"
             );
 
-            books = library.books();
+            books = library.getBooks();
 
             for (int index = 0; index < books.size(); index++) {
                 String expectedTitle = expectedTitles.get(index);
                 Book book = books.get(index);
 
-                assertEquals(expectedTitle, book.title());
+                assertEquals(expectedTitle, book.getTitle());
             }
         }
 
@@ -65,10 +65,10 @@ public class LibraryTest {
         public void testBookAuthors() {
             String expectedAuthor = "Jane Austen";
 
-            books = library.books();
+            books = library.getBooks();
 
             for (Book book : books) {
-                assertEquals(expectedAuthor, book.author());
+                assertEquals(expectedAuthor, book.getAuthor());
             }
         }
 
@@ -80,7 +80,7 @@ public class LibraryTest {
                 Book book = books.get(index);
                 Integer pages = expectedPages.get(index);
 
-                assertEquals(pages, book.pages());
+                assertEquals(pages, book.getPages());
             }
         }
     }
@@ -96,7 +96,7 @@ public class LibraryTest {
 
             library.addBook(new Book("Persuasion", "Jane Austen", 208));
 
-            assertEquals(expectedBookCount + 1, library.books().size());
+            assertEquals(expectedBookCount + 1, library.getBooks().size());
         }
 
         @Test
@@ -107,11 +107,11 @@ public class LibraryTest {
 
             library.addBook(new Book("Persuasion", "Jane Austen", 208));
 
-            Book book = library.books().getLast();
+            Book book = library.getBooks().getLast();
 
-            assertEquals(expectedTitle, book.title());
-            assertEquals(expectedAuthor, book.author());
-            assertEquals(expectedPages, book.pages());
+            assertEquals(expectedTitle, book.getTitle());
+            assertEquals(expectedAuthor, book.getAuthor());
+            assertEquals(expectedPages, book.getPages());
         }
 
         @Test
@@ -190,11 +190,11 @@ public class LibraryTest {
         @Test
         public void testRemoveBookFromLibraryDecreasesBooksInLibraryByOne() {
             int expectedNumberOfBooks = 3;
-            assertEquals(expectedNumberOfBooks, library.books().size());
+            assertEquals(expectedNumberOfBooks, library.getBooks().size());
 
             library.removeBook("Pride and Prejudice");
 
-            assertEquals(expectedNumberOfBooks - 1, library.books().size());
+            assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
         }
 
         @Test
@@ -221,10 +221,30 @@ public class LibraryTest {
             String libraryInformation = library.toString();
 
             for (Book book : books) {
-                assertTrue(libraryInformation.contains(book.title()));
-                assertTrue(libraryInformation.contains(book.author()));
-                assertTrue(libraryInformation.contains(String.valueOf(book.pages())));
+                assertTrue(libraryInformation.contains(book.getTitle()));
+                assertTrue(libraryInformation.contains(book.getAuthor()));
+                assertTrue(libraryInformation.contains(String.valueOf(book.getPages())));
             }
+        }
+    }
+
+    @Nested
+    @DisplayName("constructor tests")
+    class LibraryConstructorTests {
+
+        @Test
+        public void testLibraryConstructorRejectsNullValue() {
+            assertThrows(NullPointerException.class, () -> new Library(null));
+        }
+
+        @Test
+        public void testLibraryConstructorRejectsEmptyValue() {
+            assertThrows(IllegalArgumentException.class, () -> new Library(List.of()));
+        }
+
+        @Test
+        public void testLibraryConstructorRejectsANullBookInTheList() {
+            assertThrows(NullPointerException.class, () -> new Library(Arrays.asList(new Book(), null)));
         }
     }
 }

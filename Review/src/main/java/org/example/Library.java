@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public record Library(List<Book> books) {
+public class Library {
 
     private static final String EMPTY_LIBRARY =
         "No books can be removed from an empty library.";
@@ -33,12 +33,18 @@ public record Library(List<Book> books) {
     private static final String REMOVE_BLANK_VALUE =
         "Attempting to remove a book of blank value is not allowed.";
 
+    private final List<Book> books;
+
     public Library(List<Book> books) {
-        this.books = new ArrayList<>(validateBooksNotBlank(books));
+        this.books = new ArrayList<>(validateBooksNotNullElements(books));
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     public void addBook(Book book) {
-        this.books.add(Objects.requireNonNull(book));
+        this.books.add(Objects.requireNonNull(book, NULL_BOOK_IN_LIBRARY));
     }
 
     public Book removeBook(String title) {
@@ -55,12 +61,12 @@ public record Library(List<Book> books) {
     @Override
     @NotNull
     public String toString() {
-        String libraryString = "List of library books:\n";
+        StringBuilder libraryString = new StringBuilder("List of library books:\n");
         for (Book book : books) {
-            libraryString = libraryString.concat(book.toString() + "\n");
+            libraryString.append(book.toString()).append("\n");
         }
 
-        return libraryString;
+        return libraryString.toString();
     }
 
     private List<Book> validateBooksNotNull(List<Book> books) {
@@ -81,7 +87,7 @@ public record Library(List<Book> books) {
         return nonNullBooks;
     }
 
-    private List<Book> validateBooksNotBlank(List<Book> books) {
+    private List<Book> validateBooksNotNullElements(List<Book> books) {
         List<Book> nonEmptyBooks = validateBooksNotEmpty(books);
 
         if (nonEmptyBooks.stream().anyMatch(Objects::isNull)) {
@@ -113,7 +119,7 @@ public record Library(List<Book> books) {
         for (int index = 0; index < books.size(); index++) {
             Book currentBook = books.get(index);
 
-            if (Objects.equals(currentBook.title(), title)) {
+            if (Objects.equals(currentBook.getTitle(), title)) {
                 return index;
             }
         }

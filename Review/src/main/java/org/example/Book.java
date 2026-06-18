@@ -4,7 +4,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public record Book(String title, String author, int pages) {
+public class Book {
+
+    private String title;
+
+    private String author;
+
+   private int pages;
 
     public Book(String title, String author, int pages) {
         this.title = validateTitleAndReturn(title);
@@ -12,6 +18,33 @@ public record Book(String title, String author, int pages) {
         this.pages = validatePagesAndReturn(pages);
     }
 
+    public Book() {
+        this("Unknown Title", "Unknown Author", 0);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = validateTitleAndReturn(title);
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = validateAuthorAndReturn(author);
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = validatePagesAndReturn(pages);
+    }
 
     @Override
     @NotNull
@@ -24,9 +57,9 @@ public record Book(String title, String author, int pages) {
         if (this == object) return true;
         if (object == null) return false;
         if (!(object instanceof Book)) return false;
-        return (Objects.equals(this.title, ((Book) object).title()) &&
-            Objects.equals(this.author, ((Book) object).author()) &&
-            this.pages == ((Book) object).pages());
+        return (Objects.equals(this.title, ((Book) object).getTitle()) &&
+            Objects.equals(this.author, ((Book) object).getAuthor()) &&
+            this.pages == ((Book) object).getPages());
     }
     private static String validateAuthorAndReturn(String author) {
         return ValueValidator.validateTextAndReturn(author, "author");

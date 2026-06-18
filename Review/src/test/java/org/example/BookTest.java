@@ -10,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookTest {
     private Book book;
 
+    private final static String TEST_AUTHOR = "Jane Austen";
+
+    private final static String TEST_TITLE = "Pride and Prejudice";
+
+    private final static int TEST_PAGES = 480;
+
     private final static String AUTHOR = "Joseph Conrad";
 
     private final static String TITLE = "Heart of Darkness";
@@ -24,7 +30,7 @@ public class BookTest {
 
     @BeforeEach
     public void setUp() {
-        book = new Book("Pride and Prejudice", "Jane Austin", 480);
+        book = new Book("Pride and Prejudice", "Jane Austen", 480);
     }
 
     @Nested
@@ -161,9 +167,9 @@ public class BookTest {
         @Test
         public void testEqualBooks() {
             Book firstBook =
-                new Book("Pride and Prejudice", "Jane Austin", 480);
+                new Book(TEST_TITLE, TEST_AUTHOR, TEST_PAGES);
             Book secondBook =
-                new Book("Pride and Prejudice", "Jane Austin", 480);
+                new Book(TEST_TITLE, TEST_AUTHOR, TEST_PAGES);
 
             assertEquals(firstBook, secondBook);
         }
@@ -171,48 +177,121 @@ public class BookTest {
         @Test
         public void testNonEqualBooks() {
             Book firstBook =
-                new Book("Pride and Prejudice", "Jane Austin", 480);
+                new Book(TEST_TITLE, TEST_AUTHOR, TEST_PAGES);
             Book secondBook =
-                new Book("Sense and Sensibility", "Jane Austin", 304);
+                new Book("Sense and Sensibility", TEST_AUTHOR, TEST_PAGES);
 
             assertNotEquals(firstBook, secondBook);
         }
     }
 
     @Nested
-    @DisplayName("Getters and toString")
-    class GetterAndToStringChecks {
+    @DisplayName("test getters")
+    class TestBookGetters {
 
         @Test
         public void testBookGetTitle() {
             assertEquals(
-                "Pride and Prejudice",
-                book.title()
+                TEST_TITLE,
+                book.getTitle()
             );
         }
 
         @Test
         public void testBookGetAuthor() {
             assertEquals(
-                "Jane Austin",
-                book.author()
+                TEST_AUTHOR,
+                book.getAuthor()
             );
         }
 
         @Test
         public void testBookGetPages() {
             assertEquals(
-                480,
-                book.pages()
+                TEST_PAGES,
+                book.getPages()
             );
         }
+    }
+
+    @Nested
+    @DisplayName("test book title setter")
+    class TestBookSetters {
+
+        @Test
+        public void testSetBookTitle() {
+            assertEquals(TEST_TITLE, book.getTitle());
+
+            book.setTitle(TITLE);
+
+            assertEquals(TITLE, book.getTitle());
+        }
+
+        @Test
+        public void testBookTitleSetterRejectsNullValue() {
+            assertEquals(TEST_TITLE, book.getTitle());
+
+            NullPointerException nullPointerException =
+                assertThrows(
+                    NullPointerException.class,
+                    () -> book.setTitle(null)
+                );
+
+            assertEquals(
+                ErrorMessages.nullValue(TITLE_LITERAL),
+                nullPointerException.getMessage()
+            );
+
+            assertEquals(TEST_TITLE, book.getTitle());
+        }
+
+        @Test
+        public void testBookTitleSetterRejectsEmptyValue() {
+            assertEquals(TEST_TITLE, book.getTitle());
+
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> book.setTitle("")
+                );
+
+            assertEquals(
+                ErrorMessages.emptyValue(TITLE_LITERAL),
+                illegalArgumentException.getMessage()
+            );
+
+            assertEquals(TEST_TITLE, book.getTitle());
+        }
+
+        @Test
+        public void testBookTitleSetterRejectsBlankValue() {
+            assertEquals(TEST_TITLE, book.getTitle());
+
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> book.setTitle("  ")
+                );
+
+            assertEquals(
+                ErrorMessages.blankValue(TITLE_LITERAL),
+                illegalArgumentException.getMessage()
+            );
+
+            assertEquals(TEST_TITLE, book.getTitle());
+        }
+    }
+
+    @Nested
+    @DisplayName("test book toString")
+    class TestBookToString {
 
         @Test
         public void testBookToString() {
             String bookInformation = book.toString();
 
             assertTrue(bookInformation.contains("Pride and Prejudice"));
-            assertTrue(bookInformation.contains("Jane Austin"));
+            assertTrue(bookInformation.contains("Jane Austen"));
             assertTrue(bookInformation.contains("480"));
         }
     }
