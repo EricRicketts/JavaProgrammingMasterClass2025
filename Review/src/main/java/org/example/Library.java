@@ -40,7 +40,7 @@ public class Library {
     }
 
     public List<Book> getBooks() {
-        return books;
+        return List.copyOf(books);
     }
 
     public void addBook(Book book) {

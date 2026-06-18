@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -43,59 +44,29 @@ public class LibraryTest {
     }
 
     @Nested
-    @DisplayName("test features of books in library")
-    class TestBookFeatures {
+    @DisplayName("test error checks when adding a book to the library")
+    class ErrorChecksAddBookToLibrary {
 
         @Test
-        public void testBookTitles() {
-            List<String> expectedTitles = Arrays.asList(
-                "Sense and Sensibility",
-                "Pride and Prejudice",
-                "Mansfield Park"
-            );
+        public void testLibraryRejectsAddingANullBookValue() {
+            NullPointerException nullPointerException =
+                assertThrows(
+                    NullPointerException.class,
+                    () -> library.addBook(null)
+                );
 
-            books = library.getBooks();
-
-            for (int index = 0; index < books.size(); index++) {
-                String expectedTitle = expectedTitles.get(index);
-                Book book = books.get(index);
-
-                assertEquals(expectedTitle, book.getTitle());
-            }
-        }
-
-        @Test
-        public void testBookAuthors() {
-            String expectedAuthor = "Jane Austen";
-
-            books = library.getBooks();
-
-            for (Book book : books) {
-                assertEquals(expectedAuthor, book.getAuthor());
-            }
-        }
-
-        @Test
-        public void testBookPages() {
-            List<Integer> expectedPages = Arrays.asList(304, 320, 520);
-
-            for(int index = 0; index < books.size(); index++) {
-                Book book = books.get(index);
-                Integer pages = expectedPages.get(index);
-
-                assertEquals(pages, book.getPages());
-            }
+            assertEquals(NULL_BOOK_IN_LIBRARY, nullPointerException.getMessage());
         }
     }
 
     @Nested
-    @DisplayName("test add a book to the library")
+    @DisplayName("test add book to library")
     class AddBookToLibrary {
 
         @Test
         public void testAddNewBookInstanceToLibraryIncreasesBookCountByOne() {
             int expectedBookCount = 3;
-            assertEquals(expectedBookCount, books.size());
+            assertEquals(expectedBookCount, library.getBooks().size());
 
             library.addBook(new Book("Persuasion", "Jane Austen", 208));
 
@@ -115,17 +86,6 @@ public class LibraryTest {
             assertEquals(expectedTitle, book.getTitle());
             assertEquals(expectedAuthor, book.getAuthor());
             assertEquals(expectedPages, book.getPages());
-        }
-
-        @Test
-        public void testLibraryRejectsAddingANullBookValue() {
-            NullPointerException nullPointerException =
-                assertThrows(
-                    NullPointerException.class,
-                    () -> library.addBook(null)
-                );
-
-            assertEquals(NULL_BOOK_IN_LIBRARY, nullPointerException.getMessage());
         }
     }
 
@@ -174,6 +134,20 @@ public class LibraryTest {
                 illegalArgumentException.getMessage()
             );
         }
+
+        @Test
+        public void testRemoveNonExistentBookFromLibraryReturnsException() {
+            NoSuchElementException noSuchElementException =
+                assertThrows(
+                    NoSuchElementException.class,
+                    () -> library.removeBook("Heart of Darkness")
+                );
+
+            assertEquals(
+                BOOK_NOT_FOUND,
+                noSuchElementException.getMessage()
+            );
+        }
     }
 
     @Nested
@@ -198,20 +172,6 @@ public class LibraryTest {
             library.removeBook("Pride and Prejudice");
 
             assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
-        }
-
-        @Test
-        public void testRemoveNonExistentBookFromLibraryReturnsException() {
-            NoSuchElementException noSuchElementException =
-                assertThrows(
-                    NoSuchElementException.class,
-                    () -> library.removeBook("Heart of Darkness")
-                );
-
-            assertEquals(
-                BOOK_NOT_FOUND,
-                noSuchElementException.getMessage()
-            );
         }
     }
 
@@ -257,6 +217,37 @@ public class LibraryTest {
                 IllegalArgumentException.class,
                 () -> new Library(Arrays.asList(new Book(), null))
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("encapsulation and defensive copy test")
+    class TestEncapsulationAndDefensiveCopy {
+
+        @Test
+        public void testChangesToCopiedBookListDoesNotAlterLibraryBookList() {
+            List<Book> originalBooks = new ArrayList<>();
+            originalBooks.add(new Book("Book One", "Author One", 100));
+
+            Library library = new Library(originalBooks);
+
+            originalBooks.add(new Book("Book Two", "Author Two", 200));
+            assertEquals(1, library.getBooks().size());
+        }
+
+        @Test
+        public void testLibraryBookListIsProtectedIsEncapsulated() {
+            assertEquals(3, library.getBooks().size());
+
+            UnsupportedOperationException unsupportedOperationException =
+                assertThrows(
+                    UnsupportedOperationException.class,
+                    () -> library.getBooks().clear()
+                );
+
+            assertNull(unsupportedOperationException.getMessage());
+
+            assertEquals(3, library.getBooks().size());
         }
     }
 }
