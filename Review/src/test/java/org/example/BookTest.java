@@ -351,6 +351,56 @@ public class BookTest {
     }
 
     @Nested
+    @DisplayName("test book pages setter")
+    class TestBookPagesSetter {
+
+        @Test
+        public void testBookPagesSetter() {
+            assertEquals(TEST_PAGES, book.getPages());
+
+            book.setPages(PAGES);
+
+            assertEquals(PAGES, book.getPages());
+        }
+
+        @Test
+        public void testBookPagesSetterRejectsZeroPages() {
+            assertEquals(TEST_PAGES, book.getPages());
+
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> book.setPages(0)
+                );
+
+            assertEquals(
+                ErrorMessages.zeroValue(PAGES_LITERAL),
+                illegalArgumentException.getMessage()
+            );
+
+            assertEquals(TEST_PAGES, book.getPages());
+        }
+
+        @Test
+        public void testBookPagesSetterRejectsNegativePages() {
+            assertEquals(TEST_PAGES, book.getPages());
+
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> book.setPages(-30)
+                );
+
+            assertEquals(
+                ErrorMessages.negativeValue(PAGES_LITERAL),
+                illegalArgumentException.getMessage()
+            );
+
+            assertEquals(TEST_PAGES, book.getPages());
+        }
+    }
+
+    @Nested
     @DisplayName("test book toString")
     class TestBookToString {
 
