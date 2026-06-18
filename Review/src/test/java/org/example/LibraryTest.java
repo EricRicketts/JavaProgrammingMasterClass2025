@@ -25,6 +25,9 @@ public class LibraryTest {
     private static final String BOOK_NOT_FOUND =
         "No book with the given title exists in this library";
 
+    private static final String NULL_BOOK_IN_LIBRARY =
+        "A null value for a book is not allowed in a library.";
+
     List<Book> books;
 
     Library library;
@@ -122,7 +125,7 @@ public class LibraryTest {
                     () -> library.addBook(null)
                 );
 
-            assertNull(nullPointerException.getMessage());
+            assertEquals(NULL_BOOK_IN_LIBRARY, nullPointerException.getMessage());
         }
     }
 
@@ -234,17 +237,26 @@ public class LibraryTest {
 
         @Test
         public void testLibraryConstructorRejectsNullValue() {
-            assertThrows(NullPointerException.class, () -> new Library(null));
+            assertThrows(
+                NullPointerException.class,
+                () -> new Library(null)
+            );
         }
 
         @Test
         public void testLibraryConstructorRejectsEmptyValue() {
-            assertThrows(IllegalArgumentException.class, () -> new Library(List.of()));
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Library(List.of())
+            );
         }
 
         @Test
         public void testLibraryConstructorRejectsANullBookInTheList() {
-            assertThrows(NullPointerException.class, () -> new Library(Arrays.asList(new Book(), null)));
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new Library(Arrays.asList(new Book(), null))
+            );
         }
     }
 }
