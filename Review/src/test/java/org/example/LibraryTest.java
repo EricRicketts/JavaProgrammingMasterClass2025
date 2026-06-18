@@ -29,6 +29,12 @@ public class LibraryTest {
     private static final String NULL_BOOK_IN_LIBRARY =
         "A null value for a book is not allowed in a library.";
 
+    private static final String AUTHOR = "Jane Austen";
+
+    private static final String BOOK_TITLE = "Persuasion";
+
+    private static final String NEXT_BOOK_TITLE = "Emma";
+
     List<Book> books;
 
     Library library;
@@ -68,23 +74,21 @@ public class LibraryTest {
             int expectedBookCount = 3;
             assertEquals(expectedBookCount, library.getBooks().size());
 
-            library.addBook(new Book("Persuasion", "Jane Austen", 208));
+            library.addBook(new Book(BOOK_TITLE, AUTHOR, 208));
 
             assertEquals(expectedBookCount + 1, library.getBooks().size());
         }
 
         @Test
         public void testAddNewBookInstanceToLibraryPlacesBookAtEndOfLibrary() {
-            String expectedTitle = "Persuasion";
-            String expectedAuthor = "Jane Austen";
             int expectedPages = 208;
 
-            library.addBook(new Book("Persuasion", "Jane Austen", 208));
+            library.addBook(new Book(BOOK_TITLE, AUTHOR, 208));
 
             Book book = library.getBooks().getLast();
 
-            assertEquals(expectedTitle, book.getTitle());
-            assertEquals(expectedAuthor, book.getAuthor());
+            assertEquals(BOOK_TITLE, book.getTitle());
+            assertEquals(AUTHOR, book.getAuthor());
             assertEquals(expectedPages, book.getPages());
         }
     }
@@ -176,16 +180,16 @@ public class LibraryTest {
 
         @Test
         public void testRemoveBookFromLibraryShiftsFollowingElementsLeft() {
-            library.addBook(new Book("Persuasion", "Jane Austen", 208));
-            library.addBook(new Book("Emma", "Jane Austen", 400));
+            library.addBook(new Book(BOOK_TITLE, AUTHOR, 208));
+            library.addBook(new Book(NEXT_BOOK_TITLE, AUTHOR, 400));
 
             assertEquals(5, library.getBooks().size());
             assertEquals(
-                new Book("Persuasion", "Jane Austen", 208),
+                new Book(BOOK_TITLE, AUTHOR, 208),
                 library.getBooks().get(3)
             );
             assertEquals(
-                new Book("Emma", "Jane Austen", 400),
+                new Book(NEXT_BOOK_TITLE, AUTHOR, 400),
                 library.getBooks().get(4)
             );
 
@@ -193,11 +197,11 @@ public class LibraryTest {
 
             assertEquals(4, library.getBooks().size());
             assertEquals(
-                new Book("Persuasion", "Jane Austen", 208),
+                new Book(BOOK_TITLE, AUTHOR, 208),
                 library.getBooks().get(2)
             );
             assertEquals(
-                new Book("Emma", "Jane Austen", 400),
+                new Book(NEXT_BOOK_TITLE, AUTHOR, 400),
                 library.getBooks().get(3)
             );
         }
