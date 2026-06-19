@@ -11,6 +11,10 @@ public class EngineTypeTest {
 
     EngineType engineTypeInlineFour, engineTypeInlineSix;
 
+    EngineType engineTypeVSix, engineTypeVEight, engineTypeVTwelve;
+
+    EngineType engineTypeFlatTen;
+
     @Nested
     @DisplayName("test inline engine types")
     class TestInlineEngineType {
@@ -39,6 +43,48 @@ public class EngineTypeTest {
         @Test
         public void testInlineSixEngineTypeCylinderArrangement() {
             assertEquals("Inline", engineTypeInlineSix.getCylinderArrangement());
+        }
+    }
+
+    @Nested
+    @DisplayName("test V engine types")
+    class TestVEngineTypes {
+
+        @BeforeEach
+        public void setUp() {
+            engineTypeVSix = EngineType.V_SIX;
+            engineTypeVEight = EngineType.V_EIGHT;
+            engineTypeVTwelve = EngineType.V_TWELVE;
+        }
+
+        @Test
+        public void testVSixEngineTypeNumberOfCylinders() {
+            assertEquals(6, engineTypeVSix.getNumberOfCylinders());
+        }
+
+        @Test
+        public void testVSixEngineTypeCylinderArrangement() {
+            assertEquals("V", engineTypeVSix.getCylinderArrangement());
+        }
+
+        @Test
+        public void testVEightEngineTypeNumberOfCylinders() {
+            assertEquals(8, engineTypeVEight.getNumberOfCylinders());
+        }
+
+        @Test
+        public void testVEightEngineTypeCylinderArrangement() {
+            assertEquals("V", engineTypeVEight.getCylinderArrangement());
+        }
+
+        @Test
+        public void testVTwelveEngineTypeNumberOfCylinders() {
+            assertEquals(12, engineTypeVTwelve.getNumberOfCylinders());
+        }
+
+        @Test
+        public void testVTwelveEngineTypeCylinderArrangement() {
+            assertEquals("V", engineTypeVTwelve.getCylinderArrangement());
         }
     }
 }
