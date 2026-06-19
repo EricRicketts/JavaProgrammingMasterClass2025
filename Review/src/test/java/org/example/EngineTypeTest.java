@@ -87,4 +87,24 @@ public class EngineTypeTest {
             assertEquals("V", engineTypeVTwelve.getCylinderArrangement());
         }
     }
+
+    @Nested
+    @DisplayName("test flat engine type")
+    class TestFlatEngineType {
+
+        @BeforeEach
+        public void setUp() {
+            engineTypeFlatTen = EngineType.FLAT_TEN;
+        }
+
+        @Test
+        public void testVFlatTenEngineTypeNumberOfCylinders() {
+            assertEquals(10, engineTypeFlatTen.getNumberOfCylinders());
+        }
+
+        @Test
+        public void testFlatTenEngineTypeCylinderArrangement() {
+            assertEquals("Flat", engineTypeFlatTen.getCylinderArrangement());
+        }
+    }
 }
