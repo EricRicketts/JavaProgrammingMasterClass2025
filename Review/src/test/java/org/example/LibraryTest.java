@@ -240,11 +240,10 @@ public class LibraryTest {
         }
 
         @Test
-        public void testLibraryConstructorRejectsEmptyValue() {
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new Library(List.of())
-            );
+        public void testLibraryConstructorAcceptsEmptyValue() {
+            Library library = new Library(List.of());
+
+            assertEquals(0, library.getBooks().size());
         }
 
         @Test

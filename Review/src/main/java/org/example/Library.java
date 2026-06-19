@@ -69,7 +69,7 @@ public class Library {
         return libraryString.toString();
     }
 
-    private List<Book> validateBooksNotNull(List<Book> books) {
+    private List<Book> validateLibraryNotNull(List<Book> books) {
         if (books == null) {
             throw new NullPointerException(NULL_LIBRARY);
         }
@@ -77,24 +77,14 @@ public class Library {
         return books;
     }
 
-    private List<Book> validateBooksNotEmpty(List<Book> books) {
-        List<Book> nonNullBooks = validateBooksNotNull(books);
-
-        if (nonNullBooks.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_LIST_OF_BOOKS);
-        }
-
-        return nonNullBooks;
-    }
-
     private List<Book> validateBooksNotNullElements(List<Book> books) {
-        List<Book> nonEmptyBooks = validateBooksNotEmpty(books);
+        List<Book> nonNullLibraryAndNoNullBooks = validateLibraryNotNull(books);
 
-        if (nonEmptyBooks.stream().anyMatch(Objects::isNull)) {
+        if (nonNullLibraryAndNoNullBooks.stream().anyMatch(Objects::isNull)) {
             throw new NullPointerException(NULL_BOOK_IN_LIBRARY);
         }
 
-        return nonEmptyBooks;
+        return nonNullLibraryAndNoNullBooks;
     }
 
     private String validateTitleNotNullEmptyOrBlank(String title) {
