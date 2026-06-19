@@ -29,6 +29,9 @@ public class LibraryTest {
     private static final String NULL_BOOK_IN_LIBRARY =
         "A null value for a book is not allowed in a library.";
 
+    private static final String NULL_LIBRARY =
+        "A null value is not allowed for a library's list of books.";
+
     private static final String AUTHOR = "Jane Austen";
 
     private static final String BOOK_TITLE = "Persuasion";
@@ -233,9 +236,15 @@ public class LibraryTest {
 
         @Test
         public void testLibraryConstructorRejectsNullValue() {
+            NullPointerException nullPointerException =
             assertThrows(
                 NullPointerException.class,
                 () -> new Library(null)
+            );
+
+            assertEquals(
+                NULL_LIBRARY,
+                nullPointerException.getMessage()
             );
         }
 
