@@ -317,7 +317,7 @@ public class BookTest {
         }
 
         @Test
-        public void testBookTitleSetterRejectsNullValue() {
+        public void testBookAuthorSetterRejectsNullValue() {
             assertEquals(TEST_AUTHOR, book.getAuthor());
 
             NullPointerException nullPointerException =
