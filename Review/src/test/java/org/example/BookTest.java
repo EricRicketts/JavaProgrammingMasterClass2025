@@ -183,6 +183,16 @@ public class BookTest {
 
             assertNotEquals(firstBook, secondBook);
         }
+
+        @Test
+        public void testHashCodeForBook() {
+            int firstHashCode =
+                new Book(TEST_TITLE, TEST_AUTHOR, TEST_PAGES).hashCode();
+            int secondHashCode =
+                new Book(TEST_TITLE, TEST_AUTHOR, TEST_PAGES).hashCode();
+
+            assertEquals(firstHashCode, secondHashCode);
+        }
     }
 
     @Nested

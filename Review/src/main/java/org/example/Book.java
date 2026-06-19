@@ -61,6 +61,12 @@ public class Book {
             Objects.equals(this.author, ((Book) object).getAuthor()) &&
             this.pages == ((Book) object).getPages());
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, pages);
+    }
+
     private static String validateAuthorAndReturn(String author) {
         return ValueValidator.validateTextAndReturn(author, "author");
     }
