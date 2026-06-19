@@ -15,9 +15,6 @@ public class Library {
     private static final String NULL_LIBRARY =
         "A null value is not allowed for a library's list of books.";
 
-    private static final String EMPTY_LIST_OF_BOOKS =
-        "The initial list of books for a library must have at least one book.";
-
     private static final String NULL_BOOK_IN_LIBRARY =
         "A null value for a book is not allowed in a library.";
 
