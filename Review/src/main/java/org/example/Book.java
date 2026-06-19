@@ -10,7 +10,7 @@ public class Book {
 
     private String author;
 
-   private int pages;
+    private int pages;
 
     public Book(String title, String author, int pages) {
         this.title = validateTitleAndReturn(title);
