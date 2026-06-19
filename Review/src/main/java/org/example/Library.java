@@ -47,11 +47,12 @@ public class Library {
         this.books.add(Objects.requireNonNull(book, NULL_BOOK_IN_LIBRARY));
     }
 
-    public Book removeBook(String title) {
-        String validTitle = validateTitleNotNullEmptyOrBlank(title);
+    public Book removeBook(String title, String author) {
+        String validTitle = validateTitleOrAuthorNotNullEmptyOrBlank(title);
+        String validAuthor = validateTitleOrAuthorNotNullEmptyOrBlank(author);
         validateLibraryIsNotEmpty(books);
 
-        int indexOfBook = findBook(validTitle);
+        int indexOfBook = findBook(validTitle, validAuthor);
         if (indexOfBook == -1) {
             throw new NoSuchElementException(BOOK_NOT_FOUND);
         }
@@ -87,7 +88,7 @@ public class Library {
         return nonNullLibraryAndNoNullBooks;
     }
 
-    private String validateTitleNotNullEmptyOrBlank(String title) {
+    private String validateTitleOrAuthorNotNullEmptyOrBlank(String title) {
         if (title == null) {
             throw new NullPointerException(REMOVE_NULL_VALUE);
         } else if (title.isEmpty()) {
@@ -105,11 +106,14 @@ public class Library {
         }
     }
 
-    private int findBook(String title) {
+    private int findBook(String title, String author) {
         for (int index = 0; index < books.size(); index++) {
             Book currentBook = books.get(index);
 
-            if (Objects.equals(currentBook.getTitle(), title)) {
+            if (
+                Objects.equals(currentBook.getTitle(), title) &&
+                Objects.equals(currentBook.getAuthor(), author)
+            ) {
                 return index;
             }
         }

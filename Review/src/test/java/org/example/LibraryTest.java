@@ -106,7 +106,7 @@ public class LibraryTest {
             NullPointerException nullPointerException =
                 assertThrows(
                     NullPointerException.class,
-                    () -> library.removeBook(null)
+                    () -> library.removeBook(null, AUTHOR)
                 );
 
             assertEquals(
@@ -120,7 +120,7 @@ public class LibraryTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> library.removeBook("")
+                    () -> library.removeBook("", AUTHOR)
                 );
 
             assertEquals(
@@ -134,7 +134,7 @@ public class LibraryTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> library.removeBook("  ")
+                    () -> library.removeBook("  ", AUTHOR)
                 );
 
             assertEquals(
@@ -148,7 +148,7 @@ public class LibraryTest {
             NoSuchElementException noSuchElementException =
                 assertThrows(
                     NoSuchElementException.class,
-                    () -> library.removeBook("Heart of Darkness")
+                    () -> library.removeBook("Heart of Darkness", "Joseph Conrad")
                 );
 
             assertEquals(
@@ -167,7 +167,7 @@ public class LibraryTest {
             Book expectedBook =
                 new Book(REMOVED_BOOK_TITLE, AUTHOR, 320);
 
-            Book removedBook = library.removeBook(REMOVED_BOOK_TITLE);
+            Book removedBook = library.removeBook(REMOVED_BOOK_TITLE, AUTHOR);
 
             assertEquals(expectedBook, removedBook);
         }
@@ -177,7 +177,7 @@ public class LibraryTest {
             int expectedNumberOfBooks = 3;
             assertEquals(expectedNumberOfBooks, library.getBooks().size());
 
-            library.removeBook(REMOVED_BOOK_TITLE);
+            library.removeBook(REMOVED_BOOK_TITLE, AUTHOR);
 
             assertEquals(expectedNumberOfBooks - 1, library.getBooks().size());
         }
@@ -197,7 +197,7 @@ public class LibraryTest {
                 library.getBooks().get(4)
             );
 
-            library.removeBook("Mansfield Park");
+            library.removeBook("Mansfield Park", AUTHOR);
 
             assertEquals(4, library.getBooks().size());
             assertEquals(
