@@ -18,10 +18,6 @@ public class Book {
         this.pages = validatePagesAndReturn(pages);
     }
 
-    public Book() {
-        this("Unknown Title", "Unknown Author", 0);
-    }
-
     public String getTitle() {
         return title;
     }

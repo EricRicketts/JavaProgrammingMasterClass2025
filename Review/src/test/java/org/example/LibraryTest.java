@@ -248,9 +248,17 @@ public class LibraryTest {
 
         @Test
         public void testLibraryConstructorRejectsANullBookInTheList() {
+            NullPointerException nullPointerException =
             assertThrows(
-                IllegalArgumentException.class,
-                () -> new Library(Arrays.asList(new Book(), null))
+                NullPointerException.class,
+                () -> new Library(Arrays.asList(
+                    new Book("Tom Sawyer", "Mark Twain", 200), null)
+                )
+            );
+
+            assertEquals(
+                NULL_BOOK_IN_LIBRARY,
+                nullPointerException.getMessage()
             );
         }
     }
