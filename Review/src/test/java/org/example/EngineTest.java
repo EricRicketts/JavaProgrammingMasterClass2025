@@ -16,8 +16,8 @@ public class EngineTest {
     private static final int MAX_HORSEPOWER = 2000;
     private static final int MIN_TORQUE = 50;
     private static final int MAX_TORQUE = 2000;
-    private static final int HORSEPOWER = 100;
-    private static final int TORQUE = 100;
+    private static final int HORSEPOWER = 300;
+    private static final int TORQUE = 250;
     private static final String NULL_ENGINE_TYPE =
         "Engine type cannot be null.";
 
@@ -295,6 +295,26 @@ public class EngineTest {
 
             engine.setTorque(MAX_TORQUE - 500);
             assertEquals(MAX_TORQUE - 500, engine.getTorque());
+        }
+    }
+
+    @Nested
+    @DisplayName("test engine getters")
+    class testEngineGetters {
+
+        @Test
+        public void testEngineTypeGetter() {
+            assertEquals(V_EIGHT, engine.getEngineType());
+        }
+
+        @Test
+        public void testEngineHorsepowerGetter() {
+            assertEquals(HORSEPOWER, engine.getHorsepower());
+        }
+
+        @Test
+        public void testEngineTorqueGetter() {
+            assertEquals(TORQUE, engine.getTorque());
         }
     }
 }
