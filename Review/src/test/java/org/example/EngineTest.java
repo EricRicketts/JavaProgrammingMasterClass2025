@@ -14,6 +14,8 @@ public class EngineTest {
     private static final int MAX_HORSEPOWER = 2000;
     private static final int MIN_TORQUE = 50;
     private static final int MAX_TORQUE = 2000;
+    private static final int HORSEPOWER = 100;
+    private static final int TORQUE = 100;
     private static final String NULL_ENGINE_TYPE =
         "Engine type cannot be null.";
 
@@ -32,7 +34,7 @@ public class EngineTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Engine(null, 100, 100)
+                    () -> new Engine(null, HORSEPOWER, TORQUE)
                 );
 
             assertEquals(
@@ -44,14 +46,18 @@ public class EngineTest {
 
     @Nested
     @DisplayName("test engine constructor horsepower validation")
-    public class TestHorsepowerValidation {
+    public class TestEngineConstructorHorsepowerValidation {
 
         @Test
         public void testEngineConstructorRejectsHorsepowerTooLow() {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Engine(INLINE_FOUR, 49, 100)
+                    () -> new Engine(
+                        INLINE_FOUR,
+                        MIN_HORSEPOWER - 1,
+                        TORQUE
+                    )
                 );
 
                 assertEquals(
@@ -65,46 +71,86 @@ public class EngineTest {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Engine(INLINE_SIX, 2001, 100)
+                    () -> new Engine(
+                        INLINE_SIX,
+                        MAX_HORSEPOWER + 1,
+                        TORQUE
+                    )
                 );
 
-            assertEquals(
-                HORSEPOWER_RANGE,
-                illegalArgumentException.getMessage()
-            );
+                assertEquals(
+                    HORSEPOWER_RANGE,
+                    illegalArgumentException.getMessage()
+                );
         }
 
         @Test
         public void testEngineConstructorAcceptsMinimumHorsepower() {
-            Engine engine = new Engine(V_SIX, MIN_HORSEPOWER, 100);
+            Engine engine = new Engine(V_SIX, MIN_HORSEPOWER, TORQUE);
 
             assertEquals(MIN_HORSEPOWER, engine.getHorsepower());
         }
 
         @Test
         public void testEngineConstructorAcceptsMaximumHorsepower() {
-            Engine engine = new Engine(V_SIX, MAX_HORSEPOWER, 100);
+            Engine engine = new Engine(V_SIX, MAX_HORSEPOWER, TORQUE);
 
             assertEquals(MAX_HORSEPOWER, engine.getHorsepower());
         }
     }
 
     @Nested
-    @DisplayName("test Torque validation")
-    public class TestTorqueValidation {
+    @DisplayName("test engine constructor torque validation")
+    public class TestEngineConstructorTorqueValidation {
 
         @Test
         public void testEngineConstructorRejectsTorqueTooLow() {
             IllegalArgumentException illegalArgumentException =
                 assertThrows(
                     IllegalArgumentException.class,
-                    () -> new Engine(V_EIGHT, 100, 49)
+                    () -> new Engine(
+                        V_EIGHT,
+                        HORSEPOWER,
+                        MIN_TORQUE - 1
+                    )
                 );
 
                 assertEquals(
                     TORQUE_RANGE,
                     illegalArgumentException.getMessage()
                 );
+        }
+
+        @Test
+        public void testEngineConstructorRejectsTorqueTooHigh() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> new Engine(
+                        V_EIGHT,
+                        HORSEPOWER,
+                        MAX_TORQUE + 1
+                    )
+                );
+
+            assertEquals(
+                TORQUE_RANGE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testEngineConstructorAcceptsMinimumTorque() {
+            Engine engine = new Engine(V_SIX, HORSEPOWER, MIN_TORQUE);
+
+            assertEquals(MIN_TORQUE, engine.getTorque());
+        }
+
+        @Test
+        public void testEngineConstructorAcceptsMaximumTorque() {
+            Engine engine = new Engine(V_SIX, HORSEPOWER, MAX_TORQUE);
+
+            assertEquals(MAX_TORQUE, engine.getTorque());
         }
     }
 }
