@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EngineTest {
 
+    private Engine engine;
     private static final int MIN_HORSEPOWER = 50;
     private static final int MAX_HORSEPOWER = 2000;
     private static final int MIN_TORQUE = 50;
@@ -25,9 +27,14 @@ public class EngineTest {
     private static final String TORQUE_RANGE =
         "Torque must be between " + MIN_TORQUE + " and " + MAX_TORQUE + ".";
 
+    @BeforeEach
+    public void setUp() {
+        engine = new Engine(V_EIGHT, HORSEPOWER, TORQUE);
+    }
+
     @Nested
-    @DisplayName("test engine type validation")
-    public class TestEngineTypeValidation {
+    @DisplayName("test engine constructor type validation")
+    public class TestEngineConstructorTypeValidation {
 
         @Test
         public void engineConstructorRejectsNullEngineType() {
@@ -133,10 +140,10 @@ public class EngineTest {
                     )
                 );
 
-            assertEquals(
-                TORQUE_RANGE,
-                illegalArgumentException.getMessage()
-            );
+                assertEquals(
+                    TORQUE_RANGE,
+                    illegalArgumentException.getMessage()
+                );
         }
 
         @Test
@@ -151,6 +158,52 @@ public class EngineTest {
             Engine engine = new Engine(V_SIX, HORSEPOWER, MAX_TORQUE);
 
             assertEquals(MAX_TORQUE, engine.getTorque());
+        }
+    }
+
+    @Nested
+    @DisplayName("test engine setter horsepower validation")
+    class TestEngineSetterHorsePowerValidation {
+        @Test
+        public void testEngineSetterRejectsHorsepowerTooLow() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> engine.setHorsepower(MIN_HORSEPOWER - 1)
+                );
+
+            assertEquals(
+                HORSEPOWER_RANGE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testEngineSetterRejectsHorsepowerTooHigh() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> engine.setHorsepower(MAX_HORSEPOWER + 1)
+                );
+
+            assertEquals(
+                HORSEPOWER_RANGE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testEngineSetterAcceptsMinimumHorsepower() {
+            engine.setHorsepower(MIN_HORSEPOWER);
+
+            assertEquals(MIN_HORSEPOWER, engine.getHorsepower());
+        }
+
+        @Test
+        public void testEngineSetterAcceptsMaximumHorsepower() {
+            engine.setHorsepower(MAX_HORSEPOWER);
+
+            assertEquals(MAX_HORSEPOWER, engine.getHorsepower());
         }
     }
 }
