@@ -268,4 +268,33 @@ public class EngineTest {
             assertEquals(MAX_TORQUE, engine.getTorque());
         }
     }
+
+    @Nested
+    @DisplayName("test engine setters")
+    class testEngineSetters {
+
+        @Test
+        public void testEngineTypeSetter() {
+            assertEquals(V_EIGHT, engine.getEngineType());
+
+            engine.setEngineType(V_SIX);
+            assertEquals(V_SIX, engine.getEngineType());
+        }
+
+        @Test
+        public void testEngineHorsepowerSetter() {
+            assertEquals(HORSEPOWER, engine.getHorsepower());
+
+            engine.setHorsepower(MIN_HORSEPOWER + 500);
+            assertEquals(MIN_HORSEPOWER + 500, engine.getHorsepower());
+        }
+
+        @Test
+        public void testEngineTorqueSetter() {
+            assertEquals(TORQUE, engine.getTorque());
+
+            engine.setTorque(MAX_TORQUE - 500);
+            assertEquals(MAX_TORQUE - 500, engine.getTorque());
+        }
+    }
 }
