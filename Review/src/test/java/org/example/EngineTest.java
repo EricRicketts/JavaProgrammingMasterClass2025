@@ -163,7 +163,8 @@ public class EngineTest {
 
     @Nested
     @DisplayName("test engine setter horsepower validation")
-    class TestEngineSetterHorsePowerValidation {
+    class TestEngineSetterHorsepowerValidation {
+
         @Test
         public void testEngineSetterRejectsHorsepowerTooLow() {
             IllegalArgumentException illegalArgumentException =
@@ -204,6 +205,53 @@ public class EngineTest {
             engine.setHorsepower(MAX_HORSEPOWER);
 
             assertEquals(MAX_HORSEPOWER, engine.getHorsepower());
+        }
+    }
+
+    @Nested
+    @DisplayName("test engine setter torque validation")
+    class TestEngineSetterTorqueValidation {
+
+        @Test
+        public void testEngineSetterRejectsTorqueTooLow() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> engine.setTorque(MIN_TORQUE - 1)
+                );
+
+            assertEquals(
+                TORQUE_RANGE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testEngineSetterRejectsTorqueTooHigh() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> engine.setTorque(MAX_TORQUE + 1)
+                );
+
+            assertEquals(
+                TORQUE_RANGE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void testEngineSetterAcceptsMinimumTorque() {
+            engine.setTorque(MIN_TORQUE);
+
+            assertEquals(MIN_TORQUE, engine.getTorque());
+        }
+
+        @Test
+        public void testEngineSetterAcceptsMaximumTorque() {
+            engine.setTorque(MAX_TORQUE);
+
+            assertEquals(MAX_TORQUE, engine.getTorque());
         }
     }
 }
