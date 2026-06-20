@@ -33,8 +33,8 @@ public class EngineTest {
     }
 
     @Nested
-    @DisplayName("test engine constructor type validation")
-    public class TestEngineConstructorTypeValidation {
+    @DisplayName("test engine constructor and setter type validation")
+    public class TestEngineConstructorAndSetterTypeValidation {
 
         @Test
         public void engineConstructorRejectsNullEngineType() {
@@ -42,6 +42,20 @@ public class EngineTest {
                 assertThrows(
                     IllegalArgumentException.class,
                     () -> new Engine(null, HORSEPOWER, TORQUE)
+                );
+
+            assertEquals(
+                NULL_ENGINE_TYPE,
+                illegalArgumentException.getMessage()
+            );
+        }
+
+        @Test
+        public void engineSetterRejectsNullEngineType() {
+            IllegalArgumentException illegalArgumentException =
+                assertThrows(
+                    IllegalArgumentException.class,
+                    () -> engine.setEngineType(null)
                 );
 
             assertEquals(
