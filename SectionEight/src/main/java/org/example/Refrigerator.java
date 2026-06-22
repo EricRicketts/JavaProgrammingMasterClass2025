@@ -8,6 +8,10 @@ public class Refrigerator {
         this.hasWorkToDo = hasWorkToDo;
     }
 
+    public void pourMilk() {
+        setHasWorkToDo(true);
+    }
+
     public String orderFood() {
         return (this.isHasWorkToDo()) ? "Food has been ordered." : "No food has been ordered.";
     }
