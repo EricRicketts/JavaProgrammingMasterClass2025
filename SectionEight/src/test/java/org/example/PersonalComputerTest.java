@@ -70,6 +70,75 @@ public class PersonalComputerTest {
     }
 
     @Nested
+    @DisplayName("test personal computer motherboard")
+    class TestPersonalComputerMotherboard {
+
+        @Test
+        public void testPersonalComputerMotherboardGetModel() {
+            assertEquals(
+                MODEL,
+                personalComputer.getMotherboard().getModel()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetManufacturer() {
+            assertEquals(
+                MANUFACTURER,
+                personalComputer.getMotherboard().getManufacturer()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetWidth() {
+            assertEquals(
+                WIDTH,
+                personalComputer.getMotherboard().getWidth()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetHeight() {
+            assertEquals(
+                HEIGHT,
+                personalComputer.getMotherboard().getHeight()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetDepth() {
+            assertEquals(
+                DEPTH,
+                personalComputer.getMotherboard().getDepth()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetRamSlots() {
+            assertEquals(
+                RAM_SLOTS,
+                personalComputer.getMotherboard().getRamSlots()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetCardSlots() {
+            assertEquals(
+                CARD_SLOTS,
+                personalComputer.getMotherboard().getCardSlots()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerMotherboardGetBios() {
+            assertEquals(
+                BIOS,
+                personalComputer.getMotherboard().getBios()
+            );
+        }
+    }
+
+    @Nested
     @DisplayName("test personal computer monitor")
     class TestPersonalComputerMonitor {
 
