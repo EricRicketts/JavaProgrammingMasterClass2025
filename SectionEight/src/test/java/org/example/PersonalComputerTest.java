@@ -198,4 +198,57 @@ public class PersonalComputerTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test personal computer computer case")
+    class TestPersonalComputerComputerCase {
+
+        @Test
+        public void testPersonalComputerComputerCaseGetModel() {
+            assertEquals(
+                MODEL,
+                personalComputer.getComputerCase().getModel()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerComputerCaseGetManufacturer() {
+            assertEquals(
+                MANUFACTURER,
+                personalComputer.getComputerCase().getManufacturer()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerComputerCaseGetWidth() {
+            assertEquals(
+                WIDTH,
+                personalComputer.getComputerCase().getWidth()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerComputerCaseGetHeight() {
+            assertEquals(
+                HEIGHT,
+                personalComputer.getComputerCase().getHeight()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerComputerCaseGetDepth() {
+            assertEquals(
+                DEPTH,
+                personalComputer.getComputerCase().getDepth()
+            );
+        }
+
+        @Test
+        public void testPersonalComputerComputerCaseGetPowerSupply() {
+            assertEquals(
+                POWER_SUPPLY,
+                personalComputer.getComputerCase().getPowerSupply()
+            );
+        }
+    }
 }
