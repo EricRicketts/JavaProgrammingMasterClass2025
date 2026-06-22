@@ -8,6 +8,10 @@ public class CoffeeMaker {
         this.hasWorkToDo = hasWorkToDo;
     }
 
+    public void addWater() {
+        setHasWorkToDo(true);
+    }
+
     public String brewCoffee() {
         return (this.isHasWorkToDo()) ? "Coffee is brewing." : "No coffee is brewing.";
     }

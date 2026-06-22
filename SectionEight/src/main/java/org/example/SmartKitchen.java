@@ -6,7 +6,11 @@ public class SmartKitchen {
     private DishWasher dishWasher;
     private Refrigerator iceBox;
 
-    public SmartKitchen(CoffeeMaker brewMaster, DishWasher dishWasher, Refrigerator iceBox) {
+    public SmartKitchen(
+        CoffeeMaker brewMaster,
+        DishWasher dishWasher,
+        Refrigerator iceBox
+    ) {
         this.brewMaster = brewMaster;
         this.dishWasher = dishWasher;
         this.iceBox = iceBox;
@@ -30,7 +34,11 @@ public class SmartKitchen {
                 iceBox.orderFood();
     }
 
-    public void setKitchenState(boolean coffeeMakerState, boolean dishWasherState, boolean iceBoxState) {
+    public void setKitchenState(
+        boolean coffeeMakerState,
+        boolean dishWasherState,
+        boolean iceBoxState
+    ) {
         brewMaster.setHasWorkToDo(coffeeMakerState);
         dishWasher.setHasWorkToDo(dishWasherState);
         iceBox.setHasWorkToDo(iceBoxState);
