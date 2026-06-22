@@ -8,6 +8,10 @@ public class DishWasher {
         this.hasWorkToDo = hasWorkToDo;
     }
 
+    public void loadDishwasher() {
+        setHasWorkToDo(true);
+    }
+
     public String doDishes() {
         return (this.isHasWorkToDo()) ? "The dishwasher is on." : "The dishwasher is off.";
     }
