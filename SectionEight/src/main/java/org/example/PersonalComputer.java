@@ -2,9 +2,9 @@ package org.example;
 
 public class PersonalComputer extends Product {
 
-    private Monitor monitor;
-    private Motherboard motherboard;
-    private ComputerCase computerCase;
+    private final Monitor monitor;
+    private final Motherboard motherboard;
+    private final ComputerCase computerCase;
 
     public Monitor getMonitor() {
         return monitor;
