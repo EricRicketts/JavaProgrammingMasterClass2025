@@ -3,8 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartKitchenTest {
 
@@ -27,9 +26,9 @@ public class SmartKitchenTest {
                 "No food has been ordered."
         };
         results = new String[]{
-            smartKitchen.getBrewMaster().brewCoffee(),
+            smartKitchen.getCoffeeMaker().brewCoffee(),
             smartKitchen.getDishWasher().doDishes(),
-            smartKitchen.getIceBox().orderFood()
+            smartKitchen.getRefrigerator().orderFood()
         };
 
         assertArrayEquals(expected, results);
@@ -44,9 +43,9 @@ public class SmartKitchenTest {
         };
         smartKitchen.setKitchenState(true, true, true);
         results = new String[]{
-                smartKitchen.getBrewMaster().brewCoffee(),
+                smartKitchen.getCoffeeMaker().brewCoffee(),
                 smartKitchen.getDishWasher().doDishes(),
-                smartKitchen.getIceBox().orderFood()
+                smartKitchen.getRefrigerator().orderFood()
         };
         assertArrayEquals(expected, results);
     }
@@ -58,5 +57,35 @@ public class SmartKitchenTest {
                 "No food has been ordered.";
         String result = smartKitchen.doKitchenWork();
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void testSetCoffeeMaker() {
+        CoffeeMaker originalCoffeeMaker = smartKitchen.getCoffeeMaker();
+
+        smartKitchen.setCoffeeMaker(new CoffeeMaker(false));
+        CoffeeMaker newCoffeeMaker = smartKitchen.getCoffeeMaker();
+
+        assertNotSame(originalCoffeeMaker, newCoffeeMaker);
+    }
+
+    @Test
+    public void testSetDishwasher() {
+        DishWasher originalDishwasher = smartKitchen.getDishWasher();
+
+        smartKitchen.setDishWasher(new DishWasher(false));
+        DishWasher newDishWasher = smartKitchen.getDishWasher();
+
+        assertNotSame(originalDishwasher, newDishWasher);
+    }
+
+    @Test
+    public void testSetRefrigerator() {
+        Refrigerator originalRefrigerator = smartKitchen.getRefrigerator();
+
+        smartKitchen.setRefrigerator(new Refrigerator(false));
+        Refrigerator newRefrigerator = smartKitchen.getRefrigerator();
+
+        assertNotSame(originalRefrigerator, newRefrigerator);
     }
 }

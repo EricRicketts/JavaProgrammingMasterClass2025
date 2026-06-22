@@ -2,54 +2,54 @@ package org.example;
 
 public class SmartKitchen {
 
-    private CoffeeMaker brewMaster;
+    private CoffeeMaker coffeeMaker;
     private DishWasher dishWasher;
-    private Refrigerator iceBox;
+    private Refrigerator refrigerator;
 
     public SmartKitchen(
-        CoffeeMaker brewMaster,
+        CoffeeMaker coffeeMaker,
         DishWasher dishWasher,
-        Refrigerator iceBox
+        Refrigerator refrigerator
     ) {
-        this.brewMaster = brewMaster;
+        this.coffeeMaker = coffeeMaker;
         this.dishWasher = dishWasher;
-        this.iceBox = iceBox;
+        this.refrigerator = refrigerator;
     }
 
     public void addWater() {
-        this.getBrewMaster().setHasWorkToDo(true);
+        this.coffeeMaker.addWater();
     }
 
     public void pourMilk() {
-        this.getIceBox().setHasWorkToDo(true);
+        this.refrigerator.pourMilk();
     }
 
     public void loadDishwasher() {
-        this.getDishWasher().setHasWorkToDo(true);
+        this.dishWasher.loadDishwasher();
     }
 
     public String doKitchenWork() {
-        return brewMaster.brewCoffee() + " " +
+        return coffeeMaker.brewCoffee() + " " +
                 dishWasher.doDishes() + " " +
-                iceBox.orderFood();
+                refrigerator.orderFood();
     }
 
     public void setKitchenState(
         boolean coffeeMakerState,
         boolean dishWasherState,
-        boolean iceBoxState
+        boolean refrigeratorState
     ) {
-        brewMaster.setHasWorkToDo(coffeeMakerState);
-        dishWasher.setHasWorkToDo(dishWasherState);
-        iceBox.setHasWorkToDo(iceBoxState);
+        this.getCoffeeMaker().setHasWorkToDo(coffeeMakerState);
+        this.getDishWasher().setHasWorkToDo(dishWasherState);
+        this.getRefrigerator().setHasWorkToDo(refrigeratorState);
     }
 
-    public CoffeeMaker getBrewMaster() {
-        return brewMaster;
+    public CoffeeMaker getCoffeeMaker() {
+        return coffeeMaker;
     }
 
-    public void setBrewMaster(CoffeeMaker brewMaster) {
-        this.brewMaster = brewMaster;
+    public void setCoffeeMaker(CoffeeMaker coffeeMaker) {
+        this.coffeeMaker = coffeeMaker;
     }
 
     public DishWasher getDishWasher() {
@@ -60,11 +60,11 @@ public class SmartKitchen {
         this.dishWasher = dishWasher;
     }
 
-    public Refrigerator getIceBox() {
-        return iceBox;
+    public Refrigerator getRefrigerator() {
+        return refrigerator;
     }
 
-    public void setIceBox(Refrigerator iceBox) {
-        this.iceBox = iceBox;
+    public void setRefrigerator(Refrigerator refrigerator) {
+        this.refrigerator = refrigerator;
     }
 }
