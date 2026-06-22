@@ -5,8 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CoffeeMakerTest {
 
@@ -62,4 +61,22 @@ public class CoffeeMakerTest {
         }
     }
 
+    @Nested
+    @DisplayName("test brew coffee")
+    class TestBrewCoffee {
+
+        @Test
+        public void testCoffeeBrewing() {
+            coffeeMaker.setHasWorkToDo(true);
+
+            assertEquals("Coffee is brewing.", coffeeMaker.brewCoffee());
+        }
+
+        @Test
+        public void testCoffeeNotBrewing() {
+            coffeeMaker.setHasWorkToDo(false);
+
+            assertEquals("No coffee is brewing.", coffeeMaker.brewCoffee());
+        }
+    }
 }
