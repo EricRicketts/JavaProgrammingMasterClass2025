@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EnhancedPlayerTest {
@@ -52,6 +51,29 @@ public class EnhancedPlayerTest {
         @Test
         public void testNoArgumentConstructorGetWeapon() {
             assertEquals("Sword", defaultEnhancedPlayer.getWeapon());
+        }
+    }
+
+    @Nested
+    @DisplayName("test enhanced player constructor rejects out of bounds health")
+    class TestEnhancedPlayerConstructorRejectsOutOfBoundsHealthRatings {
+
+        @Test
+        public void testEnhancedPlayerConstructorRejectsZeroHealthRating() {
+            enhancedPlayer = new EnhancedPlayer("Elmer Fudd", 0, "Spear");
+            assertEquals(-1, enhancedPlayer.healthRemaining());
+        }
+
+        @Test
+        public void testEnhancedPlayerConstructorRejectsNegativeHealthRating() {
+            enhancedPlayer = new EnhancedPlayer("Elmer Fudd", -100, "Spear");
+            assertEquals(-1, enhancedPlayer.healthRemaining());
+        }
+
+        @Test
+        public void testEnhancedPlayerConstructorHealthRatingTooHigh() {
+            enhancedPlayer = new EnhancedPlayer("Elmer Fudd", 101, "Spear");
+            assertEquals(100, enhancedPlayer.healthRemaining());
         }
     }
 }
