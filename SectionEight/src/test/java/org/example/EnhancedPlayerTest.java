@@ -99,4 +99,28 @@ public class EnhancedPlayerTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test enhanced player restore health")
+    class TestEnhancedPlayerRestoreHealth {
+
+        @Test
+        public void testEnhancedPlayerRestoreHealthCappedAtOneHundred() {
+            assertEquals(95, enhancedPlayer.healthRemaining());
+            enhancedPlayer.restoreHealth(105);
+
+            assertEquals(100, enhancedPlayer.healthRemaining());
+        }
+
+        @Test
+        public void testEnhancedPlayerRestoreHealthUnderOneHundred() {
+            assertEquals(95, enhancedPlayer.healthRemaining());
+            enhancedPlayer.looseHealth(55);
+
+            assertEquals(40, enhancedPlayer.healthRemaining());
+            enhancedPlayer.restoreHealth(30);
+
+            assertEquals(70, enhancedPlayer.healthRemaining());
+        }
+    }
 }
