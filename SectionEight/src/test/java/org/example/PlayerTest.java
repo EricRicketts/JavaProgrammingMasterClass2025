@@ -58,6 +58,17 @@ public class PlayerTest {
     }
 
     @Test
+    public void testTooMuchHealthLostCausesRemovalFromGame() {
+        player.health = 80;
+        assertEquals(80, player.healthRemaining());
+
+        String expected = "The player's health has caused his removal from the game.";
+        String result = player.looseHealth(90);
+        assertEquals(-10, player.healthRemaining());
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void testHealthRemaining() {
         player.health = 100;
         player.looseHealth(50);
