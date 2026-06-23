@@ -26,8 +26,8 @@ public class EnhancedPlayer {
     private final String weapon;
     private int healthPercentage;
 
-    public EnhancedPlayer(String name) {
-        this(name, 100, "Sword");
+    public EnhancedPlayer() {
+        this("John Doe", 100, "Sword");
     }
 
     public EnhancedPlayer(String fullName, int health, String weapon) {
@@ -38,7 +38,7 @@ public class EnhancedPlayer {
         */
         this.fullName = fullName;
         this.weapon = weapon;
-        this.healthPercentage = (health <= 0) ? 1 : Math.min(health, 100);
+        this.healthPercentage = (health <= 0) ? -1 : Math.min(health, 100);
     }
 
     public String looseHealth(int damage) {

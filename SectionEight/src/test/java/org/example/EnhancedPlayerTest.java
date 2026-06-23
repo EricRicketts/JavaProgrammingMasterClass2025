@@ -1,25 +1,57 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EnhancedPlayerTest {
 
-    EnhancedPlayer player;
+    EnhancedPlayer enhancedPlayer;
+    EnhancedPlayer defaultEnhancedPlayer;
 
     @BeforeEach
     public void setUp() {
-        player = new EnhancedPlayer("Tim");
+        enhancedPlayer = new EnhancedPlayer("Elmer Fudd", 95, "Axe");
+        defaultEnhancedPlayer = new EnhancedPlayer();
     }
 
-    @Test
-    public void testInitialStateOfEnhancedPlayer() {
-        Object[] expected = new Object[]{"Tim", 100, "Sword"};
-        Object[] results = new Object[]{
-                player.getFullName(), player.healthRemaining(), player.getWeapon()
-        };
-        assertArrayEquals(expected, results);
+
+    @Nested
+    @DisplayName("test Enhanced Player constructors")
+    class TestEnhancedPlayerConstructors {
+
+        @Test
+        public void testThreeArgumentConstructorGetPlayerName() {
+            assertEquals("Elmer Fudd", enhancedPlayer.getFullName());
+        }
+
+        @Test
+        public void testThreeArgumentConstructorGetHealth() {
+            assertEquals(95, enhancedPlayer.healthRemaining());
+        }
+
+        @Test
+        public void testThreeArgumentConstructorGetWeapon() {
+            assertEquals("Axe", enhancedPlayer.getWeapon());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetPlayerName() {
+            assertEquals("John Doe", defaultEnhancedPlayer.getFullName());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetHealth() {
+            assertEquals(100, defaultEnhancedPlayer.healthRemaining());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetWeapon() {
+            assertEquals("Sword", defaultEnhancedPlayer.getWeapon());
+        }
     }
 }
