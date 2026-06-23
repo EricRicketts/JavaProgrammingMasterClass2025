@@ -89,5 +89,14 @@ public class EnhancedPlayerTest {
             assertEquals(45, enhancedPlayer.healthRemaining());
             assertEquals(expected, result);
         }
+
+        @Test
+        public void testEnhancedPlayerLosesHealthResultingInRemovalFromGame() {
+            String result = enhancedPlayer.looseHealth(100);
+            String expected = "The player's health has caused his removal from the game.";
+
+            assertEquals(-5, enhancedPlayer.healthRemaining());
+            assertEquals(expected, result);
+        }
     }
 }
