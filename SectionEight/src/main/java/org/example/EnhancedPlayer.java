@@ -3,7 +3,7 @@ package org.example;
 public class EnhancedPlayer {
 
     /*
-        In contrast to the Player class, the attributes are all private.  Therefore, the only
+        In contrast to the Player class, the attributes are all private.  Therefore, the only way
         to edit the values outside the class itself is to use methods to do so.  This means
         the methods will be in control of editing the values for the fields, thus encapsulating
         the changes.
@@ -11,7 +11,7 @@ public class EnhancedPlayer {
         I changed the name attribute to fullName and the health attribute to healthPercentage, all
         tests ran without madification.  As noted by the instructor, if attributes are encapsulated,
         then changes do not affect existing code.  The EnhancedPlayer class has full control over
-        its data as the attributes are private and can only by edited by running the methods defined
+        its data as the attributes are private and can only be edited by running the methods defined
         in the class.
 
         To enforce encapsulation within a class:

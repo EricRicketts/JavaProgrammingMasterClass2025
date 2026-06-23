@@ -123,4 +123,24 @@ public class EnhancedPlayerTest {
             assertEquals(70, enhancedPlayer.healthRemaining());
         }
     }
+
+    @Nested
+    @DisplayName("test enhanced player getters")
+    class TestEnhancedPlayerGetters {
+
+        @Test
+        public void testEnhancedPlayerGetName() {
+            assertEquals("Elmer Fudd", enhancedPlayer.getFullName());
+        }
+
+        @Test
+        public void testEnhancedPlayerGetWeapon() {
+            assertEquals("Axe", enhancedPlayer.getWeapon());
+        }
+
+        @Test
+        public void testEnhancedPlayerGetHealth() {
+            assertEquals(95, enhancedPlayer.healthRemaining());
+        }
+    }
 }
