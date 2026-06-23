@@ -76,4 +76,18 @@ public class EnhancedPlayerTest {
             assertEquals(100, enhancedPlayer.healthRemaining());
         }
     }
+
+    @Nested
+    @DisplayName("test enhanced player loses health")
+    class TestEnhancedPlayerLosesHealth {
+
+        @Test
+        public void testEnhancedPlayerLosesHealthButCanRemainInGame() {
+            String result = enhancedPlayer.looseHealth(50);
+            String expected = "The player's health is sufficient to remain in the game.";
+
+            assertEquals(45, enhancedPlayer.healthRemaining());
+            assertEquals(expected, result);
+        }
+    }
 }
