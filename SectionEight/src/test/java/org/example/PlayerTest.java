@@ -56,4 +56,24 @@ public class PlayerTest {
         player.health = 200;
         assertEquals(200, player.health);
     }
+
+    @Test
+    public void testHealthRemaining() {
+        player.health = 100;
+        player.looseHealth(50);
+
+        assertEquals(50, player.healthRemaining());
+    }
+
+    @Test
+    public void testRestoreHealth() {
+        player.health = 100;
+        player.looseHealth(95);
+
+        assertEquals(5, player.healthRemaining());
+
+        player.restoreHealth(200);
+
+        assertEquals(100, player.healthRemaining());
+    }
 }
