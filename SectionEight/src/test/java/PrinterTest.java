@@ -90,4 +90,15 @@ public class PrinterTest {
             assertEquals(51, printer.getTonerLevel());
         }
     }
+
+    @Nested
+    @DisplayName("test pages printed")
+    class TestPagesPrinted {
+
+        @Test
+        public void testNonDuplexPrintingEvenNumberOfPages() {
+            assertEquals(4, printer.printPages(4));
+            assertEquals(4, printer.getPagesPrinted());
+        }
+    }
 }

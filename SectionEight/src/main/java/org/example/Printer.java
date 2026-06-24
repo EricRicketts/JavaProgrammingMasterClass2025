@@ -12,6 +12,15 @@ public class Printer {
         this.pagesPrinted = 0;
     }
 
+    public int printPages(int pages) {
+        int pagesToPrint = pages;
+        if (this.isDuplex()) {
+
+        } else {
+            this.pagesPrinted += pages;
+        }
+        return pagesToPrint;
+    }
     public void setDuplex(boolean duplex) {
         this.duplex = duplex;
     }
