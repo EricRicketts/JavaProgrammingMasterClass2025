@@ -1,11 +1,13 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 public class ElectricCar extends Car {
 
-    private double avgKmPerCharge;
+    private BigDecimal avgKmPerCharge;
     private int batterySize;
 
-    public ElectricCar(String description, double avgKmPerCharge, int batterySize) {
+    public ElectricCar(String description, BigDecimal avgKmPerCharge, int batterySize) {
         super(description);
         this.avgKmPerCharge = AutoChecks.checkAvgKmPerCharge(avgKmPerCharge);
         this.batterySize = AutoChecks.checkBatterySize(batterySize);
@@ -26,11 +28,11 @@ public class ElectricCar extends Car {
         return super.runEngine() + " " + "which has no engine but electric motors.";
     }
 
-    public double getAvgKmPerCharge() {
+    public BigDecimal getAvgKmPerCharge() {
         return avgKmPerCharge;
     }
 
-    public void setAvgKmPerCharge(double avgKmPerCharge) {
+    public void setAvgKmPerCharge(BigDecimal avgKmPerCharge) {
         this.avgKmPerCharge = AutoChecks.checkAvgKmPerCharge(avgKmPerCharge);
     }
 

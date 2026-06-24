@@ -1,5 +1,7 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 public class Meal {
 
     private Burger burger;
@@ -121,16 +123,16 @@ public class Meal {
         this.getDrink().setSize(size);
     }
 
-    private double getMealPrice() {
-        double toppingsPrice = 0;
+    private BigDecimal getMealPrice() {
+        BigDecimal toppingsPrice = new BigDecimal("0.00");
         for (int i = 0; i < this.getBurger().getToppings().length; i++) {
             Topping topping = this.getBurger().getToppings()[i];
             if (topping != null) {
-                toppingsPrice += topping.getPrice();
+                toppingsPrice = toppingsPrice.add(topping.getPrice());
             }
         }
-        return this.getBurger().getPrice() + this.getDrink().getPrice()
-                + this.getSideItem().getPrice() + toppingsPrice;
+        return this.getBurger().getPrice().add(this.getDrink().getPrice())
+            .add(this.getSideItem().getPrice()).add(toppingsPrice);
     }
 
     private String getToppingsString() {
@@ -139,7 +141,7 @@ public class Meal {
         for (int i = 0; i < this.getBurger().getToppings().length; i++) {
             Topping topping = this.getBurger().getToppings()[i];
             if (topping != null) {
-                toppingsString.concat("type: ").concat(topping.getType()).concat(" ").
+                toppingsString = toppingsString.concat("type: ").concat(topping.getType()).concat(" ").
                     concat("price: ").concat(String.valueOf(topping.getPrice())).concat("\n");
             }
         }
@@ -159,7 +161,7 @@ public class Meal {
                 this.getSideItem().getPrice()
         ) + "\n";
         receipt += toppingsString;
-        receipt += "Total Price: " + Scale.setScale(this.getMealPrice(), 2);
+        receipt += "Total Price: " + NumberUtils.setScale(this.getMealPrice(), 2);
         return receipt;
     }
 

@@ -1,11 +1,13 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 public class HybridCar extends Car {
 
-    private double avgKmPerLitre;
+    private BigDecimal avgKmPerLitre;
     private int batterySize, cylinders;
 
-    public HybridCar(String description, double avgKmPerLitre, int batterySize, int cylinders) {
+    public HybridCar(String description, BigDecimal avgKmPerLitre, int batterySize, int cylinders) {
         super(description);
         this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitreForHybrid(avgKmPerLitre);
         this.batterySize = AutoChecks.checkBatterySize(batterySize);
@@ -28,11 +30,11 @@ public class HybridCar extends Car {
         return super.runEngine() + " when on battery only mode the card makes no noise.";
     }
 
-    public double getAvgKmPerLitre() {
+    public BigDecimal getAvgKmPerLitre() {
         return avgKmPerLitre;
     }
 
-    public void setAvgKmPerLitre(double avgKmPerLitre) {
+    public void setAvgKmPerLitre(BigDecimal avgKmPerLitre) {
         this.avgKmPerLitre = AutoChecks.checkAvgKmPerLitreForHybrid(avgKmPerLitre);
     }
 

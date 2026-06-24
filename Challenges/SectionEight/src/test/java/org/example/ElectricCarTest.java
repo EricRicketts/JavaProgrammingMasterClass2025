@@ -3,6 +3,8 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ElectricCarTest {
@@ -14,7 +16,7 @@ public class ElectricCarTest {
     public void setUp() {
         electricCar = new ElectricCar(
                 "Tesla Model S",
-                540.00,
+                new BigDecimal("540.00"),
                 100);
     }
 
@@ -42,10 +44,10 @@ public class ElectricCarTest {
 
     @Test
     public void testCheckAvgKmPerCharge() {
-        double defaultAvgKmPerCharge = 300.00;
-        electricCar.setAvgKmPerCharge(-10.00);
-        double avgKmPerCharge = electricCar.getAvgKmPerCharge();
-        avgKmPerCharge = Scale.setScale(avgKmPerCharge, 2);
+        BigDecimal defaultAvgKmPerCharge = new BigDecimal("300.00");
+        electricCar.setAvgKmPerCharge(new BigDecimal("-10.00"));
+        BigDecimal avgKmPerCharge = electricCar.getAvgKmPerCharge();
+        avgKmPerCharge = NumberUtils.setScale(avgKmPerCharge, 2);
         assertEquals(defaultAvgKmPerCharge, avgKmPerCharge);
     }
 

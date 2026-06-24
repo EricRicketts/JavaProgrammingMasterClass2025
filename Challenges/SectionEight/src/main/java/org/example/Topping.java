@@ -1,17 +1,19 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 public class Topping {
 
     private final String type;
-    private final double price;
+    private final BigDecimal price;
 
     public Topping(String type) {
         this.type = type.toLowerCase();
         switch(this.type) {
-            case "lettuce" -> this.price = 1.00;
-            case "tomatoes" -> this.price = 1.50;
-            case "cheese" -> this.price = 2.00;
-            default -> this.price = 0.50;
+            case "lettuce" -> this.price = new BigDecimal("1.00");
+            case "tomatoes" -> this.price = new BigDecimal("1.50");
+            case "cheese" -> this.price = new BigDecimal("2.00");
+            default -> this.price = new BigDecimal("0.50");
             }
         }
 
@@ -19,7 +21,7 @@ public class Topping {
         return type;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 }

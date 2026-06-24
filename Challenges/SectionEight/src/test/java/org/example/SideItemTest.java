@@ -3,6 +3,8 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SideItemTest {
@@ -21,13 +23,18 @@ public class SideItemTest {
     public void testToppingTypeAndPrices() {
         String[] sideItems = {"Fries", "Onion Rings", "Salad", "Soup"};
         String[] expectedSideItemTypes = {"fries", "onion rings", "salad", "soup"};
-        double[] expectedPrices = {2.50, 3.00, 10.00, 4.00};
+        BigDecimal[] expectedPrices = {
+            new BigDecimal("2.50"),
+            new BigDecimal("3.00"),
+            new BigDecimal("10.00"),
+            new BigDecimal("4.00")
+        };
         for (int i = 0; i < sideItems.length; i++) {
             SideItem sideItem = new SideItem(sideItems[i]);
             String expectedSideItemType = expectedSideItemTypes[i].toLowerCase();
-            double expectedPrice = expectedPrices[i];
+            BigDecimal expectedPrice = expectedPrices[i];
             String sideItemType = sideItem.getType();
-            double sideItemPrice = sideItem.getPrice();
+            BigDecimal sideItemPrice = sideItem.getPrice();
             assertEquals(expectedSideItemType, sideItemType);
             assertEquals(expectedPrice, sideItemPrice);
         }
