@@ -96,9 +96,15 @@ public class PrinterTest {
     class TestPagesPrinted {
 
         @Test
-        public void testNonDuplexPrintingEvenNumberOfPages() {
+        public void testNonDuplexPrinterEvenNumberOfPages() {
             assertEquals(4, printer.printPages(4));
             assertEquals(4, printer.getPagesPrinted());
+        }
+
+        @Test
+        public void testNonDuplexPrinterOddNumberOfPages() {
+            assertEquals(3, printer.printPages(3));
+            assertEquals(3, printer.getPagesPrinted());
         }
     }
 }
