@@ -6,6 +6,7 @@ public class Comedy extends Movie {
         super(title);
     }
 
+    @Override
     public String watchMovie() {
         String movieMessage = String.format(".. %s%n".repeat(3),
                 "Something Funny Happens",

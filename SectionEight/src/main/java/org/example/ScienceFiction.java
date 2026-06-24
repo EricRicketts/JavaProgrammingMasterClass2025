@@ -6,6 +6,7 @@ public class ScienceFiction extends Movie {
         super(title);
     }
 
+    @Override
     public String watchMovie() {
         String movieMessage = String.format(".. %s%n".repeat(3),
                 "Bad Aliens Do Bad Stuff",
