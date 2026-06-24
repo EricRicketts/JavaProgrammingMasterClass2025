@@ -55,16 +55,39 @@ public class PrinterTest {
 
         @Test
         public void testAddZeroTonerAmount() {
-            int tonerAmount = printer.addToner(0);
+            int newTonerLevel = printer.addToner(0);
 
-            assertEquals(-1, tonerAmount);
+            assertEquals(-1, newTonerLevel);
         }
 
         @Test
         public void testAddNegativeTonerAmount() {
-            int tonerAmount = printer.addToner(-1);
+            int newTonerLevel = printer.addToner(-1);
 
-            assertEquals(-1, tonerAmount);
+            assertEquals(-1, newTonerLevel);
+        }
+
+        @Test
+        public void testAddTooMuchToner() {
+            int newTonerLevel = printer.addToner(51);
+
+            assertEquals(-1, newTonerLevel);
+        }
+
+        @Test
+        public void testAddMaximumToner() {
+            int newTonerLevel = printer.addToner(50);
+
+            assertEquals(100, newTonerLevel);
+            assertEquals(100, printer.getTonerLevel());
+        }
+
+        @Test
+        public void testAddTonerUnderMaximumAllowed() {
+            int newTonerLevel = printer.addToner(1);
+
+            assertEquals(51, newTonerLevel);
+            assertEquals(51, printer.getTonerLevel());
         }
     }
 }

@@ -35,6 +35,7 @@ public class Printer {
         if (newTonerLevel > 100) {
             return -1;
         } else {
+            this.tonerLevel = newTonerLevel;
             return newTonerLevel;
         }
     }
