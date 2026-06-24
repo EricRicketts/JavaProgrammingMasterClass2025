@@ -59,5 +59,12 @@ public class PrinterTest {
 
             assertEquals(-1, tonerAmount);
         }
+
+        @Test
+        public void testAddNegativeTonerAmount() {
+            int tonerAmount = printer.addToner(-1);
+
+            assertEquals(-1, tonerAmount);
+        }
     }
 }
