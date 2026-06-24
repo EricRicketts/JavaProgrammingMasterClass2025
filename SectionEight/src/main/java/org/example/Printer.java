@@ -29,7 +29,9 @@ public class Printer {
     }
 
     public int addToner(int tonerAmount) {
-        int newTonerLevel = this.tonerLevel + validateTonerAmount(tonerAmount);
+        int validTonerAmount = validateTonerAmount(tonerAmount);
+        if (validTonerAmount == -1) return -1;
+        int newTonerLevel = this.tonerLevel + validateTonerAmount(validTonerAmount);
         if (newTonerLevel > 100) {
             return -1;
         } else {

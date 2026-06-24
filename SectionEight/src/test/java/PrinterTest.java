@@ -37,7 +37,7 @@ public class PrinterTest {
 
     @Nested
     @DisplayName("test duplex setter")
-    class testDuplexSetter {
+    class TestDuplexSetter {
 
         @Test
         public void testDuplexSetterChangesDuplexState() {
@@ -46,6 +46,18 @@ public class PrinterTest {
             printer.setDuplex(true);
 
             assertTrue(printer.isDuplex());
+        }
+    }
+
+    @Nested
+    @DisplayName("test add toner")
+    class TestAddToner {
+
+        @Test
+        public void testAddZeroTonerAmount() {
+            int tonerAmount = printer.addToner(0);
+
+            assertEquals(-1, tonerAmount);
         }
     }
 }
