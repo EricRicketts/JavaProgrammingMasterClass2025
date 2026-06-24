@@ -15,10 +15,9 @@ public class Printer {
     public int printPages(int pages) {
         int pagesToPrint = pages;
         if (this.isDuplex()) {
-
-        } else {
-            this.pagesPrinted += pages;
+            pagesToPrint = pages / 2 + pages % 2;
         }
+        this.pagesPrinted += pagesToPrint;
         return pagesToPrint;
     }
     public void setDuplex(boolean duplex) {

@@ -106,5 +106,21 @@ public class PrinterTest {
             assertEquals(3, printer.printPages(3));
             assertEquals(3, printer.getPagesPrinted());
         }
+
+        @Test
+        public void testDuplexPrinterEvenNumberOfPages() {
+            printer.setDuplex(true);
+
+            assertEquals(2, printer.printPages(4));
+            assertEquals(2, printer.getPagesPrinted());
+        }
+
+        @Test
+        public void testDuplexPrinterOddNumberOfPages() {
+            printer.setDuplex(true);
+
+            assertEquals(2, printer.printPages(3));
+            assertEquals(2, printer.getPagesPrinted());
+        }
     }
 }
