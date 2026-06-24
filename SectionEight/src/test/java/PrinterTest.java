@@ -58,6 +58,7 @@ public class PrinterTest {
             int newTonerLevel = printer.addToner(0);
 
             assertEquals(-1, newTonerLevel);
+            assertEquals(50, printer.getTonerLevel());
         }
 
         @Test
@@ -65,6 +66,7 @@ public class PrinterTest {
             int newTonerLevel = printer.addToner(-1);
 
             assertEquals(-1, newTonerLevel);
+            assertEquals(50, printer.getTonerLevel());
         }
 
         @Test
@@ -72,6 +74,7 @@ public class PrinterTest {
             int newTonerLevel = printer.addToner(51);
 
             assertEquals(-1, newTonerLevel);
+            assertEquals(50, printer.getTonerLevel());
         }
 
         @Test
