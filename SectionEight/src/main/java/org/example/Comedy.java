@@ -6,6 +6,10 @@ public class Comedy extends Movie {
         super(title);
     }
 
+    public String watchComedy() {
+        return "Watching a Comedy movie.";
+    }
+
     @Override
     public String watchMovie() {
         String movieMessage = String.format(".. %s%n".repeat(3),

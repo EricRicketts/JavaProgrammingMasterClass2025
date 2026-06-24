@@ -29,4 +29,11 @@ public class AdventureTest {
         result = movie.watchMovie();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testWatchAdventure() {
+        expected = "Watching an Adventure movie.";
+        Adventure adventure = new Adventure("Jaws");
+        assertEquals(expected, adventure.watchAdventure());
+    }
 }

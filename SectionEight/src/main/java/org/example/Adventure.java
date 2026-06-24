@@ -5,6 +5,10 @@ public class Adventure extends Movie {
         super(title);
     }
 
+    public String watchAdventure() {
+        return "Watching an Adventure movie.";
+    }
+
     @Override
     public String watchMovie() {
         String movieMessage = String.format(".. %s%n".repeat(3),

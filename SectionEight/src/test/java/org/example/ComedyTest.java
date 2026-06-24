@@ -30,4 +30,11 @@ public class ComedyTest {
         result = movie.watchMovie();
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testWatchComedy() {
+        expected = "Watching a Comedy movie.";
+        Comedy comedy = new Comedy("Jaws");
+        assertEquals(expected, comedy.watchComedy());
+    }
 }
