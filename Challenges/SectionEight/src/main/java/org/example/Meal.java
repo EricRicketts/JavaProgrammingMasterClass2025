@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class Meal {
 
-    private Burger burger;
-    private Drink drink;
-    private SideItem sideItem;
+    private final Burger burger;
+    private final Drink drink;
+    private final SideItem sideItem;
 
     public Meal(Burger burger, Drink drink, SideItem sideItem) {
         this.burger = burger;

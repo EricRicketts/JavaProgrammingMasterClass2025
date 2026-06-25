@@ -49,16 +49,9 @@ public class Burger {
 
         Burger other = (Burger) object;
 
-        List<Topping> thisToppings = this.getToppings();
-        List<Topping> otherToppings = other.getToppings();
-        for(int index = 0; index < thisToppings.size(); index++) {
-            Topping toppingOfThis = thisToppings.get(index);
-            Topping toppingOfOther = otherToppings.get(index);
-            if (toppingOfThis != toppingOfOther) return false;
-        }
-
         return Objects.equals(this.getPrice(), other.getPrice()) &&
-            Objects.equals(this.getType(), other.getType());
+            Objects.equals(this.getType(), other.getType()) &&
+            Objects.equals(this.getToppings(), other.getToppings());
     }
 
     @Override
