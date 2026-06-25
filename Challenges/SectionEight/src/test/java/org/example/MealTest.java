@@ -116,5 +116,21 @@ public class MealTest {
 
             assertEquals(expectedBurger, resultantBurger);
         }
+
+        @Test
+        public void testGetDrink() {
+            Drink expectedDrink = new Drink("Pepsi", "small");
+            Drink resultantDrink = secondMeal.getDrink();
+
+            assertEquals(expectedDrink, resultantDrink);
+        }
+
+        @Test
+        public void testGetSideItem() {
+            SideItem expectedSideItem = new SideItem("salad");
+            SideItem resultantSideItem = thirdMeal.getSideItem();
+
+            assertEquals(expectedSideItem, resultantSideItem);
+        }
     }
 }
