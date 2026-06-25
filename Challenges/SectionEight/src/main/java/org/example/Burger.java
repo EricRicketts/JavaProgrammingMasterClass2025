@@ -1,15 +1,17 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class Burger {
 
     private final String type;
     private final BigDecimal price;
-    Topping[] toppings = new Topping[3];
+    List<Topping> toppings = Arrays.asList(new Topping[3]);
 
     public Burger(String type, BigDecimal price){
-        Topping[] toppings = new Topping[3];
         this.type = type.toLowerCase();
         switch(type) {
             case "small" -> this.price = new BigDecimal("6.00");
@@ -20,10 +22,9 @@ public class Burger {
     }
 
     public void addTopping(String type) {
-        for (int i = 0; i < this.getToppings().length; i++) {
-            if (this.getToppings()[i] == null) {
-                Topping topping = new Topping(type);
-                this.getToppings()[i] = topping;
+        for (int i = 0; i < this.getToppings().size(); i++) {
+            if (this.getToppings().get(i) == null) {
+                this.getToppings().set(i, new Topping(type));
                 break;
             }
         }
@@ -36,7 +37,32 @@ public class Burger {
         return price;
     }
 
-    public Topping[] getToppings() {
+    public List<Topping> getToppings() {
         return toppings;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null) return false;
+        if (this.getClass() != object.getClass()) return false;
+
+        Burger other = (Burger) object;
+
+        List<Topping> thisToppings = this.getToppings();
+        List<Topping> otherToppings = other.getToppings();
+        for(int index = 0; index < thisToppings.size(); index++) {
+            Topping toppingOfThis = thisToppings.get(index);
+            Topping toppingOfOther = otherToppings.get(index);
+            if (toppingOfThis != toppingOfOther) return false;
+        }
+
+        return Objects.equals(this.getPrice(), other.getPrice()) &&
+            Objects.equals(this.getType(), other.getType());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getType(), this.getPrice(), this.getToppings());
     }
 }

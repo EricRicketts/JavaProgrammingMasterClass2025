@@ -125,8 +125,8 @@ public class Meal {
 
     private BigDecimal getMealPrice() {
         BigDecimal toppingsPrice = new BigDecimal("0.00");
-        for (int i = 0; i < this.getBurger().getToppings().length; i++) {
-            Topping topping = this.getBurger().getToppings()[i];
+        for (int i = 0; i < this.getBurger().getToppings().size(); i++) {
+            Topping topping = this.getBurger().getToppings().get(i);
             if (topping != null) {
                 toppingsPrice = toppingsPrice.add(topping.getPrice());
             }
@@ -138,8 +138,8 @@ public class Meal {
     private String getToppingsString() {
         String toppingsString = "";
         String toppingsStringHeader = "Toppings:\n";
-        for (int i = 0; i < this.getBurger().getToppings().length; i++) {
-            Topping topping = this.getBurger().getToppings()[i];
+        for (int i = 0; i < this.getBurger().getToppings().size(); i++) {
+            Topping topping = this.getBurger().getToppings().get(i);
             if (topping != null) {
                 toppingsString = toppingsString.concat("type: ").concat(topping.getType()).concat(" ").
                     concat("price: ").concat(String.valueOf(topping.getPrice())).concat("\n");

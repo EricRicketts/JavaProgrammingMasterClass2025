@@ -6,12 +6,16 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BurgerTest {
 
     Burger smallBurger, mediumBurger, largeBurger, defaultBurger;
+
+    Topping expectedTopping, resultantTopping;
     String[] expectedTypes, resultantTypes;
     BigDecimal[] expectedPrices, resultantPrices;
 
@@ -54,7 +58,7 @@ public class BurgerTest {
             largeBurger.addTopping(toppingTypes[i]);
         }
         for (int i = 0; i < 3; i++) {
-            Topping topping = largeBurger.getToppings()[i];
+            Topping topping = largeBurger.getToppings().get(i);
             assertEquals(toppingTypes[i], topping.getType());
             assertEquals(expectedPrices[i], topping.getPrice());
         }
@@ -104,6 +108,7 @@ public class BurgerTest {
             assertEquals(new BigDecimal("25.00"), largeBurger.getPrice());
         }
     }
+
     @Nested
     @DisplayName("test default burger")
     class TestDefaultBurger {
@@ -119,4 +124,56 @@ public class BurgerTest {
         }
     }
 
+    @Nested
+    @DisplayName("test get burger type and price")
+    class TestGetBurgerTypeAndPrice {
+
+        @Test
+        public void testGetBurgerType() {
+            assertEquals("medium", mediumBurger.getType());
+        }
+
+        @Test
+        public void testGetBurgerPrice() {
+            assertEquals(new BigDecimal("25.00"), largeBurger.getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test add burger toppings")
+    class TestBurgerToppings {
+
+        @BeforeEach
+        public void setUp() {
+            List<String> toppings = new ArrayList<String>(List.of(
+                "lettuce",
+                "tomatoes",
+                "cheese"
+            ));
+            for (String topping : toppings) {
+                defaultBurger.addTopping(topping);
+            }
+        }
+
+        @Test
+        public void testNumberOfToppingsAdded() {
+            assertEquals(3, defaultBurger.getToppings().size());
+        }
+
+        @Test
+        public void testFirstToppingAdded() {
+
+            assertEquals(new Topping("lettuce"), defaultBurger.getToppings().getFirst());
+        }
+
+        @Test
+        public void testSecondToppingAdded() {
+            assertEquals(new Topping("tomatoes"), defaultBurger.getToppings().get(1));
+        }
+
+        @Test
+        public void testThirdToppingAdded() {
+            assertEquals(new Topping("cheese"), defaultBurger.getToppings().getLast());
+        }
+    }
 }
