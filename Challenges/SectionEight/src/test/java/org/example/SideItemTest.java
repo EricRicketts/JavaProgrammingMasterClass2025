@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SideItemTest {
 
-    SideItem fries, onionRings, salad, soup;
+    SideItem fries, onionRings, salad, defaultSideItem;
 
     @BeforeEach
     public void setUp() {
         fries = new SideItem("Fries");
         onionRings = new SideItem("Onion Rings");
         salad = new SideItem("Salad");
-        soup = new SideItem("Soup");
+        defaultSideItem = new SideItem("Default Side Item");
     }
 
     @Nested
@@ -67,17 +67,17 @@ public class SideItemTest {
     }
 
     @Nested
-    @DisplayName("test fries side item")
-    class TestSoupSideItem {
+    @DisplayName("test default side item")
+    class TestDefaultSideItem {
 
         @Test
-        public void testGetSoupType() {
-            assertEquals("soup", soup.getType());
+        public void testGetDefaultSideItemType() {
+            assertEquals("default side item", defaultSideItem.getType());
         }
 
         @Test
         public void testGetSoupPrice() {
-            assertEquals(new BigDecimal("4.00"), soup.getPrice());
+            assertEquals(new BigDecimal("4.00"), defaultSideItem.getPrice());
         }
     }
 
@@ -87,7 +87,7 @@ public class SideItemTest {
 
         @Test
         public void testSideItemGetType() {
-            assertEquals("soup", soup.getType());
+            assertEquals("salad", salad.getType());
         }
 
         @Test
