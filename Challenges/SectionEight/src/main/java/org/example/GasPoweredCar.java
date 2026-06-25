@@ -15,7 +15,7 @@ public class GasPoweredCar extends Car {
 
     @Override
     public String startEngine() {
-        return super.startEngine() + " which needs time to warm-up in cold weather.";
+        return super.startEngine() + ", which needs time to warm-up in cold weather.";
     }
 
     @Override
@@ -25,7 +25,7 @@ public class GasPoweredCar extends Car {
 
     @Override
     protected String runEngine() {
-        return super.runEngine() + " and is loud given the large amount of horsepower.";
+        return super.runEngine() + ", and is loud given the large amount of horsepower.";
     }
 
     public BigDecimal getAvgKmPerLitre() {

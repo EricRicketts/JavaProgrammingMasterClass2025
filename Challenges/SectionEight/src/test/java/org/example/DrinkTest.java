@@ -3,6 +3,8 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class DrinkTest {
@@ -20,7 +22,7 @@ public class DrinkTest {
 
     @Test
     public void testSmallDrink() {
-        expected = new Object[]{"coke", "small", 1.20};
+        expected = new Object[]{"coke", "small", new BigDecimal("1.20")};
         result = new Object[]{
                 smallDrink.getType(), smallDrink.getSize(), smallDrink.getPrice()
         };
@@ -29,7 +31,7 @@ public class DrinkTest {
 
     @Test
     public void testMediumDrink() {
-        expected = new Object[]{"pepsi", "medium", 2.60};
+        expected = new Object[]{"pepsi", "medium", new BigDecimal("2.60")};
         result = new Object[]{
                 mediumDrink.getType(), mediumDrink.getSize(), mediumDrink.getPrice()
         };
@@ -38,7 +40,7 @@ public class DrinkTest {
 
     @Test
     public void testLargeDrink() {
-        expected = new Object[]{"mountain dew", "large", 3.20};
+        expected = new Object[]{"mountain dew", "large", new BigDecimal("3.20")};
         result = new Object[]{
                 largeDrink.getType(), largeDrink.getSize(), largeDrink.getPrice()
         };
@@ -47,7 +49,7 @@ public class DrinkTest {
 
     @Test
     public void testOtherDrink() {
-        expected = new Object[]{"dr pepper", "regular", 2.20};
+        expected = new Object[]{"dr pepper", "regular", new BigDecimal("2.20")};
         result = new Object[]{
                 otherDrink.getType(), otherDrink.getSize(), otherDrink.getPrice()
         };

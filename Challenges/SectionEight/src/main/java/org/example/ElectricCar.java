@@ -15,17 +15,17 @@ public class ElectricCar extends Car {
 
     @Override
     public String startEngine() {
-        return super.startEngine() + " " + "which is the future of all cars.";
+        return super.startEngine() + ", which is the future of all cars.";
     }
 
     @Override
     public String drive() {
-        return super.drive() + " " + "which is quite a pleasant experience.";
+        return super.drive() + ", which is quite a pleasant experience.";
     }
 
     @Override
     protected String runEngine() {
-        return super.runEngine() + " " + "which has no engine but electric motors.";
+        return super.runEngine() + ", which has no engine but electric motors.";
     }
 
     public BigDecimal getAvgKmPerCharge() {

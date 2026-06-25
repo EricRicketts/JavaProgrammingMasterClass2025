@@ -8,14 +8,14 @@ public class Burger {
     private final BigDecimal price;
     Topping[] toppings = new Topping[3];
 
-    public Burger(String type, double price){
+    public Burger(String type, BigDecimal price){
         Topping[] toppings = new Topping[3];
         this.type = type.toLowerCase();
         switch(type) {
             case "small" -> this.price = new BigDecimal("6.00");
             case "medium" -> this.price = new BigDecimal("15.00");
             case "large" -> this.price = new BigDecimal("25.00");
-            default -> this.price = new BigDecimal(price);
+            default -> this.price = price;
         }
     }
 

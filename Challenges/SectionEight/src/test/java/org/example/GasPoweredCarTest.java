@@ -43,7 +43,7 @@ public class GasPoweredCarTest {
     public void testGasPoweredCarStartEngineDriveAndRunEngine() {
         String[] expected = {
             "Starting the engine on a/an GasPoweredCar, which needs time to warm-up in cold weather.",
-            "Driving a/an GasPoweredCar, on a pleasant Spring day.",
+            "Driving a/an GasPoweredCar on a pleasant Spring day.",
             "The engine of a/an GasPoweredCar is running, and is loud given the large amount of horsepower."
         };
         String[] results = {
