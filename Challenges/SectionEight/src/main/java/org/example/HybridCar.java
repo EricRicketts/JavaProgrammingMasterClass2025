@@ -22,7 +22,8 @@ public class HybridCar extends Car {
     @Override
     public String drive() {
         return super.drive() +
-                ", I can get long range with this car because of the extra power provided by the battery.";
+                ", I can get long range with this car because of the extra power" +
+                " provided by the battery.";
     }
 
     @Override
