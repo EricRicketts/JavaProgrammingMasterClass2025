@@ -127,5 +127,4 @@ public class HybridCarTest {
             assertEquals(expectedString, resultantString);
         }
     }
-
 }

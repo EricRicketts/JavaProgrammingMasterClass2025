@@ -19,7 +19,7 @@ public class Drink {
     }
 
     public void setSize(String size) {
-        this.size = size;
+        this.size = size.toLowerCase();
     }
 
     public String getType() {
