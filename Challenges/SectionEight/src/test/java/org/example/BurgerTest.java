@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -9,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BurgerTest {
 
-    Burger smallBurger, mediumBurger, largeBurger, burger;
+    Burger smallBurger, mediumBurger, largeBurger, defaultBurger;
     String[] expectedTypes, resultantTypes;
     BigDecimal[] expectedPrices, resultantPrices;
 
@@ -18,7 +20,7 @@ public class BurgerTest {
         smallBurger = new Burger("small", new BigDecimal("15.00"));
         mediumBurger = new Burger("medium", new BigDecimal("15.00"));
         largeBurger = new Burger("large", new BigDecimal("15.00"));
-        burger = new Burger("regular", new BigDecimal("13.00"));
+        defaultBurger = new Burger("default burger", new BigDecimal("13.00"));
     }
 
     @Test
@@ -55,6 +57,65 @@ public class BurgerTest {
             Topping topping = largeBurger.getToppings()[i];
             assertEquals(toppingTypes[i], topping.getType());
             assertEquals(expectedPrices[i], topping.getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test small burger")
+    class TestSmallBurger {
+
+        @Test
+        public void testSmallBurgerType() {
+            assertEquals("small", smallBurger.getType());
+        }
+
+        @Test
+        public void testSmallBurgerGetPrice() {
+            assertEquals(new BigDecimal("6.00"), smallBurger.getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test medium burger")
+    class TestMediumBurger {
+
+        @Test
+        public void testMediumBurgerType() {
+            assertEquals("medium", mediumBurger.getType());
+        }
+
+        @Test
+        public void testMediumBurgerGetPrice() {
+            assertEquals(new BigDecimal("15.00"), mediumBurger.getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test large burger")
+    class TestLargeBurger {
+
+        @Test
+        public void testLargeBurgerType() {
+            assertEquals("large", largeBurger.getType());
+        }
+
+        @Test
+        public void testLargeBurgerGetPrice() {
+            assertEquals(new BigDecimal("25.00"), largeBurger.getPrice());
+        }
+    }
+    @Nested
+    @DisplayName("test default burger")
+    class TestDefaultBurger {
+
+        @Test
+        public void testMediumBurgerType() {
+            assertEquals("default burger", defaultBurger.getType());
+        }
+
+        @Test
+        public void testMediumBurgerGetPrice() {
+            assertEquals(new BigDecimal("13.00"), defaultBurger.getPrice());
         }
     }
 
