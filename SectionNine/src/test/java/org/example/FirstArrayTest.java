@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -116,6 +117,32 @@ public class FirstArrayTest {
             firstArray[5] = 3*index + 1; // set element at index 5 to a new value
 
             assertEquals(16, firstArray[index]);
+        }
+    }
+
+    @Nested
+    @DisplayName("test enhanced for loop")
+    class TestEnhancedForLoop {
+
+        @Test
+        public void testEnhancedForLoopSumElements() {
+            int sum = 0;
+            for (int number : firstArray) {
+                sum += number;
+            }
+
+            int expectedSum = ((firstArray.length / 2) * (firstArray[0] + firstArray[firstArray.length - 1]));
+            assertEquals(100, expectedSum);
+            assertEquals(100, sum);
+            assertEquals(expectedSum, sum);
+        }
+
+        @Test
+        public void testArraysToString() {
+            String expected = "[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]";
+            String result = Arrays.toString(firstArray);
+
+            assertEquals(expected, result);
         }
     }
 }
