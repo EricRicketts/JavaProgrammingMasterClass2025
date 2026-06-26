@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Topping implements Comparable<Topping> {
+    // Note declare a class Item and have Topping inherit from it.
 
     private final String type;
     private final BigDecimal price;

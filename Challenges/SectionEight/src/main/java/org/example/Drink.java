@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Drink {
+    // Note define a base class called Drink inherit from it.
 
     private final String type;
     private final BigDecimal price;
