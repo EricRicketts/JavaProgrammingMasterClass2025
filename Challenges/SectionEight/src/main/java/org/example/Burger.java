@@ -2,6 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,10 +26,16 @@ public class Burger {
         for (int i = 0; i < this.getToppings().size(); i++) {
             if (this.getToppings().get(i) == null) {
                 this.getToppings().set(i, new Topping(type));
+                this.sortToppings();
                 break;
             }
         }
     }
+
+    public void sortToppings() {
+        this.toppings.sort(Comparator.nullsLast(Comparator.naturalOrder()));
+    }
+
     public String getType() {
         return type;
     }
@@ -49,6 +56,8 @@ public class Burger {
 
         Burger other = (Burger) object;
 
+//        this.getToppings().sort(Comparator.nullsLast(Comparator.naturalOrder()));
+//        other.getToppings().sort(Comparator.nullsLast(Comparator.naturalOrder()));
         return Objects.equals(this.getPrice(), other.getPrice()) &&
             Objects.equals(this.getType(), other.getType()) &&
             Objects.equals(this.getToppings(), other.getToppings());

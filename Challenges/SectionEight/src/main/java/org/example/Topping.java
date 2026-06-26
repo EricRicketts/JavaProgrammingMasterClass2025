@@ -3,7 +3,7 @@ package org.example;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Topping {
+public class Topping implements Comparable<Topping> {
 
     private final String type;
     private final BigDecimal price;
@@ -41,5 +41,10 @@ public class Topping {
     @Override
     public int hashCode() {
         return Objects.hash(this.getType(), this.getPrice());
+    }
+
+    @Override
+    public int compareTo(Topping other) {
+        return this.getType().compareTo(other.getType());
     }
 }

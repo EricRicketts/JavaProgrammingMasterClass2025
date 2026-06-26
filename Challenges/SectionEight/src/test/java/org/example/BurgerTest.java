@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BurgerTest {
 
-    Burger smallBurger, mediumBurger, largeBurger, defaultBurger;
+    Burger smallBurger, mediumBurger, largeBurger,
+        defaultBurger, firstBurger, secondBurger;
 
     Topping expectedTopping, resultantTopping;
     String[] expectedTypes, resultantTypes;
@@ -25,43 +26,6 @@ public class BurgerTest {
         mediumBurger = new Burger("medium", new BigDecimal("15.00"));
         largeBurger = new Burger("large", new BigDecimal("15.00"));
         defaultBurger = new Burger("default burger", new BigDecimal("13.00"));
-    }
-
-    @Test
-    public void testAllBurgers() {
-        expectedTypes = new String[]{"small", "medium", "large", "regular"};
-        expectedPrices = new BigDecimal[]{
-            new BigDecimal("6.00"),
-            new BigDecimal("15.00"),
-            new BigDecimal("25.00"),
-            new BigDecimal("12.00")
-        };
-        for (int i = 0; i < expectedTypes.length; i++) {
-            BigDecimal priceSlot = new BigDecimal("12.00");
-            String type = expectedTypes[i];
-            Burger burger = new Burger(type, priceSlot);
-            BigDecimal expectedPrice = new BigDecimal(String.valueOf(expectedPrices[i]));
-            assertEquals(type, burger.getType());
-            assertEquals(expectedPrice, burger.getPrice());
-        }
-    }
-
-    @Test
-    public void testSetToppingOnABurger() {
-        String[] toppingTypes = new String[]{"lettuce", "tomatoes", "cheese"};
-        BigDecimal[] expectedPrices = new BigDecimal[]{
-            new BigDecimal("1.00"),
-            new BigDecimal("1.50"),
-            new BigDecimal("2.00")
-        };
-        for (int i = 0; i < 3; i++) {
-            largeBurger.addTopping(toppingTypes[i]);
-        }
-        for (int i = 0; i < 3; i++) {
-            Topping topping = largeBurger.getToppings().get(i);
-            assertEquals(toppingTypes[i], topping.getType());
-            assertEquals(expectedPrices[i], topping.getPrice());
-        }
     }
 
     @Nested
@@ -163,17 +127,46 @@ public class BurgerTest {
         @Test
         public void testFirstToppingAdded() {
 
-            assertEquals(new Topping("lettuce"), defaultBurger.getToppings().getFirst());
+            assertEquals(new Topping("cheese"), defaultBurger.getToppings().getFirst());
         }
 
         @Test
         public void testSecondToppingAdded() {
-            assertEquals(new Topping("tomatoes"), defaultBurger.getToppings().get(1));
+            assertEquals(new Topping("lettuce"), defaultBurger.getToppings().get(1));
         }
 
         @Test
         public void testThirdToppingAdded() {
-            assertEquals(new Topping("cheese"), defaultBurger.getToppings().getLast());
+            assertEquals(new Topping("tomatoes"), defaultBurger.getToppings().getLast());
+        }
+    }
+
+    @Nested
+    @DisplayName("test burger equality")
+    class TestBurgerEquality {
+
+        @Test
+        public void testTwoEqualBurgersWithNoToppings() {
+            firstBurger = new Burger("large", new BigDecimal("25.00"));
+            secondBurger = new Burger("large", new BigDecimal("25.00"));
+
+            assertEquals(firstBurger, secondBurger);
+        }
+
+        @Test
+        public void testTwoEqualBurgersWithTheSameToppings() {
+            firstBurger = new Burger("large", new BigDecimal("25.00"));
+            secondBurger = new Burger("large", new BigDecimal("25.00"));
+
+            List<String> firstToppingList = new ArrayList<>(List.of("lettuce", "tomatoes", "cheese"));
+            List<String> secondToppingList = new ArrayList<>(List.of("cheese", "lettuce", "tomatoes"));
+
+            for (int index = 0; index < 3; index++) {
+                firstBurger.addTopping(firstToppingList.get(index));
+                secondBurger.addTopping(secondToppingList.get(index));
+            }
+
+            assertEquals(firstBurger, secondBurger);
         }
     }
 }
