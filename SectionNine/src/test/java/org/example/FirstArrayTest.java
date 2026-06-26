@@ -85,4 +85,22 @@ public class FirstArrayTest {
             assertEquals(expectedBigDecimal, resultantBigDecimal);
         }
     }
+
+    @Nested
+    @DisplayName("initialize an array via a loop")
+    class InitializeArrayWithLoop {
+
+        @Test
+        public void initializeArrayWithLoopQueryArray() {
+            int[] intArray = new int[10]; // declared array
+            for(int index = 0; index < intArray.length; index++) {
+                intArray[index] = 3*index + 1;
+            }
+
+            assertEquals(1, intArray[0]);
+            assertEquals(13, intArray[4]);
+            assertEquals(16, intArray[5]);
+            assertEquals(28, intArray[9]);
+        }
+    }
 }
