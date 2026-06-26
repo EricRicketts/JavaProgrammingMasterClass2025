@@ -44,7 +44,8 @@ public class Drink {
         Drink other = (Drink) obj;
 
         return Objects.equals(this.getType(), other.getType()) &&
-            Objects.equals(this.getPrice(), other.getPrice());
+            Objects.equals(this.getPrice(), other.getPrice()) &&
+            Objects.equals(this.getSize(), other.getSize());
     }
 
     @Override

@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DrinkTest {
 
     Object[] expected, result;
-    Drink smallDrink, mediumDrink, largeDrink, otherDrink;
+    Drink smallDrink, mediumDrink, largeDrink,
+        otherDrink, firstDrink, secondDrink;
 
     @BeforeEach
     public void setUp() {
@@ -95,6 +95,35 @@ public class DrinkTest {
             largeDrink.setSize("Extra Large");
 
             assertEquals("extra large", largeDrink.getSize());
+        }
+    }
+
+    @Nested
+    @DisplayName("test drink equality")
+    class TestDrinkEquality {
+
+        @Test
+        public void testTwoEqualDrinks() {
+            firstDrink = new Drink("COKE", "LARGE");
+            secondDrink = new Drink("coke", "large");
+
+            assertEquals(firstDrink, secondDrink);
+        }
+
+        @Test
+        public void testTwoNonEqualDrinksDifferentSizes() {
+            firstDrink = new Drink("coke", "medium");
+            secondDrink = new Drink("coke", "large");
+
+            assertNotEquals(firstDrink, secondDrink);
+        }
+
+        @Test
+        public void testTwoNonEqualDrinksDifferentTypes() {
+            firstDrink = new Drink("pepsi", "large");
+            secondDrink = new Drink("coke", "large");
+
+            assertNotEquals(firstDrink, secondDrink);
         }
     }
 }
