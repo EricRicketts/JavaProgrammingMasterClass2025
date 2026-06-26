@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FirstArrayTest {
 
@@ -143,6 +144,62 @@ public class FirstArrayTest {
             String result = Arrays.toString(firstArray);
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("Using Arrays class for array manipulation")
+    class TestUseArraysClass {
+
+        private static int[] getRandomArray(int lengthOfArray) {
+
+            Random random = new Random();
+            int[] newIntArray = new int[lengthOfArray];
+            for (int index = 0; index < lengthOfArray; index++) {
+                newIntArray[index] = random.nextInt(100);
+            }
+
+            return newIntArray;
+        }
+
+        @Test
+        public void testGenerateRandomArray() {
+            int[] testArray = getRandomArray(10);
+            for (int arrayValue : testArray) {
+                assertTrue(arrayValue >= 0 && arrayValue <= 100);
+            }
+            assertEquals(10, testArray.length);
+        }
+
+        @Test
+        public void testSortRandomArray() {
+            boolean isArraySorted = true;
+            int[] testArray = getRandomArray(100);
+            for(int index = 0; index < testArray.length - 1; index++) {
+                if (testArray[index] > testArray[index + 1]) {
+                    isArraySorted = false;
+                    break;
+                }
+            }
+
+            assertFalse(isArraySorted);
+            isArraySorted = true;
+            Arrays.sort(testArray);
+
+            for(int index = 0; index < testArray.length - 1; index++) {
+                if (testArray[index] > testArray[index + 1]) {
+                    isArraySorted = false;
+                    break;
+                }
+            }
+
+            assertTrue(isArraySorted);
+        }
+
+        @Test
+        public void testFillArray() {
+            int[] newArray = new int[10];
+            assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, newArray);
         }
     }
 }
