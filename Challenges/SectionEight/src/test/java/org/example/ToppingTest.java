@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ToppingTest {
 
-    Topping lettuce, tomatoes, cheese, defaultTopping;
+    Topping lettuce, tomatoes, cheese,
+        defaultTopping, firstTopping, secondTopping;
 
     @BeforeEach
     public void setUp() {
@@ -97,6 +99,28 @@ public class ToppingTest {
             Topping topping = new Topping("cheese");
 
             assertEquals(new BigDecimal("2.00"), topping.getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test topping equality")
+    class TestToppingEquality {
+
+        @Test
+        public void testTwoEqualToppings() {
+            firstTopping = new Topping("lettuce");
+            secondTopping = new Topping("LETTUCE");
+
+            assertEquals(firstTopping, secondTopping);
+        }
+
+        @Test
+        public void testTwoNonEqualToppings() {
+            firstTopping = new Topping("lettuce");
+            secondTopping = new Topping("tomatoes");
+
+            assertNotEquals(firstTopping, secondTopping);
+
         }
     }
 }
