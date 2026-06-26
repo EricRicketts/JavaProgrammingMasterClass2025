@@ -103,4 +103,19 @@ public class FirstArrayTest {
             assertEquals(28, intArray[9]);
         }
     }
+
+    @Nested
+    @DisplayName("Change the value for an array at a given index")
+    class TestUpdateArrayValueAtGivenIndex {
+
+        @Test
+        public void testUpdateValueForFirstArrayAtGivenIndex() {
+            int index = 5;
+            assertEquals(11, firstArray[index]);
+
+            firstArray[5] = 3*index + 1; // set element at index 5 to a new value
+
+            assertEquals(16, firstArray[index]);
+        }
+    }
 }
