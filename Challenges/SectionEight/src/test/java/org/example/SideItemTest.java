@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class SideItemTest {
 
-    SideItem fries, onionRings, salad, defaultSideItem;
+    SideItem fries, onionRings, salad,
+        defaultSideItem, firstSideItem, secondSideItem;
 
     @BeforeEach
     public void setUp() {
@@ -93,6 +95,27 @@ public class SideItemTest {
         @Test
         public void testSideItemGetPrice() {
             assertEquals(new BigDecimal("10.00"), salad.getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test side time equality")
+    class TestSideItemEquality {
+
+        @Test
+        public void testTwoEqualSideItems() {
+            firstSideItem = new SideItem("FRIES");
+            secondSideItem = new SideItem("fries");
+
+            assertEquals(firstSideItem, secondSideItem);
+        }
+
+        @Test
+        public void testTwoNonEqualSideItems() {
+            firstSideItem = new SideItem("fries");
+            secondSideItem = new SideItem("onion rings");
+
+            assertNotEquals(firstSideItem, secondSideItem);
         }
     }
 }
