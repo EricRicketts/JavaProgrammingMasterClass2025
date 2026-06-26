@@ -56,8 +56,6 @@ public class Burger {
 
         Burger other = (Burger) object;
 
-//        this.getToppings().sort(Comparator.nullsLast(Comparator.naturalOrder()));
-//        other.getToppings().sort(Comparator.nullsLast(Comparator.naturalOrder()));
         return Objects.equals(this.getPrice(), other.getPrice()) &&
             Objects.equals(this.getType(), other.getType()) &&
             Objects.equals(this.getToppings(), other.getToppings());

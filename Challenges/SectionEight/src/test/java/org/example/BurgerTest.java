@@ -10,15 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class BurgerTest {
 
     Burger smallBurger, mediumBurger, largeBurger,
         defaultBurger, firstBurger, secondBurger;
 
-    Topping expectedTopping, resultantTopping;
-    String[] expectedTypes, resultantTypes;
-    BigDecimal[] expectedPrices, resultantPrices;
+
+    List<String> firstToppingList =
+        new ArrayList<>(List.of("lettuce", "tomatoes", "cheese"));
+    List<String> secondToppingList =
+        new ArrayList<>(List.of("cheese", "lettuce", "tomatoes"));
 
     @BeforeEach
     public void setUp() {
@@ -167,6 +170,41 @@ public class BurgerTest {
             }
 
             assertEquals(firstBurger, secondBurger);
+        }
+
+        @Test
+        public void testTwoNonEqualBurgersWithNoToppings() {
+            firstBurger = new Burger("medium", new BigDecimal("15.00"));
+            secondBurger = new Burger("large", new BigDecimal("25.00"));
+
+            assertNotEquals(firstBurger, secondBurger);
+        }
+
+        @Test
+        public void testTwoNonEqualBurgersDifferentToppings() {
+            firstBurger = new Burger("medium", new BigDecimal("15.00"));
+            secondBurger = new Burger("medium", new BigDecimal("15.00"));
+
+
+            for (int index = 0; index < 2; index++) {
+                firstBurger.addTopping(firstToppingList.get(index));
+                secondBurger.addTopping(secondToppingList.get(index));
+            }
+
+            assertNotEquals(firstBurger, secondBurger);
+        }
+
+        @Test
+        public void testTwoNonEqualBurgersDifferentNumberOfToppings() {
+            firstBurger = new Burger("small", new BigDecimal("6.00"));
+            secondBurger = new Burger("small", new BigDecimal("6.00"));
+
+            firstBurger.addTopping(firstToppingList.getFirst());
+            for (int index = 0; index < 2; index++) {
+                secondBurger.addTopping(firstToppingList.get(index));
+            }
+
+            assertNotEquals(firstBurger, secondBurger);
         }
     }
 }
