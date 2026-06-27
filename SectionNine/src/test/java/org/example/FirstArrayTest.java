@@ -204,5 +204,13 @@ public class FirstArrayTest {
 
             assertArrayEquals(new int[]{5, 5, 5, 5, 5, 5, 5, 5, 5, 5}, newArray);
         }
+
+        @Test
+        public void testCopyArray() {
+            int[] testArray = getRandomArray(10);
+            int[] copiedArray = Arrays.copyOf(testArray, testArray.length);
+
+            assertArrayEquals(testArray, copiedArray);
+        }
     }
 }
