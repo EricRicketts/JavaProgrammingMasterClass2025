@@ -211,6 +211,10 @@ public class FirstArrayTest {
             int[] copiedArray = Arrays.copyOf(testArray, testArray.length);
 
             assertArrayEquals(testArray, copiedArray);
+
+            testArray[0] = testArray[1];
+//          changing original array does not affect the copied array
+            assertNotEquals(testArray, copiedArray);
         }
     }
 }
