@@ -17,6 +17,27 @@ public class ArrayWork {
         return reversed;
     }
 
+    public static int[] reverseSort(int[] original) {
+        int arrayLength = original.length;
+        int[] copy = Arrays.copyOf(original, original.length);
+
+        boolean sorted = false;
+        while(!sorted) {
+            sorted = true;
+            for (int index = 0; index < arrayLength -1; index++) {
+                int currentElement = copy[index];
+                int nextElement = copy[index + 1];
+                if (currentElement < nextElement) {
+                    copy[index] = nextElement;
+                    copy[index + 1] = currentElement;
+                    sorted = false;
+                }
+            }
+        }
+
+        return copy;
+    }
+
     public static int[] sort(int[] original) {
         /*
         loop only one time.  I gave up and looked at the instructor's solution.  His use of a while

@@ -20,4 +20,10 @@ public class DescendTest {
         sort = ArrayWork.sort(numbers);
         assertArrayEquals(sorted, sort);
     }
+
+    @Test
+    public void testMySort() {
+        sort = ArrayWork.reverseSort(numbers);
+        assertArrayEquals(sorted, sort);
+    }
 }
