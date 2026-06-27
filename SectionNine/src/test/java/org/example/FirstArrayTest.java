@@ -200,6 +200,9 @@ public class FirstArrayTest {
         public void testFillArray() {
             int[] newArray = new int[10];
             assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, newArray);
+            Arrays.fill(newArray, 5);
+
+            assertArrayEquals(new int[]{5, 5, 5, 5, 5, 5, 5, 5, 5, 5}, newArray);
         }
     }
 }
