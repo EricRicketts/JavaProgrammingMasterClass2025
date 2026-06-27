@@ -216,5 +216,27 @@ public class FirstArrayTest {
 //          changing original array does not affect the copied array
             assertNotEquals(testArray, copiedArray);
         }
+
+        @Test
+        public void testCopyToSmallerArray() {
+            int[] testArray = getRandomArray(10);
+            int[] copiedArray = Arrays.copyOf(testArray, 5);
+
+            for (int index = 0; index < 5; index++) {
+                assertEquals(testArray[index], copiedArray[index]);
+            }
+        }
+
+        @Test
+        public void testCopyToLargerArray() {
+            int[] testArray = getRandomArray(10);
+            int[] copiedArray = Arrays.copyOf(testArray, 15);
+
+            // copied array appends 0's to end of array when copy size exceeds
+            // original array.
+            for (int index = 10; index < 15; index++) {
+                assertEquals(0, copiedArray[index]);
+            }
+        }
     }
 }
