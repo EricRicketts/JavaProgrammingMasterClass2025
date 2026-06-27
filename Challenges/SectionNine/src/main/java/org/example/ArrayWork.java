@@ -17,6 +17,18 @@ public class ArrayWork {
         }
         return minimum;
     }
+
+    public static int[] myReverse(int[] original) {
+        int[] copy = Arrays.copyOf(original, original.length);
+        int[] reversed = new int[original.length];
+
+        for (int index = 0; index <= original.length / 2; index++) {
+            reversed[index] = copy[original.length - index - 1];
+            reversed[original.length - index - 1] = copy[index];
+        }
+        return reversed;
+    }
+
     public static int[] readIntegers(int... args) {
         List<Integer> integerList = new ArrayList<>();
         for (int element : args) {
