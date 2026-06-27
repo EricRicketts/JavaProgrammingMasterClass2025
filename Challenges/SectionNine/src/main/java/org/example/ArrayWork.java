@@ -7,6 +7,16 @@ import java.util.Random;
 
 public class ArrayWork {
 
+    public static int myFindMin(int[] integers) {
+        int[] copy = Arrays.copyOf(integers, integers.length);
+        int minimum = Integer.MAX_VALUE;
+        for (int number : copy) {
+            if (number < minimum) {
+                minimum = number;
+            }
+        }
+        return minimum;
+    }
     public static int[] readIntegers(int... args) {
         List<Integer> integerList = new ArrayList<>();
         for (int element : args) {
