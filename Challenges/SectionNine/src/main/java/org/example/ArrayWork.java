@@ -1,9 +1,20 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class ArrayWork {
+
+    public static int[] readIntegers(int... args) {
+        List<Integer> integerList = new ArrayList<>();
+        for (int element : args) {
+            integerList.add(element);
+        }
+
+        return integerList.stream().mapToInt(Integer::intValue).toArray();
+    }
 
     public static int[] reverse(int[] original) {
         int[] reversed = Arrays.copyOf(original, original.length);
