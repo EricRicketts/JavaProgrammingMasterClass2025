@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BinarySearchAndArrayEqualsTest {
 
@@ -35,6 +34,39 @@ public class BinarySearchAndArrayEqualsTest {
             int foundIndex = Arrays.binarySearch(stringArray, name);
 
             assertEquals(name, stringArray[foundIndex]);
+        }
+    }
+
+    @Nested
+    @DisplayName("test array equality")
+    class TestArrayEquality {
+
+        @Test
+        public void testEqualArrays() {
+            int[] newArray = Arrays.copyOf(intArray, intArray.length);
+
+            assertArrayEquals(intArray, newArray);
+        }
+
+        @Test
+        public void testArrayEqualityMustHaveEqualElements() {
+            int[] newArray = Arrays.copyOf(intArray, intArray.length);
+            int firstElement = newArray[0];
+            int lastElement = newArray[intArray.length - 1];
+
+            newArray[0] = lastElement;
+            newArray[intArray.length - 1] = firstElement;
+
+            assertNotEquals(intArray, newArray);
+        }
+
+        @Test
+        public void testArrayEqualityMustHaveSameNumberOfElements() {
+            int[] firstArray = Arrays.copyOf(intArray, intArray.length + 1);
+            int[] secondArray = Arrays.copyOf(intArray, intArray.length - 1);
+
+            assertNotEquals(intArray, firstArray);
+            assertNotEquals(intArray, secondArray);
         }
     }
 }
