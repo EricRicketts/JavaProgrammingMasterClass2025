@@ -68,5 +68,12 @@ public class BinarySearchAndArrayEqualsTest {
             assertNotEquals(intArray, firstArray);
             assertNotEquals(intArray, secondArray);
         }
+
+        @Test
+        public void testArrayEqualityMustBeOfSameType() {
+            Object[] newArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+            assertNotEquals(intArray, newArray);
+        }
     }
 }
