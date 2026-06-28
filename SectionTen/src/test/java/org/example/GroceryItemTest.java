@@ -166,75 +166,88 @@ public class GroceryItemTest {
      */
 
 
+    @Nested
+    @DisplayName("test searching for and retrieving items from a list")
+    class TestSearchAndRetrieveItemsFromList {
 
-    @Test
-    public void searchForAnItemInAList() {
-        item = new GroceryItem("spinach", "PRODUCE", 2);
-        boolean found = thirdGroceryList.contains(item);
-        assertTrue(found);
+        @Test
+        public void searchForAnItemInAList() {
+            item = new GroceryItem("spinach", "PRODUCE", 2);
+            boolean found = thirdGroceryList.contains(item);
+            assertTrue(found);
+        }
+
+        @Test
+        public void searchForAnItemInAListMustHaveExactMatch() {
+            item = new GroceryItem("spinach", "PRODUCE", 5);
+            boolean found = thirdGroceryList.contains(item);
+            assertFalse(found);
+        }
+
+        @Test
+        public void retrieveTheFirstAppearanceOfAnObject() {
+            item = new GroceryItem("milk", "DAIRY", 3);
+            int firstIndex = thirdGroceryList.indexOf(item);
+            int expectedFirstIndex = 5; // Milk in position 0 has a count of 1
+            assertEquals(expectedFirstIndex, firstIndex);
+        }
+
+        @Test
+        public void retrieveTheLastAppearanceOfAnObject() {
+            item = new GroceryItem("milk", "DAIRY", 2);
+            int lastIndex = thirdGroceryList.lastIndexOf(item);
+            int expectedLastIndex = 8; // Milk in position 8 has a count of 2
+            assertEquals(expectedLastIndex, lastIndex);
+        }
     }
 
-    @Test
-    public void searchForAnItemInAListMustHaveExactMatch() {
-        item = new GroceryItem("spinach", "PRODUCE", 5);
-        boolean found = thirdGroceryList.contains(item);
-        assertFalse(found);
-    }
+    @Nested
+    @DisplayName("test list removal")
+    class TestListRemoval {
 
-    @Test
-    public void retrieveTheFirstAppearanceOfAnObject() {
-        item = new GroceryItem("milk", "DAIRY", 3);
-        int firstIndex = thirdGroceryList.indexOf(item);
-        int expectedFirstIndex = 5; // Milk in position 0 has a count of 1
-        assertEquals(expectedFirstIndex, firstIndex);
-    }
+        @Test
+        public void removeAnObjectFromAListByIndex() {
+            int expectedOriginalListSize = 10;
+            originalListSize = thirdGroceryList.size();
+            assertEquals(expectedOriginalListSize, originalListSize);
+            
+            GroceryItem expectedItem = new GroceryItem("pears", "PRODUCE", 5);
+            int indexOfExpectedItem = thirdGroceryList.indexOf(expectedItem);
 
-    @Test
-    public void retrieveTheLastAppearanceOfAnObject() {
-        item = new GroceryItem("milk", "DAIRY", 2);
-        int lastIndex = thirdGroceryList.lastIndexOf(item);
-        int expectedLastIndex = 8; // Milk in position 8 has a count of 2
-        assertEquals(expectedLastIndex, lastIndex);
-    }
+            resultantItem = thirdGroceryList.remove(indexOfExpectedItem);
+            assertEquals(expectedItem, resultantItem);
+            assertEquals(expectedOriginalListSize - 1, thirdGroceryList.size());
+        }
 
-    @Test
-    public void removeAnObjectFromAListByIndex() {
-        int expectedOriginalListSize = 10;
-        originalListSize = thirdGroceryList.size();
-        assertEquals(expectedOriginalListSize, originalListSize);
-        expectedItem = new GroceryItem("pears", "PRODUCE", 5);
-        resultantItem = thirdGroceryList.remove(7);
-        assertEquals(expectedItem, resultantItem);
-        assertEquals(expectedOriginalListSize - 1, thirdGroceryList.size());
-    }
+        @Test
+        public void removeAnObjectFromAListByTraits() {
+            // In this case, Java just modifies the current list by removing the found item;
+            // no object is returned as is the case when removing by an index.
+            int originalListSize = thirdGroceryList.size();
+            item = new GroceryItem("cucumber", "PRODUCE", 4);
+            expectedItem = new GroceryItem("cucumber", "PRODUCE", 4);
+            boolean removed = thirdGroceryList.remove(item);
+            assertTrue(removed);
+            assertEquals(originalListSize - 1, thirdGroceryList.size());
+        }
 
-    @Test
-    public void removeAnObjectFromAListByTraits() {
-        // In this case, Java just modifies the current list by removing the found item;
-        // no object is returned as is the case when removing by an index.
-        int originalListSize = thirdGroceryList.size();
-        item = new GroceryItem("cucumber", "PRODUCE", 4);
-        expectedItem = new GroceryItem("cucumber", "PRODUCE", 4);
-        boolean removed = thirdGroceryList.remove(item);
-        assertTrue(removed);
-        assertEquals(originalListSize - 1, thirdGroceryList.size());
-    }
-
-    @Test
-    public void removeAListFromAList() {
-        // To remove a List from a List used the removeAll method
-        originalListSize = thirdGroceryList.size();
-        assertEquals(10, originalListSize);
-        ArrayList<GroceryItem> itemsToRemove = new ArrayList<>(
+        @Test
+        public void removeAListFromAList() {
+            // To remove a List from a List used the removeAll method
+            originalListSize = thirdGroceryList.size();
+            assertEquals(10, originalListSize);
+            ArrayList<GroceryItem> itemsToRemove = new ArrayList<>(
                 List.of(new GroceryItem("butter", "DAIRY", 3),
-                new GroceryItem("cucumber", "PRODUCE", 4),
-                new GroceryItem("milk", "DAIRY", 2))
-        );
-        // As show above, the removed items need not be in sequential order.
-        boolean removed = thirdGroceryList.removeAll(itemsToRemove);
-        assertTrue(removed);
-        assertEquals(originalListSize - 3, thirdGroceryList.size());
+                    new GroceryItem("cucumber", "PRODUCE", 4),
+                    new GroceryItem("milk", "DAIRY", 2))
+            );
+            // As show above, the removed items need not be in sequential order.
+            boolean removed = thirdGroceryList.removeAll(itemsToRemove);
+            assertTrue(removed);
+            assertEquals(originalListSize - 3, thirdGroceryList.size());
+        }
     }
+
 
     @Test
     public void retainItemsInAList() {
