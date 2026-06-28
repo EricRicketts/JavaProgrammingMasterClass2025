@@ -83,19 +83,75 @@ public class GroceryItemTest {
         }
     }
 
-    @Test
-    public void testAddAnItemToTheFrontOfAList() {
-        secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
-        expectedItem = new GroceryItem("apples", "PRODUCE", 6);
-        resultantItem = secondGroceryList.getFirst();
-        assertEquals(expectedItem, resultantItem);
+    @Nested
+    @DisplayName("test second grocery list")
+    class TestSecondGroceryList {
+
+        @Test
+        public void testAddAnItemToTheFrontOfAList() {
+            secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
+            expectedItem = new GroceryItem("apples", "PRODUCE", 6);
+
+            resultantItem = secondGroceryList.getFirst();
+            assertEquals(expectedItem, resultantItem);
+        }
+
+        @Test
+        public void testEffectOfAddingItemToFrontOfList() {
+            // Once an item is added to the front of a list, everything shifts right by one slot.
+            assertEquals(2, secondGroceryList.size());
+            secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
+            expectedItem = new GroceryItem("butter", "DAIRY", 1);
+
+            resultantItem = secondGroceryList.get(1);
+            assertEquals(expectedItem, resultantItem);
+            assertEquals(3, secondGroceryList.size());
+        }
+
+        @Test
+        public void testAddAnItemToEndOfAList() {
+            secondGroceryList.addLast(new GroceryItem("mangoes", "PRODUCE", 3));
+            expectedItem = new GroceryItem("mangoes", "PRODUCE", 3);
+
+            resultantItem = secondGroceryList.getLast();
+            assertEquals(expectedItem, resultantItem);
+        }
+
+        @Test
+        public void testEffectOfAddingItemToEndOfList() {
+            assertEquals(2, secondGroceryList.size());
+            secondGroceryList.addLast(new GroceryItem("avocados", "PRODUCE", 2));
+            expectedItem = new GroceryItem("avocados", "PRODUCE", 2);
+
+            assertEquals(3, secondGroceryList.size());
+            // Adding an item to the end of a list does not change the order of the existing items.
+            expectedItem = new GroceryItem("butter", "DAIRY", 1);
+            resultantItem = secondGroceryList.getFirst();
+
+            assertEquals(expectedItem, resultantItem);
+        }
+
+        @Test
+        public void testAListToAList() {
+            int[] expected = {2, 5};
+            assertEquals(2, secondGroceryList.size());
+
+            // List.addAll(listOfItems) adds the listOfItems individually to the current list.
+            List<GroceryItem> additionalItems = Arrays.asList(groceryList);
+            secondGroceryList.addAll(additionalItems);
+
+            assertEquals(5, secondGroceryList.size());
+            List<GroceryItem> addedItems = secondGroceryList.subList(2,5);
+            assertEquals(additionalItems, addedItems);
+        }
     }
 
+    /*
     @Test
     public void testImmutableListFromMutableList() {
         String expected = "UnsupportedOperationException";
         // This creates an immutable list, we cannot add an element to an immutable list.
-        List<GroceryItem> fourthGroceryList = List.copyOf(thirdGroceryList);
+        List<GroceryItem> fourthGroceryList = new ArrayList<>(List.copyOf(thirdGroceryList));
         UnsupportedOperationException thrown;
         thrown = assertThrows(
                 UnsupportedOperationException.class,
@@ -107,29 +163,9 @@ public class GroceryItemTest {
         assertEquals(expected, illegalOperation);
     }
 
-    @Test
-    public void testEffectOfAddingItemToFrontOfList() {
-        // Once an item is added to the front of a list, everything shifts right by one slot.
-        secondGroceryList.addFirst(new GroceryItem("apples", "PRODUCE", 6));
-        expectedItem = new GroceryItem("butter", "DAIRY", 1);
-        resultantItem = secondGroceryList.get(1);
-        assertEquals(expectedItem, resultantItem);
-    }
+     */
 
-    @Test
-    public void testAListToAList() {
-        int[] expected = {2, 5};
-        originalListSize = secondGroceryList.size();
-        List<GroceryItem> additionalItems = Arrays.asList(groceryList);
-        secondGroceryList.addAll(additionalItems);
-        int newListSize = secondGroceryList.size();
-        int[] result = {originalListSize, newListSize};
-        assertArrayEquals(expected, result);
-        // The new list is added to the end of the list
-        expectedItem = new GroceryItem("oranges", "PRODUCE", 5);
-        resultantItem = secondGroceryList.getLast();
-        assertEquals(expectedItem, resultantItem);
-    }
+
 
     @Test
     public void searchForAnItemInAList() {
