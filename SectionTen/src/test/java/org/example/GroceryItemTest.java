@@ -9,6 +9,8 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
 public class GroceryItemTest {
 
     GroceryItem[] groceryArray = new GroceryItem[3];
@@ -316,10 +318,16 @@ public class GroceryItemTest {
 
         @Test
         public void testSetFieldsOfAnItemInAList() {
-            List<Integer> newList = new ArrayList<>(List.of(0, 1, 2, 3, 4, 5));
-            newList.set(3, 10);
+            Boy firstBoy = new Boy("Doug", 15);
+            Boy secondBoy = new Boy("Phillip", 10);
+            Boy thirdBoy = new Boy("Walter", 9);
 
-            assertEquals(new ArrayList<>(List.of(0, 1, 2, 10, 4, 5)), newList);
+            List<Boy> boyList = new ArrayList<>(List.of(firstBoy, secondBoy, thirdBoy));
+
+            assertEquals(10, boyList.get(1).getAge());
+
+            boyList.get(1).setAge(20);
+            assertEquals(20, boyList.get(1).getAge());
         }
     }
 
