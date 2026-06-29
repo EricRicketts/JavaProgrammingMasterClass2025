@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GroceryItemTest {
 
-    GroceryItem[] groceryList = new GroceryItem[3];
+    GroceryItem[] groceryArray = new GroceryItem[3];
     /*
         Below, we instantiate an Array List of type GroceryItem.  This means all
         elements in the list must be a GroceryItem.  We preserve Java's type
@@ -25,23 +25,23 @@ public class GroceryItemTest {
 
     @BeforeEach
     public void setUp() {
-        groceryList[0] = new GroceryItem("milk");
-        groceryList[1] = new GroceryItem("apples", "PRODUCE");
-        groceryList[2] = new GroceryItem("oranges", "PRODUCE", 5);
+        groceryArray[0] = new GroceryItem("milk");
+        groceryArray[1] = new GroceryItem("apples", "PRODUCE");
+        groceryArray[2] = new GroceryItem("oranges", "PRODUCE", 5);
         secondGroceryList.add(new GroceryItem("butter"));
         secondGroceryList.add(new GroceryItem("pears", "PRODUCE", 3));
         thirdGroceryList = new ArrayList<>(
-                List.of(
-                    new GroceryItem("milk"),
-                    new GroceryItem("apples", "PRODUCE", 6),
-                    new GroceryItem("oranges", "PRODUCE", 5),
-                    new GroceryItem("butter", "DAIRY", 3),
-                    new GroceryItem("spinach", "PRODUCE", 2),
-                    new GroceryItem("milk", "DAIRY", 3),
-                    new GroceryItem("cucumber", "PRODUCE", 4),
-                    new GroceryItem("pears", "PRODUCE", 5),
-                    new GroceryItem("milk", "DAIRY", 2),
-                    new GroceryItem("kale", "PRODUCE", 8))
+            List.of(
+                new GroceryItem("milk"),
+                new GroceryItem("apples", "PRODUCE", 6),
+                new GroceryItem("oranges", "PRODUCE", 5),
+                new GroceryItem("butter", "DAIRY", 3),
+                new GroceryItem("spinach", "PRODUCE", 2),
+                new GroceryItem("milk", "DAIRY", 3),
+                new GroceryItem("cucumber", "PRODUCE", 4),
+                new GroceryItem("pears", "PRODUCE", 5),
+                new GroceryItem("milk", "DAIRY", 2),
+                new GroceryItem("kale", "PRODUCE", 8))
         );
     }
 
@@ -53,9 +53,9 @@ public class GroceryItemTest {
         public void testGettingEachElementOfTheFirstRecord() {
             Object[] expected = {"milk", "DAIRY", 1};
             Object[] result = {
-                groceryList[0].name(),
-                groceryList[0].type(),
-                groceryList[0].count()
+                groceryArray[0].name(),
+                groceryArray[0].type(),
+                groceryArray[0].count()
             };
             assertArrayEquals(expected, result);
         }
@@ -64,9 +64,9 @@ public class GroceryItemTest {
         public void testGettingEachElementOfTheSecondRecord() {
             Object[] expected = {"apples", "PRODUCE", 1};
             Object[] result = {
-                groceryList[1].name(),
-                groceryList[1].type(),
-                groceryList[1].count(),
+                groceryArray[1].name(),
+                groceryArray[1].type(),
+                groceryArray[1].count(),
             };
             assertArrayEquals(expected, result);
         }
@@ -75,9 +75,9 @@ public class GroceryItemTest {
         public void testGettingEachElementOfTheThirdRecord() {
             Object[] expected = {"oranges", "PRODUCE", 5};
             Object[] result = {
-                groceryList[2].name(),
-                groceryList[2].type(),
-                groceryList[2].count()
+                groceryArray[2].name(),
+                groceryArray[2].type(),
+                groceryArray[2].count()
             };
             assertArrayEquals(expected, result);
         }
@@ -132,39 +132,21 @@ public class GroceryItemTest {
         }
 
         @Test
-        public void testAListToAList() {
+        public void testAListFromAListUsingSublist() {
             int[] expected = {2, 5};
             assertEquals(2, secondGroceryList.size());
 
             // List.addAll(listOfItems) adds the listOfItems individually to the current list.
-            List<GroceryItem> additionalItems = Arrays.asList(groceryList);
+            List<GroceryItem> additionalItems = Arrays.asList(groceryArray);
             secondGroceryList.addAll(additionalItems);
 
             assertEquals(5, secondGroceryList.size());
-            List<GroceryItem> addedItems = secondGroceryList.subList(2,5);
+            // The newArrayList<>() call makes an independent copy of the sublist, this
+            // avoids concurrency issues or any structural dependencies.
+            List<GroceryItem> addedItems = new ArrayList<>(secondGroceryList.subList(2, 5));
             assertEquals(additionalItems, addedItems);
         }
     }
-
-    /*
-    @Test
-    public void testImmutableListFromMutableList() {
-        String expected = "UnsupportedOperationException";
-        // This creates an immutable list, we cannot add an element to an immutable list.
-        List<GroceryItem> fourthGroceryList = new ArrayList<>(List.copyOf(thirdGroceryList));
-        UnsupportedOperationException thrown;
-        thrown = assertThrows(
-                UnsupportedOperationException.class,
-                () -> {
-                fourthGroceryList.add(new GroceryItem("carrots", "PRODUCE", 3));
-                }, "Cannot add an element to an immutable list"
-        );
-        String illegalOperation = thrown.getClass().getSimpleName();
-        assertEquals(expected, illegalOperation);
-    }
-
-     */
-
 
     @Nested
     @DisplayName("test searching for and retrieving items from a list")
@@ -243,9 +225,9 @@ public class GroceryItemTest {
                     new GroceryItem("milk", "DAIRY", 2))
             );
 
-            for (int i = 0; i < itemsToRemove.size(); i++){
+            for (int i = 0; i < itemsToRemove.size(); i++) {
                 GroceryItem desiredGroceryItem = itemsToRemove.get(i);
-                for(int j = 0; j < thirdGroceryList.size(); j++) {
+                for (int j = 0; j < thirdGroceryList.size(); j++) {
                     GroceryItem currentGroceryItem = thirdGroceryList.get(j);
                     if (currentGroceryItem.equals(desiredGroceryItem)) {
                         int index = thirdGroceryList.indexOf(currentGroceryItem);
@@ -255,7 +237,7 @@ public class GroceryItemTest {
                 }
             }
 
-            for(int i = 0; i < indicesOfItems.size(); i++) {
+            for (int i = 0; i < indicesOfItems.size(); i++) {
                 int firstRemovalIndex = indicesOfItems.getFirst();
                 int removalIndex = indicesOfItems.get(i);
                 if (removalIndex > firstRemovalIndex) {
@@ -288,65 +270,126 @@ public class GroceryItemTest {
             assertTrue(removed);
             assertEquals(originalListSize - 3, thirdGroceryList.size());
         }
-    }
 
-
-    @Test
-    public void retainItemsInAList() {
-        ArrayList<GroceryItem> itemsToRetain = new ArrayList<>(
+        @Test
+        public void retainItemsInAList() {
+            ArrayList<GroceryItem> itemsToRetain = new ArrayList<>(
                 List.of(
-                        new GroceryItem("oranges", "PRODUCE", 5),
-                        new GroceryItem("kale", "PRODUCE", 8))
-        );
-        thirdGroceryList.retainAll(itemsToRetain);
-        assertEquals(2, thirdGroceryList.size());
+                    new GroceryItem("oranges", "PRODUCE", 5),
+                    new GroceryItem("kale", "PRODUCE", 8))
+            );
+            thirdGroceryList.retainAll(itemsToRetain);
+            assertEquals(2, thirdGroceryList.size());
+        }
+
+        @Test
+        public void clearAList() {
+            thirdGroceryList.clear();
+            thirdGroceryList.add(new GroceryItem("oranges", "PRODUCE", 5));
+            assertEquals(1, thirdGroceryList.size());
+        }
     }
 
-    @Test
-    public void clearAList() {
-        thirdGroceryList.clear();
-        thirdGroceryList.add(new GroceryItem("oranges", "PRODUCE", 5));
-        assertEquals(1, thirdGroceryList.size());
+    @Nested
+    @DisplayName("test modify items in a list")
+    class TestModifyItemsInAlist {
+
+        @Test
+        public void testReplacingAnItemInAList() {
+            item = new GroceryItem("oranges", "PRODUCE", 5);
+            assertEquals(item, thirdGroceryList.get(2));
+
+            item = new GroceryItem("kale", "PRODUCE", 8);
+            thirdGroceryList.set(2, item);
+            assertEquals(item, thirdGroceryList.get(2));
+        }
+
+        @Test
+        public void testSetFieldsOfAnItemInAList() {
+            List<Integer> newList = new ArrayList<>(List.of(0, 1, 2, 3, 4, 5));
+            newList.set(3, 10);
+
+            assertEquals(new ArrayList<>(List.of(0, 1, 2, 10, 4, 5)), newList);
+        }
     }
 
-    @Test
-    public void testSettingAnItemInAList() {
-        item = new GroceryItem("kale", "PRODUCE", 8);
-        thirdGroceryList.set(2, item);
-        assertEquals(item, thirdGroceryList.get(2));
-    }
+    @Nested
+    @DisplayName("test convert a list to an array and an array to a list")
+    class ConvertListToArrayAndArrayToList {
 
-    @Test
-    public void testConvertAListToAnArray() {
-        String type = thirdGroceryList.toArray(GroceryItem[]::new).getClass().getSimpleName();
-        assertEquals("GroceryItem[]", type);
-    }
+        @Test
+        public void testConvertAListToAnArray() {
+            // To convert a List to an Array, use the toArray() method.
+            // Passing GroceryItem[]::new (a constructor reference) is the modern way to get a typed array.
+            GroceryItem[] array = thirdGroceryList.toArray(GroceryItem[]::new);
+            
+            assertEquals("GroceryItem[]", array.getClass().getSimpleName());
+            assertEquals(10, array.length);
+            assertEquals("milk", array[0].name());
+        }
 
-    @Test
-    public void testConvertAnArrayToAnMutableList() {
+        @Test
+        public void testConvertAnArrayToAnMutableList() {
         /*
             In this case we have a list backed by an array; a change to either one
             is reflected in the other.  We can change elements on either the list
             or the array such changes will be reflected in both objects.
 
-            Basically, we turn an array into a list so we can top into list functionality.
+            Basically, we turn an array into a list so we can tap into list functionality.
             Arrays.asList() -> List returned is NOT resizable but is muteable.
             List.of() -> List returned is immutable.
         */
-        String[] originalArray = {"First", "Second", "Third"};
-        var originalList = Arrays.asList(originalArray);
-        assertEquals(originalArray[0], originalList.getFirst());
-        originalArray[0] = "one";
-        assertEquals(originalArray[0], originalList.getFirst());
-    }
+            String[] originalArray = {"First", "Second", "Third"};
+            var originalList = Arrays.asList(originalArray);
+            assertEquals("First", originalList.getFirst());
+            assertEquals("First", originalArray[0]);
 
-    @Test
-    public void testConvertAnArrayToAImmutableList() {
-        String[] originalArray = {"First", "Second", "Third"};
-        List<String> originalList = List.of(originalArray);
-        String type = originalList.getClass().toString();
-        String[] listType = type.split("\\$")[0].split("\\.");
-        String listTypeClass = listType[listType.length - 1];
-        assertEquals("ImmutableCollections", listTypeClass);
+            originalArray[0] = "one";
+            assertEquals("one", originalList.getFirst());
+            assertEquals("one", originalArray[0]);
+        }
+
+        @Test
+        public void testConvertAnArrayToAImmutableList() {
+            String[] originalArray = {"First", "Second", "Third"};
+            List<String> originalList = List.of(originalArray);
+
+            // Find the class of the new list.
+            String type = originalList.getClass().toString();
+            String[] listType = type.split("\\$")[0].split("\\.");
+            String listTypeClass = listType[listType.length - 1];
+            assertEquals("ImmutableCollections", listTypeClass);
+
+            UnsupportedOperationException unsupportedOperationException =
+                assertThrows(
+                UnsupportedOperationException.class,
+                () -> originalList.set(1, "Many")
+            );
+
+            assertEquals(
+                null,
+                unsupportedOperationException.getMessage()
+            );
+        }
+
+        @Test
+        public void testConvertAnArrayToAnIndependentMutableList() {
+            // The instance field 'groceryArray' is an array (GroceryItem[]).
+            // Arrays do not have a toArray() method; that method belongs to the List interface.
+            
+            // To create a truly independent and mutable list from an array, 
+            // we use List.of() or Arrays.asList() and wrap it in a new ArrayList.
+            assertEquals(3, groceryArray.length);
+            List<GroceryItem> independentList = new ArrayList<>(List.of(groceryArray));
+
+            // Now we can add items to it. Note that we must add a GroceryItem object, not a String.
+            independentList.add(new GroceryItem("Fourth", "PRODUCE", 1));
+
+            assertEquals(4, independentList.size());
+            assertEquals("Fourth", independentList.getLast().name());
+
+            // groceryArray remains unchanged.
+            assertEquals(3, groceryArray.length);
+        }
     }
 }
