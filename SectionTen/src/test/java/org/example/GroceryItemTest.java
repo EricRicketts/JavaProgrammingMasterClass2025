@@ -109,6 +109,16 @@ public class GroceryItemTest {
         }
 
         @Test
+        public void testAddItemInMiddleOfList() {
+            GroceryItem item = new GroceryItem("oranges", "PRODUCE", 5);
+            assertEquals(10, thirdGroceryList.size());
+
+            thirdGroceryList.add(5, item);
+            assertEquals(11, thirdGroceryList.size());
+            assertEquals(item, thirdGroceryList.get(5));
+        }
+
+        @Test
         public void testAddAnItemToEndOfAList() {
             secondGroceryList.addLast(new GroceryItem("mangoes", "PRODUCE", 3));
             expectedItem = new GroceryItem("mangoes", "PRODUCE", 3);
