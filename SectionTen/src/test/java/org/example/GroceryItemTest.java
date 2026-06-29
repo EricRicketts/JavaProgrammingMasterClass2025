@@ -210,7 +210,7 @@ public class GroceryItemTest {
             int expectedOriginalListSize = 10;
             originalListSize = thirdGroceryList.size();
             assertEquals(expectedOriginalListSize, originalListSize);
-            
+
             GroceryItem expectedItem = new GroceryItem("pears", "PRODUCE", 5);
             int indexOfExpectedItem = thirdGroceryList.indexOf(expectedItem);
 
@@ -220,15 +220,57 @@ public class GroceryItemTest {
         }
 
         @Test
-        public void removeAnObjectFromAListByTraits() {
+        public void removeAnObjectFromAListByTraitsWithNoReturnedObject() {
             // In this case, Java just modifies the current list by removing the found item;
             // no object is returned as is the case when removing by an index.
-            int originalListSize = thirdGroceryList.size();
+            assertEquals(10, thirdGroceryList.size());
             item = new GroceryItem("cucumber", "PRODUCE", 4);
-            expectedItem = new GroceryItem("cucumber", "PRODUCE", 4);
             boolean removed = thirdGroceryList.remove(item);
+
             assertTrue(removed);
-            assertEquals(originalListSize - 1, thirdGroceryList.size());
+            assertEquals(9, thirdGroceryList.size());
+        }
+
+        @Test
+        public void testRemoveAListOfItemsFromAListItemsReturned() {
+            List<Integer> indicesOfItems = new ArrayList<>();
+            originalListSize = thirdGroceryList.size();
+            assertEquals(10, originalListSize);
+
+            ArrayList<GroceryItem> itemsToRemove = new ArrayList<>(
+                List.of(new GroceryItem("butter", "DAIRY", 3),
+                    new GroceryItem("cucumber", "PRODUCE", 4),
+                    new GroceryItem("milk", "DAIRY", 2))
+            );
+
+            for (int i = 0; i < itemsToRemove.size(); i++){
+                GroceryItem desiredGroceryItem = itemsToRemove.get(i);
+                for(int j = 0; j < thirdGroceryList.size(); j++) {
+                    GroceryItem currentGroceryItem = thirdGroceryList.get(j);
+                    if (currentGroceryItem.equals(desiredGroceryItem)) {
+                        int index = thirdGroceryList.indexOf(currentGroceryItem);
+                        indicesOfItems.add(index);
+                        break;
+                    }
+                }
+            }
+
+            for(int i = 0; i < indicesOfItems.size(); i++) {
+                int firstRemovalIndex = indicesOfItems.getFirst();
+                int removalIndex = indicesOfItems.get(i);
+                if (removalIndex > firstRemovalIndex) {
+                    if (removalIndex == indicesOfItems.get(1)) {
+                        removalIndex -= 1; // Decrement removal index list size drops by one.
+                    } else {
+                        removalIndex -= 2; // Decrement removal index list size drops by two.
+                    }
+                }
+                GroceryItem expectedItem = itemsToRemove.get(i);
+                GroceryItem resultantItem = thirdGroceryList.remove(removalIndex);
+                originalListSize -= 1;
+                assertEquals(expectedItem, resultantItem);
+                assertEquals(originalListSize, thirdGroceryList.size());
+            }
         }
 
         @Test
