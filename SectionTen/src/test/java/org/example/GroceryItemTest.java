@@ -329,6 +329,56 @@ public class GroceryItemTest {
             boyList.get(1).setAge(20);
             assertEquals(20, boyList.get(1).getAge());
         }
+
+        @Test
+        public void testSortAList() {
+            List<GroceryItem> list = new ArrayList<>(
+                List.of(
+                    new GroceryItem("milk"),
+                    new GroceryItem("apples", "PRODUCE", 6),
+                    new GroceryItem("oranges", "PRODUCE", 5),
+                    new GroceryItem("butter", "DAIRY", 3),
+                    new GroceryItem("spinach", "PRODUCE", 2),
+                    new GroceryItem("milk", "DAIRY", 3),
+                    new GroceryItem("cucumber", "PRODUCE", 4),
+                    new GroceryItem("pears", "PRODUCE", 5),
+                    new GroceryItem("milk", "DAIRY", 2),
+                    new GroceryItem("kale", "PRODUCE", 8))
+            );
+
+            assertEquals(list, thirdGroceryList);
+
+            thirdGroceryList.sort(
+                Comparator.comparing(GroceryItem::name)
+                    .thenComparing(GroceryItem::type)
+                    .thenComparing(GroceryItem::count)
+            );
+            list = new ArrayList<>(
+                List.of(
+                    new GroceryItem("apples", "PRODUCE", 6),
+                    new GroceryItem("butter", "DAIRY", 3),
+                    new GroceryItem("cucumber", "PRODUCE", 4),
+                    new GroceryItem("kale", "PRODUCE", 8),
+                    new GroceryItem("milk", "DAIRY", 1),
+                    new GroceryItem("milk", "DAIRY", 2),
+                    new GroceryItem("milk", "DAIRY", 3),
+                    new GroceryItem("oranges", "PRODUCE", 5),
+                    new GroceryItem("pears", "PRODUCE", 5),
+                    new GroceryItem("spinach", "PRODUCE", 2)
+                )
+            );
+
+            assertEquals(list, thirdGroceryList);
+
+            Collections.reverse(list);
+            thirdGroceryList.sort(Collections.reverseOrder(
+                Comparator.comparing(GroceryItem::name)
+                    .thenComparing(GroceryItem::type)
+                    .thenComparing(GroceryItem::count)
+            ));
+
+            assertEquals(list, thirdGroceryList);
+        }
     }
 
     @Nested
