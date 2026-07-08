@@ -103,5 +103,27 @@ public class TestDifferencesBetweenArraysAndArrayLists {
 
             assertNull(unsupportedOperationException.getMessage());
         }
+
+        @Test
+        public void testChangesToArrayBakingTheListAreMadeToTheList() {
+            assertEquals("four", array[4]);
+            assertEquals("four", list.get(4));
+
+            array[4] = "infinity";
+
+            assertEquals("infinity", array[4]);
+            assertEquals("infinity", list.get(4));
+        }
+
+        @Test
+        public void testChangesToTheListAreMadeToTheArrayBackingTheList() {
+            assertEquals("four", array[4]);
+            assertEquals("four", list.get(4));
+            
+            list.set(4, "infinity");
+
+            assertEquals("infinity", array[4]);
+            assertEquals("infinity", list.get(4));
+        }
     }
 }
