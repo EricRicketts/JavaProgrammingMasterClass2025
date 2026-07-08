@@ -119,11 +119,48 @@ public class TestDifferencesBetweenArraysAndArrayLists {
         public void testChangesToTheListAreMadeToTheArrayBackingTheList() {
             assertEquals("four", array[4]);
             assertEquals("four", list.get(4));
-            
+
             list.set(4, "infinity");
 
             assertEquals("infinity", array[4]);
             assertEquals("infinity", list.get(4));
+        }
+
+        @Test
+        public void testArrayListNotBackByAnArrayCanGrowInSize() {
+            ArrayList<String> list = new ArrayList<>(List.of(array));
+
+            assertEquals(5, list.size());
+
+            list.add("five");
+
+            assertEquals(6, list.size());
+            assertEquals("five", list.get(5));
+            assertEquals(5, array.length);
+        }
+
+        @Test
+        public void testArrayListNotBackByAnArrayCanShrinkInSize() {
+            ArrayList<String> list = new ArrayList<>(List.of(array));
+
+            assertEquals(5, list.size());
+
+            String removedItem = list.remove(4);
+
+            assertEquals(4, list.size());
+            assertEquals("four", removedItem);
+            assertEquals(5, array.length);
+        }
+
+        @Test
+        public void testChangesToListNoBackedByArrayDoesNotAffectArray() {
+            ArrayList<String> list = new ArrayList<>(List.of(array));
+
+            assertEquals("one", list.get(1));
+            list.set(1, "another one");
+
+            assertEquals("another one", list.get(1));
+            assertEquals("one", array[1]);
         }
     }
 }
