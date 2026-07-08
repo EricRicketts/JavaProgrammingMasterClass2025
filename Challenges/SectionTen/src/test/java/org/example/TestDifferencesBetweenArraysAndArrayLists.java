@@ -223,7 +223,7 @@ public class TestDifferencesBetweenArraysAndArrayLists {
         }
 
         @Test
-        public void testListDoesNotContainsAnElement() {
+        public void testListDoesNotContainAnElement() {
             boolean found = list.contains("five");
 
             assertFalse(found);
@@ -237,10 +237,41 @@ public class TestDifferencesBetweenArraysAndArrayLists {
         }
 
         @Test
-        public void testListDoesNotContainsMultipleElements() {
+        public void testListDoesNotContainMultipleElements() {
             boolean found = list.containsAll(List.of("four", "five"));
 
             assertFalse(found);
+        }
+
+        @Test
+        public void testReturnFirstIndexOfFoundElement() {
+            ArrayList<String> arrayList = new ArrayList<>(List.of(array));
+
+            assertEquals(5, arrayList.size());
+            assertEquals(2, arrayList.indexOf("two"));
+
+            arrayList.addFirst("two");
+
+            assertEquals(6, arrayList.size());
+            assertEquals(0, arrayList.indexOf("two"));
+        }
+
+        @Test
+        public void testReturnLastIndexOfFoundElement() {
+            ArrayList<String> arrayList = new ArrayList<>(List.of(array));
+
+            assertEquals(5, arrayList.size());
+            assertEquals(2, arrayList.indexOf("two"));
+
+            arrayList.addLast("two");
+
+            assertEquals(6, arrayList.size());
+            assertEquals(5, arrayList.lastIndexOf("two"));
+        }
+
+        @Test
+        public void testIndexOfElementNotFound() {
+            assertEquals(-1, list.indexOf("six"));
         }
     }
 }
