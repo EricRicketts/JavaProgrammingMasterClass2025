@@ -111,7 +111,7 @@ public class TestDifferencesBetweenArraysAndArrayLists {
             UnsupportedOperationException unsupportedOperationException =
                 assertThrows(
                     UnsupportedOperationException.class,
-                    () -> list.add("seven")
+                    () -> newList.add("seven")
                );
 
             assertNull(unsupportedOperationException.getMessage());
@@ -124,7 +124,20 @@ public class TestDifferencesBetweenArraysAndArrayLists {
             UnsupportedOperationException unsupportedOperationException =
                 assertThrows(
                     UnsupportedOperationException.class,
-                    () -> list.remove(2)
+                    () -> newList.remove(2)
+                );
+
+            assertNull(unsupportedOperationException.getMessage());
+        }
+
+        @Test
+        public void testAnotherWayToCreateAnImmutableListWhichCannotHaveItsElementChanged() {
+            var newList = List.of("ten", "nine", "eight");
+
+            UnsupportedOperationException unsupportedOperationException =
+                assertThrows(
+                    UnsupportedOperationException.class,
+                    () -> newList.set(1, "ninety-nine")
                 );
 
             assertNull(unsupportedOperationException.getMessage());
