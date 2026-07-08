@@ -70,5 +70,13 @@ public class GroceryListTest {
             result = groceryList.printList();
             assertEquals(expected, result);
         }
+
+        @Test
+        public void testRemovingNonExistentItemLeavesListUnchanged() {
+            expected = "apples\ncucumbers\nlettuce\noranges\ntomatoes";
+            groceryList.removeItems("kale");
+            result = groceryList.printList();
+            assertEquals(expected, result);
+        }
     }
 }
