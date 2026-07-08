@@ -105,6 +105,32 @@ public class TestDifferencesBetweenArraysAndArrayLists {
         }
 
         @Test
+        public void testAnotherWayToCreateAnImmutableListWhichCannotBeAddedTo() {
+            List<String> newList = List.of("ten", "nine", "eight");
+
+            UnsupportedOperationException unsupportedOperationException =
+                assertThrows(
+                    UnsupportedOperationException.class,
+                    () -> list.add("seven")
+               );
+
+            assertNull(unsupportedOperationException.getMessage());
+        }
+
+        @Test
+        public void testAnotherWayToCreateAnImmutableListWhichCannotBeRemovedFrom() {
+            List<String> newList = List.of("ten", "nine", "eight");
+
+            UnsupportedOperationException unsupportedOperationException =
+                assertThrows(
+                    UnsupportedOperationException.class,
+                    () -> list.remove(2)
+                );
+
+            assertNull(unsupportedOperationException.getMessage());
+        }
+
+        @Test
         public void testChangesToArrayBakingTheListAreMadeToTheList() {
             assertEquals("four", array[4]);
             assertEquals("four", list.get(4));
