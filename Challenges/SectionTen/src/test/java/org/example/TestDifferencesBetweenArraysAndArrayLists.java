@@ -17,24 +17,46 @@ public class TestDifferencesBetweenArraysAndArrayLists {
     class TestInstantiateArraysAndArrayLists {
 
         @Test
-        public void testInstantiateEmptyArraysAndArrayLists() {
+        public void testInstantiateEmptyArray() {
             String[] array = new String[10];
-            ArrayList<String> list = new ArrayList<>();
 
             assertEquals(10, array.length);
-            assertNull(array[4]); // All objects initialized to null in an empty array.
+        }
+
+        @Test
+        public void testEmptyArraysHaveNullAsValuesForObjects() {
+            String[] array = new String[10];
+
+            for (String value : array) assertNull(value);
+        }
+
+        @Test
+        public void testInstantiateEmptyArrayList() {
+            ArrayList<String> list = new ArrayList<>();
+
             assertEquals(0, list.size());
         }
 
         @Test
-        public void testInstantiateArrayAndArrayListsWithData() {
+        public void testInstantiateArrayWithData() {
             String[] array = {"zero", "one", "two", "three", "four"};
-            ArrayList<String> list = new ArrayList<>(List.of(array));
 
-            assertEquals(5, array.length);
+            assertEquals("zero", array[0]);
+            assertEquals("one", array[1]);
             assertEquals("two", array[2]);
-            assertEquals(5, list.size());
+            assertEquals("three", array[3]);
+            assertEquals("four", array[4]);
+        }
+
+        @Test
+        public void testInstantiateArrayListWithData() {
+            List<String> list = List.of("zero", "one", "two", "three", "four");
+
+            assertEquals("zero", list.get(0));
+            assertEquals("one", list.get(1));
             assertEquals("two", list.get(2));
+            assertEquals("three", list.get(3));
+            assertEquals("four", list.get(4));
         }
     }
 }
