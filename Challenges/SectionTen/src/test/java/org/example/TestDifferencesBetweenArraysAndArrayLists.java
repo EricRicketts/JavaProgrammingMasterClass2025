@@ -202,4 +202,45 @@ public class TestDifferencesBetweenArraysAndArrayLists {
             assertEquals("one", array[1]);
         }
     }
+
+    @Nested
+    @DisplayName("search arrays and array list")
+    class TestSearchArrayAndArrayList {
+
+        @Test
+        public void testSearchAnArray() {
+            Arrays.sort(array); // Most effective search comes after soring the array.
+
+            int index = Arrays.binarySearch(array, "two");
+            assertEquals(3, index);
+        }
+
+        @Test
+        public void testListContainsAnElement() {
+            boolean found = list.contains("four");
+
+            assertTrue(found);
+        }
+
+        @Test
+        public void testListDoesNotContainsAnElement() {
+            boolean found = list.contains("five");
+
+            assertFalse(found);
+        }
+
+        @Test
+        public void testListContainsMultipleElements() {
+            boolean found = list.containsAll(List.of("four", "one"));
+
+            assertTrue(found);
+        }
+
+        @Test
+        public void testListDoesNotContainsMultipleElements() {
+            boolean found = list.containsAll(List.of("four", "five"));
+
+            assertFalse(found);
+        }
+    }
 }
