@@ -75,6 +75,14 @@ public class IteratorTest {
     @Test
     public void testListIteratorMoveForwardThroughList() {
         /*
+        while(listIterator.hasNext()) {
+            if (listIterator.next().equals("Springfield")) {
+                listIterator.add("Raleigh");
+            } else if (listIterator.next().equals("Des Moines")) {
+                listIterator.add("Front Royal");
+            }
+        }
+
         Inside one loop iteration, you may call `listIterator.next()` **twice**:
         1. Once in the `if`
         2. Again in the `else if`
