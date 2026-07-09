@@ -24,11 +24,7 @@ public class MobilePhoneTest {
         ArrayList<Contact> contacts = new ArrayList<>(List.of(
                 firstContact, secondContact, thirdContact, fourthContact, fifthContact
         ));
-        for (Contact  contact : contacts) {
-            mobilePhone.myContacts = new ArrayList<>(
-                List.of(firstContact, secondContact, thirdContact, fourthContact, fifthContact)
-            );
-        }
+        mobilePhone.setMyContacts(contacts);
     }
 
     @Test
@@ -84,7 +80,7 @@ public class MobilePhoneTest {
         Contact existingContact = new Contact("Bugs Bunny", "6677889900");
         Contact newContact = new Contact("Road Runner", "1029384756");
         boolean result = mobilePhone.updateContact(existingContact, newContact);
-        Contact insertedContact = mobilePhone.myContacts.get(existingLocation);
+        Contact insertedContact = mobilePhone.getMyContacts().get(existingLocation);
         Object[] results = new Object[]{
                 result,
                 insertedContact.getName(),
@@ -104,11 +100,11 @@ public class MobilePhoneTest {
     @Test
     public void testRemoveExistingContact() {
         Object[] expected = new Object[]{true, 5, 4};
-        int priorSizeBeforeRemoval = mobilePhone.myContacts.size();
+        int priorSizeBeforeRemoval = mobilePhone.getMyContacts().size();
         contact = new Contact("Foghorn Leghorn", "0123456789");
         boolean result = mobilePhone.removeContact(contact);
         Object[] results = new Object[]{
-                result, priorSizeBeforeRemoval, mobilePhone.myContacts.size()
+            result, priorSizeBeforeRemoval, mobilePhone.getMyContacts().size()
         };
         assertArrayEquals(expected, results);
     }

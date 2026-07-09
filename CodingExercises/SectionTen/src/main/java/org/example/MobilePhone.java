@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MobilePhone {
     private String myNumber;
-    ArrayList<Contact> myContacts;
+    private ArrayList<Contact> myContacts;
 
     public MobilePhone(String myNumber) {
         this.myNumber = myNumber;
@@ -12,32 +12,33 @@ public class MobilePhone {
     }
 
     public boolean addNewContact(Contact contact) {
-        return !this.myContacts.contains(contact);
+        // Returns true if the contact does not exist, false if it does exist.
+        return !getMyContacts().contains(contact);
     }
 
     public int findContact(Contact contact) {
-        return this.addNewContact(contact) ? -1 : this.myContacts.indexOf(contact);
+        return addNewContact(contact) ? -1 : getMyContacts().indexOf(contact);
     }
 
     public int findContact(String contactName) {
-        for (int i = 0; i < this.myContacts.size(); i++) {
-            Contact storedContact = this.myContacts.get(i);
+        for (int i = 0; i < getMyContacts().size(); i++) {
+            Contact storedContact = getMyContacts().get(i);
             if (storedContact.getName().equals(contactName)) return i;
         }
         return -1;
     }
 
     public boolean updateContact(Contact existingContact, Contact newContact) {
-        int locationOfNewContact = this.findContact(existingContact);
+        int locationOfNewContact = findContact(existingContact);
         if (locationOfNewContact > -1) {
-            this.myContacts.set(locationOfNewContact, newContact);
+            getMyContacts().set(locationOfNewContact, newContact);
             return true;
         }
         return false;
     }
 
     public boolean removeContact(Contact existingContact) {
-        int locationOfExistingContact = this.findContact(existingContact);
+        int locationOfExistingContact = findContact(existingContact);
         if (locationOfExistingContact > -1) {
             this.myContacts.remove(locationOfExistingContact);
             return true;
@@ -46,13 +47,15 @@ public class MobilePhone {
     }
 
     public Contact queryContact(String contactName) {
-        int locationOfExistingContact = this.findContact(contactName);
-        return (locationOfExistingContact > -1) ? this.myContacts.get(locationOfExistingContact) : null;
+        int locationOfExistingContact = findContact(contactName);
+        return (locationOfExistingContact > -1) ?
+            getMyContacts().get(locationOfExistingContact) :
+            null;
     }
 
     public String printContacts() {
         String contacts = "";
-        for (Contact contact : this.myContacts) {
+        for (Contact contact : getMyContacts()) {
             contacts = contacts
                     .concat(contact.getName())
                     .concat(" -> ")
@@ -60,5 +63,13 @@ public class MobilePhone {
                     .concat("\n");
         }
         return contacts.stripTrailing();
+    }
+
+    public ArrayList<Contact> getMyContacts() {
+        return myContacts;
+    }
+
+    public void setMyContacts(ArrayList<Contact> myContacts) {
+        this.myContacts = myContacts;
     }
 }
