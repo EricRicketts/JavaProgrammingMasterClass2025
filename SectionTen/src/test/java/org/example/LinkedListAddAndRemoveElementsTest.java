@@ -191,6 +191,9 @@ public class LinkedListAddAndRemoveElementsTest {
                 morePlacesToVisit.peekLast(),
         };
         assertArrayEquals(expected, results);
+
+        String firstElement = morePlacesToVisit.element();
+        assertEquals("Montgomery", firstElement);
     }
 
     @Test
