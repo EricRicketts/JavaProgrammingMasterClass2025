@@ -30,6 +30,22 @@ public class IteratorTest {
     }
 
     @Test
+    public void testIteratorOnlyAllowsForwardMovement() {
+        assertEquals(6, list.size());
+        list.add(2, "Springfield");
+        list.add(6, "Springfield");
+        assertEquals(8, list.size());
+
+        list.removeIf(s -> s.equals("Springfield"));
+        assertEquals(5, list.size());
+
+        expected = "[Honolulu, Boise, Indianapolis, Des Moines, Topeka]";
+        result = list.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void testRemoveItemFromIterator() {
         var iterator = list.iterator();
         while (iterator.hasNext()) {
