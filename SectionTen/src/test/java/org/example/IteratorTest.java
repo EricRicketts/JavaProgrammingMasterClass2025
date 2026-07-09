@@ -3,10 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -75,4 +72,72 @@ public class IteratorTest {
         assertEquals(expected, output);
     }
 
+    @Test
+    public void testListIteratorMoveForwardThroughList() {
+        /*
+        Inside one loop iteration, you may call `listIterator.next()` **twice**:
+        1. Once in the `if`
+        2. Again in the `else if`
+
+        That advances the iterator two positions during a single loop pass.
+            Eventually, the `while (listIterator.hasNext())` check succeeds because
+            there is one item left, but then the first `next()` consumes
+            that last item. If the `if` condition is false, the `else if`
+            calls `next()` again, and there is no next element left, causing the `
+        NoSuchElementException`.
+
+        ## Long-term fix
+        Call `next()` **once per loop iteration**, store the value in a variable,
+        and then compare that variable.
+         */
+        expected = "[Honolulu, Boise, Springfield, Raleigh, " +
+            "Indianapolis, Des Moines, Front Royal, Topeka]";
+        var listIterator = list.listIterator();
+        while (listIterator.hasNext()) {
+            String city = listIterator.next();
+
+            if (city.equals("Springfield")) {
+                listIterator.add("Raleigh");
+            } else if (city.equals("Des Moines")) {
+                listIterator.add("Front Royal");
+            }
+        }
+        result = list.toString();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListIteratorMoveBackwardThroughList() {
+        String city = "";
+        expected = "[Honolulu, Boise, Springfield, Raleigh, " +
+            "Indianapolis, Des Moines, Front Royal, Topeka]";
+        var listIterator = list.listIterator();
+        while (listIterator.hasNext()) {
+            city = listIterator.next();
+
+            if (city.equals("Springfield")) {
+                listIterator.add("Raleigh");
+            } else if (city.equals("Des Moines")) {
+                listIterator.add("Front Royal");
+            }
+        }
+        result = list.toString();
+        assertEquals(expected, result);
+
+        while (listIterator.hasPrevious()) {
+            city = listIterator.previous();
+
+            if (city.equals("Front Royal")) {
+                listIterator.remove();
+            } else if (city.equals("Raleigh")) {
+                listIterator.remove();
+            }
+        }
+
+        expected = "[Honolulu, Boise, Springfield, " +
+            "Indianapolis, Des Moines, Topeka]";
+        result = list.toString();
+
+        assertEquals(expected, result);
+    }
 }
