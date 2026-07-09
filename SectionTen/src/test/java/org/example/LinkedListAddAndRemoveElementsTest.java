@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -54,7 +55,7 @@ public class LinkedListAddAndRemoveElementsTest {
         // Adding to a list adds to the back of the list unless specified otherwise
         placesToVisit.add("Paris");
         placesToVisit.addFirst("London");
-        placesToVisit.add("Berlin");
+        placesToVisit.addLast("Berlin");
         addMoreElements(placesToVisit);
         String result = placesToVisit.toString();
         assertEquals(expected, result);
@@ -64,6 +65,36 @@ public class LinkedListAddAndRemoveElementsTest {
         placesToVisit.remove("Brisbane");
         expected = "[Alice Springs, Darwin, London, Berlin, Hobart, Melbourne, Toowoomba]";
         result = placesToVisit.toString();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testRemoveAllFromLinkedList() {
+        addMoreElements(placesToVisit);
+
+        expected = "[Alice Springs, Brisbane, Darwin, Hobart, Melbourne, Toowoomba]";
+        result = placesToVisit.toString();
+
+        assertEquals(expected, result);
+
+        placesToVisit.removeAll(List.of(new String[]{"Alice Springs", "Brisbane"}));
+
+        expected = "[Darwin, Hobart, Melbourne, Toowoomba]";
+        result = placesToVisit.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testAddAllWithNoIndex() {
+        List<String> elementsToAdd = List.of("Alice Springs", "Brisbane", "Darwin", "Hobart");
+        expected = "[Alice Springs, Brisbane, Darwin, Hobart]";
+        assertEquals(0, placesToVisit.size());
+
+        placesToVisit.addAll(elementsToAdd);
+        result = placesToVisit.toString();
+
+        assertEquals(4, placesToVisit.size());
         assertEquals(expected, result);
     }
 
