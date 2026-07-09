@@ -68,6 +68,21 @@ public class LinkedListAddAndRemoveElementsTest {
     }
 
     @Test
+    public void testAddItemsUsingArrayListMethodWithIndex() {
+        expected = "[London, Rome, Paris, Berlin]";
+
+        placesToVisit.add("Paris");
+        placesToVisit.addFirst("London");
+        placesToVisit.addLast("Berlin");
+
+        placesToVisit.add(1, "Rome");
+
+        result = placesToVisit.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void testRemoveElementWithNoArgument() {
         placesToVisit.add("Paris");
         placesToVisit.addFirst("London");
