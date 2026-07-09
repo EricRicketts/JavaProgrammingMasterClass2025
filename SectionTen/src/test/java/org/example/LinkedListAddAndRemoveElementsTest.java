@@ -99,6 +99,29 @@ public class LinkedListAddAndRemoveElementsTest {
     }
 
     @Test
+    public void testAddAllWithIndex() {
+        List<String> elementsToAdd = List.of("Alice Springs", "Brisbane", "Darwin", "Hobart");
+        placesToVisit.add("Paris");
+        placesToVisit.add("London");
+        placesToVisit.add("Berlin");
+        placesToVisit.add("Rome");
+        placesToVisit.add("Venice");
+        placesToVisit.add("Hamburg");
+        placesToVisit.add("Amsterdam");
+
+        expected = "[Paris, London, Berlin, Alice Springs, Brisbane, " +
+            "Darwin, Hobart, Rome, Venice, Hamburg, Amsterdam]";
+
+        assertEquals(7, placesToVisit.size());
+
+        placesToVisit.addAll(3, elementsToAdd);
+        result = placesToVisit.toString();
+
+        assertEquals(11, placesToVisit.size());
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void testAddItemsUsingArrayListMethodWithIndex() {
         expected = "[London, Rome, Paris, Berlin]";
 
