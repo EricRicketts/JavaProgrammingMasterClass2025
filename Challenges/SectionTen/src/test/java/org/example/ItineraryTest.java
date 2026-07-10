@@ -24,6 +24,7 @@ public class ItineraryTest {
     public void setUp() {
         exited = new AtomicBoolean(false);
         places = new LinkedList<>();
+        // Distances from Gainesville, VA.
         distances = new int[]{102, 81, 208, 204, 98, 99, 38, 48, 148, 343};
         String[] towns = new String[]{
                 "Richmond", "Charlottesville", "Roanoke", "Virginia Beach",

@@ -16,11 +16,15 @@ public class Itinerary {
 
     public Itinerary(LinkedList<Place> route) {
         for (Place place : route) {
-        if (Objects.nonNull(place)
-                && Objects.nonNull(place.name())
-                && listOfPlaces.stream().noneMatch(existing -> existing.name().equals(place.name()))) {
-                listOfPlaces.add(place);
-            }
+            if (Objects.nonNull(place)
+                    &&  Objects.nonNull(place.name())
+                    &&  listOfPlaces.stream().noneMatch(
+                        existing -> existing.name().equals(place.name())
+                        )
+                )
+                {
+                    listOfPlaces.add(place);
+                }
         }
         resetItineraryCursor();
     }
