@@ -110,4 +110,25 @@ public class AlbumAndPlaylistTest {
             assertEquals(expectedSong, resultantSong);
         }
     }
+
+    @Nested
+    @DisplayName("Test retrieve songs from the last album")
+    class TestRetrieveSongsFromLastAlbum {
+
+        @Test
+        public void testRetrieveLastSongFromLastAlbum() {
+            Song expectedSong = new Song("Night of the long knives", new BigDecimal("5.12"));
+            Song resultantSong = albums.getLast().getSongs().getLast();
+
+            assertEquals(expectedSong, resultantSong);
+        }
+
+        @Test
+        public void testRetrieveThirdSongFromLastAlbum() {
+            Song expectedSong = new Song("Lets go", new BigDecimal("3.45"));
+            Song resultantSong = albums.getLast().getSongs().get(2);
+
+            assertEquals(expectedSong, resultantSong);
+        }
+    }
 }
