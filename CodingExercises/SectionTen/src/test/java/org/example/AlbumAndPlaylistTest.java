@@ -41,6 +41,13 @@ public class AlbumAndPlaylistTest {
         album.addSong("Breaking the rules", new BigDecimal("5.32"));
         album.addSong("Night of the long knives", new BigDecimal("5.12"));
         albums.add(album);
+
+        albums.getFirst().addToPlayList("You can't do it right", playList);
+        albums.getFirst().addToPlayList("Holy man", playList);
+        albums.getFirst().addToPlayList("Speed king", playList);  // Does not exist
+        albums.getFirst().addToPlayList(9, playList);
+        albums.getLast().addToPlayList(3, playList);
+        albums.getLast().addToPlayList(2, playList);
     }
 
     @Nested
