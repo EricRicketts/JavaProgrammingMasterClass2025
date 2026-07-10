@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AlbumAndPlaylistTest {
 
@@ -129,6 +129,47 @@ public class AlbumAndPlaylistTest {
             Song resultantSong = albums.getLast().getSongs().get(2);
 
             assertEquals(expectedSong, resultantSong);
+        }
+    }
+
+    @Nested
+    @DisplayName("test get songs on the playlist from the first and second albums album")
+    class TestGetSongsFromThePlayListFromTheFirstAndSecondAlbums {
+
+        @Test
+        public void testGetSongFromPlaylistThatIsOnTheFirstAlbum() {
+            Song expectedSong = new Song("Soldier of fortune", new BigDecimal("3.13"));
+            Song resultantSong = playList.get(2);
+
+            assertEquals(expectedSong, resultantSong);
+            assertTrue(albums.getFirst().getSongs().contains(expectedSong));
+            assertFalse(albums.getLast().getSongs().contains(expectedSong));
+        }
+
+        @Test
+        public void testGetSongFromPlaylistThatIsOnTheSecondAlbum() {
+            Song expectedSong = new Song("I put the finger on you", new BigDecimal("3.25"));
+            Song resultantSong = playList.get(4);
+
+            assertEquals(expectedSong, resultantSong);
+            assertTrue(albums.getLast().getSongs().contains(expectedSong));
+            assertFalse(albums.getFirst().getSongs().contains(expectedSong));
+        }
+
+        @Test
+        public void testCannotAddSongToPlaylistThatDoesNotExistOnAlbumTrackNumberTooBig() {
+            assertEquals(5, playList.size());
+
+            albums.getLast().addToPlayList(24, playList);
+            assertEquals(5, playList.size());
+        }
+
+        @Test
+        public void testCannotAddSongToPlaylistThatDoesNotExistOnAlbumTrackNumberTooSmall() {
+            assertEquals(5, playList.size());
+
+            albums.getFirst().addToPlayList(0, playList);
+            assertEquals(5, playList.size());
         }
     }
 }
