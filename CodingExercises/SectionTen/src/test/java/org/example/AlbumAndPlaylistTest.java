@@ -89,4 +89,25 @@ public class AlbumAndPlaylistTest {
             assertEquals("AC/DC", albums.getLast().getArtist());
         }
     }
+
+    @Nested
+    @DisplayName("Test retrieve songs from the first album")
+    class TestRetrieveSongsFromFirstAlbum {
+
+        @Test
+        public void testRetrieveFirstSongFromFirstAlbum() {
+            Song expectedSong = new Song("Stormbringer", new BigDecimal("4.6"));
+            Song resultantSong = albums.getFirst().getSongs().getFirst();
+
+            assertEquals(expectedSong, resultantSong);
+        }
+
+        @Test
+        public void testRetrieveFifthSongFromFirstAlbum() {
+            Song expectedSong = new Song("Lady double dealer", new BigDecimal("3.21"));
+            Song resultantSong = albums.getFirst().getSongs().get(4);
+
+            assertEquals(expectedSong, resultantSong);
+        }
+    }
 }
