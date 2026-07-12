@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DogTest {
+public class DogAndWolfTest {
 
     private static String doAnimalStuff(Animal animal) {
         return animal.makeNoise() + " " + animal.move("10");
@@ -76,6 +76,15 @@ public class DogTest {
         public void testDoAnimalStuffWithDog() {
             String expected = "Woff! Dog is loping at 10 km/hr.";
             String result = doAnimalStuff(dog);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testDoAnimalStuffWithWolf() {
+            Wolf wolf = new Wolf("Wolf", "Large", 13.34);
+            String expected = "Howling! Wolf is loping at 10 km/hr.";
+            String result = doAnimalStuff(wolf);
 
             assertEquals(expected, result);
         }
