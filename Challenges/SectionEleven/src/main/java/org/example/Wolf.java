@@ -10,7 +10,7 @@ public class Wolf extends Animal {
 
     @Override
     public String move(String speed) {
-        return this.getClass().getSimpleName() + " is loping at " + speed + " km/hr.";
+        return getExplicitType() + " is loping at " + speed + " km/hr.";
     }
 
     @Override

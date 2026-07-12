@@ -10,7 +10,7 @@ public class Cat extends Animal {
 
     @Override
     public String move(String speed) {
-        return this.getClass().getSimpleName() + " is walking at " + speed + " km/hr.";
+        return getExplicitType() + " is walking at " + speed + " km/hr.";
     }
 
     @Override

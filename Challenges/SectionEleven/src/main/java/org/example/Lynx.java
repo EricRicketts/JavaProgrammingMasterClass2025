@@ -10,7 +10,7 @@ public class Lynx extends Animal {
 
     @Override
     public String move(String speed) {
-        return this.getClass().getSimpleName() + " is running at " + speed + " km/hr.";
+        return getExplicitType() + " is running at " + speed + " km/hr.";
     }
 
     @Override

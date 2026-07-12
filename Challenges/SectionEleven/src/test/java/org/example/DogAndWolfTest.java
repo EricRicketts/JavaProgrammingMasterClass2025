@@ -45,7 +45,7 @@ public class DogAndWolfTest {
 
         @Test
         public void testMoveMethod() {
-            String expected = "Dog is loping at 9 km/hr.";
+            String expected = "Dog (Greyhound) is loping at 9 km/hr.";
             String result = dog.move("9");
 
             assertEquals(expected, result);
@@ -74,7 +74,7 @@ public class DogAndWolfTest {
 
         @Test
         public void testDoAnimalStuffWithDog() {
-            String expected = "Woff! Dog is loping at 10 km/hr.";
+            String expected = "Woff! Dog (Greyhound) is loping at 10 km/hr.";
             String result = doAnimalStuff(dog);
 
             assertEquals(expected, result);
@@ -83,7 +83,7 @@ public class DogAndWolfTest {
         @Test
         public void testDoAnimalStuffWithWolf() {
             Wolf wolf = new Wolf("Wolf", "Large", 13.34);
-            String expected = "Howling! Wolf is loping at 10 km/hr.";
+            String expected = "Howling! Wolf (Wolf) is loping at 10 km/hr.";
             String result = doAnimalStuff(wolf);
 
             assertEquals(expected, result);

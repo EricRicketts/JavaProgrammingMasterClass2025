@@ -16,6 +16,10 @@ public abstract class Animal {
 
     public abstract String makeNoise();
 
+    public String getExplicitType() {
+        return getClass().getSimpleName() + " (" + this.type + ")";
+    }
+
     public String getType() {
         return type;
     }
