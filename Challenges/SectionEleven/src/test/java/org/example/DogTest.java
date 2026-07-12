@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DogTest {
 
+    private static String doAnimalStuff(Animal animal) {
+        return animal.makeNoise() + " " + animal.move("10");
+    }
     private Dog dog;
 
     @BeforeEach
@@ -62,6 +65,19 @@ public class DogTest {
         @Test
         public void testAnimalIsNotWolf() {
             assertEquals("Woff!", dog.makeNoise());
+        }
+    }
+
+    @Nested
+    @DisplayName("teat animal do stuff method")
+    class TestDoAnimalStuffMethod {
+
+        @Test
+        public void testDoAnimalStuffWithDog() {
+            String expected = "Woff! Dog is loping at 10 km/hr.";
+            String result = doAnimalStuff(dog);
+
+            assertEquals(expected, result);
         }
     }
 }
