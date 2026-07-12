@@ -16,7 +16,8 @@ public abstract class Animal {
 
     public abstract String makeNoise();
 
-    public String getExplicitType() {
+    // The keyword "final" means the method cannot be overridden in a subclass.
+    public final String getExplicitType() {
         return getClass().getSimpleName() + " (" + this.type + ")";
     }
 
