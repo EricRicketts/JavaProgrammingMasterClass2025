@@ -35,4 +35,33 @@ public class DogTest {
             assertEquals(33.45, dog.getWeight());
         }
     }
+
+    @Nested
+    @DisplayName("test move method")
+    class TestDogMoveMethod {
+
+        @Test
+        public void testMoveMethod() {
+            String expected = "Dog is loping at 9 km/hr.";
+            String result = dog.move("9");
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test make noise method")
+    class TestDogMakeNoiseMethod {
+
+        @Test
+        public void testAnimalIsWolf() {
+            Dog wolf = new Dog("Wolf", "Large", 13.34);
+            assertEquals("Howling!", wolf.makeNoise());
+        }
+
+        @Test
+        public void testAnimalIsNotWolf() {
+            assertEquals("Woff!", dog.makeNoise());
+        }
+    }
 }
