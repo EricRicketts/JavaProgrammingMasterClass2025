@@ -15,7 +15,7 @@ public class EdgerTest {
 
     @BeforeEach
     public void setUp() {
-        String description = "Battery powered Edger for lawns.";
+        String description = "Battery powered Edger for lawns";
         edger = new Edger("Edger", description, new BigDecimal("239.99"));
     }
 
@@ -30,7 +30,7 @@ public class EdgerTest {
 
         @Test
         public void testEdgerGetDescription() {
-            assertEquals("Battery powered Edger for lawns.", edger.getDescription());
+            assertEquals("Battery powered Edger for lawns", edger.getDescription());
         }
 
         @Test
@@ -53,10 +53,10 @@ public class EdgerTest {
 
         @Test
         public void testEdgerSetDescription() {
-            assertEquals("Battery powered Edger for lawns.", edger.getDescription());
-            edger.setDescription("Battery powered Trimmer for lawns.");
+            assertEquals("Battery powered Edger for lawns", edger.getDescription());
+            edger.setDescription("Battery powered Trimmer for lawns");
 
-            assertEquals("Battery powered Trimmer for lawns.", edger.getDescription());
+            assertEquals("Battery powered Trimmer for lawns", edger.getDescription());
         }
 
         @Test
@@ -89,6 +89,19 @@ public class EdgerTest {
         public void testEdgerPrintPricedItem() {
             String expected = "Item Quantity: 4 Item Type: Edger Total Price: 959.96";
             String result = edger.printPricedItem(4);
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test Edger showDetails Method")
+    class TestEdgerShowDetails {
+
+        @Test
+        public void testEdgerShowDetailsMethod() {
+            String expected = "Type: Edger Price: 239.99 Description: Battery powered Edger for lawns";
+            String result = edger.showDetails();
 
             assertEquals(expected, result);
         }
