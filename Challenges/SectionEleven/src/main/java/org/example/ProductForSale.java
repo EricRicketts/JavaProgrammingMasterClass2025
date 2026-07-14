@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public abstract class ProductForSale {
 
@@ -48,4 +49,20 @@ public abstract class ProductForSale {
     }
 
     public abstract String showDetails();
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        ProductForSale other = (ProductForSale) obj;
+        return Objects.equals(this.getType(), other.getType()) &&
+            Objects.equals(this.getDescription(), other.getDescription()) &&
+            this.getPrice().compareTo(other.getPrice()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getType(), this.getDescription(), this.getPrice());
+    }
 }
