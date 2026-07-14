@@ -2,7 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 
-public class ProductForSale {
+public abstract class ProductForSale {
 
     private String type, description;
     private BigDecimal price;
@@ -36,4 +36,16 @@ public class ProductForSale {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public BigDecimal getSalesPrice(int quantity) {
+        return this.getPrice().multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public String printPricedItem(int quantity) {
+        BigDecimal totalPrice = this.getSalesPrice(quantity);
+        return "Item Quantity: " + quantity + " Item Type: " + this.getType() +
+            " Total Price: " + totalPrice;
+    }
+
+    public abstract String showDetails();
 }
