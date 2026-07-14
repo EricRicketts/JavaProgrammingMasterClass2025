@@ -80,4 +80,17 @@ public class EdgerTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test Edger printPricedItem method")
+    class TestEdgerPrintPricedItem {
+
+        @Test
+        public void testEdgerPrintPricedItem() {
+            String expected = "Item Quantity: 4 Item Type: Edger Total Price: 959.96";
+            String result = edger.printPricedItem(4);
+
+            assertEquals(expected, result);
+        }
+    }
 }
