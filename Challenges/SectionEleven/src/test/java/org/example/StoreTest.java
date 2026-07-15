@@ -42,6 +42,19 @@ public class StoreTest {
             assertEquals(2, store.getProductsForSale().size());
         }
 
+        @Test
+        public void testCannotAddDuplicateProductsToStore() {
+            assertEquals(1, store.getProductsForSale().size());
+            String description = "Battery powered Trimmer for lawn care";
+            ProductForSale trimmer =
+                new Trimmer("Trimmer", description, new BigDecimal("229.99"));
+
+            store.addProduct(trimmer);
+            assertEquals(2, store.getProductsForSale().size());
+
+            store.addProduct(trimmer);
+            assertEquals(2, store.getProductsForSale().size());
+        }
     }
 
 
