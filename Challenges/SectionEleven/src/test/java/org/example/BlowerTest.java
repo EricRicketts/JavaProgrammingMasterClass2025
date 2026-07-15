@@ -84,7 +84,7 @@ public class BlowerTest {
 
         @Test
         public void testBlowerShowDetailsMethod() {
-            String expected = "Type: Blower Price: 239.99 Description: Battery powered Blower for lawns";
+            String expected = "Type: Blower\nPrice: 239.99\nDescription: Battery powered Blower for lawns\n";
             String result = blower.showDetails();
 
             assertEquals(expected, result);

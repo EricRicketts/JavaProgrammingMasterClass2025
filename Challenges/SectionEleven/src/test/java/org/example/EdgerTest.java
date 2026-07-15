@@ -84,7 +84,7 @@ public class EdgerTest {
 
         @Test
         public void testEdgerShowDetailsMethod() {
-            String expected = "Type: Edger Price: 239.99 Description: Battery powered Edger for lawns";
+            String expected = "Type: Edger\nPrice: 239.99\nDescription: Battery powered Edger for lawns\n";
             String result = edger.showDetails();
 
             assertEquals(expected, result);

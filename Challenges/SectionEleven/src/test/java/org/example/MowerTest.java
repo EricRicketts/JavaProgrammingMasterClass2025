@@ -84,7 +84,7 @@ public class MowerTest {
 
         @Test
         public void testMowerShowDetailsMethod() {
-            String expected = "Type: Mower Price: 319.99 Description: Battery powered Mower for cutting grass";
+            String expected = "Type: Mower\nPrice: 319.99\nDescription: Battery powered Mower for cutting grass\n";
             String result = mower.showDetails();
 
             assertEquals(expected, result);

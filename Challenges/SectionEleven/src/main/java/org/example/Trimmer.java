@@ -10,7 +10,7 @@ public class Trimmer extends ProductForSale {
 
     @Override
     public String showDetails() {
-        return "Type: " + this.getType() + " Price: " + this.getPrice() +
-        " Description: " + this.getDescription();
+        return "Type: " + this.getType() + "\n" + "Price: " + this.getPrice() + "\n" +
+        "Description: " + this.getDescription() + "\n";
     };
 }

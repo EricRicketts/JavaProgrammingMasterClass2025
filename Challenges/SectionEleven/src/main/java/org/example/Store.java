@@ -21,16 +21,8 @@ public class Store {
         return productsForSale;
     }
 
-    public void setProductsForSale(ArrayList<ProductForSale> productsForSale) {
-        this.productsForSale = productsForSale;
-    }
-
     public ArrayList<OrderItem> getOrderItems() {
         return orderItems;
-    }
-
-    public void setOrderItems(ArrayList<OrderItem> orderItems) {
-        this.orderItems = orderItems;
     }
 
     public boolean addProduct(ProductForSale product) {
@@ -56,5 +48,13 @@ public class Store {
             }
         }
         this.getOrderItems().add(orderItem);
+    }
+
+    public String printListOfProducts() {
+        String listOfProducts = "";
+        for (ProductForSale productForSale : productsForSale) {
+            listOfProducts = listOfProducts.concat(productForSale.showDetails() + "\n");
+        }
+        return listOfProducts;
     }
 }
