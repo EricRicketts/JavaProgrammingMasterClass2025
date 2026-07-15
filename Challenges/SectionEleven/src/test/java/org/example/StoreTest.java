@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StoreTest {
 
@@ -38,7 +38,7 @@ public class StoreTest {
             ProductForSale trimmer =
                 new Trimmer("Trimmer", description, new BigDecimal("229.99"));
 
-            store.addProduct(trimmer);
+            assertTrue(store.addProduct(trimmer));
             assertEquals(2, store.getProductsForSale().size());
         }
 
@@ -49,13 +49,31 @@ public class StoreTest {
             ProductForSale trimmer =
                 new Trimmer("Trimmer", description, new BigDecimal("229.99"));
 
-            store.addProduct(trimmer);
+            assertTrue(store.addProduct(trimmer));
             assertEquals(2, store.getProductsForSale().size());
 
-            store.addProduct(trimmer);
+            assertFalse(store.addProduct(trimmer));
             assertEquals(2, store.getProductsForSale().size());
         }
     }
 
+    @Nested
+    @DisplayName("test remove a product from the store")
+    class TestRemoveProductFromStore {
 
+        @Test
+        public void testRemoveProductFromStore() {
+            assertEquals(1, store.getProductsForSale().size());
+            String description = "Battery powered Trimmer for lawn care";
+            ProductForSale trimmer =
+                new Trimmer("Trimmer", description, new BigDecimal("229.99"));
+
+            assertTrue(store.addProduct(trimmer));
+            assertEquals(2, store.getProductsForSale().size());
+
+            ProductForSale edger = store.getProductsForSale().getFirst();
+            assertTrue(store.removeProduct(edger));
+            assertEquals(1, store.getProductsForSale().size());
+        }
+    }
 }

@@ -33,10 +33,15 @@ public class Store {
         this.orderItems = orderItems;
     }
 
-    public void addProduct(ProductForSale product) {
+    public boolean addProduct(ProductForSale product) {
         if (!this.getProductsForSale().contains(product)) {
-            this.getProductsForSale().add(product);
+            return this.getProductsForSale().add(product);
         }
+        return false;
+    }
+
+    public boolean removeProduct(ProductForSale product) {
+        return this.getProductsForSale().remove(product);
     }
 
     public void addOrderItem(OrderItem orderItem) {
