@@ -45,6 +45,16 @@ public class Store {
     }
 
     public void addOrderItem(OrderItem orderItem) {
+        ProductForSale productToAdd = orderItem.getProductForSale();
+        for (OrderItem existingOrderItem : orderItems) {
+            ProductForSale existingProductForSale = existingOrderItem.getProductForSale();
+            if (productToAdd.equals(existingProductForSale)) {
+                int quantityToAdd = orderItem.getQuantity();
+                int currentQuantity = existingOrderItem.getQuantity();
+                existingOrderItem.setQuantity(currentQuantity + quantityToAdd);
+                return;
+            }
+        }
         this.getOrderItems().add(orderItem);
     }
 }
