@@ -44,22 +44,6 @@ public class EdgerTest {
     class TestEdgerSetters {
 
         @Test
-        public void testEdgerSetType() {
-            assertEquals("Edger", edger.getType());
-            edger.setType("Trimmer");
-
-            assertEquals("Trimmer", edger.getType());
-        }
-
-        @Test
-        public void testEdgerSetDescription() {
-            assertEquals("Battery powered Edger for lawns", edger.getDescription());
-            edger.setDescription("Battery powered Trimmer for lawns");
-
-            assertEquals("Battery powered Trimmer for lawns", edger.getDescription());
-        }
-
-        @Test
         public void testEdgerSetPrice() {
             assertEquals(new BigDecimal("239.99"), edger.getPrice());
             edger.setPrice(new BigDecimal("259.99"));

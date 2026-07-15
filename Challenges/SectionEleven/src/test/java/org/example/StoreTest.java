@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StoreTest {
 
     private Store store;
+    ProductForSale edger, trimmer, blower, mower, hedgeTrimmer;
 
     @BeforeEach
     public void setUp() {
@@ -22,6 +23,30 @@ public class StoreTest {
             "Battery powered Edger for lawn care",
             new BigDecimal("199.99")
         );
+        ProductForSale blower =
+            new Blower(
+                "Blower",
+                "Battery powered Blower for removing excess grass and leaves",
+                new BigDecimal("239.99")
+            );
+        ProductForSale trimmer =
+            new Trimmer(
+                "Trimmer",
+                "Battery powered String Trimmer for lawn care",
+                new BigDecimal("229.99")
+            );
+        ProductForSale mower =
+            new Mower(
+                "Mower",
+                "Battery powered Mower for cutting grass",
+                new BigDecimal("319.99")
+            );
+        ProductForSale hedgeTrimmer =
+            new HedgeTrimmer(
+                "HedgeTrimmer",
+                "Battery powered Hedge Trimmer for trimming bushes",
+                new BigDecimal("159.99")
+            );
         ArrayList<ProductForSale> productForSale = new ArrayList<>(List.of(edger));
         ArrayList<OrderItem> orders = new ArrayList<>();
         store = new Store(productForSale, orders);
@@ -85,6 +110,15 @@ public class StoreTest {
 
             assertFalse(store.removeProduct(trimmer));
             assertEquals(1, store.getProductsForSale().size());
+        }
+    }
+
+    @Nested
+    @DisplayName("test add OrderItem to Orders")
+    class TestAddOrderItemToOrders {
+
+        @Test
+        public void testAddOrderItemToOrders() {
 
         }
     }

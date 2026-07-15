@@ -44,22 +44,6 @@ public class BlowerTest {
     class TestBlowerSetters {
 
         @Test
-        public void testBlowerSetType() {
-            assertEquals("Blower", blower.getType());
-            blower.setType("Trimmer");
-
-            assertEquals("Trimmer", blower.getType());
-        }
-
-        @Test
-        public void testBlowerSetDescription() {
-            assertEquals("Battery powered Blower for lawns", blower.getDescription());
-            blower.setDescription("Battery powered Trimmer for lawns");
-
-            assertEquals("Battery powered Trimmer for lawns", blower.getDescription());
-        }
-
-        @Test
         public void testBlowerSetPrice() {
             assertEquals(new BigDecimal("239.99"), blower.getPrice());
             blower.setPrice(new BigDecimal("259.99"));

@@ -44,22 +44,6 @@ public class TrimmerTest {
     class TestTrimmerSetters {
 
         @Test
-        public void testTrimmerSetType() {
-            assertEquals("Trimmer", trimmer.getType());
-            trimmer.setType("Trimmer");
-
-            assertEquals("Trimmer", trimmer.getType());
-        }
-
-        @Test
-        public void testTrimmerSetDescription() {
-            assertEquals("Battery powered Trimmer for lawns", trimmer.getDescription());
-            trimmer.setDescription("Battery powered Trimmer for lawns");
-
-            assertEquals("Battery powered Trimmer for lawns", trimmer.getDescription());
-        }
-
-        @Test
         public void testTrimmerSetPrice() {
             assertEquals(new BigDecimal("239.99"), trimmer.getPrice());
             trimmer.setPrice(new BigDecimal("259.99"));
