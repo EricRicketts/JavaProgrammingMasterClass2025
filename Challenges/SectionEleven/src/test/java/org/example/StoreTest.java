@@ -75,5 +75,17 @@ public class StoreTest {
             assertTrue(store.removeProduct(edger));
             assertEquals(1, store.getProductsForSale().size());
         }
+
+        @Test
+        public void testRemoveProductFromStoreThatDoesNotExist() {
+            assertEquals(1, store.getProductsForSale().size());
+            String description = "Battery powered Trimmer for lawn care";
+            ProductForSale trimmer =
+                new Trimmer("Trimmer", description, new BigDecimal("229.99"));
+
+            assertFalse(store.removeProduct(trimmer));
+            assertEquals(1, store.getProductsForSale().size());
+
+        }
     }
 }
