@@ -44,9 +44,9 @@ public class StoreTest {
                 "Battery powered Hedge Trimmer for trimming bushes",
                 new BigDecimal("159.99")
             );
-        ArrayList<ProductForSale> productForSale = new ArrayList<>(List.of(edger));
+        ArrayList<ProductForSale> productsForSale = new ArrayList<>(List.of(edger));
         ArrayList<OrderItem> orders = new ArrayList<>();
-        store = new Store(productForSale, orders);
+        store = new Store(productsForSale, orders);
     }
 
     @Nested
@@ -145,6 +145,45 @@ public class StoreTest {
             store.addOrderItem(newEdgerOrderItem);
             assertEquals(1, store.getOrderItems().size());
             assertEquals(3, store.getOrderItems().getFirst().getQuantity());
+        }
+    }
+
+    @Nested
+    @DisplayName("print out store product list")
+    class TestPrintOutStoreProductList {
+
+        @Test
+        public void testPrintOutStoreProductList() {
+            ArrayList<ProductForSale> products = new ArrayList(List.of(
+                trimmer, blower, mower, hedgeTrimmer
+            ));
+            for (ProductForSale product: products) store.addProduct(product);
+
+            String expected = """
+                Type: Edger
+                Price: 199.99
+                Description: Battery powered Edger for lawn care
+                
+                Type: Trimmer
+                Price: 229.99
+                Description: Battery powered String Trimmer for lawn care
+                
+                Type: Blower
+                Price: 239.99
+                Description: Battery powered Blower for removing excess grass and leaves
+                
+                Type: Mower
+                Price: 319.99
+                Description: Battery powered Mower for cutting grass
+                
+                Type: HedgeTrimmer
+                Price: 159.99
+                Description: Battery powered Hedge Trimmer for trimming bushes
+                
+                """;
+            String result = store.printListOfProducts();
+
+            assertEquals(expected, result);
         }
     }
 }
