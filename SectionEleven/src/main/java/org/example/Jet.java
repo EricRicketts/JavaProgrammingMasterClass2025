@@ -1,7 +1,7 @@
 package org.example;
 
 // Java can only extend one class, but it can implement multiple interfaces.
-public class Bird extends Animal implements FlightEnabled, Trackable {
+public class Jet extends Animal implements FlightEnabled, Trackable {
     @Override
     public String move() {
         return this.getClass().getSimpleName() +

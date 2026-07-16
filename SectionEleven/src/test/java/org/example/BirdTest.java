@@ -52,7 +52,7 @@ public class BirdTest {
         @Test
         public void testAbstractMethodsFromTrackableInterface() {
             assertEquals(
-                "Bird is being tracked.",
+                "Bird coordinates recorded.",
                 tracked.track()
             );
         }
@@ -65,7 +65,7 @@ public class BirdTest {
         @Test
         public void testTakeOffMethodFromFlightEnabledInterface() {
             assertEquals(
-                "Bird leaves its nest.",
+                "Bird takes off.",
                 flier.takeOff()
             );
         }
@@ -73,7 +73,7 @@ public class BirdTest {
         @Test
         public void testLandMethodFromFlightEnabledInterface() {
             assertEquals(
-                "Bird returns to its nest.",
+                "Bird is landing.",
                 flier.land()
             );
         }
@@ -81,7 +81,7 @@ public class BirdTest {
         @Test
         public void testFlyMethodFromFlightEnabledInterface() {
             assertEquals(
-                "Bird flies.",
+                "Bird is flying.",
                 flier.fly()
             );
         }
@@ -94,10 +94,10 @@ public class BirdTest {
         @Test
         public void testInFlightMethod() {
             String expected = """
-                Bird leaves its nest.
-                Bird flies.
-                Bird is being tracked.
-                Bird returns to its nest.""";
+                Bird takes off.
+                Bird is flying.
+                Bird coordinates recorded.
+                Bird is landing.""";
             String result = inFlight(flier);
 
             assertEquals(expected, result);
