@@ -67,13 +67,10 @@ public class Store {
         BigDecimal tax = taxRate.multiply(subTotal);
         BigDecimal finalPrice = tax.add(subTotal);
 
-        for (OrderItem orderItem : this.getOrderItems()) {
-            ProductForSale productForSale = orderItem.getProductForSale();
-            int productQuantity = orderItem.getQuantity();
-            String lineItem = productForSale.printPricedItem(productQuantity).concat("\n");
-            salesReceipt = salesReceipt.concat(lineItem);
-        }
-        salesReceipt = salesReceipt.concat("******************************************************\n")
+        String lineItems = printLineItems();
+        salesReceipt = salesReceipt
+            .concat(lineItems)
+            .concat("******************************************************\n")
             .concat("SubTotal: " + subTotal + "\n")
             .concat("Tax (5%): " + tax + "\n")
             .concat("Final Price: " + finalPrice + "\n");
@@ -95,7 +92,14 @@ public class Store {
         return subTotal;
     }
 
-    private BigDecimal calculateTax(BigDecimal subTotal, BigDecimal taxRate) {
-        return subTotal.multiply(taxRate);
+    private String printLineItems() {
+        String lineItems = "";
+        for (OrderItem orderItem : this.getOrderItems()) {
+            ProductForSale productForSale = orderItem.getProductForSale();
+            int productQuantity = orderItem.getQuantity();
+            String lineItem = productForSale.printPricedItem(productQuantity).concat("\n");
+            lineItems = lineItems.concat(lineItem);
+        }
+        return lineItems;
     }
 }
