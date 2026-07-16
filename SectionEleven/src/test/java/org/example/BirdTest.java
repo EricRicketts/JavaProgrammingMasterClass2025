@@ -9,6 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BirdTest {
 
+    private static String inFlight(FlightEnabled flier) {
+        String output = flier.takeOff() + "\n" + flier.fly() + "\n";
+        if (flier instanceof Trackable tracked) {
+            output += tracked.track() + "\n";
+        }
+        output += flier.land();
+
+        return output;
+    }
+
     private Bird bird;
     private Animal animal;
     private FlightEnabled flier;
@@ -74,6 +84,23 @@ public class BirdTest {
                 "Bird flies.",
                 flier.fly()
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("test inFlight method")
+    class TestInFlightMethod {
+
+        @Test
+        public void testInFlightMethod() {
+            String expected = """
+                Bird leaves its nest.
+                Bird flies.
+                Bird is being tracked.
+                Bird returns to its nest.""";
+            String result = inFlight(flier);
+
+            assertEquals(expected, result);
         }
     }
 }
