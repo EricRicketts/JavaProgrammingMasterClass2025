@@ -8,7 +8,7 @@ public record DragonFly(String name, String type) implements FlightEnabled {
 
     @Override
     public String land() {
-        return this.getClass().getSimpleName() + " lands on from flower.";
+        return this.getClass().getSimpleName() + " lands on the flower.";
     }
 
     @Override
