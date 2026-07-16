@@ -186,4 +186,39 @@ public class StoreTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("print out sales receipt")
+    class TestPrintOutSalesReceipt {
+
+        @Test
+        public void testPrintOutSalesReceipt() {
+            String expected = """
+                SALES RECEIPT
+                ******************************************************
+                Item Quantity: 3 Item Type: Edger Total Price: 599.97
+                Item Quantity: 3 Item Type: Trimmer Total Price: 689.97
+                Item Quantity: 1 Item Type: Mower Total Price: 319.99
+                ******************************************************
+                SubTotal: 1609.93
+                Tax (5%): 80.4965
+                Final Price: 1690.4265
+                """;
+
+            OrderItem firstOrderItem = new OrderItem(2, edger);
+            OrderItem secondOrderItem = new OrderItem(3, trimmer);
+            OrderItem thirdOrderItem = new OrderItem(1, mower);
+            OrderItem fourthOrderItem = new OrderItem(1, edger);
+
+            store.addOrderItem(firstOrderItem);
+            store.addOrderItem(secondOrderItem);
+            store.addOrderItem(thirdOrderItem);
+            store.addOrderItem(fourthOrderItem);
+
+            assertEquals(3, store.getOrderItems().size());
+            String result = store.printSalesReceipt();
+
+            assertEquals(expected, result);
+        }
+    }
 }
