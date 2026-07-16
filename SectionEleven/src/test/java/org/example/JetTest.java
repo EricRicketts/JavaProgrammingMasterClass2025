@@ -5,6 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JetTest {
@@ -53,6 +56,29 @@ public class JetTest {
             String result = inFlight(jet);
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test access to constants in interface")
+    class TestAccessToConstantsInInterface {
+
+        @Test
+        public void testAccessToMilesToKm() {
+            assertEquals(
+                new BigDecimal("160.934"),
+                new BigDecimal("100").multiply(FlightEnabled.MILES_TO_KM)
+                    .setScale(3, RoundingMode.HALF_UP)
+            );
+        }
+
+        @Test
+        public void testAccessToKmToMiles() {
+            assertEquals(
+                new BigDecimal("62.1371"),
+                new BigDecimal("100").multiply(FlightEnabled.KM_TO_MILES)
+                    .setScale(4, RoundingMode.HALF_UP)
+            );
         }
     }
 }
