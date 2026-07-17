@@ -45,4 +45,18 @@ public class DragonFlyTest {
         }
     }
 
+    @Nested
+    @DisplayName("test DragonFly getters")
+    class TestDragonFlyGetters {
+
+        @Test
+        public void testDragonFlyGetName() {
+            assertEquals("Generic", dragonfly.name());
+        }
+
+        @Test
+        public void testDragonFlyGetType() {
+            assertEquals("Large", dragonfly.type());
+        }
+    }
 }
