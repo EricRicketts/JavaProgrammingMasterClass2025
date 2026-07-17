@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SatelliteTest {
@@ -55,6 +57,27 @@ public class SatelliteTest {
                 "Orbit achieved.",
                 satellite.achieveOrbit()
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("test FlightEnabled constants")
+    class TestFlightEnabledConstants {
+
+        @Test
+        public void testKMToMilesConstant() {
+            BigDecimal expected = new BigDecimal("1.60934");
+            BigDecimal result = OrbitEarth.MILES_TO_KM;
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testMilesToKMConstant() {
+            BigDecimal expected = new BigDecimal("0.621371");
+            BigDecimal result = OrbitEarth.KM_TO_MILES;
+
+            assertEquals(expected, result);
         }
     }
 }
