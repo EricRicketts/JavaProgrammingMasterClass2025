@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,8 +53,39 @@ public class FliersTest {
         return output;
     }
 
+    private static String betterTriggerFliers(List<FlightEnabled> fliers) {
+        String output = "";
+
+        for (var flier : fliers) {
+            output = output.concat(flier.takeOff() + "\n");
+        }
+
+        return output;
+    }
+
+    private static String betterFlyFliers(List<FlightEnabled> fliers) {
+        String output = "";
+
+        for (var flier : fliers) {
+            output = output.concat(flier.fly() + "\n");
+        }
+
+        return output;
+    }
+
+    private static String betterLandFliers(List<FlightEnabled> fliers) {
+        String output = "";
+
+        for (var flier : fliers) {
+            output = output.concat(flier.land() + "\n");
+        }
+
+        return output;
+    }
+
     private ArrayList<FlightEnabled> fliers = new ArrayList<>();
     private List<FlightEnabled> betterFliers = new ArrayList<>();
+    private LinkedList<FlightEnabled> moreFliers = new LinkedList<>();
     private String expected, result;
 
     @BeforeEach
@@ -63,6 +95,9 @@ public class FliersTest {
 
         betterFliers.add(new Bird());
         betterFliers.add(new Eagle());
+
+        moreFliers.add(new Bird());
+        moreFliers.add(new Eagle());
     }
 
     @Nested
@@ -122,4 +157,34 @@ public class FliersTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test better typing for the methods, List Arguments")
+    class TestBetterTypingForMethodsListArguments {
+
+        @Test
+        public void testImprovedTriggerFlyerMethodListArgument() {
+            expected = "Bird takes off.\nEagle takes off from its nest in the mountains.\n";
+            result = betterTriggerFliers(fliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testImprovedFlyFlyerMethodListArgument() {
+            expected = "Bird is flying.\nEagle does not fly it soars.\n";
+            result = betterFlyFliers(fliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testImprovedLandFlyerMethodListArgument() {
+            expected = "Bird is landing.\nEagle lands in its nest in the mountains.\n";
+            result = betterLandFliers(fliers);
+
+            assertEquals(expected, result);
+        }
+    }
+
 }
