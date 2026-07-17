@@ -34,4 +34,81 @@ public class FlightStagesTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test FlightStages constants")
+    class TestFlightStagesConstants {
+
+        @Test
+        public void testFlightStagesGROUNDED() {
+            assertEquals(
+                FlightStages.GROUNDED,
+                FlightStages.valueOf("GROUNDED")
+            );
+
+            assertEquals(
+                "GROUNDED",
+                FlightStages.GROUNDED.name()
+            );
+
+            assertEquals(
+                0,
+                FlightStages.GROUNDED.ordinal()
+            );
+        }
+
+        @Test
+        public void testFlightStagesLAUNCH() {
+            assertEquals(
+                FlightStages.LAUNCH,
+                FlightStages.valueOf("LAUNCH")
+            );
+
+            assertEquals(
+                "LAUNCH",
+                FlightStages.LAUNCH.name()
+            );
+
+            assertEquals(
+                1,
+                FlightStages.LAUNCH.ordinal()
+            );
+        }
+
+        @Test
+        public void testFlightStagesCRUISE() {
+            assertEquals(
+                FlightStages.CRUISE,
+                FlightStages.valueOf("CRUISE")
+            );
+
+            assertEquals(
+                "CRUISE",
+                FlightStages.CRUISE.name()
+            );
+
+            assertEquals(
+                2,
+                FlightStages.CRUISE.ordinal()
+            );
+        }
+
+        @Test
+        public void testFlightStagesDATA_COLLECTION() {
+            assertEquals(
+                FlightStages.DATA_COLLECTION,
+                FlightStages.valueOf("DATA_COLLECTION")
+            );
+
+            assertEquals(
+                "DATA_COLLECTION",
+                FlightStages.DATA_COLLECTION.name()
+            );
+
+            assertEquals(
+                3,
+                FlightStages.DATA_COLLECTION.ordinal()
+            );
+        }
+    }
 }
