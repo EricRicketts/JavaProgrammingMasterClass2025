@@ -93,4 +93,33 @@ public class FliersTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test better fliers")
+    class TestBetterFliers {
+
+        @Test
+        public void testTriggerFlyers() {
+            expected = "Bird takes off.\nEagle takes off from its nest in the mountains.\n";
+            result = triggerFliers((ArrayList<FlightEnabled>) betterFliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testFlyFlyers() {
+            expected = "Bird is flying.\nEagle does not fly it soars.\n";
+            result = flyFliers((ArrayList<FlightEnabled>) betterFliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testLandFlyers() {
+            expected = "Bird is landing.\nEagle lands in its nest in the mountains.\n";
+            result = landFliers((ArrayList<FlightEnabled>) betterFliers);
+
+            assertEquals(expected, result);
+        }
+    }
 }
