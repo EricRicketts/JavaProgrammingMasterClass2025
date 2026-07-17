@@ -44,4 +44,17 @@ public class SatelliteTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test method unique to OrbitEarth interface")
+    class TestMethodUniqueToOrbitEarthInterface {
+
+        @Test
+        public void testOrbitEarthMethodAchieveOrbit() {
+            assertEquals(
+                "Orbit achieved.",
+                satellite.achieveOrbit()
+            );
+        }
+    }
 }
