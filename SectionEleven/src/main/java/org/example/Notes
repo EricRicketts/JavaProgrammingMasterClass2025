@@ -1,0 +1,15 @@
+Some important learning points here:
+
+A concrete (non-abstract) subclass extending an abstract class is required to implement all inherited abstract methods.
+If the subclass fails to implement any of these methods, it must itself be declared as abstract.
+
+Key rules include:
+
+1.  Concrete Subclasses: Must provide implementations for all abstract methods from parent abstract classes; otherwise,
+the code will not compile.
+
+2.  Abstract Subclasses: Can remain abstract without implementing inherited abstract methods, effectively passing the
+implementation burden to their own concrete subclasses.
+
+3.  Intermediate Implementations: If an intermediate abstract class provides an implementation for a parent's abstract
+method, that method is no longer considered abstract for subsequent subclasses.
