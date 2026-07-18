@@ -37,3 +37,8 @@ Java solved this problem by introducing the _Interface Extension Method_.  This 
 _default_ modifier, this is more commonly known as the _default method_.  This method is a _concrete method_ meaning
 we can add a code block with the accompanying statements.  The key point here is adding a _default method_ does not
 break classes implementing the interface.  
+
+Another enhancement in JDK 8 was support for public static methods on an interface.  In calling this
+public static method, you must prefix the method name with the Interface name.
+
+Remember all methods on an Interface are public unless otherwise specified.

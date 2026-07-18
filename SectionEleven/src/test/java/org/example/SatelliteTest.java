@@ -6,8 +6,11 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SatelliteTest {
 
@@ -78,6 +81,24 @@ public class SatelliteTest {
             BigDecimal result = OrbitEarth.KM_TO_MILES;
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test log method")
+    class TestLogMethod {
+
+        @Test
+        public void testLogMethod() {
+            Pattern pattern = Pattern.compile("\\d{2}:\\d{2}:\\d{2}");
+            String description = "Testing logging is working.";
+            String log = Satellite.log(description);
+
+            String splitText = log.split("\n")[0];
+            Matcher matcher = pattern.matcher(splitText);
+
+            assertTrue(matcher.find(), "Pattern " + pattern.pattern() + " should match " + splitText);
+            assertTrue(log.contains("Testing logging is working"));
         }
     }
 }

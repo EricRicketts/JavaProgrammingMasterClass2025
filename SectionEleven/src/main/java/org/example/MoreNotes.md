@@ -57,3 +57,53 @@ public void testTriggerFlyers() {
     assertEquals(expected, result);
 }
 ```
+My Question: "In the @Override of the transition method in the Jet Class,
+why do I have to use the keyword "super"?"
+
+I am about to search for Java files related to flight functionality in your project.
+
+Found "**/FlightEnabled.java"
+
+Found "**/FlightStages.java"
+
+In the `Jet` class, the line `return FlightEnabled.super.transition(stage);` uses
+the `super` keyword in a specific way to call a **default method** from an interface.
+
+Here is the breakdown of why this syntax is required:
+
+**1. Accessing Default Interface Methods**
+The `transition` method is defined as a `default` method in the `FlightEnabled` interface:
+
+```java
+// Inside FlightEnabled.java
+default FlightStages transition(FlightStages stage) {
+    return stage.getNextStage();
+}
+```
+
+When you override this method in the `Jet` class, you are essentially replacing that default logic.
+If you want to still use the default logic from the interface within your override, you must
+use the syntax `InterfaceName.super.methodName()`.
+
+**2. Distinguishing from the Local Method**
+If you simply wrote `return transition(stage);` inside the `Jet` class's `transition` method, you
+would be calling the method you are currently inside. This would cause **infinite recursion**,
+leading to a `StackOverflowError`.
+
+The `super` keyword tells Java to look for an implementation higher up in the hierarchy rather than
+using the one defined in the current class (`Jet`).
+
+**3. `super` vs `InterfaceName.super`**
+In Java, the keyword `super` used by itself (e.g., `super.methodName()`) refers to the immediate
+**parent class** (which is `Animal` in this case).
+
+Since the `Animal` class does not have a `transition` method, `super.transition(stage)` would
+result in a compilation error. Therefore, you must specify `FlightEnabled.super` to tell the
+compiler exactly which interface's default implementation you want to invoke.
+
+**Summary**
+You use `FlightEnabled.super.transition(stage)` because:
+*   **`FlightEnabled`**: Identifies the specific interface where the default method lives.
+*   **`.super`**: Indicates you want to call the "parent" (interface) implementation
+rather than the one in the current class.
+*   **`transition(stage)`**: Is the specific method you are invoking.

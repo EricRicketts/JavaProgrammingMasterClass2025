@@ -20,4 +20,8 @@ public class Satellite implements OrbitEarth {
     public String fly() {
         return this.getClass().getSimpleName() + " flies to space.";
     }
+
+    static String log(String description) {
+        return OrbitEarth.log(description);
+    }
 }
