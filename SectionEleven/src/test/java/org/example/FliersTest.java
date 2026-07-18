@@ -159,11 +159,11 @@ public class FliersTest {
     }
 
     @Nested
-    @DisplayName("test better typing for the methods, List Arguments")
-    class TestBetterTypingForMethodsListArguments {
+    @DisplayName("test better typing for the methods, fliers List Argument")
+    class TestBetterTypingForMethodsFliersListArgument {
 
         @Test
-        public void testImprovedTriggerFlyerMethodListArgument() {
+        public void testImprovedTriggerFlyersMethodListArgument() {
             expected = "Bird takes off.\nEagle takes off from its nest in the mountains.\n";
             result = betterTriggerFliers(fliers);
 
@@ -171,7 +171,7 @@ public class FliersTest {
         }
 
         @Test
-        public void testImprovedFlyFlyerMethodListArgument() {
+        public void testImprovedFlyFlyersMethodListArgument() {
             expected = "Bird is flying.\nEagle does not fly it soars.\n";
             result = betterFlyFliers(fliers);
 
@@ -179,7 +179,7 @@ public class FliersTest {
         }
 
         @Test
-        public void testImprovedLandFlyerMethodListArgument() {
+        public void testImprovedLandFlyersMethodListArgument() {
             expected = "Bird is landing.\nEagle lands in its nest in the mountains.\n";
             result = betterLandFliers(fliers);
 
@@ -187,4 +187,61 @@ public class FliersTest {
         }
     }
 
+    @Nested
+    @DisplayName("test better typing for the methods, better fliers List Argument")
+    class TestBetterTypingForMethodsBetterFliersListArgument {
+
+        @Test
+        public void testImprovedTriggerBetterFlyerMethodListArgument() {
+            expected = "Bird takes off.\nEagle takes off from its nest in the mountains.\n";
+            result = betterTriggerFliers(betterFliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testImprovedFlyBetterFlyerMethodListArgument() {
+            expected = "Bird is flying.\nEagle does not fly it soars.\n";
+            result = betterFlyFliers(betterFliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testImprovedLandBetterFlyerMethodListArgument() {
+            expected = "Bird is landing.\nEagle lands in its nest in the mountains.\n";
+            result = betterLandFliers(betterFliers);
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test better typing for the methods, more fliers List Argument")
+    class TestBetterTypingForMethodsMoreFliersListArgument {
+
+        @Test
+        public void testImprovedTriggerMoreFlyersMethodListArgument() {
+            expected = "Bird takes off.\nEagle takes off from its nest in the mountains.\n";
+            result = betterTriggerFliers(moreFliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testImprovedFlyMoreFlyersMethodListArgument() {
+            expected = "Bird is flying.\nEagle does not fly it soars.\n";
+            result = betterFlyFliers(moreFliers);
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testImprovedLandMoreFlyersMethodListArgument() {
+            expected = "Bird is landing.\nEagle lands in its nest in the mountains.\n";
+            result = betterLandFliers(moreFliers);
+
+            assertEquals(expected, result);
+        }
+    }
 }
