@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.example.FlightStages.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -80,5 +81,32 @@ public class JetTest {
                     .setScale(4, RoundingMode.HALF_UP)
             );
         }
+    }
+
+    @Nested
+    @DisplayName("test transition stages")
+    class TestTransitionStages {
+
+        @Test
+        public void testTransitionStages() {
+            FlightStages[] currentStages = FlightStages.values();
+            FlightStages[] nextStages = {
+                FlightStages.valueOf("LAUNCH"),
+                FlightStages.valueOf("CRUISE"),
+                FlightStages.valueOf("DATA_COLLECTION"),
+                FlightStages.valueOf("GROUNDED")
+            };
+
+            for(int index = 0; index < nextStages.length; index++) {
+                FlightStages currentStage = currentStages[index];
+                FlightStages nextStage = nextStages[index];
+
+                assertEquals(
+                    nextStage,
+                    jet.transition(currentStage)
+                );
+            }
+        }
+
     }
 }

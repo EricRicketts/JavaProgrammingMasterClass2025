@@ -12,4 +12,10 @@ public enum FlightStages implements Trackable {
             return "Not Grounded!!";
         }
     }
+
+    public FlightStages getNextStage() {
+        FlightStages[] allStages = values();
+        // Code wraps around to the first stage when at the last stage.
+        return allStages[(ordinal() + 1) % allStages.length];
+    }
 }

@@ -22,3 +22,18 @@ in the previous version of the code for each of the methods I specified a _List<
 method arguments, but I had to cast the _List<FlightEnabled>_ to an _ArrayList<FlightEnabled>_ because that is what
 the initial method specified as an argument.  As we can see the initial version of the method overly constrained the
 argument type.
+
+Before ***JDK 8***, the _Interface type_ could only have _public abstract_ methods.  JDK8 introduced the _default_ and
+_public static_ methods and ***JDK 9*** introduced _private_ methods both _static_ and _non-static_.  All of these
+new method types are (on an interface) are _concrete methods_.  
+
+Before ***JDK 8*** there was a problem when a developer decided to update an interface, specifically add a new
+abstract method.  This meant all classes which implemented the interface had to implement the new abstract method.
+As an example in the _FlightEnabled_ interface is a new method was added _FlightStages transition(FlightStages stage)_
+then the _Bird_, _DragonFly_ and _Eagle_ classes all had to implement the new method.  For three classes the update is
+no so bad but if 50 classes implemented the interface the update would be a lot of work.
+
+Java solved this problem by introducing the _Interface Extension Method_.  This extension method is identified by the
+_default_ modifier, this is more commonly known as the _default method_.  This method is a _concrete method_ meaning
+we can add a code block with the accompanying statements.  The key point here is adding a _default method_ does not
+break classes implementing the interface.  

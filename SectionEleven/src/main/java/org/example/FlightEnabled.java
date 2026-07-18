@@ -12,4 +12,8 @@ public interface FlightEnabled {
     abstract String land();
 
     String fly(); // In an interface all methods by default are public and abstract.
+
+    default FlightStages transition(FlightStages stage) {
+        return stage.getNextStage();
+    }
 }
