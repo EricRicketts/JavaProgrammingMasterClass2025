@@ -42,3 +42,66 @@ Another enhancement in JDK 8 was support for public static methods on an interfa
 public static method, you must prefix the method name with the Interface name.
 
 Remember all methods on an Interface are public unless otherwise specified.
+
+JDK 9 gave the developer community private Interface methods both static and non-static.
+
+A private static method on an Interface can be accessed by one of: A public static method,
+a default method, or a private non-static method.
+
+A private non-static method on an Interface can be accessed by one of: default method or
+other private methods.
+
+When to use an Abstract class versus an Interface.
+
+Characteristics of an Abstract Class:
+
+1. With an Abstract class you can declare fields that are not static and final, instance fields.
+2. With an Abstract class you can use any of the four access modifiers for its concrete methods.
+3. You can use all but the private access modifier for its abstract methods.
+4. An Abstract class can only extend one parent class, but it can have multiple interfaces.
+5. When an Abstract class is subclassed, the child class provides for implementations of all
+the abstract methods in its parent class.  if the child class does not do this, then it must
+be declared abstract.
+
+Characteristics of an Interface:
+
+1. An Interface is just the declaration of methods, which you want some classes to have; it is
+not the implementation.
+2. In an Interface, we define what kind of operation an Object can preform.  These operations
+are defined by the classes that implement the Interface.
+3. Interfaces form a contract between the class and the outside world, and this contract is
+enforced at build time by the Java compiler.
+4. You cannot instantiate Interfaces, but they can contain a mix of methods with or without an
+implementation.
+5. All methods on interfaces declared without a method body are automatically public and abstract.
+6. All concrete methods declared in an Interface are public unless otherwise specified.
+7. An interface can extend another interface.
+8. Interfaces are more flexible and can deal with a lot more stress on the design of your
+program because they are not part of the class hierarchy.
+9. A best practice of coding is commonly called "Coding to an Interface".
+10. By Introducing Interfaces, you are really introducing points of variation, at which
+    you can plug in different implementations of that Interface.
+11. Summary: The Interface decouples the "what" from the "how", and is used to make different
+   types behave in similar ways.
+12. Since Java 8, Interfaces can now contain default methods, i.e., methods with implementation.
+13. Since Java 9, Interfaces can now contain private methods, commonly used when default methods
+    share common code.
+
+When to use an Abstract Class:
+
+1. Use an abstract class when you want to share code among several closely related classes.
+2. You expect classes that extend your abstract class to have many common methods or fields
+or require access to modifiers other than public.
+3. You want to declare non-static or non-final fields (for example, name, age).  This enables
+you to define methods that access and modify the state of an object (getName, setName).
+4. You have a requirement for your base class to provide a default implementation of certain
+methods, but other methods are subject to being overridden by the child classes.
+5. Summary: An Abstract Class provides a common definition, as a base class, that multiple
+derived classes can share.
+
+When to use an Interface:
+
+1. You expect unrelated classes will use your Interface.
+2. You want to specify the behavior of a particular data type, but you are not concerned
+about who implements the behavior.
+3. You want to separate different behaviors.
