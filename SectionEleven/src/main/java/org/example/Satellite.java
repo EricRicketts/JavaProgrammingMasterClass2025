@@ -1,6 +1,8 @@
 package org.example;
 
 public class Satellite implements OrbitEarth {
+
+    FlightStages stage = FlightStages.GROUNDED;
     @Override
     public String achieveOrbit() {
         return "Orbit achieved.";
@@ -8,20 +10,22 @@ public class Satellite implements OrbitEarth {
 
     @Override
     public String takeOff() {
-        return this.getClass().getSimpleName() + " launches.";
+        return transition("Taking Off.");
     }
 
     @Override
     public String land() {
-        return this.getClass().getSimpleName() + " lands.";
+        return transition("Landing.");
     }
 
     @Override
     public String fly() {
-        return this.getClass().getSimpleName() + " flies to space.";
+        return achieveOrbit() + "  Data collection while orbiting.";
     }
 
-    static String log(String description) {
-        return OrbitEarth.log(description);
+    public String transition(String description) {
+        var nexStage = transition(stage);
+        nexStage.track();
+        return description;
     }
 }

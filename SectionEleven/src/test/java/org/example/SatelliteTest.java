@@ -28,7 +28,7 @@ public class SatelliteTest {
         @Test
         public void testTakeOff() {
             assertEquals(
-                "Satellite launches.",
+                "Taking Off.",
                 satellite.takeOff()
             );
         }
@@ -36,7 +36,7 @@ public class SatelliteTest {
         @Test
         public void testFly() {
             assertEquals(
-                "Satellite flies to space.",
+                "Orbit achieved.  Data collection while orbiting.",
                 satellite.fly()
             );
         }
@@ -44,7 +44,7 @@ public class SatelliteTest {
         @Test
         public void testLand() {
             assertEquals(
-                "Satellite lands.",
+                "Landing.",
                 satellite.land()
             );
         }
@@ -90,15 +90,48 @@ public class SatelliteTest {
 
         @Test
         public void testLogMethod() {
+            FlightStages stage = FlightStages.GROUNDED;
             Pattern pattern = Pattern.compile("\\d{2}:\\d{2}:\\d{2}");
             String description = "Testing logging is working.";
-            String log = Satellite.log(description);
+            String log = satellite.logStage(stage, description);
 
-            String splitText = log.split("\n")[0];
-            Matcher matcher = pattern.matcher(splitText);
+            String textWithDateTime = log.split("\n")[0];
+            Matcher matcher = pattern.matcher(textWithDateTime);
 
-            assertTrue(matcher.find(), "Pattern " + pattern.pattern() + " should match " + splitText);
+            assertTrue(matcher.find(), "Pattern " + pattern.pattern() + " should match "
+                + textWithDateTime);
+            assertTrue(log.contains(stage.toString()));
             assertTrue(log.contains("Testing logging is working"));
+        }
+    }
+
+    @Nested
+    @DisplayName("test transition stages")
+    class TestTransitionStages {
+
+        @Test
+        public void testTransitionStages() {
+            FlightStages[] stages = {
+                FlightStages.GROUNDED,
+                FlightStages.LAUNCH,
+                FlightStages.CRUISE,
+                FlightStages.DATA_COLLECTION
+            };
+            FlightStages[] nextStages = {
+                FlightStages.LAUNCH,
+                FlightStages.CRUISE,
+                FlightStages.DATA_COLLECTION,
+                FlightStages.GROUNDED
+            };
+
+            for(int index = 0; index < stages.length; index++) {
+                FlightStages currentFlightStage = stages[index];
+                FlightStages expectedNextStage = nextStages[index];
+
+                FlightStages nextStage = satellite.transition(currentFlightStage);
+
+                assertEquals(expectedNextStage, nextStage);
+            }
         }
     }
 }
