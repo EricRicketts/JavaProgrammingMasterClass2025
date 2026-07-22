@@ -18,6 +18,8 @@ public abstract class ListItem {
 
     abstract ListItem setPrevious(ListItem link);
 
+    abstract int compareTo(ListItem listItem);
+
     public Object getValue() {
         return value;
     }
