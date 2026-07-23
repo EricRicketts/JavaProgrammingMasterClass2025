@@ -56,6 +56,20 @@ public class MyLinkedList implements NodeList {
                     // the node without a previous node is the root
                     newItem.setNext(this.root).setPrevious(newItem);
                     this.root = newItem;
+
+                    /*
+                        This code also works, it is more verbose but I think easier to understand:
+
+                        newItem.setNext(root);
+                        newItem.next().setPrevious(newItem);
+                        this.root = newItem;
+
+                        Suggested by AI, a cleaner version:
+
+                        newItem.setNext(this.root);
+                        this.root.setPrevious(newItem);
+                        this.root = newItem;
+                    */
                 }
                 return true;
             } else {
