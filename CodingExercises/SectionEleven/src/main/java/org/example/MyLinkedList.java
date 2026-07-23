@@ -38,6 +38,20 @@ public class MyLinkedList implements NodeList {
                 if (currentItem.previous() != null) {
                     currentItem.previous().setNext(newItem).setPrevious(currentItem.previous());
                     newItem.setNext(currentItem).setPrevious(newItem);
+                    /*
+                        A more verbose edition:
+
+                        set the links for the newly inserted item:
+
+                        newItem.setNext(currentItem);
+                        newItem.setPrevious(currentItem.previous();
+
+                        set the links for the next value of the original previous node and the
+                        previous value of the original node:
+
+                        currentItem.previous().setNext(newItem);
+                        currentItem.setPrevious(newItem);
+                    */
                 } else {
                     // the node without a previous node is the root
                     newItem.setNext(this.root).setPrevious(newItem);
