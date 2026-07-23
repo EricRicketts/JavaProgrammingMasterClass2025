@@ -1,13 +1,8 @@
 package org.example;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Node extends ListItem {
-
-    private ListItem next;
-    private ListItem previous;
-    private Object value;
 
     public Node(Object value) {
         super(value);
@@ -15,24 +10,24 @@ public class Node extends ListItem {
 
     @Override
     ListItem next() {
-        return next;
+        return this.rightLink;
     }
 
     @Override
-    ListItem setNext(ListItem next) {
-        this.next = next;
-        return next;
+    ListItem setNext(ListItem newRightLink) {
+        this.rightLink = newRightLink;
+        return this.rightLink;
     }
 
     @Override
     ListItem previous() {
-        return previous;
+        return this.leftLink;
     }
 
     @Override
-    ListItem setPrevious(ListItem previous) {
-        this.previous = previous;
-        return previous;
+    ListItem setPrevious(ListItem newLeftLink) {
+        this.leftLink = newLeftLink;
+        return this.leftLink;
     }
 
     @Override
