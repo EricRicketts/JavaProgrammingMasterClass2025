@@ -15,41 +15,46 @@ public class MyLinkedListTest {
 
     @Test
     public void testAddItem() {
-        assertTrue(list.addItem(new Node(10)));
-        assertTrue(list.addItem(new Node(5)));
-        assertTrue(list.addItem(new Node(15)));
-        assertFalse(list.addItem(new Node(10))); // Duplicate
+        assertNull(list.addItem(new Node("Darwin")));
+        assertNull(list.addItem(new Node("Brisbane")));
+        assertNull(list.addItem(new Node("Perth")));
+        assertEquals("Darwin is already present, not added.", list.addItem(new Node("Darwin"))); // Duplicate
 
-        assertEquals(5, list.getRoot().getValue());
-        assertEquals(10, list.getRoot().next().getValue());
-        assertEquals(15, list.getRoot().next().next().getValue());
+        assertEquals("Brisbane", list.getRoot().getValue());
+        assertEquals("Darwin", list.getRoot().next().getValue());
+        assertEquals("Perth", list.getRoot().next().next().getValue());
     }
 
     @Test
     public void testRemoveItem() {
-        list.addItem(new Node(10));
-        list.addItem(new Node(5));
-        list.addItem(new Node(15));
+        list.addItem(new Node("Darwin"));
+        list.addItem(new Node("Brisbane"));
+        list.addItem(new Node("Perth"));
 
-        assertTrue(list.removeItem(new Node(10)));
-        assertEquals(5, list.getRoot().getValue());
-        assertEquals(15, list.getRoot().next().getValue());
+        assertEquals("Deleting item Darwin", list.removeItem(new Node("Darwin")));
+        assertEquals("Brisbane", list.getRoot().getValue());
+        assertEquals("Perth", list.getRoot().next().getValue());
 
-        assertTrue(list.removeItem(new Node(5)));
-        assertEquals(15, list.getRoot().getValue());
+        assertEquals("Deleting item Brisbane", list.removeItem(new Node("Brisbane")));
+        assertEquals("Perth", list.getRoot().getValue());
 
-        assertTrue(list.removeItem(new Node(15)));
+        assertEquals("Deleting item Perth", list.removeItem(new Node("Perth")));
         assertNull(list.getRoot());
+
+        assertNull(list.removeItem(new Node("NonExistent")));
     }
 
     @Test
     public void testTraverse() {
-        assertEquals("The list is empty", list.traverse());
+        assertEquals("The list is empty", list.traverse(list.getRoot()));
 
-        list.addItem(new Node(10));
-        list.addItem(new Node(5));
-        list.addItem(new Node(15));
+        list.addItem(new Node("Darwin"));
+        list.addItem(new Node("Brisbane"));
+        list.addItem(new Node("Perth"));
 
-        assertEquals("5 10 15", list.traverse());
+        String expected = "Brisbane" + "\n" +
+                          "Darwin" + "\n" +
+                          "Perth";
+        assertEquals(expected, list.traverse(list.getRoot()));
     }
 }

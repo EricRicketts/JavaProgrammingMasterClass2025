@@ -4,9 +4,9 @@ public interface NodeList {
 
     ListItem getRoot();
 
-    boolean addItem(ListItem item);
+    String addItem(ListItem item);
 
-    boolean removeItem(ListItem item);
+    String removeItem(ListItem item);
 
-    String traverse();
+    String traverse(ListItem root);
 }

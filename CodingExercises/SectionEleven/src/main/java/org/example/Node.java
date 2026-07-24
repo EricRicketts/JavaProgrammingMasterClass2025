@@ -32,14 +32,10 @@ public class Node extends ListItem {
 
     @Override
     int compareTo(ListItem listItem) {
-        int first = (int) this.getValue();
-        int second = (int) listItem.getValue();
-        if (first > second ) {
-            return 1;
-        } else if (first < second) {
-            return -1;
+        if (listItem != null) {
+            return ((String) super.getValue()).compareTo((String) listItem.getValue());
         } else {
-            return 0;
+            return -1;
         }
     }
 

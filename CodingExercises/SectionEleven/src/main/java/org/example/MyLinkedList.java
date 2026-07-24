@@ -14,11 +14,11 @@ public class MyLinkedList implements NodeList {
     }
 
     @Override
-    public boolean addItem(ListItem newItem) {
+    public String addItem(ListItem newItem) {
         if (this.root == null) {
             // The list was empty, so this item becomes the head of the list
             this.root = newItem;
-            return true;
+            return null;
         }
 
         ListItem currentItem = this.root;
@@ -31,7 +31,7 @@ public class MyLinkedList implements NodeList {
                 } else {
                     // there is no next, so insert at end of list
                     currentItem.setNext(newItem).setPrevious(currentItem);
-                    return true;
+                    return null;
                 }
             } else if (comparison > 0) {
                 // newItem is less insert before the current node
@@ -71,21 +71,21 @@ public class MyLinkedList implements NodeList {
                         this.root = newItem;
                     */
                 }
-                return true;
+                return null;
             } else {
                 // equal
-                System.out.println(newItem.getValue() + " is already present, not added.");
-                return false;
+                return newItem.getValue() + " is already present, not added.";
             }
         }
 
-        return false;
+        return null;
     }
 
     @Override
-    public boolean removeItem(ListItem item) {
+    public String removeItem(ListItem item) {
+        String message = null;
         if (item != null) {
-            System.out.println("Deleting item " + item.getValue());
+            message = "Deleting item " + item.getValue();
         }
 
         ListItem currentItem = this.root;
@@ -101,30 +101,29 @@ public class MyLinkedList implements NodeList {
                         currentItem.next().setPrevious(currentItem.previous());
                     }
                 }
-                return true;
+                return message;
             } else if (comparison < 0) {
                 currentItem = currentItem.next();
             } else { // comparison > 0
                 // We are at an item greater than the one to be deleted
                 // so the item is not in the list
-                return false;
+                return null;
             }
         }
 
         // We have reached the end of the list
-        return false;
+        return null;
     }
 
     @Override
-    public String traverse() {
-        if (this.root == null) {
+    public String traverse(ListItem root) {
+        if (root == null) {
             return "The list is empty";
         } else {
             StringBuilder sb = new StringBuilder();
-            ListItem currentItem = this.root;
-            while (currentItem != null) {
-                sb.append(currentItem.getValue()).append(" ");
-                currentItem = currentItem.next();
+            while (root != null) {
+                sb.append(root.getValue()).append("\n");
+                root = root.next();
             }
             return sb.toString().trim();
         }

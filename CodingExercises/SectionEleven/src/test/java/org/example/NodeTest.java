@@ -1,11 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NodeTest {
 
@@ -13,79 +10,42 @@ public class NodeTest {
 
     @BeforeEach
     public void setUp() {
-        node = new Node(0);
+        node = new Node("A");
     }
 
-    @Nested
-    @DisplayName("test get and set value")
-    class TestGetAndSetNodeValues {
-
-        @Test
-        public void testGetValue() {
-            assertEquals(0, node.getValue());
-        }
-
-        @Test
-        public void testSetValue() {
-            node.setValue(5);
-            assertEquals(5, node.getValue());
-        }
+    @Test
+    public void testGetValue() {
+        assertEquals("A", node.getValue());
     }
 
-    @Nested
-    @DisplayName("test set and get next")
-    class TestNodeSetAndGetNextNode {
-
-        @Test
-        public void testSetAndGetNextNode() {
-            Node nextNode = new Node(10);
-            Node expectedNextNode = new Node(10);
-            node.setNext(nextNode);
-
-            assertEquals(expectedNextNode, node.next());
-        }
+    @Test
+    public void testSetValue() {
+        node.setValue("B");
+        assertEquals("B", node.getValue());
     }
 
-    @Nested
-    @DisplayName("test set and get previous")
-    class TestNodeSetAndGetPreviousNode {
-
-        @Test
-        public void testSetAndGetPreviousNode() {
-            Node previousNode = new Node(15);
-            Node expectedPreviousNode = new Node(15);
-            node.setPrevious(previousNode);
-
-            assertEquals(expectedPreviousNode, node.previous());
-        }
+    @Test
+    public void testSetAndGetNextNode() {
+        Node nextNode = new Node("C");
+        node.setNext(nextNode);
+        assertEquals(nextNode, node.next());
     }
 
-    @Nested
-    @DisplayName("test compareTo method")
-    class TestCompareToMethod {
+    @Test
+    public void testSetAndGetPreviousNode() {
+        Node previousNode = new Node("D");
+        node.setPrevious(previousNode);
+        assertEquals(previousNode, node.previous());
+    }
 
-        @Test
-        public void testCompareToReturnsOne() {
-            Node firstNode = new Node(10);
-            Node secondNode = new Node(9);
+    @Test
+    public void testCompareTo() {
+        Node node1 = new Node("Apple");
+        Node node2 = new Node("Banana");
+        Node node3 = new Node("Apple");
 
-            assertEquals(1, firstNode.compareTo(secondNode));
-        }
-
-        @Test
-        public void testCompareToReturnsNegativeOne() {
-            Node firstNode = new Node(10);
-            Node secondNode = new Node(11);
-
-            assertEquals(-1, firstNode.compareTo(secondNode));
-        }
-
-        @Test
-        public void testCompareToReturnsZero() {
-            Node firstNode = new Node(10);
-            Node secondNode = new Node(10);
-
-            assertEquals(0, firstNode.compareTo(secondNode));
-        }
+        assertTrue(node1.compareTo(node2) < 0);
+        assertTrue(node2.compareTo(node1) > 0);
+        assertEquals(0, node1.compareTo(node3));
     }
 }
