@@ -38,4 +38,25 @@ public class UtilityLineTest {
             assertEquals(FIBER_OPTIC, utility.getType());
         }
     }
+
+    @Nested
+    @DisplayName("test UtilityLine setters")
+    class TestUtilityLineSetters {
+
+        @Test
+        public void testUtilityLineSetName() {
+            assertEquals("College Street", utility.getName());
+            utility.setName("Back Lane");
+
+            assertEquals("Back Lane", utility.getName());
+        }
+
+        @Test
+        public void testUtilityLineSetUtilityType() {
+            assertEquals(FIBER_OPTIC, utility.getType());
+            utility.setType(UtilityType.GAS);
+
+            assertEquals(GAS, utility.getType());
+        }
+    }
 }
