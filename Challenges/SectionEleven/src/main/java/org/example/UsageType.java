@@ -1,0 +1,5 @@
+package org.example;
+
+public enum UsageType {
+    CAFE, ENTERTAINMENT, FINANCE, GOVERNMENT, RESIDENTIAL, RESTAURANT, RETAIL, SPORTS;
+}
