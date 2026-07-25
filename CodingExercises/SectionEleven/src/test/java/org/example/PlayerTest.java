@@ -115,5 +115,4 @@ public class PlayerTest {
             assertEquals(expected, result);
         }
     }
-
 }
