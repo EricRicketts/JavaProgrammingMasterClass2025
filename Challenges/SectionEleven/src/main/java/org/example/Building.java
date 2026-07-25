@@ -26,7 +26,6 @@ public class Building implements Mappable {
         this.usage = usage;
     }
 
-
     @Override
     public String getLabel() {
         return this.name + " (" + this.usage + ")";
