@@ -51,4 +51,10 @@ public class Building implements Mappable {
             default -> Color.BLACK + " " + PointMarker.RECTANGLE;
         };
     }
+
+    @Override
+    public String toJSON() {
+        return Mappable.super.toJSON() + """
+            , "name": "%s", "usage": "%s"\s""".formatted(this.getName(), this.getUsage()).stripTrailing();
+    }
 }

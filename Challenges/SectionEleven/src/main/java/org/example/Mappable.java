@@ -18,6 +18,6 @@ public interface Mappable {
     default String toJSON() {
         return """
             "type": "%s", "label": "%s", "marker": "%s"\s"""
-            .formatted(this.getShape(), this.getLabel(), this.getMarker());
+            .formatted(this.getShape(), this.getLabel(), this.getMarker()).stripTrailing();
     }
 }

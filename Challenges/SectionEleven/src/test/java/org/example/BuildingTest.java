@@ -53,4 +53,20 @@ public class BuildingTest {
             assertEquals(RETAIL, building.getUsage());
         }
     }
+
+    @Nested
+    @DisplayName("test building toJSON")
+    class TestBuildingToJSON {
+
+        @Test
+        public void testBuildingToJSON() {
+            String expected = """
+                "properties": {"type": "POINT", "label": "Excelsior (FINANCE)",""" + " " +
+                """
+                "marker": "RED DIAMOND", "name": "Excelsior", "usage": "FINANCE"}""";
+            String result = Mappable.mapIt(building);
+
+            assertEquals(expected, result);
+        }
+    }
 }
