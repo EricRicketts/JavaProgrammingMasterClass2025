@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
@@ -86,6 +88,29 @@ public class PlayerTest {
         public void testPlayerToString() {
             String expected = "Player{name='Tom Bombadil', hitPoints=10, strength=50, weapon='Sword'}";
             String result = player.toString();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test player read and write")
+    class PlayerReadAndWrite {
+
+        @Test
+        public void testPlayerRead() {
+            player.read(List.of("Samwise Gamgee", "15", "35", "Sting"));
+
+            assertEquals("Samwise Gamgee", player.getName());
+            assertEquals(15, player.getHitPoints());
+            assertEquals(35, player.getStrength());
+            assertEquals("Sting", player.getWeapon());
+        }
+
+        @Test
+        public void testPlayerWrite() {
+            List<String> expected = List.of("Tom Bombadil", "10", "50", "Sword");
+            List<String> result = player.write();
 
             assertEquals(expected, result);
         }
