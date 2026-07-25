@@ -40,6 +40,12 @@ public class Monster implements ISaveable {
 
     @Override
     public void read(List<String> monsterFeatures) {
+        if (monsterFeatures == null) {
+            throw new NullPointerException("monster features cannot be null");
+        }
+        if (monsterFeatures.isEmpty()) {
+            throw new IllegalArgumentException("monster features list size must be greater than zero");
+        }
         String name = monsterFeatures.getFirst();
         int hitPoints = Integer.parseInt(monsterFeatures.get(1));
         int strength = Integer.parseInt(monsterFeatures.getLast());

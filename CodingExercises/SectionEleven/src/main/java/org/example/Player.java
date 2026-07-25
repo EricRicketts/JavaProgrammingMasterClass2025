@@ -63,6 +63,13 @@ public class Player implements ISaveable {
 
     @Override
     public void read(List<String> playerFeatures) {
+        if (playerFeatures == null) {
+            throw new NullPointerException("player features cannot be null");
+        }
+        if (playerFeatures.isEmpty()) {
+            throw new IllegalArgumentException("player features list size must be greater than zero");
+        }
+
         String name = playerFeatures.getFirst();
         int hitPoints = Integer.parseInt(playerFeatures.get(1));
         int strength = Integer.parseInt(playerFeatures.get(2));
