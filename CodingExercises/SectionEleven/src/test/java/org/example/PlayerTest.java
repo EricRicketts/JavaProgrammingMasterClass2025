@@ -78,4 +78,17 @@ public class PlayerTest {
         }
     }
 
+    @Nested
+    @DisplayName("test Player to string")
+    class TestPlayerToString {
+
+        @Test
+        public void testPlayerToString() {
+            String expected = "Player{name='Tom Bombadil', hitPoints=10, strength=50, weapon='Sword'}";
+            String result = player.toString();
+
+            assertEquals(expected, result);
+        }
+    }
+
 }
