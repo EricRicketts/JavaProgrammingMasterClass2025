@@ -63,4 +63,41 @@ public class BaseballTeamTest {
             assertEquals(expectedTeamMembers, currentTeamMembers);
         }
     }
+
+    @Nested
+    @DisplayName("test baseball team setters")
+    class TestBaseballTeamSetters {
+
+        @Test
+        public void testBaseballTeamSetTeamName() {
+            assertEquals("Houston Astros", baseballTeam.getTeamName());
+
+            baseballTeam.setTeamName("Los Angeles Dodgers");
+            assertEquals("Los Angeles Dodgers", baseballTeam.getTeamName());
+        }
+
+        @Test
+        public void testBaseballTeamSetTeamTotalWins() {
+            assertEquals(10, baseballTeam.getTotalWins());
+
+            baseballTeam.setTotalWins(15);
+            assertEquals(15, baseballTeam.getTotalWins());
+        }
+
+        @Test
+        public void testBaseballTeamSetTeamTotalLosses() {
+            assertEquals(4, baseballTeam.getTotalLosses());
+
+            baseballTeam.setTotalLosses(7);
+            assertEquals(7, baseballTeam.getTotalLosses());
+        }
+
+        @Test
+        public void testBaseballTeamSetTeamTotalTies() {
+            assertEquals(1, baseballTeam.getTotalTies());
+
+            baseballTeam.setTotalTies(3);
+            assertEquals(3, baseballTeam.getTotalTies());
+        }
+    }
 }
