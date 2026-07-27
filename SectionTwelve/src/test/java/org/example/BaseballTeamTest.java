@@ -128,4 +128,37 @@ public class BaseballTeamTest {
             assertEquals(expectedTeamMembers, teamMembers);
         }
     }
+
+    @Nested
+    @DisplayName("test baseball team ranking and scoring")
+    class TestBaseballTeamRankingAndScoring {
+
+        @Test
+        public void testBaseballTeamCurrentRanking() {
+            assertEquals(10, baseballTeam.ranking());
+        }
+
+        @Test
+        public void testBaseballRankingChangesAfterScoringLoss() {
+            assertEquals(10, baseballTeam.ranking());
+
+            String expected = "Lost";
+            String result = baseballTeam.setScore(3, 4);
+
+            assertEquals(expected, result);
+            assertEquals(12, baseballTeam.ranking());
+        }
+
+        @Test
+        public void testBaseballRankingChangesAfterScoringTie() {
+            assertEquals(10, baseballTeam.ranking());
+
+            String expected = "Tie";
+            String result = baseballTeam.setScore(5, 5);
+
+            assertEquals(expected, result);
+            assertEquals(11, baseballTeam.ranking());
+
+        }
+    }
 }
