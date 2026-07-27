@@ -100,4 +100,32 @@ public class BaseballTeamTest {
             assertEquals(3, baseballTeam.getTotalTies());
         }
     }
+
+    @Nested
+    @DisplayName("test add and list team members")
+    class TestAddAndListTeamMembers {
+
+        @Test
+        public void testAddTeamMember() {
+            BaseballPlayer expectedPlayer = new BaseballPlayer("Hank Aaron", "Right Field");
+            assertEquals(3, baseballTeam.getTeamMembers().size());
+            baseballTeam.addTeamMember(new BaseballPlayer("Hank Aaron", "Right Field"));
+
+            assertEquals(4, baseballTeam.getTeamMembers().size());
+            assertEquals(expectedPlayer, baseballTeam.getTeamMembers().getLast());
+        }
+
+        @Test
+        public void testListTeamMembers() {
+            String expectedTeamMembers = """
+                Houston Astros Roster:
+                Lou Gherig First Base
+                Babe Ruth Left Field
+                Willie Mays Center Field
+                """;
+            String teamMembers = baseballTeam.listTeamMembers();
+
+            assertEquals(expectedTeamMembers, teamMembers);
+        }
+    }
 }
