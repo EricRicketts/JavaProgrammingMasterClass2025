@@ -28,4 +28,12 @@ public class AffiliationTest {
     public void testGetAffiliationCountryCode() {
         assertEquals("30", affiliation.countryCode());
     }
+
+    @Test
+    public void testAffiliationToString() {
+        String expected = "Oasis (Sports in 30)";
+        String result = affiliation.toString();
+
+        assertEquals(expected, result);
+    }
 }
