@@ -194,4 +194,41 @@ public class TeamTest {
             assertEquals(4, soccerTeam.getTotalTies());
         }
     }
+
+    @Nested
+    @DisplayName("test add a team member and list team members for the baseball team")
+    class TestAddBaseballTeamMemberAndListBaseballTeamMembers {
+
+        @Test
+        public void testAddTeamMemberToBaseballTeam() {
+            BaseballPlayer player = new BaseballPlayer("Yogi Berra", "Catcher");
+            assertEquals(3, baseballTeam.getTeamMembers().size());
+            baseballTeam.addTeamMember(player);
+
+           assertEquals(4, baseballTeam.getTeamMembers().size());
+           assertEquals(player, baseballTeam.getTeamMembers().get(3));
+        }
+
+        @Test
+        public void testAddTeamMemberToBaseballTeamWhichExistsOnRoster() {
+            BaseballPlayer player = new BaseballPlayer("Babe Ruth", "Left Field");
+            assertEquals(3, baseballTeam.getTeamMembers().size());
+            baseballTeam.addTeamMember(player);
+
+            assertEquals(3, baseballTeam.getTeamMembers().size());
+        }
+
+        @Test
+        public void testListTeamMembersOfBaseballTeam() {
+            String expected = """
+                New York Yankees Roster:
+                Babe Ruth Left Field
+                Lou Gherig First Base
+                Joe DiMaggio Center Field
+                """;
+            String result = baseballTeam.listTeamMembers();
+
+            assertEquals(expected, result);
+        }
+    }
 }
