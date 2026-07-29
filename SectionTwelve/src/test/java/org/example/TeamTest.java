@@ -342,4 +342,35 @@ public class TeamTest {
             assertEquals("Tie", result);
         }
     }
+
+    @Nested
+    @DisplayName("test toString for both baseball and soccer teams")
+    class TestToStringBaseBallAndSoccerTeams {
+
+        @Test
+        public void testToStringBaseballTeam() {
+            String expected = """
+                 New York Yankees:
+                 ranking: 12
+                 Wins: 10
+                 Losses: 5
+                 Ties: 1""";
+            String result = baseballTeam.toString();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testToStringSoccerTeam() {
+            String expected = """
+                 Manchester United:
+                 ranking: 23
+                 Wins: 20
+                 Losses: 10
+                 Ties: 2""";
+            String result = soccerTeam.toString();
+
+            assertEquals(expected, result);
+        }
+    }
 }

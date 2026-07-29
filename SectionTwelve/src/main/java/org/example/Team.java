@@ -90,8 +90,8 @@ public class Team<T extends Player> {
     @Override
     public String toString() {
         StringBuilder teamRecord = new StringBuilder();
-        teamRecord = teamRecord.append(this.getTeamName()).append(": ")
-            .append(", ").append("ranking: ").append(this.ranking()).append("\n");
+        teamRecord = teamRecord.append(this.getTeamName()).append(":")
+            .append("\n").append("ranking: ").append(this.ranking()).append("\n");
         teamRecord = teamRecord.append("Wins: ").append(this.getTotalWins()).append("\n")
             .append("Losses: ").append(this.getTotalLosses()).append("\n")
             .append("Ties: ").append(this.getTotalTies());
