@@ -46,8 +46,9 @@ public class TeamTest {
             );
 
             baseballTeam.addTeamMember(currentBaseballPlayer);
-            soccerTeam.addTeamMember(currentSoccerPlayer);
             baseballPlayers.add(currentBaseballPlayer);
+            
+            soccerTeam.addTeamMember(currentSoccerPlayer);
             soccerPlayers.add(currentSoccerPlayer);
         }
 
