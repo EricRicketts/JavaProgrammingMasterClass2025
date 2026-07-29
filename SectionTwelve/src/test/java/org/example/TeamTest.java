@@ -268,4 +268,41 @@ public class TeamTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test ranking and set score for baseball team")
+    class TestRankingAndSetScoreForBaseballTeam {
+
+        @Test
+        public void testRankingForBaseballTeam() {
+            assertEquals(12, baseballTeam.ranking());
+        }
+
+        @Test
+        public void testSetScoreWinForBaseballTeam() {
+            assertEquals(10, baseballTeam.getTotalWins());
+            String result = baseballTeam.setScore(10, 9);
+
+            assertEquals(11, baseballTeam.getTotalWins());
+            assertEquals("Won", result);
+        }
+
+        @Test
+        public void testSetScoreLossForBaseballTeam() {
+            assertEquals(5, baseballTeam.getTotalLosses());
+            String result = baseballTeam.setScore(9, 10);
+
+            assertEquals(6, baseballTeam.getTotalLosses());
+            assertEquals("Lost", result);
+        }
+
+        @Test
+        public void testSetScoreTieForBaseballTeam() {
+            assertEquals(1, baseballTeam.getTotalTies());
+            String result = baseballTeam.setScore(9, 9);
+
+            assertEquals(2, baseballTeam.getTotalTies());
+            assertEquals("Tie", result);
+        }
+    }
 }
