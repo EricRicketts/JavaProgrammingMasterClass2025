@@ -231,4 +231,41 @@ public class TeamTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test add a team member and list team members for the soccer team")
+    class TestAddSoccerTeamMemberAndListSoccerTeamMembers {
+
+        @Test
+        public void testAddTeamMemberToSoccerTeam() {
+            SoccerPlayer player = new SoccerPlayer("Thierry Henry", "Center Forward");
+            assertEquals(3, soccerTeam.getTeamMembers().size());
+            soccerTeam.addTeamMember(player);
+
+            assertEquals(4, soccerTeam.getTeamMembers().size());
+            assertEquals(player, soccerTeam.getTeamMembers().get(3));
+        }
+
+        @Test
+        public void testAddTeamMemberToSoccerTeamWhichExistsOnRoster() {
+            SoccerPlayer player = new SoccerPlayer("Lionel Messi", "Right Wing");
+            assertEquals(3, soccerTeam.getTeamMembers().size());
+            soccerTeam.addTeamMember(player);
+
+            assertEquals(3, soccerTeam.getTeamMembers().size());
+        }
+
+        @Test
+        public void testListTeamMembersOfSoccerTeam() {
+            String expected = """
+                Manchester United Roster:
+                Lionel Messi Right Wing
+                Cristiano Ronaldo Center Forward
+                Diego Maradona Attacking Midfield
+                """;
+            String result = soccerTeam.listTeamMembers();
+
+            assertEquals(expected, result);
+        }
+    }
 }
