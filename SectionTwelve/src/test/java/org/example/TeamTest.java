@@ -127,4 +127,71 @@ public class TeamTest {
             assertEquals(2, baseballTeam.getTotalTies());
         }
     }
+
+    @Nested
+    @DisplayName("test getters for soccer team")
+    class TestGettersForSoccerTeam {
+
+        @Test
+        public void testTeamNameGetterForSoccerTeam() {
+            assertEquals("Manchester United", soccerTeam.getTeamName());
+        }
+
+        @Test
+        public void testTeamTotalWinsGetterForSoccerTeam() {
+            assertEquals(20, soccerTeam.getTotalWins());
+        }
+
+        @Test
+        public void testTeamTotalLossesGetterForSoccerTeam() {
+            assertEquals(10, soccerTeam.getTotalLosses());
+        }
+
+        @Test
+        public void testTeamTotalTiesGetterForSoccerTeam() {
+            assertEquals(2, soccerTeam.getTotalTies());
+        }
+
+        @Test
+        public void testTeamMembersGetterForSoccerTeam() {
+            assertEquals(soccerPlayers, soccerTeam.getTeamMembers());
+        }
+    }
+
+    @Nested
+    @DisplayName("test setters for soccer team")
+    class TestSettersForSoccerTeam {
+
+        @Test
+        public void testTeamNameSetterForSoccerTeam() {
+            assertEquals("Manchester United", soccerTeam.getTeamName());
+            soccerTeam.setTeamName("Real Madrid");
+
+            assertEquals("Real Madrid", soccerTeam.getTeamName());
+        }
+
+        @Test
+        public void testTeamTotalWinsSetterForSoccerTeam() {
+            assertEquals(20, soccerTeam.getTotalWins());
+            soccerTeam.setTotalWins(35);
+
+            assertEquals(35, soccerTeam.getTotalWins());
+        }
+
+        @Test
+        public void testTeamTotalLossesSetterForSoccerTeam() {
+            assertEquals(10, soccerTeam.getTotalLosses());
+            soccerTeam.setTotalLosses(15);
+
+            assertEquals(15, soccerTeam.getTotalLosses());
+        }
+
+        @Test
+        public void testTeamTotalTiesSetterForSoccerTeam() {
+            assertEquals(2, soccerTeam.getTotalTies());
+            soccerTeam.setTotalTies(4);
+
+            assertEquals(4, soccerTeam.getTotalTies());
+        }
+    }
 }
