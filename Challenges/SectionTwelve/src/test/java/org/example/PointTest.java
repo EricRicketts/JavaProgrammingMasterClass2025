@@ -49,7 +49,7 @@ public class PointTest {
 
             assertEquals(expected, result);
 
-            point.setX(new BigDecimal("23.123"));
+            point.setX(new BigDecimal("23.123"), 4);
             expected = new BigDecimal("23.1230");
             result = point.getX();
 
@@ -63,7 +63,7 @@ public class PointTest {
 
             assertEquals(expected, result);
 
-            point.setY(new BigDecimal("31.112"));
+            point.setY(new BigDecimal("31.112"), 4);
             expected = new BigDecimal("31.1120");
             result = point.getY();
 

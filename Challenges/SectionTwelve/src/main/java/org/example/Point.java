@@ -2,52 +2,42 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Point implements Mappable {
+public class Point implements Mappable<List<BigDecimal>> {
 
     private BigDecimal x;
     private BigDecimal y;
-    private int precision;
 
     public Point(BigDecimal x, BigDecimal y, int precision) {
-        this.precision = precision;
-        this.x = this.round(x);
-        this.y = this.round(y);
+        this.x = this.round(x, precision);
+        this.y = this.round(y, precision);
     }
 
     public BigDecimal getX() {
         return x;
     }
 
-    public void setX(BigDecimal x) {
-        this.x = this.round(x);
+    public void setX(BigDecimal x, int precision) {
+        this.x = this.round(x, precision);
     }
 
     public BigDecimal getY() {
         return y;
     }
 
-    public void setY(BigDecimal y) {
-        this.y = this.round(y);
+    public void setY(BigDecimal y, int precision) {
+        this.y = this.round(y, precision);
     }
 
-    public int getPrecision() {
-        return precision;
-    }
-
-    public void setPrecision(int precision) {
-        this.precision = precision;
-    }
-
-    private BigDecimal round(BigDecimal value) {
-        return value.setScale(this.getPrecision(), RoundingMode.HALF_UP);
+    private BigDecimal round(BigDecimal value, int precision) {
+        return value.setScale(precision, RoundingMode.HALF_UP);
     }
 
     @Override
     public List<BigDecimal> render() {
-        return new ArrayList<BigDecimal>(List.of(this.getX(), this.getY()));
+        return Arrays.asList(this.x, this.y);
     }
 
     @Override

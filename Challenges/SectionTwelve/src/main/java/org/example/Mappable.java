@@ -1,9 +1,6 @@
 package org.example;
 
-import java.math.BigDecimal;
-import java.util.List;
+public interface Mappable<T> {
 
-public interface Mappable {
-
-    List<BigDecimal> render();
+    T render();
 }
