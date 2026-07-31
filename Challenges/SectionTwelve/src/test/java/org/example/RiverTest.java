@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RiverTest {
 
     private River river;
+    private List<List<BigDecimal>> renderedRiver;
     private ArrayList<Point> points;
     private Point p1, p2, p3, p4;
 
@@ -44,6 +45,8 @@ public class RiverTest {
         points = new ArrayList<>(List.of(p1, p2, p3, p4));
 
         river = new River(points, 4, "Colorado", "River");
+
+        renderedRiver = river.render();
     }
 
     @Nested
@@ -121,6 +124,24 @@ public class RiverTest {
             river.addPoint(expectedPoint);
             assertEquals(5, river.getPoints().size());
             assertEquals(expectedPoint, river.getPoints().getLast());
+        }
+    }
+
+    @Nested
+    @DisplayName("test rendered river inherits Line render mehtod")
+    class TestRiverInheritsLineRenderMethod {
+
+        @Test
+        public void testRenderedRiverReturnsListOfPoints() {
+            List<List<BigDecimal>> expectedPoints = List.of(
+                p1.render(), p2.render(), p3.render(), p4.render());
+            assertEquals(expectedPoints, renderedRiver);
+        }
+
+        @Test
+        public void testRenderedRiverCanReturnAPoint() {
+            assertEquals(p2.getX(), renderedRiver.get(1).getFirst());
+            assertEquals(p2.getY(), renderedRiver.get(1).getLast());
         }
     }
 
