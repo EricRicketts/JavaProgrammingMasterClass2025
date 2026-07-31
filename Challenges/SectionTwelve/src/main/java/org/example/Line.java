@@ -38,11 +38,6 @@ public class Line implements Mappable<List<List<BigDecimal>>> {
         this.points.add(point);
     }
 
-    public Point getOnePoint(int index) {
-        if (index >= 0 && index < this.getPoints().size()) return points.get(index);
-        return null;
-    }
-
     @Override
     public List<List<BigDecimal>> render() {
         List<List<BigDecimal>> listOfPoints = new ArrayList<>();
@@ -50,5 +45,16 @@ public class Line implements Mappable<List<List<BigDecimal>>> {
             listOfPoints.add(point.render());
         }
             return listOfPoints;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder coordinates = new StringBuilder();
+        coordinates.append("[");
+        for (Point point : this.getPoints()) {
+            coordinates.append(point.toString()).append(", ");
+        }
+        coordinates.delete(coordinates.length() - 2, coordinates.length());
+        return coordinates.toString().concat("]");
     }
 }

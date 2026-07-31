@@ -77,4 +77,14 @@ public class LineTest {
         assertEquals(new BigDecimal("3.4568"), rendered.get(1).get(0));
         assertEquals(new BigDecimal("4.5678"), rendered.get(1).get(1));
     }
+
+    @Test
+    public void testGetLinePrecision() {
+        Point p1 = new Point(new BigDecimal("1.234567"), new BigDecimal("2.345678"), 5);
+        Point p2 = new Point(new BigDecimal("3.456789"), new BigDecimal("4.567812"), 5);
+
+        Line line = new Line(new ArrayList<>(List.of(p1, p2)), 4);
+
+        assertEquals(4, line.getPrecision());
+    }
 }
