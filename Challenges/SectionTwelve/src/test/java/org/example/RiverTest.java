@@ -16,25 +16,26 @@ public class RiverTest {
 
     private River river;
     private ArrayList<Point> points;
+    private Point p1, p2, p3, p4;
 
     @BeforeEach
     public void setUp() {
-        Point p1 = new Point(
+        p1 = new Point(
             new BigDecimal("47.470847"),
             new BigDecimal("-105.828641"),
             5
         );
-        Point p2 = new Point(
+        p2 = new Point(
             new BigDecimal("36.101589"),
             new BigDecimal("-112.089256"),
             5
         );
-        Point p3 = new Point(
+        p3 = new Point(
             new BigDecimal("34.296438"),
             new BigDecimal("-114.114835"),
             5
         );
-        Point p4 = new Point(
+        p4 = new Point(
             new BigDecimal("31.781149"),
             new BigDecimal("-114.772412"),
             5
@@ -93,6 +94,33 @@ public class RiverTest {
             String result = river.toString();
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test River get points and add point to river")
+    class TestGetRiverPointsAndAddPointToRiver {
+
+        @Test
+        public void testGetRiverPoints() {
+            List<Point> expectedPoints = List.of(p1, p2, p3, p4);
+            List<Point> resultantPoints = river.getPoints();
+
+            assertEquals(expectedPoints, resultantPoints);
+        }
+
+        @Test
+        public void testRiverAddPoint() {
+            Point expectedPoint = new Point(
+                new BigDecimal("45.123456"),
+                new BigDecimal("56.789012"),
+                5
+            );
+            assertEquals(4, river.getPoints().size());
+
+            river.addPoint(expectedPoint);
+            assertEquals(5, river.getPoints().size());
+            assertEquals(expectedPoint, river.getPoints().getLast());
         }
     }
 
