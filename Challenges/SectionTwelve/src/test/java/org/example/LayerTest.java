@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LayerTest {
 
-    private Layer<Park> pointLayer;
+    private Layer<Park> parkLayer;
     private Layer<River> riverLayer;
     private Point p1, p2, p3, p4, p5, p6, p7, p8, p9;
 
@@ -84,7 +84,7 @@ public class LayerTest {
         Park yellowstone = new Park("Yellowstone", "National Park", p8.getX(), p8.getY(), 4);
         Park yosemite = new Park("Yosemite", "National Park", p9.getX(), p9.getY(), 4);
 
-        pointLayer = new Layer<Park>(new ArrayList<>(List.of(yellowstone, yosemite)));
+        parkLayer = new Layer<Park>(new ArrayList<>(List.of(yellowstone, yosemite)));
     }
 
     @Nested
@@ -177,6 +177,53 @@ public class LayerTest {
             expectedMississippiRiverCoordinates.add(p3Coordinates);
 
             assertEquals(expectedMississippiRiverCoordinates, mississippiRiverCoordinates);
+        }
+    }
+
+    @Nested
+    @DisplayName("test render the two parks")
+    class TestGetNameAndTypeOfParksAndRenderParkLayers {
+
+        @Test
+        public void testGetFirstParkNameAndType() {
+            assertEquals("Yellowstone", parkLayer.getListOfElements().getFirst().getName());
+            assertEquals("National Park", parkLayer.getListOfElements().getFirst().getType());
+        }
+
+        @Test
+        public void testGetSecondParkNameAndType() {
+            assertEquals("Yosemite", parkLayer.getListOfElements().getLast().getName());
+            assertEquals("National Park", parkLayer.getListOfElements().getLast().getType());
+        }
+
+        @Test
+        public void testRenderFirstPark() {
+            Park yellowstoneNationalPark = parkLayer.getListOfElements().getFirst();
+            List<BigDecimal> yellowstoneNationalParkCoordinates = yellowstoneNationalPark.render();
+
+            List<BigDecimal> expectedYellowstoneNationalParkCoordinates =
+                new ArrayList<>(List.of(
+                    new BigDecimal("44.4882"),
+                    new BigDecimal("-110.5916")
+                    )
+                );
+
+            assertEquals(expectedYellowstoneNationalParkCoordinates, yellowstoneNationalParkCoordinates);
+        }
+
+        @Test
+        public void testRenderSecondPark() {
+            Park yosemiteNationalPark = parkLayer.getListOfElements().getLast();
+            List<BigDecimal> yosemiteNationalParkCoordinates = yosemiteNationalPark.render();
+
+            List<BigDecimal> expectedYosemiteNationalParkCoordinates =
+                new ArrayList<>(List.of(
+                    new BigDecimal("37.8856"),
+                    new BigDecimal("-119.5361")
+                    )
+                );
+
+            assertEquals(expectedYosemiteNationalParkCoordinates, yosemiteNationalParkCoordinates);
         }
     }
 }
