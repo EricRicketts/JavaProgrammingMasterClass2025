@@ -47,7 +47,7 @@ public class LineTest {
         
         // If we set a new coordinate via Line (indirectly or directly if we had a method)
         // But here we test that setPrecision re-rounds existing points.
-        // Let's test with a value that has more decimals but was rounded down.
+        // Let's test a value that has more decimals but was rounded down.
         p1.setX(new BigDecimal("1.23456"), 4); 
         assertEquals(new BigDecimal("1.2346"), p1.getX());
     }

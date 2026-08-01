@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,14 +96,43 @@ public class LayerTest {
             River coloradoRiver = riverLayer.getListOfElements().getFirst();
 
             assertEquals("Colorado", coloradoRiver.getName());
-            assertEquals("Type", coloradoRiver.getType());
+            assertEquals("River", coloradoRiver.getType());
         }
 
         @Test
-        public void testFirstRiverLayerGetFirstPoint() {
+        public void testFirstRiverLayerGetNumberOfPoints() {
             River coloradoRiver = riverLayer.getListOfElements().getFirst();
 
             assertEquals(4, coloradoRiver.getPoints().size());
+        }
+
+        @Test
+        public void testRenderFirstRiver() {
+            River coloradoRiver = riverLayer.getListOfElements().getFirst();
+            List<List<BigDecimal>> coloradoRiverCoordinates = coloradoRiver.render();
+            List<List<BigDecimal>> expectedColoradoRiverCoordinates = new ArrayList<>();
+
+            List<BigDecimal> p1Coordinates = new ArrayList<>(
+                List.of(new BigDecimal("47.4709"), new BigDecimal("-105.8286"))
+            );
+            expectedColoradoRiverCoordinates.add(p1Coordinates);
+
+            List<BigDecimal> p2Coordinates = new ArrayList<>(
+                List.of(new BigDecimal("36.1016"), new BigDecimal("-112.0893"))
+            );
+            expectedColoradoRiverCoordinates.add(p2Coordinates);
+
+            List<BigDecimal> p3Coordinates = new ArrayList<>(
+                List.of(new BigDecimal("34.2964"), new BigDecimal("-114.1148"))
+            );
+            expectedColoradoRiverCoordinates.add(p3Coordinates);
+
+            List<BigDecimal> p4Coordinates = new ArrayList(
+                List.of(new BigDecimal("31.7812"), new BigDecimal("-114.7724"))
+            );
+            expectedColoradoRiverCoordinates.add(p4Coordinates);
+
+            assertEquals(expectedColoradoRiverCoordinates, coloradoRiverCoordinates);
         }
     }
 }
