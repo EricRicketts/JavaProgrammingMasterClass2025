@@ -1,14 +1,19 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class LayerTest {
 
-    private Layer<Point> pointLayer;
+    private Layer<Park> pointLayer;
     private Layer<River> riverLayer;
     private Point p1, p2, p3, p4, p5, p6, p7, p8, p9;
 
@@ -38,7 +43,6 @@ public class LayerTest {
 
         ArrayList<Point> coloradoRiverPoints = new ArrayList<>(List.of(p1, p2, p3, p4));
         River coloradoRiver = new River(coloradoRiverPoints, 4, "Colorado", "River");
-        riverLayer.addElement(coloradoRiver);
 
         // Points p5 through p7 designate the Mississippi River.
         p5 = new Point(
@@ -59,7 +63,8 @@ public class LayerTest {
 
         ArrayList<Point> mississippiRiverPoints = new ArrayList<>(List.of(p5, p6, p7));
         River mississippiRiver = new River(mississippiRiverPoints, 4, "Mississippi", "River");
-        riverLayer.addElement(mississippiRiver);
+
+        riverLayer = new Layer<River>(new ArrayList<>(List.of(coloradoRiver, mississippiRiver)));
 
         // Point p8 is for Yellowstone National Park.
         p8 = new Point(
@@ -68,8 +73,6 @@ public class LayerTest {
             5
         );
 
-        pointLayer.addElement(new Park("Yellowstone", "National Park", p8.getX(), p8.getY(), 4));
-
         // Point p9 is for Yosemite National Park.
         p9 = new Point(
             new BigDecimal("37.885555"),
@@ -77,6 +80,29 @@ public class LayerTest {
             5
         );
 
-        pointLayer.addElement(new Park("Yosemite", "National Park", p9.getX(), p9.getY(), 4));
+        Park yellowstone = new Park("Yellowstone", "National Park", p8.getX(), p8.getY(), 4);
+        Park yosemite = new Park("Yosemite", "National Park", p9.getX(), p9.getY(), 4);
+
+        pointLayer = new Layer<Park>(new ArrayList<>(List.of(yellowstone, yosemite)));
+    }
+
+    @Nested
+    @DisplayName("test first river Layer")
+    class TestFirstRiverLayer {
+
+        @Test
+        public void testFirstRiverOfRiverLayerGetNameAndType() {
+            River coloradoRiver = riverLayer.getListOfElements().getFirst();
+
+            assertEquals("Colorado", coloradoRiver.getName());
+            assertEquals("Type", coloradoRiver.getType());
+        }
+
+        @Test
+        public void testFirstRiverLayerGetFirstPoint() {
+            River coloradoRiver = riverLayer.getListOfElements().getFirst();
+
+            assertEquals(4, coloradoRiver.getPoints().size());
+        }
     }
 }
