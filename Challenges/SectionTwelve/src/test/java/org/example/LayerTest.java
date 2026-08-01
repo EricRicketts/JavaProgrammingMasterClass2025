@@ -135,4 +135,48 @@ public class LayerTest {
             assertEquals(expectedColoradoRiverCoordinates, coloradoRiverCoordinates);
         }
     }
+
+    @Nested
+    @DisplayName("test second river Layer")
+    class TestSecondRiverLayer {
+
+        @Test
+        public void testSecondRiverOfRiverLayerGetNameAndType() {
+            River mississippiRiver = riverLayer.getListOfElements().getLast();
+
+            assertEquals("Mississippi", mississippiRiver.getName());
+            assertEquals("River", mississippiRiver.getType());
+        }
+
+        @Test
+        public void testSecondRiverLayerGetNumberOfPoints() {
+            River mississippiRiver = riverLayer.getListOfElements().getLast();
+
+            assertEquals(3, mississippiRiver.getPoints().size());
+        }
+
+        @Test
+        public void testRenderSecondRiver() {
+            River mississippiRiver = riverLayer.getListOfElements().getLast();
+            List<List<BigDecimal>> mississippiRiverCoordinates = mississippiRiver.render();
+            List<List<BigDecimal>> expectedMississippiRiverCoordinates = new ArrayList<>();
+
+            List<BigDecimal> p1Coordinates = new ArrayList<>(
+                List.of(new BigDecimal("47.2161"), new BigDecimal("-95.2348"))
+            );
+            expectedMississippiRiverCoordinates.add(p1Coordinates);
+
+            List<BigDecimal> p2Coordinates = new ArrayList<>(
+                List.of(new BigDecimal("35.1156"), new BigDecimal("-90.0660"))
+            );
+            expectedMississippiRiverCoordinates.add(p2Coordinates);
+
+            List<BigDecimal> p3Coordinates = new ArrayList<>(
+                List.of(new BigDecimal("29.1566"), new BigDecimal("-89.2496"))
+            );
+            expectedMississippiRiverCoordinates.add(p3Coordinates);
+
+            assertEquals(expectedMississippiRiverCoordinates, mississippiRiverCoordinates);
+        }
+    }
 }
