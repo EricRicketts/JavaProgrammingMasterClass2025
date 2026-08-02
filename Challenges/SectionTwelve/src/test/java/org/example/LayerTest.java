@@ -226,4 +226,24 @@ public class LayerTest {
             assertEquals(expectedYosemiteNationalParkCoordinates, yosemiteNationalParkCoordinates);
         }
     }
+
+    @Nested
+    @DisplayName("test river layers toString")
+    class TestRiverLayersToString {
+
+        @Test
+        public void testFirstRiverLayerToString() {
+            River coloradoRiver = riverLayer.getListOfElements().getFirst();
+            String coloradoRiverString = coloradoRiver.toString();
+
+            String expectedColoradoRiverString = "Colorado (River) [" +
+                "[47.4709, -105.8286], " +
+                "[36.1016, -112.0893], " +
+                "[34.2964, -114.1148], " +
+                "[31.7812, -114.7724]" +
+                "]";
+
+                assertEquals(expectedColoradoRiverString, coloradoRiverString);
+        }
+    }
 }
