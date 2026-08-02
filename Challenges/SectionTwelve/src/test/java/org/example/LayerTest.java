@@ -245,5 +245,19 @@ public class LayerTest {
 
                 assertEquals(expectedColoradoRiverString, coloradoRiverString);
         }
+
+        @Test
+        public void testSecondRiverLayerToString() {
+            River mississippiRiver = riverLayer.getListOfElements().getLast();
+            String mississippiRiverString = mississippiRiver.toString();
+
+            String expectedMississippiRiverString = "Mississippi (River) [" +
+                "[47.2161, -95.2348], " +
+                "[35.1156, -90.0660], " +
+                "[29.1566, -89.2496]" +
+                "]";
+
+            assertEquals(expectedMississippiRiverString, mississippiRiverString);
+        }
     }
 }
