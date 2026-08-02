@@ -260,4 +260,31 @@ public class LayerTest {
             assertEquals(expectedMississippiRiverString, mississippiRiverString);
         }
     }
+
+    @Nested
+    @DisplayName("test park layers toString")
+    class TestParkLayersToString {
+
+        @Test
+        public void testFirstParkLayerToString() {
+            Park yellowstoneNationalPark = parkLayer.getListOfElements().getFirst();
+            String yellowstoneNationalParkString = yellowstoneNationalPark.toString();
+
+            String expectedYellowstoneNationalParkString = "Yellowstone (National Park) " +
+                "[44.4882, -110.5916]";
+
+            assertEquals(expectedYellowstoneNationalParkString, yellowstoneNationalParkString);
+        }
+
+        @Test
+        public void testSecondParkLayerToString() {
+            Park yosemiteNationalPark = parkLayer.getListOfElements().getLast();
+            String yosemiteNationalParkString = yosemiteNationalPark.toString();
+
+            String expectedYosemiteNationalParkString = "Yosemite (National Park) " +
+                "[37.8856, -119.5361]";
+
+            assertEquals(expectedYosemiteNationalParkString, yosemiteNationalParkString);
+        }
+    }
 }
