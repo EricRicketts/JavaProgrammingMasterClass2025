@@ -3,6 +3,11 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StudentTest {
@@ -51,5 +56,13 @@ public class StudentTest {
         int expectedResult = -1;
 
         assertEquals(expectedResult, compareResult);
+    }
+
+    @Test
+    public void testSortStudents() {
+        Student[] unsortedStudents = new Student[]{students[2], students[1], students[0]};
+        Arrays.sort(unsortedStudents);
+
+        assertArrayEquals(students, unsortedStudents);
     }
 }
