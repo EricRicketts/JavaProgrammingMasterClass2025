@@ -3,8 +3,10 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LPAStudentTest {
@@ -39,5 +41,22 @@ public class LPAStudentTest {
         int studentYearStartedCourse = lpaStudent.getYearStarted();
 
         assertTrue(studentYearStartedCourse >= 2018 && studentYearStartedCourse <= 2025);
+    }
+
+    @Test
+    public void testGetCoursePercentComplete() {
+        int firstComparisonResult = lpaStudent.getPercentComplete().compareTo(new BigDecimal("0.00"));
+        assertTrue(firstComparisonResult == 0 || firstComparisonResult > 0);
+
+        int secondComparisonResult = lpaStudent.getPercentComplete().compareTo(new BigDecimal("100.001"));
+        assertTrue(secondComparisonResult < 0);
+    }
+
+    @Test
+    public void testSetCourseComplete() {
+        BigDecimal percentComplete = new BigDecimal("45.67");
+        lpaStudent.setPercentComplete(percentComplete);
+
+        assertEquals(percentComplete, lpaStudent.getPercentComplete());
     }
 }
