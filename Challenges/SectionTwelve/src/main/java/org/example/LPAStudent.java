@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 public class LPAStudent extends ThirdStudent {
@@ -9,7 +10,8 @@ public class LPAStudent extends ThirdStudent {
 
     public LPAStudent() {
         Random random = new Random();
-        this.percentComplete = BigDecimal.valueOf(random.nextDouble(0, 100.001));
+        this.percentComplete = new BigDecimal(
+            random.nextDouble(0.00, 100.001)).setScale(2, RoundingMode.HALF_UP);
     }
 
     public BigDecimal getPercentComplete() {
@@ -22,6 +24,6 @@ public class LPAStudent extends ThirdStudent {
 
     @Override
     public String toString() {
-        return "%s %8.1f%%".formatted(super.toString(), this.getPercentComplete());
+        return "%s %8.2f%%".formatted(super.toString(), this.getPercentComplete());
     }
 }

@@ -59,4 +59,15 @@ public class LPAStudentTest {
 
         assertEquals(percentComplete, lpaStudent.getPercentComplete());
     }
+
+    @Test
+    public void testPercentCompleteInToString() {
+        String LPAStudentString = lpaStudent.toString();
+        String[] LPAStudentSplitString = LPAStudentString.split("\\s+");
+        int lengthOfString = LPAStudentSplitString.length;
+        String percentCompleteStringWithPercentageSymbol = LPAStudentSplitString[lengthOfString - 1];
+        String percentCompleteString = percentCompleteStringWithPercentageSymbol.substring(0, lengthOfString - 1);
+        double percentComplete = Double.parseDouble(percentCompleteString);
+        assertTrue(percentComplete >= 0.00 && percentComplete <= 100.00);
+    }
 }
