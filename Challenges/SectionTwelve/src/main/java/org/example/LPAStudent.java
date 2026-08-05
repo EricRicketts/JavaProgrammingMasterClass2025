@@ -28,18 +28,12 @@ public class LPAStudent extends ThirdStudent {
         return "%s %8.2f%%".formatted(super.toString(), this.getPercentComplete());
     }
 
-    public <T extends ThirdStudent> String printList(List<T> students) {
-        // Above generic means I can pass any collection of ThirdStudent or LPAStudent.
-        return printMoreList(students);
-    }
-
-    public static String printMoreList(List<? extends ThirdStudent> students) {
+    public static String printMoreLists(List<? extends ThirdStudent> students) {
         // Above generic means I can pass any collection of ThirdStudent or LPAStudent.
         StringBuilder sb = new StringBuilder();
         for (var student : students) {
             sb.append(student.getYearStarted()).append(": ").append(student).append("\n");
         }
-        sb.delete(0, sb.length());
         return sb.toString();
     }
 }

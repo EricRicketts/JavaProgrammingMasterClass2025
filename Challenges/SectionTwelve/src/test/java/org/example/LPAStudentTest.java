@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -69,5 +71,24 @@ public class LPAStudentTest {
         String percentCompleteString = percentCompleteStringWithPercentageSymbol.substring(0, lengthOfString - 1);
         double percentComplete = Double.parseDouble(percentCompleteString);
         assertTrue(percentComplete >= 0.00 && percentComplete <= 100.00);
+    }
+
+    @Test
+    public void testPrintMoreLists() {
+        ThirdStudent thirdStudent = new ThirdStudent();
+        // I can do this because LPAStudent is a subtype of Student.
+        List<ThirdStudent> students = new ArrayList<>(List.of(thirdStudent, lpaStudent));
+        String printStudents = LPAStudent.printMoreLists(students);
+
+        String[] studentData = printStudents.split("\\s+");
+
+        // Limited checking on this method test as the prior testing has verified the methods on ThirdStudent and
+        // LPAStudent.
+        
+        String firstName = studentData[1];
+        assertTrue(Arrays.asList(LPAStudent.getFirstNames()).contains(firstName));
+
+        String getPercentComplete = studentData[studentData.length - 1];
+        assertTrue(getPercentComplete.contains("%"));
     }
 }
