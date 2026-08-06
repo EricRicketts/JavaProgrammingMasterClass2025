@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Random;
 
-public class LPAStudent extends ThirdStudent {
+public class LPAStudent extends ThirdStudent implements QueryItem {
 
     private BigDecimal percentComplete;
 
@@ -35,5 +35,16 @@ public class LPAStudent extends ThirdStudent {
             sb.append(student.getYearStarted()).append(": ").append(student).append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean matchFieldValue(String fieldName, String value) {
+        String localFieldName = fieldName.toUpperCase();
+        return switch (localFieldName) {
+            case "NAME" -> this.getName().equalsIgnoreCase(value);
+            case "COURSE" -> this.getCourse().equalsIgnoreCase(value);
+            case "YEARSTARTED" -> this.getYearStarted() == Integer.parseInt(value);
+            default -> false;
+        };
     }
 }

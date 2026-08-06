@@ -84,7 +84,7 @@ public class LPAStudentTest {
 
         // Limited checking on this method test as the prior testing has verified the methods on ThirdStudent and
         // LPAStudent.
-        
+
         String firstName = studentData[1];
         assertTrue(Arrays.asList(LPAStudent.getFirstNames()).contains(firstName));
 
