@@ -41,7 +41,7 @@ public class LPAStudent extends ThirdStudent implements QueryItem {
     public boolean matchFieldValue(String fieldName, String value) {
         String localFieldName = fieldName.toUpperCase();
         return switch (localFieldName) {
-            case "NAME" -> this.getName().equalsIgnoreCase(value);
+            case "NAME" -> this.getName().split("\\s+")[0].equalsIgnoreCase(value);
             case "COURSE" -> this.getCourse().equalsIgnoreCase(value);
             case "YEARSTARTED" -> this.getYearStarted() == Integer.parseInt(value);
             default -> false;
