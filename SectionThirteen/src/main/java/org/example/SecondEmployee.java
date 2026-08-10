@@ -2,24 +2,50 @@ package org.example;
 
 import java.util.Comparator;
 
-import static org.example.SecondEmployeeComparator.originalSecondMethod;
-
 public class SecondEmployee {
 
     public static class SecondEmployeeComparator <T extends SecondEmployee>
         implements Comparator<SecondEmployee> {
 
-        @Override
-        public int compare(SecondEmployee o1, SecondEmployee o2) {
-            return originalCompare(o1, o2);
+        private String sortType;
+
+        public SecondEmployeeComparator(String sortType) {
+            this.sortType = sortType;
         }
 
-        static int originalCompare(SecondEmployee o1, SecondEmployee o2) {
-            return originalSecondMethod(
-                o1.getName(), o2.getName(),
-                o1.getEmployeeId(), o2.getEmployeeId(),
-                o1.getYearStarted(), o2.getYearStarted(),
-                o1, o2);
+        public SecondEmployeeComparator() {
+            this("name");
+        }
+
+        public String getSortType() {
+            return sortType;
+        }
+
+        public void setSortType(String sortType) {
+            this.sortType = sortType;
+        }
+
+        @Override
+        public int compare(SecondEmployee o1, SecondEmployee o2) {
+            if (this.getSortType().equalsIgnoreCase("name")) {
+                int compareEmployeeNames = o1.getName().compareTo(o2.getName());
+                if (compareEmployeeNames != 0) {
+                    return compareEmployeeNames;
+                }
+            }
+            if (this.getSortType().equalsIgnoreCase("employeeId")) {
+                int compareEmployeeIds = o1.getEmployeeId() - o2.getEmployeeId();
+                if (compareEmployeeIds != 0) {
+                    return compareEmployeeIds;
+                }
+            }
+            if (this.getSortType().equalsIgnoreCase("yearStarted")) {
+                int compareEmployeeYearStarted = o1.getYearStarted() - o2.getYearStarted();
+                if (compareEmployeeYearStarted != 0) {
+                    return compareEmployeeYearStarted;
+                }
+            }
+            return 0;
         }
     }
     private int employeeId;
