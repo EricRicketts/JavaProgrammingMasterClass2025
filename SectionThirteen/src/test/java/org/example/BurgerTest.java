@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BurgerTest {
@@ -13,7 +15,11 @@ public class BurgerTest {
 
     @BeforeEach
     public void setUp() {
-        burger = new Burger(BurgerMeatType.GROUND_HAMBURGER, BurgerSize.MEDIUM);
+        burger = new Burger(
+            BurgerMeatType.GROUND_HAMBURGER,
+            BurgerSize.MEDIUM,
+            new BigDecimal("2.55")
+        );
     }
 
     @Nested
@@ -49,6 +55,24 @@ public class BurgerTest {
 
             burger.setSize(BurgerSize.LARGE);
             assertEquals(BurgerSize.LARGE, burger.getSize());
+        }
+    }
+
+    @Nested
+    @DisplayName("test get and set burger price")
+    class TestGetAndSetBurgerPrice {
+
+        @Test
+        public void testGetBurgerPrice() {
+            assertEquals(new BigDecimal("2.55"), burger.getPrice());
+        }
+
+        @Test
+        public void testSetBurgerPrice() {
+            assertEquals(new BigDecimal("2.55"), burger.getPrice());
+
+            burger.setPrice(new BigDecimal("3.45"));
+            assertEquals(new BigDecimal("3.45"), burger.getPrice());
         }
     }
 

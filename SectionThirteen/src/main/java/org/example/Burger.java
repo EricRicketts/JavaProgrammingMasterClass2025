@@ -1,12 +1,16 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 public class Burger {
 
     private BurgerMeatType meatType;
     private BurgerSize size;
-    public Burger(BurgerMeatType meatType, BurgerSize size) {
+    private BigDecimal price;
+    public Burger(BurgerMeatType meatType, BurgerSize size, BigDecimal price) {
         this.meatType = meatType;
         this.size = size;
+        this.price = price;
     }
 
     public BurgerMeatType getMeatType() {
@@ -23,6 +27,14 @@ public class Burger {
 
     public void setSize(BurgerSize size) {
         this.size = size;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override
