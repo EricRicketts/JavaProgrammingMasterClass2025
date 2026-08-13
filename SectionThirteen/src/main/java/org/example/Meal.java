@@ -8,8 +8,8 @@ public class Meal {
 
     private BigDecimal price;
     private Burger burger;
-    private Item drink;
-    private Item side;
+    private Drink drink;
+    private Side side;
     private List<Topping> toppings;
     private BigDecimal conversionRate;
 
@@ -21,27 +21,19 @@ public class Meal {
         this.burger = burger;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public Drink getDrink() {
+        return this.drink;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Item getDrink() {
-        return drink;
-    }
-
-    public void setDrink(Item drink) {
+    public void setDrink(Drink drink) {
         this.drink = drink;
     }
 
-    public Item getSide() {
-        return side;
+    private Side getSide() {
+        return this.side;
     }
 
-    public void setSide(Item side) {
+    public void setSide(Side side) {
         this.side = side;
     }
 
@@ -70,12 +62,12 @@ public class Meal {
         this.burger = new Burger(BurgerMeatType.ROUND,
             BurgerSize.MEDIUM, new BigDecimal("2.55")
         );
-        this.drink = new Item("Coke", "Medium", new BigDecimal("1.50"));
-        this.side = new Item("Fries", "Small", new BigDecimal("2.00"));
+        this.drink = Drink.COKE_MEDIUM;
+        this.side = Side.FRIES_MEDIUM;
         this.toppings = new ArrayList<>();
     }
 
-    public BigDecimal getTotal() {
+    public BigDecimal getTotalPrice() {
         BigDecimal total = this.getBurger().getPrice()
             .add(this.getDrink().getPrice())
             .add(this.getSide().getPrice());
@@ -87,42 +79,6 @@ public class Meal {
         return "%s%n%s%n%s%n26s$%.2f".formatted(burger,
             drink,
             side,
-            "Total Due: ", getTotal());
-    }
-
-    private class Item {
-        private String name;
-        private String type;
-        private BigDecimal price;
-
-        public Item(String name, String type) {
-            // The last argument is a statement for price.  Note the inner class can access
-            //  an attribute of the outer class directly; it does not need to call the
-            // getter getBase().
-            this(name, type, type.equals("burger") ? Meal.this.price : new BigDecimal("0.00"));
-        }
-
-        public Item(String name, String type, BigDecimal price) {
-            this.name = name;
-            this.type = type;
-            this.price = price;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public BigDecimal getPrice() {
-            return price;
-        }
-
-        @Override
-        public String toString() {
-            return "%10s%15s $%.2f".formatted(type, name, price);
-        }
+            "Total Due: ", getTotalPrice());
     }
 }
