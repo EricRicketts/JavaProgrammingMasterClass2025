@@ -1,6 +1,8 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Meal {
 
@@ -8,6 +10,7 @@ public class Meal {
     private Burger burger;
     private Item drink;
     private Item side;
+    private List<Topping> toppings;
     private BigDecimal conversionRate;
 
     public Burger getBurger() {
@@ -42,6 +45,14 @@ public class Meal {
         this.side = side;
     }
 
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+    public void setToppings(List<Topping> toppings) {
+        this.toppings = toppings;
+    }
+
     public BigDecimal getConversionRate() {
         return conversionRate;
     }
@@ -61,6 +72,7 @@ public class Meal {
         );
         this.drink = new Item("Coke", "Medium", new BigDecimal("1.50"));
         this.side = new Item("Fries", "Small", new BigDecimal("2.00"));
+        this.toppings = new ArrayList<>();
     }
 
     public BigDecimal getTotal() {
