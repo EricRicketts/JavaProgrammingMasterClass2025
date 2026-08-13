@@ -29,7 +29,7 @@ public class Meal {
         this.drink = drink;
     }
 
-    private Side getSide() {
+    public Side getSide() {
         return this.side;
     }
 

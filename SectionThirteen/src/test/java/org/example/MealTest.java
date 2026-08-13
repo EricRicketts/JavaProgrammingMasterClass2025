@@ -75,6 +75,7 @@ public class MealTest {
         @Test
         public void testFirstMealGetDrink() {
             assertEquals(Drink.COKE_MEDIUM, firstMeal.getDrink());
+
             assertEquals("Coke", firstMeal.getDrink().getName());
             assertEquals("Medium", firstMeal.getDrink().getType());
             assertEquals(new BigDecimal("2.59"), firstMeal.getDrink().getPrice());
@@ -90,6 +91,31 @@ public class MealTest {
             assertEquals("Pepsi", firstMeal.getDrink().getName());
             assertEquals("Large", firstMeal.getDrink().getType());
             assertEquals(new BigDecimal("3.09"), firstMeal.getDrink().getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test first meal get and set side")
+    class TestFirstMealGetAndSetSide {
+
+        @Test
+        public void testFirstMealGetSide() {
+            assertEquals(Side.FRIES_MEDIUM, firstMeal.getSide());
+
+            assertEquals("Fries", firstMeal.getSide().getName());
+            assertEquals("Medium", firstMeal.getSide().getType());
+            assertEquals(new BigDecimal("1.99"), firstMeal.getSide().getPrice());
+        }
+
+        @Test
+        public void testFirstMealSetSide() {
+            assertEquals(Side.FRIES_MEDIUM, firstMeal.getSide());
+
+            firstMeal.setSide(Side.ONION_RINGS_LARGE);
+
+            assertEquals("Onion Rings", firstMeal.getSide().getName());
+            assertEquals("Large", firstMeal.getSide().getType());
+            assertEquals(new BigDecimal("2.49"), firstMeal.getSide().getPrice());
         }
     }
 
