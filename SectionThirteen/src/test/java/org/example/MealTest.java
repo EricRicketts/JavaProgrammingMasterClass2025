@@ -40,6 +40,24 @@ public class MealTest {
     }
 
     @Nested
+    @DisplayName("test set burger for meal")
+    class TestFirstMealSetBurger {
+
+        @Test
+        public void testSetFirstMealBurger() {
+            assertEquals(BurgerMeatType.ROUND, firstMeal.getBurger().getMeatType());
+            assertEquals(BurgerSize.MEDIUM, firstMeal.getBurger().getSize());
+            assertEquals(new BigDecimal("2.55"), firstMeal.getBurger().getPrice());
+
+            firstMeal.setBurger(new Burger(BurgerMeatType.GRASS_FED, BurgerSize.LARGE, new BigDecimal("3.19")));
+
+            assertEquals(BurgerMeatType.GRASS_FED, firstMeal.getBurger().getMeatType());
+            assertEquals(BurgerSize.LARGE, firstMeal.getBurger().getSize());
+            assertEquals(new BigDecimal("3.19"), firstMeal.getBurger().getPrice());
+        }
+    }
+
+    @Nested
     @DisplayName("test set burger meat type, size and price")
     class TestFirstMealSetBurgerMeatTypeSizeAndPrice {
 
@@ -116,6 +134,24 @@ public class MealTest {
             assertEquals("Onion Rings", firstMeal.getSide().getName());
             assertEquals("Large", firstMeal.getSide().getType());
             assertEquals(new BigDecimal("2.49"), firstMeal.getSide().getPrice());
+        }
+    }
+
+    @Nested
+    @DisplayName("test get and set conversion rate")
+    class TestGetAndSetConversionRate {
+
+        @Test
+        public void testFirstMealGetConversionRate() {
+            assertEquals(new BigDecimal("1.00"), firstMeal.getConversionRate());
+        }
+
+        @Test
+        public void testFirstMealSetConversionRate() {
+            assertEquals(new BigDecimal("1.00"), firstMeal.getConversionRate());
+
+            firstMeal.setConversionRate(new BigDecimal("1.67"));
+            assertEquals(new BigDecimal("1.67"), firstMeal.getConversionRate());
         }
     }
 
