@@ -37,14 +37,6 @@ public class Meal {
         this.side = side;
     }
 
-    public List<Topping> getToppings() {
-        return toppings;
-    }
-
-    public void setToppings(List<Topping> toppings) {
-        this.toppings = toppings;
-    }
-
     public BigDecimal getConversionRate() {
         return conversionRate;
     }
@@ -68,17 +60,20 @@ public class Meal {
     }
 
     public BigDecimal getTotalPrice() {
-        BigDecimal total = this.getBurger().getPrice()
-            .add(this.getDrink().getPrice())
-            .add(this.getSide().getPrice());
-        return total.multiply(this.getConversionRate());
+        return this.getBurger().getPrice().multiply(this.getConversionRate())
+            .add(this.getDrink().getPrice().multiply(this.getConversionRate()))
+            .add(this.getSide().getPrice().multiply(this.getConversionRate()));
     }
 
     @Override
     public String toString() {
-        return "%s%n%s%n%s%n26s$%.2f".formatted(burger,
-            drink,
-            side,
-            "Total Due: ", getTotalPrice());
+        String mealItems = "%sPrice: %.2f%nDrink:%nType: %s%nPrice: %.2f%nSide:%nType: %s%nPrice: %.2f%n"
+            .formatted(
+            burger, burger.getPrice().multiply(this.getConversionRate()),
+            drink, drink.getPrice().multiply(this.getConversionRate()),
+            side, side.getPrice().multiply(this.getConversionRate()));
+        String total = "Total Price: %.2f".formatted(getTotalPrice());
+
+        return mealItems + total;
     }
 }

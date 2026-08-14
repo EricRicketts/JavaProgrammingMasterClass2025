@@ -40,8 +40,9 @@ public class Burger {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb = sb.append("Burger Meat Type: ").append(this.getMeatType().name())
-            .append(", Burger Size: ").append(this.getSize().name());
+        sb = sb.append("Burger: ").append("\n")
+            .append("Meat Type: ").append(this.getMeatType().name()).append("\n")
+            .append("Burger Size: ").append(this.getSize().name()).append("\n");
 
         return sb.toString();
     }

@@ -155,5 +155,28 @@ public class MealTest {
         }
     }
 
+    @Nested
+    @DisplayName("test second meal to String")
+    class TestSecondMealToString {
 
+        @Test
+        public void testSecondMealToString() {
+            String expected = """
+                Burger:\s
+                Meat Type: ROUND
+                Burger Size: MEDIUM
+                Price: 1.28
+                Drink:
+                Type: COKE_MEDIUM
+                Price: 1.30
+                Side:
+                Type: FRIES_MEDIUM
+                Price: 1.00
+                Total Price: 3.57""";
+            String result = secondMeal.toString();
+
+            assertEquals(expected, result);
+        }
+
+    }
 }
