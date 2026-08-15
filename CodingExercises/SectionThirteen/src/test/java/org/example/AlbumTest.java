@@ -168,4 +168,142 @@ public class AlbumTest {
             }
         }
     }
+
+    @Nested
+    @DisplayName("test content of albums")
+    class TestAlbumsContent {
+
+        @Test
+        public void testNumberOfAlbums() {
+            assertEquals(2, albums.size());
+        }
+
+        @Test
+        public void testGetNameOfFirstAlbum() {
+            assertEquals("Stormbringer", albums.getFirst().getName());
+        }
+
+        @Test
+        public void testGetArtistOfFirstAlbum() {
+            assertEquals("Deep Purple", albums.getFirst().getArtist());
+        }
+
+        @Test
+        public void testGetTitleOfFirstSongOnFirstAlbum() {
+            Song firstSongOnFirstAlbum = albums.getFirst().getSongs().getFirst();
+            assertEquals(
+                "Stormbringer",
+                firstSongOnFirstAlbum.getTitle()
+            );
+        }
+
+        @Test
+        public void testGetDurationOfFirstSongOnFirstAlbum() {
+            Song firstSongOnFirstAlbum = albums.getFirst().getSongs().getFirst();
+            assertEquals(
+                new BigDecimal("4.60"),
+                firstSongOnFirstAlbum.getDuration()
+            );
+        }
+
+        @Test
+        public void testGetTitleOfMiddleSongOnFirstAlbum() {
+            Song middleSongOfFirstAlbum = albums.getFirst().getSongs().get(4);
+            assertEquals(
+                "Lady double dealer",
+                middleSongOfFirstAlbum.getTitle()
+            );
+        }
+
+        @Test
+        public void testGetDurationOfMiddleSongOnFirstAlbum() {
+            Song middleSongOfFirstAlbum = albums.getFirst().getSongs().get(4);
+            assertEquals(
+                new BigDecimal("3.21"),
+                middleSongOfFirstAlbum.getDuration()
+            );
+        }
+
+        @Test
+        public void testGetTitleOfLastSongOnFirstAlbum() {
+            Song firstSongOnFirstAlbum = albums.getFirst().getSongs().getLast();
+            assertEquals(
+                "Soldier of fortune",
+                firstSongOnFirstAlbum.getTitle()
+            );
+        }
+
+        @Test
+        public void testGetDurationOfLastSongOnFirstAlbum() {
+            Song firstSongOnFirstAlbum = albums.getFirst().getSongs().getLast();
+            assertEquals(
+                new BigDecimal("3.13"),
+                firstSongOnFirstAlbum.getDuration()
+            );
+        }
+
+        @Test
+        public void testGetNameOfSecondAlbum() {
+            assertEquals("Stormbringer", albums.getLast().getName());
+        }
+
+        @Test
+        public void testGetArtistOfSecondAlbum() {
+            assertEquals("Deep Purple", albums.getLast().getArtist());
+        }
+
+        @Test
+        public void testGetTitleOfFirstSongOnSecondAlbum() {
+            Song firstSongOnFirstAlbum = albums.getLast().getSongs().getFirst();
+            assertEquals(
+                "Stormbringer",
+                firstSongOnFirstAlbum.getTitle()
+            );
+        }
+
+        @Test
+        public void testGetDurationOfFirstSongOnSecondAlbum() {
+            Song firstSongOnFirstAlbum = albums.getLast().getSongs().getFirst();
+            assertEquals(
+                new BigDecimal("4.60"),
+                firstSongOnFirstAlbum.getDuration()
+            );
+        }
+
+        @Test
+        public void testGetTitleOfMiddleSongOnSecondAlbum() {
+            Song middleSongOfFirstAlbum = albums.getLast().getSongs().get(4);
+            assertEquals(
+                "Lady double dealer",
+                middleSongOfFirstAlbum.getTitle()
+            );
+        }
+
+        @Test
+        public void testGetDurationOfMiddleSongOnSecondAlbum() {
+            Song middleSongOfFirstAlbum = albums.getLast().getSongs().get(4);
+            assertEquals(
+                new BigDecimal("3.21"),
+                middleSongOfFirstAlbum.getDuration()
+            );
+        }
+
+        @Test
+        public void testGetTitleOfLastSongOnSecondAlbum() {
+            Song firstSongOnFirstAlbum = albums.getLast().getSongs().getLast();
+            assertEquals(
+                "Soldier of fortune",
+                firstSongOnFirstAlbum.getTitle()
+            );
+        }
+
+        @Test
+        public void testGetDurationOfLastSongOnSecondAlbum() {
+            Song firstSongOnFirstAlbum = albums.getLast().getSongs().getLast();
+            assertEquals(
+                new BigDecimal("3.13"),
+                firstSongOnFirstAlbum.getDuration()
+            );
+        }
+    }
 }
