@@ -98,4 +98,31 @@ public class StoreEmployeeTest {
         assertEquals("Jim", employees.get(4).getName());
         assertEquals(2018, employees.get(4).getYearStarted());
     }
+
+    @Test
+    public void testPigLatinNames() {
+        List<String> normalNamesAndPigLatinNames = StoreEmployee.addPigLatinName(employees);
+        String[] expectedNames = {
+            "Ralph",
+            "alphRay",
+            "Carol",
+            "arolCay",
+            "Jane",
+            "aneJay",
+            "Laura",
+            "auraLay",
+            "Jim",
+            "imJay"
+        };
+
+        for (int index = 0; index < normalNamesAndPigLatinNames.size(); index+=1) {
+            if (index % 2 == 0) {
+                String normalName = normalNamesAndPigLatinNames.get(index);
+                assertEquals(expectedNames[index], normalName);
+            } else {
+                String pigLatinName = normalNamesAndPigLatinNames.get(index);
+                assertEquals(expectedNames[index], pigLatinName);
+            }
+        }
+    }
 }

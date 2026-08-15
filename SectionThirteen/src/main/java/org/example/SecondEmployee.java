@@ -1,6 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class SecondEmployee {
 
@@ -71,6 +73,47 @@ public class SecondEmployee {
 
     public int getYearStarted() {
         return yearStarted;
+    }
+
+    public static List<String> addPigLatinName(List<? extends StoreEmployee> list) {
+        class DecoratedEmployee extends StoreEmployee {
+            private String pigLatinName;
+            private StoreEmployee originalInstance;
+
+            public DecoratedEmployee(String pigLatinName, StoreEmployee originalInstance) {
+                this.pigLatinName = pigLatinName;
+                this.originalInstance = originalInstance;
+            }
+
+            public String getPigLatinName() {
+                return this.pigLatinName;
+            }
+
+            public StoreEmployee getOriginalInstance() {
+                return this.originalInstance;
+            }
+
+            @Override
+            public String toString() {
+                return originalInstance.toString() + " " + pigLatinName;
+            }
+        }
+
+        List<DecoratedEmployee> newList = new ArrayList<>(list.size());
+        for (var employee : list) {
+            String name = employee.getName();
+            String pigLatin = name.substring(1) + name.charAt(0) + "ay";
+            newList.add(new DecoratedEmployee(pigLatin, employee));
+        }
+
+        List<String> employeeNamesAndPigLatinNames = new ArrayList<>();
+        for (int index = 0; index < newList.size(); index+=1) {
+            DecoratedEmployee currentEmployee = newList.get(index);
+            employeeNamesAndPigLatinNames.add(currentEmployee.getOriginalInstance().getName());
+            employeeNamesAndPigLatinNames.add(currentEmployee.getPigLatinName());
+        }
+
+        return employeeNamesAndPigLatinNames;
     }
 
     @Override
