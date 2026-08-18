@@ -52,7 +52,7 @@ public class PersonAndLambdaTest {
             )
         );
         assertEquals(peopleInitialList, people);
-        
+
         people.sort(comparatorLastName);
         List<Person> expectedPeopleList = new ArrayList<>(
             Arrays.asList(
