@@ -42,6 +42,17 @@ public class PersonAndLambdaTest {
 
     @Test
     public void testSortByLastName() {
+        var peopleInitialList = new ArrayList<>(
+            Arrays.asList(
+                new Person("Lucy", "Van Pelt"),
+                new Person("Sally", "Brown"),
+                new Person("Linus", "Van Pelt"),
+                new Person("Peppermint", "Patty"),
+                new Person("Charlie", "Brown")
+            )
+        );
+        assertEquals(peopleInitialList, people);
+        
         people.sort(comparatorLastName);
         List<Person> expectedPeopleList = new ArrayList<>(
             Arrays.asList(
@@ -54,5 +65,31 @@ public class PersonAndLambdaTest {
         );
 
         assertEquals(expectedPeopleList, people);
+    }
+
+    @Test
+    public void testSortByComparatorComparing() {
+        var peopleInitialList = new ArrayList<>(
+            Arrays.asList(
+                new Person("Lucy", "Van Pelt"),
+                new Person("Sally", "Brown"),
+                new Person("Linus", "Van Pelt"),
+                new Person("Peppermint", "Patty"),
+                new Person("Charlie", "Brown")
+            )
+        );
+        assertEquals(peopleInitialList, people);
+
+        List<Person> peopleSortedList = new ArrayList<>(
+            Arrays.asList(
+                new Person("Charlie", "Brown"),
+                new Person("Sally", "Brown"),
+                new Person("Peppermint", "Patty"),
+                new Person("Linus", "Van Pelt"),
+                new Person("Lucy", "Van Pelt")
+            )
+        );
+        people.sort(Comparator.comparing(Person::lastName).thenComparing(Person::firstName));
+        assertEquals(peopleSortedList, people);
     }
 }
