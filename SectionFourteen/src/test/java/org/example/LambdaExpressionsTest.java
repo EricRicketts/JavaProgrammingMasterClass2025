@@ -43,4 +43,37 @@ public class LambdaExpressionsTest {
 
         assertEquals(expected, secondResult.toString());
     }
+
+    @Test
+    public void testSecondToStringMethodsWithCodeBlock() {
+        String expected = "alpha means a\nbravo means b\ncharlie means c\ndelta means d\n";
+
+        StringBuilder secondResult = new StringBuilder();
+        list.forEach(myString -> {
+            char first = myString.charAt(0);
+            secondResult.append(myString).append(" means ").append(first).append("\n");
+        });
+
+        assertEquals(expected, secondResult.toString());
+    }
+
+    @Test
+    public void testSecondToStringMethodsWithPrefix() {
+        String expected = """
+            Nato alpha means a
+            Nato bravo means b
+            Nato charlie means c
+            Nato delta means d
+            """;
+
+        StringBuilder secondResult = new StringBuilder();
+        String prefix = "Nato";
+        list.forEach(myString -> {
+            char first = myString.charAt(0);
+            secondResult.append(prefix).append(" ").append(myString)
+                .append(" means ").append(first).append("\n");
+        });
+
+        assertEquals(expected, secondResult.toString());
+    }
 }
