@@ -12,7 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FunctionalInterfaceTest {
 
     public static <T> T calculator(Operation<T> function, T value1, T value2) {
-
+        // This is a functional interface, but it is manually created.  In other code and
+        // tests we will look at Java's built-in functional interfaces.
+        // Note a functional interface in Java is an interface that contains exactly one
+        // abstract method, making it suitable for use with lambdas and method references.
         StringBuilder sb = new StringBuilder();
         T result = function.operate(value1, value2);
         sb = sb.append("Result of Operation").append("result").append("\n");
