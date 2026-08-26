@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SportsTeamTest {
-
+    // The problem with this implementation is that any kind of player can be added
+    // to a sports team.  The way this code is written, a baseball player can be
+    // added to a soccer team.
     private SportsTeam phillies, astros, afc;
 
     @BeforeEach
@@ -64,7 +66,7 @@ public class SportsTeamTest {
         var tex = new SoccerPlayer("Tex Walker", "Center Half Forward");
         afc.addTeamMember(tex);
         String result = afc.listTeamMembers();
-        
+
         assertEquals(expected, result);
     }
 }
