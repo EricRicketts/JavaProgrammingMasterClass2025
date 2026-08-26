@@ -11,12 +11,14 @@ public class SecondTeamTest {
     // added to a soccer SecondTeam.
     private SecondTeam<BaseballPlayer> phillies, astros;
     private SecondTeam<SoccerPlayer> afc;
+    private SecondTeam<VolleyballPlayer> abc;
 
     @BeforeEach
     public void setUp() {
         phillies = new SecondTeam<>("Philadelphia Phillies");
         astros = new SecondTeam<>("Houston Astros");
         afc = new SecondTeam<>("Adelaide Crows");
+        abc = new SecondTeam<>("Detroit Dares");
     }
 
     @Test
@@ -70,6 +72,18 @@ public class SecondTeamTest {
         //  The above gives a compiler error because a baseball player cannot be added
         //  to a soccer SecondTeam.
         String result = afc.listTeamMembers();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListVolleyBallTeamMembers() {
+        String expected = "Detroit Dares Team Roster:\n" +
+            "[VolleyballPlayer[name=B Black, position=Opposite], " +
+            "VolleyballPlayer[name=C Charlie, position=Front]]";
+        abc.addTeamMember(new VolleyballPlayer("B Black", "Opposite"));
+        abc.addTeamMember(new VolleyballPlayer("C Charlie", "Front"));
+        String result = abc.listTeamMembers();
 
         assertEquals(expected, result);
     }
