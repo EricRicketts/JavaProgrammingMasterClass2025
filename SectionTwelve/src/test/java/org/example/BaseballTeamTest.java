@@ -23,4 +23,13 @@ public class BaseballTeamTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testPhilliesTieAstros() {
+        String expected = "Philadelphia Phillies (Ranked 2) tied Houston Astros (Ranked 1)";
+        String gameResult = phillies.setScore(3, 3);
+        String result = phillies.toString() + " " + gameResult + " " + astros.toString();
+
+        assertEquals(expected, result);
+    }
 }
