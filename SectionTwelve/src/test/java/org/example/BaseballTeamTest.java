@@ -32,4 +32,13 @@ public class BaseballTeamTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testPhilliesBeatAstros() {
+        String expected = "Philadelphia Phillies (Ranked 1) beat Houston Astros (Ranked 1)";
+        String gameResult = phillies.setScore(3, 2);
+        String result = phillies.toString() + " " + gameResult + " " + astros.toString();
+
+        assertEquals(expected, result);
+    }
 }
