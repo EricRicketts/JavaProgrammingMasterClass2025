@@ -25,6 +25,15 @@ public class SecondTeam<T extends Player> {
         return teamName + " Team Roster:\n" + teamMembers.toString();
     }
 
+    public String printTeamMemberNames() {
+        StringBuilder names = new StringBuilder();
+        names.append("Team Member Names:").append("\n");
+        for (var member : teamMembers) {
+            names.append(member.name()).append("\n");
+        }
+        return names.toString().stripTrailing();
+    }
+
     public int ranking() {
         return (totalLosses * 2) + totalTies + 1;
     }

@@ -87,4 +87,18 @@ public class SecondTeamTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testListVolleyBallTeamNames() {
+        String expected = "Team Member Names:\n" +
+            "A Adan\n" +
+            "B Black\n" +
+            "C Charlie";
+        abc.addTeamMember(new VolleyballPlayer("A Adan", "Back"));
+        abc.addTeamMember(new VolleyballPlayer("B Black", "Opposite"));
+        abc.addTeamMember(new VolleyballPlayer("C Charlie", "Front"));
+        String result = abc.printTeamMemberNames();
+
+        assertEquals(expected, result);
+    }
 }
