@@ -41,4 +41,18 @@ public class BaseballTeamTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testListTeamMembers() {
+        String expected = "Houston Astros Team Roster:\n" +
+            "[BaseballPlayer[name=B Harper, position=Right Field], " +
+            "BaseballPlayer[name=B Marsh, position=Left Field]]";
+        var harper = new BaseballPlayer("B Harper", "Right Field");
+        var marsh = new BaseballPlayer("B Marsh", "Left Field");
+        astros.addTeamMember(harper);
+        astros.addTeamMember(marsh);
+        String result = astros.listTeamMembers();
+
+        assertEquals(expected, result);
+    }
 }

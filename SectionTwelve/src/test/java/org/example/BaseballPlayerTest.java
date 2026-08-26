@@ -37,7 +37,7 @@ public class BaseballPlayerTest {
 
         @Test
         public void testToString() {
-            String expected = "The Player name is: Fred, the Player position is: Left Field";
+            String expected = "BaseballPlayer[name=Fred, position=Left Field]";
 
             assertEquals(expected, baseballPlayer.toString());
         }

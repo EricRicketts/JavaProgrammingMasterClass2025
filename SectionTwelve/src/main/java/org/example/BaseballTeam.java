@@ -22,7 +22,7 @@ public class BaseballTeam {
     }
 
     public String listTeamMembers() {
-        return teamMembers.toString();
+        return teamName + " Team Roster:\n" + teamMembers.toString();
     }
 
     public int ranking() {
