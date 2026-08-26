@@ -7,12 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SportsTeamTest {
 
-    private SportsTeam phillies, astros;
+    private SportsTeam phillies, astros, afc;
 
     @BeforeEach
     public void setUp() {
         phillies = new SportsTeam("Philadelphia Phillies");
         astros = new SportsTeam("Houston Astros");
+        afc = new SportsTeam("Adelaide Crows");
     }
 
     @Test
@@ -43,7 +44,7 @@ public class SportsTeamTest {
     }
 
     @Test
-    public void testListTeamMembers() {
+    public void testListBaseballTeamMembers() {
         String expected = "Houston Astros Team Roster:\n" +
             "[BaseballPlayer[name=B Harper, position=Right Field], " +
             "BaseballPlayer[name=B Marsh, position=Left Field]]";
@@ -53,6 +54,17 @@ public class SportsTeamTest {
         astros.addTeamMember(marsh);
         String result = astros.listTeamMembers();
 
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListSoccerTeamMembers() {
+        String expected = "Adelaide Crows Team Roster:\n" +
+            "[SoccerPlayer[name=Tex Walker, position=Center Half Forward]]";
+        var tex = new SoccerPlayer("Tex Walker", "Center Half Forward");
+        afc.addTeamMember(tex);
+        String result = afc.listTeamMembers();
+        
         assertEquals(expected, result);
     }
 }
