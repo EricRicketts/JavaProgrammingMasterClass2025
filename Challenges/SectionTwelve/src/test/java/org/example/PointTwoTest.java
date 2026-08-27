@@ -40,6 +40,32 @@ public class PointTwoTest {
 
             assertEquals(expected, result);
         }
+    }
 
+    @Nested
+    @DisplayName("test point two setters")
+    class TestPointTwoSetters {
+
+        @Test
+        public void testXSetter() {
+            expected = new BigDecimal("23.4568");
+            result = pointTwo.getX();
+
+            assertEquals(expected, result);
+
+            pointTwo.setX(new BigDecimal("12.34567"));
+            expected = new BigDecimal("12.3457");
+            result = pointTwo.getX();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testYSetter() {
+            expected = new BigDecimal("45.6789");
+            result = pointTwo.getY();
+
+            assertEquals(expected, result);
+        }
     }
 }
