@@ -66,6 +66,12 @@ public class PointTwoTest {
             result = pointTwo.getY();
 
             assertEquals(expected, result);
+
+            pointTwo.setY(new BigDecimal("34.56783"));
+            expected = new BigDecimal("34.5678");
+            result = pointTwo.getY();
+
+            assertEquals(expected, result);
         }
     }
 }
