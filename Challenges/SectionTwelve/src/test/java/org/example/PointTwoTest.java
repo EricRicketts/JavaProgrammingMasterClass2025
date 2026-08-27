@@ -74,4 +74,31 @@ public class PointTwoTest {
             assertEquals(expected, result);
         }
     }
+
+    @Nested
+    @DisplayName("test scale factor for point two")
+    class TestScaleFactorForPointTwo {
+
+        @Test
+        public void testThreeDigitScaleFactor() {
+            assertEquals(4, pointTwo.getScaleFactor());
+            pointTwo.setScaleFactor(3);
+
+            expected = new BigDecimal("23.457");
+            result = pointTwo.getX();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testFiveDigitScaleFactor() {
+            assertEquals(4, pointTwo.getScaleFactor());
+            pointTwo.setScaleFactor(6);
+
+            expected = new BigDecimal("45.678940");
+            result = pointTwo.getY();
+
+            assertEquals(expected, result);
+        }
+    }
 }
