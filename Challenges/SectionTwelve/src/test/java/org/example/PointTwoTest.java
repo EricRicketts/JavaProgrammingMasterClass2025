@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -97,6 +99,24 @@ public class PointTwoTest {
 
             expected = new BigDecimal("45.678940");
             result = pointTwo.getY();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test PointTwo render method")
+    class TestPointTwoRenderMethod {
+
+        @Test
+        public void testPointTwoRenderMethod() {
+            List<BigDecimal> expected = new ArrayList<>(
+                List.of(
+                    new BigDecimal("23.4568"),
+                    new BigDecimal("45.6789")
+                )
+            );
+            List<BigDecimal> result = pointTwo.render();
 
             assertEquals(expected, result);
         }
