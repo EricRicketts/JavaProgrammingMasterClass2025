@@ -1,20 +1,108 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ThirdTeamTest {
+    // The problem with this implementation is that any kind of player can be added
+    // to a sports SecondTeam.  The way this code is written, a baseball player can be
+    // added to a soccer SecondTeam.
 
-    private ThirdTeam<VolleyballPlayer, Affiliation> thirdTeam;
+    private Affiliation affiliation;
+    private ThirdTeam<BaseballPlayer, Affiliation> phillies, astros;
+    private ThirdTeam<SoccerPlayer, Affiliation> afc;
+    private ThirdTeam<VolleyballPlayer, Affiliation> abc;
 
     @BeforeEach
     public void setUp() {
-        var philly = new Affiliation("city", "Philadelphia", "US");
-        thirdTeam = new ThirdTeam<>("Philadelphia Phillies", philly);
-        thirdTeam.addTeamMember(new VolleyballPlayer("Foo", "Front"));
-        thirdTeam.addTeamMember(new VolleyballPlayer("Bar", "Middle"));
-        thirdTeam.addTeamMember(new VolleyballPlayer("Not", "Back"));
+        var affiliation = new Affiliation("Fred", "State", "US");
+        phillies = new ThirdTeam<>("Philadelphia Phillies", affiliation);
+        astros = new ThirdTeam<>("Houston Astros", affiliation);
+        afc = new ThirdTeam<>("Adelaide Crows", affiliation);
+        abc = new ThirdTeam<>("Detroit Dares", affiliation);
     }
 
+    @Test
+    public void testPhilliesLoseToAstros() {
+        String expected = "Philadelphia Phillies (Ranked 3) lost to Houston Astros (Ranked 1)";
+        String gameResult = phillies.setScore(3, 5);
+        String result = phillies.toString() + " " + gameResult + " " + astros.toString();
 
+        assertEquals(expected, result);
+    }
 
+    @Test
+    public void testPhilliesTieAstros() {
+        String expected = "Philadelphia Phillies (Ranked 2) tied Houston Astros (Ranked 1)";
+        String gameResult = phillies.setScore(3, 3);
+        String result = phillies.toString() + " " + gameResult + " " + astros.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testPhilliesBeatAstros() {
+        String expected = "Philadelphia Phillies (Ranked 1) beat Houston Astros (Ranked 1)";
+        String gameResult = phillies.setScore(3, 2);
+        String result = phillies.toString() + " " + gameResult + " " + astros.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListBaseballSecondTeamMembers() {
+        String expected = "Houston Astros Team Roster:\n" +
+            "[BaseballPlayer[name=B Harper, position=Right Field], " +
+            "BaseballPlayer[name=B Marsh, position=Left Field]]";
+        var harper = new BaseballPlayer("B Harper", "Right Field");
+        var marsh = new BaseballPlayer("B Marsh", "Left Field");
+        astros.addTeamMember(harper);
+        astros.addTeamMember(marsh);
+        String result = astros.listTeamMembers();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListSoccerSecondTeamMembers() {
+        String expected = "Adelaide Crows Team Roster:\n" +
+            "[SoccerPlayer[name=Tex Walker, position=Center Half Forward]]";
+        var tex = new SoccerPlayer("Tex Walker", "Center Half Forward");
+        afc.addTeamMember(tex);
+        //  afc.addSecondTeamMember(new BaseballPlayer("Foo", "Bar"));
+        //  The above gives a compiler error because a baseball player cannot be added
+        //  to a soccer SecondTeam.
+        String result = afc.listTeamMembers();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListVolleyBallTeamMembers() {
+        String expected = "Detroit Dares Team Roster:\n" +
+            "[VolleyballPlayer[name=B Black, position=Opposite], " +
+            "VolleyballPlayer[name=C Charlie, position=Front]]";
+        abc.addTeamMember(new VolleyballPlayer("B Black", "Opposite"));
+        abc.addTeamMember(new VolleyballPlayer("C Charlie", "Front"));
+        String result = abc.listTeamMembers();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testListVolleyBallTeamNames() {
+        String expected = "Team Member Names:\n" +
+            "A Adan\n" +
+            "B Black\n" +
+            "C Charlie";
+        abc.addTeamMember(new VolleyballPlayer("A Adan", "Back"));
+        abc.addTeamMember(new VolleyballPlayer("B Black", "Opposite"));
+        abc.addTeamMember(new VolleyballPlayer("C Charlie", "Front"));
+        String result = abc.printTeamMemberNames();
+
+        assertEquals(expected, result);
+    }
 }
