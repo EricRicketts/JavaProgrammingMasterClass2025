@@ -30,7 +30,7 @@ public class LineTwo implements Mappable<List<PointTwo>>{
         return null;
     }
 
-    public void setPont(int index, BigDecimal x, BigDecimal y) {
+    public void setPoint(int index, BigDecimal x, BigDecimal y) {
         if (index <= this.render().size()) {
             PointTwo point = this.render().get(index);
             point.setX(x);

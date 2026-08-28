@@ -73,4 +73,25 @@ public class LineTwoTest {
             assertEquals(3, line.getScaleFactor());
         }
     }
+
+    @Nested
+    @DisplayName("test get and set a single point from the line")
+    class TestGetAndSetSinglePointFromLine {
+
+        @Test
+        public void testGetAndSetSinglePointFromLine() {
+            var point = line.render().get(1);
+
+            assertEquals(new BigDecimal("-23.9877"), point.getX());
+            assertEquals(new BigDecimal("-46.1233"), point.getY());
+
+            line.setPoint(1,
+                new BigDecimal("56.123456"),
+                new BigDecimal("87.876543")
+            );
+
+            assertEquals(new BigDecimal("56.1235"), line.render().get(1).getX());
+            assertEquals(new BigDecimal("87.8765"), line.render().get(1).getY());
+        }
+    }
 }
