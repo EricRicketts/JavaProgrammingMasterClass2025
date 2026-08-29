@@ -39,8 +39,9 @@ public class LineTwoTest {
                     new BigDecimal("75.29103"),
                     4
                 )
-            ), 4
-        );
+            ),
+            4
+            );
     }
 
     @Nested
@@ -58,7 +59,7 @@ public class LineTwoTest {
 
             for (int index = 0; index < line.render().size(); index++) {
                 BigDecimal[] expectedPoint = expected[index];
-                PointTwo point = line.render().get(index);
+                PointTwo point = line.getPoint(index);
 
                 assertEquals(expectedPoint[0], point.getX());
                 assertEquals(expectedPoint[1], point.getY());
@@ -202,6 +203,52 @@ public class LineTwoTest {
             );
 
             assertEquals(expectedLine, line);
+        }
+    }
+
+    @Nested
+    @DisplayName("test line to string")
+    class TestLineToString {
+
+        @Test
+        public void testLineToString() {
+            String expected = "Line:\n" +
+                "{\n" +
+                "PointTwo{x=10.1235, y=-12.1928}\n" +
+                "PointTwo{x=-23.9877, y=-46.1233}\n" +
+                "PointTwo{x=-14.3246, y=28.3867}\n" +
+                "PointTwo{x=53.6720, y=75.2910}\n" +
+                "}";
+            String result = line.toString();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test for defensive copying within constructor")
+    class TestDefensiveConstructorCopy {
+
+        @Test
+        public void testDefensiveConstructorCopy() {
+            PointTwo point1 = new PointTwo(
+                new BigDecimal("12.34567"),
+                new BigDecimal("98.76543"),
+                4
+            );
+            PointTwo point2 = new PointTwo(
+                new BigDecimal("13.10295"),
+                new BigDecimal("48.45654"),
+                4
+            );
+            List<PointTwo> originalPoints = new ArrayList<>(
+                List.of(point1, point2)
+            );
+            LineTwo line = new LineTwo(originalPoints, 4);
+
+            originalPoints.clear();
+
+            assertEquals(2, line.getPoints().size());
         }
     }
 }

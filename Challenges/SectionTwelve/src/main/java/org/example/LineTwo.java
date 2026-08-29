@@ -11,8 +11,7 @@ public class LineTwo implements Mappable<List<PointTwo>>{
     private int scaleFactor;
 
     public LineTwo(List<PointTwo> points, int scaleFactor) {
-        for (PointTwo point : points) point.setScaleFactor(scaleFactor);
-        this.points = points;
+        this.points = new ArrayList<>(points);
         this.scaleFactor = scaleFactor;
     }
 
@@ -25,21 +24,33 @@ public class LineTwo implements Mappable<List<PointTwo>>{
     }
 
     public List<PointTwo> getPoints() {
-        return points;
+        List<PointTwo> currentPoints = new ArrayList<>();
+        for (PointTwo point : this.points) {
+            PointTwo newPoint =
+                new PointTwo(point.getX(), point.getY(), this.scaleFactor);
+            currentPoints.add(newPoint);
+        }
+        return currentPoints;
     }
 
     public PointTwo getPoint(int index) {
-        if (index <= this.render().size()) {
-            return this.render().get(index);
-        }
-        return null;
+        PointTwo point = points.get(index);
+        return new PointTwo(point.getX(), point.getY(), this.scaleFactor);
     }
 
     public void setPoint(int index, BigDecimal x, BigDecimal y) {
-        if (index <= this.render().size()) {
-            PointTwo point = this.render().get(index);
+        String errorMessage = "index for set point out of range";
+        /*
+            Alternative mutating the objects directly:
+            PointTwo point = this.points.get(index);
             point.setX(x);
             point.setY(y);
+            point.setScaleFactor(this.scaleFactor);
+        */
+        if (index >= 0 && index < this.points.size()) {
+            this.points.set(index, new PointTwo(x, y, this.scaleFactor));
+        } else {
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
@@ -60,5 +71,15 @@ public class LineTwo implements Mappable<List<PointTwo>>{
     @Override
     public int hashCode() {
         return Objects.hash(this.points, this.scaleFactor);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Line:").append("\n").append("{").append("\n");
+        for(PointTwo point : this.points) {
+            sb.append(point.toString()).append("\n");
+        }
+        return sb.append("}").toString();
     }
 }

@@ -137,6 +137,18 @@ public class PointTwoTest {
             );
             assertEquals(expected, point);
         }
+
+        @Test
+        public void testEqualsPointsHaveSameHashCode() {
+            PointTwo samePoint = new PointTwo(
+                new BigDecimal("23.45675"),
+                new BigDecimal("45.67894"),
+                4
+            );
+
+            assertEquals(point, samePoint);
+            assertEquals(point.hashCode(), samePoint.hashCode());
+        }
     }
 
     @Nested
