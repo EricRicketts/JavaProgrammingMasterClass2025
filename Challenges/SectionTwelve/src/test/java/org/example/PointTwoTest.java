@@ -174,7 +174,7 @@ public class PointTwoTest {
         }
 
         @Test
-        public void testUnEqualPointsAreNotEqual() {
+        public void testUnequalPointsAreNotEqual() {
             PointTwo differentPoint = new PointTwo(
                 new BigDecimal("45.77558"),
                 new BigDecimal("54.11223"),
