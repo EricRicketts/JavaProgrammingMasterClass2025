@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,19 +21,23 @@ public class LineTwoTest {
             List.of(
                 new PointTwo(
                     new BigDecimal("10.12345"),
-                    new BigDecimal("-12.19284")
+                    new BigDecimal("-12.19284"),
+                    4
                 ),
                 new PointTwo(
                     new BigDecimal("-23.98765"),
-                    new BigDecimal("-46.12332")
+                    new BigDecimal("-46.12332"),
+                    4
                 ),
                 new PointTwo(
                     new BigDecimal("-14.32457"),
-                    new BigDecimal("28.38673")
+                    new BigDecimal("28.38673"),
+                    4
                 ),
                 new PointTwo(
                     new BigDecimal("53.67197"),
-                    new BigDecimal("75.29103")
+                    new BigDecimal("75.29103"),
+                    4
                 )
             ), 4
         );
@@ -75,12 +80,46 @@ public class LineTwoTest {
     }
 
     @Nested
+    @DisplayName("test get points of the line")
+    class TestGetPointsOnTheLine {
+
+        @Test
+        public void testLineGetPoints() {
+            List<PointTwo> expectedPoints = List.of(
+                    new PointTwo(
+                        new BigDecimal("10.12345"),
+                        new BigDecimal("-12.19284"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("-23.98765"),
+                        new BigDecimal("-46.12332"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("-14.32457"),
+                        new BigDecimal("28.38673"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("53.67197"),
+                        new BigDecimal("75.29103"),
+                        4
+                    )
+                );
+            List<PointTwo> result = line.getPoints();
+
+            assertEquals(expectedPoints, result);
+        }
+    }
+
+    @Nested
     @DisplayName("test get and set a single point from the line")
     class TestGetAndSetSinglePointFromLine {
 
         @Test
         public void testGetAndSetSinglePointFromLine() {
-            var point = line.render().get(1);
+            var point = line.getPoint(1);
 
             assertEquals(new BigDecimal("-23.9877"), point.getX());
             assertEquals(new BigDecimal("-46.1233"), point.getY());
@@ -92,6 +131,77 @@ public class LineTwoTest {
 
             assertEquals(new BigDecimal("56.1235"), line.render().get(1).getX());
             assertEquals(new BigDecimal("87.8765"), line.render().get(1).getY());
+        }
+    }
+
+    @Nested
+    @DisplayName("test render the line")
+    class TestRenderLine {
+
+        @Test
+        public void testRenderLine() {
+            List<PointTwo> expected = new ArrayList<>(
+                List.of(
+                    new PointTwo(
+                        new BigDecimal("10.1235"),
+                        new BigDecimal("-12.1928"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("-23.9877"),
+                        new BigDecimal("-46.1233"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("-14.3246"),
+                        new BigDecimal("28.3867"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("53.6720"),
+                        new BigDecimal("75.2910"),
+                        4
+                    )
+                )
+            );
+            List<PointTwo> result = line.render();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test line Equality")
+    class TestLineEquality {
+
+        @Test
+        public void testLineEquality() {
+            LineTwo expectedLine = new LineTwo(
+                List.of(
+                    new PointTwo(
+                        new BigDecimal("10.12345"),
+                        new BigDecimal("-12.19284"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("-23.98765"),
+                        new BigDecimal("-46.12332"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("-14.32457"),
+                        new BigDecimal("28.38673"),
+                        4
+                    ),
+                    new PointTwo(
+                        new BigDecimal("53.67197"),
+                        new BigDecimal("75.29103"),
+                        4
+                    )
+                ), 4
+            );
+
+            assertEquals(expectedLine, line);
         }
     }
 }

@@ -3,13 +3,15 @@ package org.example;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LineTwo implements Mappable<List<PointTwo>>{
 
-    private List<PointTwo> points;
+    private final List<PointTwo> points;
     private int scaleFactor;
 
     public LineTwo(List<PointTwo> points, int scaleFactor) {
+        for (PointTwo point : points) point.setScaleFactor(scaleFactor);
         this.points = points;
         this.scaleFactor = scaleFactor;
     }
@@ -22,10 +24,13 @@ public class LineTwo implements Mappable<List<PointTwo>>{
         this.scaleFactor = scaleFactor;
     }
 
-    public List<BigDecimal> getPoint(int index) {
+    public List<PointTwo> getPoints() {
+        return points;
+    }
+
+    public PointTwo getPoint(int index) {
         if (index <= this.render().size()) {
-            PointTwo point = this.render().get(index);
-            return point.render();
+            return this.render().get(index);
         }
         return null;
     }
@@ -39,10 +44,21 @@ public class LineTwo implements Mappable<List<PointTwo>>{
     }
 
     public List<PointTwo> render() {
-        List<PointTwo> renderedPoints = new ArrayList<>();
-        for(PointTwo point : points) {
-            renderedPoints.add(point);
-        }
-        return renderedPoints;
+        return new ArrayList<>(points);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (this.getClass() != o.getClass()) return false;
+        LineTwo line = (LineTwo) o;
+        return Objects.equals(this.points, line.points) &&
+            this.scaleFactor == line.scaleFactor;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.points, this.scaleFactor);
     }
 }

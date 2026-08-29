@@ -20,7 +20,9 @@ public class PointTwoTest {
     public void setUp() {
         pointTwo = new PointTwo(
             new BigDecimal("23.45675"),
-            new BigDecimal("45.67894"));
+            new BigDecimal("45.67894"),
+            4
+        );
     }
 
     @Nested
@@ -119,6 +121,21 @@ public class PointTwoTest {
             List<BigDecimal> result = pointTwo.render();
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test point two equal method")
+    class TestPointTwoEqualMethod {
+
+        @Test
+        public void testPointTwoEqualsMethod() {
+            PointTwo expected = new PointTwo(
+                new BigDecimal("23.45675"),
+                new BigDecimal("45.67894"),
+                4
+            );
+            assertEquals(expected, pointTwo);
         }
     }
 }
