@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class PointTwoTest {
 
@@ -148,6 +149,17 @@ public class PointTwoTest {
 
             assertEquals(point, samePoint);
             assertEquals(point.hashCode(), samePoint.hashCode());
+        }
+
+        @Test
+        public void testUnEqualsPointsAreNotEqual() {
+            PointTwo differentPoint = new PointTwo(
+                new BigDecimal("45.77558"),
+                new BigDecimal("54.11223"),
+                4
+            );
+
+            assertNotEquals(point, differentPoint);
         }
     }
 
