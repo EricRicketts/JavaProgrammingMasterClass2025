@@ -105,6 +105,18 @@ public class PointTwoTest {
 
             assertEquals(expected, result);
         }
+
+        @Test
+        public void testHalfUpRounding() {
+            PointTwo point = new PointTwo(
+                new BigDecimal("1.2345"),
+                new BigDecimal("9.8765"),
+                3
+            );
+
+            assertEquals(new BigDecimal("1.235"), point.getX());
+            assertEquals(new BigDecimal("9.877"), point.getY());
+        }
     }
 
     @Nested
