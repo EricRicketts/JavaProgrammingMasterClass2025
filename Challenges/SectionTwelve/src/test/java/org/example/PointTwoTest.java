@@ -123,6 +123,16 @@ public class PointTwoTest {
 
             assertEquals(expected, result);
         }
+
+        @Test
+        public void testRenderReturnsIndependentList() {
+            List<BigDecimal> renderedPoint = point.render();
+
+            renderedPoint.set(0, new BigDecimal("47.47381"));
+
+            assertEquals(new BigDecimal("23.4568"), point.getX());
+            assertEquals(new BigDecimal("45.6789"), point.getY());
+        }
     }
 
     @Nested
