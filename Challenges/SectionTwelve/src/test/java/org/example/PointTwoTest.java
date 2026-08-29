@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PointTwoTest {
 
-    private PointTwo pointTwo;
+    private PointTwo point;
     private BigDecimal expected, result;
 
     @BeforeEach
     public void setUp() {
-        pointTwo = new PointTwo(
+        point = new PointTwo(
             new BigDecimal("23.45675"),
             new BigDecimal("45.67894"),
             4
@@ -32,7 +32,7 @@ public class PointTwoTest {
         @Test
         public void testXGetter() {
             expected = new BigDecimal("23.4568");
-            result = pointTwo.getX();
+            result = point.getX();
 
             assertEquals(expected, result);
         }
@@ -40,7 +40,7 @@ public class PointTwoTest {
         @Test
         public void testYGetter() {
             expected = new BigDecimal("45.6789");
-            result = pointTwo.getY();
+            result = point.getY();
 
             assertEquals(expected, result);
         }
@@ -53,13 +53,13 @@ public class PointTwoTest {
         @Test
         public void testXSetter() {
             expected = new BigDecimal("23.4568");
-            result = pointTwo.getX();
+            result = point.getX();
 
             assertEquals(expected, result);
 
-            pointTwo.setX(new BigDecimal("12.34567"));
+            point.setX(new BigDecimal("12.34567"));
             expected = new BigDecimal("12.3457");
-            result = pointTwo.getX();
+            result = point.getX();
 
             assertEquals(expected, result);
         }
@@ -67,13 +67,13 @@ public class PointTwoTest {
         @Test
         public void testYSetter() {
             expected = new BigDecimal("45.6789");
-            result = pointTwo.getY();
+            result = point.getY();
 
             assertEquals(expected, result);
 
-            pointTwo.setY(new BigDecimal("34.56783"));
+            point.setY(new BigDecimal("34.56783"));
             expected = new BigDecimal("34.5678");
-            result = pointTwo.getY();
+            result = point.getY();
 
             assertEquals(expected, result);
         }
@@ -85,29 +85,29 @@ public class PointTwoTest {
 
         @Test
         public void testThreeDigitScaleFactor() {
-            assertEquals(4, pointTwo.getScaleFactor());
-            pointTwo.setScaleFactor(3);
+            assertEquals(4, point.getScaleFactor());
+            point.setScaleFactor(3);
 
             expected = new BigDecimal("23.457");
-            result = pointTwo.getX();
+            result = point.getX();
 
             assertEquals(expected, result);
         }
 
         @Test
-        public void testFiveDigitScaleFactor() {
-            assertEquals(4, pointTwo.getScaleFactor());
-            pointTwo.setScaleFactor(6);
+        public void testSixDigitScaleFactor() {
+            assertEquals(4, point.getScaleFactor());
+            point.setScaleFactor(6);
 
             expected = new BigDecimal("45.678940");
-            result = pointTwo.getY();
+            result = point.getY();
 
             assertEquals(expected, result);
         }
     }
 
     @Nested
-    @DisplayName("test PointTwo render method")
+    @DisplayName("test point render method")
     class TestPointTwoRenderMethod {
 
         @Test
@@ -118,7 +118,7 @@ public class PointTwoTest {
                     new BigDecimal("45.6789")
                 )
             );
-            List<BigDecimal> result = pointTwo.render();
+            List<BigDecimal> result = point.render();
 
             assertEquals(expected, result);
         }
@@ -135,7 +135,20 @@ public class PointTwoTest {
                 new BigDecimal("45.67894"),
                 4
             );
-            assertEquals(expected, pointTwo);
+            assertEquals(expected, point);
+        }
+    }
+
+    @Nested
+    @DisplayName("test point two to string")
+    class TestPointTwoToString {
+
+        @Test
+        public void testPointTwoToString() {
+            String expected = "PointTwo{x=23.4568, y=45.6789}";
+            String result = point.toString();
+            
+            assertEquals(expected, result);
         }
     }
 }

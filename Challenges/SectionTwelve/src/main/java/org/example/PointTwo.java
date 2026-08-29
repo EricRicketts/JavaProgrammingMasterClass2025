@@ -27,7 +27,7 @@ public class PointTwo implements MappableTwo<List<BigDecimal>> {
     }
 
     public BigDecimal getX() {
-        return this.x.setScale(this.getScaleFactor(), RoundingMode.HALF_UP);
+        return this.x.setScale(this.scaleFactor, RoundingMode.HALF_UP);
     }
 
     public void setX(BigDecimal x) {
@@ -35,7 +35,7 @@ public class PointTwo implements MappableTwo<List<BigDecimal>> {
     }
 
     public BigDecimal getY() {
-        return this.y.setScale(this.getScaleFactor(), RoundingMode.HALF_UP);
+        return this.y.setScale(this.scaleFactor, RoundingMode.HALF_UP);
     }
 
     public void setY(BigDecimal y) {
@@ -60,5 +60,10 @@ public class PointTwo implements MappableTwo<List<BigDecimal>> {
     @Override
     public int hashCode() {
         return Objects.hash(this.getX(), this.getY(), this.getScaleFactor());
+    }
+
+    @Override
+    public String toString() {
+        return "PointTwo{x=" + getX() + ", y=" + getY() + "}";
     }
 }
