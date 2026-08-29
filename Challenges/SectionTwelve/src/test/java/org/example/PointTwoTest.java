@@ -140,7 +140,7 @@ public class PointTwoTest {
         }
 
         @Test
-        public void testEqualsPointsHaveSameHashCode() {
+        public void testEqualPointsHaveSameHashCode() {
             PointTwo samePoint = new PointTwo(
                 new BigDecimal("23.45675"),
                 new BigDecimal("45.67894"),
@@ -152,7 +152,7 @@ public class PointTwoTest {
         }
 
         @Test
-        public void testUnEqualsPointsAreNotEqual() {
+        public void testUnEqualPointsAreNotEqual() {
             PointTwo differentPoint = new PointTwo(
                 new BigDecimal("45.77558"),
                 new BigDecimal("54.11223"),
@@ -160,6 +160,17 @@ public class PointTwoTest {
             );
 
             assertNotEquals(point, differentPoint);
+        }
+
+        @Test
+        public void testPointsWithDifferentScaleFactorsAreNotEqual() {
+            PointTwo differentScalePoint = new PointTwo(
+                new BigDecimal("23.45675"),
+                new BigDecimal("45.67894"),
+                3
+            );
+
+            assertNotEquals(point, differentScalePoint);
         }
     }
 
