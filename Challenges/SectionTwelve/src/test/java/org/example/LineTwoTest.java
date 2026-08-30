@@ -19,22 +19,22 @@ public class LineTest {
     public void setUp() {
         line = new LineTwo(
             List.of(
-                new PointTwo(
+                new Point(
                     new BigDecimal("10.12345"),
                     new BigDecimal("-12.19284"),
                     4
                 ),
-                new PointTwo(
+                new Point(
                     new BigDecimal("-23.98765"),
                     new BigDecimal("-46.12332"),
                     4
                 ),
-                new PointTwo(
+                new Point(
                     new BigDecimal("-14.32457"),
                     new BigDecimal("28.38673"),
                     4
                 ),
-                new PointTwo(
+                new Point(
                     new BigDecimal("53.67197"),
                     new BigDecimal("75.29103"),
                     4
@@ -59,7 +59,7 @@ public class LineTest {
 
             for (int index = 0; index < line.render().size(); index++) {
                 BigDecimal[] expectedPoint = expected[index];
-                PointTwo point = line.getPoint(index);
+                Point point = line.getPoint(index);
 
                 assertEquals(expectedPoint[0], point.getX());
                 assertEquals(expectedPoint[1], point.getY());
@@ -86,29 +86,29 @@ public class LineTest {
 
         @Test
         public void testLineGetPoints() {
-            List<PointTwo> expectedPoints = List.of(
-                    new PointTwo(
+            List<Point> expectedPoints = List.of(
+                    new Point(
                         new BigDecimal("10.12345"),
                         new BigDecimal("-12.19284"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("-23.98765"),
                         new BigDecimal("-46.12332"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("-14.32457"),
                         new BigDecimal("28.38673"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("53.67197"),
                         new BigDecimal("75.29103"),
                         4
                     )
                 );
-            List<PointTwo> result = line.getPoints();
+            List<Point> result = line.getPoints();
 
             assertEquals(expectedPoints, result);
         }
@@ -143,31 +143,31 @@ public class LineTest {
 
         @Test
         public void testRenderLine() {
-            List<PointTwo> expected = new ArrayList<>(
+            List<Point> expected = new ArrayList<>(
                 List.of(
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("10.1235"),
                         new BigDecimal("-12.1928"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("-23.9877"),
                         new BigDecimal("-46.1233"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("-14.3246"),
                         new BigDecimal("28.3867"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("53.6720"),
                         new BigDecimal("75.2910"),
                         4
                     )
                 )
             );
-            List<PointTwo> result = line.render();
+            List<Point> result = line.render();
 
             assertEquals(expected, result);
         }
@@ -181,22 +181,22 @@ public class LineTest {
         public void testLineEquality() {
             LineTwo expectedLine = new LineTwo(
                 List.of(
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("10.12345"),
                         new BigDecimal("-12.19284"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("-23.98765"),
                         new BigDecimal("-46.12332"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("-14.32457"),
                         new BigDecimal("28.38673"),
                         4
                     ),
-                    new PointTwo(
+                    new Point(
                         new BigDecimal("53.67197"),
                         new BigDecimal("75.29103"),
                         4
@@ -216,10 +216,10 @@ public class LineTest {
         public void testLineToString() {
             String expected = "Line:\n" +
                 "{\n" +
-                "PointTwo{x=10.1235, y=-12.1928}\n" +
-                "PointTwo{x=-23.9877, y=-46.1233}\n" +
-                "PointTwo{x=-14.3246, y=28.3867}\n" +
-                "PointTwo{x=53.6720, y=75.2910}\n" +
+                "Point{x=10.1235, y=-12.1928}\n" +
+                "Point{x=-23.9877, y=-46.1233}\n" +
+                "Point{x=-14.3246, y=28.3867}\n" +
+                "Point{x=53.6720, y=75.2910}\n" +
                 "}";
             String result = line.toString();
 
@@ -233,17 +233,17 @@ public class LineTest {
 
         @Test
         public void testDefensiveConstructorCopy() {
-            PointTwo point1 = new PointTwo(
+            Point point1 = new Point(
                 new BigDecimal("12.34567"),
                 new BigDecimal("98.76543"),
                 4
             );
-            PointTwo point2 = new PointTwo(
+            Point point2 = new Point(
                 new BigDecimal("13.10295"),
                 new BigDecimal("48.45654"),
                 4
             );
-            List<PointTwo> originalPoints = new ArrayList<>(
+            List<Point> originalPoints = new ArrayList<>(
                 List.of(point1, point2)
             );
             LineTwo line = new LineTwo(originalPoints, 4);
