@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LineTest {
 
-    private LineTwo line;
+    private Line line;
 
     @BeforeEach
     public void setUp() {
-        line = new LineTwo(
+        line = new Line(
             List.of(
                 new Point(
                     new BigDecimal("10.12345"),
@@ -179,7 +179,7 @@ public class LineTest {
 
         @Test
         public void testLineEquality() {
-            LineTwo expectedLine = new LineTwo(
+            Line expectedLine = new Line(
                 List.of(
                     new Point(
                         new BigDecimal("10.12345"),
@@ -246,7 +246,7 @@ public class LineTest {
             List<Point> originalPoints = new ArrayList<>(
                 List.of(point1, point2)
             );
-            LineTwo line = new LineTwo(originalPoints, 4);
+            Line line = new Line(originalPoints, 4);
 
             originalPoints.clear();
 
