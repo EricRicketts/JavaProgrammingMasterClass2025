@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Point implements MappableTwo<List<BigDecimal>> {
+public class Point implements Mappable<List<BigDecimal>> {
 
     private BigDecimal x;
     private BigDecimal y;

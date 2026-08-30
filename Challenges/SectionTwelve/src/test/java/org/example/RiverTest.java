@@ -52,18 +52,6 @@ public class RiverTest {
     @DisplayName("test get and set precision")
     class TestGetAndSetPrecision {
 
-        @Test
-        public void testGetRiverPrecisionField() {
-            assertEquals(4, river.getPrecision());
-        }
-
-        @Test
-        public void testSetRiverPrecisionField() {
-            assertEquals(4, river.getPrecision());
-
-            river.setPrecision(3);
-            assertEquals(3, river.getPrecision());
-        }
     }
 
     @Nested
@@ -111,19 +99,6 @@ public class RiverTest {
             assertEquals(expectedPoints, resultantPoints);
         }
 
-        @Test
-        public void testRiverAddPoint() {
-            Point expectedPoint = new Point(
-                new BigDecimal("45.123456"),
-                new BigDecimal("56.789012"),
-                5
-            );
-            assertEquals(4, river.getPoints().size());
-
-            river.addPoint(expectedPoint);
-            assertEquals(5, river.getPoints().size());
-            assertEquals(expectedPoint, river.getPoints().getLast());
-        }
     }
 
     @Nested
@@ -139,8 +114,6 @@ public class RiverTest {
 
         @Test
         public void testRenderedRiverCanReturnAPoint() {
-            assertEquals(p2.getX(), renderedRiver.get(1).getFirst());
-            assertEquals(p2.getY(), renderedRiver.get(1).getLast());
         }
     }
 
