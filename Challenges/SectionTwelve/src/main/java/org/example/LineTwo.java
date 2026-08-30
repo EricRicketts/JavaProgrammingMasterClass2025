@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class LineTwo implements Mappable<List<Point>>{
+public class Line implements Mappable<List<Point>>{
 
     private final List<Point> points;
     private int scaleFactor;
