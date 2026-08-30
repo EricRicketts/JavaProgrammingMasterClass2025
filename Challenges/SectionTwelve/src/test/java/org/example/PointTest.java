@@ -10,61 +10,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class PointTest {
 
     private Point point;
+    private BigDecimal expected, result;
 
     @BeforeEach
     public void setUp() {
-        BigDecimal x = new BigDecimal("11.34568");
-        BigDecimal y = new BigDecimal("13.09876");
-        point = new Point(x, y, 4);
+        point = new Point(
+            new BigDecimal("23.45675"),
+            new BigDecimal("45.67894"),
+            4
+        );
     }
 
     @Nested
-    @DisplayName("test getters and setters for Point")
-    class TestGettersAndSettersForPoint {
+    @DisplayName("test point two getters")
+    class TestPointTwoGetters {
 
         @Test
-        public void testGetPointXCoord() {
-            BigDecimal expected = new BigDecimal("11.3457");
-            BigDecimal result = point.getX();
-
-            assertEquals(expected, result);
-        }
-
-        @Test
-        public void testGetPointYCoord() {
-            BigDecimal expected = new BigDecimal("13.0988");
-            BigDecimal result = point.getY();
-
-            assertEquals(expected, result);
-        }
-
-        @Test
-        public void testSetPointXCoord() {
-            BigDecimal expected = new BigDecimal("11.3457");
-            BigDecimal result = point.getX();
-
-            assertEquals(expected, result);
-
-            point.setX(new BigDecimal("23.123"), 4);
-            expected = new BigDecimal("23.1230");
+        public void testXGetter() {
+            expected = new BigDecimal("23.4568");
             result = point.getX();
 
             assertEquals(expected, result);
         }
 
         @Test
-        public void testSetPointYCoord() {
-            BigDecimal expected = new BigDecimal("13.0988");
-            BigDecimal result = point.getY();
-
-            assertEquals(expected, result);
-
-            point.setY(new BigDecimal("31.112"), 4);
-            expected = new BigDecimal("31.1120");
+        public void testYGetter() {
+            expected = new BigDecimal("45.6789");
             result = point.getY();
 
             assertEquals(expected, result);
@@ -72,27 +48,163 @@ public class PointTest {
     }
 
     @Nested
-    @DisplayName("test render point and point toString")
-    class TestRenderPointAndPointToString {
+    @DisplayName("test point two setters")
+    class TestPointTwoSetters {
 
         @Test
-        public void testRenderPoint() {
-            List<BigDecimal> expectedPoint = new ArrayList<>(
-                List.of(
-                new BigDecimal("11.3457"),
-                new BigDecimal("13.0988")
-                )
-            );
-            List<BigDecimal> resultantPoint = point.render();
+        public void testXSetter() {
+            expected = new BigDecimal("23.4568");
+            result = point.getX();
 
-            assertEquals(expectedPoint, resultantPoint);
+            assertEquals(expected, result);
+
+            point.setX(new BigDecimal("12.34567"));
+            expected = new BigDecimal("12.3457");
+            result = point.getX();
+
+            assertEquals(expected, result);
         }
 
         @Test
-        public void testPointToString() {
-            String expected = "[11.3457, 13.0988]";
-            String result = point.toString();
+        public void testYSetter() {
+            expected = new BigDecimal("45.6789");
+            result = point.getY();
 
+            assertEquals(expected, result);
+
+            point.setY(new BigDecimal("34.56783"));
+            expected = new BigDecimal("34.5678");
+            result = point.getY();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test scale factor for point two")
+    class TestScaleFactorForPointTwo {
+
+        @Test
+        public void testThreeDigitScaleFactor() {
+            assertEquals(4, point.getScaleFactor());
+            point.setScaleFactor(3);
+
+            expected = new BigDecimal("23.457");
+            result = point.getX();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testSixDigitScaleFactor() {
+            assertEquals(4, point.getScaleFactor());
+            point.setScaleFactor(6);
+
+            expected = new BigDecimal("45.678940");
+            result = point.getY();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testHalfUpRounding() {
+            Point point = new Point(
+                new BigDecimal("1.2345"),
+                new BigDecimal("9.8765"),
+                3
+            );
+
+            assertEquals(new BigDecimal("1.235"), point.getX());
+            assertEquals(new BigDecimal("9.877"), point.getY());
+        }
+    }
+
+    @Nested
+    @DisplayName("test point render method")
+    class TestPointTwoRenderMethod {
+
+        @Test
+        public void testPointTwoRenderMethod() {
+            List<BigDecimal> expected = new ArrayList<>(
+                List.of(
+                    new BigDecimal("23.4568"),
+                    new BigDecimal("45.6789")
+                )
+            );
+            List<BigDecimal> result = point.render();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testRenderReturnsIndependentList() {
+            List<BigDecimal> renderedPoint = point.render();
+
+            renderedPoint.set(0, new BigDecimal("47.47381"));
+
+            assertEquals(new BigDecimal("23.4568"), point.getX());
+            assertEquals(new BigDecimal("45.6789"), point.getY());
+        }
+    }
+
+    @Nested
+    @DisplayName("test point two equal method")
+    class TestPointTwoEqualMethod {
+
+        @Test
+        public void testPointTwoEqualsMethod() {
+            Point expected = new Point(
+                new BigDecimal("23.45675"),
+                new BigDecimal("45.67894"),
+                4
+            );
+            assertEquals(expected, point);
+        }
+
+        @Test
+        public void testEqualPointsHaveSameHashCode() {
+            Point samePoint = new Point(
+                new BigDecimal("23.45675"),
+                new BigDecimal("45.67894"),
+                4
+            );
+
+            assertEquals(point, samePoint);
+            assertEquals(point.hashCode(), samePoint.hashCode());
+        }
+
+        @Test
+        public void testUnequalPointsAreNotEqual() {
+            Point differentPoint = new Point(
+                new BigDecimal("45.77558"),
+                new BigDecimal("54.11223"),
+                4
+            );
+
+            assertNotEquals(point, differentPoint);
+        }
+
+        @Test
+        public void testPointsWithDifferentScaleFactorsAreNotEqual() {
+            Point differentScalePoint = new Point(
+                new BigDecimal("23.45675"),
+                new BigDecimal("45.67894"),
+                3
+            );
+
+            assertNotEquals(point, differentScalePoint);
+        }
+    }
+
+    @Nested
+    @DisplayName("test point two to string")
+    class TestPointTwoToString {
+
+        @Test
+        public void testPointTwoToString() {
+            String expected = "PointTwo{x=23.4568, y=45.6789}";
+            String result = point.toString();
+            
             assertEquals(expected, result);
         }
     }
