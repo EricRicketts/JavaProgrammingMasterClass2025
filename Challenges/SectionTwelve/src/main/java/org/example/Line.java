@@ -3,58 +3,83 @@ package org.example;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Line implements Mappable<List<List<BigDecimal>>> {
-    private List<Point> points;
-    private int precision;
+public class Line implements Mappable<List<Point>>{
 
-    public Line(ArrayList<Point> points, int precision) {
-        this.precision = precision;
-        this.points = new ArrayList<>();
-        for (Point point : points) {
-            this.addPoint(point);
-        }
+    private final List<Point> points;
+    private int scaleFactor;
+
+    public LineTwo(List<Point> points, int scaleFactor) {
+        this.points = new ArrayList<>(points);
+        this.scaleFactor = scaleFactor;
     }
 
-    public int getPrecision() {
-        return precision;
+    public int getScaleFactor() {
+        return scaleFactor;
     }
 
-    public void setPrecision(int precision) {
-        this.precision = precision;
-        for (Point point : this.points) {
-            point.setX(point.getX(), precision);
-            point.setY(point.getY(), precision);
-        }
+    public void setScaleFactor(int scaleFactor) {
+        this.scaleFactor = scaleFactor;
     }
 
     public List<Point> getPoints() {
-        return points;
+        List<Point> currentPoints = new ArrayList<>();
+        for (Point point : this.points) {
+            Point newPoint =
+                new Point(point.getX(), point.getY(), this.scaleFactor);
+            currentPoints.add(newPoint);
+        }
+        return currentPoints;
     }
 
-    public void addPoint(Point point) {
-        point.setX(point.getX(), this.precision);
-        point.setY(point.getY(), this.precision);
-        this.points.add(point);
+    public Point getPoint(int index) {
+        Point point = points.get(index);
+        return new Point(point.getX(), point.getY(), this.scaleFactor);
+    }
+
+    public void setPoint(int index, BigDecimal x, BigDecimal y) {
+        String errorMessage = "index for set point out of range";
+        /*
+            Alternative mutating the objects directly:
+            Point point = this.points.get(index);
+            point.setX(x);
+            point.setY(y);
+            point.setScaleFactor(this.scaleFactor);
+        */
+        if (index >= 0 && index < this.points.size()) {
+            this.points.set(index, new Point(x, y, this.scaleFactor));
+        } else {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public List<Point> render() {
+        return new ArrayList<>(points);
     }
 
     @Override
-    public List<List<BigDecimal>> render() {
-        List<List<BigDecimal>> listOfPoints = new ArrayList<>();
-        for (Point point : this.getPoints()) {
-            listOfPoints.add(point.render());
-        }
-            return listOfPoints;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (this.getClass() != o.getClass()) return false;
+        LineTwo line = (LineTwo) o;
+        return Objects.equals(this.points, line.points) &&
+            this.scaleFactor == line.scaleFactor;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.points, this.scaleFactor);
     }
 
     @Override
     public String toString() {
-        StringBuilder coordinates = new StringBuilder();
-        coordinates.append("[");
-        for (Point point : this.getPoints()) {
-            coordinates.append(point.toString()).append(", ");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Line:").append("\n").append("{").append("\n");
+        for(Point point : this.points) {
+            sb.append(point.toString()).append("\n");
         }
-        coordinates.delete(coordinates.length() - 2, coordinates.length());
-        return coordinates.toString().concat("]");
+        return sb.append("}").toString();
     }
 }
