@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RiverTest {
 
     private River river;
-    private List<List<BigDecimal>> renderedRiver;
+    private List<Point> renderedRiver;
     private ArrayList<Point> points;
     private Point p1, p2, p3, p4;
 

@@ -2,7 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 
-public class ParkTwo extends PointTwo {
+public class ParkTwo extends Point {
 
     private final String name;
     private final String type;

@@ -10,7 +10,7 @@ public class Line implements Mappable<List<Point>>{
     private final List<Point> points;
     private int scaleFactor;
 
-    public LineTwo(List<Point> points, int scaleFactor) {
+    public Line(List<Point> points, int scaleFactor) {
         this.points = new ArrayList<>(points);
         this.scaleFactor = scaleFactor;
     }
@@ -63,7 +63,7 @@ public class Line implements Mappable<List<Point>>{
         if (this == o) return true;
         if (o == null) return false;
         if (this.getClass() != o.getClass()) return false;
-        LineTwo line = (LineTwo) o;
+        Line line = (Line) o;
         return Objects.equals(this.points, line.points) &&
             this.scaleFactor == line.scaleFactor;
     }
