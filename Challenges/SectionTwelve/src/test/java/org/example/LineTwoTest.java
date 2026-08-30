@@ -133,6 +133,8 @@ public class LineTwoTest {
             assertEquals(new BigDecimal("56.1235"), line.render().get(1).getX());
             assertEquals(new BigDecimal("87.8765"), line.render().get(1).getY());
         }
+
+
     }
 
     @Nested
