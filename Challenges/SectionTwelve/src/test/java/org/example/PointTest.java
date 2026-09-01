@@ -124,7 +124,7 @@ public class PointTest {
     class TestPointTwoRenderMethod {
 
         @Test
-        public void testPointTwoRenderMethod() {
+        public void testPointRenderMethod() {
             List<BigDecimal> expected = new ArrayList<>(
                 List.of(
                     new BigDecimal("23.4568"),
@@ -152,7 +152,7 @@ public class PointTest {
     class TestPointTwoEqualMethod {
 
         @Test
-        public void testPointTwoEqualsMethod() {
+        public void testPointEqualsMethod() {
             Point expected = new Point(
                 new BigDecimal("23.45675"),
                 new BigDecimal("45.67894"),
@@ -201,7 +201,7 @@ public class PointTest {
     class TestPointTwoToString {
 
         @Test
-        public void testPointTwoToString() {
+        public void testPointToString() {
             String expected = "Point{x=23.4568, y=45.6789}";
             String result = point.toString();
             
