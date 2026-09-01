@@ -52,6 +52,18 @@ public class RiverTest {
     @DisplayName("test get and set precision")
     class TestGetAndSetPrecision {
 
+        @Test
+        public void testGetPrecision() {
+            assertEquals(4, river.getScaleFactor());
+        }
+
+        @Test
+        public void testSetPrecision() {
+            assertEquals(4, river.getScaleFactor());
+            river.setScaleFactor(5);
+
+            assertEquals(5, river.getScaleFactor());
+        }
     }
 
     @Nested
@@ -88,11 +100,31 @@ public class RiverTest {
     }
 
     @Nested
-    @DisplayName("test River get points and add point to river")
-    class TestGetRiverPointsAndAddPointToRiver {
+    @DisplayName("test River get points")
+    class TestGetRiverPoints {
 
         @Test
         public void testGetRiverPoints() {
+            p1 = new Point(
+                new BigDecimal("47.4709"),
+                new BigDecimal("-105.8286"),
+                4
+            );
+            p2 = new Point(
+                new BigDecimal("36.1016"),
+                new BigDecimal("-112.0893"),
+                4
+            );
+            p3 = new Point(
+                new BigDecimal("34.2964"),
+                new BigDecimal("-114.1148"),
+                4
+            );
+            p4 = new Point(
+                new BigDecimal("31.7812"),
+                new BigDecimal("-114.7724"),
+                4
+            );
             List<Point> expectedPoints = List.of(p1, p2, p3, p4);
             List<Point> resultantPoints = river.getPoints();
 
