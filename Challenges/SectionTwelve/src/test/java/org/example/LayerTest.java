@@ -108,26 +108,45 @@ public class LayerTest {
         @Test
         public void testRenderFirstRiver() {
             River coloradoRiver = riverLayer.getListOfElements().getFirst();
-            List<List<BigDecimal>> coloradoRiverCoordinates = coloradoRiver.render();
-            List<List<BigDecimal>> expectedColoradoRiverCoordinates = new ArrayList<>();
+            List<Point> coloradoRiverCoordinates = coloradoRiver.render();
+            List<List<Point>> expectedColoradoRiverCoordinates = new ArrayList<>();
 
-            List<BigDecimal> p1Coordinates = new ArrayList<>(
-                List.of(new BigDecimal("47.4709"), new BigDecimal("-105.8286"))
+            List<Point> p1Coordinates = new ArrayList<>(
+                List.of(new Point(
+                    new BigDecimal("47.4709"),
+                    new BigDecimal("-105.8286"),
+                    4)
+                )
             );
             expectedColoradoRiverCoordinates.add(p1Coordinates);
 
-            List<BigDecimal> p2Coordinates = new ArrayList<>(
-                List.of(new BigDecimal("36.1016"), new BigDecimal("-112.0893"))
+            List<Point> p2Coordinates = new ArrayList<>(
+                List.of(
+                    new Point(
+                        new BigDecimal("36.1016"),
+                        new BigDecimal("-112.0893"),
+             4)
+                )
             );
             expectedColoradoRiverCoordinates.add(p2Coordinates);
 
-            List<BigDecimal> p3Coordinates = new ArrayList<>(
-                List.of(new BigDecimal("34.2964"), new BigDecimal("-114.1148"))
+            List<Point> p3Coordinates = new ArrayList<>(
+                List.of(
+                    new Point(
+                        new BigDecimal("34.2964"),
+                        new BigDecimal("-114.1148"),
+             4)
+                )
             );
             expectedColoradoRiverCoordinates.add(p3Coordinates);
 
-            List<BigDecimal> p4Coordinates = new ArrayList(
-                List.of(new BigDecimal("31.7812"), new BigDecimal("-114.7724"))
+            List<Point> p4Coordinates = new ArrayList<>(
+                List.of(
+                    new Point(
+                        new BigDecimal("31.7812"),
+                        new BigDecimal("-114.7724"),
+              4)
+                )
             );
             expectedColoradoRiverCoordinates.add(p4Coordinates);
 
@@ -157,7 +176,7 @@ public class LayerTest {
         @Test
         public void testRenderSecondRiver() {
             River mississippiRiver = riverLayer.getListOfElements().getLast();
-            List<List<BigDecimal>> mississippiRiverCoordinates = mississippiRiver.render();
+            List<Point> mississippiRiverCoordinates = mississippiRiver.render();
             List<List<BigDecimal>> expectedMississippiRiverCoordinates = new ArrayList<>();
 
             List<BigDecimal> p1Coordinates = new ArrayList<>(

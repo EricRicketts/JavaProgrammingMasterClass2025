@@ -216,9 +216,9 @@ public class LineTest {
         public void testLineToString() {
             String expected = "Line:\n" +
                 "{\n" +
-                "Point{x=10.1235, y=-12.1928}\n" +
-                "Point{x=-23.9877, y=-46.1233}\n" +
-                "Point{x=-14.3246, y=28.3867}\n" +
+                "Point{x=10.1235, y=-12.1928},\n" +
+                "Point{x=-23.9877, y=-46.1233},\n" +
+                "Point{x=-14.3246, y=28.3867},\n" +
                 "Point{x=53.6720, y=75.2910}\n" +
                 "}";
             String result = line.toString();

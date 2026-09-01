@@ -64,6 +64,6 @@ public class Point implements Mappable<List<BigDecimal>> {
 
     @Override
     public String toString() {
-        return "PointTwo{x=" + getX() + ", y=" + getY() + "}";
+        return this.getClass().getSimpleName() + "{x=" + getX() + ", y=" + getY() + "}";
     }
 }

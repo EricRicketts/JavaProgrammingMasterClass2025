@@ -2,8 +2,10 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line implements Mappable<List<Point>>{
 
@@ -75,11 +77,13 @@ public class Line implements Mappable<List<Point>>{
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Line:").append("\n").append("{").append("\n");
-        for(Point point : this.points) {
-            sb.append(point.toString()).append("\n");
-        }
-        return sb.append("}").toString();
+        String output = this.getClass().getSimpleName() + ":" + "\n" + "{" + "\n";
+        List<Point> list = new ArrayList<>(points);
+
+        String interiorString = list.stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(",\n"));
+
+        return output.concat(interiorString).concat("\n").concat("}");
     }
 }

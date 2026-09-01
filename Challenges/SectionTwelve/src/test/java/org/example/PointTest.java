@@ -202,7 +202,7 @@ public class PointTest {
 
         @Test
         public void testPointTwoToString() {
-            String expected = "PointTwo{x=23.4568, y=45.6789}";
+            String expected = "Point{x=23.4568, y=45.6789}";
             String result = point.toString();
             
             assertEquals(expected, result);
