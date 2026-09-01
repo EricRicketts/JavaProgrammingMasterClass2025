@@ -139,6 +139,26 @@ public class RiverTest {
 
         @Test
         public void testRenderedRiverReturnsListOfPoints() {
+            p1 = new Point(
+                new BigDecimal("47.4709"),
+                new BigDecimal("-105.8286"),
+                4
+            );
+            p2 = new Point(
+                new BigDecimal("36.1016"),
+                new BigDecimal("-112.0893"),
+                4
+            );
+            p3 = new Point(
+                new BigDecimal("34.2964"),
+                new BigDecimal("-114.1148"),
+                4
+            );
+            p4 = new Point(
+                new BigDecimal("31.7812"),
+                new BigDecimal("-114.7724"),
+                4
+            );
             List<List<BigDecimal>> expectedPoints = List.of(
                 p1.render(), p2.render(), p3.render(), p4.render());
             assertEquals(expectedPoints, renderedRiver);
