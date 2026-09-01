@@ -57,9 +57,7 @@ public class Line implements Mappable<List<Point>>{
     }
 
     public List<Point> render() {
-        List<Point> renderedRiver = new ArrayList<>();
-        renderedRiver.addAll(points);
-        return renderedRiver;
+        return new ArrayList<>(points);
     }
 
     @Override
