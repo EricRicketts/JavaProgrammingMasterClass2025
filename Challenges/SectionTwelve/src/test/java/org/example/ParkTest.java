@@ -15,14 +15,14 @@ public class ParkTest {
 
         // Verify that we can call getX() and getY() inherited from Point
         // They should be rounded to 3 decimal places as specified in the constructor
-        assertEquals(new BigDecimal("45.1235"), park.getX());
-        assertEquals(new BigDecimal("-93.9877"), park.getY());
+        assertEquals(new BigDecimal("45.123456"), park.getX());
+        assertEquals(new BigDecimal("-93.987654"), park.getY());
 
         // Verify that we can call render() inherited from Point
         List<BigDecimal> rendered = park.render();
         assertEquals(2, rendered.size());
-        assertEquals(new BigDecimal("45.1235"), rendered.get(0));
-        assertEquals(new BigDecimal("-93.9877"), rendered.get(1));
+        assertEquals(new BigDecimal("45.123456"), rendered.get(0));
+        assertEquals(new BigDecimal("-93.987654"), rendered.get(1));
     }
 
     @Test
