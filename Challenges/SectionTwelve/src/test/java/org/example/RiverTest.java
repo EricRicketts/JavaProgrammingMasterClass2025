@@ -22,23 +22,19 @@ public class RiverTest {
     public void setUp() {
         p1 = new Point(
             new BigDecimal("47.470847"),
-            new BigDecimal("-105.828641"),
-            5
+            new BigDecimal("-105.828641")
         );
         p2 = new Point(
             new BigDecimal("36.101589"),
-            new BigDecimal("-112.089256"),
-            5
+            new BigDecimal("-112.089256")
         );
         p3 = new Point(
             new BigDecimal("34.296438"),
-            new BigDecimal("-114.114835"),
-            5
+            new BigDecimal("-114.114835")
         );
         p4 = new Point(
             new BigDecimal("31.781149"),
-            new BigDecimal("-114.772412"),
-            5
+            new BigDecimal("-114.772412")
         );
 
         points = new ArrayList<>(List.of(p1, p2, p3, p4));
@@ -107,23 +103,19 @@ public class RiverTest {
         public void testGetRiverPoints() {
             p1 = new Point(
                 new BigDecimal("47.4709"),
-                new BigDecimal("-105.8286"),
-                4
+                new BigDecimal("-105.8286")
             );
             p2 = new Point(
                 new BigDecimal("36.1016"),
-                new BigDecimal("-112.0893"),
-                4
+                new BigDecimal("-112.0893")
             );
             p3 = new Point(
                 new BigDecimal("34.2964"),
-                new BigDecimal("-114.1148"),
-                4
+                new BigDecimal("-114.1148")
             );
             p4 = new Point(
                 new BigDecimal("31.7812"),
-                new BigDecimal("-114.7724"),
-                4
+                new BigDecimal("-114.7724")
             );
             List<Point> expectedPoints = List.of(p1, p2, p3, p4);
             List<Point> resultantPoints = river.getPoints();
@@ -139,29 +131,25 @@ public class RiverTest {
 
         @Test
         public void testRenderedRiverReturnsListOfPoints() {
-            p1 = new Point(
-                new BigDecimal("47.4709"),
-                new BigDecimal("-105.8286"),
-                4
-            );
-            p2 = new Point(
-                new BigDecimal("36.1016"),
-                new BigDecimal("-112.0893"),
-                4
-            );
-            p3 = new Point(
-                new BigDecimal("34.2964"),
-                new BigDecimal("-114.1148"),
-                4
-            );
-            p4 = new Point(
-                new BigDecimal("31.7812"),
-                new BigDecimal("-114.7724"),
-                4
-            );
-            List<List<BigDecimal>> expectedPoints = List.of(
-                p1.render(), p2.render(), p3.render(), p4.render());
-            assertEquals(expectedPoints, renderedRiver);
+                List<List<BigDecimal>> expectedRiverPoints = List.of(
+                    List.of(
+                        new BigDecimal("47.4709"),
+                        new BigDecimal("-105.8286")
+                    ),
+                    List.of(
+                        new BigDecimal("36.1016"),
+                        new BigDecimal("-112.0893")
+                    ),
+                    List.of(
+                        new BigDecimal("34.2964"),
+                        new BigDecimal("-114.1148")
+                    ),
+                    List.of(
+                        new BigDecimal("31.7812"),
+                        new BigDecimal("-114.7724")
+                    )
+                );
+            assertEquals(expectedRiverPoints, renderedRiver);
         }
 
         @Test

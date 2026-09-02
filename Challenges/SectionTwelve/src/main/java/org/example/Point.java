@@ -10,24 +10,14 @@ public class Point implements Mappable<List<BigDecimal>> {
 
     private BigDecimal x;
     private BigDecimal y;
-    int scaleFactor;
 
-    public Point(BigDecimal x, BigDecimal y, int scaleFactor) {
+    public Point(BigDecimal x, BigDecimal y) {
         this.x = x;
         this.y = y;
-        this.scaleFactor = scaleFactor;
-    }
-
-    public int getScaleFactor() {
-        return scaleFactor;
-    }
-
-    public void setScaleFactor(int scaleFactor) {
-        this.scaleFactor = scaleFactor;
     }
 
     public BigDecimal getX() {
-        return this.x.setScale(this.scaleFactor, RoundingMode.HALF_UP);
+        return this.x;
     }
 
     public void setX(BigDecimal x) {
@@ -35,7 +25,7 @@ public class Point implements Mappable<List<BigDecimal>> {
     }
 
     public BigDecimal getY() {
-        return this.y.setScale(this.scaleFactor, RoundingMode.HALF_UP);
+        return this.y;
     }
 
     public void setY(BigDecimal y) {
@@ -53,13 +43,12 @@ public class Point implements Mappable<List<BigDecimal>> {
         if (this.getClass() != o.getClass()) return false;
         Point point = (Point) o;
         return Objects.equals(this.getX(), point.getX()) &&
-            Objects.equals(this.getY(), point.getY()) &&
-            this.scaleFactor == point.getScaleFactor();
+            Objects.equals(this.getY(), point.getY());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getX(), this.getY(), this.getScaleFactor());
+        return Objects.hash(this.getX(), this.getY());
     }
 
     @Override

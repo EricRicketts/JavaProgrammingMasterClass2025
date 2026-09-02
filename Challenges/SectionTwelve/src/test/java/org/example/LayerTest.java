@@ -22,23 +22,19 @@ public class LayerTest {
         // Points p1 through p4 designate the Colorado River.
         p1 = new Point(
             new BigDecimal("47.470847"),
-            new BigDecimal("-105.828641"),
-            5
+            new BigDecimal("-105.828641")
         );
         p2 = new Point(
             new BigDecimal("36.101589"),
-            new BigDecimal("-112.089256"),
-            5
+            new BigDecimal("-112.089256")
         );
         p3 = new Point(
             new BigDecimal("34.296438"),
-            new BigDecimal("-114.114835"),
-            5
+            new BigDecimal("-114.114835")
         );
         p4 = new Point(
             new BigDecimal("31.781149"),
-            new BigDecimal("-114.772412"),
-            5
+            new BigDecimal("-114.772412")
         );
 
         ArrayList<Point> coloradoRiverPoints = new ArrayList<>(List.of(p1, p2, p3, p4));
@@ -47,18 +43,15 @@ public class LayerTest {
         // Points p5 through p7 designate the Mississippi River.
         p5 = new Point(
             new BigDecimal("47.216067"),
-            new BigDecimal("-95.234834"),
-            5
+            new BigDecimal("-95.234834")
         );
         p6 = new Point(
             new BigDecimal("35.115623"),
-            new BigDecimal("-90.065988"),
-            5
+            new BigDecimal("-90.065988")
         );
         p7 = new Point(
             new BigDecimal("29.156612"),
-            new BigDecimal("-89.249556"),
-            5
+            new BigDecimal("-89.249556")
         );
 
         ArrayList<Point> mississippiRiverPoints = new ArrayList<>(List.of(p5, p6, p7));
@@ -69,15 +62,13 @@ public class LayerTest {
         // Point p8 is for Yellowstone National Park.
         p8 = new Point(
             new BigDecimal("44.488214"),
-            new BigDecimal("-110.591636"),
-            5
+            new BigDecimal("-110.591636")
         );
 
         // Point p9 is for Yosemite National Park.
         p9 = new Point(
             new BigDecimal("37.885555"),
-            new BigDecimal("-119.536054"),
-            5
+            new BigDecimal("-119.536054")
         );
 
         Park yellowstone = new Park("Yellowstone", "National Park", p8.getX(), p8.getY(), 4);
@@ -114,8 +105,8 @@ public class LayerTest {
             List<Point> p1Coordinates = new ArrayList<>(
                 List.of(new Point(
                     new BigDecimal("47.4709"),
-                    new BigDecimal("-105.8286"),
-                    4)
+                    new BigDecimal("-105.8286")
+                    )
                 )
             );
             expectedColoradoRiverCoordinates.add(p1Coordinates);
@@ -124,8 +115,8 @@ public class LayerTest {
                 List.of(
                     new Point(
                         new BigDecimal("36.1016"),
-                        new BigDecimal("-112.0893"),
-             4)
+                        new BigDecimal("-112.0893")
+             )
                 )
             );
             expectedColoradoRiverCoordinates.add(p2Coordinates);
@@ -134,8 +125,8 @@ public class LayerTest {
                 List.of(
                     new Point(
                         new BigDecimal("34.2964"),
-                        new BigDecimal("-114.1148"),
-             4)
+                        new BigDecimal("-114.1148")
+             )
                 )
             );
             expectedColoradoRiverCoordinates.add(p3Coordinates);
@@ -144,8 +135,8 @@ public class LayerTest {
                 List.of(
                     new Point(
                         new BigDecimal("31.7812"),
-                        new BigDecimal("-114.7724"),
-              4)
+                        new BigDecimal("-114.7724")
+              )
                 )
             );
             expectedColoradoRiverCoordinates.add(p4Coordinates);

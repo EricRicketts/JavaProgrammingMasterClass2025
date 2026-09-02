@@ -8,7 +8,7 @@ public class Park extends Point {
     private final String type;
 
     public Park(String name, String type, BigDecimal x, BigDecimal y, int precision) {
-        super(x, y, precision);
+        super(x, y);
         this.name = name;
         this.type = type;
     }
