@@ -102,20 +102,20 @@ public class RiverTest {
         @Test
         public void testGetRiverPoints() {
             p1 = new Point(
-                new BigDecimal("47.4709"),
-                new BigDecimal("-105.8286")
+                new BigDecimal("47.470847"),
+                new BigDecimal("-105.828641")
             );
             p2 = new Point(
-                new BigDecimal("36.1016"),
-                new BigDecimal("-112.0893")
+                new BigDecimal("36.101589"),
+                new BigDecimal("-112.089256")
             );
             p3 = new Point(
-                new BigDecimal("34.2964"),
-                new BigDecimal("-114.1148")
+                new BigDecimal("34.296438"),
+                new BigDecimal("-114.114835")
             );
             p4 = new Point(
-                new BigDecimal("31.7812"),
-                new BigDecimal("-114.7724")
+                new BigDecimal("31.781149"),
+                new BigDecimal("-114.772412")
             );
             List<Point> expectedPoints = List.of(p1, p2, p3, p4);
             List<Point> resultantPoints = river.getPoints();
@@ -133,7 +133,7 @@ public class RiverTest {
         public void testRenderedRiverReturnsListOfPoints() {
                 List<List<BigDecimal>> expectedRiverPoints = List.of(
                     List.of(
-                        new BigDecimal("47.4709"),
+                        new BigDecimal("47.4708"),
                         new BigDecimal("-105.8286")
                     ),
                     List.of(
@@ -145,7 +145,7 @@ public class RiverTest {
                         new BigDecimal("-114.1148")
                     ),
                     List.of(
-                        new BigDecimal("31.7812"),
+                        new BigDecimal("31.7811"),
                         new BigDecimal("-114.7724")
                     )
                 );
