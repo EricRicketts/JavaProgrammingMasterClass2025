@@ -2,12 +2,13 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Line implements Mappable<List<Point>>{
+import static java.util.stream.Collectors.toList;
+
+public class Line implements Mappable<List<List<BigDecimal>>>{
 
     private final List<Point> points;
     private int scaleFactor;
@@ -56,8 +57,10 @@ public class Line implements Mappable<List<Point>>{
         }
     }
 
-    public List<Point> render() {
-        return new ArrayList<>(points);
+    public List<List<BigDecimal>> render() {
+        return this.points.stream()
+            .map(Point::render)
+            .toList();
     }
 
     @Override

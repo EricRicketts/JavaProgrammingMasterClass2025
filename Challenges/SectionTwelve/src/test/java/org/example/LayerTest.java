@@ -108,7 +108,7 @@ public class LayerTest {
         @Test
         public void testRenderFirstRiver() {
             River coloradoRiver = riverLayer.getListOfElements().getFirst();
-            List<Point> coloradoRiverCoordinates = coloradoRiver.render();
+            List<List<BigDecimal>> coloradoRiverCoordinates = coloradoRiver.render();
             List<List<Point>> expectedColoradoRiverCoordinates = new ArrayList<>();
 
             List<Point> p1Coordinates = new ArrayList<>(
@@ -176,7 +176,7 @@ public class LayerTest {
         @Test
         public void testRenderSecondRiver() {
             River mississippiRiver = riverLayer.getListOfElements().getLast();
-            List<Point> mississippiRiverCoordinates = mississippiRiver.render();
+            List<List<BigDecimal>> mississippiRiverCoordinates = mississippiRiver.render();
             List<List<BigDecimal>> expectedMississippiRiverCoordinates = new ArrayList<>();
 
             List<BigDecimal> p1Coordinates = new ArrayList<>(
