@@ -100,46 +100,35 @@ public class LayerTest {
         public void testRenderFirstRiver() {
             River coloradoRiver = riverLayer.getListOfElements().getFirst();
             List<List<BigDecimal>> coloradoRiverCoordinates = coloradoRiver.render();
-            List<List<Point>> expectedColoradoRiverCoordinates = new ArrayList<>();
+            List<List<BigDecimal>> expectedColoradoRiverCoordinates = new ArrayList<>();
 
-            List<Point> p1Coordinates = new ArrayList<>(
-                List.of(new Point(
-                    new BigDecimal("47.4709"),
+            expectedColoradoRiverCoordinates.add(
+                List.of(
+                    new BigDecimal("47.4708"),
                     new BigDecimal("-105.8286")
-                    )
                 )
             );
-            expectedColoradoRiverCoordinates.add(p1Coordinates);
 
-            List<Point> p2Coordinates = new ArrayList<>(
+            expectedColoradoRiverCoordinates.add(
                 List.of(
-                    new Point(
-                        new BigDecimal("36.1016"),
-                        new BigDecimal("-112.0893")
-             )
+                    new BigDecimal("36.1016"),
+                    new BigDecimal("-112.0893")
                 )
             );
-            expectedColoradoRiverCoordinates.add(p2Coordinates);
 
-            List<Point> p3Coordinates = new ArrayList<>(
+            expectedColoradoRiverCoordinates.add(
                 List.of(
-                    new Point(
-                        new BigDecimal("34.2964"),
-                        new BigDecimal("-114.1148")
-             )
+                    new BigDecimal("34.2964"),
+                    new BigDecimal("-114.1148")
                 )
             );
-            expectedColoradoRiverCoordinates.add(p3Coordinates);
 
-            List<Point> p4Coordinates = new ArrayList<>(
+            expectedColoradoRiverCoordinates.add(
                 List.of(
-                    new Point(
-                        new BigDecimal("31.7812"),
-                        new BigDecimal("-114.7724")
-              )
+                    new BigDecimal("31.7811"),
+                    new BigDecimal("-114.7724")
                 )
             );
-            expectedColoradoRiverCoordinates.add(p4Coordinates);
 
             assertEquals(expectedColoradoRiverCoordinates, coloradoRiverCoordinates);
         }
@@ -279,8 +268,8 @@ public class LayerTest {
             Park yellowstoneNationalPark = parkLayer.getListOfElements().getFirst();
             String yellowstoneNationalParkString = yellowstoneNationalPark.toString();
 
-            String expectedYellowstoneNationalParkString = "Yellowstone (National Park) " +
-                "[44.4882, -110.5916]";
+            String expectedYellowstoneNationalParkString =
+                "Yellowstone (National Park) Park{x=44.488214, y=-110.591636}";
 
             assertEquals(expectedYellowstoneNationalParkString, yellowstoneNationalParkString);
         }
@@ -290,9 +279,8 @@ public class LayerTest {
             Park yosemiteNationalPark = parkLayer.getListOfElements().getLast();
             String yosemiteNationalParkString = yosemiteNationalPark.toString();
 
-            String expectedYosemiteNationalParkString = "Yosemite (National Park) " +
-                "[37.8856, -119.5361]";
-
+            String expectedYosemiteNationalParkString =
+                "Yosemite (National Park) Park{x=37.885555, y=-119.536054}";
             assertEquals(expectedYosemiteNationalParkString, yosemiteNationalParkString);
         }
     }

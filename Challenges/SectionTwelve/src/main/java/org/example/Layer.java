@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Layer<T extends Mappable<?>> {
 
-    private List<T> listOfElements;
+    private List<T> elements;
 
     public Layer(List<T> listOfElements) {
-        this.listOfElements = listOfElements;
+        this.elements = listOfElements;
     }
 
     public void addElement(T element) {
-        this.listOfElements.add(element);
+        this.elements.add(element);
     }
 
     public List<T> getListOfElements() {
-        return listOfElements;
+        return elements;
     }
 
     public List<Object> renderLayer() {
@@ -26,5 +26,14 @@ public class Layer<T extends Mappable<?>> {
           outputList.add(renderedElement);
       }
       return outputList;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T element : this.elements) {
+            sb.append(element.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }
