@@ -201,8 +201,8 @@ public class LayerTest {
 
             List<BigDecimal> expectedYellowstoneNationalParkCoordinates =
                 new ArrayList<>(List.of(
-                    new BigDecimal("44.4882"),
-                    new BigDecimal("-110.5916")
+                    new BigDecimal("44.488214"),
+                    new BigDecimal("-110.591636")
                     )
                 );
 
@@ -216,8 +216,8 @@ public class LayerTest {
 
             List<BigDecimal> expectedYosemiteNationalParkCoordinates =
                 new ArrayList<>(List.of(
-                    new BigDecimal("37.8856"),
-                    new BigDecimal("-119.5361")
+                    new BigDecimal("37.885555"),
+                    new BigDecimal("-119.536054")
                     )
                 );
 
@@ -234,12 +234,14 @@ public class LayerTest {
             River coloradoRiver = riverLayer.getListOfElements().getFirst();
             String coloradoRiverString = coloradoRiver.toString();
 
-            String expectedColoradoRiverString = "Colorado (River) [" +
-                "[47.4709, -105.8286], " +
-                "[36.1016, -112.0893], " +
-                "[34.2964, -114.1148], " +
-                "[31.7812, -114.7724]" +
-                "]";
+            String expectedColoradoRiverString =
+                "Colorado (River) River:\n" +
+                "{\n" +
+                 "Point{x=47.470847, y=-105.828641},\n" +
+                 "Point{x=36.101589, y=-112.089256},\n" +
+                 "Point{x=34.296438, y=-114.114835},\n" +
+                 "Point{x=31.781149, y=-114.772412}\n" +
+                "}";
 
                 assertEquals(expectedColoradoRiverString, coloradoRiverString);
         }
@@ -249,11 +251,13 @@ public class LayerTest {
             River mississippiRiver = riverLayer.getListOfElements().getLast();
             String mississippiRiverString = mississippiRiver.toString();
 
-            String expectedMississippiRiverString = "Mississippi (River) [" +
-                "[47.2161, -95.2348], " +
-                "[35.1156, -90.0660], " +
-                "[29.1566, -89.2496]" +
-                "]";
+            String expectedMississippiRiverString =
+                "Mississippi (River) River:\n" +
+                "{\n" +
+                 "Point{x=47.216067, y=-95.234834},\n" +
+                 "Point{x=35.115623, y=-90.065988},\n" +
+                 "Point{x=29.156612, y=-89.249556}\n" +
+                "}";
 
             assertEquals(expectedMississippiRiverString, mississippiRiverString);
         }
