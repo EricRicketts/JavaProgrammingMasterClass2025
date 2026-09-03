@@ -83,12 +83,13 @@ public class RiverTest {
 
         @Test
         public void testRiverToString() {
-            String expected = "Colorado (River) [" +
-                "[47.4709, -105.8286], " +
-                "[36.1016, -112.0893], " +
-                "[34.2964, -114.1148], " +
-                "[31.7812, -114.7724]" +
-                "]";
+            String expected = "Colorado (River) River:\n" +
+                "{\n" +
+                "Point{x=47.470847, y=-105.828641},\n" +
+                "Point{x=36.101589, y=-112.089256},\n" +
+                "Point{x=34.296438, y=-114.114835},\n" +
+                "Point{x=31.781149, y=-114.772412}\n" +
+                "}";
             String result = river.toString();
 
             assertEquals(expected, result);
@@ -126,7 +127,7 @@ public class RiverTest {
     }
 
     @Nested
-    @DisplayName("test rendered river inherits Line render mehtod")
+    @DisplayName("test rendered river inherits Line render method")
     class TestRiverInheritsLineRenderMethod {
 
         @Test
@@ -151,9 +152,21 @@ public class RiverTest {
                 );
             assertEquals(expectedRiverPoints, renderedRiver);
         }
+    }
+
+    @Nested
+    @DisplayName("test River can return a point on the river")
+    class TestRiverReturnsPointOnRiver {
 
         @Test
-        public void testRenderedRiverCanReturnAPoint() {
+        public void testRiverReturnsAPoint() {
+            Point expectedPoint = new Point(
+                new BigDecimal("34.296438"),
+                new BigDecimal("-114.114835")
+            );
+            Point point = river.getPoint(2);
+
+            assertEquals(expectedPoint, point);
         }
     }
 
