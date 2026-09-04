@@ -167,5 +167,13 @@ public class ThirdTeamTest {
         public void testGetTeamName() {
             assertEquals("New York Yankees", yankees.getTeamName());
         }
+
+        @Test
+        public void testGetAffiliation() {
+            var affiliation = new Affiliation("Fred", "State", "US");
+            ThirdTeam<BaseballPlayer, Affiliation> redSox =
+                new ThirdTeam<>("Boston Red Sox", affiliation);
+            assertEquals("Fred (State in US)", redSox.getAffiliation().toString());
+        }
     }
 }

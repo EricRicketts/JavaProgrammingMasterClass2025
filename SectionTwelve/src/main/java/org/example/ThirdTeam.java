@@ -5,18 +5,19 @@ import java.util.List;
 
 public class ThirdTeam<T extends Player, S> {
 
-    private String teamName;
-    private List<T> teamMembers = new ArrayList<>();
+    private final String teamName;
+    private final List<T> teamMembers = new ArrayList<>();
     private int totalWins = 0;
     private int totalLosses = 0;
     private int totalTies = 0;
-    private S affiliation;
+    private final Affiliation affiliation;
 
     public ThirdTeam(String teamName) {
         this.teamName = teamName;
+        this.affiliation = new Affiliation("generic", "unknown", "Unknown");
     }
 
-    public ThirdTeam(String teamName, S affiliation) {
+    public ThirdTeam(String teamName, Affiliation affiliation) {
         this.teamName = teamName;
         this.affiliation = affiliation;
     }
@@ -29,17 +30,6 @@ public class ThirdTeam<T extends Player, S> {
 
     public String listTeamMembers() {
         return teamName + " Team Roster:\n" + teamMembers.toString();
-    }
-
-    public String listTeamMembersAndAffiliation() {
-        String affiliationString = affiliation == null ? "" : "AFFILIATION: " + affiliation;
-        StringBuilder sb = new StringBuilder();
-        sb.append(teamName).append(" ").append("Roster:").append("\n");
-        sb.append(affiliationString);
-        for (var member : teamMembers) {
-            sb.append(member.name()).append("\n");
-        }
-        return sb.toString().stripTrailing();
     }
 
     public String printTeamMemberNames() {
@@ -78,7 +68,7 @@ public class ThirdTeam<T extends Player, S> {
         return message;
     }
 
-    public S getAffiliation() {
+    public Affiliation getAffiliation() {
         return affiliation;
     }
 
