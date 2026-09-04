@@ -55,22 +55,59 @@ public class ThirdTeam<T extends Player, S> {
         return (totalLosses * 2) + totalTies + 1;
     }
 
-    public String setScore(int ourScore, int theirScore) {
+    public String setScore(
+            ThirdTeam<BaseballPlayer, Affiliation>
+                team,
+                int score,
+                ThirdTeam<BaseballPlayer, Affiliation> other,
+                int otherScore
+    ) {
         String message = "lost to";
-        if (ourScore > theirScore) {
-            totalWins++;
+        if (score > otherScore) {
+            team.setTotalWins(team.getTotalWins() + 1);
+            other.setTotalLosses(other.getTotalLosses() + 1);
             message = "beat";
-        } else if (ourScore == theirScore) {
-            totalTies++;
+        } else if (score == otherScore) {
+            team.setTotalTies(team.getTotalTies() + 1);
+            other.setTotalTies(other.getTotalTies() + 1);
             message = "tied";
         } else {
-            totalLosses++;
+            team.setTotalLosses(team.getTotalLosses() + 1);
+            other.setTotalWins(other.getTotalWins() + 1);
         }
         return message;
     }
 
     public S getAffiliation() {
         return affiliation;
+    }
+
+    public int getTotalWins() {
+        return totalWins;
+    }
+
+    public int getTotalLosses() {
+        return totalLosses;
+    }
+
+    public int getTotalTies() {
+        return totalTies;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTotalWins(int totalWins) {
+        this.totalWins = totalWins;
+    }
+
+    public void setTotalLosses(int totalLosses) {
+        this.totalLosses = totalLosses;
+    }
+
+    public void setTotalTies(int totalTies) {
+        this.totalTies = totalTies;
     }
 
     @Override
