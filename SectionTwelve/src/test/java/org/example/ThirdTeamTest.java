@@ -34,6 +34,20 @@ public class ThirdTeamTest {
     }
 
     @Nested
+    @DisplayName("test single argument constructor")
+    class TestSingleArgumentConstructor {
+
+        @Test
+        public void testSingleArgumentConstructor() {
+            ThirdTeam<BasketballPlayer, Affiliation> bulls = new ThirdTeam<>("Chicago Bulls");
+            assertEquals("Chicago Bulls", bulls.getTeamName());
+            assertEquals("generic", bulls.getAffiliation().name());
+            assertEquals("unknown", bulls.getAffiliation().type());
+            assertEquals("UKWN", bulls.getAffiliation().countryCode());
+        }
+    }
+
+    @Nested
     @DisplayName("test scoring")
     class TestTeamScoring {
         @Test

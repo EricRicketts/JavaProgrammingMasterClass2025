@@ -14,7 +14,7 @@ public class ThirdTeam<T extends Player, S> {
 
     public ThirdTeam(String teamName) {
         this.teamName = teamName;
-        this.affiliation = new Affiliation("generic", "unknown", "Unknown");
+        this.affiliation = new Affiliation("generic", "unknown", "UKWN");
     }
 
     public ThirdTeam(String teamName, Affiliation affiliation) {
