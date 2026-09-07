@@ -49,7 +49,7 @@ public class SecondStudent {
 
     @Override
     public String toString() {
-        return "SecondStudent:\n" + "{\n" +
+        return this.getClass().getSimpleName() + ":\n" + "{\n" +
             "lastName='" + lastName + '\'' + ",\n" +
             "firstName='" + firstName + '\'' + ",\n" +
             "course='" + course + '\'' + ",\n" +
