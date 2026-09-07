@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.List;
 import java.util.Random;
 
 public class SecondStudent {
@@ -55,5 +56,23 @@ public class SecondStudent {
             "course='" + course + '\'' + ",\n" +
             "yearStarted='" + yearStarted + '\'' + ",\n" +
             '}';
+    }
+
+    public <T extends SecondStudent> String printList(List<T> students) {
+        StringBuilder sb = new StringBuilder();
+        for (var student : students) {
+            sb.append(student.getFirstName()).append(" ")
+                .append(student.getLastName()).append("\n");
+        }
+        return sb.toString().stripTrailing();
+    }
+
+    public String printMoreLists(List<? extends SecondStudent> students) {
+        StringBuilder sb = new StringBuilder();
+        for (var student : students) {
+            sb.append(student.getFirstName()).append(" ")
+                .append(student.getLastName()).append("\n");
+        }
+        return sb.toString().stripTrailing();
     }
 }

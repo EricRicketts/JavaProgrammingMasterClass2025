@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -50,16 +52,19 @@ public class LPAStudentTest {
         method argument.
     */
 
+    LPAStudent student;
+
+    @BeforeEach
+    public void setUp() {
+        student = new LPAStudent(
+            "Flintstone", "Fred", "Rust", 2222);
+    }
+
     @Nested
     @DisplayName("test second student getters and setters")
     class TestLPAStudentGettersAndSetters {
 
-        LPAStudent student;
-        @BeforeEach
-        public void setUp() {
-            student = new LPAStudent(
-                "Flintstone", "Fred", "Rust", 2222);
-        }
+
 
         @Nested
         @DisplayName("test second student getters")
@@ -163,6 +168,29 @@ public class LPAStudentTest {
 
                 assertEquals(expected, result);
             }
+        }
+    }
+
+    @Nested
+    @DisplayName("test lpa student print list")
+    class TestLPAStudentPrintList {
+
+        @Test
+        public void testLPAStudentPrintList() {
+            LPAStudent firstStudent = new LPAStudent(
+                "Flintstone", "Fred",
+                "Java", 2021);
+            LPAStudent secondStudent = new LPAStudent(
+                "Rubble", "Barney",
+                "C++", 2022);
+            List<LPAStudent> students = new ArrayList<>(List.of(
+                firstStudent, secondStudent
+            ));
+
+            String expected = "Fred Flintstone\n" + "Barney Rubble";
+            String result = student.printList(students);
+
+            assertEquals(expected, result);
         }
     }
 }
