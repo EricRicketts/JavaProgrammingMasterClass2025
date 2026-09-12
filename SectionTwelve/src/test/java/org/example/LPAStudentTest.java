@@ -191,6 +191,8 @@ public class LPAStudentTest {
             String result = student.printList(students);
 
             assertEquals(expected, result);
+            result = student.printMoreLists(students);
+            assertEquals(expected, result);
         }
     }
 }

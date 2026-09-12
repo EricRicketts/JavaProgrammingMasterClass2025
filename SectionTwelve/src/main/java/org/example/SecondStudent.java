@@ -59,6 +59,8 @@ public class SecondStudent {
     }
 
     public <T extends SecondStudent> String printList(List<T> students) {
+        // See Generics.md document for the explanation of this method
+        // declaration.
         StringBuilder sb = new StringBuilder();
         for (var student : students) {
             sb.append(student.getFirstName()).append(" ")
