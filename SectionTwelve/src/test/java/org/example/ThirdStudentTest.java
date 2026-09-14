@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -85,76 +87,161 @@ public class ThirdStudentTest {
         queryList = new QueryList<>(thirdStudents);
     }
 
-    @Test
-    public void testGetStudentsByFirstName() {
-        expected = new ArrayList<>(
+    @Nested
+    @DisplayName("test getMatches Instance Method")
+    class TestGetMatchesInstanceMethod {
+
+        @Test
+        public void testGetStudentsByLastName() {
+            expected = new ArrayList<>(
                 List.of(
-                new ThirdStudent(
-                    "Smith",
-                    "Carlton",
-                    "Physics",
-                    2012
-                ),
-                new ThirdStudent(
-                    "Smith",
-                    "Christine",
-                    "American Literature",
-                    2011
+                    new ThirdStudent(
+                        "Smith",
+                        "Carlton",
+                        "Physics",
+                        2012
+                    ),
+                    new ThirdStudent(
+                        "Smith",
+                        "Christine",
+                        "American Literature",
+                        2011
+                    )
                 )
-            )
-        );
+            );
 
-        result =
-            queryList.getMatches("lastName", "Smith");
-        assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
-    }
+            result =
+                queryList.getMatches("lastName", "Smith");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
 
-    @Test
-    public void testGetStudentsByLastName() {
-        expected = new ArrayList<>(
+        @Test
+        public void testGetStudentsByFirstName() {
+            expected = new ArrayList<>(
                 List.of(new ThirdStudent(
-                "Oneil",
-                "Tatum",
-                "Theater",
-                2023
+                        "Oneil",
+                        "Tatum",
+                        "Theater",
+                        2023
+                    )
                 )
-            )
-        );
+            );
 
-        result = queryList.getMatches("firstName", "Tatum");
-        assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+            result = queryList.getMatches("firstName", "Tatum");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
+
+        @Test
+        public void testGetStudentsByCourse() {
+            expected = new ArrayList<>(
+                List.of(
+                    new ThirdStudent(
+                        "Hargess",
+                        "Susan",
+                        "Art",
+                        2009
+                    )
+                )
+            );
+
+            result = queryList.getMatches("course", "art");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
+
+        @Test
+        public void testGetStudentsByYearStarted() {
+            expected = new ArrayList<>(
+                List.of(
+                    new ThirdStudent(
+                        "Hargess",
+                        "Susan",
+                        "Art",
+                        2009
+                    )
+                )
+            );
+
+            result = queryList.getMatches("yearstarted", "2009");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
     }
 
-    @Test
-    public void testGetStudentsByCourse() {
-        expected = new ArrayList<>(
-            List.of(new ThirdStudent(
-                    "Miller",
-                    "David",
-                    "Finance",
-                    2024
+    @Nested
+    @DisplayName("test getMatches Class Method")
+    class TestGetMatchesClassMethod {
+
+        @Test
+        public void testGetStudentsByLastName() {
+            expected = new ArrayList<>(
+                List.of(
+                    new ThirdStudent(
+                        "Doe",
+                        "John",
+                        "Perl",
+                        1999
+                    ),
+                    new ThirdStudent(
+                        "Doe",
+                        "Jane",
+                        "English Literature",
+                        2000
+                    )
                 )
-            )
-        );
+            );
 
-        result = queryList.getMatches("course", "finance");
-        assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
-    }
+            result =
+                queryList.getMatches("lastName", "Doe");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
 
-    @Test
-    public void testGetStudentsByYearStarted() {
-        expected = new ArrayList<>(
-            List.of(
-                new ThirdStudent(
-                    "Hargess",
-                    "Susan",
-                    "Art",
-                    2009
+        @Test
+        public void testGetStudentsByFirstName() {
+            expected = new ArrayList<>(
+                List.of(
+                    new ThirdStudent(
+                    "Jones",
+                    "Meredith",
+                    "Political Science",
+                    2021
+                    )
                 )
-            )
-        );
+            );
 
-        result = queryList.getMatches("yearstarted", "2009");
-        assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+            result = queryList.getMatches("firstName", "Meredith");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
+
+        @Test
+        public void testGetStudentsByCourse() {
+            expected = new ArrayList<>(
+                List.of(new ThirdStudent(
+                        "Miller",
+                        "David",
+                        "Finance",
+                        2024
+                    )
+                )
+            );
+
+            result = queryList.getMatches("course", "finance");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
+
+        @Test
+        public void testGetStudentsByYearStarted() {
+            expected = new ArrayList<>(
+                List.of(
+                    new ThirdStudent(
+                        "Smith",
+                        "Carlton",
+                        "Physics",
+                        2012
+                    )
+                )
+            );
+
+            result = queryList.getMatches("yearstarted", "2012");
+            assertThat(result).containsExactlyInAnyOrderElementsOf(expected);
+        }
     }
 }
