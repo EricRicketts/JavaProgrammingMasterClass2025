@@ -4,7 +4,7 @@ import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QueryList <T extends QueryItem> {
+public class QueryList <T extends ThirdStudent & QueryItem> {
 
     private List<T> items;
 
