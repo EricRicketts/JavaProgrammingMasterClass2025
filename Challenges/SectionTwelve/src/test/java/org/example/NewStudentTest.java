@@ -95,8 +95,8 @@ public class NewStudentTest {
     }
 
     @Nested
-    @DisplayName("test New Student equals, hashCode, and toString")
-    class TestNewStudentEqualsHashCodeAndToString {
+    @DisplayName("test New Student equals")
+    class TestNewStudentEquals {
 
         @Test
         public void testNewStudentTwoEqualStudents() {
@@ -178,4 +178,83 @@ public class NewStudentTest {
             assertNotEquals(firstStudent, secondStudent);
         }
     }
+
+    @Nested
+    @DisplayName("test New Student HashCode and toString")
+    class TestNewStudentHashCodeAndToString {
+
+        @Test
+        public void testEqualHashCodes() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            int firstStudentHashCode = firstStudent.hashCode();
+            int secondStudentHashCode = secondStudent.hashCode();
+
+            assertEquals(firstStudentHashCode, secondStudentHashCode);
+        }
+
+        @Test
+        public void testNonEqualHashCodesByName() {
+            secondStudent = new NewStudent(
+                "Bugs Bunny",
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            int firstStudentHashCode = firstStudent.hashCode();
+            int secondStudentHashCode = secondStudent.hashCode();
+
+            assertNotEquals(firstStudentHashCode, secondStudentHashCode);
+        }
+
+        @Test
+        public void testNonEqualHashCodesByCourse() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                "Pascal",
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            int firstStudentHashCode = firstStudent.hashCode();
+            int secondStudentHashCode = secondStudent.hashCode();
+
+            assertNotEquals(firstStudentHashCode, secondStudentHashCode);
+        }
+        @Test
+        public void testNonEqualHashCodesById() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                871345,
+                firstStudent.getYearStarted()
+            );
+
+            int firstStudentHashCode = firstStudent.hashCode();
+            int secondStudentHashCode = secondStudent.hashCode();
+
+            assertNotEquals(firstStudentHashCode, secondStudentHashCode);
+        }
+        @Test
+        public void testNonEqualHashCodesByYearStarted() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                2002
+            );
+
+            int firstStudentHashCode = firstStudent.hashCode();
+            int secondStudentHashCode = secondStudent.hashCode();
+
+            assertNotEquals(firstStudentHashCode, secondStudentHashCode);
+        }
+    }
+
 }
