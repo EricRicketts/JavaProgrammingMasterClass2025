@@ -257,4 +257,46 @@ public class NewStudentTest {
         }
     }
 
+    @Nested
+    @DisplayName("test compare by id")
+    class TestCompareById {
+
+        @Test
+        public void testCompareToWithSameIds() {
+                secondStudent = new NewStudent(
+                    firstStudent.getName(),
+                    firstStudent.getCourse(),
+                    firstStudent.getId(),
+                    firstStudent.getYearStarted()
+                );
+
+                assertEquals(0, firstStudent.compareTo(secondStudent));
+        }
+
+        @Test
+        public void testCompareToWithHigherId() {
+            // firstStudent has a higher id than secondStudent
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                111111,
+                firstStudent.getYearStarted()
+            );
+
+            assertEquals(1, firstStudent.compareTo(secondStudent));
+        }
+
+        @Test
+        public void testCompareToWithLowerId() {
+            // firstStudent has a lower id than secondStudent
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                333333,
+                firstStudent.getYearStarted()
+            );
+
+            assertEquals(-1, firstStudent.compareTo(secondStudent));
+        }
+    }
 }
