@@ -5,8 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NewStudentTest {
 
@@ -297,6 +296,35 @@ public class NewStudentTest {
             );
 
             assertEquals(-1, firstStudent.compareTo(secondStudent));
+        }
+    }
+
+    @Nested
+    @DisplayName("test compare by name")
+    class TestCompareByName {
+
+        @Test
+        public void testCompareToNameWithGreaterAlphabeticalOrder() {
+            secondStudent = new NewStudent(
+                "Bugs Bunny",
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            assertTrue(firstStudent.compareTo(secondStudent) > 0);
+        }
+
+        @Test
+        public void testCompareToNameWithLowerAlphabeticalOrder() {
+            secondStudent = new NewStudent(
+                "Zoltan Guy",
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            assertTrue(firstStudent.compareTo(secondStudent) < 0);
         }
     }
 }
