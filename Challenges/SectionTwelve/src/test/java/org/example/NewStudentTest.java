@@ -327,4 +327,63 @@ public class NewStudentTest {
             assertTrue(firstStudent.compareTo(secondStudent) < 0);
         }
     }
+
+
+    @Nested
+    @DisplayName("test compare by course")
+    class TestCompareByCourse {
+
+        @Test
+        public void testCompareToCourseWithGreaterAlphabeticalOrder() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                "C",
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            assertTrue(firstStudent.compareTo(secondStudent) > 0);
+        }
+
+        @Test
+        public void testCompareToCourseWithLowerAlphabeticalOrder() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                "Zig",
+                firstStudent.getId(),
+                firstStudent.getYearStarted()
+            );
+
+            assertTrue(firstStudent.compareTo(secondStudent) < 0);
+        }
+    }
+
+    @Nested
+    @DisplayName("test compare by year started")
+    class TestCompareByYearStarted {
+
+        @Test
+        public void testCompareToWithGreaterYearStarted() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                2009
+            );
+
+            assertTrue(firstStudent.compareTo(secondStudent) > 0);
+        }
+
+        @Test
+        public void testCompareToWithLowerYearStarted() {
+            secondStudent = new NewStudent(
+                firstStudent.getName(),
+                firstStudent.getCourse(),
+                firstStudent.getId(),
+                2014
+            );
+
+            assertTrue(firstStudent.compareTo(secondStudent) < 0);
+        }
+    }
 }
