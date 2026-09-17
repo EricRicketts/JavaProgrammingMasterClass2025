@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class NewStudentTest {
 
@@ -15,7 +16,11 @@ public class NewStudentTest {
 
     @BeforeEach
     public void setUp() {
-        firstStudent = new NewStudent("Wile E Coyote", "Java", 112233, 2012);
+        firstStudent = new NewStudent(
+            "Wile E Coyote",
+            "Java",
+            112233,
+            2012);
         secondStudent = new NewStudent();
         name = "Wile E Coyote";
         course = "Java";
@@ -86,6 +91,91 @@ public class NewStudentTest {
 
             firstStudent.setYearStarted(yearStarted);
             assertEquals(yearStarted, firstStudent.getYearStarted());
+        }
+    }
+
+    @Nested
+    @DisplayName("test New Student equals, hashCode, and toString")
+    class TestNewStudentEqualsHashCodeAndToString {
+
+        @Test
+        public void testNewStudentTwoEqualStudents() {
+            firstStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2011);
+            secondStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2011);
+
+            assertEquals(firstStudent, secondStudent);
+        }
+
+        @Test
+        public void testNewStudentTwoNonEqualStudentsByName() {
+            firstStudent = new NewStudent(
+                "Porky Pig",
+                "Rust",
+                123456,
+                2011);
+            secondStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2011);
+
+            assertNotEquals(firstStudent, secondStudent);
+        }
+
+        @Test
+        public void testNewStudentTwoNonEqualStudentsByCourse() {
+            firstStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2011);
+            secondStudent = new NewStudent(
+                "Yosemite Sam",
+                "Python",
+                123456,
+                2011);
+
+            assertNotEquals(firstStudent, secondStudent);
+        }
+
+        @Test
+        public void testNewStudentTwoNonEqualStudentsById() {
+            firstStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2011);
+            secondStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                987654,
+                2011);
+
+            assertNotEquals(firstStudent, secondStudent);
+        }
+
+        @Test
+        public void testNewStudentTwoNonEqualStudentsByYearStarted() {
+            firstStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2012);
+            secondStudent = new NewStudent(
+                "Yosemite Sam",
+                "Rust",
+                123456,
+                2011);
+
+            assertNotEquals(firstStudent, secondStudent);
         }
     }
 }
