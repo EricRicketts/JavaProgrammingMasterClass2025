@@ -466,4 +466,29 @@ public class NewStudentTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test no arguments constructor for NewStudent")
+    class TestNewStudentNoArgumentConstructor {
+
+        @Test
+        public void testNoArgumentConstructorGetName() {
+            assertEquals("Unknown", secondStudent.getName());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetCourse() {
+            assertEquals("None", secondStudent.getCourse());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetId() {
+            assertEquals(0, secondStudent.getId());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetYearStarted() {
+            assertEquals(0, secondStudent.getYearStarted());
+        }
+    }
 }
