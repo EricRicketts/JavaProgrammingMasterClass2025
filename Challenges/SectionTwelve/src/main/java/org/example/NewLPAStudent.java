@@ -10,10 +10,16 @@ public class NewLPAStudent extends NewStudent {
 
     private BigDecimal percentComplete;
 
-    public NewLPAStudent() {
+    public NewLPAStudent(String name, String course, int id, int yearStarted) {
+        super(name, course, id, yearStarted);
         Random random = new Random();
         this.percentComplete = new BigDecimal(
             random.nextDouble(0.00, 100.001)).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public NewLPAStudent() {
+        super("Unknown", "None", 0, 0);
+        this.percentComplete = new BigDecimal("0.00");
     }
 
     public BigDecimal getPercentComplete() {

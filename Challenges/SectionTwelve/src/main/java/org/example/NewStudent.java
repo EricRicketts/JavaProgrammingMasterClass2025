@@ -17,8 +17,8 @@ public class NewStudent implements Comparable<NewStudent>, QueryItem {
     }
 
     public NewStudent() {
-        this.name = "Foo Bar";
-        this.course = "No Course";
+        this.name = "Unknown";
+        this.course = "None";
         this.id = 0;
         this.yearStarted = 0;
     }
@@ -95,7 +95,21 @@ public class NewStudent implements Comparable<NewStudent>, QueryItem {
     public boolean matchFieldValue(String fieldName, String value) {
         String localFieldName = fieldName.toUpperCase();
         return switch (localFieldName) {
-            case "NAME" -> this.getName().split("\\s+")[0].equalsIgnoreCase(value);
+            case "NAME" -> {
+                String[] currentNames = this.getName().split("\\s+");
+                String[] incomingNames = value.split("\\s+");
+                int currentNameLength = currentNames.length;
+                int incomingNameLength = incomingNames.length;
+                if (currentNameLength != incomingNameLength) yield false;
+                boolean namesTheSame = true;
+                for (int index = 0; index < currentNameLength; index+=1) {
+                    if (!currentNames[index].equalsIgnoreCase(incomingNames[index])) {
+                        namesTheSame = false;
+                        break;
+                    }
+                }
+                yield namesTheSame;
+            }
             case "COURSE" -> this.getCourse().equalsIgnoreCase(value);
             case "ID" -> this.getId() == Integer.parseInt(value);
             case "YEARSTARTED" -> this.getYearStarted() == Integer.parseInt(value);

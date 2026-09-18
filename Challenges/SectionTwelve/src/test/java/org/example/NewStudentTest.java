@@ -386,4 +386,27 @@ public class NewStudentTest {
             assertTrue(firstStudent.compareTo(secondStudent) < 0);
         }
     }
+
+    @Nested
+    @DisplayName("test match field value")
+    class TestMatchFieldValue {
+
+        @Test
+        public void testMatchNameFieldValueIsTrue() {
+            assertTrue(
+                firstStudent.matchFieldValue(
+                    "name",
+                    "Wile E Coyote")
+            );
+        }
+
+        @Test
+        public void testMatchNameFieldValueIsFalse() {
+            assertFalse(
+                firstStudent.matchFieldValue(
+                    "name",
+                    "Wile E Quixote")
+            );
+        }
+    }
 }
