@@ -388,7 +388,7 @@ public class NewStudentTest {
     }
 
     @Nested
-    @DisplayName("test match field value")
+    @DisplayName("test match field value on name")
     class TestMatchFieldValue {
 
         @Test
@@ -406,6 +406,25 @@ public class NewStudentTest {
                 firstStudent.matchFieldValue(
                     "name",
                     "Wile E Quixote")
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test match field value on course")
+    class TestMatchFieldValueOnCourse {
+
+        @Test
+        public void testMatchCourseFieldValueIsTrue() {
+            assertTrue(
+                firstStudent.matchFieldValue("course", "Java")
+            );
+        }
+
+        @Test
+        public void testMatchCourseMatchFieldValueIsFalse() {
+            assertFalse(
+                firstStudent.matchFieldValue("course", "Pascal")
             );
         }
     }
