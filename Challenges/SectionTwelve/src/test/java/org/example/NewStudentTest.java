@@ -428,4 +428,42 @@ public class NewStudentTest {
             );
         }
     }
+
+    @Nested
+    @DisplayName("test match field value on id")
+    class TestMatchFieldValueOnId {
+
+        @Test
+        public void testMatchIdFieldValueIsTrue() {
+            assertTrue(
+                firstStudent.matchFieldValue("id", String.valueOf(id))
+            );
+        }
+
+        @Test
+        public void testMatchIdFieldValueIsFalse() {
+            assertFalse(
+                firstStudent.matchFieldValue("id", "221133")
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("test match field value on year started")
+    class TestMatchFieldValueOnYearStarted {
+
+        @Test
+        public void testMatchYearStartedFieldValueIsTrue() {
+            assertTrue(
+                firstStudent.matchFieldValue("yearStarted", "2012")
+            );
+        }
+
+        @Test
+        public void testMatchYearStartedFieldValueIsFalse() {
+            assertFalse(
+                firstStudent.matchFieldValue("yearStarted", "2013")
+            );
+        }
+    }
 }
