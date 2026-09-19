@@ -17,6 +17,7 @@ public class NewLPAStudentTest {
         unique to NewLPAStudent.
    */
     private NewLPAStudent firstLPAStudent, secondLPAStudent;
+    private BigDecimal lowerBound, upperBound;
 
     @BeforeEach
     public void setUp() {
@@ -27,21 +28,15 @@ public class NewLPAStudentTest {
             2001
             );
         secondLPAStudent = new NewLPAStudent();
+        lowerBound = new BigDecimal("0.00")
+            .setScale(2, RoundingMode.HALF_UP);
+        upperBound = new BigDecimal("100.00")
+            .setScale(2, RoundingMode.HALF_UP);
     }
 
     @Nested
     @DisplayName("test percent complete getter and setter")
     class TestPercentCompleteGetterAndSetter {
-
-        BigDecimal lowerBound, upperBound;
-
-        @BeforeEach
-        public void setUp() {
-            lowerBound = new BigDecimal("0.00")
-                .setScale(2, RoundingMode.HALF_UP);
-            upperBound = new BigDecimal("100.00")
-                .setScale(2, RoundingMode.HALF_UP);
-        }
 
         @Test
         public void testGetPercentComplete() {
@@ -69,16 +64,6 @@ public class NewLPAStudentTest {
     @Nested
     @DisplayName("test match field value for NewLPAStudent")
     class TestMatchFieldValueForNewLPAStudent {
-
-        BigDecimal lowerBound, upperBound;
-
-        @BeforeEach
-        public void setUp() {
-            lowerBound = new BigDecimal("0.00")
-                .setScale(2, RoundingMode.HALF_UP);
-            upperBound = new BigDecimal("100.00")
-                .setScale(2, RoundingMode.HALF_UP);
-        }
 
         @Test
         public void testPercentCompleteMatchFieldValueTrue() {
@@ -119,29 +104,11 @@ public class NewLPAStudentTest {
     @DisplayName("test NewLPAStudent equals and hash code")
     class TestNewLPAStudentEqualsAndHashCode {
 
-        @Test
-        public void testEqualNewLPAStudents() {
-            BigDecimal value = new BigDecimal("45.66");
-            firstLPAStudent = new NewLPAStudent(
-                "Elmer Fudd",
-                "Java",
-                112233,
-                2014
-            );
-            firstLPAStudent.setPercentComplete(value);
-            secondLPAStudent = new NewLPAStudent(
-                "Elmer Fudd",
-                "Java",
-                112233,
-                2014
-            );
-            secondLPAStudent.setPercentComplete(value);
+        private BigDecimal value;
+        private NewLPAStudent firstLPAStudent, secondLPAStudent;
 
-            assertEquals(firstLPAStudent, secondLPAStudent);
-        }
-
-        @Test
-        public void testNonEqualNewLPAStudents() {
+        @BeforeEach
+        public void setUp() {
             BigDecimal value = new BigDecimal("45.66")
                 .setScale(2, RoundingMode.HALF_UP);
             firstLPAStudent = new NewLPAStudent(
@@ -150,18 +117,52 @@ public class NewLPAStudentTest {
                 112233,
                 2014
             );
-            firstLPAStudent.setPercentComplete(value);
             secondLPAStudent = new NewLPAStudent(
                 "Elmer Fudd",
                 "Java",
                 112233,
                 2014
             );
+        }
+
+        @Test
+        public void testEqualNewLPAStudents() {
+            firstLPAStudent.setPercentComplete(value);
+            secondLPAStudent.setPercentComplete(value);
+
+            assertEquals(firstLPAStudent, secondLPAStudent);
+        }
+
+        @Test
+        public void testNonEqualNewLPAStudents() {
+            firstLPAStudent.setPercentComplete(value);
             value = new BigDecimal("35.66")
                 .setScale(2, RoundingMode.HALF_UP);
             secondLPAStudent.setPercentComplete(value);
 
             assertNotEquals(firstLPAStudent, secondLPAStudent);
+        }
+
+        @Test
+        public void testEqualHashCodesForNewLPAStudents() {
+
+            firstLPAStudent.setPercentComplete(value);
+            secondLPAStudent.setPercentComplete(value);
+            int firstHashCode = firstLPAStudent.hashCode();
+            int secondHashCode = secondLPAStudent.hashCode();
+
+            assertEquals(firstHashCode, secondHashCode);
+        }
+
+        @Test
+        public void testNonEqualHashCodesForNewLPAStudents() {
+
+            firstLPAStudent.setPercentComplete(value);
+            secondLPAStudent.setPercentComplete(new BigDecimal("50.55"));
+            int firstHashCode = firstLPAStudent.hashCode();
+            int secondHashCode = secondLPAStudent.hashCode();
+
+            assertNotEquals(firstHashCode, secondHashCode);
         }
     }
 }
