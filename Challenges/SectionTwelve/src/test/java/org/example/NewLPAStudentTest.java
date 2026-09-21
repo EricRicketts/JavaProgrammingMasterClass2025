@@ -201,4 +201,40 @@ public class NewLPAStudentTest {
             assertTrue(matcher.find());
         }
     }
+
+    @Nested
+    @DisplayName("test match field value on percent complete")
+    class TestMatchFieldValueOnPercentComplete {
+        private NewLPAStudent newLPAStudent;
+
+        @BeforeEach
+        public void setUp() {
+            newLPAStudent = new NewLPAStudent(
+                "Elmer Fudd",
+                "Java",
+                112233,
+                2014
+            );
+        }
+
+        @Test
+        public void testMatchFieldValueOnPercentCompleteTrue() {
+            BigDecimal value = newLPAStudent.getPercentComplete();
+            assertTrue(newLPAStudent.matchFieldValue(
+                "percentComplete",
+                String.valueOf(value))
+            );
+        }
+
+        @Test
+        public void testMatchFieldValueOnPercentCompleteFalse() {
+            BigDecimal value = newLPAStudent.getPercentComplete();
+            var adjustedValue = value.add(new BigDecimal("0.01"));
+
+            assertFalse(newLPAStudent.matchFieldValue(
+                "percentComplete",
+                String.valueOf(adjustedValue))
+            );
+        }
+    }
 }

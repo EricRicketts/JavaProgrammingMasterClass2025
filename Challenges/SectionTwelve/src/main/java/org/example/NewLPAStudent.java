@@ -51,7 +51,7 @@ public class NewLPAStudent extends NewStudent {
                 BigDecimal currentPercentComplete =
                     this.getPercentComplete().setScale(2, RoundingMode.HALF_UP);
                 BigDecimal currentValue = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
-                return currentPercentComplete.compareTo(currentValue) <= 0;
+                return currentPercentComplete.compareTo(currentValue) == 0;
             }
         }
         return false;
