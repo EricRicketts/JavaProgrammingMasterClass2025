@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -145,7 +148,6 @@ public class NewLPAStudentTest {
 
         @Test
         public void testEqualHashCodesForNewLPAStudents() {
-
             firstLPAStudent.setPercentComplete(value);
             secondLPAStudent.setPercentComplete(value);
             int firstHashCode = firstLPAStudent.hashCode();
@@ -156,13 +158,47 @@ public class NewLPAStudentTest {
 
         @Test
         public void testNonEqualHashCodesForNewLPAStudents() {
-
             firstLPAStudent.setPercentComplete(value);
             secondLPAStudent.setPercentComplete(new BigDecimal("50.55"));
             int firstHashCode = firstLPAStudent.hashCode();
             int secondHashCode = secondLPAStudent.hashCode();
 
             assertNotEquals(firstHashCode, secondHashCode);
+        }
+    }
+
+    @Nested
+    @DisplayName("test print more lists for new lpa student")
+    class TestPrintMoreListsForNewLPAStudent {
+
+        private NewLPAStudent newLPAStudent;
+        private NewStudent newStudent;
+
+        @BeforeEach
+        public void setUp() {
+            newLPAStudent = new NewLPAStudent(
+                "Elmer Fudd",
+                "Java",
+                112233,
+                2014
+            );
+            newStudent = new NewStudent(
+                "Bugs Bunny",
+                "Pascal",
+                332211,
+                2015
+            );
+        }
+        @Test
+        public void testPrintMoreLists() {
+            Pattern PERCENT_PATTERN = Pattern.compile("\\d+(?:\\.\\d+)?%");
+            List<NewStudent> list = List.of(newStudent, newLPAStudent);
+            String expected = "2015: Student name is Bugs Bunny.  Student id is 332211.\n" +
+                "2014: Student name is Elmer Fudd.  Student id is 112233.";
+            String result = NewLPAStudent.printMoreLists(list);
+            Matcher matcher = PERCENT_PATTERN.matcher(result);
+            assertTrue(result.contains(expected));
+            assertTrue(matcher.find());
         }
     }
 }
