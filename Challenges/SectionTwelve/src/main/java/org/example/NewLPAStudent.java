@@ -13,8 +13,11 @@ public class NewLPAStudent extends NewStudent {
     public NewLPAStudent(String name, String course, int id, int yearStarted) {
         super(name, course, id, yearStarted);
         Random random = new Random();
-        this.percentComplete = new BigDecimal(
+        this.percentComplete =
+            new BigDecimal(
             random.nextDouble(0.00, 100.001)).setScale(2, RoundingMode.HALF_UP);
+        this.percentComplete = this.percentComplete.abs();
+
     }
 
     public NewLPAStudent() {
@@ -46,15 +49,14 @@ public class NewLPAStudent extends NewStudent {
 
     @Override
     public boolean matchFieldValue(String fieldName, String value) {
-        if (!super.matchFieldValue(fieldName, value)) {
-            if (fieldName.equalsIgnoreCase("PERCENTCOMPLETE")) {
-                BigDecimal currentPercentComplete =
-                    this.getPercentComplete().setScale(2, RoundingMode.HALF_UP);
-                BigDecimal currentValue = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
-                return currentPercentComplete.compareTo(currentValue) == 0;
-            }
+        if (fieldName.equalsIgnoreCase("PERCENTCOMPLETE")) {
+            BigDecimal currentPercentComplete =
+                this.getPercentComplete().setScale(2, RoundingMode.HALF_UP);
+            BigDecimal givenValue = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
+            return currentPercentComplete.compareTo(givenValue) <= 0;
+        } else {
+            return super.matchFieldValue(fieldName, value);
         }
-        return false;
     }
 
     public boolean equals(Object object) {

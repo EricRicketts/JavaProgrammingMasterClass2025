@@ -218,7 +218,8 @@ public class NewLPAStudentTest {
         }
 
         @Test
-        public void testMatchFieldValueOnPercentCompleteTrue() {
+        public void testMatchFieldValuePercentCompleteEqualValuePassedIn() {
+            // Value passed in and current percent complete are equal
             BigDecimal value = newLPAStudent.getPercentComplete();
             assertTrue(newLPAStudent.matchFieldValue(
                 "percentComplete",
@@ -227,9 +228,24 @@ public class NewLPAStudentTest {
         }
 
         @Test
-        public void testMatchFieldValueOnPercentCompleteFalse() {
+        public void testMatchFieldValuePercentCompleteLessThanValuePassedIn() {
             BigDecimal value = newLPAStudent.getPercentComplete();
+            // Adjusted value is bigger than current percent complete; thus
+            // current percent complete is less than value passed in
             var adjustedValue = value.add(new BigDecimal("0.01"));
+
+            assertTrue(newLPAStudent.matchFieldValue(
+                "percentComplete",
+                String.valueOf(adjustedValue))
+            );
+        }
+
+        @Test
+        public void testMatchFieldValuePercentCompleteGreaterThanValuePassedIn() {
+            // Adjusted value is smaller than the current percent complete; thus
+            // current percent complete is greater than value passed in
+            BigDecimal value = newLPAStudent.getPercentComplete();
+            var adjustedValue = value.subtract(new BigDecimal("0.01"));
 
             assertFalse(newLPAStudent.matchFieldValue(
                 "percentComplete",
