@@ -1,8 +1,16 @@
 package org.example;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
 import java.util.Objects;
 
-public class NewStudent implements Comparable<NewStudent>, QueryItem {
+public class NewStudent implements Comparable<NewStudent>, QueryItemChallenge {
 
+    private static final Comparator<NewStudent> STUDENT_COMPARATOR =
+        Comparator.comparingInt(NewStudent::getId)
+            .thenComparing(NewStudent::getName)
+            .thenComparing(NewStudent::getCourse)
+            .thenComparing(NewStudent::getYearStarted);
 
     private String name;
     private String course;
@@ -75,20 +83,10 @@ public class NewStudent implements Comparable<NewStudent>, QueryItem {
         return Objects.hash(getName(), getCourse(), getId(), getYearStarted());
     }
 
+
     @Override
-    public int compareTo(NewStudent other) {
-        if (this.getId() != other.getId()) {
-            return Integer.compare(this.getId(), other.getId());
-        };
-        int nameComparisonResult = this.getName().compareTo(other.getName());
-        if (nameComparisonResult != 0) {
-            return nameComparisonResult;
-        }
-        int courseComparisonResult = this.getCourse().compareTo(other.getCourse());
-        if (courseComparisonResult != 0) {
-            return courseComparisonResult;
-        }
-        return Integer.compare(this.getYearStarted(), other.getYearStarted());
+    public int compareTo(@NotNull NewStudent other) {
+        return STUDENT_COMPARATOR.compare(this, other);
     }
 
     @Override

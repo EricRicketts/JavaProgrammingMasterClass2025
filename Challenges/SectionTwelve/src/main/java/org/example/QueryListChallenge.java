@@ -4,33 +4,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class QueryListChallenge<T extends QueryItemChallenge> extends ArrayList<T> {
+public class QueryListChallenge<T extends NewLPAStudent & QueryItemChallenge> extends ArrayList<T> {
 
-    public QueryListChallenge(Collection<T> data) {
+    public QueryListChallenge(List<T> data) {
         super(data);
     }
 
-    public static <T extends QueryItem> List<T> getMatches(List<T> items, String field, String value) {
-        List<T> matches = new ArrayList<>();
-        for (var item : items) {
+    public QueryListChallenge() {}
+
+    public QueryListChallenge<T> getMatches(String field, String value) {
+        QueryListChallenge<T> matches = new QueryListChallenge<>();
+        for (var item : this) {
             if (item.matchFieldValue(field, value)) {
                 matches.add(item);
             }
         }
         return matches;
     }
-
-
-    /*
-    public List<T> getMatches(String field, String value) {
-
-        List<T> matches = new ArrayList<>();
-        for (var item : this.getItems()) {
-            if (item.matchFieldValue(field, value)) {
-                matches.add(item);
-            }
-        }
-        return matches;
-    }
-*/
 }
