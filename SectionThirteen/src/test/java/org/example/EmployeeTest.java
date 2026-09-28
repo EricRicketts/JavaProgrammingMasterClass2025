@@ -96,4 +96,17 @@ public class EmployeeTest {
             assertEquals("Unknown", employeeTwo.getName());
         }
     }
+
+    @Nested
+    @DisplayName("test employee toSring")
+    class TestEmployeeToString {
+
+        @Test
+        public void testEmployeeToString() {
+            String expected = "112233 Elmer Fudd 1999";
+            String result = employeeOne.toString();
+
+            assertEquals(expected, result);
+        }
+    }
 }
