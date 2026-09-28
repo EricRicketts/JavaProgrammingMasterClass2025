@@ -1,48 +1,34 @@
 package org.example;
 
-public class StoreEmployee extends SecondEmployee {
+import java.util.Comparator;
+
+public class StoreEmployee extends Employee {
 
     private String store;
 
-    public StoreEmployee() {
-    }
-
-    public StoreEmployee(int employeeId, String name, int yearStarted, String store) {
-        super(employeeId, name, yearStarted);
+    public StoreEmployee(int employeeId, int yearStarted, String name, String store) {
+        super(employeeId, yearStarted, name);
         this.store = store;
     }
 
-    public String getStore() {
-        return store;
+    public StoreEmployee() {}
+
+    @Override
+    public String toString() {
+        return "%-20s%s".formatted(store, super.toString());
     }
 
-    public void setStore(String store) {
-        this.store = store;
-    }
-
-    public class StoreComparator<T extends StoreEmployee>
-            extends SecondEmployee.SecondEmployeeComparator<SecondEmployee> {
-
-        public StoreComparator(String sortType) {
-            super(sortType);
-        }
-
-        public StoreComparator() {
-            super();
-        }
+    public class StoreComparator <T extends StoreEmployee>
+        implements Comparator<StoreEmployee> {
 
         @Override
-        public int compare(SecondEmployee o1, SecondEmployee o2) {
-            int compareEmployeeStores = 0;
-            if (o1 instanceof StoreEmployee s1 && o2 instanceof StoreEmployee s2) {
-                compareEmployeeStores = s1.getStore().compareTo(s2.getStore());
+        public int compare(StoreEmployee o1, StoreEmployee o2) {
+            int storeCompareResult = o1.store.compareTo(o2.store);
+            if (storeCompareResult == 0) {
+                return new Employee.EmployeeComparator<>()
+                    .compareYearStarted(o1, o2);
             }
-
-            if (compareEmployeeStores != 0) {
-                return compareEmployeeStores;
-            }
-
-            return super.compare(o1, o2);
+            return storeCompareResult;
         }
     }
 }

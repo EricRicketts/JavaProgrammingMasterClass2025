@@ -36,6 +36,13 @@ public class Employee {
                 return firstYearStarted.compareTo(secondYearStarted);
             }
         }
+
+        public int compareYearStarted(Employee o1, Employee o2) {
+            Integer firstYearStarted = o1.getYearStarted();
+            Integer secondYearStarted = o2.getYearStarted();
+
+            return firstYearStarted.compareTo(secondYearStarted);
+        }
     }
     private int employeeId, yearStarted;
     private String name;
