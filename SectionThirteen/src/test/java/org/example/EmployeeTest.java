@@ -76,4 +76,24 @@ public class EmployeeTest {
             assertEquals(newEmployeeName, employeeOne.getName());
         }
     }
+
+    @Nested
+    @DisplayName("test no argument constructor")
+    class TestNoArgumentConstructor {
+
+        @Test
+        public void testNoArgumentConstructorGetEmployeeId() {
+            assertEquals(0, employeeTwo.getEmployeeId());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetEmployeeYearStarted() {
+            assertEquals(0, employeeTwo.getYearStarted());
+        }
+
+        @Test
+        public void testNoArgumentConstructorGetEmployeeName() {
+            assertEquals("Unknown", employeeTwo.getName());
+        }
+    }
 }
