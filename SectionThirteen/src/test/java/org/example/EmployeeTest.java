@@ -41,4 +41,39 @@ public class EmployeeTest {
             assertEquals(name, employeeOne.getName());
         }
     }
+
+    @Nested
+    @DisplayName("test employee setters")
+    class TestEmployeeSetters {
+
+        @Test
+        public void testSetEmployeeId() {
+            assertEquals(employeeId, employeeOne.getEmployeeId());
+
+            int newEmployeeId = 223344;
+            employeeOne.setEmployeeId(newEmployeeId);
+
+            assertEquals(newEmployeeId, employeeOne.getEmployeeId());
+        }
+
+        @Test
+        public void testSetEmployeeYearStarted() {
+            assertEquals(yearStarted, employeeOne.getYearStarted());
+
+            int newYearStarted = 2001;
+            employeeOne.setYearStarted(newYearStarted);
+
+            assertEquals(newYearStarted, employeeOne.getYearStarted());
+        }
+
+        @Test
+        public void testSetEmployeeName() {
+            assertEquals(name, employeeOne.getName());
+
+            String newEmployeeName = "Bugs Bunny";
+            employeeOne.setName(newEmployeeName);
+
+            assertEquals(newEmployeeName, employeeOne.getName());
+        }
+    }
 }
