@@ -7,13 +7,16 @@ public class Employee {
     public static class EmployeeComparator
         <T extends Employee> implements Comparator<Employee> {
 
+        // The inner class has access to all outer class
+        // private variables.
+
         @Override
         public int compare(Employee o1, Employee o2) {
-            Integer firstId = o1.getEmployeeId();
-            Integer secondId = o2.getEmployeeId();
+            Integer firstId = o1.employeeId;
+            Integer secondId = o2.employeeId;
 
-            String[] FirstFullName = o1.getName().split("\\s+");
-            String[] SecondFullName = o2.getName().split("\\s+");
+            String[] FirstFullName = o1.name.split("\\s+");
+            String[] SecondFullName = o2.name.split("\\s+");
 
             String firstFirstName = FirstFullName[0];
             String firstLastName = FirstFullName[1];
