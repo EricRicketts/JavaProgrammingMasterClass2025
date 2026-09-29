@@ -1,79 +1,119 @@
 package org.example;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.RoundingMode;
+import java.util.Objects;
 
 public class Meal {
 
-    private BigDecimal price;
-    private Burger burger;
-    private Drink drink;
-    private Side side;
-    private List<Topping> toppings;
-    private BigDecimal conversionRate;
+    private Item burger;
+    private Item drink;
+    private Item side;
 
-    public Burger getBurger() {
+    public Meal() {
+        burger = new Item (
+            BurgerMeatType.GROUND_HAMBURGER.toString(),
+            BurgerSize.MEDIUM.toString(),
+            new BigDecimal("2.55")
+        );
+        drink = new Item(
+            Drink.COKE_MEDIUM.getName(),
+            Drink.COKE_MEDIUM.getType(),
+            Drink.COKE_MEDIUM.getPrice()
+        );
+        side = new Item(
+            Side.FRIES_MEDIUM.getName(),
+            Side.FRIES_MEDIUM.getType(),
+            Side.FRIES_MEDIUM.getPrice()
+        );
+    }
+    public Item getBurger() {
         return burger;
     }
 
-    public void setBurger(Burger burger) {
+    public void setBurger(Item burger) {
         this.burger = burger;
     }
 
-    public Drink getDrink() {
-        return this.drink;
+    public Item getDrink() {
+        return drink;
     }
 
-    public void setDrink(Drink drink) {
+    public void setDrink(Item drink) {
         this.drink = drink;
     }
 
-    public Side getSide() {
-        return this.side;
+    public Item getSide() {
+        return side;
     }
 
-    public void setSide(Side side) {
+    public void setSide(Item side) {
         this.side = side;
-    }
-
-    public BigDecimal getConversionRate() {
-        return conversionRate;
-    }
-
-    public void setConversionRate(BigDecimal conversionRate) {
-        this.conversionRate = conversionRate;
-    }
-
-    public Meal() {
-        this(new BigDecimal("1.00"));
-    }
-
-    public Meal(BigDecimal conversionRate) {
-        this.conversionRate = conversionRate;
-        this.burger = new Burger(BurgerMeatType.ROUND,
-            BurgerSize.MEDIUM, new BigDecimal("2.55")
-        );
-        this.drink = Drink.COKE_MEDIUM;
-        this.side = Side.FRIES_MEDIUM;
-        this.toppings = new ArrayList<>();
-    }
-
-    public BigDecimal getTotalPrice() {
-        return this.getBurger().getPrice().multiply(this.getConversionRate())
-            .add(this.getDrink().getPrice().multiply(this.getConversionRate()))
-            .add(this.getSide().getPrice().multiply(this.getConversionRate()));
     }
 
     @Override
     public String toString() {
-        String mealItems = "%sPrice: %.2f%nDrink:%nType: %s%nPrice: %.2f%nSide:%nType: %s%nPrice: %.2f%n"
-            .formatted(
-            burger, burger.getPrice().multiply(this.getConversionRate()),
-            drink, drink.getPrice().multiply(this.getConversionRate()),
-            side, side.getPrice().multiply(this.getConversionRate()));
-        String total = "Total Price: %.2f".formatted(getTotalPrice());
+        return "%10s%15s%10s".formatted(burger, drink, side);
+    }
 
-        return mealItems + total;
+    public class Item {
+
+        private String name;
+        private String type;
+        private BigDecimal price;
+
+        public Item(
+            String name,
+            String type,
+            BigDecimal price) {
+            this.name = name;
+            this.type = type;
+            this.price = price.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public BigDecimal getPrice() {
+            return price;
+        }
+
+        public void setPrice(BigDecimal price) {
+            this.price = price.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || (this.getClass() != obj.getClass())) return false;
+            Item other = (Item) obj;
+            return  Objects.equals(this.name, other.name) &&
+                    Objects.equals(this.type, other.type) &&
+                    Objects.equals(this.price, other.price);
+
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(this.name, this.type, this.price);
+        }
+
+        @Override
+        public String toString() {
+            return "%10s%15s $%.2f".formatted(type, name, price);
+        }
     }
 }
