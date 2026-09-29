@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public enum Side implements SideItem {
 
@@ -15,14 +16,14 @@ public enum Side implements SideItem {
     SIDE_SALAD_LARGE("Side Salad", "Large", new BigDecimal("3.59"));
 
 
-    private final String name;
-    private final String type;
-    private final BigDecimal price;
+    private String name;
+    private String type;
+    private BigDecimal price;
 
     Side(String name, String type, BigDecimal price) {
         this.name = name;
         this.type = type;
-        this.price = price;
+        this.price = price.setScale(2, RoundingMode.HALF_UP);
     }
 
     @Override
@@ -38,5 +39,17 @@ public enum Side implements SideItem {
     @Override
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price.setScale(2, RoundingMode.HALF_UP);
     }
 }
