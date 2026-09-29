@@ -15,9 +15,9 @@ public enum Drink implements DrinkItem {
     PEPSI_EXTRA_LARGE("Pepsi", "Extra_Large", new BigDecimal("3.89")),
     MOUNTAIN_DEW_MEDIUM("Mountain Dew", "Medium", new BigDecimal("2.59"));
 
-    private String name;
-    private String type;
-    private BigDecimal price;
+    private final String name;
+    private final String type;
+    private final BigDecimal price;
 
     Drink(String name, String type, BigDecimal price) {
         this.name = name;
@@ -34,15 +34,4 @@ public enum Drink implements DrinkItem {
     @Override
     public BigDecimal getPrice() { return this.price; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price.setScale(2, RoundingMode.HALF_UP);
-    }
 }
