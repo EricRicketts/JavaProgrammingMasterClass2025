@@ -6,9 +6,9 @@ import java.util.Objects;
 
 public class Meal {
 
-    private Item burger;
-    private Item drink;
-    private Item side;
+    private final Item burger;
+    private final Item drink;
+    private final Item side;
 
     public Meal() {
         burger = new Item (
@@ -31,24 +31,12 @@ public class Meal {
         return burger;
     }
 
-    public void setBurger(Item burger) {
-        this.burger = burger;
-    }
-
     public Item getDrink() {
         return drink;
     }
 
-    public void setDrink(Item drink) {
-        this.drink = drink;
-    }
-
     public Item getSide() {
         return side;
-    }
-
-    public void setSide(Item side) {
-        this.side = side;
     }
 
     @Override
@@ -58,9 +46,9 @@ public class Meal {
 
     public class Item {
 
-        private String name;
-        private String type;
-        private BigDecimal price;
+        private final String name;
+        private final String type;
+        private final BigDecimal price;
 
         public Item(
             String name,
@@ -75,24 +63,12 @@ public class Meal {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
         public String getType() {
             return type;
         }
 
-        public void setType(String type) {
-            this.type = type;
-        }
-
         public BigDecimal getPrice() {
             return price;
-        }
-
-        public void setPrice(BigDecimal price) {
-            this.price = price.setScale(2, RoundingMode.HALF_UP);
         }
 
         @Override

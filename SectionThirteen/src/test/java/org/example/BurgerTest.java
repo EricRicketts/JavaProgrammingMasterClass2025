@@ -82,7 +82,12 @@ public class BurgerTest {
 
         @Test
         public void testToStringMethod() {
-            String expected = "Burger Meat Type: GROUND_HAMBURGER, Burger Size: MEDIUM";
+            String expected = """
+                Burger:
+                Meat Type: GROUND_HAMBURGER
+                Burger Size: MEDIUM
+                Price: $2.55
+                """;
             String result = burger.toString();
 
             assertEquals(expected, result);
