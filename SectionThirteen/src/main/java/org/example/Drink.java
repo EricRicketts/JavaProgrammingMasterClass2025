@@ -34,4 +34,14 @@ public enum Drink implements DrinkItem {
     @Override
     public BigDecimal getPrice() { return this.price; }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+            sb.append("Drink: ").append(this.getName()).append("\n")
+            .append("Type: ").append(this.getType()).append("\n")
+            .append("Price: ").append("$").append(this.getPrice()).append("\n");
+
+        return sb.toString();
+    }
+
 }

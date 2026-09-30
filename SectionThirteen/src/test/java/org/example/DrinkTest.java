@@ -110,5 +110,17 @@ public class DrinkTest {
             assertEquals("Extra_Large", drink.getType());
             assertEquals(new BigDecimal("3.89"), drink.getPrice());
         }
+
+        @Test
+        public void testToString() {
+            String expected = """
+                Drink: Mountain Dew
+                Type: Medium
+                Price: $2.59
+                """;
+            String result = drink.toString();
+
+            assertEquals(expected, result);
+        }
     }
 }
