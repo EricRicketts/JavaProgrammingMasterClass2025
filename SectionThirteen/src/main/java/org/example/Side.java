@@ -8,7 +8,7 @@ public enum Side implements SideItem {
     FRIES_SMALL("Fries", "Small", new BigDecimal("1.59")),
     FRIES_MEDIUM("Fries", "Medium", new BigDecimal("1.99")),
     FRIES_LARGE("Fries", "Large", new BigDecimal("2.29")),
-    ONION_RINGS_SMALl("Onion Rings", "Small", new BigDecimal("1.79")),
+    ONION_RINGS_SMALL("Onion Rings", "Small", new BigDecimal("1.79")),
     ONION_RINGS_MEDIUM("Onion Rings", "Medium", new BigDecimal("2.19")),
     ONION_RINGS_LARGE("Onion Rings", "Large", new BigDecimal("2.49")),
     SIDE_SALAD_SMALL("Side Salad", "Small", new BigDecimal("2.59")),

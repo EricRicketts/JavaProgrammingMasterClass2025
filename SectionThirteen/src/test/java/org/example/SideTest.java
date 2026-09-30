@@ -43,4 +43,36 @@ public class SideTest {
             assertEquals(new BigDecimal("2.29"), side.getPrice());
         }
     }
+
+    @Nested
+    @DisplayName("test onion rings side")
+    class TestOnionRingsSide {
+
+        @Test
+        public void testSmallOnionRings() {
+            side = Side.ONION_RINGS_SMALL;
+
+            assertEquals("Onion Rings", side.getName());
+            assertEquals("Small", side.getType());
+            assertEquals(new BigDecimal("1.79"), side.getPrice());
+        }
+
+        @Test
+        public void testMediumOnionRings() {
+            side = Side.ONION_RINGS_MEDIUM;
+
+            assertEquals("Onion Rings", side.getName());
+            assertEquals("Medium", side.getType());
+            assertEquals(new BigDecimal("2.19"), side.getPrice());
+        }
+
+        @Test
+        public void testLargeOnionRings() {
+            side = Side.ONION_RINGS_LARGE;
+
+            assertEquals("Onion Rings", side.getName());
+            assertEquals("Large", side.getType());
+            assertEquals(new BigDecimal("2.49"), side.getPrice());
+        }
+    }
 }
