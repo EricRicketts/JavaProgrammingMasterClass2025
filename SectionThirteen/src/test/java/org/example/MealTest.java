@@ -57,4 +57,17 @@ public class MealTest {
         }
     }
 
+    @Nested
+    @DisplayName("test get meal price")
+    class TestGetMealPrice {
+
+        @Test
+        public void testGetMealPrice() {
+            BigDecimal expected = new BigDecimal("7.49");
+            BigDecimal result = meal.calculateTotalPrice();
+
+            assertEquals(expected, result);
+        }
+    }
+
 }

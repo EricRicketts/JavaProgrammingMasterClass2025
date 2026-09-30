@@ -9,6 +9,7 @@ public class Meal {
     private final Item burger;
     private final Item drink;
     private final Item side;
+    private final BigDecimal taxRate = new BigDecimal("0.05");
 
     public Meal() {
         burger = new Item (
@@ -37,6 +38,21 @@ public class Meal {
 
     public Item getSide() {
         return side;
+    }
+
+    public BigDecimal calculateSubTotalPrice() {
+        return this.burger.getPrice()
+            .add(this.drink.getPrice())
+            .add(this.side.getPrice());
+    }
+
+    public BigDecimal calculateTax() {
+        return calculateSubTotalPrice()
+            .multiply(taxRate).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public BigDecimal calculateTotalPrice() {
+        return calculateSubTotalPrice().add(calculateTax());
     }
 
     @Override
