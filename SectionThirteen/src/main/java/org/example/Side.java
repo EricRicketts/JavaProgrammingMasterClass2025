@@ -40,4 +40,15 @@ public enum Side implements SideItem {
     public BigDecimal getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Side: ").append(this.getName()).append("\n")
+            .append("Type: ").append(this.getType()).append("\n")
+            .append("Price: ").append("$").append(this.getPrice()).append("\n");
+
+        return sb.toString();
+    }
 }

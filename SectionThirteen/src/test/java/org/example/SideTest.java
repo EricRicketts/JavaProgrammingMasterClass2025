@@ -107,4 +107,22 @@ public class SideTest {
             assertEquals(new BigDecimal("3.29"), side.getPrice());
         }
     }
+
+    @Nested
+    @DisplayName("test side toString()")
+    class TestSideToString {
+
+        @Test
+        public void testSideToString() {
+            side = Side.ONION_RINGS_LARGE;
+            String expected = """
+                Side: Onion Rings
+                Type: Large
+                Price: $2.49
+                """;
+            String result = side.toString();
+
+            assertEquals(expected, result);
+        }
+    }
 }
