@@ -75,4 +75,36 @@ public class SideTest {
             assertEquals(new BigDecimal("2.49"), side.getPrice());
         }
     }
+
+    @Nested
+    @DisplayName("test side salad")
+    class TestSideSalad {
+
+        @Test
+        public void testSmallSideSalad() {
+            side = Side.SIDE_SALAD_SMALL;
+
+            assertEquals("Side Salad", side.getName());
+            assertEquals("Small", side.getType());
+            assertEquals(new BigDecimal("2.59"), side.getPrice());
+        }
+
+        @Test
+        public void testMediumSideSalad() {
+            side = Side.SIDE_SALAD_MEDIUM;
+
+            assertEquals("Side Salad", side.getName());
+            assertEquals("Medium", side.getType());
+            assertEquals(new BigDecimal("2.99"), side.getPrice());
+        }
+
+        @Test
+        public void testLargeSideSalad() {
+            side = Side.SIDE_SALAD_LARGE;
+
+            assertEquals("Side Salad", side.getName());
+            assertEquals("Large", side.getType());
+            assertEquals(new BigDecimal("3.29"), side.getPrice());
+        }
+    }
 }
