@@ -110,6 +110,11 @@ public class DrinkTest {
             assertEquals("Extra_Large", drink.getType());
             assertEquals(new BigDecimal("3.89"), drink.getPrice());
         }
+    }
+
+    @Nested
+    @DisplayName("test Drink toString()")
+    class TestDrinkToString {
 
         @Test
         public void testToString() {
