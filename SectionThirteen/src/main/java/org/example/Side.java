@@ -12,13 +12,13 @@ public enum Side implements SideItem {
     ONION_RINGS_MEDIUM("Onion Rings", "Medium", new BigDecimal("2.19")),
     ONION_RINGS_LARGE("Onion Rings", "Large", new BigDecimal("2.49")),
     SIDE_SALAD_SMALL("Side Salad", "Small", new BigDecimal("2.59")),
-    SIDE_SALAD_MEDIUM("Side Salad", "Medium", new BigDecimal("3.09")),
-    SIDE_SALAD_LARGE("Side Salad", "Large", new BigDecimal("3.59"));
+    SIDE_SALAD_MEDIUM("Side Salad", "Medium", new BigDecimal("2.99")),
+    SIDE_SALAD_LARGE("Side Salad", "Large", new BigDecimal("3.29"));
 
 
-    private String name;
-    private String type;
-    private BigDecimal price;
+    private final String name;
+    private final String type;
+    private final BigDecimal price;
 
     Side(String name, String type, BigDecimal price) {
         this.name = name;
@@ -39,17 +39,5 @@ public enum Side implements SideItem {
     @Override
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price.setScale(2, RoundingMode.HALF_UP);
     }
 }
