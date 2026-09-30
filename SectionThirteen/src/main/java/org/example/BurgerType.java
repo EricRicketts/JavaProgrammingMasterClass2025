@@ -1,6 +1,6 @@
 package org.example;
 
-public enum BurgerSize {
+public enum BurgerType {
         SMALL,
         MEDIUM,
         LARGE,

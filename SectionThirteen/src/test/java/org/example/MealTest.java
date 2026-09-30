@@ -18,16 +18,19 @@ public class MealTest {
     public void setUp() {
         meal = new Meal();
         expectedBurger = meal.new Item(
-            BurgerMeatType.GROUND_HAMBURGER.toString(),
-            BurgerSize.MEDIUM.toString(),
+            "burger",
+            BurgerName.GROUND_HAMBURGER.toString(),
+            BurgerType.MEDIUM.toString(),
             new BigDecimal("2.55")
         );
         expectedDrink = meal.new Item(
+            "drink",
             Drink.COKE_MEDIUM.getName(),
             Drink.COKE_MEDIUM.getType(),
             Drink.COKE_MEDIUM.getPrice()
         );
         expectedSide = meal.new Item(
+            "side",
             Side.FRIES_MEDIUM.getName(),
             Side.FRIES_MEDIUM.getType(),
             Side.FRIES_MEDIUM.getPrice()
@@ -65,6 +68,37 @@ public class MealTest {
         public void testGetMealPrice() {
             BigDecimal expected = new BigDecimal("7.49");
             BigDecimal result = meal.calculateTotalPrice();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test Meal toString()")
+    class TestMealToString {
+
+        @Test
+        public void testMealToString() {
+            String expected = """
+                Burger:
+                Name: GROUND_HAMBURGER
+                Type: MEDIUM
+                Price: $2.55
+                
+                Drink: Coke
+                Type: Medium
+                Price: $2.59
+                
+                Side: Fries
+                Type: Medium
+                Price: $1.99
+                
+                SubTotal: $7.13
+                Tax: $0.36
+               
+                Total: $7.49
+                """;
+            String result = meal.toString();
 
             assertEquals(expected, result);
         }

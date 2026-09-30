@@ -1,6 +1,6 @@
 package org.example;
 
-public enum BurgerMeatType {
+public enum BurgerName {
 
     BRISKET,
     DRY_AGED_BEEF,

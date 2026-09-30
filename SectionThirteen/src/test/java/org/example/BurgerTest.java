@@ -16,27 +16,19 @@ public class BurgerTest {
     @BeforeEach
     public void setUp() {
         burger = new Burger(
-            BurgerMeatType.GROUND_HAMBURGER,
-            BurgerSize.MEDIUM,
+            BurgerName.GROUND_HAMBURGER,
+            BurgerType.MEDIUM,
             new BigDecimal("2.55")
         );
     }
 
     @Nested
-    @DisplayName("test get and set meat type")
+    @DisplayName("test get meat type")
     class TestGetAndSetBurgerMeatType {
 
         @Test
         public void testGetBurgerMeatType() {
-            assertEquals(BurgerMeatType.GROUND_HAMBURGER, burger.getMeatType());
-        }
-
-        @Test
-        public void testSetBurgerMeatType() {
-            assertEquals(BurgerMeatType.GROUND_HAMBURGER, burger.getMeatType());
-
-            burger.setMeatType(BurgerMeatType.SIRLOIN);
-            assertEquals(BurgerMeatType.SIRLOIN, burger.getMeatType());
+            assertEquals(BurgerName.GROUND_HAMBURGER, burger.getName());
         }
     }
 
@@ -46,15 +38,7 @@ public class BurgerTest {
 
         @Test
         public void testGetBurgerMeatSize() {
-            assertEquals(BurgerSize.MEDIUM, burger.getSize());
-        }
-
-        @Test
-        public void testSetBurgerMeatSize() {
-            assertEquals(BurgerSize.MEDIUM, burger.getSize());
-
-            burger.setSize(BurgerSize.LARGE);
-            assertEquals(BurgerSize.LARGE, burger.getSize());
+            assertEquals(BurgerType.MEDIUM, burger.getType());
         }
     }
 
@@ -66,14 +50,6 @@ public class BurgerTest {
         public void testGetBurgerPrice() {
             assertEquals(new BigDecimal("2.55"), burger.getPrice());
         }
-
-        @Test
-        public void testSetBurgerPrice() {
-            assertEquals(new BigDecimal("2.55"), burger.getPrice());
-
-            burger.setPrice(new BigDecimal("3.45"));
-            assertEquals(new BigDecimal("3.45"), burger.getPrice());
-        }
     }
 
     @Nested
@@ -84,8 +60,8 @@ public class BurgerTest {
         public void testToStringMethod() {
             String expected = """
                 Burger:
-                Meat Type: GROUND_HAMBURGER
-                Burger Size: MEDIUM
+                Name: GROUND_HAMBURGER
+                Type: MEDIUM
                 Price: $2.55
                 """;
             String result = burger.toString();

@@ -13,16 +13,19 @@ public class Meal {
 
     public Meal() {
         burger = new Item (
-            BurgerMeatType.GROUND_HAMBURGER.toString(),
-            BurgerSize.MEDIUM.toString(),
+            "burger",
+            BurgerName.GROUND_HAMBURGER.toString(),
+            BurgerType.MEDIUM.toString(),
             new BigDecimal("2.55")
         );
         drink = new Item(
+            "drink",
             Drink.COKE_MEDIUM.getName(),
             Drink.COKE_MEDIUM.getType(),
             Drink.COKE_MEDIUM.getPrice()
         );
         side = new Item(
+            "side",
             Side.FRIES_MEDIUM.getName(),
             Side.FRIES_MEDIUM.getType(),
             Side.FRIES_MEDIUM.getPrice()
@@ -57,22 +60,43 @@ public class Meal {
 
     @Override
     public String toString() {
-        return "%10s%15s%10s".formatted(burger, drink, side);
+        StringBuilder invoice = new StringBuilder();
+        invoice.append(
+            burger.toString())
+            .append("\n")
+            .append(drink.toString())
+            .append("\n")
+            .append(side.toString())
+            .append("\n")
+            .append("SubTotal: ").append("$").append(calculateSubTotalPrice())
+            .append("\n")
+            .append("Tax: ").append("$").append(calculateTax())
+            .append("\n\n")
+            .append("Total: ").append("$").append(calculateTotalPrice()).append("\n");
+
+        return invoice.toString();
     }
 
     public class Item {
 
+        private final String kind;
         private final String name;
         private final String type;
         private final BigDecimal price;
 
         public Item(
+            String kind,
             String name,
             String type,
             BigDecimal price) {
+            this.kind = kind;
             this.name = name;
             this.type = type;
             this.price = price.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        public String getKind() {
+            return kind;
         }
 
         public String getName() {
@@ -85,6 +109,31 @@ public class Meal {
 
         public BigDecimal getPrice() {
             return price;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            if (this.kind.equalsIgnoreCase("drink")) {
+                sb.append("Drink: ").append(this.getName()).append("\n")
+                    .append("Type: ").append(this.getType()).append("\n")
+                    .append("Price: ").append("$").append(this.getPrice()).append("\n");
+
+                return sb.toString();
+            } else if (this.kind.equalsIgnoreCase("side")) {
+                sb.append("Side: ").append(this.getName()).append("\n")
+                    .append("Type: ").append(this.getType()).append("\n")
+                    .append("Price: ").append("$").append(this.getPrice()).append("\n");
+
+                return sb.toString();
+            } else {
+                sb = sb.append("Burger:").append("\n")
+                    .append("Name: ").append(this.getName()).append("\n")
+                    .append("Type: ").append(this.getType()).append("\n")
+                    .append("Price: ").append("$").append(this.getPrice()).append("\n");
+
+                return sb.toString();
+            }
         }
 
         @Override
@@ -101,11 +150,6 @@ public class Meal {
         @Override
         public int hashCode() {
             return Objects.hash(this.name, this.type, this.price);
-        }
-
-        @Override
-        public String toString() {
-            return "%10s%15s $%.2f".formatted(type, name, price);
         }
     }
 }
