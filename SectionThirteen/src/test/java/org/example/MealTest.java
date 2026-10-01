@@ -65,7 +65,23 @@ public class MealTest {
     class TestGetMealPrice {
 
         @Test
-        public void testGetMealPrice() {
+        public void testMealGetSubTotal() {
+            BigDecimal expected = new BigDecimal("7.13");
+            BigDecimal result = meal.calculateSubTotalPrice();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testMealGetTax() {
+            BigDecimal expected = new BigDecimal("0.36");
+            BigDecimal result = meal.calculateTax();
+
+            assertEquals(expected, result);
+        }
+
+        @Test
+        public void testGetMealFinalPrice() {
             BigDecimal expected = new BigDecimal("7.49");
             BigDecimal result = meal.calculateTotalPrice();
 
