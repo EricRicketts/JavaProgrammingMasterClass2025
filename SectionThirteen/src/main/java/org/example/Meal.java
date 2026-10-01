@@ -2,6 +2,8 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Meal {
@@ -58,7 +60,28 @@ public class Meal {
             "Total: " + "$" + calculateTotalPrice() + "\n";
     }
 
-    private class Item {
+    public Meal addToppings(String ...selectedToppings) {
+        burger.addToppings(selectedToppings);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || (this.getClass() != obj.getClass())) return false;
+        Meal other = (Meal) obj;
+        return  Objects.equals(this.burger, other.burger) &&
+            Objects.equals(this.drink, other.drink) &&
+            Objects.equals(this.side, other.side);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.burger, this.drink, this.side);
+    }
+
+    private static class Item {
 
         private final String kind;
         private final String name;
@@ -98,23 +121,24 @@ public class Meal {
             }
         }
 
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null || (this.getClass() != obj.getClass())) return false;
-            Meal other = (Meal) obj;
-            return  Objects.equals(this.burger, other.burger) &&
-                    Objects.equals(this.drink, other.drink) &&
-                    Objects.equals(this.side, other.side);
+    private static class Burger extends Item {
 
+        private enum Extras {
+            AVOCADO, BACON, CHEESE, KETCHUP, MAYO, MUSTARD, PICKLES;
+
+            private BigDecimal getPrice() {
+                return switch (this) {
+                    case AVOCADO -> new BigDecimal("1.50");
+                    case BACON -> new BigDecimal("2.15");
+                    case CHEESE -> new BigDecimal("1.25");
+                    case KETCHUP, MAYO, MUSTARD -> new BigDecimal("1.00");
+                    case PICKLES -> new BigDecimal("1.15");
+                };
+            }
         }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(this.burger, this.drink, this.side);
-        }
+        private final List<Item> toppings = new ArrayList<>();
 
-    private class Burger extends Item {
         Burger() {
             super(
                 "Burger",
@@ -122,6 +146,35 @@ public class Meal {
                 BurgerType.MEDIUM.toString(),
                 new BigDecimal("2.55")
             );
+        }
+
+        private void addToppings(String... selectedToppings) {
+            for (String selectedTopping : selectedToppings) {
+                try {
+                    Extras topping =
+                        Extras.valueOf(selectedTopping.toUpperCase());
+                    toppings.add(
+                        new Item(
+                            "Topping",
+                            topping.name(),
+                            "TOPPING",
+                            topping.getPrice()
+                        )
+                    );
+                } catch (IllegalArgumentException ie) {
+                    throw new IllegalArgumentException(ie.getMessage());
+                }
+            }
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder itemized = new StringBuilder(super.toString());
+            for (Item topping : toppings) {
+                itemized.append("\n");
+                itemized.append(topping);
+            }
+            return itemized.toString();
         }
     }
 }

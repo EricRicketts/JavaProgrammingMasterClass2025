@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MealTest {
 
@@ -78,6 +80,99 @@ public class MealTest {
             String result = meal.toString();
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test Burger toppings")
+    class TestBurgerToppings {
+
+        @Test
+        public void testAddToppingsSingle() {
+            meal.addToppings("cheese");
+            String expected = """
+                Burger:
+                Name: GROUND_HAMBURGER
+                Type: MEDIUM
+                Price: $2.55
+                
+                Topping:
+                Name: CHEESE
+                Type: TOPPING
+                Price: $1.25
+                
+                Drink:
+                Name: Coke
+                Type: Medium
+                Price: $2.59
+                
+                Side:
+                Name: Fries
+                Type: Medium
+                Price: $1.99
+                
+                SubTotal: $7.13
+                Tax: $0.36
+               
+                Total: $7.49
+                """;
+            assertEquals(expected, meal.toString());
+        }
+
+        @Test
+        public void testAddToppingsMultipleAndCaseInsensitive() {
+            meal.addToppings("bacon", "avocado", "pickles");
+            String expected = """
+                Burger:
+                Name: GROUND_HAMBURGER
+                Type: MEDIUM
+                Price: $2.55
+                
+                Topping:
+                Name: BACON
+                Type: TOPPING
+                Price: $2.15
+                
+                Topping:
+                Name: AVOCADO
+                Type: TOPPING
+                Price: $1.50
+                
+                Topping:
+                Name: PICKLES
+                Type: TOPPING
+                Price: $1.15
+                
+                Drink:
+                Name: Coke
+                Type: Medium
+                Price: $2.59
+                
+                Side:
+                Name: Fries
+                Type: Medium
+                Price: $1.99
+                
+                SubTotal: $7.13
+                Tax: $0.36
+               
+                Total: $7.49
+                """;
+            assertEquals(expected, meal.toString());
+        }
+
+        @Test
+        public void testAddToppingsChaining() {
+            Meal result = meal.addToppings("ketchup")
+                .addToppings("mayo", "mustard");
+            assertSame(meal, result);
+        }
+
+        @Test
+        public void testAddInvalidToppingThrowsException() {
+            assertThrows(IllegalArgumentException.class, () ->
+                meal.addToppings("mushrooms")
+            );
         }
     }
 
