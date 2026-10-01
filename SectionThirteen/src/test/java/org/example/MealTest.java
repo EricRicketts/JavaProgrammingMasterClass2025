@@ -12,53 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MealTest {
 
     private Meal meal;
-    private Meal.Item expectedBurger, expectedDrink, expectedSide;
 
     @BeforeEach
     public void setUp() {
         meal = new Meal();
-        expectedBurger = meal.new Item(
-            "burger",
-            BurgerName.GROUND_HAMBURGER.toString(),
-            BurgerType.MEDIUM.toString(),
-            new BigDecimal("2.55")
-        );
-        expectedDrink = meal.new Item(
-            "drink",
-            Drink.COKE_MEDIUM.getName(),
-            Drink.COKE_MEDIUM.getType(),
-            Drink.COKE_MEDIUM.getPrice()
-        );
-        expectedSide = meal.new Item(
-            "side",
-            Side.FRIES_MEDIUM.getName(),
-            Side.FRIES_MEDIUM.getType(),
-            Side.FRIES_MEDIUM.getPrice()
-        );
     }
 
-    @Nested
-    @DisplayName("test meal getters")
-    class TestMealGetters {
-
-        @Test
-        public void testMealGetBurger() {
-            Meal.Item mealBurger = meal.getBurger();
-            assertEquals(expectedBurger, mealBurger);
-        }
-
-        @Test
-        public void testMealGetDrink() {
-            Meal.Item mealDrink = meal.getDrink();
-            assertEquals(expectedDrink, mealDrink);
-        }
-
-        @Test
-        public void testMealGetSide() {
-            Meal.Item mealSide = meal.getSide();
-            assertEquals(expectedSide, mealSide);
-        }
-    }
 
     @Nested
     @DisplayName("test get meal price")
@@ -101,11 +60,13 @@ public class MealTest {
                 Type: MEDIUM
                 Price: $2.55
                 
-                Drink: Coke
+                Drink:
+                Name: Coke
                 Type: Medium
                 Price: $2.59
                 
-                Side: Fries
+                Side:
+                Name: Fries
                 Type: Medium
                 Price: $1.99
                 

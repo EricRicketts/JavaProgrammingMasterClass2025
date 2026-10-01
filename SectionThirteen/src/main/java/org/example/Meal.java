@@ -6,18 +6,13 @@ import java.util.Objects;
 
 public class Meal {
 
-    private final Item burger;
+    private final Burger burger;
     private final Item drink;
     private final Item side;
     private final BigDecimal taxRate = new BigDecimal("0.05");
 
     public Meal() {
-        burger = new Item (
-            "burger",
-            BurgerName.GROUND_HAMBURGER.toString(),
-            BurgerType.MEDIUM.toString(),
-            new BigDecimal("2.55")
-        );
+        burger = new Burger();
         drink = new Item(
             "drink",
             Drink.COKE_MEDIUM.getName(),
@@ -30,17 +25,6 @@ public class Meal {
             Side.FRIES_MEDIUM.getType(),
             Side.FRIES_MEDIUM.getPrice()
         );
-    }
-    public Item getBurger() {
-        return burger;
-    }
-
-    public Item getDrink() {
-        return drink;
-    }
-
-    public Item getSide() {
-        return side;
     }
 
     public BigDecimal calculateSubTotalPrice() {
@@ -60,24 +44,21 @@ public class Meal {
 
     @Override
     public String toString() {
-        StringBuilder invoice = new StringBuilder();
-        invoice.append(
-            burger.toString())
-            .append("\n")
-            .append(drink.toString())
-            .append("\n")
-            .append(side.toString())
-            .append("\n")
-            .append("SubTotal: ").append("$").append(calculateSubTotalPrice())
-            .append("\n")
-            .append("Tax: ").append("$").append(calculateTax())
-            .append("\n\n")
-            .append("Total: ").append("$").append(calculateTotalPrice()).append("\n");
 
-        return invoice.toString();
+        return burger.toString() +
+            "\n" +
+            drink.toString() +
+            "\n" +
+            side.toString() +
+            "\n" +
+            "SubTotal: " + "$" + calculateSubTotalPrice() +
+            "\n" +
+            "Tax: " + "$" + calculateTax() +
+            "\n\n" +
+            "Total: " + "$" + calculateTotalPrice() + "\n";
     }
 
-    public class Item {
+    private class Item {
 
         private final String kind;
         private final String name;
@@ -95,10 +76,6 @@ public class Meal {
             this.price = price.setScale(2, RoundingMode.HALF_UP);
         }
 
-        public String getKind() {
-            return kind;
-        }
-
         public String getName() {
             return name;
         }
@@ -113,26 +90,11 @@ public class Meal {
 
         @Override
         public String toString() {
-            StringBuilder sb = new StringBuilder();
-            if (this.kind.equalsIgnoreCase("drink")) {
-                sb.append("Drink: ").append(this.getName()).append("\n")
-                    .append("Type: ").append(this.getType()).append("\n")
-                    .append("Price: ").append("$").append(this.getPrice()).append("\n");
-
-                return sb.toString();
-            } else if (this.kind.equalsIgnoreCase("side")) {
-                sb.append("Side: ").append(this.getName()).append("\n")
-                    .append("Type: ").append(this.getType()).append("\n")
-                    .append("Price: ").append("$").append(this.getPrice()).append("\n");
-
-                return sb.toString();
-            } else {
-                sb = sb.append("Burger:").append("\n")
-                    .append("Name: ").append(this.getName()).append("\n")
-                    .append("Type: ").append(this.getType()).append("\n")
-                    .append("Price: ").append("$").append(this.getPrice()).append("\n");
-
-                return sb.toString();
+            return String.format("%s:\nName: %s\nType: %s\nPrice: $%s\n",
+                kind.substring(0, 1).toUpperCase() + kind.substring(1),
+                name,
+                type,
+                price);
             }
         }
 
@@ -140,16 +102,26 @@ public class Meal {
         public boolean equals(Object obj) {
             if (this == obj) return true;
             if (obj == null || (this.getClass() != obj.getClass())) return false;
-            Item other = (Item) obj;
-            return  Objects.equals(this.name, other.name) &&
-                    Objects.equals(this.type, other.type) &&
-                    Objects.equals(this.price, other.price);
+            Meal other = (Meal) obj;
+            return  Objects.equals(this.burger, other.burger) &&
+                    Objects.equals(this.drink, other.drink) &&
+                    Objects.equals(this.side, other.side);
 
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(this.name, this.type, this.price);
+            return Objects.hash(this.burger, this.drink, this.side);
+        }
+
+    private class Burger extends Item {
+        Burger() {
+            super(
+                "Burger",
+                BurgerName.GROUND_HAMBURGER.toString(),
+                BurgerType.MEDIUM.toString(),
+                new BigDecimal("2.55")
+            );
         }
     }
 }
