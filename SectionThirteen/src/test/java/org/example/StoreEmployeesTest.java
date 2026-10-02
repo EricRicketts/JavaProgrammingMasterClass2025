@@ -11,9 +11,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class StoreEmployeesTest {
 
+    private List<StoreEmployee> testList;
+    private List<StoreEmployee> pigLatinList;
+    private final String errorString = "Expected element to implement PigLatinNamed";
+
     public static List<StoreEmployee> addPigLatinName(
         List<? extends StoreEmployee> list) {
-        class DecoratedEmployee extends StoreEmployee implements PigLatinNamed {
+        class DecoratedEmployee extends StoreEmployee
+            implements PigLatinNamed, Comparable<DecoratedEmployee> {
             private final String pigLatinName;
             private final Employee originalInstance;
 
@@ -30,6 +35,12 @@ public class StoreEmployeesTest {
             @Override
             public String toString() {
                 return originalInstance + " " + pigLatinName;
+            }
+
+
+            @Override
+            public int compareTo(DecoratedEmployee o) {
+                return pigLatinName.compareTo(o.pigLatinName);
             }
         }
 
@@ -56,7 +67,7 @@ public class StoreEmployeesTest {
                 new StoreEmployee(
                     987654,
                     2000,
-                    "Speed Gonzales",
+                    "Speedy Gonzales",
                     "Walmart"
                 ),
                 new StoreEmployee(
@@ -124,7 +135,7 @@ public class StoreEmployeesTest {
                 new StoreEmployee(
                     987654,
                     2000,
-                    "Speed Gonzales",
+                    "Speedy Gonzales",
                     "Walmart"
                 )
             )
@@ -180,7 +191,7 @@ public class StoreEmployeesTest {
                 new StoreEmployee(
                     987654,
                     2000,
-                    "Speed Gonzales",
+                    "Speedy Gonzales",
                     "Walmart"
                 )
             )
@@ -204,15 +215,14 @@ public class StoreEmployeesTest {
 
     @Test
     public void testAddPigLatinName() {
-        String errorString = "Expected element to implement PigLatinNamed";
-        List<StoreEmployee> testList = new ArrayList<>(
+        testList = new ArrayList<>(
             List.of(
                 storeEmployees.getFirst(),
                 storeEmployees.getLast()
             )
         );
 
-        List<StoreEmployee> pigLatinList = addPigLatinName(testList);
+        pigLatinList = addPigLatinName(testList);
 
         StoreEmployee first = pigLatinList.getFirst();
         if (first instanceof PigLatinNamed decorated) {
@@ -226,6 +236,67 @@ public class StoreEmployeesTest {
             assertEquals("yleE CoyoteWay", decorated.getPigLatinName());
         } else {
             fail(errorString);
+        }
+    }
+
+    @Test
+    public void testSortPigLatinNames() {
+        List<String> expectedPigLatinNames = new ArrayList<>(
+            List.of(
+                "lmer FuddEay","oad RunnerRay",
+                "peedy GonzalesSay", "ugs BunnyBay"
+            )
+        );
+        List<StoreEmployee> baseList = new ArrayList<>(
+            List.of(
+                new StoreEmployee(
+                    987654,
+                    2000,
+                    "Speedy Gonzales",
+                    "Walmart"
+                ),
+                new StoreEmployee(
+                    123456,
+                    1996,
+                    "Bugs Bunny",
+                    "Target"
+                ),
+                new StoreEmployee(
+                    112233,
+                    1998,
+                    "Elmer Fudd",
+                    "Abercrombie"
+                ),
+                new StoreEmployee(
+                    223344,
+                    1990,
+                    "Road Runner",
+                    "Harris Teeter"
+                )
+            )
+        );
+
+        testList = new ArrayList<>(
+            List.of(
+                storeEmployees.get(1),
+                storeEmployees.get(2),
+                storeEmployees.get(3),
+                storeEmployees.get(4)
+            )
+        );
+        pigLatinList = addPigLatinName(testList);
+        pigLatinList.sort(null);
+
+        for (int index = 0; index < expectedPigLatinNames.size(); index+=1) {
+            String expectedPigLatinName = expectedPigLatinNames.get(index);
+            StoreEmployee employee = pigLatinList.get(index);
+
+            if (employee instanceof PigLatinNamed decorated) {
+                String resultantPigLatinName = decorated.getPigLatinName();
+                assertEquals(expectedPigLatinName, resultantPigLatinName);
+            } else {
+                fail(errorString);
+            }
         }
     }
 }
