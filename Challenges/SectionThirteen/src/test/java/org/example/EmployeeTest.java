@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EmployeeTest {
 
     public static List<String> processEmployees(List<Employee> employees) {
+        return processEmployees(employees, "none");
+    }
+
+    public static List<String> processEmployees(List<Employee> employees, String sortKey) {
         class EmployeeData {
             private Employee employee;
             private String fullName;
@@ -33,21 +38,56 @@ public class EmployeeTest {
                 return this.fullName;
             }
 
+            public String getLastName() {
+                return this.employee.lastName();
+            }
+
+            public String getFirstName() {
+                return this.employee.firstName();
+            }
+
             public int getYearsWorked() {
                 return this.yearsWorked;
             }
         }
 
-        List<String> employeeData = new ArrayList<>();
-        for(Employee employee : employees) {
-            EmployeeData employeeInformation = new EmployeeData(employee);
-            employeeData.add(
-                "Employee Full Name: " +
-                    employeeInformation.getFullName() + " Employee Years Worked: " +
-                    employeeInformation.getYearsWorked()
+        List<EmployeeData> employeeDataList = new ArrayList<>();
+        for (Employee employee : employees) {
+            employeeDataList.add(new EmployeeData(employee));
+        }
+
+        var sortByYearsWorked = new Comparator<EmployeeData>() {
+            @Override
+            public int compare(EmployeeData o1, EmployeeData o2) {
+                return Integer.compare(o1.getYearsWorked(), o2.getYearsWorked());
+            }
+        };
+
+        var sortByLastNameThenFirstName = new Comparator<EmployeeData>() {
+            @Override
+            public int compare(EmployeeData o1, EmployeeData o2) {
+                int result = o1.getLastName().compareTo(o2.getLastName());
+                if (result != 0) {
+                    return result;
+                }
+                return o1.getFirstName().compareTo(o2.getFirstName());
+            }
+        };
+
+        if ("yearsWorked".equalsIgnoreCase(sortKey)) {
+            employeeDataList.sort(sortByYearsWorked);
+        } else if ("name".equalsIgnoreCase(sortKey)) {
+            employeeDataList.sort(sortByLastNameThenFirstName);
+        }
+
+        List<String> result = new ArrayList<>();
+        for (EmployeeData data : employeeDataList) {
+            result.add(
+                "Employee Full Name: " + data.getFullName() +
+                    " Employee Years Worked: " + data.getYearsWorked()
             );
         }
-        return employeeData;
+        return result;
     }
     private List<Employee> employees;
 
@@ -135,6 +175,18 @@ public class EmployeeTest {
             }
             String name = first + " " + second;
             assertEquals(expectedName, name);
+        }
+    }
+
+    @Test
+    public void testSortEmployeesByYearsWorked() {
+        List<String> sortResult = processEmployees(employees, "yearsWorked");
+        int[] expectedSortResults = {4, 6, 9, 22, 25, 26};
+
+        for (int index = 0; index < expectedSortResults.length; index+=1) {
+            int expectedSortResult = expectedSortResults[index];
+            String resultantSortResult = sortResult.get(index).split("Years Worked: ")[1];
+            assertEquals(expectedSortResult, Integer.valueOf(resultantSortResult));
         }
     }
 }
