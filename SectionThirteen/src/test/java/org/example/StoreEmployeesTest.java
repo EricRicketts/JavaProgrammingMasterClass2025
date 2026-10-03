@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +15,16 @@ public class StoreEmployeesTest {
     private List<StoreEmployee> testList;
     private List<StoreEmployee> pigLatinList;
     private final String errorString = "Expected element to implement PigLatinNamed";
+
+    public static <T> List<T> sortStoreEmployees(
+        List<T> list,
+        Comparator<? super T> comparator) {
+        // ? super T sets a lower bound on the sort type, meaning I can sort
+        // StoreEmployee as the lower bound but then also sort Employee as
+        // this is a super type of StoreEmployee.
+        list.sort(comparator);
+        return list;
+    }
 
     public static List<StoreEmployee> addPigLatinName(
         List<? extends StoreEmployee> list) {
@@ -301,5 +312,78 @@ public class StoreEmployeesTest {
                 fail(errorString);
             }
         }
+    }
+
+    @Test
+    public void testUsingAnonymousClasses() {
+        var expected = new ArrayList<>(
+            List.of(
+                new StoreEmployee(
+                    123456,
+                    1996,
+                    "Bugs Bunny",
+                    "Target"
+                ),
+                new StoreEmployee(
+                    223344,
+                    2010,
+                    "WyleE Coyote",
+                    "Lowes"
+                ),
+                new StoreEmployee(
+                    223344,
+                    1997,
+                    "Daffy Duck",
+                    "Barnes and Noble"
+                ),
+                new StoreEmployee(
+                    112233,
+                    1998,
+                    "Elmer Fudd",
+                    "Abercrombie"
+                ),
+                new StoreEmployee(
+                    987654,
+                    2000,
+                    "Speedy Gonzales",
+                    "Walmart"
+                ),
+                new StoreEmployee(
+                    223344,
+                    1990,
+                    "Road Runner",
+                    "Harris Teeter"
+                )
+            )
+        );
+        var anonymousClass = new Comparator<StoreEmployee>() {
+            @Override
+            public int compare(StoreEmployee o1, StoreEmployee o2) {
+                var firstName = o1.getName();
+                var secondName = o2.getName();
+
+                String[] firstNameFirstAndLastNames =
+                firstName.split("\s+");
+                String[] secondNameFirstAndLastNames =
+                    secondName.split("\s+");
+
+                String firstNameFirstName = firstNameFirstAndLastNames[0];
+                String firstNameLastName = firstNameFirstAndLastNames[1];
+
+                String secondNameFirstName = secondNameFirstAndLastNames[0];
+                String secondNameLastName = secondNameFirstAndLastNames[1];
+
+                if (firstNameLastName.compareTo(secondNameLastName) != 0) {
+                    return firstNameLastName.compareTo(secondNameLastName);
+                } else {
+                    return firstNameFirstName.compareTo(secondNameFirstName);
+                }
+            }
+        };
+        var result = sortStoreEmployees(
+            storeEmployees,
+            anonymousClass);
+
+        assertEquals(expected, result);
     }
 }
