@@ -189,4 +189,21 @@ public class EmployeeTest {
             assertEquals(expectedSortResult, Integer.valueOf(resultantSortResult));
         }
     }
+
+    @Test
+    public void testSortEmployeesByLastNameThenFirstname() {
+        List<String> sortResult = processEmployees(employees, "name");
+        String[] expectedSortResults = {
+            "Abel Baker", "Clarence Darrow", "Eric Fulbright",
+            "Gabriel Hunter", "Issac Job", "Kenneth Ludwig"
+        };
+
+        for (int index = 0; index < expectedSortResults.length; index+=1) {
+            String expectedSortResult = expectedSortResults[index];
+            String[] resultantSortResult = sortResult.get(index)
+                .split("Employee Years Worked: ");
+            String name = resultantSortResult[0].split("Employee Full Name: ")[1].trim();
+            assertEquals(expectedSortResult, name);
+        }
+    }
 }
