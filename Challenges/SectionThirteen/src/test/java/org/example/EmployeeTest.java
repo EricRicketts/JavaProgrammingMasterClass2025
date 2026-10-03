@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class EmployeeTest {
 
     public static List<String> processEmployees(List<Employee> employees) {
@@ -15,9 +17,10 @@ public class EmployeeTest {
             private String fullName;
             private int yearsWorked;
             EmployeeData(Employee employee) {
+                LocalDateTime now = LocalDateTime.now();
                 this.employee = employee;
                 this.fullName = this.employee.firstName() + " " + this.employee.lastName();
-                this.yearsWorked = LocalDateTime.now().getYear() - employee.hireDateTime().getYear();
+                this.yearsWorked = now.getYear() - employee.hireDateTime().getYear();
             }
 
             public Employee getEmployee() {
@@ -85,12 +88,25 @@ public class EmployeeTest {
     }
 
     @Test
-    public void testProcessEmployees() {
-        List<String> result = processEmployees(employees);
-        for (String employeeString : result) {
-            String[] parts =
-                employeeString.split("Employee Full Name: | Employee Years Worked: ");
-            int f = 1;
+    public void testProcessEmployeesForYearsWorked() {
+        LocalDateTime now = LocalDateTime.now();
+        int currentYear = now.getYear();
+        int[] yearsStarted = {2001, 2000, 2004, 2020, 2022, 2017};
+
+        List<Integer> expectedYearsWorked = new ArrayList<>();
+
+        for (int index = 0; index < yearsStarted.length; index+=1) {
+            int yearStarted = yearsStarted[index];
+            int yearsWorked = currentYear - yearStarted;
+            expectedYearsWorked.add(yearsWorked);
+        };
+
+        var employeeData = processEmployees(employees);
+        for (int index = 0; index < employeeData.size(); index+=1) {
+            Integer actualYearsWorked = Integer.valueOf(
+                employeeData.get(index).split("Years Worked: ")[1]);
+            int yearsWorked = expectedYearsWorked.get(index);
+            assertEquals(yearsWorked, actualYearsWorked);
         }
     }
 }
