@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -107,6 +109,32 @@ public class EmployeeTest {
                 employeeData.get(index).split("Years Worked: ")[1]);
             int yearsWorked = expectedYearsWorked.get(index);
             assertEquals(yearsWorked, actualYearsWorked);
+        }
+    }
+
+    @Test
+    public void testProcessEmployeesGetFullNames() {
+        String[] expectedFullNames = {
+            "Kenneth Ludwig", "Gabriel Hunter", "Abel Baker",
+            "Issac Job", "Clarence Darrow", "Eric Fulbright"
+        };
+
+        var employeeData = processEmployees(employees);
+        for (int index = 0; index < employeeData.size(); index+=1) {
+            String expectedName = expectedFullNames[index];
+            String employee = employeeData.get(index);
+            Pattern pattern = Pattern.compile("Employee Full Name: (\\w+)\\s+(\\w+)");
+            Matcher matcher = pattern.matcher(employee);
+
+            String first = null;
+            String second = null;
+
+            if (matcher.find()) {
+                first = matcher.group(1);
+                second = matcher.group(2);
+            }
+            String name = first + " " + second;
+            assertEquals(expectedName, name);
         }
     }
 }
