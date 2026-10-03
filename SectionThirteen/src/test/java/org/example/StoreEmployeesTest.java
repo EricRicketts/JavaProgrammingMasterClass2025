@@ -17,13 +17,16 @@ public class StoreEmployeesTest {
 
     public static List<StoreEmployee> addPigLatinName(
         List<? extends StoreEmployee> list) {
+
+        String lastName = "Piggy";
+
         class DecoratedEmployee extends StoreEmployee
             implements PigLatinNamed, Comparable<DecoratedEmployee> {
             private final String pigLatinName;
             private final Employee originalInstance;
 
             public DecoratedEmployee(String pigLatinName, Employee originalInstance) {
-                this.pigLatinName = pigLatinName;
+                this.pigLatinName = pigLatinName + " " + lastName;
                 this.originalInstance = originalInstance;
             }
 
@@ -226,14 +229,14 @@ public class StoreEmployeesTest {
 
         StoreEmployee first = pigLatinList.getFirst();
         if (first instanceof PigLatinNamed decorated) {
-            assertEquals("affy DuckDay", decorated.getPigLatinName());
+            assertEquals("affy DuckDay Piggy", decorated.getPigLatinName());
         } else {
             fail(errorString);
         }
 
         StoreEmployee last = pigLatinList.getLast();
         if (last instanceof PigLatinNamed decorated) {
-            assertEquals("yleE CoyoteWay", decorated.getPigLatinName());
+            assertEquals("yleE CoyoteWay Piggy", decorated.getPigLatinName());
         } else {
             fail(errorString);
         }
@@ -243,8 +246,8 @@ public class StoreEmployeesTest {
     public void testSortPigLatinNames() {
         List<String> expectedPigLatinNames = new ArrayList<>(
             List.of(
-                "lmer FuddEay","oad RunnerRay",
-                "peedy GonzalesSay", "ugs BunnyBay"
+                "lmer FuddEay Piggy","oad RunnerRay Piggy",
+                "peedy GonzalesSay Piggy", "ugs BunnyBay Piggy"
             )
         );
         List<StoreEmployee> baseList = new ArrayList<>(
