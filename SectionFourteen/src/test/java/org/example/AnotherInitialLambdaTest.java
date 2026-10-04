@@ -59,4 +59,22 @@ public class AnotherInitialLambdaTest {
             assertEquals(sortedPeople, people);
         }
     }
+
+    @Nested
+    @DisplayName("test sort with lambda expression")
+    class TestSortWithLambdaExpression {
+
+        @Test
+        public void testSortWithLambdaExpression() {
+            people.sort(
+                (o1, o2) -> {
+                    int compareLastNames = o1.lastName().compareTo(o2.lastName());
+                    int compareFirstNames = o1.firstName().compareTo(o2.firstName());
+                    return (compareLastNames != 0) ? compareLastNames : compareFirstNames;
+                }
+            );
+
+            assertEquals(sortedPeople, people);
+        }
+    }
 }
