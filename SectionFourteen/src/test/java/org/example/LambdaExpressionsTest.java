@@ -97,6 +97,14 @@ public class LambdaExpressionsTest {
             in such a way that it can absorb the changes to each
             individual string.  Note the lambda expression has access
             to the local variable declared outside the code block.
+            Another important note, for standard lambda expressions,
+            where they modify local variables, the local variables must
+            be final or effectively final.
+
+            Additionally, a compiler error will result if a local
+            variable is given the same name as the variable in the
+            lambda expression.  Hence, I cannot name a local variable
+            "s", if I do, I will get a compiler error.
         */
        List<String> expected = new ArrayList<>(
            List.of(
@@ -107,6 +115,10 @@ public class LambdaExpressionsTest {
            )
        );
        List<String> modifiedList = new ArrayList<>();
+       // String s; This is not allowed as a compiler error would result.
+       // Lambdas and local variables cannot share the same names.
+       // The lambda variable s is scoped to the lambda code block it
+       // cannot be referred to outside the code block.
         list.forEach(s -> {
             String updated = s.concat(" ends with ")
                 .concat(String.valueOf(s.charAt(s.length() - 1)))
