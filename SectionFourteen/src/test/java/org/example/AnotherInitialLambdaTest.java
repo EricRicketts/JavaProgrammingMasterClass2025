@@ -10,10 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class AnotherInitialLambdaTest {
 
-    private List<Person> people, sortedPeople;
+    private List<Person> people, sortedPeople, copyOfPeople;
 
     @BeforeEach
     public void setUp() {
@@ -26,6 +27,7 @@ public class AnotherInitialLambdaTest {
                 new Person("Elmer", "Fudd")
             )
         );
+        copyOfPeople = new ArrayList<>(people);
         sortedPeople = new ArrayList<>(
             List.of(
                 new Person("Bugs", "Bunny"),
@@ -43,6 +45,8 @@ public class AnotherInitialLambdaTest {
 
         @Test
         public void sortWithAnonymousClass() {
+            assertEquals(people, copyOfPeople);
+
             var comparator = new Comparator<Person>() {
 
                 @Override
@@ -57,6 +61,7 @@ public class AnotherInitialLambdaTest {
             people.sort(comparator);
 
             assertEquals(sortedPeople, people);
+            assertNotEquals(sortedPeople, copyOfPeople);
         }
     }
 
@@ -66,6 +71,7 @@ public class AnotherInitialLambdaTest {
 
         @Test
         public void testSortWithLambdaExpression() {
+            assertEquals(people, copyOfPeople);
             people.sort(
                 (o1, o2) -> {
                     int compareLastNames = o1.lastName().compareTo(o2.lastName());
@@ -75,6 +81,7 @@ public class AnotherInitialLambdaTest {
             );
 
             assertEquals(sortedPeople, people);
+            assertNotEquals(sortedPeople, copyOfPeople);
         }
     }
 }
