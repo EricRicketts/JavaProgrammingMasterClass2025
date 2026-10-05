@@ -84,4 +84,37 @@ public class AnotherInitialLambdaTest {
             assertNotEquals(sortedPeople, copyOfPeople);
         }
     }
+
+    @Nested
+    @DisplayName("sort with Enhanced Comparator")
+    class TestSortWithEnhancedComparator {
+
+        @Test
+        public void testWithEnhancedComparator() {
+            // As of JDK16 local interfaces can be declared in a method block.
+            // In this case the test method block serves as the method block.
+            interface EnhancedComparator<T> extends Comparator<T> {
+                int secondLevel(T o1, T o2);
+            }
+
+            var comparatorEnhanced = new EnhancedComparator<Person>() {
+
+                @Override
+                public int secondLevel(Person o1, Person o2) {
+                    return o1.firstName().compareTo(o2.firstName());
+                }
+
+                @Override
+                public int compare(Person o1, Person o2) {
+                    int result = o1.lastName().compareTo(o2.lastName());
+                    return (result == 0)
+                        ? secondLevel(o1, o2) : result;
+                }
+            };
+            assertEquals(copyOfPeople, people);
+            people.sort(comparatorEnhanced);
+            assertEquals(sortedPeople, people);
+            assertNotEquals(sortedPeople, copyOfPeople);
+        }
+    }
 }
