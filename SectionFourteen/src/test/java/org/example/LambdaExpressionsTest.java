@@ -115,4 +115,21 @@ public class LambdaExpressionsTest {
 
         assertEquals(expected, modifiedList);
     }
+
+    @Test
+    public void testUpdateSecondStringAMoreElegantWay() {
+        List<String> expected = new ArrayList<>(
+            List.of(
+                "alpha ends with a\n",
+                "bravo ends with o\n",
+                "charlie ends with e\n",
+                "delta ends with a\n"
+            )
+        );
+        list.replaceAll( s -> s.concat(" ends with ")
+            .concat(String.valueOf(s.charAt(s.length() - 1)))
+            .concat("\n"));
+
+        assertEquals(expected, list);
+    }
 }
