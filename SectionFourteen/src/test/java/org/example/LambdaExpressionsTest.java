@@ -76,4 +76,43 @@ public class LambdaExpressionsTest {
 
         assertEquals(expected, secondResult.toString());
     }
+
+    @Test
+    public void testSecondToStringMethodWithFinalVariation() {
+        /*
+            I wanted to run this test method just for using the
+            forEach method on the list.  Other tests will show a
+            more shortened and robust way to update the list.
+
+            I did not understand the scoping rules of forEach and
+            its associated lambda expression.  When writing s =
+            s.concat(...), s is simply reassigned a new String object
+            in memory within the scope of the given lambda expression.
+
+            Reassigning the local variable s does not update the index
+            value inside the list.
+
+            What needs to be done, as shown below, is to introduce
+            a local variable, in this case a list of strings, scoped
+            in such a way that it can absorb the changes to each
+            individual string.
+        */
+       List<String> expected = new ArrayList<>(
+           List.of(
+               "alpha ends with a\n",
+                "bravo ends with o\n",
+                "charlie ends with e\n",
+                "delta ends with a\n"
+           )
+       );
+       List<String> modifiedList = new ArrayList<>();
+        list.forEach(s -> {
+            String updated = s.concat(" ends with ")
+                .concat(String.valueOf(s.charAt(s.length() - 1)))
+                .concat("\n");
+                modifiedList.add(updated);
+        });
+
+        assertEquals(expected, modifiedList);
+    }
 }
