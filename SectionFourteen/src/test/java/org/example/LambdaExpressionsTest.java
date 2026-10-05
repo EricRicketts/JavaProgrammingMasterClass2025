@@ -95,7 +95,8 @@ public class LambdaExpressionsTest {
             What needs to be done, as shown below, is to introduce
             a local variable, in this case a list of strings, scoped
             in such a way that it can absorb the changes to each
-            individual string.
+            individual string.  Note the lambda expression has access
+            to the local variable declared outside the code block.
         */
        List<String> expected = new ArrayList<>(
            List.of(
