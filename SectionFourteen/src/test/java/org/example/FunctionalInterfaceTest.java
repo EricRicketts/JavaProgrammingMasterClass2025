@@ -76,8 +76,6 @@ public class FunctionalInterfaceTest {
         }
     }
 
-
-
     @Nested
     @DisplayName("test BigDecimal operations")
     class TestBigDecimalOperations {
@@ -137,11 +135,24 @@ public class FunctionalInterfaceTest {
         @Test
         public void testCalculatorWithStrings() {
             String result = calculator(
-                (a, b) -> a.toUpperCase() + b.toUpperCase(),
-                "Ralph ", "Kramden"
+                (a, b) -> a.toUpperCase() + " " + b.toUpperCase(),
+                "Ralph", "Kramden"
             );
 
             assertEquals("RALPH KRAMDEN", result);
+        }
+
+        @Test
+        public void testCalculatorWithAnotherSetOfStringArguments() {
+            String result = calculator(
+                (a, b) -> a.concat(b), "Bugs" + " ", "Bunny");
+
+            assertEquals("Bugs Bunny", result);
+
+            result = calculator(
+                String::concat, "Daffy ", "Duck");
+
+            assertEquals("Daffy Duck", result);
         }
 
         @Test
