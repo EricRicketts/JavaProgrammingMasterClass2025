@@ -5,21 +5,21 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FunctionalInterfaceTest {
 
+    BigDecimal result;
+
     public static <T> T calculator(Operation<T> function, T value1, T value2) {
         // This is a functional interface, but it is manually created.  In other code and
         // tests we will look at Java's built-in functional interfaces.
         // Note a functional interface in Java is an interface that contains exactly one
         // abstract method, making it suitable for use with lambdas and method references.
-        StringBuilder sb = new StringBuilder();
-        T result = function.operate(value1, value2);
-        sb = sb.append("Result of Operation").append("result").append("\n");
-        return result;
+        return function.operate(value1, value2);
     }
 
     @Nested
@@ -49,12 +49,50 @@ public class FunctionalInterfaceTest {
         }
 
         @Test
-        public void testCalculatorWithBigDecimal() {
-            BigDecimal result = calculator(
-                (a, b) -> a.divide(b, RoundingMode.HALF_UP),
-                new BigDecimal("10.00"), new BigDecimal("2.50"));
+        public void testCalculatorWithBigDecimalAdd() {
+            result = calculator(
+                (a, b) -> a.add(b),
+                new BigDecimal("7.55"), new BigDecimal("6.65")
+            );
+            result = result.setScale(2, RoundingMode.HALF_UP);
 
-            assertEquals(new BigDecimal("4.00"), result);
+            assertEquals(new BigDecimal("14.20"), result);
+        }
+
+        @Test
+        public void testCalculatorWithBigDecimalSubtract() {
+            result = calculator(
+                (a, b) -> a.subtract(b),
+                new BigDecimal("7.23"), new BigDecimal("4.78")
+            );
+            result = result.setScale(2, RoundingMode.HALF_UP);
+
+            assertEquals(new BigDecimal("2.45"), result);
+        }
+
+        @Test
+        public void testCalculatorWithBigDecimalMultiply() {
+            result = calculator(
+                (a, b) -> a.multiply(b),
+                new BigDecimal("5.67"), new BigDecimal("3.34")
+            );
+            result = result.setScale(2, RoundingMode.HALF_UP);
+
+            assertEquals(new BigDecimal("18.94"), result);
+        }
+
+        @Test
+        public void testCalculatorWithBigDecimalDivide() {
+            // The additional argument is needed to avoid the following error:
+            // java.lang.ArithmeticException: Non-terminating decimal expansion;
+            // no exact representable decimal result.
+            result = calculator(
+                (a, b) -> a.divide(b, MathContext.DECIMAL128),
+                new BigDecimal("10.45"), new BigDecimal("2.83")
+            );
+            result = result.setScale(2, RoundingMode.HALF_UP);
+
+            assertEquals(new BigDecimal("3.69"), result);
         }
 
         @Test

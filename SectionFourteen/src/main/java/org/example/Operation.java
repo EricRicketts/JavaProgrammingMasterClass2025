@@ -1,6 +1,7 @@
 package org.example;
 
-// Annotation below warns developers not to introduce future abstract methods to this interface.
+// Annotation below warns developers not to introduce
+// future abstract methods to this interface.
 @FunctionalInterface
 public interface Operation<T> {
 
