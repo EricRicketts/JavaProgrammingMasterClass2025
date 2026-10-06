@@ -19,34 +19,68 @@ public class FunctionalInterfaceTest {
         // tests we will look at Java's built-in functional interfaces.
         // Note a functional interface in Java is an interface that contains exactly one
         // abstract method, making it suitable for use with lambdas and method references.
+        // Looking at the arguments, they are functionally typed; value1 and value2 are typed
+        // according to what is specified as T, during the call to calculator.  Note
+        // Operation <T> is a call to the Operation interface, which has been defined in
+        // the main executable path.
         return function.operate(value1, value2);
     }
 
     @Nested
-    @DisplayName("Test functional interface")
-    class TestFunctionalInterface {
+    @DisplayName("test integer operations")
+    class TestIntegerOperations {
+
+        private int firstResult, secondResult;
 
         @Test
-        public void testCalculator() {
+        public void testIntegerAddition() {
             // The warning below is the IDE suggesting to use a method reference.
             // Note the pink icons next to the left of the lambda expressions, hovering
             // over them the pop-up says, "Overrides method in Operation".  Clicking the icon
             // takes one to the Operation Interface.
-            int firstResult = calculator((a, b) -> a + b,  5, 2);
-            int secondResult = calculator(Integer::sum, 5, 2);
+            firstResult = calculator((a, b) -> a + b,  5, 2);
+            secondResult = calculator(Integer::sum, 5, 2);
 
             assertEquals(7, firstResult);
             assertEquals(firstResult, secondResult);
         }
 
         @Test
-        public void testCalculatorWithExplicitTypeAndVar() {
-            int firstResult = calculator((Integer a, Integer b) -> a + b, 5, 2);
-            int secondResult = calculator((var a, var b) -> a + b, 5, 2);
+        public void testIntegerSubtraction() {
+            // In Java a functional reference of two or more parameters must use
+            // parentheses.  Below there is no equivalent for subtraction, so for
+            firstResult = calculator((a, b) -> a - b, 7, 3);
+            secondResult = calculator(Integer::sum, 7, -3);
 
-            assertEquals(7, firstResult);
-            assertEquals(7, secondResult);
+            assertEquals(4, firstResult);
+            assertEquals(4, secondResult);
         }
+
+        @Test
+        public void testIntegerMultiplication() {
+            firstResult = calculator((a, b) -> a * b, 5, 3);
+            secondResult = calculator(Math::multiplyExact, 5, 3);
+
+            assertEquals(15, firstResult);
+            assertEquals(15, secondResult);
+        }
+
+        @Test
+        public void testIntegerDivision() {
+            firstResult = calculator((a, b) -> a / b, 10, 2);
+            secondResult = calculator(Math::divideExact, 10, 2);
+
+            assertEquals(5, firstResult);
+            assertEquals(5, secondResult);
+
+        }
+    }
+
+
+
+    @Nested
+    @DisplayName("test BigDecimal operations")
+    class TestBigDecimalOperations {
 
         @Test
         public void testCalculatorWithBigDecimalAdd() {
@@ -94,6 +128,11 @@ public class FunctionalInterfaceTest {
 
             assertEquals(new BigDecimal("3.69"), result);
         }
+    }
+
+    @Nested
+    @DisplayName("test miscellaneous operations")
+    class TestMiscellaneousOperations {
 
         @Test
         public void testCalculatorWithStrings() {
@@ -104,5 +143,14 @@ public class FunctionalInterfaceTest {
 
             assertEquals("RALPH KRAMDEN", result);
         }
+
+        @Test
+        public void testCalculatorWithExplicitTypeAndVar() {
+            int firstResult = calculator((Integer a, Integer b) -> a + b, 5, 2);
+            int secondResult = calculator((var a, var b) -> a + b, 5, 2);
+
+            assertEquals(7, firstResult);
+            assertEquals(7, secondResult);
+        }
     }
-}
+ }
