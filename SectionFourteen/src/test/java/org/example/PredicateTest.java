@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -60,6 +61,41 @@ public class PredicateTest {
             );
             assertEquals(modifiedList, list);
             list.removeIf(s -> s.startsWith("ea"));
+
+            List<String> originalList = new ArrayList<>(
+                List.of(
+                    "alpha", "bravo", "charlie", "delta",
+                    "echo", "foxtrot", "golf", "hotel",
+                    "bravo"
+                )
+            );
+
+            assertEquals(originalList, list);
+        }
+
+        @Test
+        public void testRemoveWithAnAnonymousClass() {
+            // This is what the lambda expression
+            // list.removeIf(s -> s.startsWith("ea") is doing
+            // "under the covers".
+            list.addAll(List.of("easy", "earnest", "each"));
+            List<String> modifiedList = new ArrayList<>(
+                List.of(
+                    "alpha", "bravo", "charlie", "delta",
+                    "echo", "foxtrot", "golf", "hotel",
+                    "bravo", "easy", "earnest", "each"
+                )
+            );
+            assertEquals(modifiedList, list);
+
+            list.removeIf(
+                new Predicate<String>() {
+                    @Override
+                    public boolean test(String s) {
+                        return s.startsWith("ea");
+                    }
+                }
+            );
 
             List<String> originalList = new ArrayList<>(
                 List.of(
