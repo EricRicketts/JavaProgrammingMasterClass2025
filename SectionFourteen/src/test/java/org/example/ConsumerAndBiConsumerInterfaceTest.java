@@ -24,9 +24,9 @@ public class ConsumerAndBiConsumerInterfaceTest {
         return function.apply(value1, value2);
     }
     
-    List<List<BigDecimal>> coords;
-    BiConsumer<String, String> p1;
-    List<String> outputResults;
+    private List<List<BigDecimal>> coords;
+    private BiConsumer<String, String> p1;
+    private List<String> outputResults;
 
     @BeforeEach
     public void setUp() {
@@ -59,6 +59,31 @@ public class ConsumerAndBiConsumerInterfaceTest {
                 .setScale(2, RoundingMode.HALF_UP).toString();
 
             processPoint(latitude, longitude, p1);
+            assertEquals(1, outputResults.size());
+            assertEquals(
+                "Latitude: 47.22 Longitude: -95.23\n",
+                outputResults.getFirst()
+            );
+        }
+
+        @Test
+        public void testBiConsumerInterfaceUsingAnonymousClass() {
+            var p2 = new BiConsumer<String, String>() {
+
+                @Override
+                public void accept(String lat, String lng) {
+                    String result = "Latitude: ".concat(lat)
+                        .concat(" ").concat("Longitude: ")
+                        .concat(lng).concat("\n");
+                    outputResults.add(result);
+                }
+            };
+            String latitude = coords.getFirst().getFirst().
+                setScale(2, RoundingMode.HALF_UP).toString();
+            String longitude = coords.getFirst().getLast()
+                .setScale(2, RoundingMode.HALF_UP).toString();
+
+            processPoint(latitude, longitude, p2);
             assertEquals(1, outputResults.size());
             assertEquals(
                 "Latitude: 47.22 Longitude: -95.23\n",
