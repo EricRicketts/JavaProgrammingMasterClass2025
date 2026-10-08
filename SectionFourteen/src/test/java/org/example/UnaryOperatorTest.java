@@ -8,12 +8,20 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UnaryOperatorTest {
 
+    public static String[] randomlySelectedValues(int count, String[] values, Supplier<Integer> s) {
+        String[] selectedValues = new String[count];
+        for (int i = 0; i < count; i++) {
+            selectedValues[i] = values[s.get()];
+        }
+        return selectedValues;
+    }
     private List<String> list;
     private String[] emptyStrings;
 
@@ -73,12 +81,19 @@ public class UnaryOperatorTest {
         }
 
         @Test
-        public void testArraysSetAllWithSwitchExpression() {
-            Arrays.setAll(emptyStrings, (i) -> (i + 1) + ". ");
-            String[] expected =
-                {"1. ", "2. ", "3. ", "4. ", "5. ", "6. ", "7. ", "8. ", "9. ", "10. "};
-
+        public void testArraysSetWithRandomlySelectedValuesMethod() {
+            String[] names = {"Ann", "Bob", "Carol", "David", "Ed", "Fred"};
+            String[] randomList = randomlySelectedValues(
+                15,
+                names,
+                () -> new Random().nextInt(0, names.length));
+            assertEquals(15, randomList.length);
+            for (int i = 0; i < randomList.length; i++) {
+                String name = randomList[i];
+                assertTrue(Arrays.asList(randomList).contains(name));
+            }
         }
+
 
     }
 }
