@@ -73,4 +73,19 @@ public class LambdaExpressionChallengeTest {
 
         assertArrayEquals(expected, names);
     }
+
+    @Test
+    public void testRemoveNameIfLastNameEqualsFirstName() {
+        List<String> listOfNames = new ArrayList<>(Arrays.asList(names));
+        listOfNames.removeIf( name -> name.equalsIgnoreCase(
+            String.valueOf(new StringBuilder(name).reverse())
+            )
+        );
+
+        String[] names = listOfNames.toArray(new String[0]);
+
+        String[] expected = {"George", "William", "Eric", "Marty"};
+
+        assertArrayEquals(expected, names);
+    }
 }
