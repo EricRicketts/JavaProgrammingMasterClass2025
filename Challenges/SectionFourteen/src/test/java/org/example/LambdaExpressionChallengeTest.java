@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LambdaExpressionChallengeTest {
 
-    private String[] names = {"Bob", "George", "William", "Eric", "Anna", "Racecar", "Deified"};
+    private String[] names = {"Bob", "George", "William", "Eric", "Marty", "Anna", "Racecar", "Deified"};
     private String[] expected;
     private List<String> listOfNames;
 
@@ -25,7 +25,7 @@ public class LambdaExpressionChallengeTest {
     public void testTransformNamesToAllUpperCase() {
         Arrays.setAll(names, i -> names[i].toUpperCase());
 
-        expected = new String[]{"BOB", "GEORGE", "WILLIAM", "ERIC", "ANNA", "RACECAR", "DEIFIED"};
+        expected = new String[]{"BOB", "GEORGE", "WILLIAM", "ERIC", "MARTY", "ANNA", "RACECAR", "DEIFIED"};
 
         assertArrayEquals(expected, names);
     }
@@ -55,5 +55,22 @@ public class LambdaExpressionChallengeTest {
             assertTrue(Arrays.asList(letters).contains(middleInitial.substring(0, 1)));
             assertEquals(".", middleInitial.substring(1));
         }
+    }
+
+    @Test
+    public void testAddingALastNameWhichIsTheReverseOfTheFirstName() {
+        Arrays.setAll(names, i -> names[i]
+            .concat(" ")
+            .concat(String.valueOf(new StringBuilder(names[i]).reverse())
+                .toLowerCase().substring(0, 1).toUpperCase()
+                .concat(String.valueOf(new StringBuilder(names[i]).reverse()).toLowerCase().substring(1))
+        ));
+
+        String[] expected = {
+            "Bob Bob", "George Egroeg", "William Mailliw", "Eric Cire",
+            "Marty Ytram", "Anna Anna", "Racecar Racecar", "Deified Deified"
+        };
+
+        assertArrayEquals(expected, names);
     }
 }
