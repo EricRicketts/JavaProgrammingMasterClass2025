@@ -12,13 +12,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LambdaExpressionChallengeTest {
 
+    private static char getRandomChar(char startChar, char endChar, Random random) {
+        return (char) random.nextInt((int) startChar, (int) endChar + 1);
+    }
+
+    private static String getReversedName(String name) {
+        String reversedName = new StringBuilder(name).reverse().toString().toLowerCase();
+        return reversedName.substring(0, 1).toUpperCase().concat(reversedName.substring(1));
+    }
+
     private String[] names = {"Bob", "George", "William", "Eric", "Marty", "Anna", "Racecar", "Deified"};
     private String[] expected;
     private List<String> listOfNames;
+    private Random random;
 
     @BeforeEach
     public void setUp() {
         listOfNames = new ArrayList<>(List.of(names));
+        random = new Random();
     }
 
     @Test
@@ -87,5 +98,37 @@ public class LambdaExpressionChallengeTest {
         String[] expected = {"George", "William", "Eric", "Marty"};
 
         assertArrayEquals(expected, names);
+    }
+
+    @Test
+    public void testAddLastNameWithMethod() {
+        String letter = String.valueOf(getRandomChar('A', 'Z', random));
+        Arrays.setAll(names, i -> names[i]
+            .concat(" " + letter + ". ").concat(getReversedName(names[i]))
+        );
+
+        String[] expectedFirstNames = {
+            "Bob", "George", "William", "Eric",
+            "Marty", "Anna", "Racecar", "Deified"
+        };
+        String[] expectedLastNames = {
+            "Bob", "Egroeg", "Mailliw", "Cire",
+            "Ytram", "Anna", "Racecar", "Deified"
+        };
+
+        for (int index = 0; index < names.length; index+=1) {
+            String name = names[index];
+            String[] partsOfName = name.split("\\s+");
+            String firstName = partsOfName[0];
+            String lastName = partsOfName[2];
+            String middleInitialAndPeriod = partsOfName[1];
+
+            String period = middleInitialAndPeriod.substring(1);
+
+            assertEquals(".", period);
+            assertTrue(Character.isUpperCase(middleInitialAndPeriod.charAt(0)));
+            assertEquals(expectedFirstNames[index], firstName);
+            assertEquals(expectedLastNames[index], lastName);
+        }
     }
 }
