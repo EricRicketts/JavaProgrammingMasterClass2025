@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LambdaExpressionChallengeTest {
 
@@ -27,5 +28,32 @@ public class LambdaExpressionChallengeTest {
         expected = new String[]{"BOB", "GEORGE", "WILLIAM", "ERIC", "ANNA", "RACECAR", "DEIFIED"};
 
         assertArrayEquals(expected, names);
+    }
+
+    @Test
+    public void testAddMiddleInitialAndPeriod() {
+        String[] letters = {
+            "A", "B", "C", "D", "E", "F", "G", "H",
+            "I", "J", "K", "L", "M", "N", "O", "P",
+            "Q", "R", "S", "T", "U", "V", "W", "X",
+            "Y", "Z"
+        };
+
+        String[] copyOfNames = Arrays.copyOf(names, names.length);
+        Random random = new Random();
+        Arrays.setAll(names,
+            i -> names[i].concat(" ").concat(letters[random.nextInt(letters.length)]).concat(".")
+            );
+
+        for (int index = 0; index < names.length; index+=1) {
+            String currentName = names[index];
+            var separateNames = currentName.split("\\s+");
+            var firstName = separateNames[0];
+            var middleInitial = separateNames[1];
+
+            assertEquals(copyOfNames[index], firstName);
+            assertTrue(Arrays.asList(letters).contains(middleInitial.substring(0, 1)));
+            assertEquals(".", middleInitial.substring(1));
+        }
     }
 }
