@@ -21,7 +21,9 @@ public class SupplierTest {
         Also, very important to understand about the Supplier object, the get() method comes with a supplier
         instance, and by default it returns the current instance of the class.  Thus, if we want to get the current
         value of the instance field id, we need to get an instance of PlainOld with get() and then call getId() on
-        that instance.
+        that instance.  Also, for the sake of consistency, I invoked the order of executing the test methods
+        to be defined by the @Order annotation.  This ensures the call to new() on PlainOld gets invoked in the
+        order as defined by the test.
     */
     @BeforeEach
     public void setUp() {
