@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,7 +21,11 @@ public class MethodReferenceChallengeTest {
 
     private static String addReversedLastName(String name) {
         String copy = String.valueOf(name);
-        return new StringBuilder(copy).reverse().toString();
+        String reversedNameLowerCase = String.valueOf(new StringBuilder(copy).reverse()).toLowerCase();
+        String reversedName = reversedNameLowerCase.substring(0, 1).toUpperCase()
+            + reversedNameLowerCase.substring(1);
+
+        return name + " " + reversedName;
     }
 
     private static String addMiddleInitial(String name) {
@@ -40,49 +46,63 @@ public class MethodReferenceChallengeTest {
     }
 
 
-    @Test
-    public void testConvertNamesToUpperCase() {
-        List<String> list = Arrays.asList(names);
-        list.replaceAll(String::toUpperCase);
-        String[] expected = list.toArray(String[]::new);
+    @Nested
+    @DisplayName("test lambda exercises with method references")
+    class TestLambdaExercisesWithMethodReferences {
 
-        unary = String::toUpperCase;
-        for (String name : names) {
-            name = name.transform(unary);
+        @Test
+        public void testConvertNamesToUpperCase() {
+            List<String> list = Arrays.asList(names);
+            list.replaceAll(String::toUpperCase);
+            String[] expected = list.toArray(String[]::new);
+
+            unary = String::toUpperCase;
+            for (String name : names) {
+                name = name.transform(unary);
+            }
+
+            assertArrayEquals(expected, names);
         }
 
-        assertArrayEquals(expected, names);
+        @Test
+        public void testConvertNamesByAddingAnMiddleInitial() {
+            List<String> list = Arrays.asList(names);
+            list.replaceAll(u);
+
+            for (String name : names) {
+                assertTrue(name.matches("^[A-Za-z]+ [A-Z]\\.$"));
+            }
+        }
+
+        @Test
+        public void testConvertNamesByAddingLastNameWhichIsReversedFirstName() {
+            String[] originalNames = {
+                "James", "Dilbert", "Oliver", "Zachary", "Norman", "Frederick"
+            };
+
+            String[] reversedNames = {
+                "Semaj", "Treblid", "Revilo", "Yrahcaz", "Namron", "Kcirederf"
+            };
+
+            List<String> list = Arrays.asList(names);
+            list.replaceAll(t);
+
+            for (int index = 0; index < names.length; index+=1) {
+                String expected = originalNames[index] + " " + reversedNames[index];
+                String result = names[index];
+
+                assertEquals(expected, result);
+            }
+        }
     }
 
-    @Test
-    public void testConvertNamesByAddingAnMiddleInitial() {
-        List<String> list = Arrays.asList(names);
-        list.replaceAll(u);
+    @Nested
+    @DisplayName("test my own unique methods with method references")
+    class TestMyOwnUniqueMethodsWithMethodReferences {
 
-        for (String name : names) {
-            assertTrue(name.matches("^[A-Za-z]+ [A-Z]\\.$"));
-        }
-    }
+        @Test
+        public void testUpperCaseOverOtherLetterInTheName() {
 
-    @Test
-    public void testConvertNamesByAddingLastNameWhichIsReversedFirstName() {
-        String[] originalNames = {
-            "James", "Dilbert", "Oliver", "Zachary", "Norman", "Frederick"
-        };
-        List<String> list = Arrays.asList(names);
-        list.replaceAll(t);
-
-        List<String> reversedNames = new ArrayList<>();
-        for (int index = names.length - 1; index >= 0; index-=1) {
-            reversedNames.add(new StringBuilder(originalNames[index]).reverse().toString());
-        }
-        reversedNames = reversedNames.reversed();
-
-        for (int index = 0; index < names.length; index+=1) {
-            String expected = reversedNames.get(index);
-            String result = names[index];
-
-            assertEquals(expected, result);
         }
     }
 }
