@@ -19,6 +19,11 @@ public class MethodReferenceChallengeTest {
 
     private static final Random RANDOM = new Random();
 
+    private static boolean testStringAndItsReversedAreEqual(String s) {
+        String lowerCaseString = s.toLowerCase();
+        return lowerCaseString.contentEquals(new StringBuilder(lowerCaseString).reverse());
+    }
+
     private static String upperCaseEveryOtherLetter(String name) {
         String copy = name.toLowerCase();
         char[] charArray = copy.toCharArray();
@@ -127,6 +132,16 @@ public class MethodReferenceChallengeTest {
 
                 assertEquals(expected, result);
             }
+        }
+
+        @Test
+        public void testRemoveNameIfBackwardsSpellingIsTheSame() {
+            List<String> originalNameList = new ArrayList<>(List.of("James", "Anna", "William", "Bob", "Eric"));
+            List<String> expectedNameList = new ArrayList<>(List.of("James", "William", "Eric"));
+
+            originalNameList.removeIf(MethodReferenceChallengeTest::testStringAndItsReversedAreEqual);
+
+            assertEquals(expectedNameList, originalNameList);
         }
     }
 }
