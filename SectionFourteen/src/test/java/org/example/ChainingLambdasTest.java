@@ -5,6 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -97,6 +100,23 @@ public class ChainingLambdasTest {
                 .andThen(String::length);
 
             assertEquals(14, f2.apply(name));
+        }
+
+        @Test
+        public void testConsumerMethod() {
+            String expected = "Bob - B; Carol - C; Ted - T; Alice - A";
+            String[] names = {"Bob", "Carol", "Ted", "Alice"};
+            List<String> listOfNames = new ArrayList<>(List.of(names));
+
+            StringBuilder output = new StringBuilder();
+
+            Consumer<String> s0 = s -> output.append(s).append(" ");
+            Consumer<String> s1 = s-> output.append("- ").append(s.charAt(0)).append("; ");
+
+            listOfNames.forEach(s0.andThen(s1));
+            String result = output.toString().trim().substring(0, output.length() - 2);
+
+            assertEquals(expected, result);
         }
 
     }
