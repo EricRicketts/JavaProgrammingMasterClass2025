@@ -19,6 +19,17 @@ public class MethodReferenceChallengeTest {
 
     private static final Random RANDOM = new Random();
 
+    private static String upperCaseEveryOtherLetter(String name) {
+        String copy = name.toLowerCase();
+        char[] charArray = copy.toCharArray();
+        for (int index = 0; index < name.length(); index+=1) {
+            if (index % 2 == 1) {
+                charArray[index] = Character.toUpperCase(charArray[index]);
+            }
+        }
+        return new String(charArray);
+    }
+
     private static String addReversedLastName(String name) {
         String copy = String.valueOf(name);
         String reversedNameLowerCase = String.valueOf(new StringBuilder(copy).reverse()).toLowerCase();
@@ -37,12 +48,13 @@ public class MethodReferenceChallengeTest {
         "James", "Dilbert", "Oliver", "Zachary", "Norman", "Frederick"
     };
 
-    private UnaryOperator<String> unary, u, t;
+    private UnaryOperator<String> t, u, v, w;
 
     @BeforeEach
     public void setUp() {
-        u = MethodReferenceChallengeTest::addMiddleInitial;
-        t = MethodReferenceChallengeTest::addReversedLastName;
+        t = MethodReferenceChallengeTest::addMiddleInitial;
+        u = MethodReferenceChallengeTest::addReversedLastName;
+        v = MethodReferenceChallengeTest::upperCaseEveryOtherLetter;
     }
 
 
@@ -56,9 +68,9 @@ public class MethodReferenceChallengeTest {
             list.replaceAll(String::toUpperCase);
             String[] expected = list.toArray(String[]::new);
 
-            unary = String::toUpperCase;
+            w = String::toUpperCase;
             for (String name : names) {
-                name = name.transform(unary);
+                name = name.transform(w);
             }
 
             assertArrayEquals(expected, names);
@@ -67,7 +79,7 @@ public class MethodReferenceChallengeTest {
         @Test
         public void testConvertNamesByAddingAnMiddleInitial() {
             List<String> list = Arrays.asList(names);
-            list.replaceAll(u);
+            list.replaceAll(t);
 
             for (String name : names) {
                 assertTrue(name.matches("^[A-Za-z]+ [A-Z]\\.$"));
@@ -85,7 +97,7 @@ public class MethodReferenceChallengeTest {
             };
 
             List<String> list = Arrays.asList(names);
-            list.replaceAll(t);
+            list.replaceAll(u);
 
             for (int index = 0; index < names.length; index+=1) {
                 String expected = originalNames[index] + " " + reversedNames[index];
@@ -102,7 +114,19 @@ public class MethodReferenceChallengeTest {
 
         @Test
         public void testUpperCaseOverOtherLetterInTheName() {
+            String[] expectedNames = {
+                "jAmEs", "dIlBeRt", "oLiVeR", "zAcHaRy", "nOrMaN", "fReDeRiCk"
+            };
 
+            List<String> list = Arrays.asList(names);
+            list.replaceAll(v);
+
+            for (int index = 0; index < names.length; index+=1) {
+                String expected = expectedNames[index];
+                String result = names[index];
+
+                assertEquals(expected, result);
+            }
         }
     }
 }
