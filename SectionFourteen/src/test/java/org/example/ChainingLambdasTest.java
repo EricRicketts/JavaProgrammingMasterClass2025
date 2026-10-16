@@ -124,7 +124,7 @@ public class ChainingLambdasTest {
     @DisplayName("test predicate functions")
     class TestPredicateFunctions {
 
-        Predicate<String> p1, p2, p3, p4;
+        Predicate<String> p1, p2, p3, p4, combineP3AndP4;
 
         @BeforeEach
         public void setUp() {
@@ -132,6 +132,7 @@ public class ChainingLambdasTest {
             p2 = s -> s.contains("r") || s.contains("R");
             p3 = s -> s.startsWith("e") || s.startsWith("E");
             p4 = s -> s.endsWith("c") || s.endsWith("C");
+            combineP3AndP4 = p3.or(p4);
         }
 
         @Test
@@ -162,5 +163,19 @@ public class ChainingLambdasTest {
             assertFalse(p4.test("A certain sentence"));
         }
 
+        @Test
+        public void testCombineP3AndP4Predicates() {
+            assertTrue(combineP3AndP4.test("ernie is nordic"));
+            assertTrue(combineP3AndP4.test("Erstwhile ANTHROPIC"));
+            assertFalse(combineP3AndP4.test("A regular sentence"));
+        }
+
+        @Test
+        public void testNegation() {
+            combineP3AndP4 = combineP3AndP4.negate();
+            assertFalse(combineP3AndP4.test("ernie is nordic"));
+            assertFalse(combineP3AndP4.test("Erstwhile ANTHROPIC"));
+            assertTrue(combineP3AndP4.test("A regular sentence"));
+        }
     }
 }
