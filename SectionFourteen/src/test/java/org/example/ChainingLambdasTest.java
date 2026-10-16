@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ChainingLambdasTest {
 
@@ -117,6 +117,49 @@ public class ChainingLambdasTest {
             String result = output.toString().trim().substring(0, output.length() - 2);
 
             assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    @DisplayName("test predicate functions")
+    class TestPredicateFunctions {
+
+        Predicate<String> p1, p2, p3, p4;
+
+        @BeforeEach
+        public void setUp() {
+            p1 = s -> s.toLowerCase().contains("eric");
+            p2 = s -> s.contains("r") || s.contains("R");
+            p3 = s -> s.startsWith("e") || s.startsWith("E");
+            p4 = s -> s.endsWith("c") || s.endsWith("C");
+        }
+
+        @Test
+        public void testNamesContainsEric() {
+            assertTrue(p1.test("Eric"));
+            assertTrue(p1.test("I am eric the first"));
+            assertFalse(p1.test("I am not erc"));
+        }
+
+        @Test
+        public void testNameContainsUpperOrLowerCaseLetterR() {
+            assertTrue(p2.test("superman"));
+            assertTrue(p2.test("WONDER WOMAN"));
+            assertFalse(p2.test("I AM CLYDE"));
+        }
+
+        @Test
+        public void testNameStartsWithUpperOrLowerCaseLetterE() {
+            assertTrue(p3.test("ernie is fine"));
+            assertTrue(p3.test("Enable him to work"));
+            assertFalse(p3.test("Reverse course"));
+        }
+
+        @Test
+        public void testNameEndsWithUpperOrLowerCaseLetterC() {
+            assertTrue(p4.test("A large nordic"));
+            assertTrue(p4.test("Resistance is OMHIC"));
+            assertFalse(p4.test("A certain sentence"));
         }
 
     }
