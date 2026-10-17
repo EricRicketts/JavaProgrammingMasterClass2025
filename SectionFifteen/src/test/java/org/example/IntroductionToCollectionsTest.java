@@ -76,4 +76,26 @@ public class IntroductionToCollectionsTest {
             assertTrue(listOfNames.containsAll(List.of("Anna", "Carol", "Edna")));
         }
     }
+
+    @Nested
+    @DisplayName("test list removal")
+    class TestListRemoval {
+
+        @Test
+        public void testRemoveSingleElementFromList() {
+            expected = new ArrayList<>(List.of("Anna", "Bob", "David", "Edna"));
+            listOfNames.remove("Carol");
+
+            assertEquals(4, listOfNames.size());
+            assertEquals(expected, listOfNames);
+        }
+
+        @Test
+        public void testRemoveMultipleElementsFromList() {
+            expected = new ArrayList<>(List.of("Carol"));
+            listOfNames.removeAll(List.of("Anna", "Bob", "David", "Edna"));
+
+            assertEquals(expected, listOfNames);
+        }
+    }
 }
