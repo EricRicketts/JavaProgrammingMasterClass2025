@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IntroductionToCollectionsTest {
 
@@ -96,6 +95,25 @@ public class IntroductionToCollectionsTest {
             listOfNames.removeAll(List.of("Anna", "Bob", "David", "Edna"));
 
             assertEquals(expected, listOfNames);
+        }
+
+        @Test
+        public void testConditionalRemovalFromList() {
+            assertEquals(5, listOfNames.size());
+
+            listOfNames.addAll(List.of("George", "Gary", "Grace"));
+            assertEquals(8, listOfNames.size());
+            assertEquals(
+                new ArrayList<>(List.of("George", "Gary", "Grace")),
+                listOfNames.subList(5, listOfNames.size()));
+
+            listOfNames.removeIf(s -> s.charAt(0) == 'G');
+
+            assertEquals(5, listOfNames.size());
+
+            for (String name : listOfNames) {
+                assertFalse(name.startsWith("G"));
+            }
         }
     }
 }
