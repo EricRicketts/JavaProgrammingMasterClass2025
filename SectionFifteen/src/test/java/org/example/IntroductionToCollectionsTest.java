@@ -70,5 +70,10 @@ public class IntroductionToCollectionsTest {
         public void testListContainsSingleElement() {
             assertTrue(listOfNames.contains("Carol"));
         }
+
+        @Test
+        public void testListContainsMoreThanOneElement() {
+            assertTrue(listOfNames.containsAll(List.of("Anna", "Carol", "Edna")));
+        }
     }
 }
