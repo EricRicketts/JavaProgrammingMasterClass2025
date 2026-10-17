@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IntroductionToCollectionsTest {
 
@@ -32,7 +33,7 @@ public class IntroductionToCollectionsTest {
             assertEquals(5, listOfNames.size());
             assertEquals(expected, listOfNames);
             listOfNames.add("Fred");
-            
+
             assertEquals(6, listOfNames.size());
             assertEquals("Fred", listOfNames.getLast());
         }
@@ -48,6 +49,26 @@ public class IntroductionToCollectionsTest {
 
             List<String> subList = listOfNames.subList(5, listOfNames.size());
             assertEquals(expected, subList);
+        }
+
+        @Test
+        public void testAddAListToAList() {
+            List<String> otherNames = new ArrayList<>(List.of("George", "Gary", "Grace"));
+            assertEquals(5, listOfNames.size());
+
+            listOfNames.addAll(otherNames);
+            assertEquals(8, listOfNames.size());
+            assertEquals(otherNames, listOfNames.subList(5, listOfNames.size()));
+        }
+    }
+
+    @Nested
+    @DisplayName("test does a list contain an element")
+    class TestListContainsElement {
+
+        @Test
+        public void testListContainsSingleElement() {
+            assertTrue(listOfNames.contains("Carol"));
         }
     }
 }
