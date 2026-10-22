@@ -27,6 +27,9 @@ public enum CardFace {
     }
 
     public char convertToImage() {
+        if (this.symbolCode == 48) {
+            return (char) ((char) (this.getSymbolCode() + 1) + (char) this.getSymbolCode());
+        }
         return (char) this.getSymbolCode();
     }
 }

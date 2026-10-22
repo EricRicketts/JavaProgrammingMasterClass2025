@@ -47,6 +47,11 @@ public class CardFaceTest {
     }
 
     @Test
+    public void testCardFaceTen() {
+        assertEquals('\u0031' + '\u0030', CardFace.TEN.convertToImage());
+    }
+
+    @Test
     public void testCardFaceJack() {
         assertEquals('\u004A', CardFace.JACK.convertToImage());
     }
