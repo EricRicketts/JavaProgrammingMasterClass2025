@@ -63,4 +63,47 @@ public class CardTest {
         }
     }
 
+    @Nested
+    @DisplayName("test the hearts suite")
+    class TestHeartsSuit {
+
+        @BeforeEach
+        public void setUp() {
+            expectedCardSuit = CardSuit.HEARTS;
+        }
+
+        @Test
+        public void testEntireHeartsSuit() {
+            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
+                CardFace expectedCardFace = cardFaceValues[expectedRank];
+                card = new Card(expectedCardFace, expectedCardSuit);
+
+                assertEquals(expectedCardFace, card.getCardFace());
+                assertEquals(expectedCardSuit, card.getCardSuit());
+                assertEquals(expectedRank, card.getCardRank());
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("test the spades suite")
+    class TestSpadesSuit {
+
+        @BeforeEach
+        public void setUp() {
+            expectedCardSuit = CardSuit.SPADES;
+        }
+
+        @Test
+        public void testEntireSpadesSuit() {
+            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
+                CardFace expectedCardFace = cardFaceValues[expectedRank];
+                card = new Card(expectedCardFace, expectedCardSuit);
+
+                assertEquals(expectedCardFace, card.getCardFace());
+                assertEquals(expectedCardSuit, card.getCardSuit());
+                assertEquals(expectedRank, card.getCardRank());
+            }
+        }
+    }
 }
