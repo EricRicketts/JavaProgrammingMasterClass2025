@@ -129,22 +129,22 @@ public class CardFaceTest {
 
         @Test
         public void testCardFaceJack() {
-            assertEquals('\u004A', CardFace.JACK.convertToImage());
+            assertEquals('J', CardFace.JACK.convertToImage());
         }
 
         @Test
         public void testCardFaceQueen() {
-            assertEquals('\u0051', CardFace.QUEEN.convertToImage());
+            assertEquals('Q', CardFace.QUEEN.convertToImage());
         }
 
         @Test
         public void testCardFaceKing() {
-            assertEquals('\u004B', CardFace.KING.convertToImage());
+            assertEquals('K', CardFace.KING.convertToImage());
         }
 
         @Test
         public void testCardFaceAce() {
-            assertEquals('\u0041', CardFace.ACE.convertToImage());
+            assertEquals('A', CardFace.ACE.convertToImage());
         }
     }
 }
