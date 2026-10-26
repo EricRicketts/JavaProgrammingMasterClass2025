@@ -9,23 +9,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardTest {
 
-    private Card firstCard, secondCard, thirdCard, fourthCard;
+    private Card two, ten, jack, ace;
 
     @BeforeEach
     public void setUp() {
-        firstCard = new Card(CardFace.TWO, CardSuit.DIAMONDS);
-        secondCard = new Card(CardFace.JACK, CardSuit.CLUBS);
-        thirdCard = new Card(CardFace.TEN, CardSuit.HEARTS);
-        fourthCard = new Card(CardFace.ACE, CardSuit.SPADES);
+        two = new Card(CardFace.TWO, CardSuit.DIAMONDS);
+        ten = new Card(CardFace.TEN, CardSuit.HEARTS);
+        jack = new Card(CardFace.JACK, CardSuit.CLUBS);
+        ace = new Card(CardFace.ACE, CardSuit.SPADES);
     }
 
     @Nested
     @DisplayName("test the two of diamonds")
-    class TestTheFirstCard {
+    class TestTwoOfDiamonds {
 
         @Test
-        public void testFaceValue() {
-            assertEquals(CardFace.TWO, firstCard.getCardFace());
+        public void testTwoOfDiamondsFaceValue() {
+            assertEquals(CardFace.TWO, two.getCardFace());
+        }
+
+        @Test
+        public void testTwoOfDiamondsSuit() {
+            assertEquals(CardSuit.DIAMONDS, two.getCardSuit());
+        }
+
+        @Test
+        public void testTwoOfDiamondsRank() {
+            assertEquals(0, two.getCardRank());
         }
     }
 }

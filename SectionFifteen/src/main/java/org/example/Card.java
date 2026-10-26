@@ -6,9 +6,9 @@ import static java.util.Map.entry;
 
 public class Card {
 
-    private CardFace cardFace;
-    private CardSuit cardSuit;
-    private int cardRank;
+    private final CardFace cardFace;
+    private final CardSuit cardSuit;
+    private final int cardRank;
 
     public Card(CardFace cardFace, CardSuit cardSuit) {
         int cardSymbolCode = cardFace.getSymbolCode();
