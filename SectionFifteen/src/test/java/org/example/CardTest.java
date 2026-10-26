@@ -9,33 +9,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardTest {
 
-    private Card two, ten, jack, ace;
+    private Card card;
+    private CardSuit expectedCardSuit;
 
-    @BeforeEach
-    public void setUp() {
-        two = new Card(CardFace.TWO, CardSuit.DIAMONDS);
-        ten = new Card(CardFace.TEN, CardSuit.HEARTS);
-        jack = new Card(CardFace.JACK, CardSuit.CLUBS);
-        ace = new Card(CardFace.ACE, CardSuit.SPADES);
+    CardFace[] cardFaceValues = {
+        CardFace.TWO, CardFace.THREE, CardFace.FOUR, CardFace.FIVE,
+        CardFace.SIX, CardFace.SEVEN, CardFace.EIGHT, CardFace.NINE,
+        CardFace.TEN, CardFace.JACK, CardFace.QUEEN, CardFace.KING,
+        CardFace.ACE
+    };
+
+    @Nested
+    @DisplayName("test the diamonds suite")
+    class TestDiamondsSuite {
+
+        @BeforeEach
+        public void setUp() {
+            expectedCardSuit = CardSuit.DIAMONDS;
+        }
+
+        @Test
+        public void testEntireDiamondSuit() {
+            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
+                CardFace expectedCardFace = cardFaceValues[expectedRank];
+                card = new Card(expectedCardFace, expectedCardSuit);
+
+                assertEquals(expectedCardFace, card.getCardFace());
+                assertEquals(expectedCardSuit, card.getCardSuit());
+                assertEquals(expectedRank, card.getCardRank());
+            }
+        }
     }
 
     @Nested
-    @DisplayName("test the two of diamonds")
-    class TestTwoOfDiamonds {
+    @DisplayName("test the clubs suite")
+    class TestClubsSuit {
 
-        @Test
-        public void testTwoOfDiamondsFaceValue() {
-            assertEquals(CardFace.TWO, two.getCardFace());
+        @BeforeEach
+        public void setUp() {
+            expectedCardSuit = CardSuit.CLUBS;
         }
 
         @Test
-        public void testTwoOfDiamondsSuit() {
-            assertEquals(CardSuit.DIAMONDS, two.getCardSuit());
-        }
+        public void testEntireClubsSuit() {
+            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
+                CardFace expectedCardFace = cardFaceValues[expectedRank];
+                card = new Card(expectedCardFace, expectedCardSuit);
 
-        @Test
-        public void testTwoOfDiamondsRank() {
-            assertEquals(0, two.getCardRank());
+                assertEquals(expectedCardFace, card.getCardFace());
+                assertEquals(expectedCardSuit, card.getCardSuit());
+                assertEquals(expectedRank, card.getCardRank());
+            }
         }
     }
+
 }
