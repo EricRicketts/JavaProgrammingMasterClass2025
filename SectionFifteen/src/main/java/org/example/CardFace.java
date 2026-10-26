@@ -16,7 +16,7 @@ public enum CardFace {
     KING(75),
     ACE(65);
 
-    private int symbolCode;
+    private final int symbolCode;
 
     CardFace(int symbolCode) {
         this.symbolCode = symbolCode;

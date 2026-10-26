@@ -84,47 +84,47 @@ public class CardFaceTest {
 
         @Test
         public void testCardFaceTwo() {
-            assertEquals('\u0032', CardFace.TWO.convertToImage());
+            assertEquals('2', CardFace.TWO.convertToImage());
         }
 
         @Test
         public void testCardFaceThree() {
-            assertEquals('\u0033', CardFace.THREE.convertToImage());
+            assertEquals('3', CardFace.THREE.convertToImage());
         }
 
         @Test
         public void testCardFaceFour() {
-            assertEquals('\u0034', CardFace.FOUR.convertToImage());
+            assertEquals('4', CardFace.FOUR.convertToImage());
         }
 
         @Test
         public void testCardFaceFive() {
-            assertEquals('\u0035', CardFace.FIVE.convertToImage());
+            assertEquals('5', CardFace.FIVE.convertToImage());
         }
 
         @Test
         public void testCardFaceSix() {
-            assertEquals('\u0036', CardFace.SIX.convertToImage());
+            assertEquals('6', CardFace.SIX.convertToImage());
         }
 
         @Test
         public void testCardFaceSeven() {
-            assertEquals('\u0037', CardFace.SEVEN.convertToImage());
+            assertEquals('7', CardFace.SEVEN.convertToImage());
         }
 
         @Test
         public void testCardFaceEight() {
-            assertEquals('\u0038', CardFace.EIGHT.convertToImage());
+            assertEquals('8', CardFace.EIGHT.convertToImage());
         }
 
         @Test
         public void testCardFaceNine() {
-            assertEquals('\u0039', CardFace.NINE.convertToImage());
+            assertEquals('9', CardFace.NINE.convertToImage());
         }
 
         @Test
         public void testCardFaceTen() {
-            assertEquals('\u0031' + '\u0030', CardFace.TEN.convertToImage());
+            assertEquals('1' + '0', CardFace.TEN.convertToImage());
         }
 
         @Test
