@@ -39,27 +39,27 @@ public class CardSuitTest {
     }
 
     @Nested
-    @DisplayName("test suit images")
-    class TestSuitImages {
+    @DisplayName("test suit toString")
+    class TestSuitToString {
 
         @Test
         public void testDiamondsSuit() {
-            assertEquals(DIAMONDS_SYMBOL, CardSuit.DIAMONDS.convertToImage());
+            assertEquals("♦", CardSuit.DIAMONDS.toString());
         }
 
         @Test
         public void testClubsSuit() {
-            assertEquals(CLUBS_SYMBOL, CardSuit.CLUBS.convertToImage());
+            assertEquals("♣", CardSuit.CLUBS.toString());
         }
 
         @Test
         public void testHeartsSuit() {
-            assertEquals(HEARTS_SYMBOL, CardSuit.HEARTS.convertToImage());
+            assertEquals("♥", CardSuit.HEARTS.toString());
         }
 
         @Test
         public void testSpadesSuit() {
-            assertEquals(SPADES_SYMBOL, CardSuit.SPADES.convertToImage());
+            assertEquals("♠", CardSuit.SPADES.toString());
         }
     }
 }

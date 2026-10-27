@@ -79,8 +79,8 @@ public class CardFaceTest {
     }
 
     @Nested
-    @DisplayName("test get card face image")
-    class TestGetCardFaceImage {
+    @DisplayName("test card face toString")
+    class TestGetCardFaceToString {
 
         @Test
         public void testCardFaceTwo() {
