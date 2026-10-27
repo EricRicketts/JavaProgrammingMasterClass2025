@@ -20,5 +20,10 @@ public enum CardSuit {
     public char convertToImage() {
         return (char) this.symbolCode;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.convertToImage());
+    }
 }
 

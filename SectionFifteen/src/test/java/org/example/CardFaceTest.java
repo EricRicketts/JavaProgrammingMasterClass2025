@@ -84,67 +84,67 @@ public class CardFaceTest {
 
         @Test
         public void testCardFaceTwo() {
-            assertEquals('2', CardFace.TWO.convertToImage());
+            assertEquals("2", CardFace.TWO.toString());
         }
 
         @Test
         public void testCardFaceThree() {
-            assertEquals('3', CardFace.THREE.convertToImage());
+            assertEquals("3", CardFace.THREE.toString());
         }
 
         @Test
         public void testCardFaceFour() {
-            assertEquals('4', CardFace.FOUR.convertToImage());
+            assertEquals("4", CardFace.FOUR.toString());
         }
 
         @Test
         public void testCardFaceFive() {
-            assertEquals('5', CardFace.FIVE.convertToImage());
+            assertEquals("5", CardFace.FIVE.toString());
         }
 
         @Test
         public void testCardFaceSix() {
-            assertEquals('6', CardFace.SIX.convertToImage());
+            assertEquals("6", CardFace.SIX.toString());
         }
 
         @Test
         public void testCardFaceSeven() {
-            assertEquals('7', CardFace.SEVEN.convertToImage());
+            assertEquals("7", CardFace.SEVEN.toString());
         }
 
         @Test
         public void testCardFaceEight() {
-            assertEquals('8', CardFace.EIGHT.convertToImage());
+            assertEquals("8", CardFace.EIGHT.toString());
         }
 
         @Test
         public void testCardFaceNine() {
-            assertEquals('9', CardFace.NINE.convertToImage());
+            assertEquals("9", CardFace.NINE.toString());
         }
 
         @Test
         public void testCardFaceTen() {
-            assertEquals('1' + '0', CardFace.TEN.convertToImage());
+            assertEquals("10", CardFace.TEN.toString());
         }
 
         @Test
         public void testCardFaceJack() {
-            assertEquals('J', CardFace.JACK.convertToImage());
+            assertEquals("J", CardFace.JACK.toString());
         }
 
         @Test
         public void testCardFaceQueen() {
-            assertEquals('Q', CardFace.QUEEN.convertToImage());
+            assertEquals("Q", CardFace.QUEEN.toString());
         }
 
         @Test
         public void testCardFaceKing() {
-            assertEquals('K', CardFace.KING.convertToImage());
+            assertEquals("K", CardFace.KING.toString());
         }
 
         @Test
         public void testCardFaceAce() {
-            assertEquals('A', CardFace.ACE.convertToImage());
+            assertEquals("A", CardFace.ACE.toString());
         }
     }
 }

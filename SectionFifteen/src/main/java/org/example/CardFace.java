@@ -26,10 +26,15 @@ public enum CardFace {
         return this.symbolCode;
     }
 
-    public char convertToImage() {
-        if (this.symbolCode == 48) {
-            return (char) ((char) (this.getSymbolCode() + 1) + (char) this.getSymbolCode());
+    public String convertToImage() {
+        if (this == TEN) {
+            return "10";
         }
-        return (char) this.getSymbolCode();
+        return String.valueOf((char) this.getSymbolCode());
+    }
+
+    @Override
+    public String toString() {
+        return this.convertToImage();
     }
 }

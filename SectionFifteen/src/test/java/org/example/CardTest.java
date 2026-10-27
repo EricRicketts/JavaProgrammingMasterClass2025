@@ -9,6 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardTest {
 
+    private final static int DIAMONDS_SYMBOL = '♦';
+    private final static int CLUBS_SYMBOL = '♣';
+    private final static int HEARTS_SYMBOL = '♥';
+    private final static int SPADES_SYMBOL = '♠';
     private Card card;
     private CardSuit expectedCardSuit;
 
@@ -105,5 +109,69 @@ public class CardTest {
                 assertEquals(expectedRank, card.getCardRank());
             }
         }
+    }
+
+    @Nested
+    @DisplayName("test card to string")
+    class TestCardToString {
+
+        @Test
+        public void testDiamondsToString() {
+            String expected = """
+                2♦(0) 3♦(1) 4♦(2) 5♦(3) 6♦(4) 7♦(5) 8♦(6) 9♦(7) 10♦(8) J♦(9) Q♦(10) K♦(11) A♦(12)
+                """;
+            String diamondCardFaces = "";
+            for (int index = 0; index < CardFace.values().length; index+=1) {
+                CardFace cardFace = cardFaceValues[index];
+                card = new Card(cardFace, CardSuit.DIAMONDS);
+                diamondCardFaces = diamondCardFaces.concat(card + " ");
+            }
+            diamondCardFaces = diamondCardFaces.trim() + "\n";
+            assertEquals(expected, diamondCardFaces);
+        }
+
+        @Test
+        public void testClubsToString() {
+            String expected = """
+                2♣(0) 3♣(1) 4♣(2) 5♣(3) 6♣(4) 7♣(5) 8♣(6) 9♣(7) 10♣(8) J♣(9) Q♣(10) K♣(11) A♣(12)
+                """;
+            String clubCardFaces = "";
+            for (int index = 0; index < CardFace.values().length; index+=1) {
+                CardFace cardFace = cardFaceValues[index];
+                card = new Card(cardFace, CardSuit.CLUBS);
+                clubCardFaces = clubCardFaces.concat(card + " ");
+            }
+            clubCardFaces = clubCardFaces.trim() + "\n";
+            assertEquals(expected, clubCardFaces);
+        }
+        @Test
+        public void testHeartsToString() {
+            String expected = """
+                2♥(0) 3♥(1) 4♥(2) 5♥(3) 6♥(4) 7♥(5) 8♥(6) 9♥(7) 10♥(8) J♥(9) Q♥(10) K♥(11) A♥(12)
+                """;
+            String heartClubFaces = "";
+            for (int index = 0; index < CardFace.values().length; index+=1) {
+                CardFace cardFace = cardFaceValues[index];
+                card = new Card(cardFace, CardSuit.HEARTS);
+                heartClubFaces = heartClubFaces.concat(card + " ");
+            }
+            heartClubFaces = heartClubFaces.trim() + "\n";
+            assertEquals(expected, heartClubFaces);
+        }
+        @Test
+        public void testSpades() {
+            String expected = """
+                2♠(0) 3♠(1) 4♠(2) 5♠(3) 6♠(4) 7♠(5) 8♠(6) 9♠(7) 10♠(8) J♠(9) Q♠(10) K♠(11) A♠(12)
+                """;
+            String spadeCardFaces = "";
+            for (int index = 0; index < CardFace.values().length; index+=1) {
+                CardFace cardFace = cardFaceValues[index];
+                card = new Card(cardFace, CardSuit.SPADES);
+                spadeCardFaces = spadeCardFaces.concat(card + " ");
+            }
+            spadeCardFaces = spadeCardFaces.trim() + "\n";
+            assertEquals(expected, spadeCardFaces);
+        }
+
     }
 }

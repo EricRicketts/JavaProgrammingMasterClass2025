@@ -43,4 +43,11 @@ public class Card {
     public int getCardRank() {
         return this.cardRank;
     }
+
+    @Override
+    public String toString() {
+
+        return this.getCardFace().toString() + this.getCardSuit().toString() + "(" +
+            this.getCardRank() + ")";
+    }
 }
