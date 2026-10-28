@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import static java.util.Map.entry;
 /*
-    getNumericCard that should return an instance of the card based on the suit and number passed to it.
     getFaceCard that should return an instance of a card based on the suit and abbreviation passed to it.
     getStandardDeck that should return a list of cards you see in a standard deck.
     printDeck should take a description, a list of a Card, and a row count; this will print out
@@ -52,6 +51,13 @@ public class Card {
         int verifiedCardRank = Card.verifyCardRank(rank);
         String cardFace = Card.getCardFaceFromCardRank(verifiedCardRank);
         return new Card(cardFace, verifiedCardSuit);
+    }
+
+    public static Card getFaceCard(CardSuit cardSuit, String cardFace) {
+        CardSuit verifiedCardSuit = Card.verifyCardSuit(cardSuit);
+        String verifiedCardFace = Card.verifyCardFace(cardFace);
+
+        return new Card(verifiedCardFace, verifiedCardSuit);
     }
 
     public String getCardFace() {

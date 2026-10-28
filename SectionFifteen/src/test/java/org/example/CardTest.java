@@ -176,7 +176,7 @@ public class CardTest {
 
     @Nested
     @DisplayName("test getNumericCard method")
-    class TestNumericCardMethod {
+    class TestGetNumericCardMethod {
 
         @Test
         public void testGetDiamondsCard() {
@@ -210,5 +210,43 @@ public class CardTest {
             assertEquals(expectedCard, card);
         }
     }
+
+    @Nested
+    @DisplayName("test getFaceCard method")
+    class TestGetFaceCardMethod {
+
+        @Test
+        public void testGetDiamondsCard() {
+            expectedCard = new Card(CardFace.THREE.toString(), CardSuit.DIAMONDS);
+            card = Card.getFaceCard(CardSuit.DIAMONDS, "3");
+
+            assertEquals(expectedCard, card);
+        }
+
+        @Test
+        public void testGetClubsCard() {
+            expectedCard = new Card(CardFace.QUEEN.toString(), CardSuit.CLUBS);
+            card = Card.getFaceCard(CardSuit.CLUBS, "Q");
+
+            assertEquals(expectedCard, card);
+        }
+
+        @Test
+        public void testGetHeartsCard() {
+            expectedCard = new Card(CardFace.TWO.toString(), CardSuit.HEARTS);
+            card = Card.getFaceCard(CardSuit.HEARTS, "2");
+
+            assertEquals(expectedCard, card);
+        }
+
+        @Test
+        public void testGetSpadesCard() {
+            expectedCard = new Card(CardFace.KING.toString(), CardSuit.SPADES);
+            card = Card.getFaceCard(CardSuit.SPADES, "K");
+
+            assertEquals(expectedCard, card);
+        }
+    }
+
 
 }
