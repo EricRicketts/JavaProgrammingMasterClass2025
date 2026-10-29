@@ -7,23 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-/*
-import static org.example.CardFace.ACE;
-import static org.example.CardFace.KING;
-import static org.example.CardFace.QUEEN;
-import static org.example.CardFace.JACK;
-
-import static org.example.CardFace.TEN;
-import static org.example.CardFace.NINE;
-import static org.example.CardFace.EIGHT;
-import static org.example.CardFace.SEVEN;
-import static org.example.CardFace.SIX;
-import static org.example.CardFace.FIVE;
-import static org.example.CardFace.FOUR;
-import static org.example.CardFace.THREE;
-import static org.example.CardFace.TWO;
-*/
-
 import static org.example.CardSuit.*;
 import static org.example.CardFace.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -76,6 +59,10 @@ public class DeckTest {
         @Test
         public void testStandardDeckOfCards() {
             assertEquals(standardDeck, deck);
+        }
+
+        @Test
+        public void testPrintOutAllDiamonds() {
         }
     }
 
