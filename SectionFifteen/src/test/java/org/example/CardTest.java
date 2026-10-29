@@ -29,7 +29,7 @@ public class CardTest {
         2♠(0) 3♠(1) 4♠(2) 5♠(3) 6♠(4) 7♠(5) 8♠(6) 9♠(7) 10♠(8) J♠(9) Q♠(10) K♠(11) A♠(12)
         """;
     private Card card, expectedCard;
-    private CardSuit expectedCardSuit;
+    private String expectedCardString;
     private final static List<Card> DIAMOND_CARDS = List.of(
         new Card(TWO.toString(), DIAMONDS), new Card(THREE.toString(), DIAMONDS), new Card(FOUR.toString(), DIAMONDS),
         new Card(FIVE.toString(), DIAMONDS), new Card(SIX.toString(), DIAMONDS), new Card(SEVEN.toString(), DIAMONDS),
@@ -70,11 +70,6 @@ public class CardTest {
     @DisplayName("test the diamonds suite")
     class TestDiamondsSuite {
 
-        @BeforeEach
-        public void setUp() {
-            expectedCardSuit = CardSuit.DIAMONDS;
-        }
-
         @Test
         public void testEntireDiamondSuit() {
             for (int index = 0; index < cardFaceValues.length; index += 1) {
@@ -89,11 +84,6 @@ public class CardTest {
     @Nested
     @DisplayName("test the clubs suite")
     class TestClubsSuit {
-
-        @BeforeEach
-        public void setUp() {
-            expectedCardSuit = CardSuit.CLUBS;
-        }
 
         @Test
         public void testEntireClubsSuit() {
@@ -110,11 +100,6 @@ public class CardTest {
     @DisplayName("test the hearts suite")
     class TestHeartsSuit {
 
-        @BeforeEach
-        public void setUp() {
-            expectedCardSuit = CardSuit.HEARTS;
-        }
-
         @Test
         public void testEntireHeartsSuit() {
             for (int index = 0; index < cardFaceValues.length; index += 1) {
@@ -129,11 +114,6 @@ public class CardTest {
     @Nested
     @DisplayName("test the spades suite")
     class TestSpadesSuit {
-
-        @BeforeEach
-        public void setUp() {
-            expectedCardSuit = CardSuit.SPADES;
-        }
 
         @Test
         public void testEntireSpadesSuit() {
@@ -150,8 +130,37 @@ public class CardTest {
     @DisplayName("test card to string")
     class TestCardToString {
 
+       @Test
+        public void testDiamondCardToString() {
+            expectedCardString = "5".concat(DIAMONDS_SYMBOL).concat("(3)");
+            assertEquals(expectedCardString, new Card(FIVE.toString(), DIAMONDS).toString());
+       }
+
         @Test
-        public void testDiamondsToString() {
+        public void testClubCardToString() {
+            expectedCardString = "J".concat(CLUBS_SYMBOL).concat("(9)");
+            assertEquals(expectedCardString, new Card(JACK.toString(), CLUBS).toString());
+        }
+
+        @Test
+        public void testHeartCardToString() {
+            expectedCardString = "10".concat(HEARTS_SYMBOL).concat("(8)");
+            assertEquals(expectedCardString, new Card(TEN.toString(), HEARTS).toString());
+        }
+
+        @Test
+        public void testSpadeCardToString() {
+            expectedCardString = "K".concat(SPADES_SYMBOL).concat("(11)");
+            assertEquals(expectedCardString, new Card(KING.toString(), SPADES).toString());
+        }
+    }
+
+    @Nested
+    @DisplayName("test suit to string")
+    class TestSuitToString {
+
+        @Test
+        public void testAllDiamondsToString() {
             String diamondCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
                 String cardFace = cardFaceValues[index].toString();
@@ -163,7 +172,7 @@ public class CardTest {
         }
 
         @Test
-        public void testClubsToString() {
+        public void testAllClubsToString() {
             String clubCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
                 String cardFace = cardFaceValues[index].toString();
@@ -175,7 +184,7 @@ public class CardTest {
         }
 
         @Test
-        public void testHeartsToString() {
+        public void testAllHeartsToString() {
             String heartCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
                 String cardFace = cardFaceValues[index].toString();
@@ -187,7 +196,7 @@ public class CardTest {
         }
 
         @Test
-        public void testSpades() {
+        public void testAllSpadesToString() {
             String spadeCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
                 String cardFace = cardFaceValues[index].toString();
@@ -272,11 +281,4 @@ public class CardTest {
             assertEquals(expectedCard, card);
         }
     }
-
-    @Nested
-    @DisplayName("test getStandardDeck and printDeck methods")
-    class TestGetStandardDeckAndPrintDeckMethods {
-    }
-
-
 }
