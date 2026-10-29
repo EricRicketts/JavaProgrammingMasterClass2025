@@ -4,27 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import static org.example.CardFace.TWO;
-import static org.example.CardFace.THREE;
-import static org.example.CardFace.FOUR;
-import static org.example.CardFace.FIVE;
-import static org.example.CardFace.SIX;
-import static org.example.CardFace.SEVEN;
-import static org.example.CardFace.EIGHT;
-import static org.example.CardFace.NINE;
-import static org.example.CardFace.TEN;
-import static org.example.CardFace.JACK;
-import static org.example.CardFace.QUEEN;
-import static org.example.CardFace.KING;
-import static org.example.CardFace.ACE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-
-import static org.example.CardSuit.DIAMONDS;
-import static org.example.CardSuit.CLUBS;
-import static org.example.CardSuit.HEARTS;
-import static org.example.CardSuit.SPADES;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.example.CardFace.*;
+import static org.example.CardSuit.*;
 
 public class CardTest {
 
@@ -88,18 +72,16 @@ public class CardTest {
 
         @BeforeEach
         public void setUp() {
-            expectedCardSuit = DIAMONDS;
+            expectedCardSuit = CardSuit.DIAMONDS;
         }
 
         @Test
         public void testEntireDiamondSuit() {
-            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
-                String expectedCardFace = cardFaceValues[expectedRank].toString();
-                card = new Card(expectedCardFace, expectedCardSuit);
+            for (int index = 0; index < cardFaceValues.length; index += 1) {
+                card = new Card(cardFaceValues[index].toString(), DIAMONDS);
+                expectedCard = DIAMOND_CARDS.get(index);
 
-                assertEquals(expectedCardFace, card.getCardFace());
-                assertEquals(expectedCardSuit, card.getCardSuit());
-                assertEquals(expectedRank, card.getCardRank());
+                assertEquals(expectedCard, card);
             }
         }
     }
@@ -115,13 +97,11 @@ public class CardTest {
 
         @Test
         public void testEntireClubsSuit() {
-            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
-                String expectedCardFace = cardFaceValues[expectedRank].toString();
-                card = new Card(expectedCardFace, expectedCardSuit);
+            for (int index = 0; index < cardFaceValues.length; index += 1) {
+                card = new Card(cardFaceValues[index].toString(), CLUBS);
+                expectedCard = CLUB_CARDS.get(index);
 
-                assertEquals(expectedCardFace, card.getCardFace());
-                assertEquals(expectedCardSuit, card.getCardSuit());
-                assertEquals(expectedRank, card.getCardRank());
+                assertEquals(expectedCard, card);
             }
         }
     }
@@ -137,13 +117,11 @@ public class CardTest {
 
         @Test
         public void testEntireHeartsSuit() {
-            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
-                String expectedCardFace = cardFaceValues[expectedRank].toString();
-                card = new Card(expectedCardFace, expectedCardSuit);
+            for (int index = 0; index < cardFaceValues.length; index += 1) {
+                card = new Card(cardFaceValues[index].toString(), CLUBS);
+                expectedCard = CLUB_CARDS.get(index);
 
-                assertEquals(expectedCardFace, card.getCardFace());
-                assertEquals(expectedCardSuit, card.getCardSuit());
-                assertEquals(expectedRank, card.getCardRank());
+                assertEquals(expectedCard, card);
             }
         }
     }
@@ -159,13 +137,11 @@ public class CardTest {
 
         @Test
         public void testEntireSpadesSuit() {
-            for (int expectedRank = 0; expectedRank < cardFaceValues.length; expectedRank += 1) {
-                String expectedCardFace = cardFaceValues[expectedRank].toString();
-                card = new Card(expectedCardFace, expectedCardSuit);
+            for (int index = 0; index < cardFaceValues.length; index += 1) {
+                card = new Card(cardFaceValues[index].toString(), SPADES);
+                expectedCard = SPADE_CARDS.get(index);
 
-                assertEquals(expectedCardFace, card.getCardFace());
-                assertEquals(expectedCardSuit, card.getCardSuit());
-                assertEquals(expectedRank, card.getCardRank());
+                assertEquals(expectedCard, card);
             }
         }
     }
