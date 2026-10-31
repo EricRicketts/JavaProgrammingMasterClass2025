@@ -7,49 +7,42 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.example.CardSuit.*;
-import static org.example.CardFace.*;
+import static org.example.CardAndDeckConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeckTest {
 
-    private final static List<Card> DIAMOND_CARDS = List.of(
-        new Card(TWO.toString(), DIAMONDS), new Card(THREE.toString(), DIAMONDS), new Card(FOUR.toString(), DIAMONDS),
-        new Card(FIVE.toString(), DIAMONDS), new Card(SIX.toString(), DIAMONDS), new Card(SEVEN.toString(), DIAMONDS),
-        new Card(EIGHT.toString(), DIAMONDS), new Card(NINE.toString(), DIAMONDS), new Card(TEN.toString(), DIAMONDS),
-        new Card(JACK.toString(), DIAMONDS), new Card(QUEEN.toString(), DIAMONDS), new Card(KING.toString(), DIAMONDS),
-        new Card(ACE.toString(), DIAMONDS)
-    );
-    private final static List<Card> CLUB_CARDS = List.of(
-        new Card(TWO.toString(), CLUBS), new Card(THREE.toString(), CLUBS), new Card(FOUR.toString(), CLUBS),
-        new Card(FIVE.toString(), CLUBS), new Card(SIX.toString(), CLUBS), new Card(SEVEN.toString(), CLUBS),
-        new Card(EIGHT.toString(), CLUBS), new Card(NINE.toString(), CLUBS), new Card(TEN.toString(), CLUBS),
-        new Card(JACK.toString(), CLUBS), new Card(QUEEN.toString(), CLUBS), new Card(KING.toString(), CLUBS),
-        new Card(ACE.toString(), CLUBS)
-    );
-    private final static List<Card> HEART_CARDS = List.of(
-        new Card(TWO.toString(), HEARTS), new Card(THREE.toString(), HEARTS), new Card(FOUR.toString(), HEARTS),
-        new Card(FIVE.toString(), HEARTS), new Card(SIX.toString(), HEARTS), new Card(SEVEN.toString(), HEARTS),
-        new Card(EIGHT.toString(), HEARTS), new Card(NINE.toString(), HEARTS), new Card(TEN.toString(), HEARTS),
-        new Card(JACK.toString(), HEARTS), new Card(QUEEN.toString(), HEARTS), new Card(KING.toString(), HEARTS),
-        new Card(ACE.toString(), HEARTS)
-    );
-    private final static List<Card> SPADE_CARDS = List.of(
-        new Card(TWO.toString(), SPADES), new Card(THREE.toString(), SPADES), new Card(FOUR.toString(), SPADES),
-        new Card(FIVE.toString(), SPADES), new Card(SIX.toString(), SPADES), new Card(SEVEN.toString(), SPADES),
-        new Card(EIGHT.toString(), SPADES), new Card(NINE.toString(), SPADES), new Card(TEN.toString(), SPADES),
-        new Card(JACK.toString(), SPADES), new Card(QUEEN.toString(), SPADES), new Card(KING.toString(), SPADES),
-        new Card(ACE.toString(), SPADES)
-    );
-
-    private final static List<List<Card>> standardDeck = List.of(
-        DIAMOND_CARDS, CLUB_CARDS, HEART_CARDS, SPADE_CARDS
-    );
     List<List<Card>> deck;
+    String expected;
 
     @BeforeEach
     public void setUp() {
         deck = Deck.getStandardDeck();
+    }
+
+    @Nested
+    @DisplayName("print individual suit of cards")
+    class TestPrintIndividualSuitOfCards {
+
+        @Test
+        public void testPrintOutDiamondsSuit() {
+            assertEquals(ALL_DIAMONDS, Deck.printOneRow(deck, 1));
+        }
+
+        @Test
+        public void testPrintOutClubsSuit() {
+            assertEquals(ALL_CLUBS, Deck.printOneRow(deck, 2));
+        }
+
+        @Test
+        public void testPrintOutHeartsSuit() {
+            assertEquals(ALL_HEARTS, Deck.printOneRow(deck, 3));
+        }
+
+        @Test
+        public void testPrintOutSpadesSuit() {
+            assertEquals(ALL_SPADES, Deck.printOneRow(deck, 4));
+        }
     }
 
     @Nested
@@ -58,12 +51,32 @@ public class DeckTest {
 
         @Test
         public void testStandardDeckOfCards() {
-            assertEquals(standardDeck, deck);
+            assertEquals(STANDARD_DECK, deck);
         }
 
         @Test
-        public void testPrintOutAllDiamonds() {
+        public void testPrintOutDiamonds() {
+            assertEquals(ALL_DIAMONDS, Deck.printDeck(deck, "Just Diamonds", 1));
+        }
+
+        @Test
+        public void testPrintOutDiamondsAndClubs() {
+            expected = ALL_DIAMONDS.concat(ALL_CLUBS);
+            assertEquals(expected, Deck.printDeck(deck, "Diamonds and Clubs", 2));
+        }
+
+        @Test
+        public void testPrintOutDiamondsClubsAndHearts() {
+            expected = ALL_DIAMONDS.concat(ALL_CLUBS).concat(ALL_HEARTS);
+            assertEquals(expected,
+                Deck.printDeck(deck, "Diamonds, Clubs and Hearts", 3)
+            );
+        }
+
+        @Test
+        public void testPrintOutEntireDeck() {
+            expected = ALL_DIAMONDS.concat(ALL_CLUBS).concat(ALL_HEARTS).concat(ALL_SPADES);
+            assertEquals(expected, Deck.printDeck(deck, "Entire Deck", 4));
         }
     }
-
 }

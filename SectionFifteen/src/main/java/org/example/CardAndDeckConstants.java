@@ -65,7 +65,9 @@ public final class CardAndDeckConstants {
         new Card(ACE.toString(), SPADES)
     );
 
-    public final static CardFace[] cardFaceValues = {
+    public static final List<List<Card>> STANDARD_DECK = List.of(DIAMOND_CARDS, CLUB_CARDS, HEART_CARDS, SPADE_CARDS);
+
+    public final static CardFace[] CARD_FACE_VALUES = {
         CardFace.TWO, CardFace.THREE, CardFace.FOUR, CardFace.FIVE,
         CardFace.SIX, CardFace.SEVEN, CardFace.EIGHT, CardFace.NINE,
         CardFace.TEN, CardFace.JACK, CardFace.QUEEN, CardFace.KING,

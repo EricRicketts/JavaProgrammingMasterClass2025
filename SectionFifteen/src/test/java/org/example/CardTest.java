@@ -21,8 +21,8 @@ public class CardTest {
 
         @Test
         public void testEntireDiamondSuit() {
-            for (int index = 0; index < cardFaceValues.length; index += 1) {
-                card = new Card(cardFaceValues[index].toString(), DIAMONDS);
+            for (int index = 0; index < CARD_FACE_VALUES.length; index += 1) {
+                card = new Card(CARD_FACE_VALUES[index].toString(), DIAMONDS);
                 expectedCard = DIAMOND_CARDS.get(index);
 
                 assertEquals(expectedCard, card);
@@ -36,8 +36,8 @@ public class CardTest {
 
         @Test
         public void testEntireClubsSuit() {
-            for (int index = 0; index < cardFaceValues.length; index += 1) {
-                card = new Card(cardFaceValues[index].toString(), CLUBS);
+            for (int index = 0; index < CARD_FACE_VALUES.length; index += 1) {
+                card = new Card(CARD_FACE_VALUES[index].toString(), CLUBS);
                 expectedCard = CLUB_CARDS.get(index);
 
                 assertEquals(expectedCard, card);
@@ -51,8 +51,8 @@ public class CardTest {
 
         @Test
         public void testEntireHeartsSuit() {
-            for (int index = 0; index < cardFaceValues.length; index += 1) {
-                card = new Card(cardFaceValues[index].toString(), HEARTS);
+            for (int index = 0; index < CARD_FACE_VALUES.length; index += 1) {
+                card = new Card(CARD_FACE_VALUES[index].toString(), HEARTS);
                 expectedCard = HEART_CARDS.get(index);
 
                 assertEquals(expectedCard, card);
@@ -66,8 +66,8 @@ public class CardTest {
 
         @Test
         public void testEntireSpadesSuit() {
-            for (int index = 0; index < cardFaceValues.length; index += 1) {
-                card = new Card(cardFaceValues[index].toString(), SPADES);
+            for (int index = 0; index < CARD_FACE_VALUES.length; index += 1) {
+                card = new Card(CARD_FACE_VALUES[index].toString(), SPADES);
                 expectedCard = SPADE_CARDS.get(index);
 
                 assertEquals(expectedCard, card);
@@ -112,7 +112,7 @@ public class CardTest {
         public void testAllDiamondsToString() {
             String diamondCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
-                String cardFace = cardFaceValues[index].toString();
+                String cardFace = CARD_FACE_VALUES[index].toString();
                 card = new Card(cardFace, DIAMONDS);
                 diamondCards = diamondCards.concat(card + " ");
             }
@@ -124,7 +124,7 @@ public class CardTest {
         public void testAllClubsToString() {
             String clubCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
-                String cardFace = cardFaceValues[index].toString();
+                String cardFace = CARD_FACE_VALUES[index].toString();
                 card = new Card(cardFace, CardSuit.CLUBS);
                 clubCards = clubCards.concat(card + " ");
             }
@@ -136,7 +136,7 @@ public class CardTest {
         public void testAllHeartsToString() {
             String heartCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
-                String cardFace = cardFaceValues[index].toString();
+                String cardFace = CARD_FACE_VALUES[index].toString();
                 card = new Card(cardFace, CardSuit.HEARTS);
                 heartCards = heartCards.concat(card + " ");
             }
@@ -148,7 +148,7 @@ public class CardTest {
         public void testAllSpadesToString() {
             String spadeCards = "";
             for (int index = 0; index < CardFace.values().length; index+=1) {
-                String cardFace = cardFaceValues[index].toString();
+                String cardFace = CARD_FACE_VALUES[index].toString();
                 card = new Card(cardFace, CardSuit.SPADES);
                 spadeCards = spadeCards.concat(card + " ");
             }

@@ -3,8 +3,11 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import static org.example.CardAndDeckConstants.*;
+import static org.example.CardSuit.*;
 
 import static java.util.Map.entry;
+import static org.example.CardSuit.DIAMONDS;
 
 public class Deck {
 
@@ -41,14 +44,86 @@ public class Deck {
         for (CardSuit cardSuit : VALID_CARD_SUITS) {
             for (String cardFace : VALID_CARD_FACES) {
                 switch(cardSuit) {
-                    case DIAMONDS -> diamondCards.add(new Card(cardFace, CardSuit.DIAMONDS));
-                    case CLUBS -> clubCards.add(new Card(cardFace, CardSuit.CLUBS));
-                    case HEARTS -> heartCards.add(new Card(cardFace, CardSuit.HEARTS));
-                    case SPADES -> spadeCards.add(new Card(cardFace, CardSuit.SPADES));
+                    case DIAMONDS -> diamondCards.add(new Card(cardFace, DIAMONDS));
+                    case CLUBS -> clubCards.add(new Card(cardFace, CLUBS));
+                    case HEARTS -> heartCards.add(new Card(cardFace, HEARTS));
+                    case SPADES -> spadeCards.add(new Card(cardFace, SPADES));
                 }
             }
         }
 
         return new ArrayList<>(List.of(diamondCards, clubCards, heartCards, spadeCards));
+    }
+
+    public static String printDeck(List<List<Card>> cards, String description, int rows) {
+        int validRowNumber = Deck.validateRows(rows);
+        String output = "";
+        switch (validRowNumber) {
+            case 1 -> output = output.concat(Deck.printOneRow(cards, 1));
+            case 2 -> output = output.concat(Deck.printOneRow(cards, 1).concat(Deck.printOneRow(cards, 2)));
+            case 3 -> output = output.concat(Deck.printOneRow(cards, 1).concat(Deck.printOneRow(cards, 2))
+                .concat(Deck.printOneRow(cards, 3)));
+            default -> output = output.concat(Deck.printOneRow(cards, 1).concat(Deck.printOneRow(cards, 2))
+                .concat(Deck.printOneRow(cards, 3)).concat(Deck.printOneRow(cards, 4)));
+        }
+        return output;
+    }
+
+    private static int validateRows(int numberOfRows) {
+        if (numberOfRows < 1 || numberOfRows > 4) {
+            throw new IllegalArgumentException("Invalid row numbers, rows must be between 1 and 4 inclusive.");
+        }
+        return numberOfRows;
+    }
+
+    public static String printOneRow(List<List<Card>> cards, int rowNumber) {
+        Card card;
+        String suitRow = "";
+        switch(rowNumber) {
+            case 1 -> {
+                for (int index = 0; index < cards.getFirst().size(); index+=1) {
+                    card = new Card(CARD_FACE_VALUES[index].toString(), DIAMONDS);
+                    if ("A".equals(card.getCardFace())) {
+                        suitRow = suitRow.concat(card + "\n");
+                    } else {
+                        suitRow = suitRow.concat(card + " ");
+                    }
+                }
+            }
+
+            case 2 -> {
+                for (int index = 0; index < cards.get(1).size(); index+=1) {
+                    card = new Card(CARD_FACE_VALUES[index].toString(), CLUBS);
+                    if ("A".equals(card.getCardFace())) {
+                        suitRow = suitRow.concat(card + "\n");
+                    } else {
+                        suitRow = suitRow.concat(card + " ");
+                    }
+                }
+            }
+
+            case 3 -> {
+                for (int index = 0; index < cards.get(2).size(); index+=1) {
+                    card = new Card(CARD_FACE_VALUES[index].toString(), HEARTS);
+                    if ("A".equals(card.getCardFace())) {
+                        suitRow = suitRow.concat(card + "\n");
+                    } else {
+                        suitRow = suitRow.concat(card + " ");
+                    }
+                }
+            }
+
+            default -> {
+                for (int index = 0; index < cards.getLast().size(); index+=1) {
+                    card = new Card(CARD_FACE_VALUES[index].toString(), SPADES);
+                    if ("A".equals(card.getCardFace())) {
+                        suitRow = suitRow.concat(card + "\n");
+                    } else {
+                        suitRow = suitRow.concat(card + " ");
+                    }
+                }
+            }
+        }
+        return suitRow;
     }
 }
