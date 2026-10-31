@@ -80,6 +80,35 @@ public class CardTest {
     }
 
     @Nested
+    @DisplayName("test get card suit")
+    class TestGetCardSuit {
+
+        @Test
+        public void getDiamondsCardSuit() {
+            card = new Card(FOUR.toString(), DIAMONDS);
+            assertEquals(DIAMONDS, card.getCardSuit());
+        }
+
+        @Test
+        public void getClubsCardSuit() {
+            card = new Card(ACE.toString(), CLUBS);
+            assertEquals(CLUBS, card.getCardSuit());
+        }
+
+        @Test
+        public void getHeartsCardSuit() {
+            card = new Card(TEN.toString(), HEARTS);
+            assertEquals(HEARTS, card.getCardSuit());
+        }
+
+        @Test
+        public void getSpadesCardSuit() {
+            card = new Card(JACK.toString(), SPADES);
+            assertEquals(SPADES, card.getCardSuit());
+        }
+    }
+
+    @Nested
     @DisplayName("test the diamonds suite")
     class TestDiamondsSuite {
 
