@@ -32,22 +32,6 @@ public class Card {
         return new Card(verifiedCardFace, verifiedCardSuit);
     }
 
-    public static String printDeck(List<List<Card>> deck, String description, int rowCount) {
-        int validRowCount = Card.verifyRowCount(rowCount);
-        return switch(validRowCount) {
-            case 1 -> Card.printRowOfCards(1);
-            case 2 -> Card.printRowOfCards(1).concat(Card.printRowOfCards(2));
-            case 3 -> Card.printRowOfCards(1).concat(Card.printRowOfCards(2))
-                .concat(Card.printRowOfCards(3));
-            default -> Card.printRowOfCards(1).concat(Card.printRowOfCards(2))
-                .concat(Card.printRowOfCards(3)).concat(Card.printRowOfCards(4));
-        };
-    }
-
-    public static String printDeck() {
-        return printDeck(Deck.getStandardDeck(), "Current Deck", 4);
-    }
-
     public String getCardFace() {
         return this.cardFace;
     }
@@ -118,33 +102,5 @@ public class Card {
             }
         }
         return validCardRank;
-    }
-
-    private static String printRowOfCards(int cardRow) {
-        String printedCards = "";
-        switch (cardRow) {
-            case 1 -> {
-                for (String faceValue : VALID_CARD_FACES) {
-                    printedCards = printedCards.concat(new Card(faceValue, CardSuit.DIAMONDS).toString());
-                }
-            }
-            case 2 -> {
-                for (String faceValue : VALID_CARD_FACES) {
-                    printedCards = printedCards.concat(new Card(faceValue, CardSuit.CLUBS).toString());
-                }
-            }
-            case 3 -> {
-                for (String faceValue : VALID_CARD_FACES) {
-                    printedCards = printedCards.concat(new Card(faceValue, CardSuit.HEARTS).toString());
-                }
-            }
-            case 4 -> {
-                for (String faceValue : VALID_CARD_FACES) {
-                    printedCards = printedCards.concat(new Card(faceValue, CardSuit.SPADES).toString());
-                }
-            }
-            default -> throw new IllegalArgumentException("Card row must be between 1 and 4 inclusive.");
-        };
-        return printedCards.concat("\n");
     }
 }

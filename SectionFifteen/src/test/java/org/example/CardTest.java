@@ -1,8 +1,13 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static org.example.CardFace.*;
@@ -13,7 +18,66 @@ public class CardTest {
 
 
     private Card card, expectedCard;
-    private String expectedCardString;
+    private List<Card> cards;
+    private String expectedCardString, expectedCardFace;
+
+    @Nested
+    @DisplayName("test card face getter")
+    class TestCardFaceGetter {
+
+        @BeforeEach
+        public void setUp() {
+            cards = new ArrayList<>();
+        }
+
+        @Test
+        public void testAllCardFacesDiamondSuit() {
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, DIAMONDS);
+                cards.add(card);
+            }
+            for (int index = 0; index < VALID_CARD_FACES.size(); index+=1) {
+                expectedCardFace = VALID_CARD_FACES.get(index);
+                assertEquals(expectedCardFace, cards.get(index).getCardFace());
+            }
+        }
+
+        @Test
+        public void testAllCardFacesClubSuit() {
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, CLUBS);
+                cards.add(card);
+            }
+            for (int index = 0; index < VALID_CARD_FACES.size(); index+=1) {
+                expectedCardFace = VALID_CARD_FACES.get(index);
+                assertEquals(expectedCardFace, cards.get(index).getCardFace());
+            }
+        }
+
+        @Test
+        public void testAllCardFacesHeartSuit() {
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, HEARTS);
+                cards.add(card);
+            }
+            for (int index = 0; index < VALID_CARD_FACES.size(); index+=1) {
+                expectedCardFace = VALID_CARD_FACES.get(index);
+                assertEquals(expectedCardFace, cards.get(index).getCardFace());
+            }
+        }
+
+        @Test
+        public void testAllCardFacesSpadeSuit() {
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, SPADES);
+                cards.add(card);
+            }
+            for (int index = 0; index < VALID_CARD_FACES.size(); index+=1) {
+                expectedCardFace = VALID_CARD_FACES.get(index);
+                assertEquals(expectedCardFace, cards.get(index).getCardFace());
+            }
+        }
+    }
 
     @Nested
     @DisplayName("test the diamonds suite")
