@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeckTest {
 
-    List<List<Card>> deck;
+    List<Card> deck;
     String expected;
 
     @BeforeEach
@@ -51,6 +51,8 @@ public class DeckTest {
 
         @Test
         public void testStandardDeckOfCards() {
+            // STANDARD_DECK is immutable, deck is not, but we are running the test to compare the decks
+            // of what would be the beginning of a card game.
             assertEquals(STANDARD_DECK, deck);
         }
 
