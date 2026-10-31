@@ -86,13 +86,6 @@ public class Card {
         return cardRank;
     }
 
-    private static int verifyRowCount(int rows) {
-        if (rows < 1 || rows > 4) {
-            throw new IllegalArgumentException("Invalid number of rows, must be between 1 and 4 inclusive.");
-        }
-        return rows;
-    }
-
     private static String getCardFaceFromCardRank(int cardRank) {
         int verifiedCardRank = Card.verifyCardRank(cardRank);
         String validCardRank = "";
