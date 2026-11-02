@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,9 +18,12 @@ public class IntroductionToCollectionsTest {
 
     List<String> listOfNames = new ArrayList<>();
     List<String> expected = new ArrayList<>();
+    List<Card> cards = new ArrayList<>(52);
+    Card aceOfHearts;
 
     @BeforeEach
     public void setUp() {
+        aceOfHearts = Card.getFaceCard(CardSuit.HEARTS, "A");
         String[] names = {"Anna", "Bob", "Carol", "David", "Edna"};
         listOfNames.addAll(Arrays.asList(names));
         expected.addAll(Arrays.asList(names));
@@ -124,7 +128,7 @@ public class IntroductionToCollectionsTest {
     class TestPopulatingAList {
 
         @Test
-        public void testPopulateListWithSameElement() {
+        public void testPopulateAnArrayWithTheSameElement() {
             Card[] cardArray = new Card[13];
             Card aceOfHearts = Card.getFaceCard(CardSuit.HEARTS, "A");
 
@@ -135,5 +139,18 @@ public class IntroductionToCollectionsTest {
             }
         }
 
+        @Test
+        public void testPopulateAListWithTheSameElement() {
+//          Collections.fill(cards, aceOfHearts);
+//          This does not work because Collections.fill only fills the ArrayList with elements
+//          that overwrite the existing elements in the list.  The capacity of the cards list
+//          is 52, but this does not represent what is actually in the list.
+
+            cards = Collections.nCopies(13, aceOfHearts);
+            assertEquals(13, cards.size());
+            for (Card card : cards) {
+                assertEquals(aceOfHearts, card);
+            }
+        }
     }
 }
