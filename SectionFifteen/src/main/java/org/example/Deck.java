@@ -2,39 +2,10 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import static org.example.CardAndDeckConstants.*;
 import static org.example.CardSuit.*;
 
-import static java.util.Map.entry;
-import static org.example.CardSuit.DIAMONDS;
-
 public class Deck {
-
-    private static final int STARTING_INDEX_DIAMONDS = 0;
-    private static final int STARTING_INDEX_CLUBS = 13;
-    private static final int STARTING_INDEX_HEARTS = 26;
-    private static final int STARTING_INDEX_SPADES = 39;
-    private static final int DECK_SIZE = 52;
-    private static final List<String> VALID_CARD_FACES =
-        List.of("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
-    private static final List<CardSuit> VALID_CARD_SUITS =
-        List.of(CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.HEARTS, CardSuit.SPADES);
-    private static final Map<String, Integer> mapOfCardRanks = Map.ofEntries(
-        entry("2", 0), // 2, ASCII 50
-        entry("3", 1), // 3, ASCII 51
-        entry("4", 2), // 4, ASCII 52
-        entry("5", 3), // 5, ASCII 53
-        entry("6", 4), // 6, ASCII 54
-        entry("7", 5), // 7, ASCII 55
-        entry("8", 6), // 8, ASCII 56
-        entry("9", 7), // 9, ASCII 57
-        entry("10", 8), // 10, ASCII 48
-        entry("J", 9), // Jack, ASCII 74
-        entry("Q", 10), // Queen, ASCII 81
-        entry("K", 11), // King, ASCII 75
-        entry("A", 12) // Ace, ASCII 65
-    );
 
     public Deck() {}
 

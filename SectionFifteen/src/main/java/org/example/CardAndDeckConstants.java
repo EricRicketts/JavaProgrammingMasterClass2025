@@ -17,6 +17,12 @@ public final class CardAndDeckConstants {
         throw new AssertionError();
     }
 
+    public static final int STARTING_INDEX_DIAMONDS = 0;
+    public static final int STARTING_INDEX_CLUBS = 13;
+    public static final int STARTING_INDEX_HEARTS = 26;
+    public static final int STARTING_INDEX_SPADES = 39;
+    public static final int DECK_SIZE = 52;
+
     public static final List<String> VALID_CARD_FACES =
         List.of("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
 
