@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.CardAndDeckConstants.*;
+import org.example.CardSuit.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -115,5 +117,23 @@ public class IntroductionToCollectionsTest {
                 assertFalse(name.startsWith("G"));
             }
         }
+    }
+
+    @Nested
+    @DisplayName("test populating a list")
+    class TestPopulatingAList {
+
+        @Test
+        public void testPopulateListWithSameElement() {
+            Card[] cardArray = new Card[13];
+            Card aceOfHearts = Card.getFaceCard(CardSuit.HEARTS, "A");
+
+            assertEquals(12, aceOfHearts.getCardRank());
+            Arrays.fill(cardArray, aceOfHearts);
+            for (Card card : cardArray) {
+                assertEquals(aceOfHearts, card);
+            }
+        }
+
     }
 }
