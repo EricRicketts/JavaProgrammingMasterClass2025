@@ -19,11 +19,12 @@ public class IntroductionToCollectionsTest {
     List<String> listOfNames = new ArrayList<>();
     List<String> expected = new ArrayList<>();
     List<Card> cards = new ArrayList<>(52);
-    Card aceOfHearts;
+    Card aceOfHearts, kingOfClubs;
 
     @BeforeEach
     public void setUp() {
         aceOfHearts = Card.getFaceCard(CardSuit.HEARTS, "A");
+        kingOfClubs = Card.getFaceCard(CardSuit.CLUBS, "K");
         String[] names = {"Anna", "Bob", "Carol", "David", "Edna"};
         listOfNames.addAll(Arrays.asList(names));
         expected.addAll(Arrays.asList(names));
@@ -130,7 +131,6 @@ public class IntroductionToCollectionsTest {
         @Test
         public void testPopulateAnArrayWithTheSameElement() {
             Card[] cardArray = new Card[13];
-            Card aceOfHearts = Card.getFaceCard(CardSuit.HEARTS, "A");
 
             assertEquals(12, aceOfHearts.getCardRank());
             Arrays.fill(cardArray, aceOfHearts);
@@ -140,7 +140,7 @@ public class IntroductionToCollectionsTest {
         }
 
         @Test
-        public void testPopulateAListWithTheSameElement() {
+        public void testPopulateAListWithNCopies() {
 //          Collections.fill(cards, aceOfHearts);
 //          This does not work because Collections.fill only fills the ArrayList with elements
 //          that overwrite the existing elements in the list.  The capacity of the cards list
@@ -151,6 +151,33 @@ public class IntroductionToCollectionsTest {
             for (Card card : cards) {
                 assertEquals(aceOfHearts, card);
             }
+        }
+
+        @Test
+        public void testPopulateListWithAddAll() {
+            Card[] cardArray = new Card[13];
+            Arrays.fill(cardArray, aceOfHearts);
+
+            Collections.addAll(cards, cardArray);
+            assertEquals(13, cards.size());
+            for (Card card : cards) {
+                assertEquals(aceOfHearts, card);
+            }
+        }
+
+        @Test
+        public void testPopulateAListWithCopy() {
+            cards = new ArrayList<>(Collections.nCopies(52, kingOfClubs));
+            assertEquals(52, cards.size());
+
+            List<Card> thirteenAcesOfHearts = Collections.nCopies(13, aceOfHearts);
+            Collections.copy(cards, thirteenAcesOfHearts);
+
+            assertEquals(52, cards.size());
+            assertEquals(aceOfHearts, cards.getFirst());
+            assertEquals(aceOfHearts, cards.get(12));
+            assertEquals(kingOfClubs, cards.get(13));
+            assertEquals(kingOfClubs, cards.getLast());
         }
     }
 }
