@@ -21,14 +21,14 @@ public class CardTest {
     private List<Card> cards;
     private String expectedCardString, expectedCardFace;
 
+    @BeforeEach
+    public void setUp() {
+        cards = new ArrayList<>();
+    }
+
     @Nested
     @DisplayName("test card face getter")
     class TestCardFaceGetter {
-
-        @BeforeEach
-        public void setUp() {
-            cards = new ArrayList<>();
-        }
 
         @Test
         public void testAllCardFacesDiamondSuit() {
@@ -80,8 +80,8 @@ public class CardTest {
     }
 
     @Nested
-    @DisplayName("test get card suit")
-    class TestGetCardSuit {
+    @DisplayName("test card suit getter")
+    class TestGetCardSuitGetter {
 
         @Test
         public void getDiamondsCardSuit() {
@@ -105,6 +105,63 @@ public class CardTest {
         public void getSpadesCardSuit() {
             card = new Card(JACK.toString(), SPADES);
             assertEquals(SPADES, card.getCardSuit());
+        }
+    }
+
+    @Nested
+    @DisplayName("test card rank getter")
+    class TestCardRankGetter {
+
+        @Test
+        public void testAllRanksForDiamonds() {
+            int rank = 0;
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, DIAMONDS);
+                cards.add(card);
+            }
+            for (Card card : cards) {
+                assertEquals(rank, card.getCardRank());
+                rank += 1;
+            }
+        }
+
+        @Test
+        public void testAllRanksForClubs() {
+            int rank = 0;
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, CLUBS);
+                cards.add(card);
+            }
+            for (Card card : cards) {
+                assertEquals(rank, card.getCardRank());
+                rank += 1;
+            }
+        }
+
+        @Test
+        public void testAllRanksForHearts() {
+            int rank = 0;
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, HEARTS);
+                cards.add(card);
+            }
+            for (Card card : cards) {
+                assertEquals(rank, card.getCardRank());
+                rank += 1;
+            }
+        }
+
+        @Test
+        public void testAllRanksForSpades() {
+            int rank = 0;
+            for (String cardFace : VALID_CARD_FACES) {
+                card = new Card(cardFace, SPADES);
+                cards.add(card);
+            }
+            for (Card card : cards) {
+                assertEquals(rank, card.getCardRank());
+                rank += 1;
+            }
         }
     }
 
