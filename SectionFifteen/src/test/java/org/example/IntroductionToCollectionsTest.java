@@ -197,23 +197,35 @@ public class IntroductionToCollectionsTest {
     }
 
     @Nested
-    @DisplayName("test mmore methods of the Collections class")
+    @DisplayName("test more methods of the Collections class")
     class TestMoreMethodsCollectionsClass {
 
+        @BeforeEach
+        public void setUp() {
+            cards = Deck.getStandardDeck();
+        }
         @Test
         public void testShuffleMethod() {
-            cards = Deck.getStandardDeck();
-            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.DIAMONDS), cards.getFirst());
-            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.DIAMONDS), cards.get(12));
+            assertEquals(Deck.getStandardDeck(), cards);
 
-            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.CLUBS), cards.get(13));
-            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.CLUBS), cards.get(25));
+            Collections.shuffle(cards);
+            assertNotEquals(Deck.getStandardDeck(), cards);
+        }
 
-            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.HEARTS), cards.get(26));
-            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.HEARTS), cards.get(38));
+        @Test
+        public void testReverseMethod() {
+            int index = 0;
+            Collections.reverse(cards);
+            List<CardSuit> reversedCardSuits = new ArrayList<>(CardAndDeckConstants.VALID_CARD_SUITS).reversed();
+            List<String> reversedCardFaces = new ArrayList<>(CardAndDeckConstants.VALID_CARD_FACES).reversed();
 
-            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.SPADES), cards.get(39));
-            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.SPADES), cards.getLast());
+            for (CardSuit cardSuit : reversedCardSuits) {
+                for (String cardFace : reversedCardFaces) {
+                    Card expectedCard = new Card(cardFace, cardSuit);
+                    assertEquals(expectedCard, cards.get(index));
+                    index += 1;
+                }
+            }
         }
     }
 }
