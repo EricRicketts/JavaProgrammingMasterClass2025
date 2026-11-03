@@ -167,6 +167,10 @@ public class IntroductionToCollectionsTest {
 
         @Test
         public void testPopulateAListWithCopy() {
+            // This wrapper is necessary as Collections.copy will not accept an
+            // array as a source argument.  Also, this method only works if the
+            // number of elements in the destination is greater or equal to
+            // the source list.
             cards = new ArrayList<>(Collections.nCopies(52, kingOfClubs));
             assertEquals(52, cards.size());
 
@@ -178,6 +182,38 @@ public class IntroductionToCollectionsTest {
             assertEquals(aceOfHearts, cards.get(12));
             assertEquals(kingOfClubs, cards.get(13));
             assertEquals(kingOfClubs, cards.getLast());
+
+            cards = new ArrayList<>(Collections.nCopies(13, kingOfClubs));
+            Collections.copy(cards, thirteenAcesOfHearts);
+
+            assertEquals(13, cards.size());
+        }
+
+        @Test
+        public void testPopulateAListWithListCopy() {
+            cards = List.copyOf(Collections.nCopies(13, aceOfHearts));
+            assertEquals(13, cards.size());  // List is immutable.
+        }
+    }
+
+    @Nested
+    @DisplayName("test mmore methods of the Collections class")
+    class TestMoreMethodsCollectionsClass {
+
+        @Test
+        public void testShuffleMethod() {
+            cards = Deck.getStandardDeck();
+            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.DIAMONDS), cards.getFirst());
+            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.DIAMONDS), cards.get(12));
+
+            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.CLUBS), cards.get(13));
+            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.CLUBS), cards.get(25));
+
+            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.HEARTS), cards.get(26));
+            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.HEARTS), cards.get(38));
+
+            assertEquals(new Card(CardFace.TWO.toString(), CardSuit.SPADES), cards.get(39));
+            assertEquals(new Card(CardFace.ACE.toString(), CardSuit.SPADES), cards.getLast());
         }
     }
 }
