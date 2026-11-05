@@ -323,5 +323,27 @@ public class IntroductionToCollectionsTest {
             assertTrue(Collections.disjoint(kings, tens));
             assertFalse(Collections.disjoint(cards, kings));
         }
+
+        @Test
+        public void testBinarySearch() {
+            Comparator<Card> sortingAlgorithm = Comparator.comparing(Card::getCardRank)
+                .thenComparing(Card::getCardSuit);
+            Collections.sort(cards, sortingAlgorithm);  // Remember the sort is first by rank and then by suit.
+            /*
+                The expected index for the Jack of Spades is 39 this is because the cards are sorted first
+                by rank and then by suit.  Meaning the cards are arranged by Face Value first and then by Suit.
+                This means the first group of cards will be the 2's arranged by suit; 2 of diamonds, 2 of clubs,
+                2 of hearts and 2 of spades.  So the first instance of a Jack will be a Jack of Diamonds which
+                will have an index of 9 * 4 = 36, so the Jack of Spades will be 36 + 3 = 39.  The Jack of Diamonds
+                is the 10th card in a deck, assuming Diamonds is the first suit, but its index is 9 since the
+                first element in the deck, the 2 of diamonds has an index of 0.  We multiply by four because cards
+                of a given face value are ordered 4 in a row, arranged by suit.
+            */
+            Card card = new Card("J", CardSuit.SPADES);
+            int foundIndex = Collections.binarySearch(cards, card, sortingAlgorithm);
+            int expectedIndex = 39;
+
+            assertEquals(expectedIndex, foundIndex);
+        }
     }
 }
