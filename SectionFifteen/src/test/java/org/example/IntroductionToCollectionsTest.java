@@ -251,5 +251,52 @@ public class IntroductionToCollectionsTest {
             assertEquals(new Card("2", CardSuit.DIAMONDS), cards.getFirst());
             assertEquals(new Card("A", CardSuit.SPADES), cards.getLast());
         }
+
+        @Test
+        public void testSubListMethod() {
+            // Get a list of Kings and then a sublist from the list of kings.
+            List<Card> deck = Deck.getStandardDeck();
+            List<Card> kings = new ArrayList<>();
+
+            int firstKingIndex = 11;
+            for (int index = firstKingIndex; index < deck.size(); index += 13) {
+                kings.add(deck.get(index));
+            }
+            List<Card> expectedKings = new ArrayList<>(
+                List.of(
+                new Card("K", CardSuit.DIAMONDS),
+                new Card("K", CardSuit.CLUBS),
+                new Card("K", CardSuit.HEARTS),
+                new Card("K", CardSuit.SPADES)
+                )
+            );
+
+            assertEquals(expectedKings, kings);
+
+            expectedKings = new ArrayList<>(
+                List.of(
+                    new Card("K", CardSuit.DIAMONDS),
+                    new Card("K", CardSuit.CLUBS)
+                )
+            );
+
+            List<Card> subListOfKings = kings.subList(0, 2);
+            assertEquals(expectedKings, subListOfKings);
+        }
+
+        @Test
+        public void testIndexOfSublist() {
+            List<Card> fourCards = new ArrayList<>(
+                List.of(
+                    new Card("K", CardSuit.HEARTS),
+                    new Card("A", CardSuit.HEARTS),
+                    new Card("2", CardSuit.SPADES),
+                    new Card("3", CardSuit.SPADES)
+                )
+            );
+            int expectedStartIndex = 37; // Index of King of Hearts is 17, 11 (king of diamonds) + 26 (two suits)
+            int resultantStartIndex = Collections.indexOfSubList(cards, fourCards);
+            assertEquals(expectedStartIndex, resultantStartIndex);
+        }
     }
 }
