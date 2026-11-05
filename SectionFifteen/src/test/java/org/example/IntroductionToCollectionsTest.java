@@ -7,10 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -226,6 +223,33 @@ public class IntroductionToCollectionsTest {
                     index += 1;
                 }
             }
+        }
+
+        @Test
+        public void testSortMethod() {
+            Card card;
+            List<Card> cards = new ArrayList<>();
+            List<CardSuit> reversedCardSuits = new ArrayList<>(CardAndDeckConstants.VALID_CARD_SUITS).reversed();
+            List<String> reversedCardFaces = new ArrayList<>(CardAndDeckConstants.VALID_CARD_FACES).reversed();
+
+            for (CardSuit cardSuit : reversedCardSuits) {
+                for (String cardFace : reversedCardFaces) {
+                    card = new Card(cardFace, cardSuit);
+                    cards.add(card);
+                }
+            }
+            card = cards.getFirst();
+            assertEquals(new Card("A", CardSuit.SPADES), card);
+            card = cards.getLast();
+            assertEquals(new Card("2", CardSuit.DIAMONDS), card);
+
+            Comparator<Card> sortingAlgorithm = Comparator.comparing(Card::getCardRank)
+                .thenComparing(Card::getCardSuit);
+
+            Collections.sort(cards, sortingAlgorithm);
+
+            assertEquals(new Card("2", CardSuit.DIAMONDS), cards.getFirst());
+            assertEquals(new Card("A", CardSuit.SPADES), cards.getLast());
         }
     }
 }
