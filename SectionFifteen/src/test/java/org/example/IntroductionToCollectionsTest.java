@@ -201,6 +201,7 @@ public class IntroductionToCollectionsTest {
         public void setUp() {
             cards = Deck.getStandardDeck();
         }
+
         @Test
         public void testShuffleMethod() {
             assertEquals(Deck.getStandardDeck(), cards);
@@ -264,10 +265,10 @@ public class IntroductionToCollectionsTest {
             }
             List<Card> expectedKings = new ArrayList<>(
                 List.of(
-                new Card("K", CardSuit.DIAMONDS),
-                new Card("K", CardSuit.CLUBS),
-                new Card("K", CardSuit.HEARTS),
-                new Card("K", CardSuit.SPADES)
+                    new Card("K", CardSuit.DIAMONDS),
+                    new Card("K", CardSuit.CLUBS),
+                    new Card("K", CardSuit.HEARTS),
+                    new Card("K", CardSuit.SPADES)
                 )
             );
 
@@ -297,6 +298,30 @@ public class IntroductionToCollectionsTest {
             int expectedStartIndex = 37; // Index of King of Hearts is 17, 11 (king of diamonds) + 26 (two suits)
             int resultantStartIndex = Collections.indexOfSubList(cards, fourCards);
             assertEquals(expectedStartIndex, resultantStartIndex);
+        }
+
+        @Test
+        public void testDisJointMethod() {
+            // The disjoint method returns true if there is no common elements between the two lists.
+            List<Card> kings = new ArrayList<>(
+                List.of(
+                    new Card("K", CardSuit.DIAMONDS),
+                    new Card("K", CardSuit.CLUBS),
+                    new Card("K", CardSuit.HEARTS),
+                    new Card("K", CardSuit.SPADES)
+                )
+            );
+            List<Card> tens = new ArrayList<>(
+                List.of(
+                    new Card("10", CardSuit.DIAMONDS),
+                    new Card("10", CardSuit.CLUBS),
+                    new Card("10", CardSuit.HEARTS),
+                    new Card("10", CardSuit.SPADES)
+                )
+            );
+
+            assertTrue(Collections.disjoint(kings, tens));
+            assertFalse(Collections.disjoint(cards, kings));
         }
     }
 }
