@@ -17,6 +17,8 @@ public class IntroductionToCollectionsTest {
     List<String> expected = new ArrayList<>();
     List<Card> cards = new ArrayList<>(52);
     Card aceOfHearts, kingOfClubs;
+    Comparator<Card> sortingAlgorithm;
+    int expectedIndex, foundIndex;
 
     @BeforeEach
     public void setUp() {
@@ -25,6 +27,7 @@ public class IntroductionToCollectionsTest {
         String[] names = {"Anna", "Bob", "Carol", "David", "Edna"};
         listOfNames.addAll(Arrays.asList(names));
         expected.addAll(Arrays.asList(names));
+        sortingAlgorithm = Comparator.comparing(Card::getCardRank).thenComparing(Card::getCardSuit);
     }
 
     @Nested
@@ -325,11 +328,10 @@ public class IntroductionToCollectionsTest {
         }
 
         @Test
-        public void testBinarySearch() {
-            Comparator<Card> sortingAlgorithm = Comparator.comparing(Card::getCardRank)
-                .thenComparing(Card::getCardSuit);
-            Collections.sort(cards, sortingAlgorithm);  // Remember the sort is first by rank and then by suit.
+        public void testBinarySearchWithCollectionsClass() {
+            Collections.sort(cards, sortingAlgorithm);
             /*
+                Remember the sort is first by rank and then by suit.
                 The expected index for the Jack of Spades is 39 this is because the cards are sorted first
                 by rank and then by suit.  Meaning the cards are arranged by Face Value first and then by Suit.
                 This means the first group of cards will be the 2's arranged by suit; 2 of diamonds, 2 of clubs,
@@ -340,10 +342,56 @@ public class IntroductionToCollectionsTest {
                 of a given face value are ordered 4 in a row, arranged by suit.
             */
             Card card = new Card("J", CardSuit.SPADES);
-            int foundIndex = Collections.binarySearch(cards, card, sortingAlgorithm);
-            int expectedIndex = 39;
+            foundIndex = Collections.binarySearch(cards, card, sortingAlgorithm);
+            expectedIndex = 39;
 
             assertEquals(expectedIndex, foundIndex);
+        }
+
+        @Test
+        public void testBinarySearchAfterASortByTheDeckOfCards() {
+            expectedIndex = 8 * 4 + 2;
+            cards.sort(sortingAlgorithm);
+            Card card = new Card("10", CardSuit.HEARTS);
+            foundIndex = cards.indexOf(card);
+
+            assertEquals(expectedIndex, foundIndex);
+        }
+
+        @Test
+        public void testReplaceAllMethod() {
+            cards.sort(sortingAlgorithm);
+            Card card = Card.getNumericCard(CardSuit.DIAMONDS, 8);
+            Card replacementCard = Card.getNumericCard(CardSuit.HEARTS, 8);
+
+            // Collections.replaceAll returns a boolean, it is true if a replacement
+            // takes place.
+            assertTrue(Collections.replaceAll(cards, card, replacementCard));
+            expectedIndex = -1;
+            foundIndex = cards.indexOf(card);
+
+            assertEquals(expectedIndex, foundIndex);
+            assertFalse(Collections.replaceAll(cards, card, replacementCard));
+        }
+
+        @Test
+        public void testFrequencyMethod() {
+            // Add a two of Spades
+            Card additionalCard = Card.getNumericCard(CardSuit.SPADES, 0);
+            cards.add(additionalCard);
+            Card cardToSearch = new Card("2", CardSuit.SPADES);
+
+            assertEquals(2, Collections.frequency(cards, cardToSearch));
+        }
+
+        @Test
+        public void testCollectionsMinAndMax() {
+            Card minimumCard = Collections.min(cards, sortingAlgorithm);
+
+            assertEquals(new Card("2", CardSuit.DIAMONDS), minimumCard);
+
+            Card maximumCard = Collections.max(cards, sortingAlgorithm);
+            assertEquals(new Card("A", CardSuit.SPADES), maximumCard);
         }
     }
 }
