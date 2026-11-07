@@ -393,5 +393,54 @@ public class IntroductionToCollectionsTest {
             Card maximumCard = Collections.max(cards, sortingAlgorithm);
             assertEquals(new Card("A", CardSuit.SPADES), maximumCard);
         }
+
+        @Test
+        public void testCollectionsRotateMethodWithPositiveArgument() {
+            List<Card> diamonds = cards.subList(0, 13);
+            List<Card> expectedDiamonds = new ArrayList<>();
+            for (String cardFace : CardAndDeckConstants.VALID_CARD_FACES) {
+                Card card = new Card(cardFace, CardSuit.DIAMONDS);
+                expectedDiamonds.add(card);
+            }
+            assertEquals(expectedDiamonds, diamonds);
+
+            Collections.rotate(diamonds, 2);
+            // With a positive rotation, the back of the list is moved to the front of
+            // this list.  The integer argument specifies how many of the objects are
+            // moved from the back of the list to the front of the list.
+            List<String> rotatedCardFaces = new ArrayList<>(List.of(
+                "K", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q"
+            ));
+            expectedDiamonds.clear();
+            for (String cardFace : rotatedCardFaces) {
+                Card card = new Card(cardFace, CardSuit.DIAMONDS);
+                expectedDiamonds.add(card);
+            }
+            assertEquals(expectedDiamonds, diamonds);
+        }
+
+        @Test
+        public void testCollectionsRotateMethodMethodWithNegativeArgument() {
+            List<Card> clubs = cards.subList(13, 26);
+            List<Card> expectedClubs = new ArrayList<>();
+            for (String cardFace : CardAndDeckConstants.VALID_CARD_FACES) {
+                Card card = new Card(cardFace, CardSuit.CLUBS);
+                expectedClubs.add(card);
+            }
+
+            assertEquals(expectedClubs, clubs);
+            Collections.rotate(clubs, -2);
+            List<String> rotatedCardFaces = new ArrayList<>(List.of(
+                "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "3"
+            ));
+            expectedClubs.clear();
+
+            for (String cardFace : rotatedCardFaces) {
+                Card card = new Card(cardFace, CardSuit.CLUBS);
+                expectedClubs.add(card);
+            }
+
+            assertEquals(expectedClubs, clubs);
+        }
     }
 }
