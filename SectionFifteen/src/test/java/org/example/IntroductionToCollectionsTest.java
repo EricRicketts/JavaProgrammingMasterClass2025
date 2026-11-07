@@ -442,5 +442,27 @@ public class IntroductionToCollectionsTest {
 
             assertEquals(expectedClubs, clubs);
         }
+
+        @Test
+        public void testCollectionsSwapMethod() {
+            List<Card> hearts = cards.subList(26, 39);
+            List<Card> expectedHearts = new ArrayList<>();
+            for (String cardFace : CardAndDeckConstants.VALID_CARD_FACES) {
+                Card card = new Card(cardFace, CardSuit.HEARTS);
+                expectedHearts.add(card);
+            }
+            assertEquals(expectedHearts, hearts);
+            Collections.swap(hearts, 1, 11);
+            List<String> swappedCardFaces = new ArrayList<>(List.of(
+                "2", "K", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "3", "A"
+            ));
+            expectedHearts.clear();
+            for (String cardFace : swappedCardFaces) {
+                Card card = new Card(cardFace, CardSuit.HEARTS);
+                expectedHearts.add(card);
+            }
+
+            assertEquals(expectedHearts, hearts);
+        }
     }
 }
