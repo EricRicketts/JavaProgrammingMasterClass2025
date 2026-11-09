@@ -44,17 +44,16 @@ public class Card {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(this.getCardFace(), this.getCardSuit(), this.getCardRank());
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return getCardRank() == card.getCardRank() && Objects.equals(getCardFace(), card.getCardFace()) &&
+            getCardSuit() == card.getCardSuit();
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || (this.getClass() != object.getClass())) return false;
-        Card otherCard = (Card) object;
-        return Objects.equals(this.getCardFace(), otherCard.getCardFace()) &&
-            this.getCardSuit() == otherCard.getCardSuit() && this.getCardRank() == otherCard.getCardRank();
+    public int hashCode() {
+        return Objects.hash(getCardFace(), getCardSuit(), getCardRank());
     }
 
     @Override

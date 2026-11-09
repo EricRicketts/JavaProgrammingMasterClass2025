@@ -13,13 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.example.CardFace.*;
 import static org.example.CardSuit.*;
 import static org.example.CardAndDeckConstants.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CardTest {
 
 
-    private Card card, expectedCard;
+    private Card card, expectedCard, firstCard, secondCard;
     private List<Card> cards;
     private String expectedCardString, expectedCardFace;
+    private int firstCardHashCode, secondCardHashCode;
 
     @BeforeEach
     public void setUp() {
@@ -378,6 +380,50 @@ public class CardTest {
             card = Card.getFaceCard(CardSuit.SPADES, "K");
 
             assertEquals(expectedCard, card);
+        }
+    }
+
+    @Nested
+    @DisplayName("test equality and hashcode")
+    class TestEqualityAndHashCode {
+
+        @Test
+        public void testEqualCards() {
+            firstCard = new Card(TWO.toString(), CardSuit.CLUBS);
+            secondCard = new Card(TWO.toString(), CardSuit.CLUBS);
+
+            assertEquals(firstCard, secondCard);
+
+            firstCardHashCode = firstCard.hashCode();
+            secondCardHashCode = secondCard.hashCode();
+
+            assertEquals(firstCardHashCode, secondCardHashCode);
+        }
+
+        @Test
+        public void testNonEqualsCardsByFaceValue() {
+            firstCard = new Card(THREE.toString(), CardSuit.DIAMONDS);
+            secondCard = new Card(FOUR.toString(), CardSuit.DIAMONDS);
+
+            assertNotEquals(firstCard, secondCard);
+
+            firstCardHashCode = firstCard.hashCode();
+            secondCardHashCode = secondCard.hashCode();
+
+            assertNotEquals(firstCardHashCode, secondCardHashCode);
+        }
+
+        @Test
+        public void testNonEqualsCardsBySuit() {
+            firstCard = new Card(TEN.toString(), CardSuit.HEARTS);
+            secondCard = new Card(TEN.toString(), CardSuit.DIAMONDS);
+
+            assertNotEquals(firstCard, secondCard);
+
+            firstCardHashCode = firstCard.hashCode();
+            secondCardHashCode = secondCard.hashCode();
+
+            assertNotEquals(firstCardHashCode, secondCardHashCode);
         }
     }
 }
