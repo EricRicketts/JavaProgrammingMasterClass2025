@@ -64,13 +64,13 @@ public class DeepDiveIntoEqualsAndHashCode {
             checks the content.  When calling String.concat(), a new object is created in heap memory,
             which will not have the same address as the literal.  This is demonstrated in the test below.
         */
-        assertTrue(aText.equals(bText));
-        assertTrue(aText == bText);
+        assertEquals(aText, bText);
+        assertSame(aText, bText);
 
-        assertEquals(aText, cText); // Same content.
+        assertEquals(aText, cText); // Same content
         assertNotSame(aText, cText); // Different objects
 
-        assertTrue(aText == cText.intern());
+        assertSame(aText, cText.intern()); // Same objects
         // intern() tells Java to look for the string in the string pool.
     }
 }
