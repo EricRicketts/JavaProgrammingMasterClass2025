@@ -2,6 +2,7 @@ package org.example;
 
 import java.math.BigInteger;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Contact {
@@ -42,6 +43,23 @@ public class Contact {
         return phones;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (Objects.isNull(object)) return false;
+        if (object.getClass() != this.getClass()) return false;
+        if (this == object) return true;
+
+        Contact contact = (Contact) object;
+        return this.getFullName().equals(contact.getFullName()) &&
+            Objects.equals(this.getEmails(), contact.getEmails()) &&
+            Objects.equals(this.getPhones(), contact.getPhones());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getFullName(), this.getEmails(), this.getPhones());
+    }
+
     private String verifyEmail(String email) {
         boolean isValidEmail = NameEmailAndPhoneValidator.isValidEmail(email);
         if (!isValidEmail) {
@@ -71,7 +89,7 @@ public class Contact {
         phoneNumber = phoneNumber.replaceAll("\\s+", "");
         String areaCode = "(".concat(phoneNumber.substring(0, 3)).concat(") ");
         String exchangeCode = phoneNumber.substring(3, 6).concat("-");
-        String lineNumber = phoneNumber.substring(5);
+        String lineNumber = phoneNumber.substring(6);
 
         return areaCode.concat(exchangeCode).concat(lineNumber);
     }
