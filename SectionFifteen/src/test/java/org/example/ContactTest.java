@@ -106,5 +106,17 @@ public class ContactTest {
 
             assertEquals("Invalid name format", exception.getMessage());
         }
+
+        @Test
+        public void testVerifyNameDoesNotAllowNumeralsInName() {
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> new Contact(
+                    "Eric", "Vernon", "E1Name",
+                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                ));
+
+            assertEquals("Invalid name format", exception.getMessage());
+        }
+
     }
 }
