@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTest {
 
@@ -68,6 +67,44 @@ public class ContactTest {
             }
             assertEquals("(919) 449-5529", phones);
 
+        }
+    }
+
+    @Nested
+    @DisplayName("test verification methods")
+    class TestVerificationMethods {
+
+        @Test
+        public void testVerifyNameMethodBlankFirstName() {
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> new Contact(
+                    "", "Vernon", "Ricketts",
+                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                ));
+
+            assertEquals("Invalid name format", exception.getMessage());
+        }
+
+        @Test
+        public void testVerifyNameMethodNullMiddleName() {
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> new Contact(
+                    "Eric", null, "Ricketts",
+                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                ));
+
+            assertEquals("Invalid name format", exception.getMessage());
+        }
+
+        @Test
+        public void testVerifyNameMethodIncorrectLastName() {
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> new Contact(
+                    "Eric", "Vernon", "E@#Name",
+                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                ));
+
+            assertEquals("Invalid name format", exception.getMessage());
         }
     }
 }
