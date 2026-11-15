@@ -17,7 +17,7 @@ public class ContactTest {
     public void setUp() {
         contact = new Contact(
             "Eric", "Vernon", "Ricketts",
-            "eric_ricketts@icloud.com", new BigInteger("9194495529")
+            "eric_ricketts@icloud.com", "9194495529"
         );
     }
 
@@ -79,7 +79,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "", "Vernon", "Ricketts",
-                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                    "eric_ricketts@icloud.com", "9194495529"
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -90,7 +90,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", null, "Ricketts",
-                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                    "eric_ricketts@icloud.com", "9194495529"
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -101,7 +101,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", "Vernon", "E@#Name",
-                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                    "eric_ricketts@icloud.com", "9194495529"
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -112,11 +112,47 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", "Vernon", "E1Name",
-                    "eric_ricketts@iclod.com", new BigInteger("9194495529")
+                    "eric_ricketts@icloud.com", "9194495529"
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
         }
 
+        @Test
+        public void testVerifyEmailDoesNotAllowIncorrectlyFormattedEmail() {
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> new Contact(
+                    "Eric", "Vernon", "Ricketts",
+                    "eric ricketts@icloud.com", "9194495529"
+                ));
+
+            assertEquals("Invalid email format", exception.getMessage());
+        }
+
+        @Test
+        public void testVerifyPhoneNumberDoesNotAllowIncorrectlyFormattedPhoneNumber() {
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> new Contact(
+                    "Eric", "Vernon", "Ricketts",
+                    "eric_ricketts@icloud.com", "9194U95529"
+                ));
+
+            assertEquals("Invalid phone number format", exception.getMessage());
+        }
+    }
+
+    @Nested
+    @DisplayName("test equals method")
+    class TestContactEqualsMethod {
+
+        @Test
+        public void TestTwoEqualContact() {
+            Contact secondContact = new Contact(
+                "Eric", "Vernon", "Ricketts",
+                "eric_ricketts@icloud.com", "9194495529"
+            );
+
+            assertEquals(contact, secondContact);
+        }
     }
 }

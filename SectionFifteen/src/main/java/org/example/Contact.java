@@ -11,12 +11,13 @@ public class Contact {
     Set<String> emails = new HashSet<>();
     Set<String> phones = new HashSet<>();
 
-    public Contact(String firstName, String middleName, String lastName, String email, BigInteger phoneNumber) {
+    public Contact(String firstName, String middleName, String lastName, String email, String phoneNumber) {
         this.firstName = verifyName(firstName);
         this.middleName = verifyName(middleName);
         this.lastName = verifyName(lastName);
         this.emails.add(verifyEmail(email));
-        phones.add(transformPhoneNumber(verifyPhoneNumber(phoneNumber)));
+        String verifiedPhoneNumber = verifyPhoneNumber(phoneNumber);
+        phones.add(transformPhoneNumber(verifiedPhoneNumber));
     }
 
     public String getFirstName() {
@@ -76,13 +77,12 @@ public class Contact {
         return name;
     }
 
-    private String verifyPhoneNumber(BigInteger phoneNumber) {
-        String phoneNumberString = String.valueOf(phoneNumber);
-        boolean isValidPhoneNumber = NameEmailAndPhoneValidator.isValidUSPhoneNumber(phoneNumberString);
+    private String verifyPhoneNumber(String phoneNumber) {
+        boolean isValidPhoneNumber = NameEmailAndPhoneValidator.isValidUSPhoneNumber(phoneNumber);
         if (!isValidPhoneNumber) {
-            throw new IllegalArgumentException("Invalid Phone Number format");
+            throw new IllegalArgumentException("Invalid phone number format");
         }
-        return phoneNumberString;
+        return phoneNumber;
     }
 
     private String transformPhoneNumber(String phoneNumber) {
