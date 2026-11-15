@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTest {
 
-    private Contact contact;
+    private Contact contact, secondContact;
 
     @BeforeEach
     public void setUp() {
@@ -147,12 +147,42 @@ public class ContactTest {
 
         @Test
         public void TestTwoEqualContact() {
-            Contact secondContact = new Contact(
+            secondContact = new Contact(
                 "Eric", "Vernon", "Ricketts",
                 "eric_ricketts@icloud.com", "9194495529"
             );
 
             assertEquals(contact, secondContact);
+        }
+
+        @Test
+        public void testContactsDifferByName() {
+            secondContact = new Contact(
+                "James", "Bruce", "Ricketts",
+                "eric_ricketts@icloud.com", "9194495529"
+            );
+
+            assertNotEquals(contact, secondContact);
+        }
+
+        @Test
+        public void testContactsDifferByEmail() {
+            secondContact = new Contact(
+                "Eric", "Vernon", "Ricketts",
+                "eric_ricketts@example.org", "9194495529"
+            );
+
+            assertNotEquals(contact, secondContact);
+        }
+
+        @Test
+        public void testContactsDifferByPhoneNumber() {
+            secondContact = new Contact(
+                "Eric", "Vernon", "Ricketts",
+                "eric_ricketts@icloud.com", "9194495429"
+            );
+
+            assertNotEquals(contact, secondContact);
         }
     }
 }
