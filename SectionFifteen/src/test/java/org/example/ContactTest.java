@@ -16,8 +16,11 @@ public class ContactTest {
     @BeforeEach
     public void setUp() {
         contact = new Contact(
-            "Eric", "Vernon", "Ricketts",
-            "eric_ricketts@icloud.com", "9194495529"
+            "Eric",
+            "Vernon",
+            "Ricketts",
+            "eric_ricketts@icloud.com",
+            BigInteger.valueOf(9194495529L)
         );
     }
 
@@ -79,7 +82,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "", "Vernon", "Ricketts",
-                    "eric_ricketts@icloud.com", "9194495529"
+                    "eric_ricketts@icloud.com", BigInteger.valueOf(9194495529L)
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -90,7 +93,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", null, "Ricketts",
-                    "eric_ricketts@icloud.com", "9194495529"
+                    "eric_ricketts@icloud.com", BigInteger.valueOf(9194495529L)
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -101,7 +104,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", "Vernon", "E@#Name",
-                    "eric_ricketts@icloud.com", "9194495529"
+                    "eric_ricketts@icloud.com", BigInteger.valueOf(9194495529L)
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -112,7 +115,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", "Vernon", "E1Name",
-                    "eric_ricketts@icloud.com", "9194495529"
+                    "eric_ricketts@icloud.com", BigInteger.valueOf(9194495529L)
                 ));
 
             assertEquals("Invalid name format", exception.getMessage());
@@ -123,7 +126,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", "Vernon", "Ricketts",
-                    "eric ricketts@icloud.com", "9194495529"
+                    "eric ricketts@icloud.com", BigInteger.valueOf(9194495529L)
                 ));
 
             assertEquals("Invalid email format", exception.getMessage());
@@ -134,7 +137,7 @@ public class ContactTest {
             Exception exception = assertThrowsExactly(
                 IllegalArgumentException.class, () -> new Contact(
                     "Eric", "Vernon", "Ricketts",
-                    "eric_ricketts@icloud.com", "9194U95529"
+                    "eric_ricketts@icloud.com", BigInteger.valueOf(919495529L)
                 ));
 
             assertEquals("Invalid phone number format", exception.getMessage());
@@ -148,8 +151,11 @@ public class ContactTest {
         @Test
         public void TestTwoEqualContact() {
             secondContact = new Contact(
-                "Eric", "Vernon", "Ricketts",
-                "eric_ricketts@icloud.com", "9194495529"
+                "Eric",
+                "Vernon",
+                "Ricketts",
+                "eric_ricketts@icloud.com",
+                BigInteger.valueOf(9194495529L)
             );
 
             assertEquals(contact, secondContact);
@@ -158,8 +164,11 @@ public class ContactTest {
         @Test
         public void testContactsDifferByName() {
             secondContact = new Contact(
-                "James", "Bruce", "Ricketts",
-                "eric_ricketts@icloud.com", "9194495529"
+                "James",
+                "Bruce",
+                "Ricketts",
+                "eric_ricketts@icloud.com",
+                BigInteger.valueOf(9194495529L)
             );
 
             assertNotEquals(contact, secondContact);
@@ -168,8 +177,11 @@ public class ContactTest {
         @Test
         public void testContactsDifferByEmail() {
             secondContact = new Contact(
-                "Eric", "Vernon", "Ricketts",
-                "eric_ricketts@example.org", "9194495529"
+                "Eric",
+                "Vernon",
+                "Ricketts",
+                "eric_ricketts@example.org",
+                BigInteger.valueOf(9194495529L)
             );
 
             assertNotEquals(contact, secondContact);
@@ -178,11 +190,46 @@ public class ContactTest {
         @Test
         public void testContactsDifferByPhoneNumber() {
             secondContact = new Contact(
-                "Eric", "Vernon", "Ricketts",
-                "eric_ricketts@icloud.com", "9194495429"
+                "Eric",
+                "Vernon",
+                "Ricketts",
+                "eric_ricketts@icloud.com",
+                BigInteger.valueOf(9194495429L)
             );
 
             assertNotEquals(contact, secondContact);
+        }
+    }
+
+    @Nested
+    @DisplayName("test different constructors")
+    class TestDifferentContactConstructors {
+
+        @Test
+        public void testTwoArgumentConstructorNameAndPhoneNumber() {
+            contact = new Contact(
+                "Eric",
+                "Vernon",
+                "Ricketts",
+                BigInteger.valueOf(9194495529L));
+
+            assertEquals("Eric Vernon Ricketts", contact.getFullName());
+            assertEquals("(919) 449-5529", contact.getPhones().iterator().next());
+            assertEquals("eric_ricketts@example.org", contact.getEmails().iterator().next());
+        }
+
+        @Test
+        public void testTwoArgumentConstructorNameAndEmail() {
+            contact = new Contact(
+                "Eric",
+                "Vernon",
+                "Ricketts",
+                "eric_ricketts@icloud.com"
+            );
+
+            assertEquals("Eric Vernon Ricketts", contact.getFullName());
+            assertEquals("(212) 555-0123", contact.getPhones().iterator().next());
+            assertEquals("eric_ricketts@icloud.com", contact.getEmails().iterator().next());
         }
     }
 }

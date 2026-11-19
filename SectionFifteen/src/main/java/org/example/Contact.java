@@ -11,13 +11,21 @@ public class Contact {
     Set<String> emails = new HashSet<>();
     Set<String> phones = new HashSet<>();
 
-    public Contact(String firstName, String middleName, String lastName, String email, String phoneNumber) {
+    public Contact(String firstName, String middleName, String lastName, String email, BigInteger phoneNumber) {
         this.firstName = verifyName(firstName);
         this.middleName = verifyName(middleName);
         this.lastName = verifyName(lastName);
         this.emails.add(verifyEmail(email));
         String verifiedPhoneNumber = verifyPhoneNumber(phoneNumber);
         phones.add(transformPhoneNumber(verifiedPhoneNumber));
+    }
+
+    public Contact(String firstName, String middleName, String lastName, BigInteger phoneNumber) {
+        this(firstName, middleName, lastName, "eric_ricketts@example.org", phoneNumber);
+    }
+
+    public Contact(String firstName, String middleName, String lastName, String email) {
+        this(firstName, middleName, lastName, email, BigInteger.valueOf(2125550123L));
     }
 
     public String getFirstName() {
@@ -62,6 +70,7 @@ public class Contact {
     }
 
     private String verifyEmail(String email) {
+        if (email.isBlank()) return "";
         boolean isValidEmail = NameEmailAndPhoneValidator.isValidEmail(email);
         if (!isValidEmail) {
             throw new IllegalArgumentException("Invalid email format");
@@ -77,12 +86,13 @@ public class Contact {
         return name;
     }
 
-    private String verifyPhoneNumber(String phoneNumber) {
-        boolean isValidPhoneNumber = NameEmailAndPhoneValidator.isValidUSPhoneNumber(phoneNumber);
+    private String verifyPhoneNumber(BigInteger phoneNumber) {
+        String phoneNumberString = String.valueOf(phoneNumber);
+        boolean isValidPhoneNumber = NameEmailAndPhoneValidator.isValidUSPhoneNumber(phoneNumberString);
         if (!isValidPhoneNumber) {
             throw new IllegalArgumentException("Invalid phone number format");
         }
-        return phoneNumber;
+        return phoneNumberString;
     }
 
     private String transformPhoneNumber(String phoneNumber) {
