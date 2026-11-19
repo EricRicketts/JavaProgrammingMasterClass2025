@@ -8,16 +8,16 @@ import java.util.Set;
 public class Contact {
 
     private String firstName, middleName, lastName;
-    Set<String> emails = new HashSet<>();
-    Set<String> phones = new HashSet<>();
+    String email, firstPhoneNumber, secondPhoneNumber;
 
     public Contact(String firstName, String middleName, String lastName, String email, BigInteger phoneNumber) {
         this.firstName = verifyName(firstName);
         this.middleName = middleName.isBlank()? "" : verifyName(middleName);
         this.lastName = verifyName(lastName);
-        this.emails.add(verifyEmail(email));
+        this.email = verifyEmail(email);
         String verifiedPhoneNumber = verifyPhoneNumber(phoneNumber);
-        phones.add(transformPhoneNumber(verifiedPhoneNumber));
+        this.firstPhoneNumber = transformPhoneNumber(verifiedPhoneNumber);
+        this.secondPhoneNumber = "";
     }
 
     public Contact(String firstName, String middleName, String lastName, BigInteger phoneNumber) {
@@ -68,12 +68,30 @@ public class Contact {
         }
     }
 
-    public Set<String> getEmails() {
-        return emails;
+    public String getEmail() {
+        return email;
     }
 
-    public Set<String> getPhones() {
-        return phones;
+    public String getFirstPhoneNumber() {
+        return firstPhoneNumber;
+    }
+
+    public String getSecondPhoneNumber() {
+        return secondPhoneNumber;
+    }
+
+    public void setFirstPhoneNumber(BigInteger newFirstPhoneNumber) {
+        String verifiedPhoneNumber = verifyPhoneNumber(newFirstPhoneNumber);
+        this.firstPhoneNumber = transformPhoneNumber(verifiedPhoneNumber);
+    }
+
+    public void setSecondPhoneNumber(BigInteger newSecondPhoneNumber) {
+        String verifiedPhoneNumber = verifyPhoneNumber(newSecondPhoneNumber);
+        this.secondPhoneNumber = transformPhoneNumber(verifiedPhoneNumber);
+    }
+
+    public void mergeContactData(Contact contact) {
+
     }
 
     @Override
@@ -84,13 +102,13 @@ public class Contact {
 
         Contact contact = (Contact) object;
         return this.getFullName().equals(contact.getFullName()) &&
-            Objects.equals(this.getEmails(), contact.getEmails()) &&
-            Objects.equals(this.getPhones(), contact.getPhones());
+            Objects.equals(this.getEmail(), contact.getEmail()) &&
+            Objects.equals(this.getFirstPhoneNumber(), contact.getFirstPhoneNumber());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getFullName(), this.getEmails(), this.getPhones());
+        return Objects.hash(this.getFullName(), this.getEmail(), this.getFirstPhoneNumber());
     }
 
     @Override
@@ -98,9 +116,9 @@ public class Contact {
         return "Contact Name: "
             .concat(this.getFullName())
             .concat("; Email: ")
-            .concat(this.getEmails().iterator().next())
+            .concat(this.getEmail())
             .concat("; Phone Number: ")
-            .concat(this.getPhones().iterator().next())
+            .concat(this.getFirstPhoneNumber())
             .concat("\n");
     }
 

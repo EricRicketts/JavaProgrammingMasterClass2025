@@ -62,8 +62,8 @@ public class ContactTest {
         @Test
         public void testEmailGetter() {
             String emails = "";
-            if (!contact.getEmails().isEmpty()) {
-                emails = contact.getEmails().iterator().next();
+            if (!contact.getEmail().isEmpty()) {
+                emails = contact.getEmail();
             }
             assertEquals("eric_ricketts@icloud.com", emails);
         }
@@ -71,8 +71,8 @@ public class ContactTest {
         @Test
         public void testPhoneGetter() {
             String phones = "";
-            if (!contact.getPhones().isEmpty()) {
-                phones = contact.getPhones().iterator().next();
+            if (!contact.getFirstPhoneNumber().isEmpty()) {
+                phones = contact.getFirstPhoneNumber();
             }
             assertEquals("(919) 449-5529", phones);
 
@@ -148,6 +148,34 @@ public class ContactTest {
 
             assertEquals("Invalid phone number format", exception.getMessage());
         }
+
+        @Test
+        public void testVerifyContactFirstPhoneSetter() {
+            assertEquals("(919) 449-5529", contact.getFirstPhoneNumber());
+            contact.setFirstPhoneNumber(BigInteger.valueOf(9194495456L));
+
+            assertEquals("(919) 449-5456", contact.getFirstPhoneNumber());
+        }
+
+        @Test
+        public void testVerifyContactSecondPhoneSetter() {
+            assertEquals("", contact.getSecondPhoneNumber());
+            contact.setSecondPhoneNumber(BigInteger.valueOf(7034510235L));
+
+            assertEquals("(703) 451-0235", contact.getSecondPhoneNumber());
+        }
+
+        @Test
+        public void verifyPhoneSettersDoNotAllowInvalidPhoneNumbers() {
+            assertEquals("(919) 449-5529", contact.getFirstPhoneNumber());
+
+            Exception exception = assertThrowsExactly(
+                IllegalArgumentException.class, () ->
+                contact.setFirstPhoneNumber(BigInteger.valueOf(50433112345L))
+            );
+
+            assertEquals("Invalid phone number format", exception.getMessage());
+        }
     }
 
     @Nested
@@ -220,8 +248,8 @@ public class ContactTest {
                 BigInteger.valueOf(9194495529L));
 
             assertEquals("Eric Vernon Ricketts", contact.getFullName());
-            assertEquals("(919) 449-5529", contact.getPhones().iterator().next());
-            assertEquals("eric_ricketts@example.org", contact.getEmails().iterator().next());
+            assertEquals("(919) 449-5529", contact.getFirstPhoneNumber());
+            assertEquals("eric_ricketts@example.org", contact.getEmail());
         }
 
         @Test
@@ -234,8 +262,8 @@ public class ContactTest {
             );
 
             assertEquals("Eric Vernon Ricketts", contact.getFullName());
-            assertEquals("(212) 555-0123", contact.getPhones().iterator().next());
-            assertEquals("eric_ricketts@icloud.com", contact.getEmails().iterator().next());
+            assertEquals("(212) 555-0123", contact.getFirstPhoneNumber());
+            assertEquals("eric_ricketts@icloud.com", contact.getEmail());
         }
 
         @Test
@@ -243,8 +271,8 @@ public class ContactTest {
             contact = new Contact("James", "Bruce", "Ricketts");
 
             assertEquals("James Bruce Ricketts", contact.getFullName());
-            assertEquals("(212) 555-0123", contact.getPhones().iterator().next());
-            assertEquals("james_ricketts@example.org", contact.getEmails().iterator().next());
+            assertEquals("(212) 555-0123", contact.getFirstPhoneNumber());
+            assertEquals("james_ricketts@example.org", contact.getEmail());
         }
     }
 
