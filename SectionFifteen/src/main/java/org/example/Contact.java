@@ -13,7 +13,7 @@ public class Contact {
 
     public Contact(String firstName, String middleName, String lastName, String email, BigInteger phoneNumber) {
         this.firstName = verifyName(firstName);
-        this.middleName = verifyName(middleName);
+        this.middleName = middleName.isBlank()? "" : verifyName(middleName);
         this.lastName = verifyName(lastName);
         this.emails.add(verifyEmail(email));
         String verifiedPhoneNumber = verifyPhoneNumber(phoneNumber);
@@ -61,7 +61,11 @@ public class Contact {
     }
 
     public String getFullName() {
-        return firstName.concat(" ").concat(middleName).concat(" ").concat(lastName);
+        if (middleName.isBlank()) {
+            return  firstName.concat(" ").concat(lastName);
+        } else {
+            return firstName.concat(" ").concat(middleName).concat(" ").concat(lastName);
+        }
     }
 
     public Set<String> getEmails() {

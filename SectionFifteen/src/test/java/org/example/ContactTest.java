@@ -47,6 +47,12 @@ public class ContactTest {
         public void testFullNameGetter() {
             assertEquals("Eric Vernon Ricketts", contact.getFullName());
         }
+
+        @Test
+        public void testFullNameGetterFirstAndLastNameOnly() {
+            contact = new Contact("Louis", "", "Armstrong");
+            assertEquals("Louis Armstrong", contact.getFullName());
+        }
     }
 
     @Nested
@@ -91,12 +97,12 @@ public class ContactTest {
         @Test
         public void testVerifyNameMethodNullMiddleName() {
             Exception exception = assertThrowsExactly(
-                IllegalArgumentException.class, () -> new Contact(
+                NullPointerException.class, () -> new Contact(
                     "Eric", null, "Ricketts",
                     "eric_ricketts@icloud.com", BigInteger.valueOf(9194495529L)
                 ));
 
-            assertEquals("Invalid name format", exception.getMessage());
+            assertEquals("Cannot invoke \"String.isBlank()\" because \"middleName\" is null", exception.getMessage());
         }
 
         @Test
