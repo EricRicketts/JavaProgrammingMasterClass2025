@@ -206,7 +206,7 @@ public class ContactTest {
     class TestDifferentContactConstructors {
 
         @Test
-        public void testTwoArgumentConstructorNameAndPhoneNumber() {
+        public void testFourArgumentConstructorNameAndPhoneNumber() {
             contact = new Contact(
                 "Eric",
                 "Vernon",
@@ -219,7 +219,7 @@ public class ContactTest {
         }
 
         @Test
-        public void testTwoArgumentConstructorNameAndEmail() {
+        public void testFourArgumentConstructorNameAndEmail() {
             contact = new Contact(
                 "Eric",
                 "Vernon",
@@ -230,6 +230,15 @@ public class ContactTest {
             assertEquals("Eric Vernon Ricketts", contact.getFullName());
             assertEquals("(212) 555-0123", contact.getPhones().iterator().next());
             assertEquals("eric_ricketts@icloud.com", contact.getEmails().iterator().next());
+        }
+
+        @Test
+        public void testThreeArgumentConstructorForNameOnly() {
+            contact = new Contact("James", "Bruce", "Ricketts");
+
+            assertEquals("James Bruce Ricketts", contact.getFullName());
+            assertEquals("(212) 555-0123", contact.getPhones().iterator().next());
+            assertEquals("james_ricketts@example.org", contact.getEmails().iterator().next());
         }
     }
 }

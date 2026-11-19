@@ -21,11 +21,31 @@ public class Contact {
     }
 
     public Contact(String firstName, String middleName, String lastName, BigInteger phoneNumber) {
-        this(firstName, middleName, lastName, "eric_ricketts@example.org", phoneNumber);
+        this(
+            firstName,
+            middleName,
+            lastName,
+            firstName.toLowerCase()
+                .concat("_")
+                .concat(lastName.toLowerCase()
+                .concat("@example.org")),
+            phoneNumber);
     }
 
     public Contact(String firstName, String middleName, String lastName, String email) {
         this(firstName, middleName, lastName, email, BigInteger.valueOf(2125550123L));
+    }
+
+    public Contact(String firstName, String middleName, String lastName) {
+        this(
+            firstName,
+            middleName,
+            lastName,
+            firstName.toLowerCase()
+                .concat("_")
+                .concat(lastName.toLowerCase()
+                .concat("@example.org")),
+            BigInteger.valueOf(2125550123L));
     }
 
     public String getFirstName() {
@@ -102,5 +122,13 @@ public class Contact {
         String lineNumber = phoneNumber.substring(6);
 
         return areaCode.concat(exchangeCode).concat(lineNumber);
+    }
+
+    private String renderDefaultEmail(String firstName, String lastName) {
+        return firstName
+            .toLowerCase()
+            .concat("_")
+            .concat(lastName.toLowerCase())
+            .concat("@example.org");
     }
 }
