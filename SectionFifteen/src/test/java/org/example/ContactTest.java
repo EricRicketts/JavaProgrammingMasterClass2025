@@ -241,4 +241,17 @@ public class ContactTest {
             assertEquals("james_ricketts@example.org", contact.getEmails().iterator().next());
         }
     }
+
+    @Nested
+    @DisplayName("test to string")
+    class TestToString {
+
+        @Test
+        public void testToString() {
+            String expected =
+                "Contact Name: Eric Vernon Ricketts; Email: eric_ricketts@icloud.com; Phone Number: (919) 449-5529\n";
+
+            assertEquals(expected, contact.toString());
+        }
+    }
 }

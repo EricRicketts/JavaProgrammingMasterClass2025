@@ -89,6 +89,17 @@ public class Contact {
         return Objects.hash(this.getFullName(), this.getEmails(), this.getPhones());
     }
 
+    @Override
+    public String toString() {
+        return "Contact Name: "
+            .concat(this.getFullName())
+            .concat("; Email: ")
+            .concat(this.getEmails().iterator().next())
+            .concat("; Phone Number: ")
+            .concat(this.getPhones().iterator().next())
+            .concat("\n");
+    }
+
     private String verifyEmail(String email) {
         if (email.isBlank()) return "";
         boolean isValidEmail = NameEmailAndPhoneValidator.isValidEmail(email);
@@ -122,13 +133,5 @@ public class Contact {
         String lineNumber = phoneNumber.substring(6);
 
         return areaCode.concat(exchangeCode).concat(lineNumber);
-    }
-
-    private String renderDefaultEmail(String firstName, String lastName) {
-        return firstName
-            .toLowerCase()
-            .concat("_")
-            .concat(lastName.toLowerCase())
-            .concat("@example.org");
     }
 }
